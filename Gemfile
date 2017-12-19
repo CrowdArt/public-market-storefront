@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'spree', '~> 3.3'
 gem 'spree_auth_devise', '~> 3.3'
 gem 'spree_gateway', '~> 3.3'
-gem 'vinsol_spree_themes', github: 'vinsol-spree-contrib/spree_themes', branch: '3-3-stable'
+gem 'vinsol_spree_themes', github: 'Abundance-Coin/spree_themes'
 
 gem 'shrine'
 

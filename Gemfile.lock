@@ -1,7 +1,6 @@
 GIT
-  remote: https://github.com/vinsol-spree-contrib/spree_themes.git
-  revision: 9fb385085a829a0f36385b2c1b028876e4c920fb
-  branch: 3-3-stable
+  remote: https://github.com/Abundance-Coin/spree_themes.git
+  revision: 2260745c57fcc8c4dc17ca820af5098647986ec8
   specs:
     vinsol_spree_themes (0.0.1)
       rubyzip (~> 1.2.1)
