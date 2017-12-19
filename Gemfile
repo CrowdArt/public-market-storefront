@@ -36,18 +36,16 @@ gem 'spree', '~> 3.3'
 gem 'spree_auth_devise', '~> 3.3'
 gem 'spree_gateway', '~> 3.3'
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  # Adds support for Capybara system testing and selenium driver
+group :test do
   gem 'capybara', '~> 2.13'
+  gem 'rspec'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
 end
 
 group :development do
+  gem 'byebug'
+  gem 'guard'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop', require: false
   gem 'spring'
