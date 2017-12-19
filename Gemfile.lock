@@ -8,6 +8,22 @@ GIT
       sprockets-helpers (~> 1.2.1)
       state_machine (~> 1.2.0)
 
+GIT
+  remote: https://github.com/spree-contrib/spree_social.git
+  revision: fa841064a4e4698fa171ecdbfcf0317ee03eac26
+  specs:
+    spree_social (3.3.1)
+      oa-core
+      omniauth
+      omniauth-amazon
+      omniauth-facebook
+      omniauth-github
+      omniauth-google-oauth2
+      omniauth-twitter
+      spree_auth_devise (>= 3.1.0, < 4.0)
+      spree_core (>= 3.1.0, < 4.0)
+      spree_extension
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -120,6 +136,8 @@ GEM
     down (4.1.1)
     erubi (1.7.0)
     execjs (2.7.0)
+    faraday (0.12.2)
+      multipart-post (>= 1.2, < 3)
     ffaker (2.7.0)
     ffi (1.9.18)
     formatador (0.2.5)
@@ -136,6 +154,7 @@ GEM
       pry (>= 0.9.12)
       shellany (~> 0.0)
       thor (>= 0.18.1)
+    hashie (3.5.6)
     highline (1.6.21)
     htmlentities (4.3.4)
     i18n (0.9.1)
@@ -149,6 +168,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    jwt (1.5.6)
     kaminari (1.0.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.0.1)
@@ -184,6 +204,8 @@ GEM
     money (6.10.1)
       i18n (>= 0.6.4, < 1.0)
     multi_json (1.12.2)
+    multi_xml (0.6.0)
+    multipart-post (2.0.0)
     nenv (0.3.0)
     nio4r (2.1.0)
     nokogiri (1.8.1)
@@ -191,6 +213,39 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    oa-core (0.3.2)
+    oauth (0.5.4)
+    oauth2 (1.4.0)
+      faraday (>= 0.8, < 0.13)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 3)
+    omniauth (1.7.1)
+      hashie (>= 3.4.6, < 3.6.0)
+      rack (>= 1.6.2, < 3)
+    omniauth-amazon (1.0.1)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
+    omniauth-facebook (4.0.0)
+      omniauth-oauth2 (~> 1.2)
+    omniauth-github (1.3.0)
+      omniauth (~> 1.5)
+      omniauth-oauth2 (>= 1.4.0, < 2.0)
+    omniauth-google-oauth2 (0.5.2)
+      jwt (~> 1.5)
+      multi_json (~> 1.3)
+      omniauth (>= 1.1.1)
+      omniauth-oauth2 (>= 1.3.1)
+    omniauth-oauth (1.1.0)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-oauth2 (1.5.0)
+      oauth2 (~> 1.1)
+      omniauth (~> 1.2)
+    omniauth-twitter (1.4.0)
+      omniauth-oauth (~> 1.1)
+      rack
     orm_adapter (0.5.0)
     paperclip (5.1.0)
       activemodel (>= 4.2.0)
@@ -451,6 +506,7 @@ DEPENDENCIES
   spree (~> 3.3)
   spree_auth_devise (~> 3.3)
   spree_gateway (~> 3.3)
+  spree_social!
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

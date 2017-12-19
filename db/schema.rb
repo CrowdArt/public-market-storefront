@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171219104946) do
+ActiveRecord::Schema.define(version: 20171219162357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,16 @@ ActiveRecord::Schema.define(version: 20171219104946) do
     t.index ["position"], name: "index_spree_assets_on_position"
     t.index ["viewable_id"], name: "index_assets_on_viewable_id"
     t.index ["viewable_type", "type"], name: "index_assets_on_viewable_type_and_type"
+  end
+
+  create_table "spree_authentication_methods", id: :serial, force: :cascade do |t|
+    t.string "environment"
+    t.string "provider"
+    t.string "api_key"
+    t.string "api_secret"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "spree_calculators", id: :serial, force: :cascade do |t|
@@ -1005,6 +1015,16 @@ ActiveRecord::Schema.define(version: 20171219104946) do
     t.index ["active"], name: "index_spree_trackers_on_active"
   end
 
+  create_table "spree_user_authentications", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.string "provider"
+    t.string "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uid", "provider"], name: "index_spree_user_authentications_on_uid_and_provider", unique: true
+    t.index ["user_id"], name: "index_spree_user_authentications_on_user_id"
+  end
+
   create_table "spree_users", id: :serial, force: :cascade do |t|
     t.string "encrypted_password", limit: 128
     t.string "password_salt", limit: 128
@@ -1091,4 +1111,5 @@ ActiveRecord::Schema.define(version: 20171219104946) do
     t.index ["kind"], name: "index_spree_zones_on_kind"
   end
 
+  add_foreign_key "spree_user_authentications", "spree_users", column: "user_id"
 end
