@@ -7,6 +7,11 @@ AllCops:
     - '**/Rakefile'
     - '**/Guardfile'
     - '**/Brewfile'
+  Exclude:
+    - 'db/migrate/*'
+
+Rails:
+  Enabled: true
 
 Layout/SpaceInsideHashLiteralBraces:
   Enabled: true
@@ -16,11 +21,17 @@ Style/HashSyntax:
   Enabled: true
   EnforcedStyle: ruby19_no_mixed_keys
 
+Metrics/LineLength:
+  Max: 150
+
+Metrics/BlockLength:
+  Exclude:
+    - 'db/**/*'
+
+# DISABLED
+
 Style/Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
   Enabled: false
-
-Metrics/LineLength:
-  Max: 150
