@@ -6,11 +6,11 @@ class MigrateOldPreferences < ActiveRecord::Migration[4.2]
     migrate_preferences(Spree::PromotionRule)
   end
 
-  def down
-  end
+  def down; end
 
   private
-  def migrate_preferences klass
+
+  def migrate_preferences(klass)
     klass.reset_column_information
     klass.find_each do |record|
       store = Spree::Preferences::ScopedStore.new(record.class.name.underscore, record.id)

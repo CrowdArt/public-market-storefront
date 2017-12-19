@@ -6,7 +6,6 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
     # already exists. Assume the best.
     return if data_source_exists?(:spree_addresses)
 
-
     create_table :spree_activators do |t|
       t.string     :description
       t.datetime   :expires_at
@@ -17,7 +16,7 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
       t.integer    :usage_limit
       t.string     :match_policy, default: 'all'
       t.string     :code
-      t.boolean    :advertise,    default: false
+      t.boolean    :advertise, default: false
       t.string     :path
       t.timestamps null: false
     end
@@ -49,27 +48,27 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
       t.string     :label
       t.boolean    :mandatory
       t.boolean    :locked
-      t.boolean    :eligible,   default: true
+      t.boolean    :eligible, default: true
       t.timestamps null: false
     end
 
     add_index :spree_adjustments, [:adjustable_id], name: 'index_adjustments_on_order_id'
 
     create_table :spree_assets do |t|
-      t.references :viewable,               polymorphic: true
+      t.references :viewable, polymorphic: true
       t.integer    :attachment_width
       t.integer    :attachment_height
       t.integer    :attachment_file_size
       t.integer    :position
       t.string     :attachment_content_type
       t.string     :attachment_file_name
-      t.string     :type,                   limit: 75
+      t.string     :type, limit: 75
       t.datetime   :attachment_updated_at
       t.text       :alt
     end
 
-    add_index :spree_assets, [:viewable_id],          name: 'index_assets_on_viewable_id'
-    add_index :spree_assets, [:viewable_type, :type], name: 'index_assets_on_viewable_type_and_type'
+    add_index :spree_assets, [:viewable_id], name: 'index_assets_on_viewable_id'
+    add_index :spree_assets, %i[viewable_type type], name: 'index_assets_on_viewable_type_and_type'
 
     create_table :spree_calculators do |t|
       t.string     :type
@@ -83,7 +82,7 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
       t.timestamps null: false
     end
 
-    add_index :spree_configurations, [:name, :type], name: 'index_spree_configurations_on_name_and_type'
+    add_index :spree_configurations, %i[name type], name: 'index_spree_configurations_on_name_and_type'
 
     create_table :spree_countries do |t|
       t.string  :iso_name
@@ -121,7 +120,7 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
     end
 
     create_table :spree_inventory_units do |t|
-      t.integer    :lock_version,        default: 0
+      t.integer    :lock_version, default: 0
       t.string     :state
       t.references :variant
       t.references :order
@@ -137,8 +136,8 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
     create_table :spree_line_items do |t|
       t.references :variant
       t.references :order
-      t.integer    :quantity,                               null: false
-      t.decimal    :price,    precision: 8, scale: 2, null: false
+      t.integer    :quantity, null: false
+      t.decimal    :price, precision: 8, scale: 2, null: false
       t.timestamps null: false
     end
 
@@ -147,20 +146,20 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
 
     create_table :spree_log_entries do |t|
       t.references :source, polymorphic: true
-      t.text     :details
+      t.text :details
       t.timestamps null: false
     end
 
     create_table :spree_mail_methods do |t|
       t.string     :environment
-      t.boolean    :active,     default: true
+      t.boolean    :active, default: true
       t.timestamps null: false
     end
 
     create_table :spree_option_types do |t|
       t.string    :name,         limit: 100
       t.string    :presentation, limit: 100
-      t.integer   :position,                   default: 0, null: false
+      t.integer   :position, default: 0, null: false
       t.timestamps null: false
     end
 
@@ -182,20 +181,20 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
       t.references :option_value
     end
 
-    add_index :spree_option_values_variants, [:variant_id, :option_value_id], name: 'index_option_values_variants_on_variant_id_and_option_value_id'
-    add_index :spree_option_values_variants, [:variant_id],                   name: 'index_spree_option_values_variants_on_variant_id'
+    add_index :spree_option_values_variants, %i[variant_id option_value_id], name: 'index_option_values_variants_on_variant_id_and_option_value_id'
+    add_index :spree_option_values_variants, [:variant_id], name: 'index_spree_option_values_variants_on_variant_id'
 
     create_table :spree_orders do |t|
-      t.string     :number,               limit: 15
+      t.string     :number, limit: 15
       t.decimal    :item_total,                         precision: 8, scale: 2, default: 0.0, null: false
       t.decimal    :total,                              precision: 8, scale: 2, default: 0.0, null: false
       t.string     :state
-      t.decimal    :adjustment_total,                   precision: 8, scale: 2, default: 0.0, null: false
+      t.decimal    :adjustment_total, precision: 8, scale: 2, default: 0.0, null: false
       t.references :user
       t.datetime   :completed_at
       t.references :bill_address
       t.references :ship_address
-      t.decimal    :payment_total,                      precision: 8, scale: 2, default: 0.0
+      t.decimal    :payment_total, precision: 8, scale: 2, default: 0.0
       t.references :shipping_method
       t.string     :shipment_state
       t.string     :payment_state
@@ -256,7 +255,7 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
     add_index :spree_product_properties, [:product_id], name: 'index_product_properties_on_product_id'
 
     create_table :spree_products do |t|
-      t.string     :name,                 default: '', null: false
+      t.string     :name, default: '', null: false
       t.text       :description
       t.datetime   :available_on
       t.datetime   :deleted_at
@@ -265,7 +264,7 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
       t.string     :meta_keywords
       t.references :tax_category
       t.references :shipping_category
-      t.integer    :count_on_hand,        default: 0,  null: false
+      t.integer    :count_on_hand, default: 0, null: false
       t.timestamps null: false
     end
 
@@ -322,7 +321,7 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
     create_table :spree_shipments do |t|
       t.string     :tracking
       t.string     :number
-      t.decimal    :cost,           precision: 8, scale: 2
+      t.decimal    :cost, precision: 8, scale: 2
       t.datetime   :shipped_at
       t.references :order
       t.references :shipping_method
@@ -375,7 +374,7 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
     end
 
     create_table :spree_tax_rates do |t|
-      t.decimal    :amount,            precision: 8, scale: 5
+      t.decimal    :amount, precision: 8, scale: 5
       t.references :zone
       t.references :tax_category
       t.boolean    :included_in_price, default: false
@@ -389,8 +388,8 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
 
     create_table :spree_taxons do |t|
       t.references :parent
-      t.integer    :position,          default: 0
-      t.string     :name,                             null: false
+      t.integer    :position, default: 0
+      t.string     :name, null: false
       t.string     :permalink
       t.references :taxonomy
       t.integer    :lft
@@ -413,12 +412,12 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
       t.timestamps null: false
     end
 
-    add_index :spree_tokenized_permissions, [:permissable_id, :permissable_type], name: 'index_tokenized_name_and_type'
+    add_index :spree_tokenized_permissions, %i[permissable_id permissable_type], name: 'index_tokenized_name_and_type'
 
     create_table :spree_trackers do |t|
       t.string     :environment
       t.string     :analytics_id
-      t.boolean    :active,       default: true
+      t.boolean    :active, default: true
       t.timestamps null: false
     end
 
@@ -449,17 +448,17 @@ class SpreeOneTwo < ActiveRecord::Migration[4.2]
     end
 
     create_table :spree_variants do |t|
-      t.string     :sku,                                         default: '',    null: false
-      t.decimal    :price,         precision: 8, scale: 2,                    null: false
+      t.string     :sku, default: '', null: false
+      t.decimal    :price,         precision: 8, scale: 2, null: false
       t.decimal    :weight,        precision: 8, scale: 2
       t.decimal    :height,        precision: 8, scale: 2
       t.decimal    :width,         precision: 8, scale: 2
       t.decimal    :depth,         precision: 8, scale: 2
       t.datetime   :deleted_at
-      t.boolean    :is_master,                                   default: false
+      t.boolean    :is_master, default: false
       t.references :product
-      t.integer    :count_on_hand,                               default: 0,     null: false
-      t.decimal    :cost_price,    precision: 8, scale: 2
+      t.integer    :count_on_hand, default: 0, null: false
+      t.decimal    :cost_price, precision: 8, scale: 2
       t.integer    :position
     end
 

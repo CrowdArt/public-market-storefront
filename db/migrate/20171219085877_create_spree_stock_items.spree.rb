@@ -10,6 +10,6 @@ class CreateSpreeStockItems < ActiveRecord::Migration[4.2]
       t.timestamps null: false
     end
     add_index :spree_stock_items, :stock_location_id
-    add_index :spree_stock_items, [:stock_location_id, :variant_id], name: 'stock_item_by_loc_and_var_id'
+    add_index :spree_stock_items, %i[stock_location_id variant_id], name: 'stock_item_by_loc_and_var_id'
   end
 end

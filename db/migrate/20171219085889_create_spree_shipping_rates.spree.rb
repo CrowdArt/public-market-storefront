@@ -8,7 +8,7 @@ class CreateSpreeShippingRates < ActiveRecord::Migration[4.2]
       t.decimal :cost, precision: 8, scale: 2
       t.timestamps null: false
     end
-    add_index(:spree_shipping_rates, [:shipment_id, :shipping_method_id],
+    add_index(:spree_shipping_rates, %i[shipment_id shipping_method_id],
               name: 'spree_shipping_rates_join_index',
               unique: true)
 

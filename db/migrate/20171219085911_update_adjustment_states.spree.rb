@@ -6,12 +6,11 @@ class UpdateAdjustmentStates < ActiveRecord::Migration[4.2]
     end
 
     Spree::Shipment.shipped.includes(:adjustment).find_each do |shipment|
-      shipment.adjustment.update_column(:state, 'finalized') if shipment.adjustment
+      shipment.adjustment&.update_column(:state, 'finalized')
     end
 
     Spree::Adjustment.where(state: nil).update_all(state: 'open')
   end
 
-  def down
-  end
+  def down; end
 end

@@ -9,4 +9,3 @@ class AddIndexesToReturnItems < ActiveRecord::Migration[5.0]
     add_index :spree_return_items, :override_reimbursement_type_id
   end
 end
-

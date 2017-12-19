@@ -10,9 +10,9 @@ class AddIndexesForPropertyPrototype < ActiveRecord::Migration[5.0]
       prototypes.map(&:destroy)
     end
 
-    if index_exists? :spree_property_prototypes, [:prototype_id, :property_id]
-      remove_index :spree_property_prototypes, [:prototype_id, :property_id]
-      add_index :spree_property_prototypes, [:prototype_id, :property_id], unique: true, name: 'index_property_prototypes_on_prototype_id_and_property_id'
+    if index_exists? :spree_property_prototypes, %i[prototype_id property_id]
+      remove_index :spree_property_prototypes, %i[prototype_id property_id]
+      add_index :spree_property_prototypes, %i[prototype_id property_id], unique: true, name: 'index_property_prototypes_on_prototype_id_and_property_id'
     end
 
     add_index :spree_property_prototypes, :prototype_id

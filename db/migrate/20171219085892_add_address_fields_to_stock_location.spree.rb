@@ -12,7 +12,6 @@ class AddAddressFieldsToStockLocation < ActiveRecord::Migration[4.2]
     add_column :spree_stock_locations, :zipcode, :string
     add_column :spree_stock_locations, :phone, :string
 
-
     usa = Spree::Country.where(iso: 'US').first
     # In case USA isn't found.
     # See #3115

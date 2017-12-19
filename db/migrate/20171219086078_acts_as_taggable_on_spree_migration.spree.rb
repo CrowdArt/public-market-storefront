@@ -23,15 +23,15 @@ class ActsAsTaggableOnSpreeMigration < ActiveRecord::Migration[4.2]
 
     add_index :spree_tags, :name, unique: true
     add_index :spree_taggings,
-              [
-                :tag_id,
-                :taggable_id,
-                :taggable_type,
-                :context,
-                :tagger_id,
-                :tagger_type
+              %i[
+                tag_id
+                taggable_id
+                taggable_type
+                context
+                tagger_id
+                tagger_type
               ],
-              unique: true, name: "spree_taggings_idx"
+              unique: true, name: 'spree_taggings_idx'
   end
 
   def self.down

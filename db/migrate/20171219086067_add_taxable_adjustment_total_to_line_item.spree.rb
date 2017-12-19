@@ -15,6 +15,6 @@ class AddTaxableAdjustmentTotalToLineItem < ActiveRecord::Migration[4.2]
                precision: 10, scale: 2, default: 0.0, null: false
     add_column :spree_orders, :non_taxable_adjustment_total, :decimal,
                precision: 10, scale: 2, default: 0.0, null: false
-    # TODO migration that updates old orders
+    # TODO: migration that updates old orders
   end
 end
