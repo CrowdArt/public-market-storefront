@@ -1,0 +1,8 @@
+sku,title,product_id,product_id_type,condition,quantity,price
+"SKU1","Title1","ISBN1","isbn","new",2,5.99
+"SKU2","Title2","ISBN2","isbn","used_acceptable",2,5.99
+"SKU3","Title3","ISBN3","isbn","new",2,3.99
+"SKU4","Title4","ISBN4","isbn","new",2,5.99
+"SKU5","Title5","ISBN5","isbn","used_good",1,5.99
+"SKU6","Title6","ISBN6","isbn","new",2,5.99
+"SKU7","Title7","ISBN7","isbn","new",3,1.99
