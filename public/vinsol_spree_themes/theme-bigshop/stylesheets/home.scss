@@ -1,0 +1,27 @@
+@import "variables.scss";
+
+#home-page {
+  #sidebar {
+    display: none;
+  }
+  #sidebar + #content {
+    float: none;
+    width: auto;
+  }
+  .wrapper {
+    max-width: initial;
+  }
+  .primary-header {
+    margin-bottom: 0;
+  }
+}
+.homepage_products {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+@media (max-width: $tablet) {
+  #home-page #sidebar {
+    display: block;
+  }
+}

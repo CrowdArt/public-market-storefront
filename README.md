@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+# Themes
+
+To install theme: `rake db:seed_theme`
