@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker-compose -f config/deploy/docker-compose.services.dev.yaml ${1-up} ${@:2}

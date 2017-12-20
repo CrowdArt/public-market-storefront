@@ -3,16 +3,19 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: postgres
 
 development:
   <<: *default
   database: bookstore_development
   pool: <%= ENV['WEB_THREADS'] || 10 %>
+  username: postgres
+  password: postgres
 
 test:
   <<: *default
   database: bookstore_test<%= ENV['TEST_ENV_NUMBER'] %>
+  username: postgres
+  password: postgres
 
 staging:
   <<: *default

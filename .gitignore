@@ -24,3 +24,7 @@
 
 public/uploads
 public/spree/products/*
+
+config/deploy/bin
+config/deploy/db
+config/deploy/tmp
