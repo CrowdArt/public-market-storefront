@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'spree', '~> 3.3'
 gem 'spree_auth_devise', '~> 3.3'
 gem 'spree_gateway', '~> 3.3'
+gem 'spree_public_market', path: '../spree_public_market'
 gem 'spree_social', github: 'spree-contrib/spree_social'
 gem 'vinsol_spree_themes', github: 'Abundance-Coin/spree_themes'
 
