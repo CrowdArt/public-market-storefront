@@ -25,9 +25,9 @@ GIT
       spree_extension
 
 PATH
-  remote: ../spree_public_market
+  remote: ../spree_batch_api
   specs:
-    spree_public_market (0.0.1.alpha)
+    spree_batch_api (0.0.1.alpha)
       spree_core (>= 3.1.0, < 4.0)
       spree_extension
 
@@ -512,8 +512,8 @@ DEPENDENCIES
   shrine
   spree (~> 3.3)
   spree_auth_devise (~> 3.3)
+  spree_batch_api!
   spree_gateway (~> 3.3)
-  spree_public_market!
   spree_social!
   spring
   spring-watcher-listen (~> 2.0.0)
