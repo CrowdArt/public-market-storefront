@@ -23,6 +23,19 @@ Things you may want to cover:
 
 * ...
 
+## Development Setup
+
+To start development dependencies, execute:
+
+```
+bin/dev-services -d
+```
+
+To run migrations:
+
+```
+rake db:create && rake db:migrate
+```
 
 # Themes
 

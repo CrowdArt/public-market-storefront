@@ -1,0 +1,27 @@
+version: '3'
+
+volumes:
+  # We'll define a volume that will store the data from the postgres databases:
+  postgres-data:
+
+services:
+  # Our PostgreSQL service:
+  postgres:
+    image: postgres:9.6.3
+    ports:
+      # We'll bind our host's port 5432 to postgres's port 5432, so we can use
+      # our database IDEs with it:
+      - 5432:5432
+    volumes:
+      # Mount the DB dumps folder into the container, to be able to create & access database dumps:
+      - ./db/dumps:/db/dumps
+      # Mount out tmp folder, we might want to have access to something there during development:
+      - ./tmp:/tmp
+      # Mount our 'restoredb' script:
+      - ./bin/restoredb:/bin/restoredb:ro
+      # Mount our 'dumpdb' script:
+      - ./bin/dumpdb:/bin/dumpdb:ro
+      # We'll mount the 'postgres-data' volume into the location Postgres stores it's data:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
