@@ -8,6 +8,7 @@ AllCops:
     - '**/Guardfile'
     - '**/Brewfile'
   Exclude:
+    - 'db/schema.rb'
     - 'db/migrate/*'
 
 Rails:
