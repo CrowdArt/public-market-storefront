@@ -1,0 +1,15 @@
+version: '3.2'
+
+services:
+  app:
+    build:
+      context: ../../.
+      dockerfile: ./config/deploy/Dockerfile
+    command: bundle exec puma
+    volumes:
+      - bundle_cache:/bundle
+      - app_public:/app/public
+
+volumes:
+  bundle_cache:
+  app_public:

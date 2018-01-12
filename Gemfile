@@ -12,11 +12,9 @@ gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'sass-rails'
+
+gem 'config'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -35,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'spree', '~> 3.3'
 gem 'spree_auth_devise', '~> 3.3'
 gem 'spree_gateway', '~> 3.3'
-gem 'spree_batch_api', path: '../spree_batch_api'
+# gem 'spree_batch_api', path: '../spree_batch_api'
 gem 'spree_social', github: 'spree-contrib/spree_social'
 gem 'vinsol_spree_themes', github: 'Abundance-Coin/spree_themes'
 
@@ -49,6 +47,9 @@ group :test do
 end
 
 group :development do
+  # temp place
+  gem 'spree_batch_api', path: '../spree_batch_api'
+
   gem 'byebug'
   gem 'guard'
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -57,4 +58,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+end
+
+group :production, :staging do
+  gem 'therubyracer'
+  gem 'uglifier'
 end

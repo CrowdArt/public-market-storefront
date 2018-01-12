@@ -22,9 +22,14 @@
 /tmp
 .byebug_history
 
+public/assets/*
 public/uploads
 public/spree/products/*
 
 config/deploy/bin
 config/deploy/db
 config/deploy/tmp
+
+config/settings/*.yml
+!/config/settings/test.yml
+config/settings/secrets/*.yml

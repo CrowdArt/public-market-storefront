@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+source bin/switch staging
+
+docker-compose \
+  -f config/deploy/docker-compose.yml \
+  -f config/deploy/docker-compose.staging.yml \
+  "$@"

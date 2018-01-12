@@ -21,12 +21,13 @@ staging:
   <<: *default
   database: bookstore_staging
   pool: <%= ENV['WEB_THREADS'] || 10 %>
-  password: <%= ENV['DB_PASSWORD'] %>
+  username: postgres
+  password: <%= Settings.db_password %>
   host: <%= ENV['DB_HOST'] %>
 
 production:
   <<: *default
   database: bookstore_production
   pool: <%= ENV['WEB_THREADS'] || 10 %>
-  password: <%= ENV['DB_PASSWORD'] %>
+  password: <%= Settings.db_password %>
   host: <%= ENV['DB_HOST'] %>

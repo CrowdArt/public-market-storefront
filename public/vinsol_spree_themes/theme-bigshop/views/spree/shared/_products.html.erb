@@ -19,7 +19,7 @@
 <% if products.any? %>
   <div id="products" class="product-list" data-hook>
     <%= render partial: 'spree/products/product', collection: products, locals: { taxon: @taxon } %>
-    <% products.each do |product| %>
+    <%# <% products.each do |product| %>
       <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
       <div id="product_<%= product.id %>" data-hook="products_list_item" class="product-list-item" itemscope itemtype="https://schema.org/Product">
         <% cache(@taxon.present? ? [I18n.locale, current_currency, @taxon, product] : cache_key_for_product(product)) do %>
@@ -34,7 +34,7 @@
             </div>
         <% end %>
       </div>
-    <% end %>
+    <% end %> %>
     <% reset_cycle("classes") %>
   </div>
 <% end %>

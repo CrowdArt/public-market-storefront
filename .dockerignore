@@ -1,0 +1,14 @@
+coverage
+tmp
+log/*
+spec
+.git
+.DS_Store
+*.ds_store
+*.sh
+*.sql
+*.md
+.vscode
+.overcommit.yml
+.rubocop.yml
+public/assets

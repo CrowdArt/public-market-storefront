@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+export COMPOSE_PROJECT_NAME=bookstore
+
+environment=$1
+
+if [[ "${environment}" == "staging" ]]; then
+  export MACHINE_STORAGE_PATH="${HOME}/.docker/simbi"
+  eval $(docker-machine env simbi-bookstore)
+elif [[ "${environment}" == "dev" ]]; then
+  export MACHINE_STORAGE_PATH="${HOME}/.docker"
+  eval $(docker-machine env --unset)
+fi
