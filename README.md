@@ -1,27 +1,11 @@
-# README
+## Setup sym and decrypt developments settings
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Using private key and password from 1Password:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+sym -ipx bookstore.key
+sym -k bookstore.key -d -f config/settings/secrets/development.yml.enc -o config/settings/development.yml
+```
 
 ## Development Setup
 
