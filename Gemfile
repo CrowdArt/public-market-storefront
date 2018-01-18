@@ -32,8 +32,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'spree', '~> 3.3'
 gem 'spree_auth_devise', '~> 3.3'
-gem 'spree_batch_api', github: 'Abundance-Coin/spree_batch_api'
 gem 'spree_gateway', '~> 3.3'
+# gem 'spree_batch_api', path: '../spree_batch_api'
 gem 'spree_social', github: 'spree-contrib/spree_social'
 gem 'vinsol_spree_themes', github: 'Abundance-Coin/spree_themes'
 
@@ -49,6 +49,9 @@ group :test do
 end
 
 group :development do
+  # temp place
+  gem 'spree_batch_api', path: '../spree_batch_api'
+
   gem 'byebug'
   gem 'guard'
   gem 'listen', '>= 3.0.5', '< 3.2'

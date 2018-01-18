@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/Abundance-Coin/spree_batch_api.git
-  revision: 68f13cb9fe75906839affd805cb40b097ee4b830
-  specs:
-    spree_batch_api (0.0.1.alpha)
-      spree_core (>= 3.1.0, < 4.0)
-      spree_extension
-
-GIT
   remote: https://github.com/Abundance-Coin/spree_themes.git
   revision: fce7b549b009f559be4b75624a5a9ccffd603b7d
   specs:
@@ -38,6 +30,13 @@ GIT
       omniauth-google-oauth2
       omniauth-twitter
       spree_auth_devise (>= 3.1.0, < 4.0)
+      spree_core (>= 3.1.0, < 4.0)
+      spree_extension
+
+PATH
+  remote: ../spree_batch_api
+  specs:
+    spree_batch_api (0.0.1.alpha)
       spree_core (>= 3.1.0, < 4.0)
       spree_extension
 
