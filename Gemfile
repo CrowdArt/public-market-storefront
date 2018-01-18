@@ -37,6 +37,8 @@ gem 'spree_gateway', '~> 3.3'
 gem 'spree_social', github: 'spree-contrib/spree_social'
 gem 'vinsol_spree_themes', github: 'Abundance-Coin/spree_themes'
 
+gem 'spree_reviews', github: 'spree-contrib/spree_reviews'
+
 gem 'shrine'
 
 group :test do

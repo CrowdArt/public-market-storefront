@@ -17,6 +17,15 @@ GIT
       state_machine (~> 1.2.0)
 
 GIT
+  remote: https://github.com/spree-contrib/spree_reviews.git
+  revision: 5e7965f18d0610f9954728e1cb03970f1d2c8fef
+  specs:
+    spree_reviews (3.3.0)
+      spree_auth_devise (>= 3.1.0, < 4.0)
+      spree_core (>= 3.1.0, < 4.0)
+      spree_extension
+
+GIT
   remote: https://github.com/spree-contrib/spree_social.git
   revision: fa841064a4e4698fa171ecdbfcf0317ee03eac26
   specs:
@@ -554,6 +563,7 @@ DEPENDENCIES
   spree_auth_devise (~> 3.3)
   spree_batch_api!
   spree_gateway (~> 3.3)
+  spree_reviews!
   spree_social!
   spring
   spring-watcher-listen (~> 2.0.0)
