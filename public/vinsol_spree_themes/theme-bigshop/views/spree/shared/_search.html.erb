@@ -10,7 +10,7 @@
                                     @taxon ? @taxon.id : params[:taxon]), 'aria-label' => 'Taxon', class: "form-control" %>
       <%# end %>
     <!-- </div> -->
-    <%= search_field_tag :keywords, params[:keywords], placeholder: Spree.t(:search), class: "", placeholder: "SEARCH HERE..." %>
+    <%= search_field_tag :keywords, params[:keywords], placeholder: Spree.t(:search) %>
     <%= button_tag '', name: nil, class: "fa fa-search search-btn" %>
   <% end %>
 </div>
