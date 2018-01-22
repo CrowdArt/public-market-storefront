@@ -187,7 +187,7 @@ GEM
     execjs (2.7.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
-    ffaker (2.8.0)
+    ffaker (2.8.1)
     ffi (1.9.18)
     formatador (0.2.5)
     friendly_id (5.2.3)
