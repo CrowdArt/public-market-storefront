@@ -35,7 +35,7 @@ gem 'spree_auth_devise', '~> 3.3'
 gem 'spree_gateway', '~> 3.3'
 # gem 'spree_batch_api', path: '../spree_batch_api'
 gem 'spree_social', github: 'spree-contrib/spree_social'
-gem 'vinsol_spree_themes', github: 'Abundance-Coin/spree_themes'
+gem 'vinsol_spree_themes', github: 'vinsol-spree-contrib/spree_themes', branch: 'master'
 
 gem 'spree_reviews', github: 'spree-contrib/spree_reviews'
 
