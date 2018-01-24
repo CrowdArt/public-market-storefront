@@ -29,5 +29,7 @@ module Bookstore
     config.generators do |g|
       g.test_framework :rspec
     end
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end
