@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   require 'sidekiq/web'
-  authenticate :user, (->(u) { u.admin? }) do
-    mount Sidekiq::Web => '/sidekiq'
+  authenticate :spree_user, ->(u) { u.admin? } do
+    mount Sidekiq::Web, at: 'sidekiq'
+    mount PgHero::Engine, at: 'pghero'
   end
 end
