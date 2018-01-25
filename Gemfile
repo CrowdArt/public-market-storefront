@@ -7,7 +7,7 @@ end
 
 gem 'rails', '~> 5.1.4'
 
-gem 'pg'
+gem 'pg', '0.21.0'
 gem 'pg_query' # used by pghero
 gem 'pghero'
 
@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'spree', '~> 3.3'
+gem 'spree', github: 'spree/spree'
 gem 'spree_auth_devise', '~> 3.3'
 gem 'spree_gateway', '~> 3.3'
 # gem 'spree_batch_api', path: '../spree_batch_api'
