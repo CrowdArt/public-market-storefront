@@ -17,22 +17,6 @@ GIT
       spree_extension
 
 GIT
-  remote: https://github.com/spree-contrib/spree_social.git
-  revision: c952fc041dde10eace47472eea09a0a70d68a2d8
-  specs:
-    spree_social (3.3.1)
-      oa-core
-      omniauth
-      omniauth-amazon
-      omniauth-facebook
-      omniauth-github
-      omniauth-google-oauth2
-      omniauth-twitter
-      spree_auth_devise (>= 3.1.0, < 4.0)
-      spree_core (>= 3.1.0, < 4.0)
-      spree_extension
-
-GIT
   remote: https://github.com/spree/spree.git
   revision: 71c9b1152f899d88742559c5c8684f276bed2914
   specs:
@@ -103,6 +87,21 @@ PATH
   remote: ../spree_batch_api
   specs:
     spree_batch_api (0.0.1.alpha)
+      spree_core (>= 3.1.0, < 4.0)
+      spree_extension
+
+PATH
+  remote: ../spree_social
+  specs:
+    spree_social (3.3.1)
+      oa-core
+      omniauth
+      omniauth-amazon
+      omniauth-facebook
+      omniauth-github
+      omniauth-google-oauth2
+      omniauth-twitter
+      spree_auth_devise (>= 3.1.0, < 4.0)
       spree_core (>= 3.1.0, < 4.0)
       spree_extension
 
