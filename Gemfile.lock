@@ -8,8 +8,8 @@ GIT
       spree_extension
 
 GIT
-  remote: https://github.com/spree-contrib/spree_reviews.git
-  revision: 5e7965f18d0610f9954728e1cb03970f1d2c8fef
+  remote: https://github.com/public-market/spree_reviews.git
+  revision: 38ab0a5fad3e881aded379839c3876d7471b0bdf
   specs:
     spree_reviews (3.3.0)
       spree_auth_devise (>= 3.1.0, < 4.0)
@@ -610,4 +610,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
