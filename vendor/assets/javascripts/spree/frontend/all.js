@@ -13,3 +13,4 @@
 //= require spree/frontend/spree_auth
 //= require spree/frontend/spree_themes
 //= require spree/frontend/spree_reviews
+//= require spree/frontend/spree_multi_vendor

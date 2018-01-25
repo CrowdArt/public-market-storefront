@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/public-market/spree_multi_vendor.git
+  revision: 0c6ecdcc2d0dfc9a05ba07de880d2b3393e19b03
+  specs:
+    spree_multi_vendor (0.0.1.alpha)
+      spree_backend (>= 3.1.0, < 4.0)
+      spree_core (>= 3.1.0, < 4.0)
+      spree_extension
+
+GIT
   remote: https://github.com/spree-contrib/spree_reviews.git
   revision: 5e7965f18d0610f9954728e1cb03970f1d2c8fef
   specs:
@@ -584,6 +593,7 @@ DEPENDENCIES
   spree_auth_devise (~> 3.3)
   spree_batch_api!
   spree_gateway (~> 3.3)
+  spree_multi_vendor!
   spree_reviews!
   spree_social!
   spring
