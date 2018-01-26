@@ -38,7 +38,7 @@ gem 'spree_gateway', '~> 3.3'
 gem 'spree_multi_vendor', github: 'public-market/spree_multi_vendor'
 gem 'spree_reviews', github: 'public-market/spree_reviews'
 gem 'spree_social', path: '../spree_social'
-gem 'vinsol_spree_themes', github: 'vinsol-spree-contrib/spree_themes', branch: 'master'
+# gem 'vinsol_spree_themes', github: 'vinsol-spree-contrib/spree_themes', branch: 'master'
 
 gem 'shrine'
 
