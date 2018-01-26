@@ -43,6 +43,7 @@ gem 'vinsol_spree_themes', github: 'vinsol-spree-contrib/spree_themes', branch: 
 gem 'shrine'
 
 gem 'delayed_paperclip'
+gem 'fog-google'
 gem 'sidekiq'
 
 group :test do

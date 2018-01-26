@@ -10,9 +10,8 @@
 # In order to initialize a setting do:
 # config.setting_name = 'new value'
 Spree.config do |config|
-  # Example:
-  # Uncomment to stop tracking inventory levels in the application
-  # config.track_inventory_levels = false
 end
+
+Spree::Image.attachment_definitions[:attachment][:path] = ':class/:id/:style-:basename.:extension'
 
 Spree.user_class = 'Spree::User'
