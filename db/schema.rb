@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130131115) do
+ActiveRecord::Schema.define(version: 20180131134958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1050,6 +1050,21 @@ ActiveRecord::Schema.define(version: 20180130131115) do
     t.datetime "updated_at", null: false
     t.integer "engine", default: 0, null: false
     t.index ["active"], name: "index_spree_trackers_on_active"
+  end
+
+  create_table "spree_upload_errors", force: :cascade do |t|
+    t.bigint "upload_id"
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["upload_id"], name: "index_spree_upload_errors_on_upload_id"
+  end
+
+  create_table "spree_uploads", force: :cascade do |t|
+    t.string "job_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "spree_user_authentications", id: :serial, force: :cascade do |t|

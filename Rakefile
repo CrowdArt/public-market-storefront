@@ -10,4 +10,9 @@ namespace :spree_sample do
   task book_samples: :environment do
     require './db/samples.rb'
   end
+
+  desc 'Loads Indaba inventory sample'
+  task indaba_samples: :environment do
+    Spree::Inventory::UploadFileAction.call('csv', File.read('./db/samples/inventory.csv'))
+  end
 end
