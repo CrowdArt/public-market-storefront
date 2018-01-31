@@ -12,6 +12,4 @@
 Spree.config do |config|
 end
 
-Spree::Image.attachment_definitions[:attachment][:path] = ':class/:id/:style-:basename.:extension'
-
 Spree.user_class = 'Spree::User'

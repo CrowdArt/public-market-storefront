@@ -10,4 +10,6 @@ Spree::Image.class_eval do
     self.attachment_width  = geometry.width
     self.attachment_height = geometry.height
   end
+
+  attachment_definitions[:attachment][:path] = ':class/:id/:style-:basename.:extension'
 end
