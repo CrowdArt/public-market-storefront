@@ -31,8 +31,9 @@
           <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
 
            <h3 class='text-right'>
-            <% author = @product.author %>
-            <strong><%= author.property_name.humanize %>:</strong> <i><%= author.value %></i>
+            <% if author = @product.author %>
+              <strong><%= author.property_name.humanize %>:</strong> <i><%= author.value %></i>
+            <% end %>
           </h3>
 
           <div class="well" itemprop="description" data-hook="description">
