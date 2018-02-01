@@ -41,8 +41,6 @@ gem 'spree_reviews', github: 'public-market/spree_reviews'
 gem 'spree_social', github: 'public-market/spree_social'
 # gem 'vinsol_spree_themes', github: 'vinsol-spree-contrib/spree_themes', branch: 'master'
 
-gem 'shrine'
-
 gem 'delayed_paperclip'
 gem 'fog-google'
 gem 'sidekiq'
