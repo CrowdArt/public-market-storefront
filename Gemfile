@@ -17,6 +17,8 @@ gem 'sass-rails'
 
 gem 'config'
 
+gem 'bootswatch-rails'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -59,6 +61,7 @@ group :development do
   gem 'byebug'
   gem 'guard'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'rack-mini-profiler', require: false
   gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'

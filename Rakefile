@@ -13,6 +13,6 @@ namespace :spree_sample do
 
   desc 'Loads Indaba inventory sample'
   task indaba_samples: :environment do
-    Spree::Inventory::UploadFileAction.call('csv', File.read('./db/samples/inventory.csv'))
+    Spree::Inventory::UploadFileAction.call('csv', './db/samples/inventory.csv')
   end
 end
