@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180201123450) do
+ActiveRecord::Schema.define(version: 20180206152536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_stat_statements"
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
@@ -249,10 +250,8 @@ ActiveRecord::Schema.define(version: 20180201123450) do
     t.integer "position", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "vendor_id"
     t.index ["name"], name: "index_spree_option_types_on_name"
     t.index ["position"], name: "index_spree_option_types_on_position"
-    t.index ["vendor_id"], name: "index_spree_option_types_on_vendor_id"
   end
 
   create_table "spree_option_value_variants", force: :cascade do |t|
@@ -442,7 +441,6 @@ ActiveRecord::Schema.define(version: 20180201123450) do
     t.datetime "discontinue_on"
     t.decimal "avg_rating", precision: 7, scale: 5, default: "0.0", null: false
     t.integer "reviews_count", default: 0, null: false
-    t.integer "vendor_id"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
     t.index ["discontinue_on"], name: "index_spree_products_on_discontinue_on"
@@ -450,7 +448,6 @@ ActiveRecord::Schema.define(version: 20180201123450) do
     t.index ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id"
     t.index ["slug"], name: "index_spree_products_on_slug", unique: true
     t.index ["tax_category_id"], name: "index_spree_products_on_tax_category_id"
-    t.index ["vendor_id"], name: "index_spree_products_on_vendor_id"
   end
 
   create_table "spree_products_taxons", force: :cascade do |t|
@@ -542,9 +539,7 @@ ActiveRecord::Schema.define(version: 20180201123450) do
     t.string "presentation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "vendor_id"
     t.index ["name"], name: "index_spree_properties_on_name"
-    t.index ["vendor_id"], name: "index_spree_properties_on_vendor_id"
   end
 
   create_table "spree_property_prototypes", force: :cascade do |t|

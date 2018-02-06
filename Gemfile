@@ -35,8 +35,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'spree', github: 'spree/spree'
 gem 'spree_auth_devise', '~> 3.3'
+gem 'spree_batch_api', path: '../spree_batch_api'
 gem 'spree_gateway', '~> 3.3'
-# gem 'spree_batch_api', path: '../spree_batch_api'
 # gem 'spree_multi_vendor', github: 'public-market/spree_multi_vendor'
 gem 'spree_multi_vendor', path: '../spree_multi_vendor'
 gem 'spree_reviews', github: 'public-market/spree_reviews'
@@ -55,9 +55,6 @@ group :test do
 end
 
 group :development do
-  # temp place
-  gem 'spree_batch_api', path: '../spree_batch_api'
-
   gem 'byebug'
   gem 'guard'
   gem 'listen', '>= 3.0.5', '< 3.2'
