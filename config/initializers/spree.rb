@@ -12,4 +12,8 @@
 Spree.config do |config|
 end
 
+Rails.application.config.after_initialize do |app|
+  app.config.spree.stock_splitters << Spree::Stock::Splitter::VendorSplitter
+end
+
 Spree.user_class = 'Spree::User'
