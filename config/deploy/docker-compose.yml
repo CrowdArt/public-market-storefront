@@ -9,7 +9,19 @@ services:
     volumes:
       - bundle_cache:/bundle
       - app_public:/app/public
+      - tmp:/tmp
+
+  sidekiq:
+    image: bookstore_app
+    command: bundle exec sidekiq
+    volumes:
+      - bundle_cache:/bundle
+      - app_public:/app/public
+      - sidekiq_logs:/app/log
+      - tmp:/tmp
 
 volumes:
   bundle_cache:
   app_public:
+  sidekiq_logs:
+  tmp:

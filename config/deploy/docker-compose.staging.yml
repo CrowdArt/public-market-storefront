@@ -7,11 +7,20 @@ services:
     depends_on:
       - postgres
       - redis
+    environment: &app_env
+      DB_HOST: postgres
+      RACK_ENV: staging
+      RAILS_ENV: staging
+      REDIS_HOST: redis
+    restart: always
+
+  sidekiq:
+    depends_on:
+      - postgres
+      - redis
     environment:
-      - DB_HOST=postgres
-      - RACK_ENV=staging
-      - RAILS_ENV=staging
-      - REDIS_HOST=redis
+      <<: *app_env
+    restart: always
 
   postgres:
     image: postgres:10.1-alpine
