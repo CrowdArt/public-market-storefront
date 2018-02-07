@@ -69,6 +69,8 @@ group :development do
 end
 
 group :production, :staging do
+  gem 'sentry-raven'
+
   gem 'therubyracer'
   gem 'uglifier'
 end

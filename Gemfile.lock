@@ -544,6 +544,8 @@ GEM
     selenium-webdriver (3.8.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
+    sentry-raven (2.7.1)
+      faraday (>= 0.7.6, < 1.0)
     shellany (0.0.1)
     sidekiq (5.0.5)
       concurrent-ruby (~> 1.0)
@@ -655,6 +657,7 @@ DEPENDENCIES
   rubocop
   sass-rails
   selenium-webdriver
+  sentry-raven
   sidekiq
   spree!
   spree_auth_devise (~> 3.3)

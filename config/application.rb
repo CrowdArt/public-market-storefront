@@ -31,5 +31,11 @@ module Bookstore
     end
 
     config.active_job.queue_adapter = :sidekiq
+
+    if Rails.env.staging? || Rails.env.production?
+      Raven.configure do |config|
+        config.dsn = Settings.sentry_dsn if Settings.sentry_dsn
+      end
+    end
   end
 end
