@@ -59,6 +59,8 @@ deploy::docker::prune() {
 deploy::main() {
   trap deploy::cleanup INT TERM EXIT
 
+  echo "Deploying to ${app_environment}"
+
   local settings_encrypted="${app__root}/config/settings/secrets/${app_environment}.yml.enc"
   export settings_decrypted="${app__root}/config/settings/${app_environment}.yml"
 

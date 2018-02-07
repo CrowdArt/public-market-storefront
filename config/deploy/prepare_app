@@ -2,7 +2,7 @@
 
 set -e
 
-bundle check || bundle install --jobs=10 --retry=10 --without 'development test'
+bundle check || bundle install
 bundle exec rake db:migrate
 bundle exec rake assets:precompile
 

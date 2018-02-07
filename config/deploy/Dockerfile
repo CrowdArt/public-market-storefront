@@ -22,4 +22,3 @@ ENV BUNDLE_PATH=/bundle \
     GEM_HOME=/bundle
 
 EXPOSE 3000
-
