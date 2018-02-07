@@ -40,6 +40,11 @@ gem 'spree_reviews', github: 'public-market/spree_reviews'
 gem 'spree_social', github: 'public-market/spree_social'
 # gem 'vinsol_spree_themes', github: 'vinsol-spree-contrib/spree_themes', branch: 'master'
 
+gem 'spree_batch_api', github: 'public-market/spree_batch_api'
+gem 'spree_multi_vendor', github: 'public-market/spree_multi_vendor'
+# gem 'spree_batch_api', path: '../spree_batch_api'
+# gem 'spree_multi_vendor', path: '../spree_multi_vendor'
+
 gem 'delayed_paperclip'
 gem 'fog-google'
 gem 'sidekiq'
@@ -63,15 +68,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
 end
 
-group :development, :test do
-  gem 'spree_batch_api', path: '../spree_batch_api'
-  gem 'spree_multi_vendor', path: '../spree_multi_vendor'
-end
-
 group :production, :staging do
   gem 'therubyracer'
   gem 'uglifier'
-
-  gem 'spree_batch_api', github: 'public-market/spree_batch_api'
-  gem 'spree_multi_vendor', github: 'public-market/spree_multi_vendor'
 end
