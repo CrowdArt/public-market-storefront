@@ -11,10 +11,10 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -\
     && apt-get update \
     && apt-get install -y yarn
 
+ADD ./config/deploy/app/bundle_config /usr/local/bundle/config
+
 COPY . /app
 WORKDIR /app
-
-ADD ./config/deploy/app/bundle_config /usr/local/bundle/config
 
 RUN mkdir -p /app/tmp/pids && chmod 775 /app/tmp/pids
 
