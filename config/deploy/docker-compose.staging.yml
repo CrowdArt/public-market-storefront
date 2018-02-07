@@ -12,7 +12,8 @@ services:
       RACK_ENV: staging
       RAILS_ENV: staging
       REDIS_HOST: redis
-    restart: always
+    volumes:
+      - tmp_uploads:/app/tmp/uploads
 
   sidekiq:
     depends_on:
@@ -20,7 +21,8 @@ services:
       - redis
     environment:
       <<: *app_env
-    restart: always
+    volumes:
+      - tmp_uploads:/app/tmp/uploads
 
   postgres:
     image: postgres:10.1-alpine
@@ -34,3 +36,4 @@ services:
 
 volumes:
   postgres:
+  tmp_uploads:

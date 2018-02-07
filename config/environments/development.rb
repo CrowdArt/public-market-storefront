@@ -59,10 +59,8 @@ Rails.application.configure do
       google_project: Settings.google_project,
       google_client_email: Settings.google_client_email,
       google_json_key_string: Settings.google_json_key_string
-
       # Google recommend you to use service account instead of HMAC credentials
       # You can check other options here -> https://github.com/fog/fog-google#credentials
     }
   }
-
 end

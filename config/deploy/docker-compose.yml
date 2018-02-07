@@ -9,7 +9,7 @@ services:
     volumes:
       - bundle_cache:/bundle
       - app_public:/app/public
-      - tmp:/tmp
+    restart: always
 
   sidekiq:
     image: bookstore_app
@@ -18,10 +18,9 @@ services:
       - bundle_cache:/bundle
       - app_public:/app/public
       - sidekiq_logs:/app/log
-      - tmp:/tmp
+    restart: always
 
 volumes:
   bundle_cache:
   app_public:
   sidekiq_logs:
-  tmp:
