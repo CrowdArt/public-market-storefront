@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_multi_vendor.git
-  revision: 1fc55e525f6de9ca47f0205e769318b4c5740025
+  revision: 02a1858a01e1687b7f8b7303acec285b395a74bf
   specs:
     spree_multi_vendor (0.0.1.alpha)
       spree_backend (>= 3.1.0, < 4.0)
@@ -47,7 +47,7 @@ GIT
 
 GIT
   remote: https://github.com/spree/spree.git
-  revision: b81e79f642ce5b5370d6b521ec8ed27717183f1b
+  revision: 92c6808aabec0af6fb57d91965b899c7c4fcfda1
   specs:
     spree (3.5.0.alpha)
       spree_api (= 3.5.0.alpha)
