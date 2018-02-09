@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/public-market/spree_auth_devise.git
+  revision: af4fb0a71f5d0e451491431a8a20ad7e5a9a1db0
+  specs:
+    spree_auth_devise (3.3.3)
+      devise (~> 4.4.0)
+      devise-encryptable (= 0.2.0)
+      spree_core (>= 3.1.0, < 4.0)
+      spree_extension
+
+GIT
   remote: https://github.com/public-market/spree_batch_api.git
   revision: 013261f1fdc8fe1227852eaaa00a7f1322fa71ea
   specs:
@@ -216,7 +226,7 @@ GEM
     delayed_paperclip (3.0.1)
       activejob (>= 4.2)
       paperclip (>= 3.3)
-    devise (4.3.0)
+    devise (4.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.2)
@@ -565,11 +575,6 @@ GEM
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
-    spree_auth_devise (3.3.1)
-      devise (~> 4.3.0)
-      devise-encryptable (= 0.2.0)
-      spree_core (>= 3.1.0, < 4.0)
-      spree_extension
     spree_extension (0.0.5)
       activerecord (>= 4.2)
     spree_gateway (3.3.2)
@@ -660,7 +665,7 @@ DEPENDENCIES
   sentry-raven
   sidekiq
   spree!
-  spree_auth_devise (~> 3.3)
+  spree_auth_devise!
   spree_batch_api!
   spree_gateway (~> 3.3)
   spree_multi_vendor!
