@@ -1,3 +1,6 @@
+$font-size-h1: 38px;
+$font-size-h4: 20px;
+
 @import "bootstrap-sprockets";
 @import "bootswatch/cosmo/variables";
 @import "bootstrap";
@@ -5,17 +8,16 @@
 
 // -- Spree Custom Header and Footer ---------------------
 #spree-header {
-  background-color: $brand-primary;
+  background-color: #444;
   margin-bottom: $line-height-computed;
-  padding-top: 0.25em;
 
   #header {
-    background: rgba($gray-darker, 0.4);
+    background-color: #232B2B;
     padding: $line-height-computed 0;
   }
 
   #logo {
-    margin-bottom: 10px;
+    margin-top: 5px;
 
     img {
       max-width: 30%;
@@ -66,6 +68,8 @@
 }
 
 h1 {
+  font-weight: 400;
+  margin-top: 0;
   margin-bottom: 30px;
 }
 
@@ -110,4 +114,10 @@ table {
 
 .save-user-address-wrapper {
   display: inline-block;
+}
+
+.lead {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
 }

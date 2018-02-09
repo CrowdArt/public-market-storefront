@@ -10,6 +10,7 @@
 # In order to initialize a setting do:
 # config.setting_name = 'new value'
 Spree.config do |config|
+  config.logo = 'logo/public_market_logo_white.svg'
 end
 
 Rails.application.config.after_initialize do |app|
