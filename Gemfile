@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'spree', github: 'spree/spree'
 gem 'spree_auth_devise', github: 'public-market/spree_auth_devise'
+# gem 'spree_auth_devise', path: '../spree_auth_devise'
 gem 'spree_gateway', '~> 3.3'
 gem 'spree_reviews', github: 'public-market/spree_reviews'
 gem 'spree_social', github: 'public-market/spree_social'

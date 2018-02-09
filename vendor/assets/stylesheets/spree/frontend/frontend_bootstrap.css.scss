@@ -29,14 +29,15 @@ $font-size-h4: 20px;
     padding-top: 7px;
     padding-bottom: 7px;
     line-height: $line-height-computed;
-  }
 
-  .nav a {
     color: white;
 
     &:hover, &:focus {
       background: rgba($gray-darker, 0.4);
     }
+  }
+  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: transparent;
   }
 
   .navbar {
