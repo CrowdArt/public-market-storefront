@@ -10,7 +10,7 @@
 # In order to initialize a setting do:
 # config.setting_name = 'new value'
 Spree.config do |config|
-  config.logo = 'logo/public_market_logo_white.svg'
+  config.logo = config.admin_interface_logo = 'logo/public_market_logo_white.svg'
 end
 
 Rails.application.config.after_initialize do |app|
@@ -18,3 +18,4 @@ Rails.application.config.after_initialize do |app|
 end
 
 Spree.user_class = 'Spree::User'
+Spree.admin_path = '/dashboard'
