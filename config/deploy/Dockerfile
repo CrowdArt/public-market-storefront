@@ -1,6 +1,6 @@
 FROM ruby:2.4.3
 
-RUN apt-get update && apt-get -y install git
+RUN apt-get update && apt-get -y install git vim
 RUN gem install bundler --no-ri --no-rdoc
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -\

@@ -1,0 +1,83 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: web-service
+spec:
+  type: NodePort
+  selector:
+    app: web
+  ports:
+  - protocol: TCP
+    port: 31000
+    nodePort: 31000
+    targetPort: 3000
+    name: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+  labels:
+    app: web
+    type: rails
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+      type: rails
+  template:
+    metadata:
+      labels:
+        app: web
+        type: rails
+    spec:
+      initContainers:
+      - name: prepare-web
+        image: spree-web:v201802082
+        command: ['/bin/sh']
+        args: ["./config/deploy/prepare_app"]
+        env:
+        - name: RAILS_ENV
+          value: staging
+        - name: RACK_ENV
+          value: staging
+        - name: DB_HOST
+          value: postgres-service
+        volumeMounts:
+        - mountPath: '/bundle'
+          name: storage
+          subPath: bundles
+
+      containers:
+      - name: spree-web
+        image: spree-web:v201802082
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        command: ['/bin/sh']
+        args: ['-c', 'bundle exec puma']
+        env:
+        - name: RAILS_ENV
+          value: staging
+        - name: RACK_ENV
+          value: staging
+        - name: DB_HOST
+          value: postgres-service
+        - name: REDIS_HOST
+          value: redis
+        volumeMounts:
+        - mountPath: '/bundle'
+          name: storage
+          subPath: bundles
+        - mountPath: '/app/public'
+          name: storage
+          subPath: assets
+        - mountPath: '/app/tmp/uploads'
+          name: storage
+          subPath: uploads
+
+      volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: pv-claim

@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: init-db
+spec:
+  backoffLimit: 1
+  template:
+    spec:
+      containers:
+      - name: init-db
+        image: spree-web:v201802072
+        command: ['/bin/sh']
+        args: ['-c', 'printenv && bundle exec rake db:setup']
+        env:
+        - name: RAILS_ENV
+          value: staging
+        - name: RACK_ENV
+          value: staging
+        - name: DB_HOST
+          value: postgres-service
+        - name: ADMIN_EMAIL
+          value: spree@example.com
+        - name: ADMIN_PASSWORD
+          value: password1
+        volumeMounts:
+        - mountPath: '/bundle'
+          name: storage
+          subPath: bundles
+      restartPolicy: Never
+      volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: pv-claim
