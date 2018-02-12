@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_multi_vendor.git
-  revision: 02a1858a01e1687b7f8b7303acec285b395a74bf
+  revision: 9aa00afb192c66dc3e4568d9eb5b10855ae64c84
   specs:
     spree_multi_vendor (0.0.1.alpha)
       spree_backend (>= 3.1.0, < 4.0)
@@ -65,7 +65,7 @@ GIT
 
 GIT
   remote: https://github.com/spree/spree.git
-  revision: 92c6808aabec0af6fb57d91965b899c7c4fcfda1
+  revision: 2d48b3cff03c38774b478f7b06c3d47660d861b5
   specs:
     spree (3.5.0.alpha)
       spree_api (= 3.5.0.alpha)
@@ -172,7 +172,7 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
     ast (2.4.0)
-    autoprefixer-rails (7.2.5)
+    autoprefixer-rails (8.0.0)
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)
@@ -375,7 +375,7 @@ GEM
     logging (2.2.2)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
-    loofah (2.1.1)
+    loofah (2.2.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.12)
@@ -469,7 +469,7 @@ GEM
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    public_suffix (3.0.1)
+    public_suffix (3.0.2)
     puma (3.11.2)
     rabl (0.13.1)
       activesupport (>= 2.3.14)
