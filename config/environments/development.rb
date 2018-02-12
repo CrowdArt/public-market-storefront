@@ -63,4 +63,12 @@ Rails.application.configure do
       # You can check other options here -> https://github.com/fog/fog-google#credentials
     }
   }
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = false
+    Bullet.unused_eager_loading_enable = false
+  end
 end
