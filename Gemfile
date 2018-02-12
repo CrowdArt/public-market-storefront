@@ -63,6 +63,8 @@ end
 group :production, :staging do
   gem 'sentry-raven'
 
+  gem 'rack-attack'
+
   gem 'therubyracer'
   gem 'uglifier'
 end

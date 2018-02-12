@@ -36,6 +36,8 @@ module Bookstore
       Raven.configure do |config|
         config.dsn = Settings.sentry_dsn if Settings.sentry_dsn
       end
+
+      config.middleware.use Rack::Attack
     end
   end
 end

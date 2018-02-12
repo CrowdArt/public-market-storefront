@@ -474,6 +474,8 @@ GEM
     rabl (0.13.1)
       activesupport (>= 2.3.14)
     rack (2.0.4)
+    rack-attack (5.0.1)
+      rack
     rack-mini-profiler (0.10.7)
       rack (>= 1.2.0)
     rack-protection (2.0.0)
@@ -680,6 +682,7 @@ DEPENDENCIES
   pg_query
   pghero
   puma (~> 3.7)
+  rack-attack
   rack-mini-profiler
   rails (~> 5.1.4)
   rspec
