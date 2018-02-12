@@ -41,7 +41,10 @@ gem 'fog-google'
 gem 'sidekiq'
 
 group :test do
-  gem 'capybara', '~> 2.13'
+  gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'chromedriver-helper'
+  gem 'database_cleaner'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'selenium-webdriver'

@@ -170,6 +170,8 @@ GEM
       activerecord (>= 3.0)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    archive-zip (0.11.0)
+      io-like (~> 0.3.0)
     arel (8.0.0)
     ast (2.4.0)
     autoprefixer-rails (8.0.0)
@@ -199,10 +201,16 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (>= 2.0, < 4.0)
+    capybara-screenshot (1.0.18)
+      capybara (>= 1.0, < 3)
+      launchy
     carmen (1.0.2)
       activesupport (>= 3.0.0)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
+    chromedriver-helper (1.2.0)
+      archive-zip (~> 0.10)
+      nokogiri (~> 1.8)
     chronic_duration (0.10.6)
       numerizer (~> 0.1.1)
     cldr-plurals-runtime-rb (1.0.1)
@@ -226,6 +234,7 @@ GEM
     crass (1.0.3)
     css_parser (1.6.0)
       addressable
+    database_cleaner (1.6.2)
     declarative (0.0.10)
     declarative-option (0.1.0)
     deep_merge (1.1.1)
@@ -343,6 +352,7 @@ GEM
     i18n (0.9.4)
       concurrent-ruby (~> 1.0)
     inflecto (0.0.2)
+    io-like (0.3.0)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -366,6 +376,8 @@ GEM
       activerecord
       kaminari-core (= 1.0.1)
     kaminari-core (1.0.1)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     libv8 (3.16.14.19)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -670,9 +682,12 @@ DEPENDENCIES
   bootswatch-rails
   bullet
   byebug
-  capybara (~> 2.13)
+  capybara
+  capybara-screenshot
+  chromedriver-helper
   coffee-rails (~> 4.2)
   config
+  database_cleaner
   delayed_paperclip
   fog-google
   guard
