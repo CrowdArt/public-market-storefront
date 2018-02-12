@@ -14,3 +14,4 @@
 //= require spree/frontend/spree_reviews
 
 //= require turbolinks
+//= require spree/frontend/spree_searchkick

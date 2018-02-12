@@ -19,32 +19,22 @@ gem 'config'
 
 gem 'bootswatch-rails'
 
-# Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'searchkick'
 
 gem 'spree', github: 'spree/spree'
 gem 'spree_auth_devise', github: 'public-market/spree_auth_devise'
 # gem 'spree_auth_devise', path: '../spree_auth_devise'
 gem 'spree_gateway', '~> 3.3'
 gem 'spree_reviews', github: 'public-market/spree_reviews'
+gem 'spree_searchkick', github: 'public-market/spree_searchkick'
 gem 'spree_social', github: 'public-market/spree_social'
-# gem 'vinsol_spree_themes', github: 'vinsol-spree-contrib/spree_themes', branch: 'master'
 
 gem 'spree_batch_api', github: 'public-market/spree_batch_api'
 gem 'spree_multi_vendor', github: 'public-market/spree_multi_vendor'
-# gem 'spree_batch_api', path: '../spree_batch_api'
-# gem 'spree_multi_vendor', path: '../spree_multi_vendor'
 
 gem 'delayed_paperclip'
 gem 'fog-google'

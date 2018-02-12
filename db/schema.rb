@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180207114326) do
+ActiveRecord::Schema.define(version: 20180209125404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_stat_statements"
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
@@ -533,6 +532,7 @@ ActiveRecord::Schema.define(version: 20180207114326) do
     t.string "presentation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "filterable"
     t.index ["name"], name: "index_spree_properties_on_name"
   end
 
@@ -982,6 +982,7 @@ ActiveRecord::Schema.define(version: 20180207114326) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position", default: 0
+    t.boolean "filterable"
     t.index ["position"], name: "index_spree_taxonomies_on_position"
   end
 

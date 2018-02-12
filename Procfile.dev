@@ -1,3 +1,4 @@
 web: bundle exec puma -p 5000
 sidekiq: bundle exec sidekiq -C config/sidekiq.yml
+es: elasticsearch
 log: tail -f log/development.log
