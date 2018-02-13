@@ -635,6 +635,7 @@ GEM
       activerecord (>= 4.1, < 5.2)
       state_machines-activemodel (>= 0.5.0)
     stringex (2.8.2)
+    swagger-blocks (2.0.2)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
@@ -716,6 +717,7 @@ DEPENDENCIES
   spree_social!
   spring
   spring-watcher-listen (~> 2.0.0)
+  swagger-blocks
   therubyracer
   turbolinks (~> 5)
   uglifier

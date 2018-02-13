@@ -15,4 +15,6 @@ Rails.application.routes.draw do
     mount Sidekiq::Web, at: 'sidekiq'
     mount PgHero::Engine, at: 'pghero'
   end
+
+  resources :docs, only: [:index]
 end

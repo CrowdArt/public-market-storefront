@@ -18,6 +18,10 @@ module Bookstore
       Dir.glob(File.join(File.dirname(__FILE__), '../app/overrides/*.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
+
+      Dir.glob(File.join(File.dirname(__FILE__), '../app/swagger/**/*.rb')) do |c|
+        Rails.configuration.cache_classes ? require(c) : load(c)
+      end
     end
 
     # Initialize configuration defaults for originally generated Rails version.
