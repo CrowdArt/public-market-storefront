@@ -625,6 +625,9 @@ GEM
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
+    slim (3.0.9)
+      temple (>= 0.7.6, < 0.9)
+      tilt (>= 1.3.3, < 2.1)
     spree_extension (0.0.5)
       activerecord (>= 4.2)
     spree_gateway (3.3.2)
@@ -651,6 +654,7 @@ GEM
       state_machines-activemodel (>= 0.5.0)
     stringex (2.8.2)
     swagger-blocks (2.0.2)
+    temple (0.8.0)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
@@ -724,6 +728,7 @@ DEPENDENCIES
   selenium-webdriver
   sentry-raven
   sidekiq
+  slim
   spree!
   spree_auth_devise!
   spree_batch_api!
