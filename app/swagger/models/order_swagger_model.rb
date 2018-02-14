@@ -1,5 +1,5 @@
 module Swagger
-  module Controllers
+  module Schemas
     class OrderSwaggerModel
       include Swagger::Blocks
 
@@ -10,6 +10,23 @@ module Swagger
         property :number do
           key :type, :string
         end
+      end
+
+      swagger_schema :OrdersOutput do
+        property :orders do
+          key :type, :array
+
+          items do
+            key :'$ref', :Order
+          end
+        end
+
+        key :example, orders: [
+          {
+            number: 'RS2104212',
+            status: 'shipped'
+          }
+        ]
       end
     end
   end

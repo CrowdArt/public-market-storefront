@@ -1,9 +1,7 @@
 module Swagger
-  module Controllers
-    class BaseSwaggerController
-      require_relative '../responses'
+  class BaseSwaggerController
+    require_relative '../responses'
 
-      include Swagger::Blocks
-    end
+    include Swagger::Blocks
   end
 end

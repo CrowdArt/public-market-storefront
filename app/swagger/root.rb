@@ -1,11 +1,3 @@
-require_relative 'controllers/base_swagger_controller'
-
-%w[models controllers].each do |path|
-  Dir.glob(File.join(File.dirname(__FILE__), "#{path}/*.rb")) do |c|
-    Rails.configuration.cache_classes ? require(c) : load(c)
-  end
-end
-
 module Swagger
   module Root
     include Swagger::Blocks
@@ -51,14 +43,14 @@ module Swagger
     def self.swaggered_classes
       classes = [self]
 
-      swagger_controllers =
-        Swagger::Controllers.constants.each_with_object([]) do |c, consts|
-          cc = Swagger::Controllers.const_get(c)
+      swagger_schemas =
+        Swagger::Schemas.constants.each_with_object([]) do |c, consts|
+          cc = Swagger::Schemas.const_get(c)
           consts << cc if cc.is_a?(Class)
           consts
         end
 
-      classes.push(*swagger_controllers)
+      classes.push(*swagger_schemas)
       classes
     end
   end

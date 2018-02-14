@@ -1,5 +1,5 @@
 module Swagger
-  module Controllers
+  module Schemas
     class OrdersSwaggerController < BaseSwaggerController
       swagger_path '/orders/fetch' do
         operation :get do
@@ -14,10 +14,11 @@ module Swagger
 
           parameter do
             key :name, :from_timestamp
-            key :description, 'Timestamp of last fetched order'
+            key :description, 'Timestamp of last fetched order in milliseconds'
             key :in, :query
             key :required, false
             key :type, :string
+            key :example, 1.week.ago.to_i
           end
 
           extend SwaggerResponses::AuthenticationError
@@ -25,10 +26,8 @@ module Swagger
           response 200 do
             key :description, 'Returns array with orders'
             schema do
-              key :type, :array
-              items do
-                key :'$ref', :Order
-              end
+              key :type, :object
+              key :'$ref', :OrdersOutput
             end
           end
         end
@@ -48,9 +47,12 @@ module Swagger
           parameter do
             key :name, :orders
             key :description, 'Array of order numbers'
-            key :in, :form
+            key :in, :body
             key :required, true
-            key :type, :array
+            schema do
+              key :type, :object
+              key :'$ref', :ShipmentInput
+            end
           end
 
           extend SwaggerResponses::AuthenticationError
