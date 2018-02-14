@@ -47,6 +47,7 @@ group :test do
   gem 'capybara-screenshot'
   gem 'chromedriver-helper'
   gem 'database_cleaner'
+  gem 'elasticsearch-extensions'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
@@ -55,7 +56,8 @@ end
 group :development do
   gem 'bullet'
   gem 'byebug'
-  gem 'guard'
+  gem 'guard', require: false
+  gem 'guard-rspec', require: false
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rack-mini-profiler', require: false
   gem 'rubocop', require: false

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'landing page loading', type: :feature do
+RSpec.describe 'landing page loading', type: :feature, search: true do
   subject do
     visit '/'
     page
