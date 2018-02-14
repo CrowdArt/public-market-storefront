@@ -24,6 +24,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'slim'
 
+gem 'httparty'
+
 gem 'searchkick'
 
 gem 'spree', github: 'spree/spree'
@@ -65,6 +67,10 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+end
+
+group :development, :test do
+  gem 'proxy_fetcher'
 end
 
 group :production, :staging do

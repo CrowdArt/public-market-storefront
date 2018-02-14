@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_batch_api.git
-  revision: bbb934e511f4a88cf4f8efa1a2aaa66db2fd5522
+  revision: 8530876b5d57e556e90c47ddb8e4d10ab0557e73
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -360,6 +360,8 @@ GEM
     hashie (3.5.7)
     highline (1.6.21)
     htmlentities (4.3.4)
+    httparty (0.16.0)
+      multi_xml (>= 0.5.2)
     httpclient (2.8.3)
     i18n (0.9.4)
       concurrent-ruby (~> 1.0)
@@ -490,6 +492,7 @@ GEM
     premailer-rails (1.10.1)
       actionmailer (>= 3, < 6)
       premailer (~> 1.7, >= 1.7.9)
+    proxy_fetcher (0.6.3)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -711,11 +714,13 @@ DEPENDENCIES
   fog-google
   guard
   guard-rspec
+  httparty
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   pg (= 0.21.0)
   pg_query
   pghero
+  proxy_fetcher
   puma (~> 3.7)
   rack-attack
   rack-mini-profiler

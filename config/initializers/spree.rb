@@ -11,6 +11,7 @@
 # config.setting_name = 'new value'
 Spree.config do |config|
   config.logo = config.admin_interface_logo = 'logo/public_market_logo_white.svg'
+  config.product_metadata_provider = 'Spree::Inventory::Providers::BtolMetadataProvider'
 end
 
 Rails.application.config.after_initialize do |app|

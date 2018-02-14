@@ -1,4 +1,6 @@
 Spree::Image.class_eval do
+  do_not_validate_attachment_file_type :attachment
+
   process_in_background :attachment
 
   def find_dimensions
