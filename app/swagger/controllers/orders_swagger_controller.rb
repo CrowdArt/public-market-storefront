@@ -1,5 +1,7 @@
 module Swagger
   module Controllers
+    require_relative './base_controller'
+
     class OrdersSwaggerController < BaseController
       swagger_path '/orders/fetch' do
         operation :get do

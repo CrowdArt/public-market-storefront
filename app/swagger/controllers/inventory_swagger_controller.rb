@@ -1,5 +1,7 @@
 module Swagger
   module Controllers
+    require_relative './base_controller'
+
     class InventorySwaggerController < BaseController
       swagger_path '/inventory/{content_format}' do
         operation :post do
