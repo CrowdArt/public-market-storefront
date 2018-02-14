@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     mount PgHero::Engine, at: 'pghero'
   end
 
-  resources :api_docs, only: [:index] do
+  resources :api_docs, path: 'apidocs', only: [:index] do
     collection do
       get :schema
     end
