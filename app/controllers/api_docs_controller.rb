@@ -1,9 +1,11 @@
-class DocsController < ApplicationController
+class ApiDocsController < ApplicationController
   require './app/swagger/root'
 
-  before_action :set_access_control_headers, only: :index
-
   def index
+    render :index
+  end
+
+  def schema
     render json: Swagger::Blocks.build_root_json(Swagger::Root.swaggered_classes)
   end
 end

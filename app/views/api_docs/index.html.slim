@@ -1,0 +1,46 @@
+head
+  = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.10.0/swagger-ui.css"
+
+  css:
+    html
+      {
+        box-sizing: border-box;
+        overflow: -moz-scrollbars-vertical;
+        overflow-y: scroll;
+      }
+      *,
+      *:before,
+      *:after
+      {
+        box-sizing: inherit;
+      }
+
+      body {
+        margin:0;
+        background: #fafafa;
+      }
+body
+  #swagger-ui
+
+  = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.10.0/swagger-ui-bundle.js"
+  = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.10.0/swagger-ui-standalone-preset.js"
+
+  javascript:
+    window.onload = function() {
+      // Build a system
+      var ui = SwaggerUIBundle({
+        url: "/api_docs/schema",
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout"
+      })
+
+      window.ui = ui
+    }
