@@ -1,8 +1,6 @@
 module Swagger
   module Controllers
-    require_relative './base_controller'
-
-    class OrdersSwaggerController < BaseController
+    class OrdersSwaggerController < BaseSwaggerController
       swagger_path '/orders/fetch' do
         operation :get do
           key :summary, 'Fetch orders'
@@ -23,8 +21,15 @@ module Swagger
           end
 
           extend SwaggerResponses::AuthenticationError
+
           response 200 do
             key :description, 'Returns array with orders'
+            schema do
+              key :type, :array
+              items do
+                key :'$ref', :Order
+              end
+            end
           end
         end
       end

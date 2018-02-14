@@ -1,3 +1,11 @@
+require_relative 'controllers/base_swagger_controller'
+
+%w[models controllers].each do |path|
+  Dir.glob(File.join(File.dirname(__FILE__), "#{path}/*.rb")) do |c|
+    Rails.configuration.cache_classes ? require(c) : load(c)
+  end
+end
+
 module Swagger
   module Root
     include Swagger::Blocks
