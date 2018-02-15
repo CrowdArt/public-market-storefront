@@ -21,7 +21,6 @@ module Spree
 
           if Rails.env.development? || Rails.env.test?
             ProxyFetcher.config.provider = :free_proxy_list
-
             url = ProxyFetcher::Manager.new.proxies
                                        .select { |m| m.country == 'United States' && m.type == 'HTTP' }
                                        .first.url
