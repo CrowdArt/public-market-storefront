@@ -49,6 +49,11 @@ services:
     volumes:
       - esdata:/usr/share/elasticsearch/data
 
+  squid:
+    image: pires/docker-squid
+    ports:
+      - 3000:3128
+
 volumes:
   postgres:
   tmp_uploads:

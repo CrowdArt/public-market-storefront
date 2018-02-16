@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.1.4'
+gem 'rails', '5.1.4'
 
 gem 'pg', '0.21.0'
 gem 'pg_query' # used by pghero
@@ -70,10 +70,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
-end
-
-group :development, :test do
-  gem 'proxy_fetcher'
 end
 
 group :production, :staging do

@@ -20,11 +20,7 @@ module Spree
           headers 'SOAPAction' => 'http://ContentCafe2.btol.com/XmlString', 'content-type' => 'text/xml'
 
           if Rails.env.development? || Rails.env.test?
-            ProxyFetcher.config.provider = :free_proxy_list
-            url = ProxyFetcher::Manager.new.proxies
-                                       .select { |m| m.country == 'United States' && m.type == 'HTTP' }
-                                       .first.url
-            ENV['http_proxy'] = "http://#{url}"
+            ENV['http_proxy'] = 'http://storefront.simbi.com:3000'
           end
         end
 

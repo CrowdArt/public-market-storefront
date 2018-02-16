@@ -4,38 +4,35 @@ module Swagger
       include Swagger::Blocks
 
       swagger_schema :InventoryInput do
-        key :required, %i[sku ean isbn quantity condition unit_price shipping_price]
+        key :required, %i[ean sku quantity price condition notes]
 
-        property :sku do
-          key :type, :string
-        end
         property :ean do
           key :type, :string
+          key :description, 'ISBN'
         end
-        property :isbn do
+        property :sku do
           key :type, :string
         end
         property :quantity do
           key :type, :integer
         end
+        property :price do
+          key :type, :float
+        end
         property :condition do
           key :type, :string
-          key :enum, ['New', 'Refurbished', 'Used - Like New', 'Used - Very Good', 'Used - Good', 'Used - Acceptable']
+          key :enum, ['New', 'Like New', 'Excellent', 'Very Good', 'Good', 'Acceptable']
         end
-        property :unit_price do
-          key :type, :float
-        end
-        property :shipping_price do
-          key :type, :float
+        property :notes do
+          key :type, :string
         end
 
         key :example, ean: '9781472579508',
                       sku: '3-F-2-0034',
                       quantity: 20,
-                      price: '52.59',
-                      condition: 'Used - Very Good',
-                      notes: 'Used but Very Good',
-                      seller: 'Black Hand Books'
+                      price: 52.59,
+                      condition: 'Very Good',
+                      notes: 'Used but Very Good'
       end
     end
   end
