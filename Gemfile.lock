@@ -303,6 +303,8 @@ GEM
       tzinfo
     excon (0.60.0)
     execjs (2.7.0)
+    factory_bot (4.8.2)
+      activesupport (>= 3.0.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffaker (2.8.1)
@@ -711,6 +713,8 @@ DEPENDENCIES
   database_cleaner
   delayed_paperclip
   elasticsearch-extensions
+  factory_bot
+  ffaker
   fog-google
   guard
   guard-rspec
