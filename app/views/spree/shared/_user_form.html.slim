@@ -1,0 +1,16 @@
+
+/ keep this because it's used in checkout and registration forms
+- if spree_current_user.nil?
+  .form-group
+    = f.label :email, Spree.t(:email)
+    = f.email_field :email, class: 'form-control'
+
+#password-credentials
+  .form-group
+    = f.label :password, Spree.t(:password)
+    = f.password_field :password, class: 'form-control'
+  .form-group
+    = f.label :password_confirmation, Spree.t(:confirm_password)
+    = f.password_field :password_confirmation, class: 'form-control'
+
+div data-hook="signup_below_password_fields"

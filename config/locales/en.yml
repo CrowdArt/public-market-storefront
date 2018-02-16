@@ -33,3 +33,7 @@ en:
   hello: "Hello world"
   spree:
     dashboard: Dashboard
+    forms:
+      users:
+        edit:
+          update_password: Update password

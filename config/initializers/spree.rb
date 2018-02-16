@@ -18,5 +18,7 @@ Rails.application.config.after_initialize do |app|
   app.config.spree.stock_splitters << Spree::Stock::Splitter::VendorSplitter
 end
 
+Spree::Auth::Config[:signout_after_password_change] = false
+
 Spree.user_class = 'Spree::User'
 Spree.admin_path = '/dashboard'

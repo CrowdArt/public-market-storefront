@@ -1,0 +1,12 @@
+.col-md-6.col-md-offset-3
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title = Spree.t(:editing_user)
+
+    .panel-body
+      = render partial: 'spree/shared/error_messages', locals: { target: @user }
+
+      = form_for @user, url: spree.user_path(@user), method: :put, html: { id: "edit_user_password_#{@user.id}" } do |f|
+        = render partial: 'spree/shared/user_form', locals: { f: f }
+        p
+          = f.submit Spree.t('forms.users.edit.update_password'), class: 'btn btn-primary'
