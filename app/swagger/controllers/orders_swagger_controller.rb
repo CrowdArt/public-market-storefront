@@ -17,7 +17,7 @@ module Swagger
             key :description, 'Timestamp of last fetched order in milliseconds'
             key :in, :query
             key :required, false
-            key :type, :string
+            key :type, :integer
             key :example, 1.week.ago.to_i
           end
 
