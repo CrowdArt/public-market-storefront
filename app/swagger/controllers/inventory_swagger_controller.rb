@@ -11,7 +11,7 @@ module Swagger
           key :consumes, ['application/json', 'text/csv']
 
           security do
-            key :spree_token, []
+            key :pm_token, []
           end
 
           parameter do

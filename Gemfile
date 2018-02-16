@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '5.1.4'
+gem 'rails', '5.1.5'
 
 gem 'pg', '0.21.0'
 gem 'pg_query' # used by pghero
@@ -60,7 +60,7 @@ group :test do
 end
 
 group :development do
-  gem 'bullet'
+  gem 'bullet', github: 'flyerhzm/bullet'
   gem 'byebug'
   gem 'guard', require: false
   gem 'guard-rspec', require: false

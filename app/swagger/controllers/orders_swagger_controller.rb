@@ -9,7 +9,7 @@ module Swagger
           key :tags, [:orders]
 
           security do
-            key :spree_token, []
+            key :pm_token, []
           end
 
           parameter do
@@ -36,17 +36,17 @@ module Swagger
       swagger_path '/orders/update_shipments' do
         operation :post do
           key :summary, 'Update shipment status'
-          key :description, 'Update shipment status of given shipment'
+          key :description, 'Update shipment status of given orders'
 
           key :tags, [:orders]
 
           security do
-            key :spree_token, []
+            key :pm_token, []
           end
 
           parameter do
             key :name, :orders
-            key :description, 'Array of order numbers'
+            key :description, 'Array of order numbers and actions'
             key :in, :body
             key :required, true
             schema do

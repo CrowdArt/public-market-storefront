@@ -6,9 +6,9 @@ module Swagger
       key :swagger, '2.0'
 
       info do
-        key :version, '0.0.1'
-        key :title, 'Public market'
-        key :description, 'Public market API specification'
+        key :version, '0.0.2'
+        key :title, 'Public Market API'
+        key :description, 'Public Market API specification'
         key :termsOfService, 'https://publicmarket.io/terms/'
         contact do
           key :name, 'Public market team'
@@ -19,13 +19,13 @@ module Swagger
       end
 
       tag do
-        key :name, 'orders'
-        key :description, 'Operations on orders'
+        key :name, 'inventory'
+        key :description, 'Operations on inventory'
       end
 
       tag do
-        key :name, 'inventory'
-        key :description, 'Operations on inventory'
+        key :name, 'orders'
+        key :description, 'Operations on orders'
       end
 
       key :host, Rails.env.development? ? '0.0.0.0:5000' : 'storefront.simbi.com'
@@ -33,9 +33,9 @@ module Swagger
       key :consumes, ['application/json']
       key :produces, ['application/json']
 
-      security_definition :spree_token do
+      security_definition :pm_token do
         key :type, :apiKey
-        key :name, 'X-Spree-Token'
+        key :name, 'X-PM-Token'
         key :in, :header
       end
     end
