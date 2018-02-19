@@ -19,9 +19,7 @@ module Spree
           include HTTParty
           headers 'SOAPAction' => 'http://ContentCafe2.btol.com/XmlString', 'content-type' => 'text/xml'
 
-          if Rails.env.development? || Rails.env.test?
-            ENV['http_proxy'] = 'http://storefront.simbi.com:3000'
-          end
+          ENV['http_proxy'] = 'http://storefront.simbi.com:3000' if Rails.env.development? || Rails.env.test?
         end
 
         HTTParty::Parser.class_eval do
@@ -73,6 +71,7 @@ module Spree
 
         def btol_item(isbn)
           Rails.logger.info("Request #{isbn} from B&T")
+          raise 'Please specify B&T API credentials in secrets' if Settings.btol_user.blank?
 
           request = btol_soap_request(isbn)
           result = Btol.post('http://contentcafe2.btol.com/contentcafe/contentcafe.asmx', body: request.delete("\n")).parsed_response
