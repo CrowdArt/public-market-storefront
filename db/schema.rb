@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180209125404) do
+ActiveRecord::Schema.define(version: 20180219143306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -434,10 +434,12 @@ ActiveRecord::Schema.define(version: 20180209125404) do
     t.datetime "discontinue_on"
     t.decimal "avg_rating", precision: 7, scale: 5, default: "0.0", null: false
     t.integer "reviews_count", default: 0, null: false
+    t.string "number"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
     t.index ["discontinue_on"], name: "index_spree_products_on_discontinue_on"
     t.index ["name"], name: "index_spree_products_on_name"
+    t.index ["number"], name: "index_spree_products_on_number", unique: true
     t.index ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id"
     t.index ["slug"], name: "index_spree_products_on_slug", unique: true
     t.index ["tax_category_id"], name: "index_spree_products_on_tax_category_id"

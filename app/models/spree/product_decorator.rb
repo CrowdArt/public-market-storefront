@@ -1,4 +1,6 @@
 Spree::Product.class_eval do
+  include Spree::Core::NumberGenerator.new(prefix: 'PM', letters: true, length: 13)
+
   def author
     product_properties.joins(:property)
                       .where("spree_properties.name = 'author' OR spree_properties.name = 'manufacturer'")
