@@ -1,26 +1,31 @@
 require 'rails_helper'
 
-RSpec.describe 'profile edit', type: :feature, search: true do
-  let(:user) { create(:user, email: 'user@spree.com', password: 'secret') }
+RSpec.describe 'profile edit', type: :feature, js: true do
+  let(:user) { create(:bookstore_user, email: 'user@spree.com', password: 'secret') }
   let!(:old_password) { user.encrypted_password }
 
   before do
-    visit spree.root_path
-    click_link 'Login'
-
-    fill_in 'spree_user[email]', with: user.email
-    fill_in 'spree_user[password]', with: 'secret'
-    click_button 'Login'
+    login_as(user, scope: :spree_user)
 
     visit spree.edit_account_path
   end
 
-  it 'updates password', js: true do
+  it 'updates password' do
     fill_in 'user_password', with: 'password'
     fill_in 'user_password_confirmation', with: 'password'
-    click_button 'Update'
+    click_button 'Update password'
 
     expect(page).to have_text 'Account updated'
     expect(user.reload.encrypted_password).not_to eq old_password
+  end
+
+  it 'updates basic info' do
+    fill_in 'user_email', with: 'newemail@spree.com'
+    fill_in 'user_first_name', with: 'User first name'
+    fill_in 'user_last_name', with: 'User last name'
+    click_button 'Update profile'
+
+    expect(page).to have_text 'Account updated'
+    expect(page).to have_content 'newemail@spree.com'
   end
 end

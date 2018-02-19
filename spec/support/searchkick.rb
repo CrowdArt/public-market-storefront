@@ -1,18 +1,21 @@
 require 'elasticsearch/extensions/test/cluster'
 
 RSpec.configure do |config|
-  config.before(:suite) { Searchkick.disable_callbacks }
+  SEARCHABLE_MODELS = [Spree::Product].freeze
+
+  config.before(:suite) do
+    start_elastic_cluster unless ENV['CI']
+    SEARCHABLE_MODELS.each(&:reindex)
+    Searchkick.disable_callbacks
+  end
 
   config.after(:suite) do
     stop_elastic_cluster unless ENV['CI']
   end
 
-  SEARCHABLE_MODELS = [Spree::Product].freeze
-
   config.around(:each, search: true) do |example|
-    start_elastic_cluster unless ENV['CI']
-
     Searchkick.enable_callbacks
+
     SEARCHABLE_MODELS.each do |model|
       model.reindex
       model.searchkick_index.refresh
@@ -21,9 +24,6 @@ RSpec.configure do |config|
     example.run
 
     Searchkick.disable_callbacks
-    SEARCHABLE_MODELS.each do |model|
-      model.searchkick_index.delete
-    end
   end
 end
 
