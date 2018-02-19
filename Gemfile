@@ -69,6 +69,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rack-mini-profiler', require: false
   gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
