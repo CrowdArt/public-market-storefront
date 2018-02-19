@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action, vcr: true do
-  subject(:metadata) { described_class.call(isbn) }
   subject(:properties) { metadata[:properties] }
+
+  let(:metadata) { described_class.call(isbn) }
 
   context 'with known isbn' do
     let(:isbn) { '9780545175302' }
@@ -16,26 +17,31 @@ RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action,
 
   context 'with unknown isbn' do
     let(:isbn) { 'UKNOWN_ISBN1' }
+
     it { expect(metadata).to be_nil }
   end
 
   context 'when title is flat' do
     let(:isbn) { '9781472579508' }
+
     it { expect(metadata[:title]).not_to be_empty }
   end
 
   context 'when flat annotations' do
     let(:isbn) { '9780691016177' }
+
     it { expect(metadata[:description]).not_to be_empty }
   end
 
   context 'when xml has bad symbols' do
     let(:isbn) { '9780688003296' }
+
     it { expect(metadata[:title]).not_to be_empty }
   end
 
   context 'when return multiple products' do
     let(:isbn) { '9780439376105' }
+
     it { expect(metadata[:title]).not_to be_empty }
   end
 

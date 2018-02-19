@@ -76,7 +76,7 @@ module Spree
           request = btol_soap_request(isbn)
           result = Btol.post('http://contentcafe2.btol.com/contentcafe/contentcafe.asmx', body: request.delete("\n")).parsed_response
           return if result.blank?
-          items = result.dig('Envelope', 'Body', 'XmlStringResponse', 'ContentCafe', 'RequestItems', 'RequestItem')
+          result.dig('Envelope', 'Body', 'XmlStringResponse', 'ContentCafe', 'RequestItems', 'RequestItem')
         end
 
         def btol_image_url(isbn)

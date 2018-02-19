@@ -39,7 +39,7 @@ require 'ffaker'
 
   product.save
 
-    # identifiers { create_list(:identifier, 1) }
-    # package { create(:package) }
-    # metadata { [create(:metarecord), create(:metarecord, key: 'country', value: FFaker::Address.country)] }
+  # identifiers { create_list(:identifier, 1) }
+  # package { create(:package) }
+  # metadata { [create(:metarecord), create(:metarecord, key: 'country', value: FFaker::Address.country)] }
 end

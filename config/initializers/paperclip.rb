@@ -1,5 +1,5 @@
 Paperclip.options[:content_type_mappings] = {
-  aspx: %w(image/jpeg)
+  aspx: %w[image/jpeg]
 }
 
 if Rails.env.development?
