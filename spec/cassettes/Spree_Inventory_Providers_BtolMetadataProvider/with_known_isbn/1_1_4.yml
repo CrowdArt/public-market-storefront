@@ -1,0 +1,85 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://contentcafe2.btol.com/contentcafe/contentcafe.asmx
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:ns1="http://ContentCafe2.btol.com">  <SOAP-ENV:Body>    <ns1:XmlString>      <ns1:xmlRequest>&lt;ContentCafe
+        xmlns=&quot;http://ContentCafe2.btol.com&quot;&gt;&lt;RequestItems UserID=&quot;<BTOL_USER>&quot;
+        Password=&quot;<BTOL_PASSWORD>&quot;&gt;&lt;RequestItem&gt;&lt;Key Type=&quot;ISBN&quot;&gt;9780545175302&lt;/Key&gt;&lt;Content&gt;ProductDetail&lt;/Content&gt;&lt;Content&gt;AnnotationDetail&lt;/Content&gt;&lt;/RequestItem&gt;&lt;/RequestItems&gt;&lt;/ContentCafe&gt;</ns1:xmlRequest>    </ns1:XmlString>  </SOAP-ENV:Body></SOAP-ENV:Envelope>          '
+    headers:
+      Soapaction:
+      - http://ContentCafe2.btol.com/XmlString
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private, max-age=0
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.0
+      X-Aspnet-Version:
+      - 2.0.50727
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 19 Feb 2018 15:05:06 GMT
+      Content-Length:
+      - '4326'
+      X-Cache:
+      - MISS from c77c680ece5f
+      X-Cache-Lookup:
+      - MISS from c77c680ece5f:3128
+      Via:
+      - 1.1 c77c680ece5f (squid/3.3.8)
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Body><XmlStringResponse
+        xmlns="http://ContentCafe2.btol.com"><ContentCafe DateTime="2018-02-19T10:05:07.8095787-05:00"><RequestItems
+        UserID="<BTOL_USER>" Password="BWTCCPROD02"><RequestItem><Key Type="ISBN"
+        Original="9780545175302">9780545175302</Key><Content>ProductDetail</Content><Content>AnnotationDetail</Content><AnnotationItems><AnnotationItem
+        ID="24161906"><Supplier Code="BNT">Baker &amp; Taylor</Supplier><Annotation>Friends
+        Ook and Gluk are always getting into trouble with their village chief until
+        they pass through a portal into a future run by the chief''s descendant, where
+        they learn kung fu so they can return to the past and free their people.</Annotation></AnnotationItem><AnnotationItem
+        ID="24161907"><Supplier Code="SCHOLASTIC">Scholastic</Supplier><Annotation>&lt;DIV&gt;Tra-la-laaa!
+        The wait is over! Dav Pilkey--ahem--we mean, George Beard and Harold Hutchins,
+        the bestselling authors of THE ADVENTURES OF SUPER DIAPER BABY, are back with
+        their second graphic novel!&lt;br&gt;&lt;br&gt;Meet Ook and Gluk, the stars
+        of this sensationally silly graphic novel from the creators of Captain Underpants!
+        It''s 500,001 BC, and Ook and Gluk''s hometown of Caveland, Ohio, is under
+        attack by an evil corporation from the future. When Ook, Gluk, and their little
+        dinosaur pal Lily are pulled through a time portal to 2222, they discover
+        a future world that''s even more devastated than their own. Luckily, they
+        find a friend in Master Wong, a martial arts instructor who trains them in
+        the ways of kung fu. Now all they have to do is travel back in time 502,223
+        years and save the day!&lt;/div&gt;</Annotation></AnnotationItem></AnnotationItems><ProductItems><ProductItem
+        ID="7654353"><ISBN>9780545175302</ISBN><Title LeadingArticle="The">Adventures
+        of Ook and Gluk : Kung-fu Cavemen from the Future</Title><Author>Beard, George;
+        Hutchins, Harold; Pilkey, Dav</Author><Source Code="BTB">B&amp;T Books</Source><Product
+        Code="BOOK">Book</Product><Supplier Code="SCHOH">Scholastic</Supplier><Series>Adventures
+        of Ook and Gluk</Series><ListPrice>9.99</ListPrice><PubDate>2010-08-10</PubDate><Format
+        Code="SAL">School And Library</Format><Report Code="ATO">Available</Report><BTKey>BK0008852250</BTKey><Dewey>741.5/973</Dewey><LCCN>bl2010020760</LCCN><LCClass>PZ7.7.P538
+        ADV 2010</LCClass><Language Code="ENG">English</Language><RatingGradeLevel
+        Code="BK3-4">Children''s - Grade 3-4, Age 8-9</RatingGradeLevel><GeneralSubject>JUVENILE
+        FICTION / Comics &amp; Graphic Novels / General</GeneralSubject><GeneralSubject>JUVENILE
+        FICTION / Action &amp; Adventure / General</GeneralSubject><LibrarySubject>Graphic
+        novels.</LibrarySubject><LibrarySubject>Prehistoric peoples</LibrarySubject><LibrarySubject>Fiction.</LibrarySubject><LibrarySubject>Kung
+        fu</LibrarySubject><LibrarySubject>Fiction.</LibrarySubject><LibrarySubject>Time
+        travel</LibrarySubject><LibrarySubject>Fiction.</LibrarySubject><LibrarySubject>Graphic
+        novels.</LibrarySubject><ReviewCode>AYJT</ReviewCode><ReviewCode>AYPS</ReviewCode><ReviewCode>BCCR</ReviewCode><ReviewCode>BK10</ReviewCode><ReviewCode>BO0R</ReviewCode><ReviewCode>BU0K</ReviewCode><ReviewCode>BX11</ReviewCode><ReviewCode>H1GA</ReviewCode><ReviewCode>IMSL</ReviewCode><ReviewCode>LM1A</ReviewCode><ReviewCode>SEF3</ReviewCode><ReviewCode>SEF4</ReviewCode><ReviewCode>SH0K</ReviewCode><ReviewCode>T0H5</ReviewCode><ReviewCode>T0I1</ReviewCode><ReviewCode>T0I2</ReviewCode><ReviewCode>T0I3</ReviewCode><ReviewCode>Z0H2</ReviewCode><ReviewCode>Z0H4</ReviewCode><ReviewCode>Z0I2</ReviewCode><ReviewCode>Z0J1</ReviewCode><ReviewCode>Z1H1</ReviewCode><Pagination>75
+        p. :</Pagination><Created>2010-03-18</Created><Updated>2017-04-24</Updated><Active>true</Active><Returnable>true</Returnable><DiscountKey>R</DiscountKey><Width>5.75000</Width><Height>0.50000</Height><Depth>8.75000</Depth><Weight>0.80000</Weight><CPSIA_Warning>false</CPSIA_Warning><PhysicalFormats><PhysicalFormat
+        Type="Primary"><FormatName>Reinforced</FormatName></PhysicalFormat></PhysicalFormats></ProductItem></ProductItems></RequestItem></RequestItems></ContentCafe></XmlStringResponse></soap:Body></soap:Envelope>'
+    http_version: 
+  recorded_at: Mon, 19 Feb 2018 15:05:07 GMT
+recorded_with: VCR 4.0.0

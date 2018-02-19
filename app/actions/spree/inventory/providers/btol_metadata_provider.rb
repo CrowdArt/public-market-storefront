@@ -19,7 +19,7 @@ module Spree
           include HTTParty
           headers 'SOAPAction' => 'http://ContentCafe2.btol.com/XmlString', 'content-type' => 'text/xml'
 
-          ENV['http_proxy'] = 'http://storefront.simbi.com:3000' if Rails.env.development? || Rails.env.test?
+          ENV['http_proxy'] = 'http://storefront.simbi.com:3000' if Rails.env.development?
         end
 
         HTTParty::Parser.class_eval do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'profile edit', type: :feature do
+RSpec.describe 'profile edit', type: :feature, search: true do
   let(:user) { create(:user, email: 'user@spree.com', password: 'secret') }
   let!(:old_password) { user.encrypted_password }
 

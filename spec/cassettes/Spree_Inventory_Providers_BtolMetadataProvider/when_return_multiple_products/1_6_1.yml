@@ -1,0 +1,113 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://contentcafe2.btol.com/contentcafe/contentcafe.asmx
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:ns1="http://ContentCafe2.btol.com">  <SOAP-ENV:Body>    <ns1:XmlString>      <ns1:xmlRequest>&lt;ContentCafe
+        xmlns=&quot;http://ContentCafe2.btol.com&quot;&gt;&lt;RequestItems UserID=&quot;<BTOL_USER>&quot;
+        Password=&quot;<BTOL_PASSWORD>&quot;&gt;&lt;RequestItem&gt;&lt;Key Type=&quot;ISBN&quot;&gt;9780439376105&lt;/Key&gt;&lt;Content&gt;ProductDetail&lt;/Content&gt;&lt;Content&gt;AnnotationDetail&lt;/Content&gt;&lt;/RequestItem&gt;&lt;/RequestItems&gt;&lt;/ContentCafe&gt;</ns1:xmlRequest>    </ns1:XmlString>  </SOAP-ENV:Body></SOAP-ENV:Envelope>          '
+    headers:
+      Soapaction:
+      - http://ContentCafe2.btol.com/XmlString
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private, max-age=0
+      Content-Type:
+      - text/xml; charset=utf-8
+      Server:
+      - Microsoft-IIS/7.0
+      X-Aspnet-Version:
+      - 2.0.50727
+      X-Powered-By:
+      - ASP.NET
+      Date:
+      - Mon, 19 Feb 2018 15:05:09 GMT
+      Content-Length:
+      - '7274'
+      X-Cache:
+      - MISS from c77c680ece5f
+      X-Cache-Lookup:
+      - MISS from c77c680ece5f:3128
+      Via:
+      - 1.1 c77c680ece5f (squid/3.3.8)
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Body><XmlStringResponse
+        xmlns="http://ContentCafe2.btol.com"><ContentCafe DateTime="2018-02-19T10:05:09.679551-05:00"><RequestItems
+        UserID="<BTOL_USER>" Password="BWTCCPROD01"><RequestItem><Key Type="ISBN"
+        Original="9780439376105">9780439376105</Key><Content>ProductDetail</Content><Content>AnnotationDetail</Content><AnnotationItems><AnnotationItem
+        ID="23851770"><Supplier Code="BNT">Baker &amp; Taylor</Supplier><Annotation>A
+        snotty situation ensues when Melvin Sneedley, an academically-gifted student,
+        turns into the Bionic Booger Boy and must be stopped by George, Harold, and
+        Captain Underpants.</Annotation></AnnotationItem><AnnotationItem ID="23851771"><Supplier
+        Code="BNT">Baker &amp; Taylor</Supplier><Annotation>A snotty situation ensues
+        when Melvin Sneedley, an academically-gifted student, turns into the Bionic
+        Booger Boy and must be stopped by George, Harold, and Captain Underpants.
+        Simultaneous. 1 million first printing.</Annotation></AnnotationItem><AnnotationItem
+        ID="23851772"><Supplier Code="SCHOLASTIC">Scholastic</Supplier><Annotation>&lt;DIV&gt;&lt;p&gt;Now
+        with super-cool foil covers! Shiny! Fun!&lt;/p&gt;&lt;p&gt;Dav Pilkey''s newest
+        epic novel finds George, Harold, and everyone''s favorite superhero in the
+        stickiest situation yet. This time, the boys'' latest prank has snotty school
+        brainiac Melvin Sneedley in a stink. And when Melvin tries to transform himself
+        into a bionic-powered superboy, things go from bad to boogers, literally,
+        and the Bionic Booger Boy is born! With fun Flip-O-Rama and loads of laffs,
+        here''s another excellent adventure that will leave Captain Underpants fans
+        begging for more. SPECIAL BONUS CLIFFHANGER ENDING INCLUDED!&lt;/p&gt;&lt;/DIV&gt;</Annotation></AnnotationItem><AnnotationItem
+        ID="23851773"><Supplier Code="SCHOLASTIC">Scholastic</Supplier><Annotation>&lt;DIV&gt;The
+        sixth book in Dav Pilkey''s mega-bestselling Captain Underpants series. Now
+        with super-cool foil covers! Shiny! Fun!&lt;br&gt;&lt;br&gt;Dav Pilkey''s
+        newest epic novel finds George, Harold, and everyone''s favorite superhero
+        in their stickiest situation yet. This time, the boys'' latest prank has snotty
+        school brainiac Melvin Sneedley in a stink. And when Melvin tries to transform
+        himself into a bionic-powered superboy, things go from bad to boogers, literally,
+        and the Bionic Booger Boy is born!&lt;br&gt;&lt;br&gt;With fun Flip-O-Rama
+        and loads of laffs, here''s another excellent adventure that will leave Captain
+        Underpants fans begging for more. SPECIAL BONUS CLIFFHANGER ENDING INCLUDED!&lt;/div&gt;</Annotation></AnnotationItem></AnnotationItems><ProductItems><ProductItem
+        ID="3238300"><ISBN>9780439376105</ISBN><Title>Captain Underpants and the Big,
+        Bad Battle of the Bionic Booger Boy, Part 1 : The Night of the Nasty Nostril
+        Nuggets</Title><Author>Pilkey, Dav</Author><Source Code="BTB">B&amp;T Books</Source><Product
+        Code="BOOK">Book</Product><Supplier Code="SCHOL">Scholastic Paperbacks</Supplier><Series>Captain
+        Underpants</Series><ListPrice>4.99</ListPrice><PubDate>2003-09-01</PubDate><Format
+        Code="PAP">Paperback</Format><Report Code="PS">Permanently Out of Stock</Report><BTKey>BK0004180988</BTKey><Dewey>[Fic]</Dewey><LCCN>BL2003013681</LCCN><LCClass>PZ7.P63123
+        CAR 2003B</LCClass><Language Code="ENG">English</Language><RatingGradeLevel
+        Code="BK3-4">Children''s - Grade 3-4, Age 8-9</RatingGradeLevel><GeneralSubject>JUVENILE
+        FICTION / Readers / Chapter Books</GeneralSubject><GeneralSubject>JUVENILE
+        FICTION / Humorous Stories</GeneralSubject><GeneralSubject>JUVENILE FICTION
+        / Action &amp; Adventure / General</GeneralSubject><LibrarySubject>Toy and
+        movable books</LibrarySubject><LibrarySubject>Specimens.</LibrarySubject><LibrarySubject>School
+        principals</LibrarySubject><LibrarySubject>Fiction.</LibrarySubject><LibrarySubject>Schools</LibrarySubject><LibrarySubject>Fiction.</LibrarySubject><LibrarySubject>Heroes</LibrarySubject><LibrarySubject>Fiction.</LibrarySubject><LibrarySubject>Cartoons
+        and comics</LibrarySubject><LibrarySubject>Fiction.</LibrarySubject><LibrarySubject>Humorous
+        stories.</LibrarySubject><LibrarySubject>Toy and movable books.</LibrarySubject><ReviewCode>BF3H</ReviewCode><ReviewCode>CBF7</ReviewCode><ReviewCode>HG4A</ReviewCode><ReviewCode>P3I5</ReviewCode><ReviewCode>SL4A</ReviewCode><ReviewCode>X3I1</ReviewCode><ReviewCode>XBJF</ReviewCode><ReviewCode>XCAT</ReviewCode><ReviewCode>XIMP</ReviewCode><ReviewCode>XODC</ReviewCode><LexileCode>850</LexileCode><Pagination>173
+        p. :</Pagination><Created>2003-03-06</Created><Updated>2018-01-30</Updated><Active>false</Active><Returnable>true</Returnable><DiscountKey>P</DiscountKey><Width>5.50000</Width><Height>0.50000</Height><Depth>7.75000</Depth><Weight>0.35000</Weight><CPSIA_Warning>false</CPSIA_Warning><PhysicalFormats><PhysicalFormat
+        Type="Primary"><FormatName>Paperback</FormatName></PhysicalFormat></PhysicalFormats></ProductItem><ProductItem
+        ID="6669111"><ISBN>9780439376105</ISBN><Title>Captain Underpants and the Big,
+        Bad Battle of the Bionic Booger Boy, Part 1 : The Night of the Nasty Nostril
+        Nuggets</Title><Author>Pilkey, Dav</Author><Source Code="BTB">B&amp;T Books</Source><Product
+        Code="BOOK">Book</Product><Supplier Code="SCHOL">Scholastic Paperbacks</Supplier><Series>Captain
+        Underpants</Series><ListPrice>5.99</ListPrice><PubDate>2003-09-01</PubDate><Format
+        Code="PAP">Paperback</Format><Report Code="ATO">Available</Report><BTKey>BK0008005625</BTKey><Dewey>[Fic]</Dewey><LCCN>bl2003013681</LCCN><Edition>Reissue</Edition><LCClass>PZ7.P63123
+        CAR 2003B</LCClass><Language Code="ENG">English</Language><RatingGradeLevel
+        Code="BK3-4">Children''s - Grade 3-4, Age 8-9</RatingGradeLevel><GeneralSubject>JUVENILE
+        FICTION / Humorous Stories</GeneralSubject><GeneralSubject>JUVENILE FICTION
+        / Action &amp; Adventure / General</GeneralSubject><LibrarySubject>Toy and
+        movable books</LibrarySubject><LibrarySubject>Specimens.</LibrarySubject><LibrarySubject>School
+        principals</LibrarySubject><LibrarySubject>Fiction.</LibrarySubject><LibrarySubject>Schools</LibrarySubject><LibrarySubject>Fiction.</LibrarySubject><LibrarySubject>Heroes</LibrarySubject><LibrarySubject>Fiction.</LibrarySubject><LibrarySubject>Cartoons
+        and comics</LibrarySubject><LibrarySubject>Fiction.</LibrarySubject><LibrarySubject>Humorous
+        stories.</LibrarySubject><LibrarySubject>Toy and movable books.</LibrarySubject><ReviewCode>BK10</ReviewCode><ReviewCode>HG4A</ReviewCode><ReviewCode>P3I5</ReviewCode><ReviewCode>SL4A</ReviewCode><LexileCode>850</LexileCode><Pagination>173
+        p. :</Pagination><Created>2008-10-27</Created><Updated>2018-01-30</Updated><Active>true</Active><Returnable>true</Returnable><DiscountKey>P</DiscountKey><Width>5.50000</Width><Height>0.25000</Height><Depth>7.75000</Depth><Weight>0.35000</Weight><CPSIA_Warning>false</CPSIA_Warning><PhysicalFormats><PhysicalFormat
+        Type="Primary"><FormatName>Paperback</FormatName><Editions><Edition>Reissue</Edition></Editions></PhysicalFormat></PhysicalFormats></ProductItem></ProductItems></RequestItem></RequestItems></ContentCafe></XmlStringResponse></soap:Body></soap:Envelope>'
+    http_version: 
+  recorded_at: Mon, 19 Feb 2018 15:05:09 GMT
+recorded_with: VCR 4.0.0

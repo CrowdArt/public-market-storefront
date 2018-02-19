@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action do
+RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action, vcr: true do
   subject(:metadata) { described_class.call(isbn) }
   subject(:properties) { metadata[:properties] }
 
