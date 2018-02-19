@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'profile edit', type: :feature, js: true do
-  let(:user) { create(:bookstore_user, email: 'user@spree.com', password: 'secret') }
+  let(:user) { create(:bookstore_user, email: 'user@spree.com', password: 'secretpassword') }
   let!(:old_password) { user.encrypted_password }
 
   before do

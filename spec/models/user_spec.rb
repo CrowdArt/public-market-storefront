@@ -10,12 +10,6 @@ RSpec.describe Spree::User, type: :model do
 
     it { is_expected.to be_valid }
 
-    context 'with numbers in name' do
-      let(:first_name) { 'Richard 5th' }
-
-      it { is_expected.to be_valid }
-    end
-
     context 'with dash in name' do
       let(:first_name) { 'Sklodovskaya-Curie' }
 
@@ -28,6 +22,12 @@ RSpec.describe Spree::User, type: :model do
       it { is_expected.to be_valid }
     end
 
+    context 'with numbers in name' do
+      let(:first_name) { 'Richard 5th' }
+
+      it { is_expected.not_to be_valid }
+    end
+
     context 'with <script> in name' do
       let(:first_name) { '<script>' }
 
@@ -36,6 +36,30 @@ RSpec.describe Spree::User, type: :model do
 
     context 'with &#10; in name' do
       let(:first_name) { '&#10;' }
+
+      it { is_expected.not_to be_valid }
+    end
+  end
+
+  describe 'validates password length' do
+    subject do
+      build_stubbed(:bookstore_user, password: password)
+    end
+
+    context 'with correct password' do
+      let(:password) { FFaker::Internet.password(8, 8) }
+
+      it { is_expected.to be_valid }
+    end
+
+    context 'with too short password' do
+      let(:password) { FFaker::Internet.password(2, 2) }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'with too long password' do
+      let(:password) { FFaker::Internet.password(21, 21) }
 
       it { is_expected.not_to be_valid }
     end

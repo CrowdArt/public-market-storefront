@@ -1,9 +1,22 @@
 
 / keep this because it's used in checkout and registration forms
-- if spree_current_user.nil?
+- if current_spree_user.blank?
   .form-group
     = f.label :email, Spree.t(:email)
     = f.email_field :email, class: 'form-control'
+
+  .form-group
+    = f.label :email_confirmation, Spree.t(:email_confirmation)
+    = f.email_field :email_confirmation, class: 'form-control'
+
+  .form-group
+    = f.label :first_name, Spree.t(:first_name)
+    = f.text_field :first_name, class: 'form-control'
+
+  .form-group
+    = f.label :last_name, Spree.t(:last_name)
+    = f.text_field :last_name, class: 'form-control'
+
 
 #password-credentials
   .form-group

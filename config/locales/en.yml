@@ -33,6 +33,9 @@ en:
   hello: "Hello world"
   spree:
     dashboard: Dashboard
+    new_customer: Sign Up
+    login_as_existing: Sign In
+    login: Sign In
     forms:
       users:
         edit:
