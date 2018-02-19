@@ -22,3 +22,5 @@ Spree::Auth::Config[:signout_after_password_change] = false
 
 Spree.user_class = 'Spree::User'
 Spree.admin_path = '/dashboard'
+
+Spree::PermittedAttributes.user_attributes.push(:first_name, :last_name)
