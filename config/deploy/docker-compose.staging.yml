@@ -54,6 +54,12 @@ services:
     ports:
       - 3000:3128
 
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
 volumes:
   postgres:
   tmp_uploads:
