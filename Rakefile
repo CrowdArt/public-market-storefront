@@ -16,3 +16,10 @@ namespace :spree_sample do
     Spree::Inventory::UploadFileAction.call('csv', './db/samples/inventory.csv')
   end
 end
+
+namespace :db do
+  desc 'Seed bisac taxonomy'
+  task seed_bisac: :environment do
+    require './db/seeds/bisac.rb'
+  end
+end
