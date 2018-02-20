@@ -30,7 +30,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 20 Feb 2018 08:56:13 GMT
+      - Tue, 20 Feb 2018 08:56:16 GMT
       Content-Length:
       - '4680'
       X-Cache:
@@ -45,7 +45,7 @@ http_interactions:
       encoding: UTF-8
       string: '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Body><XmlStringResponse
-        xmlns="http://ContentCafe2.btol.com"><ContentCafe DateTime="2018-02-20T03:56:14.4437687-05:00"><RequestItems
+        xmlns="http://ContentCafe2.btol.com"><ContentCafe DateTime="2018-02-20T03:56:16.9040147-05:00"><RequestItems
         UserID="<BTOL_USER>" Password="BWTCCPROD02"><RequestItem><Key Type="ISBN"
         Original="9780307341570">9780307341570</Key><Content>ProductDetail</Content><Content>AnnotationDetail</Content><AnnotationItems><AnnotationItem
         ID="62877602"><Supplier Code="BNT">Baker &amp; Taylor</Supplier><Annotation>After
@@ -88,5 +88,5 @@ http_interactions:
         p. ;</Pagination><Created>2009-09-03</Created><Updated>2018-01-12</Updated><Active>true</Active><Returnable>true</Returnable><DiscountKey>B</DiscountKey><Width>5.25000</Width><Height>0.75000</Height><Depth>8.50000</Depth><Weight>0.55000</Weight><CPSIA_Warning>false</CPSIA_Warning><PhysicalFormats><PhysicalFormat
         Type="Primary"><FormatName>Paperback</FormatName><Editions Number="1"><Edition>Reprint</Edition></Editions></PhysicalFormat></PhysicalFormats></ProductItem></ProductItems></RequestItem></RequestItems></ContentCafe></XmlStringResponse></soap:Body></soap:Envelope>'
     http_version: 
-  recorded_at: Tue, 20 Feb 2018 08:56:14 GMT
+  recorded_at: Tue, 20 Feb 2018 08:56:16 GMT
 recorded_with: VCR 4.0.0

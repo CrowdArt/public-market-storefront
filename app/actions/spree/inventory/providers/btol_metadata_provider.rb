@@ -18,8 +18,6 @@ module Spree
         class Btol
           include HTTParty
           headers 'SOAPAction' => 'http://ContentCafe2.btol.com/XmlString', 'content-type' => 'text/xml'
-
-          ENV['http_proxy'] = 'http://storefront.simbi.com:3000' if Rails.env.development?
         end
 
         HTTParty::Parser.class_eval do
@@ -42,7 +40,10 @@ module Spree
               publisher: content('Supplier', product),
               published_at: published(product),
               subject: product.dig('GeneralSubject'),
-              grade_level: content('RatingGradeLevel', product)
+              grade_level: content('RatingGradeLevel', product),
+              edition: product.dig('Edition'),
+              language: content('Language', product),
+              pages: product.dig('Pagination').to_s.delete(';').strip
             },
             dimensions: {
               weight: product.dig('Weight').to_f,
@@ -74,6 +75,7 @@ module Spree
           raise 'Please specify B&T API credentials in secrets' if Settings.btol_user.blank?
 
           request = btol_soap_request(isbn)
+          ENV['http_proxy'] = 'http://storefront.simbi.com:3000' if Rails.env.development?
           result = Btol.post('http://contentcafe2.btol.com/contentcafe/contentcafe.asmx', body: request.delete("\n")).parsed_response
           return if result.blank?
           result.dig('Envelope', 'Body', 'XmlStringResponse', 'ContentCafe', 'RequestItems', 'RequestItem')

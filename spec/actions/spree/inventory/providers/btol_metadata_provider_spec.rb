@@ -6,13 +6,16 @@ RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action,
   let(:metadata) { described_class.call(isbn) }
 
   context 'with known isbn' do
-    let(:isbn) { '9780545175302' }
+    let(:isbn) { '9780307341570' }
 
     it { expect(properties).to include(isbn: isbn) }
     it { expect(metadata[:title]).not_to be_empty }
     it { expect(metadata[:description]).not_to be_empty }
     it { expect(metadata[:dimensions]).not_to be_empty }
     it { expect(metadata[:price]).to be > 0 }
+    it { expect(properties[:edition]).not_to be_nil }
+    it { expect(properties[:language]).not_to be_nil }
+    it { expect(properties[:pages]).not_to be_nil }
   end
 
   context 'with unknown isbn' do
@@ -50,7 +53,7 @@ RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action,
 
     let(:item_json) do
       {
-        ean: '9780545175302',
+        ean: '9780307341570',
         sku: 'SKU',
         quantity: '1',
         price: '9.61',
@@ -68,6 +71,9 @@ RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action,
       expect(variant.price).to be > 0
       expect(variant.total_on_hand).to eq(1)
       expect(variant.product.images.count).to eq(1)
+      expect(variant.product.property(:edition)).to eq('1 Reprint')
+      expect(variant.product.property(:language)).to eq('English')
+      expect(variant.product.property(:pages)).to eq('349 p.')
     end
   end
 end

@@ -30,7 +30,7 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Mon, 19 Feb 2018 15:05:10 GMT
+      - Tue, 20 Feb 2018 08:56:11 GMT
       Content-Length:
       - '3787'
       X-Cache:
@@ -45,7 +45,7 @@ http_interactions:
       encoding: UTF-8
       string: '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Body><XmlStringResponse
-        xmlns="http://ContentCafe2.btol.com"><ContentCafe DateTime="2018-02-19T10:05:10.8838861-05:00"><RequestItems
+        xmlns="http://ContentCafe2.btol.com"><ContentCafe DateTime="2018-02-20T03:56:11.9895233-05:00"><RequestItems
         UserID="<BTOL_USER>" Password="BWTCCPROD02"><RequestItem><Key Type="ISBN"
         Original="9780691016177">9780691016177</Key><Content>ProductDetail</Content><Content>AnnotationDetail</Content><AnnotationItems><AnnotationItem
         ID="38434280"><Supplier Code="ptunp">Princeton University Press</Supplier><Annotation>&lt;p&gt;In
@@ -82,5 +82,5 @@ http_interactions:
         century.</LibrarySubject><Pagination>xx, 230 p. :</Pagination><Created>1997-04-15</Created><Updated>2013-07-22</Updated><Active>true</Active><Returnable>true</Returnable><DiscountKey>N</DiscountKey><Width>6.50000</Width><Height>1.25000</Height><Depth>9.75000</Depth><Weight>1.25000</Weight><CPSIA_Warning>false</CPSIA_Warning><PhysicalFormats><PhysicalFormat
         Type="Primary"><FormatName>Hardcover</FormatName></PhysicalFormat></PhysicalFormats></ProductItem></ProductItems></RequestItem></RequestItems></ContentCafe></XmlStringResponse></soap:Body></soap:Envelope>'
     http_version: 
-  recorded_at: Mon, 19 Feb 2018 15:05:10 GMT
+  recorded_at: Tue, 20 Feb 2018 08:56:11 GMT
 recorded_with: VCR 4.0.0
