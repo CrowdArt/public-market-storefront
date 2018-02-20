@@ -36,6 +36,8 @@ en:
     new_customer: Sign Up
     login_as_existing: Sign In
     login: Sign In
+    you_have_no_orders_yet: You have not placed any orders on Public Market yet.
+    my_orders: Order history
     forms:
       users:
         edit:
