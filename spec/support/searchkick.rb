@@ -4,13 +4,13 @@ RSpec.configure do |config|
   SEARCHABLE_MODELS = [Spree::Product].freeze
 
   config.before(:suite) do
-    start_elastic_cluster unless ENV['CI']
+    start_elastic_cluster unless elastic_cluster_present?
     SEARCHABLE_MODELS.each(&:reindex)
     Searchkick.disable_callbacks
   end
 
   config.after(:suite) do
-    stop_elastic_cluster unless ENV['CI']
+    stop_elastic_cluster unless elastic_cluster_present?
   end
 
   config.around(:each, search: true) do |example|
@@ -25,6 +25,10 @@ RSpec.configure do |config|
 
     Searchkick.disable_callbacks
   end
+end
+
+def elastic_cluster_present?
+  ENV['CI'] || `curl -s localhost:9200`.present?
 end
 
 def start_elastic_cluster

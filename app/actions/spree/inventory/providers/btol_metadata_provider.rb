@@ -33,25 +33,38 @@ module Spree
             title: title,
             images: [{ url: btol_image_url(isbn), title: title }],
             price: product.dig('ListPrice').to_f,
-            properties: {
-              isbn: isbn,
-              author: product.dig('Author'),
-              format: content('Format', product),
-              publisher: content('Supplier', product),
-              published_at: published(product),
-              subject: product.dig('GeneralSubject'),
-              grade_level: content('RatingGradeLevel', product),
-              edition: product.dig('Edition'),
-              language: content('Language', product),
-              pages: product.dig('Pagination').to_s.delete(';').strip
-            },
-            dimensions: {
-              weight: product.dig('Weight').to_f,
-              height: product.dig('Height').to_f,
-              width: product.dig('Width').to_f,
-              depth: product.dig('Depth').to_f
-            }
+            properties: properties(product),
+            dimensions: dimensions(product),
+            taxons: taxons(product)
           }
+        end
+
+        def properties(product)
+          {
+            isbn: isbn,
+            author: product.dig('Author'),
+            format: content('Format', product),
+            publisher: content('Supplier', product),
+            published_at: published(product),
+            grade_level: content('RatingGradeLevel', product),
+            edition: product.dig('Edition'),
+            language: content('Language', product),
+            pages: product.dig('Pagination').to_s.delete(';').strip
+          }
+        end
+
+        def dimensions(product)
+          {
+            weight: product.dig('Weight').to_f,
+            height: product.dig('Height').to_f,
+            width: product.dig('Width').to_f,
+            depth: product.dig('Depth').to_f
+          }
+        end
+
+        def taxons(product)
+          subjects = product.dig('GeneralSubject')
+          [subjects].flatten.last.to_s.split(' / ').map(&:humanize)
         end
 
         def select_description(item)

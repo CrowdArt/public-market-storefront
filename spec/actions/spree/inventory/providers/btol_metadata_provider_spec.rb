@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action, vcr: true do
   subject(:properties) { metadata[:properties] }
 
+  before { ENV['http_proxy'] = VCR.current_cassette.recording? ? 'http://storefront.simbi.com:3000' : '' }
+
   let(:metadata) { described_class.call(isbn) }
 
   context 'with known isbn' do
@@ -16,6 +18,7 @@ RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action,
     it { expect(properties[:edition]).not_to be_nil }
     it { expect(properties[:language]).not_to be_nil }
     it { expect(properties[:pages]).not_to be_nil }
+    it { expect(metadata[:taxons]).not_to be_empty }
   end
 
   context 'with unknown isbn' do
@@ -74,6 +77,9 @@ RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action,
       expect(variant.product.property(:edition)).to eq('1 Reprint')
       expect(variant.product.property(:language)).to eq('English')
       expect(variant.product.property(:pages)).to eq('349 p.')
+      taxons = variant.product.taxons
+      expect(taxons.count).to eq(1)
+      expect(taxons.first.pretty_name).to eq('Categories -> Fiction -> Thrillers -> General')
     end
   end
 end
