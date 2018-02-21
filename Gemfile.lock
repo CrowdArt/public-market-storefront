@@ -57,7 +57,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_social.git
-  revision: 1b3a5a72d37b00b6c21ebffe65b36eac5aa86fa9
+  revision: e6be7bde847075e405651fa654150ca62052f3b8
   specs:
     spree_social (3.3.1)
       oa-core
