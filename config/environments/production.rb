@@ -61,6 +61,21 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "bookstore_#{Rails.env}"
   config.action_mailer.perform_caching = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.asset_host = 'http://storefront.simbi.com'
+  config.action_mailer.default_url_options = { host: 'storefront.simbi.com', protocol: 'http' }
+  config.action_mailer.smtp_settings = {
+    address:              Settings.smtp_address,
+    port:                 587,
+    user_name:            Settings.smtp_user_name,
+    password:             Settings.smtp_password,
+    domain:               'storefront.simbi.com',
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+
+  ActionMailer::Base.default from: '"Public Market" <hey@publicmarket.io>'
+  ActionMailer::Base.default to: '"Public Market" <hey@publicmarket.io>'
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
