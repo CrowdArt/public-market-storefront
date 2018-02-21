@@ -1,0 +1,6 @@
+nav.panel.panel-default#account-menu
+  div.panel-heading My Account
+  .list-group
+    a.list-group-item class=('active' if @account_tab == :summary) href='/account' General
+    a.list-group-item class=('active' if @account_tab == :orders) href='/account/orders' Order History
+    a.list-group-item class=('active' if @account_tab == :payment) href='/account/payment' Payment Settings

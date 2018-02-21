@@ -1,3 +1,8 @@
+Spree::Core::Engine.add_routes do
+  get '/account/:tab', to: 'users#show', tab: /orders|payment/
+  put '/account/address', to: 'users#update_address', as: :update_address
+end
+
 Rails.application.routes.draw do
   mount Spree::Core::Engine, at: '/'
 

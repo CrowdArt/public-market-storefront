@@ -1,39 +1,7 @@
 h1 = accurate_title
 
-.account-summary.well data-hook='account_summary'
-  dl#user-info
-    dt = Spree.t(:profile)
-    dd
-      = @user.full_name_or_email
-      | (#{link_to Spree.t(:edit), spree.edit_account_path})
-    br
-    dt= Spree.t(:credit_balance, scope: [:store_credits])
-    dd
-      = Spree::Money.new(spree_current_user.total_available_store_credit, currency: Spree::Config[:currency])
+<% content_for :sidebar do %>
+  = render 'account_menu'
+<% end %>
 
-.account-my-orders data-hook='account_my_orders'
-  h3= Spree.t(:my_orders)
-  - if @orders.present?
-    table.table.table-striped.order-summary
-      thead.active
-        tr
-          th.order-number= Spree::Order.human_attribute_name(:number)
-          th.order-date= Spree.t(:date)
-          th.order-status= Spree.t(:status)
-          th.order-payment-state= Spree.t(:payment_state)
-          th.order-shipment-state= Spree.t(:shipment_state)
-          th.order-total= Spree.t(:total)
-      tbody
-        - @orders.each do |order|
-          tr
-            td.order-number= link_to order.number, order_url(order)
-            td.order-date= l order.completed_at.to_date
-            td.order-status= Spree.t("order_state.#{order.state}").titleize
-            td.order-payment-state= Spree.t("payment_states.#{order.payment_state}").titleize if order.payment_state
-            td.order-shipment-state= Spree.t("shipment_states.#{order.shipment_state}").titleize if order.shipment_state
-            td.lead.text-primary.order-total= order.display_total
-  - else
-    .alert.alert-info= Spree.t(:you_have_no_orders_yet)
-
-  = paginate @orders
-  br
+= render "account_#{@account_tab}"

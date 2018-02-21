@@ -1,0 +1,24 @@
+/ = render partial: "spree/checkout/payment/#{@payment_method.method_type}", locals: { payment_method: @payment_method }
+= form_for @user, url: update_address_path, html: { id: "checkout_form_address" }, method: :put do |form|
+  .row
+    .col-sm-6 data-hook="billing_fieldset_wrapper"
+      .panel.panel-default#billing data-hook=true
+        = form.fields_for :bill_address do |bill_form|
+          .panel-heading
+            h3.panel-title = Spree.t(:billing_address)
+          .panel-body
+            = render partial: 'spree/address/form', locals: { form: bill_form, address_type: 'billing', address: @user.bill_address }
+    .col-sm-6 data-hook="shipping_fieldset_wrapper"
+      .panel.panel-default#shipping data-hook=true
+        = form.fields_for :ship_address do |ship_form|
+          .panel-heading
+            h3.panel-title = Spree.t(:shipping_address)
+          .panel-body
+            = hidden_field_tag 'order[use_billing]', '0', id: 'default_order_use_billing'
+            p.field.checkbox data-hook="use_billing"
+              = label_tag :order_use_billing, id: 'use_billing' do
+                = check_box_tag 'order[use_billing]', '1', @eq_ship_address
+                = Spree.t(:use_billing_address)
+            = render partial: 'spree/address/form', locals: { form: ship_form, address_type: 'shipping', address: @user.ship_address }
+  .well.text-right.form-buttons data-hook="buttons"
+    = submit_tag Spree.t(:save_my_address), class: 'btn btn-lg btn-success'
