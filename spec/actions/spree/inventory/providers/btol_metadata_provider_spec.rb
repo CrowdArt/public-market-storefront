@@ -51,6 +51,12 @@ RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action,
     it { expect(metadata[:title]).not_to be_empty }
   end
 
+  context 'when pages field have colon' do
+    let(:isbn) { '9780778804178' }
+
+    it { expect(properties[:pages]).to eq('240 p.') }
+  end
+
   describe 'default variant provider integration' do
     subject(:variant) { Spree::Inventory::Providers::DefaultVariantProvider.call(item_json) }
 

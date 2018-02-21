@@ -49,7 +49,7 @@ module Spree
             grade_level: content('RatingGradeLevel', product),
             edition: product.dig('Edition'),
             language: content('Language', product),
-            pages: product.dig('Pagination').to_s.delete(';').strip
+            pages: product.dig('Pagination').to_s.remove(/;|:/).strip
           }
         end
 
