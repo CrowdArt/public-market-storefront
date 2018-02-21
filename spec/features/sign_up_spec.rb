@@ -28,6 +28,15 @@ RSpec.describe 'Sign Up', type: :feature do
     end
   end
 
+  context 'with empty first/last name' do
+    let(:first_name) { '' }
+
+    it 'does not create a new user' do
+      expect(page).to have_content("First name can't be blank")
+      expect(Spree::User.count).to eq(0)
+    end
+  end
+
   context 'with not matching email confirmation' do
     let(:email_confirmation) { '' }
 

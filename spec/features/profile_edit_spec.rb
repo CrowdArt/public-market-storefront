@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'profile edit', type: :feature, js: true do
+  subject { page }
+
   let(:user) { create(:bookstore_user, email: 'user@spree.com', password: 'secretpassword') }
   let!(:old_password) { user.encrypted_password }
 
@@ -19,13 +21,27 @@ RSpec.describe 'profile edit', type: :feature, js: true do
     expect(user.reload.encrypted_password).not_to eq old_password
   end
 
-  it 'updates basic info' do
-    fill_in 'user_email', with: 'newemail@spree.com'
-    fill_in 'user_first_name', with: 'User first name'
-    fill_in 'user_last_name', with: 'User last name'
-    click_button 'Update profile'
+  describe 'basic info' do
+    before do
+      fill_in 'user_email', with: 'newemail@spree.com'
+      fill_in 'user_first_name', with: 'User first name'
+      fill_in 'user_last_name', with: 'User last name'
+    end
 
-    expect(page).to have_text 'Account updated'
-    expect(page).to have_content 'newemail@spree.com'
+    context 'with correct info' do
+      before { click_button 'Update profile' }
+
+      it { is_expected.to have_text 'Account updated' }
+      it { is_expected.to have_text 'newemail@spree.com' }
+    end
+
+    context 'with incorrect info' do
+      before do
+        fill_in 'user_first_name', with: ''
+        click_button 'Update profile'
+      end
+
+      it { is_expected.to have_text "First name can't be blank" }
+    end
   end
 end
