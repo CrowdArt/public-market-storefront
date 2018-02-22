@@ -48,6 +48,8 @@ module Bookstore
       config.middleware.use Rack::Attack
     end
 
+    config.exceptions_app = routes
+
     config.cache_store = :dalli_store, nil, {
       pool_size: ENV['WEB_WORKERS'] || 1,
       namespace: 'pms', # public market storefront

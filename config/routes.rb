@@ -6,6 +6,9 @@ Spree::Core::Engine.add_routes do
 end
 
 Rails.application.routes.draw do
+  get '/404', to: 'errors#not_found'
+  get '/500', to: 'errors#internal_server_error'
+
   mount Spree::Core::Engine, at: '/'
 
   require 'sidekiq/web'

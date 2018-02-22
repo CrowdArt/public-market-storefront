@@ -1,0 +1,6 @@
+.text-center
+  i.glyphicon.glyphicon-exclamation-sign style='font-size:150px;margin-bottom:20px'
+  h1 = t('errors.error_pages.header')
+  h2 = t("errors.error_pages.#{action_name}")
+  br
+  = link_to t('errors.error_pages.button'), spree.root_path, class: 'btn btn-success btn-wide'
