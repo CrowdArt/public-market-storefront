@@ -7,12 +7,14 @@ services:
     depends_on:
       - postgres
       - redis
+      - memcache
     environment: &app_env
       DB_HOST: postgres
       RACK_ENV: staging
       RAILS_ENV: staging
       REDIS_HOST: redis
       ELASTICSEARCH_URL: http://elasticsearch:9200
+      MEMCACHE_SERVERS: memcache
     volumes:
       - tmp_uploads:/app/tmp/uploads
 
@@ -59,6 +61,9 @@ services:
     ports:
       - "1025:1025"
       - "8025:8025"
+
+  memcache:
+    image: memcached:alpine
 
 volumes:
   postgres:

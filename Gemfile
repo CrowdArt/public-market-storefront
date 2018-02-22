@@ -13,7 +13,8 @@ gem 'pghero'
 
 gem 'puma', '~> 3.7'
 
-gem 'sass-rails'
+# memcached
+gem 'dalli'
 
 gem 'config'
 
@@ -21,6 +22,7 @@ gem 'bootswatch-rails'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
+gem 'sass-rails'
 gem 'slim'
 gem 'turbolinks', '~> 5'
 

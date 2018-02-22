@@ -47,5 +47,15 @@ module Bookstore
 
       config.middleware.use Rack::Attack
     end
+
+    config.cache_store = :dalli_store, nil, {
+      pool_size: ENV['WEB_WORKERS'] || 1,
+      namespace: 'pms', # public market storefront
+      expires_in: 2.weeks,
+      compress: true,
+      failover: true, # default
+      keepalive: true, # default
+      socket_timeout: 0.5 # default
+    }
   end
 end
