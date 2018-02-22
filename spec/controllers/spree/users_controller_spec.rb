@@ -10,7 +10,7 @@ RSpec.describe Spree::UsersController, type: :controller do
 
   describe '#show' do
     it 'returns paginated orders' do
-      spree_get :show
+      spree_get :show, tab: :orders
 
       expect(assigns(:orders).size).to eq 1
       expect(assigns(:orders).total_pages).to eq 1
@@ -18,7 +18,7 @@ RSpec.describe Spree::UsersController, type: :controller do
     end
 
     it 'return no orders on next page' do
-      spree_get :show, page: 2
+      spree_get :show, tab: :orders, page: 2
 
       expect(assigns(:orders).size).to eq 0
       expect(assigns(:orders).total_pages).to eq 1
