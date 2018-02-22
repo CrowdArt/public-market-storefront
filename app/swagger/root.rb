@@ -28,7 +28,7 @@ module Swagger
         key :description, 'Operations on orders'
       end
 
-      key :host, Rails.env.development? ? '0.0.0.0:5000' : 'storefront.simbi.com'
+      key :host, Rails.env.development? ? '0.0.0.0:5000' : 'staging.public.market'
       key :basePath, '/api/v1'
       key :consumes, ['application/json']
       key :produces, ['application/json']

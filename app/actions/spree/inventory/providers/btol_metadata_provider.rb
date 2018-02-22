@@ -88,7 +88,7 @@ module Spree
           raise 'Please specify B&T API credentials in secrets' if Settings.btol_user.blank?
 
           request = btol_soap_request(isbn)
-          ENV['http_proxy'] = 'http://storefront.simbi.com:3000' if Rails.env.development?
+          ENV['http_proxy'] = 'http://staging.public.market:3000' if Rails.env.development?
           result = Btol.post('http://contentcafe2.btol.com/contentcafe/contentcafe.asmx', body: request.delete("\n")).parsed_response
           return if result.blank?
           result.dig('Envelope', 'Body', 'XmlStringResponse', 'ContentCafe', 'RequestItems', 'RequestItem')

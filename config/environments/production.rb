@@ -62,14 +62,14 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "bookstore_#{Rails.env}"
   config.action_mailer.perform_caching = false
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.asset_host = 'http://storefront.simbi.com'
-  config.action_mailer.default_url_options = { host: 'storefront.simbi.com', protocol: 'http' }
+  config.action_mailer.asset_host = 'http://staging.public.market'
+  config.action_mailer.default_url_options = { host: 'staging.public.market', protocol: 'http' }
   config.action_mailer.smtp_settings = {
     address:              Settings.smtp_address,
     port:                 587,
     user_name:            Settings.smtp_user_name,
     password:             Settings.smtp_password,
-    domain:               'storefront.simbi.com',
+    domain:               'staging.public.market',
     authentication:       'plain',
     enable_starttls_auto: true
   }
