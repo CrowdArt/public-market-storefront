@@ -6,6 +6,8 @@ Spree::User.class_eval do
 
   validates :email, confirmation: true
 
+  accepts_nested_attributes_for :credit_cards, allow_destroy: true
+
   def full_name
     [first_name, last_name].join(' ').strip
   end

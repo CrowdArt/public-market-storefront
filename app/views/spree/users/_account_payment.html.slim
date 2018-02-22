@@ -1,5 +1,22 @@
-/ = render partial: "spree/checkout/payment/#{@payment_method.method_type}", locals: { payment_method: @payment_method }
 = form_for @user, url: update_address_path, html: { id: "checkout_form_address" }, method: :put do |form|
+  #existing_cards
+    h3 = t('credit_cards')
+    p.form-group data-hook="existing_cards"
+      - if @user.credit_cards.any?
+        table.existing-credit-card-list
+          tbody
+            / - @payment_sources.each do |card|
+            = form.fields_for :credit_cards do |card|
+              tr.nested-fields class=cycle('even', 'odd')
+                td = card.object.name
+                td = card.object.display_number
+                td #{card.object.month} / #{card.object.year}
+                td
+                  = link_to_remove_association Spree.t('remove_card'), card
+      - else
+        p = Spree.t('no_credit_cards')
+    hr
+
   .row
     .col-sm-6 data-hook="billing_fieldset_wrapper"
       .panel.panel-default#billing data-hook=true

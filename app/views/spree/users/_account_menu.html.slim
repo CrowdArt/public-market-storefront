@@ -1,6 +1,6 @@
 nav.panel.panel-default#account-menu
-  div.panel-heading My Account
+  div.panel-heading = t('menus.account.title')
   .list-group
-    a.list-group-item class=('active' if @account_tab == :summary) href='/account' General
-    a.list-group-item class=('active' if @account_tab == :orders) href='/account/orders' Order History
-    a.list-group-item class=('active' if @account_tab == :payment) href='/account/payment' Payment Settings
+    a.list-group-item class=('active' if @account_tab == :summary) href='/account' = t('menus.account.general')
+    a.list-group-item class=('active' if @account_tab == :orders) href='/account/orders' = t('menus.account.orders')
+    a.list-group-item class=('active' if @account_tab == :payment) href='/account/payment' = t('menus.account.payment')

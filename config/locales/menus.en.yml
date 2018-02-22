@@ -1,0 +1,7 @@
+en:
+  menus:
+    account:
+      title: My Account
+      general: General
+      orders: Order History
+      payment: Payment Settings

@@ -39,7 +39,7 @@ Spree::UsersController.class_eval do
   private
 
   def fill_shipping_address
-    address_params = user_address_params
+    address_params = user_payment_params
     if billing_params[:use_billing] == '1'
       address_params[:ship_address_attributes] = {} unless address_params[:ship_address_attributes]
       address_params[:ship_address_attributes].merge!(address_params[:bill_address_attributes].except('id'))
@@ -48,10 +48,11 @@ Spree::UsersController.class_eval do
     address_params
   end
 
-  def user_address_params
+  def user_payment_params
     params.require(:user).permit(
       bill_address_attributes: Spree::PermittedAttributes.address_attributes,
-      ship_address_attributes: Spree::PermittedAttributes.address_attributes
+      ship_address_attributes: Spree::PermittedAttributes.address_attributes,
+      credit_cards_attributes: [:id, :_destroy]
     )
   end
 
@@ -79,8 +80,6 @@ Spree::UsersController.class_eval do
   end
 
   def show_payment
-    # @payment_method = Spree::PaymentMethod.available_on_front_end.last
-    # @order = Spree::Order.new(bill_address: current_spree_user.bill_address, ship_address: current_spree_user.ship_address)
     @user.bill_address ||= Spree::Address.build_default
     @user.ship_address ||= Spree::Address.build_default
     @eq_ship_address = (@user.bill_address.nil? && @user.ship_address.nil?) || @user.bill_address.same_as?(@user.ship_address)

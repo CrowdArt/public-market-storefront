@@ -9,6 +9,8 @@
 //= require accounting.min
 //= require spree/frontend
 
+//= require cocoon
+
 //= require_tree .
 //= require spree/frontend/spree_auth
 //= require spree/frontend/spree_reviews
