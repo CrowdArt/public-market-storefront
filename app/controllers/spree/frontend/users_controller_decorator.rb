@@ -1,4 +1,6 @@
 Spree::UsersController.class_eval do
+  before_action :load_user, only: %i[update_address update_password]
+
   ORDERS_PER_USER_PAGE = 10
 
   # Bookstore changes:
@@ -14,7 +16,6 @@ Spree::UsersController.class_eval do
   end
 
   def update_address
-    @user = spree_current_user
     address_params = fill_shipping_address
     if @user.update_attributes(address_params)
       redirect_to '/account/payment'
@@ -25,11 +26,19 @@ Spree::UsersController.class_eval do
 
   # Bookstore changes:
   # - save(context: :edit)
-  # - move sign_in to separate method
   def update
     @user.assign_attributes(user_params)
     if @user.save(context: :edit)
-      sign_in_user if params[:user][:password].present?
+      redirect_to spree.account_url, notice: Spree.t(:account_updated)
+    else
+      render :edit
+    end
+  end
+
+  def update_password
+    @user.assign_attributes(user_password_params)
+    if @user.save
+      sign_in_user
       redirect_to spree.account_url, notice: Spree.t(:account_updated)
     else
       render :edit
@@ -37,6 +46,10 @@ Spree::UsersController.class_eval do
   end
 
   private
+
+  def load_user
+    @user = spree_current_user
+  end
 
   def fill_shipping_address
     address_params = user_payment_params
@@ -54,6 +67,10 @@ Spree::UsersController.class_eval do
       ship_address_attributes: Spree::PermittedAttributes.address_attributes,
       credit_cards_attributes: [:id, :_destroy]
     )
+  end
+
+  def user_password_params
+    params.require(:user).permit(:password, :password_confirmation)
   end
 
   def billing_params

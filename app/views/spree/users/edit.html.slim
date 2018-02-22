@@ -13,7 +13,7 @@
 
       hr
 
-      = form_for @user, url: spree.user_path(@user), method: :put, html: { id: "edit_user_password_#{@user.id}" } do |f|
+      = form_for @user, url: update_user_password_path, method: :put, html: { id: 'edit_user_password' } do |f|
         = render partial: 'spree/shared/user_form', locals: { f: f }
         p
           = f.submit t('forms.users.edit.update_password'), class: 'btn btn-primary'

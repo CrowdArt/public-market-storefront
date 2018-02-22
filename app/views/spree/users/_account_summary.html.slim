@@ -2,7 +2,7 @@
   dl#user-info
     dt = Spree.t(:profile)
     dd
-      = @user.full_name_or_email
+      ' #{@user.full_name_or_email}
       | (#{link_to Spree.t(:edit), spree.edit_account_path})
     br
     dt= Spree.t(:credit_balance, scope: [:store_credits])
