@@ -1,0 +1,6 @@
+en:
+  forms:
+    users:
+      edit:
+        update_info: Update profile
+        update_password: Update password
