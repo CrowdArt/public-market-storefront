@@ -41,10 +41,12 @@ deploy::docker::build() {
 
   docker_script="${app__root}/bin/${app_environment}"
 
+  echo '======== Building images ========'
   "${docker_script}" build
 
   "${docker_script}" run --rm app bash ./config/deploy/prepare_app
 
+  echo '======== Starting containers ========'
   "${docker_script}" up -d
 }
 

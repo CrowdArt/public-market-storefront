@@ -2,8 +2,13 @@
 
 set -e
 
+echo '======== Running bundle install ========'
 bundle check || bundle install
+echo '======== Running db migrations ========'
 bundle exec rake db:migrate
+echo '======== Running assets precompile ========'
 bundle exec rake assets:precompile
+echo '======== Running deface precompile ========'
+DEFACE_ENABLED=true bundle exec rake deface:precompile
 
 set +e

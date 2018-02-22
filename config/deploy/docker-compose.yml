@@ -9,6 +9,7 @@ services:
     volumes:
       - bundle_cache:/bundle
       - app_public:/app/public
+      - app_compiled_views:/app/app/compiled_views
     restart: always
 
   sidekiq:
@@ -24,3 +25,4 @@ volumes:
   bundle_cache:
   app_public:
   sidekiq_logs:
+  app_compiled_views:
