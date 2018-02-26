@@ -1,35 +1,45 @@
-image: "ruby:2.4.3"
-
-services:
-  - postgres:10.1-alpine
-  - redis:alpine
-  - elasticsearch:latest
-
 variables:
   DOCKER_DRIVER: overlay2 # use faster volume driver
-  POSTGRES_DB: bookstore_test
-  DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
-  REDIS_HOST: redis
-  ELASTICSEARCH_URL: http://elasticsearch:9200
-  RAILS_ENV: test
-
-cache:
-  paths:
-    - vendor/bundle
+  DOCKER_IMAGE: registry.gitlab.com/publicmarket/storefront
 
 before_script:
-  - curl -sS -L https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-  - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
-  - apt-get update -yqq
-  - apt-get install -y libnss3 nodejs google-chrome-stable
-  - gem install bundler --no-ri --no-rdoc
-  - bundle install --deployment --jobs $(nproc) --without development staging production
-  - bundle exec rake db:schema:load
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
 
-rubocop:
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  tags:
+    - build
+  image: docker:latest
+  services:
+    - docker:dind
   script:
-    - bundle exec rubocop -c .rubocop.yml .
+    - docker build -f ./config/deploy/Dockerfile -t $DOCKER_IMAGE:latest .
+    - docker push $DOCKER_IMAGE:latest
+    - docker build -f ./config/deploy/ci/Dockerfile -t $DOCKER_IMAGE/ci:latest .
+    - docker push $DOCKER_IMAGE/ci:latest
 
 rspec:
+  image: $DOCKER_IMAGE/ci:latest
+  stage: test
+  services:
+    - postgres:10.1-alpine
+    - redis:alpine
+    - elasticsearch:latest
+  cache:
+    paths:
+      - vendor/bundle
+  variables:
+    POSTGRES_DB: bookstore_test
+    DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
+    REDIS_HOST: redis
+    ELASTICSEARCH_URL: http://elasticsearch:9200
+    RAILS_ENV: test
+  before_script:
+    - bundle check || bundle install --deployment --jobs 3 --without development staging production
+    - bundle exec rake db:schema:load
   script:
     - bundle exec rspec

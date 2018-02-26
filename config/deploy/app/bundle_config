@@ -1,5 +1,0 @@
----
-BUNDLE_WITHOUT: "development:test"
-BUNDLE_DISABLE_SHARED_GEMS: "true"
-BUNDLE_RETRY: "10"
-BUNDLE_JOBS: "10"
