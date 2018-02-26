@@ -72,18 +72,19 @@ group :development do
   gem 'guard-rspec', require: false
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rack-mini-profiler', require: false
-  gem 'rubocop', require: false
-  gem 'rubocop-rspec', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
 end
 
+group :test, :development do
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
+end
+
 group :production, :staging do
-  gem 'sentry-raven'
-
   gem 'rack-attack'
-
+  gem 'sentry-raven'
   gem 'therubyracer'
   gem 'uglifier'
 end

@@ -1,5 +1,8 @@
 # Public market storefront
 
+[![Build status](https://gitlab.com/publicmarket/bookstore/badges/master/pipeline.svg)](https://gitlab.com/publicmarket/bookstore/commits/master)
+[![Coverage](https://gitlab.com/publicmarket/bookstore/badges/master/coverage.svg)](https://gitlab.com/publicmarket/bookstore/commits/master)
+
 ## Installing dependecies
 
 ```shell

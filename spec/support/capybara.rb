@@ -5,7 +5,7 @@ require 'capybara-screenshot/rspec'
 
 Capybara.register_driver(:selenium_chrome_headless) do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chromeOptions: { args: %w[headless disable-gpu] }
+    chromeOptions: { args: %w[no-sandbox headless disable-gpu window-size=1024,768] }
   )
 
   Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities)
