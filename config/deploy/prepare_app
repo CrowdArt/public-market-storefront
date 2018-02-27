@@ -3,7 +3,7 @@
 set -e
 
 echo '======== Running bundle install ========'
-bundle check || bundle install
+bundle check || bundle install --deployment --without development test
 echo '======== Running db migrations ========'
 bundle exec rake db:migrate
 echo '======== Running assets precompile ========'
