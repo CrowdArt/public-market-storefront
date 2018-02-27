@@ -57,11 +57,5 @@ RSpec.describe Spree::User, type: :model do
 
       it { is_expected.not_to be_valid }
     end
-
-    context 'with too long password' do
-      let(:password) { FFaker::Internet.password(21, 21) }
-
-      it { is_expected.not_to be_valid }
-    end
   end
 end
