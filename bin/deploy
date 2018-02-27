@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-export app_environment=$1
-
-source './lib/bash/deploy.bash'
-
-deploy::main
-
-source bin/switch dev
