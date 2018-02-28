@@ -2,7 +2,7 @@ Spree::UserRegistrationsController.class_eval do
   # POST /resource/sign_up
   # Bookstore changes:
   # - save(context: :signup)
-  def create
+  def create # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     @user = build_resource(spree_user_params)
     resource_saved = resource.save(context: :signup)
     yield resource if block_given?

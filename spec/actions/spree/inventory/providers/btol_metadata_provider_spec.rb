@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action, vcr: true do
   subject(:properties) { metadata[:properties] }
 
+  before { ENV['http_proxy'] = VCR.current_cassette.recording? ? 'http://staging.public.market:3000' : '' }
+
   let(:metadata) { described_class.call(isbn) }
 
   context 'with known isbn' do
@@ -71,6 +73,7 @@ RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action,
 
     it { expect(Spree::Config.product_metadata_provider.constantize).to eq(described_class) }
 
+    # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
     it 'create product and variant' do
       expect(variant).not_to be_nil
       expect(variant.sku).to eq(item_json[:sku])
@@ -85,5 +88,6 @@ RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action,
       expect(taxons.count).to eq(1)
       expect(taxons.first.pretty_name).to eq('Categories -> Fiction -> Thrillers -> General')
     end
+    # rubocop:enable RSpec/ExampleLength, RSpec/MultipleExpectations
   end
 end

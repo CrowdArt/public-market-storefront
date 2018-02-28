@@ -1,0 +1,11 @@
+PreCommit:
+  BundleAudit:
+    enabled: true
+  Fasterer:
+    enabled: true
+  RuboCop:
+    enabled: true
+
+PrePush:
+  Brakeman:
+    enabled: true

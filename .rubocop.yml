@@ -6,7 +6,6 @@ AllCops:
     - '**/Gemfile'
     - '**/Rakefile'
     - '**/Guardfile'
-    - '**/Brewfile'
   Exclude:
     - 'db/schema.rb'
     - 'db/migrate/*'
@@ -22,18 +21,25 @@ Rails/UnknownEnv:
     - production
 
 Layout/SpaceInsideHashLiteralBraces:
-  Enabled: true
   EnforcedStyle: compact
 
 Style/HashSyntax:
-  Enabled: true
   EnforcedStyle: ruby19_no_mixed_keys
 
 Metrics/LineLength:
   Max: 150
 
+Metrics/ClassLength:
+  Max: 150
+
+Metrics/MethodLength:
+  Max: 15
+
 Metrics/BlockLength:
   Exclude:
+    - !ruby/regexp /_decorator.rb/
+    - 'app/swagger/**/*'
+    - 'config/**/*'
     - 'db/**/*'
 
 # DISABLED
@@ -42,4 +48,7 @@ Style/Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Rails/Output:
   Enabled: false

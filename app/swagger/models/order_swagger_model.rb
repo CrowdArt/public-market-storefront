@@ -85,7 +85,7 @@ module Swagger
                   address1: 'Folsom 1519, SF',
                   address2: 'California, US',
                   city: 'San Francisco',
-                  zipcode: 94001,
+                  zipcode: 94001, # rubocop:disable Style/NumericLiterals
                   phone: '+19997104099',
                   alternative_phone: 'null',
                   country: 'US',
