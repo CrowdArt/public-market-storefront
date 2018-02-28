@@ -14,8 +14,6 @@ build:
   tags:
     - build
   image: docker:latest
-  services:
-    - docker:dind
   script:
     - docker build -f ./config/deploy/Dockerfile -t $DOCKER_IMAGE:latest .
     - docker push $DOCKER_IMAGE:latest
