@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action, vcr: true do
   subject(:properties) { metadata[:properties] }
 
-  before { ENV['http_proxy'] = VCR.current_cassette.recording? ? 'http://staging.public.market:3000' : '' }
-
   let(:metadata) { described_class.call(isbn) }
 
   context 'with known isbn' do

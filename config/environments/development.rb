@@ -51,18 +51,6 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.paperclip_defaults = {
-    storage: :fog,
-    fog_credentials: {
-      provider: 'Google',
-      google_project: Settings.google_project,
-      google_client_email: Settings.google_client_email,
-      google_json_key_string: Settings.google_json_key_string
-      # Google recommend you to use service account instead of HMAC credentials
-      # You can check other options here -> https://github.com/fog/fog-google#credentials
-    }
-  }
-
   config.after_initialize do
     Bullet.enable = true
     Bullet.console = true

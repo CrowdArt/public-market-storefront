@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180219143306) do
+ActiveRecord::Schema.define(version: 20180228142722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1130,6 +1130,7 @@ ActiveRecord::Schema.define(version: 20180219143306) do
     t.datetime "created_at", null: false
     t.integer "vendor_id"
     t.text "notes"
+    t.text "seller"
     t.index ["deleted_at"], name: "index_spree_variants_on_deleted_at"
     t.index ["discontinue_on"], name: "index_spree_variants_on_discontinue_on"
     t.index ["is_master"], name: "index_spree_variants_on_is_master"

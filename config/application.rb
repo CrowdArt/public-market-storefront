@@ -50,6 +50,21 @@ module Bookstore
 
     config.exceptions_app = routes
 
+    unless Rails.env.test?
+      config.paperclip_defaults = {
+        storage: :fog,
+        url: ':gcs_domain_url',
+        path: ':class/:id/:style-:basename.:extension',
+        fog_directory: Settings.google_bucket,
+        fog_credentials: {
+          provider: 'Google',
+          google_project: Settings.google_project,
+          google_client_email: Settings.google_client_email,
+          google_json_key_string: Settings.google_json_key_string
+        }
+      }
+    end
+
     config.cache_store = :dalli_store, nil, {
       pool_size: ENV['WEB_WORKERS'] || 1,
       namespace: 'pms', # public market storefront

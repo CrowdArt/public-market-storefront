@@ -13,3 +13,11 @@ VCR.configure do |c|
   c.filter_sensitive_data('<BTOL_USER>') { secrets['btol_user'] }
   c.filter_sensitive_data('<BTOL_PASSWORD>') { secrets['btol_password'] }
 end
+
+RSpec.configure do |config|
+  config.around(:each, vcr: true) do |example|
+    ENV['http_proxy'] = VCR.current_cassette.nil? || VCR.current_cassette.recording? ? 'http://staging.public.market:3000' : ''
+    example.run
+    ENV['http_proxy'] = nil
+  end
+end

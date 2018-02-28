@@ -32,7 +32,8 @@ module Swagger
                       quantity: 20,
                       price: 52.59,
                       condition: 'Very Good',
-                      notes: 'Used but Very Good'
+                      notes: 'Used but Very Good',
+                      seller: 'Best Market'
       end
     end
   end
