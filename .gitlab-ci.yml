@@ -17,11 +17,10 @@ build:
   script:
     - docker build -f ./config/deploy/Dockerfile -t $DOCKER_IMAGE:latest .
     - docker push $DOCKER_IMAGE:latest
-    - docker build --cache-from $DOCKER_IMAGE/ci:latest -f ./config/deploy/ci/Dockerfile -t $DOCKER_IMAGE/ci:latest .
-    - docker push $DOCKER_IMAGE/ci:latest
+    - docker system prune -f
 
 rspec:
-  image: $DOCKER_IMAGE/ci:latest
+  image: $DOCKER_IMAGE:latest
   stage: test
   services:
     - postgres:10.1-alpine
@@ -30,6 +29,7 @@ rspec:
   cache:
     paths:
       - vendor/bundle
+      - apt-cache/
   variables:
     POSTGRES_DB: bookstore_test
     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
@@ -37,6 +37,10 @@ rspec:
     ELASTICSEARCH_URL: http://elasticsearch:9200
     RAILS_ENV: test
   before_script:
+    - curl -sS -L https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+    - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
+    - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
+    - apt-get update -qq && apt-get -o dir::cache::archives="$APT_CACHE_DIR" install -yqq google-chrome-stable
     - bundle check || bundle install --deployment --jobs 3 --without development staging production
     - bundle exec rake db:schema:load
   script:
