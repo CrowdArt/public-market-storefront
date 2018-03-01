@@ -19,4 +19,9 @@ RUN mkdir -p /app/tmp/pids && chmod 775 /app/tmp/pids
 ENV BUNDLER_VERSION=1.16.1
 RUN gem install bundler --no-ri --no-rdoc -v "$BUNDLER_VERSION"
 
+ADD ./config/deploy/app/bundle_config /usr/local/bundle/config
+
+ENV BUNDLE_PATH=/bundle \
+    GEM_HOME=/bundle
+
 COPY . /app
