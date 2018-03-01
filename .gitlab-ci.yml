@@ -41,7 +41,7 @@ rspec:
     - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
     - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
     - apt-get update -qq && apt-get -o dir::cache::archives="$APT_CACHE_DIR" install -yqq google-chrome-stable
-    - bundle check || bundle install --deployment --jobs 3 --without development staging production
+    - bundle check || bundle install --deployment --jobs 4 --without development staging production
     - bundle exec rake db:schema:load
   script:
     - bundle exec rspec

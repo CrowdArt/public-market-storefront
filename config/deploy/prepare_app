@@ -8,7 +8,10 @@ echo '======== Running db migrations ========'
 bundle exec rake db:migrate
 echo '======== Running assets precompile ========'
 bundle exec rake assets:precompile
-echo '======== Running deface precompile ========'
-DEFACE_ENABLED=true bundle exec rake deface:precompile
+
+if [ "${RAILS_ENV}" != "development" ]; then
+  echo '======== Running deface precompile ========'
+  DEFACE_ENABLED=true bundle exec rake deface:precompile
+fi
 
 set +e
