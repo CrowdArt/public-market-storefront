@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_batch_api.git
-  revision: 651594bd5fa0909104b559e110cdcc9b5ae78da0
+  revision: c3cb287d528837d8baf2701e6e80ff05fa7fe31a
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -518,7 +518,7 @@ GEM
       rack (>= 1.2.0)
     rack-protection (2.0.1)
       rack
-    rack-test (0.8.2)
+    rack-test (0.8.3)
       rack (>= 1.0, < 3)
     rails (5.1.5)
       actioncable (= 5.1.5)
