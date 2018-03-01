@@ -22,4 +22,9 @@ namespace :db do
   task seed_bisac: :environment do
     require './db/seeds/bisac.rb'
   end
+
+  desc 'Seed social authentication methods'
+  task seed_social_auth: :environment do
+    require './db/seeds/social_auth.rb'
+  end
 end
