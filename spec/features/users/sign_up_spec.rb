@@ -5,7 +5,6 @@ RSpec.describe 'Sign Up', type: :feature do
     visit spree.signup_path
 
     fill_in 'Email', with: email
-    fill_in 'Email Confirmation', with: email_confirmation
     fill_in 'First Name', with: first_name
     fill_in 'Last Name', with: last_name
     fill_in 'Password', with: password
@@ -15,7 +14,6 @@ RSpec.describe 'Sign Up', type: :feature do
   end
 
   let(:email) { 'email@spree.com' }
-  let(:email_confirmation) { 'email@spree.com' }
   let(:first_name) { 'First name' }
   let(:last_name) { 'Last name' }
   let(:password) { 'password' }
@@ -33,15 +31,6 @@ RSpec.describe 'Sign Up', type: :feature do
 
     it 'does not create a new user' do
       expect(page).to have_content("First name can't be blank")
-      expect(Spree::User.count).to eq(0)
-    end
-  end
-
-  context 'with not matching email confirmation' do
-    let(:email_confirmation) { '' }
-
-    it 'does not create a new user' do
-      expect(page).to have_content("Email confirmation doesn't match Email")
       expect(Spree::User.count).to eq(0)
     end
   end
