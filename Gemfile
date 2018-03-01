@@ -36,7 +36,7 @@ gem 'spree_auth_devise', github: 'public-market/spree_auth_devise'
 gem 'spree_batch_api', github: 'public-market/spree_batch_api'
 gem 'spree_gateway', '~> 3.3'
 gem 'spree_multi_vendor', github: 'public-market/spree_multi_vendor'
-gem 'spree_reviews', github: 'public-market/spree_reviews'
+# gem 'spree_reviews', github: 'public-market/spree_reviews'
 gem 'spree_searchkick', github: 'public-market/spree_searchkick'
 gem 'spree_social', github: 'public-market/spree_social'
 
