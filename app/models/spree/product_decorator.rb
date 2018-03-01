@@ -8,6 +8,23 @@ Spree::Product.class_eval do
                       .first
   end
 
+  def update_best_price
+    # get minimum price of best condition variant
+    min_price = variants.in_stock
+                        .joins(:prices)
+                        .joins(%(
+                          LEFT JOIN "spree_option_value_variants" ON "spree_option_value_variants"."variant_id" = "spree_variants"."id"
+                          LEFT JOIN "spree_option_values" ON "spree_option_values"."id" = "spree_option_value_variants"."option_value_id"
+                          LEFT JOIN "spree_option_types" ON "spree_option_types"."id" = "spree_option_values"."option_type_id"
+                            and "spree_option_types"."name" = 'condition'))
+                        .reorder('spree_option_values.position asc, spree_prices.amount asc')
+                        .limit(1)
+                        .pluck('spree_prices.amount')
+                        .first
+
+    update(price: min_price) if min_price
+  end
+
   def self.autocomplete_fields
     %i[name author]
   end
