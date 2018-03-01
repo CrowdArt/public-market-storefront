@@ -3,7 +3,7 @@
     <a href='#' class='dropdown-toggle' role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Signed in as <%= spree_current_user.email %>
       <span class="caret"></span>
-    </button>
+    </a>
     <ul class="dropdown-menu" aria-labelledby="dLabel">
       <li><%= link_to Spree.t(:my_account), spree.account_path %></li>
       <% if spree_current_user.admin? || spree_current_user.vendors.any? %>
