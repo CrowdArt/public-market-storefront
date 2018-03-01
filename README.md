@@ -14,10 +14,8 @@ brew install redis
 brew services start redis
 ```
 
-## Themes
-
-To install theme:
+## Seed social authentication methods
 
 ```shell
-rake db:seed_theme`
+rake db:seed_social_auth`
 ```
