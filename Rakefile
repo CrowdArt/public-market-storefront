@@ -25,6 +25,6 @@ namespace :db do
 
   desc 'Seed social authentication methods'
   task seed_social_auth: :environment do
-    require './db/seeds/social_auth.rb'
+    require './db/default/social_auth.rb'
   end
 end
