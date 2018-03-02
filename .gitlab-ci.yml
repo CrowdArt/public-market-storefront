@@ -2,9 +2,6 @@ variables:
   DOCKER_DRIVER: overlay2 # use faster volume driver
   DOCKER_IMAGE: registry.gitlab.com/publicmarket/storefront
 
-before_script:
-  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
-
 stages:
   - build
   - test
@@ -14,13 +11,23 @@ build:
   tags:
     - build
   image: docker:latest
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
   script:
+    # base image contains only dependencies
+    - docker build -f ./config/deploy/dockerfiles/base/Dockerfile -t $DOCKER_IMAGE/base:latest .
+    - docker push $DOCKER_IMAGE/base:latest
+    # ci image inherits from base, installs chrome and copies code
+    - docker build -f ./config/deploy/dockerfiles/ci/Dockerfile -t $DOCKER_IMAGE/ci:latest .
+    - docker push $DOCKER_IMAGE/ci:latest
+    # master image inherits from base and copies code
     - docker build -f ./config/deploy/Dockerfile -t $DOCKER_IMAGE:latest .
     - docker push $DOCKER_IMAGE:latest
+    # cleanup
     - docker system prune -f
 
 rspec:
-  image: $DOCKER_IMAGE:latest
+  image: $DOCKER_IMAGE/ci:latest
   stage: test
   services:
     - postgres:10.1-alpine
@@ -28,17 +35,12 @@ rspec:
   cache:
     paths:
       - vendor/bundle
-      - apt-cache/
   variables:
     POSTGRES_DB: bookstore_test
     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
     ELASTICSEARCH_URL: http://elasticsearch:9200
     RAILS_ENV: test
   before_script:
-    - curl -sS -L https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-    - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
-    - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
-    - apt-get update -qq && apt-get -o dir::cache::archives="$APT_CACHE_DIR" install -yqq google-chrome-stable
     - bundle check || bundle install --deployment --jobs 4 --without development staging production
     - bundle exec rake db:schema:load
   script:
