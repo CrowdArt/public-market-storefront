@@ -30,7 +30,7 @@
         <div id="product-description" data-hook="product_description">
           <h1 class="product-title" itemprop="name"><%= @product.name %></h1>
 
-           <h4>
+          <h4>
             <% if author = @product.author %>
               <strong><%= author.property_name.humanize %>:</strong> <i><%= author.value %></i>
             <% end %>
@@ -43,10 +43,6 @@
           <div id="cart-form" data-hook="cart_form">
             <%= render partial: 'cart_form' %>
           </div>
-        </div>
-
-        <div id="taxon-crumbs" class=" five " data-hook="product_taxons">
-          <%= render partial: 'taxons' %>
         </div>
       </div>
     </div>
