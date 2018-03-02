@@ -49,7 +49,6 @@ module Spree
             format: content('Format', product),
             publisher: content('Supplier', product),
             published_at: published(product),
-            grade_level: content('RatingGradeLevel', product),
             edition: product.dig('Edition'),
             language: content('Language', product),
             pages: product.dig('Pagination').to_s.remove(/;|:/).strip
