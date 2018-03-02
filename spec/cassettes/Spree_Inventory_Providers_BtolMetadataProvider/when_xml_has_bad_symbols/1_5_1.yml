@@ -8,7 +8,7 @@ http_interactions:
       string: '<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
         xmlns:ns1="http://ContentCafe2.btol.com">  <SOAP-ENV:Body>    <ns1:XmlString>      <ns1:xmlRequest>&lt;ContentCafe
         xmlns=&quot;http://ContentCafe2.btol.com&quot;&gt;&lt;RequestItems UserID=&quot;<BTOL_USER>&quot;
-        Password=&quot;<BTOL_PASSWORD>&quot;&gt;&lt;RequestItem&gt;&lt;Key Type=&quot;ISBN&quot;&gt;9780688003296&lt;/Key&gt;&lt;Content&gt;ProductDetail&lt;/Content&gt;&lt;Content&gt;AnnotationDetail&lt;/Content&gt;&lt;/RequestItem&gt;&lt;/RequestItems&gt;&lt;/ContentCafe&gt;</ns1:xmlRequest>    </ns1:XmlString>  </SOAP-ENV:Body></SOAP-ENV:Envelope>          '
+        Password=&quot;<BTOL_PASSWORD>&quot;&gt;&lt;RequestItem&gt;&lt;Key Type=&quot;ISBN&quot;&gt;9780688003296&lt;/Key&gt;&lt;Content&gt;AvailableContent&lt;/Content&gt;&lt;Content&gt;ProductDetail&lt;/Content&gt;&lt;Content&gt;AnnotationDetail&lt;/Content&gt;&lt;/RequestItem&gt;&lt;/RequestItems&gt;&lt;/ContentCafe&gt;</ns1:xmlRequest>    </ns1:XmlString>  </SOAP-ENV:Body></SOAP-ENV:Envelope>          '
     headers:
       Soapaction:
       - http://ContentCafe2.btol.com/XmlString
@@ -30,24 +30,24 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 20 Feb 2018 08:56:08 GMT
+      - Fri, 02 Mar 2018 09:57:33 GMT
       Content-Length:
-      - '1635'
+      - '2294'
       X-Cache:
-      - MISS from c77c680ece5f
+      - MISS from b0ac703fb150
       X-Cache-Lookup:
-      - MISS from c77c680ece5f:3128
+      - MISS from b0ac703fb150:3128
       Via:
-      - 1.1 c77c680ece5f (squid/3.3.8)
+      - 1.1 b0ac703fb150 (squid/3.3.8)
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Body><XmlStringResponse
-        xmlns="http://ContentCafe2.btol.com"><ContentCafe DateTime="2018-02-20T03:56:08.0388995-05:00"><RequestItems
+        xmlns="http://ContentCafe2.btol.com"><ContentCafe DateTime="2018-03-02T04:57:33.7018494-05:00"><RequestItems
         UserID="<BTOL_USER>" Password="BWTCCPROD01"><RequestItem><Key Type="ISBN"
-        Original="9780688003296">9780688003296</Key><Content>ProductDetail</Content><Content>AnnotationDetail</Content><AnnotationItems
+        Original="9780688003296">9780688003296</Key><Content>AvailableContent</Content><Content>ProductDetail</Content><Content>AnnotationDetail</Content><AvailableContent><Annotation>false</Annotation><Biography>false</Biography><Excerpt>false</Excerpt><Flap>false</Flap><Inventory>false</Inventory><Demand>false</Demand><DemandHistory>false</DemandHistory><Jacket>false</Jacket><Product>true</Product><Review>false</Review><TOC>false</TOC><MuzeVideoRelease>false</MuzeVideoRelease><MuzeSimilarCinema>false</MuzeSimilarCinema><MuzePopularMusic>false</MuzePopularMusic><MuzeClassicalMusic>false</MuzeClassicalMusic><MuzeEssentialArtists>false</MuzeEssentialArtists><MuzeGames>false</MuzeGames><MuzeJacket>false</MuzeJacket><CPSIA_Warning>false</CPSIA_Warning></AvailableContent><AnnotationItems
         /><ProductItems><ProductItem ID="3897666"><ISBN>9780688003296</ISBN><Title>Queen
         Mother</Title><Author>Longford, Elizabeth Harman Pakenham, Countess of</Author><Source
         Code="BTB">B&amp;T Books</Source><Product Code="BOOK">Book</Product><Supplier
@@ -56,5 +56,5 @@ http_interactions:
         Code="ENG">English</Language><ReviewCode>EGPL</ReviewCode><ReviewCode>JCL</ReviewCode><ReviewCode>TRAD</ReviewCode><Created>2001-01-27</Created><Updated>2005-12-08</Updated><Active>false</Active><Returnable>false</Returnable><DiscountKey>N</DiscountKey><CPSIA_Warning>false</CPSIA_Warning><PhysicalFormats><PhysicalFormat
         Type="Primary"><FormatName>Hardcover</FormatName></PhysicalFormat></PhysicalFormats></ProductItem></ProductItems></RequestItem></RequestItems></ContentCafe></XmlStringResponse></soap:Body></soap:Envelope>
     http_version: 
-  recorded_at: Tue, 20 Feb 2018 08:56:08 GMT
+  recorded_at: Fri, 02 Mar 2018 09:57:33 GMT
 recorded_with: VCR 4.0.0

@@ -8,7 +8,7 @@ http_interactions:
       string: '<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
         xmlns:ns1="http://ContentCafe2.btol.com">  <SOAP-ENV:Body>    <ns1:XmlString>      <ns1:xmlRequest>&lt;ContentCafe
         xmlns=&quot;http://ContentCafe2.btol.com&quot;&gt;&lt;RequestItems UserID=&quot;<BTOL_USER>&quot;
-        Password=&quot;<BTOL_PASSWORD>&quot;&gt;&lt;RequestItem&gt;&lt;Key Type=&quot;ISBN&quot;&gt;9780307341570&lt;/Key&gt;&lt;Content&gt;ProductDetail&lt;/Content&gt;&lt;Content&gt;AnnotationDetail&lt;/Content&gt;&lt;/RequestItem&gt;&lt;/RequestItems&gt;&lt;/ContentCafe&gt;</ns1:xmlRequest>    </ns1:XmlString>  </SOAP-ENV:Body></SOAP-ENV:Envelope>          '
+        Password=&quot;<BTOL_PASSWORD>&quot;&gt;&lt;RequestItem&gt;&lt;Key Type=&quot;ISBN&quot;&gt;9780307341570&lt;/Key&gt;&lt;Content&gt;AvailableContent&lt;/Content&gt;&lt;Content&gt;ProductDetail&lt;/Content&gt;&lt;Content&gt;AnnotationDetail&lt;/Content&gt;&lt;/RequestItem&gt;&lt;/RequestItems&gt;&lt;/ContentCafe&gt;</ns1:xmlRequest>    </ns1:XmlString>  </SOAP-ENV:Body></SOAP-ENV:Envelope>          '
     headers:
       Soapaction:
       - http://ContentCafe2.btol.com/XmlString
@@ -30,24 +30,24 @@ http_interactions:
       X-Powered-By:
       - ASP.NET
       Date:
-      - Tue, 20 Feb 2018 08:56:14 GMT
+      - Fri, 02 Mar 2018 09:57:41 GMT
       Content-Length:
-      - '4680'
+      - '5337'
       X-Cache:
-      - MISS from c77c680ece5f
+      - MISS from b0ac703fb150
       X-Cache-Lookup:
-      - MISS from c77c680ece5f:3128
+      - MISS from b0ac703fb150:3128
       Via:
-      - 1.1 c77c680ece5f (squid/3.3.8)
+      - 1.1 b0ac703fb150 (squid/3.3.8)
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Body><XmlStringResponse
-        xmlns="http://ContentCafe2.btol.com"><ContentCafe DateTime="2018-02-20T03:56:15.2298473-05:00"><RequestItems
+        xmlns="http://ContentCafe2.btol.com"><ContentCafe DateTime="2018-03-02T04:57:42.3113259-05:00"><RequestItems
         UserID="<BTOL_USER>" Password="BWTCCPROD02"><RequestItem><Key Type="ISBN"
-        Original="9780307341570">9780307341570</Key><Content>ProductDetail</Content><Content>AnnotationDetail</Content><AnnotationItems><AnnotationItem
+        Original="9780307341570">9780307341570</Key><Content>AvailableContent</Content><Content>ProductDetail</Content><Content>AnnotationDetail</Content><AvailableContent><Annotation>true</Annotation><Biography>false</Biography><Excerpt>false</Excerpt><Flap>false</Flap><Inventory>false</Inventory><Demand>false</Demand><DemandHistory>false</DemandHistory><Jacket>true</Jacket><Product>true</Product><Review>false</Review><TOC>false</TOC><MuzeVideoRelease>false</MuzeVideoRelease><MuzeSimilarCinema>false</MuzeSimilarCinema><MuzePopularMusic>false</MuzePopularMusic><MuzeClassicalMusic>false</MuzeClassicalMusic><MuzeEssentialArtists>false</MuzeEssentialArtists><MuzeGames>false</MuzeGames><MuzeJacket>false</MuzeJacket><CPSIA_Warning>false</CPSIA_Warning></AvailableContent><AnnotationItems><AnnotationItem
         ID="62877602"><Supplier Code="BNT">Baker &amp; Taylor</Supplier><Annotation>After
         witnessing the murder of her mother and sisters, 7-year-old Libby Day testifies
         against her brother Ben, but 25 years later she tries to profit from her tragic
@@ -88,5 +88,5 @@ http_interactions:
         p. ;</Pagination><Created>2009-09-03</Created><Updated>2018-01-12</Updated><Active>true</Active><Returnable>true</Returnable><DiscountKey>B</DiscountKey><Width>5.25000</Width><Height>0.75000</Height><Depth>8.50000</Depth><Weight>0.55000</Weight><CPSIA_Warning>false</CPSIA_Warning><PhysicalFormats><PhysicalFormat
         Type="Primary"><FormatName>Paperback</FormatName><Editions Number="1"><Edition>Reprint</Edition></Editions></PhysicalFormat></PhysicalFormats></ProductItem></ProductItems></RequestItem></RequestItems></ContentCafe></XmlStringResponse></soap:Body></soap:Envelope>'
     http_version: 
-  recorded_at: Tue, 20 Feb 2018 08:56:15 GMT
+  recorded_at: Fri, 02 Mar 2018 09:57:42 GMT
 recorded_with: VCR 4.0.0

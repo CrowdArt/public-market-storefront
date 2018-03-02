@@ -10,7 +10,11 @@ module Spree
           product = [product_item].flatten.first # can return array of products
           return if product.blank?
 
-          parse_metadata(product).merge(description: select_description(item))
+          metadata = parse_metadata(product)
+          metadata.merge(
+            description: select_description(item),
+            images: select_images(item, metadata)
+          )
         end
 
         protected
@@ -31,7 +35,6 @@ module Spree
 
           {
             title: title,
-            images: [{ url: btol_image_url(isbn), title: title }],
             price: product.dig('ListPrice').to_f,
             properties: properties(product),
             dimensions: dimensions(product),
@@ -71,6 +74,13 @@ module Spree
           annotations = item.dig('AnnotationItems', 'AnnotationItem')
           return if annotations.blank?
           [annotations].flatten.map { |a| a.dig('Annotation') }.max_by(&:length)
+        end
+
+        def select_images(item, metadata)
+          jacket_available = item.dig('AvailableContent', 'Jacket')
+          return [] unless jacket_available == 'true'
+
+          [{ url: btol_image_url(isbn), title: metadata[:title] }]
         end
 
         def content(key, source)
@@ -117,6 +127,7 @@ module Spree
 <RequestItems UserID="#{Settings.btol_user}" Password="#{Settings.btol_password}">
 <RequestItem>
 <Key Type="ISBN">#{isbn}</Key>
+<Content>AvailableContent</Content>
 <Content>ProductDetail</Content>
 <Content>AnnotationDetail</Content>
 </RequestItem>

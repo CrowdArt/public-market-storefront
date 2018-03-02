@@ -19,6 +19,7 @@ RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action,
     it { expect(properties[:language]).not_to be_nil }
     it { expect(properties[:pages]).not_to be_nil }
     it { expect(metadata[:taxons]).not_to be_empty }
+    it { expect(metadata[:images]).not_to be_empty }
   end
 
   context 'with unknown isbn' do
@@ -55,6 +56,12 @@ RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action,
     let(:isbn) { '9780778804178' }
 
     it { expect(properties[:pages]).to eq('240 p.') }
+  end
+
+  context 'when no image' do
+    let(:isbn) { '9780394400174' }
+
+    it { expect(metadata[:images]).to be_empty }
   end
 
   describe 'default variant provider integration' do
