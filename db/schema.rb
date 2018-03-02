@@ -154,18 +154,6 @@ ActiveRecord::Schema.define(version: 20180228142722) do
     t.index ["stock_location_id"], name: "index_spree_customer_returns_on_stock_location_id"
   end
 
-  create_table "spree_feedback_reviews", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "review_id", null: false
-    t.integer "rating", default: 0
-    t.text "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "locale", default: "en"
-    t.index ["review_id"], name: "index_spree_feedback_reviews_on_review_id"
-    t.index ["user_id"], name: "index_spree_feedback_reviews_on_user_id"
-  end
-
   create_table "spree_gateways", id: :serial, force: :cascade do |t|
     t.string "type"
     t.string "name"
@@ -433,8 +421,6 @@ ActiveRecord::Schema.define(version: 20180228142722) do
     t.boolean "promotionable", default: true
     t.string "meta_title"
     t.datetime "discontinue_on"
-    t.decimal "avg_rating", precision: 7, scale: 5, default: "0.0", null: false
-    t.integer "reviews_count", default: 0, null: false
     t.string "number"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
@@ -664,23 +650,6 @@ ActiveRecord::Schema.define(version: 20180228142722) do
     t.index ["preferred_reimbursement_type_id"], name: "index_spree_return_items_on_preferred_reimbursement_type_id"
     t.index ["reimbursement_id"], name: "index_spree_return_items_on_reimbursement_id"
     t.index ["return_authorization_id"], name: "index_spree_return_items_on_return_authorization_id"
-  end
-
-  create_table "spree_reviews", id: :serial, force: :cascade do |t|
-    t.integer "product_id"
-    t.string "name"
-    t.string "location"
-    t.integer "rating"
-    t.text "title"
-    t.text "review"
-    t.boolean "approved", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.string "ip_address"
-    t.string "locale", default: "en"
-    t.boolean "show_identifier", default: true
-    t.index ["show_identifier"], name: "index_spree_reviews_on_show_identifier"
   end
 
   create_table "spree_role_users", force: :cascade do |t|
