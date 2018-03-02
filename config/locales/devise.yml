@@ -2,4 +2,4 @@
 en:
   devise:
     omniauth_callbacks:
-      success: "You are now signed in with your %{kind} account."
+      success: 'You are now signed in with your %{kind} account.''
