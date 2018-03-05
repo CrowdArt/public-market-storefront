@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_multi_vendor.git
-  revision: 6fb46303be996c89fee9ec0944a2f5a6fdf5db22
+  revision: a1262a9d6664e2a18c408d39a66ea78d9d9215a2
   specs:
     spree_multi_vendor (0.0.1.alpha)
       spree_backend (>= 3.1.0, < 4.0)
@@ -174,7 +174,7 @@ GEM
       io-like (~> 0.3.0)
     arel (8.0.0)
     ast (2.4.0)
-    autoprefixer-rails (8.0.0)
+    autoprefixer-rails (8.1.0)
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)
@@ -546,7 +546,7 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.3.2)
-    rb-fsevent (0.10.2)
+    rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redis (4.0.1)
