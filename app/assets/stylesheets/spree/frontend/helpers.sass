@@ -1,0 +1,12 @@
+.margin-text-bottom
+  margin-bottom: 7px
+
+@each $side in (top, bottom, left, right)
+  .no-margin-#{$side}
+    margin-#{$side}: 0 !important
+
+.nowrap
+  white-space: nowrap
+
+.no-border
+  border: none

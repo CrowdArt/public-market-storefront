@@ -1,0 +1,34 @@
+- @body_id = 'product-details'
+
+- cache cache_key_for_product do
+  .row data-hook='product_show' itemscope=true itemtype='https://schema.org/Product'
+    .col-md-4.col-sm-5 data-hook='product_left_part'
+      div data-hook='product_left_part_wrap'
+        #product-images data-hook='product_images'
+          #main-image.panel.panel-default data-hook=true
+            .panel-body.text-center
+              = large_image(@product, itemprop: "image", style: 'max-width: 300px')
+
+          #thumbnails data-hook=true
+            = render partial: 'thumbnails'
+        div data-hook='product_properties'
+          = render partial: 'properties'
+        div data-hook='promotions'
+          = render partial: 'promotions'
+
+    .col-md-8.col-sm-7 data-hook='product_right_part'
+      h1.product-title itemprop='name' = @product.name
+
+      .row
+        .col-md-7
+          - if author = @product.author
+            h4.no-margin-top
+              strong> #{author.property_name.humanize}:
+              i = author.value
+
+          #product-description data-hook='product_description'itemprop='description'
+            = product_description(@product)
+
+        .col-md-5#cart-form data-hook='cart_form'
+          .well.no-border
+            = render partial: 'cart_form'

@@ -1,0 +1,77 @@
+= form_for :order, url: populate_orders_path do |f|
+  .row.condensed#inside-product-cart-form data-hook="inside_product_cart_form" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
+    .col-md-5.col-xs-5
+      strong.nowrap
+        ' Buy
+        span#variant-option
+
+      .margin-text-bottom
+        small Quantity
+        .input-group
+          = number_field_tag :quantity, 1, class: 'title form-control', min: 1, max: 50
+
+    - if @product.price_in(current_currency) && !@product.price.nil?
+      .col-md-7.col-xs-7.text-right data-hook="product_price"
+        #product-price
+          strong.text-danger-dark
+            span.lead.price.selling content=@product.price_in(current_currency).amount.to_d itemprop="price"
+              = display_price(@product)
+            span content=current_currency itemprop="priceCurrency"
+
+          div
+            ' Avg Price:
+            s.price#average-price = display_price(@product)
+
+          .hide.nowrap
+            ' Save:
+            span.price#price-diff
+
+          - if @product.master.can_supply?
+            link href="https://schema.org/InStock" itemprop="availability"
+          - elsif @product.variants.empty?
+            br
+            span.out-of-stock= Spree.t(:out_of_stock)
+
+    - else
+      #product-price
+        br
+        div
+          span.price.selling itemprop="price"
+            = Spree.t('product_not_available_in_this_currency')
+
+    - if @product.variants_and_option_values(current_currency).any?
+      .col-md-12.col-xs-12#product-variants
+        small Condition:
+
+        ul.list-group.no-margin-bottom
+          - @product.variants_and_option_values(current_currency).each_with_index do |variant, index|
+            li
+              = radio_button_tag "variant_id", variant.id, index == 0, 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?
+              = label_tag "variant_id_#{ variant.id }"
+                span.variant-description = variant_options variant
+                span.price< = variant_full_price(variant)
+
+                - unless variant.can_supply?
+                  br
+                  span.out-of-stock= Spree.t(:out_of_stock)
+    - else
+      = hidden_field_tag "variant_id", @product.master.id
+
+    .col-md-12.col-xs-12
+      .margin-text-bottom
+        span.label.label-default ✔ Market Choice
+
+      - if (vendor = Spree::Vendor.last)
+        strong
+          span> = Spree.t('products.sold_by')
+          = link_to 'Indaba Test Group Inc.', vendor_path(vendor), target: '_blank'
+
+    - if @product.can_supply?
+      .col-md-12.col-xs-12
+        hr style='margin:10px 0'
+
+        = button_tag class: 'btn btn-primary btn-block', id: 'buy-now-button', type: :submit do
+          = Spree.t(:buy_now)
+
+        = button_tag class: 'btn btn-primary btn-white-background btn-block', id: 'add-to-cart-button', type: :submit do
+          = Spree.t(:add_to_cart)
