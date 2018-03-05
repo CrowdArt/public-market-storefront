@@ -1,4 +1,3 @@
 en:
-  spree:
-    products:
-      sold_by: Ships from and sold by
+  products:
+    sold_by: Ships from and sold by

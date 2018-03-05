@@ -63,7 +63,7 @@
 
       - if (vendor = Spree::Vendor.last)
         strong
-          span> = Spree.t('products.sold_by')
+          span> = t('products.sold_by')
           = link_to 'Indaba Test Group Inc.', vendor_path(vendor), target: '_blank'
 
     - if @product.can_supply?
