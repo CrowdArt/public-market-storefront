@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_batch_api.git
-  revision: 64dc6eac693f5307e84642671212bd3575f77487
+  revision: 3ca313bb4abdcb619b47b74284887c4d0066b62a
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer

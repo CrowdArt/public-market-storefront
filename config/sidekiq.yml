@@ -1,6 +1,7 @@
 ---
-:concurrency: 5
+:concurrency: 10
 :queues:
   - default
   - paperclip
   - mailers
+  - upload
