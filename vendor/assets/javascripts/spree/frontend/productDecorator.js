@@ -10,7 +10,7 @@ $(document).ready(function() {
 
     if (showSaving) {
       var diff = avgPrice - variantPrice
-      var diffPercentage = diff / avgPrice * 100
+      var diffPercentage = Math.round(diff / avgPrice * 100)
       var diffText = "$" + diff + " (" + diffPercentage + "%)"
 
       $('#price-diff').text(diffText);
