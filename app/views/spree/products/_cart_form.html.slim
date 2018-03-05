@@ -1,4 +1,4 @@
-= form_for :order, url: populate_orders_path do |f|
+= form_for :order, url: populate_orders_path, remote: true do |f|
   .row.condensed#inside-product-cart-form data-hook="inside_product_cart_form" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
     .col-md-5.col-xs-5
       strong.nowrap
@@ -70,8 +70,8 @@
       .col-md-12.col-xs-12
         hr style='margin:10px 0'
 
-        = button_tag class: 'btn btn-primary btn-block', id: 'buy-now-button', type: :submit do
+        = button_tag class: 'btn btn-primary btn-block', id: 'buy-now-button', type: :submit, data: { disable_with: 'Processing' } do
           = Spree.t(:buy_now)
 
-        = button_tag class: 'btn btn-primary btn-white-background btn-block', id: 'add-to-cart-button', type: :submit do
+        = button_tag class: 'btn btn-primary btn-white-background btn-block', id: 'add-to-cart-button', value: 'add-to-cart', type: :submit, data: { disable_with: 'Processing' } do
           = Spree.t(:add_to_cart)

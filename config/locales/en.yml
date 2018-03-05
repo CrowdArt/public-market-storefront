@@ -13,3 +13,4 @@ en:
     no_credit_cards: No credit cards provided yet
     product_number: Public Market Identification Number
     shop_by_books: Shop by Category
+    added_to_cart: '%{product} was succesfully added to cart'

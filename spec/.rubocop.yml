@@ -5,6 +5,9 @@ inherit_from: ../.rubocop.yml
 Metrics/BlockLength:
   Enabled: false
 
+Rails/SkipsModelValidations:
+  Enabled: false
+
 RSpec/NestedGroups:
   Max: 6
 
