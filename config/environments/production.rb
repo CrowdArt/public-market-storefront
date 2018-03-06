@@ -63,7 +63,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'public.market', protocol: 'https' }
   config.action_mailer.smtp_settings = {
     address:              Settings.smtp_address,
-    port:                 587,
+    port:                 2525,
     user_name:            Settings.smtp_user_name,
     password:             Settings.smtp_password,
     domain:               'public.market',
