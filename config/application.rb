@@ -74,5 +74,8 @@ module Bookstore
       keepalive: true, # default
       socket_timeout: 0.5 # default
     }
+
+    config.action_mailer.preview_path = Rails.root.join('lib', 'mailer_previews')
+    config.action_mailer.show_previews = !Rails.env.production?
   end
 end

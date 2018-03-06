@@ -59,8 +59,8 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "bookstore_#{Rails.env}"
   config.action_mailer.perform_caching = false
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.asset_host = 'http://public.market'
-  config.action_mailer.default_url_options = { host: 'public.market', protocol: 'http' }
+  config.action_mailer.asset_host = 'https://public.market'
+  config.action_mailer.default_url_options = { host: 'public.market', protocol: 'https' }
   config.action_mailer.smtp_settings = {
     address:              Settings.smtp_address,
     port:                 587,
