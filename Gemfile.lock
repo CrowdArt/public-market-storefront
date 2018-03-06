@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_multi_vendor.git
-  revision: a1262a9d6664e2a18c408d39a66ea78d9d9215a2
+  revision: bc739964e659929f15e34556ca033fa776c200fe
   specs:
     spree_multi_vendor (0.0.1.alpha)
       spree_backend (>= 3.1.0, < 4.0)
@@ -298,7 +298,7 @@ GEM
     elasticsearch-transport (6.0.1)
       faraday
       multi_json
-    erubi (1.7.0)
+    erubi (1.7.1)
     et-orbi (1.0.9)
       tzinfo
     excon (0.60.0)
