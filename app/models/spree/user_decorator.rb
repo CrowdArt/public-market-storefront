@@ -6,11 +6,19 @@ Spree::User.class_eval do
 
   accepts_nested_attributes_for :credit_cards, allow_destroy: true
 
+  after_create :send_welcome_email
+
   def full_name
     [first_name, last_name].join(' ').strip
   end
 
   def full_name_or_email
     full_name.presence || email
+  end
+
+  private
+
+  def send_welcome_email
+    Spree::UserMailer.welcome(self).deliver_later
   end
 end

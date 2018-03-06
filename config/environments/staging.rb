@@ -91,8 +91,8 @@ Rails.application.configure do
     port: 1025
   }
 
-  ActionMailer::Base.default from: '"Public Market" <hey@publicmarket.io>'
-  ActionMailer::Base.default to: '"Public Market" <hey@publicmarket.io>'
+  ActionMailer::Base.default from: '"Public Market" <noreply@publicmarket.io>'
+  ActionMailer::Base.default to: '"Public Market" <noreply@publicmarket.io>'
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false

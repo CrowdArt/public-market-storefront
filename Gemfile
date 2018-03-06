@@ -27,6 +27,8 @@ gem 'sass-rails'
 gem 'slim'
 gem 'turbolinks', '~> 5'
 
+gem 'foundation_emails'
+
 gem 'httparty'
 
 gem 'searchkick'

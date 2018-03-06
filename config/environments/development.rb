@@ -32,6 +32,9 @@ Rails.application.configure do
     port:                 1025
   }
 
+  ActionMailer::Base.default from: '"Public Market" <noreply@publicmarket.io>'
+  ActionMailer::Base.default to: '"Public Market" <noreply@publicmarket.io>'
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

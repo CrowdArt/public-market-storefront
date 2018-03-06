@@ -71,8 +71,8 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-  ActionMailer::Base.default from: '"Public Market" <hey@public.market>'
-  ActionMailer::Base.default to: '"Public Market" <hey@public.market>'
+  ActionMailer::Base.default from: '"Public Market" <noreply@public.market>'
+  ActionMailer::Base.default to: '"Public Market" <noreply@public.market>'
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

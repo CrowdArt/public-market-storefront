@@ -1,7 +1,7 @@
 Spree::UserMailer.class_eval do
-    def welcome(user)
-      @home_url = spree.root_url
+  def welcome(user)
+    @home_url = spree.root_url
 
-      mail to: user.email, from: from_address
-    end
+    mail_template(user, :welcome, root_url: spree.root_url)
+  end
 end

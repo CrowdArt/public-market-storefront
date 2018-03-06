@@ -1,0 +1,26 @@
+p.black
+  | Have a question?
+  br
+  a href='mailto:support@public.market' support@public.market
+
+table.menu
+  tr
+    td
+      table
+        tr
+          th.menu-item
+            a href="https://t.me/publicmrkt" = image_tag 'email/telegram.png'
+          th.menu-item
+            a href="https://medium.com/@publicmrkt" = image_tag 'email/medium.png'
+          th.menu-item
+            a href="https://twitter.com/publicmrkt" = image_tag 'email/twitter.png'
+          th.menu-item
+            a href="https://facebook.com/publicmrkt" = image_tag 'email/facebook.png'
+
+= render 'mailer/spacer', size: 10
+
+p
+  ' This email was sent to
+  span style='text-decoration: underline' #{@_message.to.first}
+  br
+  | 2018 © Public Market, All rights reserved

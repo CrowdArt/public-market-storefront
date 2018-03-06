@@ -58,4 +58,10 @@ RSpec.describe Spree::User, type: :model do
       it { is_expected.not_to be_valid }
     end
   end
+
+  describe 'send welcome email' do
+    let!(:user) { create(:bookstore_user) }
+
+    it { expect(ActionMailer::DeliveryJob).to have_been_enqueued.with('Spree::UserMailer', 'welcome', 'deliver_now', user) }
+  end
 end

@@ -326,6 +326,7 @@ GEM
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (0.2.5)
+    foundation_emails (2.2.1.0)
     friendly_id (5.2.3)
       activerecord (>= 4.0.0)
     globalid (0.4.1)
@@ -730,6 +731,7 @@ DEPENDENCIES
   factory_bot
   ffaker
   fog-google
+  foundation_emails
   guard
   guard-rspec
   httparty
