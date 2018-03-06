@@ -7,5 +7,9 @@ module Spree
     def welcome
       UserMailer.welcome(User.first)
     end
+
+    def confirmation_instructions
+      UserMailer.confirmation_instructions(User.first, 'faketoken')
+    end
   end
 end
