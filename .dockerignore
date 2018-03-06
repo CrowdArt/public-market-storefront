@@ -8,12 +8,15 @@
 .rspec
 .overcommit.yml
 .rubocop.yml
-
-Procfile.*
 Guardfile
+Procfile.*
 
 .git
+.gitlab
+
 coverage
+db/*.sqlite3
+db/*.sqlite3-journal
 tmp
 log/*
 spec
