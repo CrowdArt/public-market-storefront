@@ -3,8 +3,6 @@ Spree::UsersController.class_eval do
 
   ORDERS_PER_USER_PAGE = 10
 
-  # Bookstore changes:
-  # - order pagination
   def show
     @account_tab = account_tab
     case @account_tab
@@ -12,13 +10,15 @@ Spree::UsersController.class_eval do
       show_orders
     when :payment
       show_payment
+    when :shipping
+      show_shipping
     end
   end
 
   def update_address
     address_params = fill_shipping_address
     if @user.update(address_params)
-      redirect_to '/account/payment'
+      redirect_back(fallback_location: 'account')
     else
       render :show
     end
@@ -53,9 +53,8 @@ Spree::UsersController.class_eval do
 
   def fill_shipping_address
     address_params = user_payment_params
-    if billing_params[:use_billing] == '1'
-      address_params[:ship_address_attributes] = {} unless address_params[:ship_address_attributes]
-      address_params[:ship_address_attributes].merge!(address_params[:bill_address_attributes].except('id'))
+    if address_params[:bill_address_attributes] && billing_params[:use_as_shipping] == '1'
+      address_params[:ship_address_attributes] = address_params[:bill_address_attributes].except('id')
       address_params[:ship_address_attributes].permit!
     end
     address_params
@@ -74,7 +73,7 @@ Spree::UsersController.class_eval do
   end
 
   def billing_params
-    params.require(:order).permit(:use_billing)
+    params.permit(:use_as_shipping)
   end
 
   def show_orders
@@ -98,12 +97,15 @@ Spree::UsersController.class_eval do
 
   def show_payment
     @user.bill_address ||= Spree::Address.build_default
-    @user.ship_address ||= Spree::Address.build_default
     @eq_ship_address = (@user.bill_address.nil? && @user.ship_address.nil?) || @user.bill_address.same_as?(@user.ship_address)
   end
 
+  def show_shipping
+    @user.ship_address ||= Spree::Address.build_default
+  end
+
   def account_tab
-    tab = [params[:tab].to_s.to_sym] & %i[summary orders payment]
+    tab = [params[:tab].to_s.to_sym] & %i[summary orders payment shipping]
     tab.first || :summary
   end
 end

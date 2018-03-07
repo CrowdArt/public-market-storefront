@@ -1,0 +1,12 @@
+= form_for @user, url: update_address_path, html: { id: "checkout_form_address" }, method: :put do |form|
+  .row
+    .col-sm-6 data-hook="shipping_fieldset_wrapper"
+      .panel.panel-default#shipping data-hook=true
+        = form.fields_for :ship_address do |ship_form|
+          .panel-heading
+            h3.panel-title = Spree.t(:shipping_address)
+          .panel-body
+            = render partial: 'spree/address/form', locals: { form: ship_form, address_type: 'shipping', address: @user.ship_address }
+
+  .well.text-left.form-buttons data-hook="buttons"
+    = submit_tag Spree.t(:save_my_address), class: 'btn btn-lg btn-success'

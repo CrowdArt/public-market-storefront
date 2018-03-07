@@ -4,3 +4,5 @@ en:
       edit:
         update_info: Update profile
         update_password: Update password
+  spree:
+    use_as_shipping: Use as my shipping address

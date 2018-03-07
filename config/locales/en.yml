@@ -16,3 +16,9 @@ en:
     added_to_cart: '%{product} was succesfully added to cart'
     shipments: Delivery
     confirm: Review Order Details
+
+  account:
+    summary: My account
+    payment: Payment info
+    shipping: Shipping info
+    orders: My orders
