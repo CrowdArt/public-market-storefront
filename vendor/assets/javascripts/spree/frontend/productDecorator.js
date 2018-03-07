@@ -9,7 +9,7 @@ $(document).ready(function() {
     var showSaving = variantPrice < avgPrice
 
     if (showSaving) {
-      var diff = avgPrice - variantPrice
+      var diff = (avgPrice - variantPrice).toFixed(2)
       var diffPercentage = Math.round(diff / avgPrice * 100)
       var diffText = "$" + diff + " (" + diffPercentage + "%)"
 
@@ -17,6 +17,7 @@ $(document).ready(function() {
       $('#price-diff-percentage').text("(" + diffPercentage + ")");
     }
 
+    $('#average-price').toggleClass('strike', showSaving)
     $('#price-diff').parent().toggleClass('hide', !showSaving)
   }
 

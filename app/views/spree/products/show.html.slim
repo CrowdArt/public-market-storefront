@@ -31,4 +31,8 @@
 
         .col-md-5#cart-form data-hook='cart_form'
           .well.no-border
-            = render partial: 'cart_form'
+            - if @product.can_supply?
+              = render partial: 'cart_form'
+            - else
+              .text-center
+                h4 Out of stock

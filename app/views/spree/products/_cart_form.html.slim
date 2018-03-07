@@ -20,7 +20,7 @@
 
           div
             ' Avg Price:
-            s.price#average-price = display_price(@product)
+            span.price#average-price = display_price(@product)
 
           .hide.nowrap
             ' Save:
@@ -39,12 +39,12 @@
           span.price.selling itemprop="price"
             = Spree.t('product_not_available_in_this_currency')
 
-    - if @product.variants_and_option_values(current_currency).any?
+    - if @variants.any?
       .col-md-12.col-xs-12#product-variants
         small Condition:
 
         ul.list-group.no-margin-bottom
-          - @product.variants_and_option_values(current_currency).each_with_index do |variant, index|
+          - @variants.each_with_index do |variant, index|
             li
               = radio_button_tag "variant_id", variant.id, index == 0, 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?
               = label_tag "variant_id_#{ variant.id }"
