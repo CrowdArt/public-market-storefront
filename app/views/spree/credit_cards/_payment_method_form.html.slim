@@ -1,0 +1,25 @@
+#checkout_form_payment
+  = form_for @user, url: credit_cards_path, method: :post do |f|
+    ul#payment-method-fields.list-group data-hook=""
+      - @payment_methods.each do |method|
+        li.list-group-item.radio
+          label
+            = radio_button_tag "order[payments_attributes][][payment_method_id]", method.id, method == @payment_methods.first
+            = Spree.t(method.name, scope: :payment_methods, default: method.name)
+
+    ul#payment-methods.nav data-hook=""
+      - @payment_methods.each do |method|
+        li class="#{'last' if method == @payment_methods.last}" data-hook="" id="payment_method_#{method.id}"
+          fieldset
+            = render partial: "spree/checkout/payment/#{method.method_type}", locals: { payment_method: method }
+
+            .margin-text-bottom
+              .checkbox
+                label
+                  = check_box_tag :stripe_accept
+                  == t('payment_methods.stripe_agreenment')
+
+              = image_tag 'icons/stripe.png', style: 'width:150px'
+
+    .well.text-right.form-buttons data-hook="buttons"
+      = submit_tag Spree.t(:save_and_continue), class: 'btn btn-lg btn-success primary'

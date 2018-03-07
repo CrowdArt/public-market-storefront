@@ -63,8 +63,7 @@ Spree::UsersController.class_eval do
   def user_payment_params
     params.require(:user).permit(
       bill_address_attributes: Spree::PermittedAttributes.address_attributes,
-      ship_address_attributes: Spree::PermittedAttributes.address_attributes,
-      credit_cards_attributes: %i[id _destroy]
+      ship_address_attributes: Spree::PermittedAttributes.address_attributes
     )
   end
 
