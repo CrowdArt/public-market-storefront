@@ -17,7 +17,7 @@ Spree::UsersController.class_eval do
 
   def update_address
     address_params = fill_shipping_address
-    if @user.update_attributes(address_params)
+    if @user.update(address_params)
       redirect_to '/account/payment'
     else
       render :show

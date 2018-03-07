@@ -14,7 +14,7 @@ RSpec.describe 'error pages rendering', type: :feature do
 
     it { is_expected.to have_text('Home') }
     it { is_expected.to have_content(I18n.t('errors.error_pages.not_found')) }
-    it { is_expected.to have_http_status(404) }
+    it { is_expected.to have_http_status(:not_found) }
   end
 
   describe '#internal_server_error' do
@@ -22,6 +22,6 @@ RSpec.describe 'error pages rendering', type: :feature do
 
     it { is_expected.to have_text('Home') }
     it { is_expected.to have_content(I18n.t('errors.error_pages.internal_server_error')) }
-    it { is_expected.to have_http_status(500) }
+    it { is_expected.to have_http_status(:internal_server_error) }
   end
 end

@@ -5,4 +5,3 @@ Spree::Price.class_eval do
     variant.product.update_best_price unless variant.is_master
   end
 end
-

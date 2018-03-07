@@ -1,5 +1,6 @@
 module Spree
   module FrontendHelper
+    # rubocop:disable Metrics/AbcSize, Metrics/LineLength, Rails/OutputSafety
     def spree_breadcrumbs(taxon, separator = '&nbsp;')
       return '' if current_page?('/') || taxon.nil?
       separator = raw(separator)
@@ -19,12 +20,12 @@ module Spree
       return '' if max_level < 1 || root_taxon.leaf?
       content_tag :div, class: 'list-group' do
         taxons = root_taxon.children.reorder(:name).map do |taxon|
-          css_class = current_taxon && current_taxon.self_and_ancestors.include?(taxon) ? 'list-group-item active' : 'list-group-item'
+          css_class = current_taxon&.self_and_ancestors&.include?(taxon) ? 'list-group-item active' : 'list-group-item'
           link_to(taxon.name, seo_url(taxon), class: css_class) + taxons_tree(taxon, current_taxon, max_level - 1)
         end
         safe_join(taxons, "\n")
       end
     end
+    # rubocop:enable Metrics/AbcSize, Metrics/LineLength, Rails/OutputSafety
   end
 end
-
