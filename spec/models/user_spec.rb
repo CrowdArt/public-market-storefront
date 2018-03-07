@@ -62,6 +62,14 @@ RSpec.describe Spree::User, type: :model do
   describe 'send welcome email' do
     let!(:user) { create(:bookstore_user) }
 
-    it { expect(ActionMailer::DeliveryJob).to have_been_enqueued.with('Spree::UserMailer', 'welcome', 'deliver_now', user) }
+    it { expect(ActionMailer::DeliveryJob).to have_been_enqueued.with('Spree::UserMailer', 'welcome', 'deliver_now', user.id) }
+  end
+
+  describe 'set first & last name from billing address' do
+    let!(:user) { create(:bookstore_user, first_name: nil, last_name: nil) }
+
+    before { user.update(bill_address: create(:address)) }
+
+    it { expect(user.first_name).not_to be_nil }
   end
 end

@@ -1,5 +1,5 @@
 RSpec.configure do |config|
-  config.include ActiveJob::TestHelper
-
-  config.before { clear_enqueued_jobs }
+  config.before(:each) do
+    ActiveJob::Base.queue_adapter.enqueued_jobs.clear
+  end
 end

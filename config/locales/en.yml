@@ -14,3 +14,5 @@ en:
     product_number: Public Market Identification Number
     shop_by_books: Shop by Category
     added_to_cart: '%{product} was succesfully added to cart'
+    shipments: Delivery
+    confirm: Review Order Details

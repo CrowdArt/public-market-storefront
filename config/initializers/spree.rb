@@ -12,6 +12,8 @@
 Spree.config do |config|
   config.logo = config.admin_interface_logo = 'logo/public_market_logo_white.svg'
   config.product_metadata_provider = 'Spree::Inventory::Providers::BtolMetadataProvider'
+  config.allow_guest_checkout = false
+  config.address_requires_phone = false
 end
 
 Rails.application.config.after_initialize do |app|
@@ -25,3 +27,6 @@ Spree.user_class = 'Spree::User'
 Spree.admin_path = '/dashboard'
 
 Spree::PermittedAttributes.user_attributes.push(:first_name, :last_name)
+
+FrontendConfig = Spree::FrontendConfiguration.new
+FrontendConfig.coupon_codes_enabled = false
