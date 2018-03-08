@@ -9,7 +9,7 @@
 
     <% user_bill_address = spree_current_user.billing_address %>
     <% firstname = @order&.bill_address_firstname || user_bill_address&.firstname %>
-    <% lastname = @order&.bill_address_lastname || user_bill_address&.firstname %>
+    <% lastname = @order&.bill_address_lastname || user_bill_address&.lastname %>
 
     <%= text_field_tag "#{param_prefix}[name]", "#{firstname} #{lastname}", { id: "name_on_card_#{payment_method.id}", class: 'form-control required'} %>
   </p>
