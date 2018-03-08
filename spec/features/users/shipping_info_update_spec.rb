@@ -24,4 +24,14 @@ RSpec.describe 'shipping info update', type: :feature, js: true do
       click_button 'Save my address'
     }.to change { user.reload.ship_address }.from(nil)
   end
+
+  context 'with wrong fields' do
+    before { fill_in 'user_ship_address_attributes_zipcode', with: '11194001' }
+
+    it 'does not update address' do
+      expect {
+        click_button 'Save my address'
+      }.not_to change { user.reload.ship_address }.from(nil)
+    end
+  end
 end

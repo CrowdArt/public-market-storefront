@@ -17,8 +17,10 @@ Spree::UsersController.class_eval do
 
   def update_address
     address_params = fill_shipping_address
+    @account_tab = address_params[:bill_address_attributes] ? :payment : :shipping
+
     if @user.update(address_params)
-      redirect_back(fallback_location: 'account')
+      redirect_to "/account/#{@account_tab}"
     else
       render :show
     end
