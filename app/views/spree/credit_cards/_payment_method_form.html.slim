@@ -13,13 +13,17 @@
           fieldset
             = render partial: "spree/checkout/payment/#{method.method_type}", locals: { payment_method: method }
 
-            .margin-text-bottom
-              .checkbox
-                label
-                  = check_box_tag :stripe_accept
-                  == t('payment_methods.stripe_agreenment')
+    .well.form-buttons data-hook="buttons"
+      .row.condensed
+        .col-md-8
+          .checkbox.no-margin-top
+            label
+              = check_box_tag :stripe_accept, true, true
+              == t('payment_methods.stripe_agreenment')
 
-              = image_tag 'icons/stripe.png', style: 'width:150px'
+          = image_tag 'icons/stripe.png', style: 'width:150px'
 
-    .well.text-right.form-buttons data-hook="buttons"
-      = submit_tag Spree.t(:save_and_continue), class: 'btn btn-lg btn-success primary'
+        br.visible-xs.visible-sm
+
+        .col-md-4
+          = submit_tag Spree.t(:save_and_continue), class: 'btn btn-block btn-success primary', style: 'padding:18px;font-size:16px'
