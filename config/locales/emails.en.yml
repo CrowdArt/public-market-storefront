@@ -33,3 +33,26 @@ en:
         click_below: Click below to reset your password and regain access to your account.
         reset_password_btn: Reset Password
         support_email_subject: "[Support] I didn't request a password reset."
+
+    confirmation:
+      subject: Verify your email & activate your account
+      preview: Just one step away from joining Public Market… click below to verify your email address and activate...
+      body: |
+        <h3>Hi there!</h3>
+
+        <p>
+          Just one step away from joining Public Market ー click below to verify your email address and activate your account.
+        </p>
+
+        <table class="button">
+          <tr>
+            <td>
+              <table>
+                <tr>
+                  <td><a href="%{confirmation_url}" class="btn">Activate Account</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      footer: By creating an account, you agree to our <a href="https://public.market/terms" target="_blank">Terms of Service</a> and <a href="https://public.market/privacy" target="_blank">Privacy Policy</a> and subscribe to our mailing list.

@@ -5,4 +5,10 @@ Spree::UserMailer.class_eval do
 
     mail_template(user, :welcome, root_url: spree.root_url)
   end
+
+  def confirmation_instructions(user, token, _opts = {})
+    confirmation_url = spree.spree_user_confirmation_url(confirmation_token: token)
+
+    mail_template(user, :confirmation, confirmation_url: confirmation_url)
+  end
 end
