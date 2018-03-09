@@ -52,7 +52,6 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
       fill_in 'card_number', with: '4242424242424242'
       fill_in 'card_code', with: '911'
 
-      check 'stripe_accept'
       click_button 'Save and Continue'
     end
 

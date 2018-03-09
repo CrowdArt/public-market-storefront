@@ -9,11 +9,6 @@ module Spree
     end
 
     def create
-      if params[:stripe_accept].blank?
-        @user.errors[:base] << 'You must accept stripe agreement'
-        return new
-      end
-
       return redirect_to '/account/payment' if @user.update(payment_method_params)
       new
     end
@@ -34,7 +29,6 @@ module Spree
 
     def payment_method_params
       pm_params = params.permit(
-        :stripe_accept,
         order: { payments_attributes: permitted_payment_attributes },
         payment_source: permitted_source_attributes
       )

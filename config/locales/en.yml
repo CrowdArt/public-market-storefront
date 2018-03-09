@@ -27,4 +27,4 @@ en:
     cards:
       add_new: Add new payment method
       deleted: Card was deleted
-    stripe_agreenment: "I have read the <a href='https://stripe.com/us/legal' target='_blank'>Stripe Connected Account Agreement</a> and agree to the terms and conditions"
+    stripe_agreement: "By submitting this form, you confirm that you have read the <a href='https://stripe.com/us/legal' target='_blank'>Stripe Connected Account Agreement</a> and agree to the terms & conditions."

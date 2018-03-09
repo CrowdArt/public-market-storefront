@@ -16,14 +16,10 @@
     .well.form-buttons data-hook="buttons"
       .row.condensed
         .col-md-8
-          .checkbox.no-margin-top
-            label
-              = check_box_tag :stripe_accept, true, true
-              == t('payment_methods.stripe_agreenment')
-
-          = image_tag 'icons/stripe.png', style: 'width:150px'
+          p.text-muted == t('payment_methods.stripe_agreement')
+          = image_tag 'icons/stripe.svg', style: 'width:150px'
 
         br.visible-xs.visible-sm
 
         .col-md-4
-          = submit_tag Spree.t(:save_and_continue), class: 'btn btn-block btn-success primary', style: 'padding:18px;font-size:16px'
+          = submit_tag Spree.t(:save_and_continue), class: 'btn btn-block btn-success', style: 'padding:18px;font-size:16px'
