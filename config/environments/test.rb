@@ -43,4 +43,9 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.active_job.queue_adapter = :test
+
+  config.action_mailer.asset_host = 'http://0.0.0.0:5000'
+  config.action_mailer.default_url_options = { host: '0.0.0.0', port: 5000, protocol: 'http' }
+  ActionMailer::Base.default from: '"Public Market" <noreply@publicmarket.io>'
+  ActionMailer::Base.default to: '"Public Market" <noreply@publicmarket.io>'
 end

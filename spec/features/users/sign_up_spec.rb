@@ -19,7 +19,7 @@ RSpec.describe 'Sign Up', type: :feature do
 
   context 'with valid data' do
     it 'creates a new user' do
-      expect(page).to have_text 'A message with a confirmation link has been sent to your email address'
+      expect(page).to have_text 'Open it to activate your account'
       expect(Spree::User.count).to eq(1)
     end
   end
