@@ -1,0 +1,8 @@
+- if target && target.errors.any?
+  #errorExplanation.alert.alert-danger data-hook=""
+    h3 #{Spree.t(:errors_prohibited_this_record_from_being_saved, count: target.errors.count)}:
+    p #{Spree.t(:there_were_problems_with_the_following_fields)}:
+    ul
+      - target.errors.each do |attr, msg|
+        li = customize_error_message(target, attr, msg)
+    br

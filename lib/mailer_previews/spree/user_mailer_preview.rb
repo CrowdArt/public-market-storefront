@@ -5,7 +5,7 @@ module Spree
     end
 
     def welcome
-      UserMailer.welcome(User.first)
+      UserMailer.welcome(User.first.id)
     end
 
     def confirmation_instructions

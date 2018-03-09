@@ -28,7 +28,7 @@ RSpec.describe 'Sign Up', type: :feature do
     let(:password_confirmation) { '' }
 
     it 'does not create a new user' do
-      expect(page).to have_content("Password Confirmation doesn't match Password")
+      expect(page).to have_content("Sorry, your passwords didn't match. Please try again.")
       expect(Spree::User.count).to eq(0)
     end
   end

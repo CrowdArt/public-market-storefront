@@ -1,0 +1,17 @@
+en:
+  spree:
+    dashboard: Dashboard
+    new_customer: Sign Up
+    login_as_existing: Sign In
+    login: Sign In
+    you_have_no_orders_yet: You have not placed any orders on Public Market yet.
+    my_orders: Order history
+    credit_cards: Credit Cards
+    remove_card: remove
+    no_credit_cards: No credit cards provided yet
+    product_number: Public Market Identification Number
+    shop_by_books: Shop by Category
+    added_to_cart: '%{product} was succesfully added to cart'
+    shipments: Delivery
+    confirm: Review Order Details
+    use_as_shipping: Use as my shipping address
