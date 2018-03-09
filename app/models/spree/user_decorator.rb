@@ -6,7 +6,7 @@ Spree::User.class_eval do
 
   accepts_nested_attributes_for :credit_cards, allow_destroy: true
 
-  before_save :fill_names, if: :bill_address_id_changed?
+  before_save :fill_names, if: :ship_address_id_changed?
   after_create :send_welcome_email
 
   def full_name
@@ -24,9 +24,9 @@ Spree::User.class_eval do
   end
 
   def fill_names
-    return if first_name.present? || bill_address.blank?
+    return if first_name.present? || ship_address.blank?
 
-    self.first_name = bill_address.first_name
-    self.last_name = bill_address.last_name
+    self.first_name = ship_address.first_name
+    self.last_name = ship_address.last_name
   end
 end
