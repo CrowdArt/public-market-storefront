@@ -28,11 +28,24 @@ en:
     reset_password_instructions:
       subject: Recover your account
       preview: Click below to reset your password and regain access to your account.
-      content:
-        forgot_password: Forgot your password?
-        click_below: Click below to reset your password and regain access to your account.
-        reset_password_btn: Reset Password
-        support_email_subject: "[Support] I didn't request a password reset."
+      body: |
+        <p>Forgot your password?</p>
+        <p>Click below to reset your password and regain access to your account</p>
+        <table class="button">
+          <tr>
+            <td>
+              <table>
+                <tr>
+                  <td><a href="%{edit_password_reset_url}" class="btn">Reset Password</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      footer: |
+        <p>
+          If you did not make this request, please <a href="mailto:team@publicmarket.io?Subject=[Support]%20I%20didn't%20request%20a%20password%20reset.">notify us</a> and change your password. Someone could be trying to meddle with your account!
+        </p>
 
     confirmation:
       subject: Verify your email & activate your account
