@@ -1,8 +1,9 @@
-Spree::User.create!(
+u = Spree::User.new(
   email: Settings.admin_name,
   login: Settings.admin_name,
   password: Settings.admin_password,
-  spree_roles: Spree::Role.where(name: 'admin')
+  spree_roles: Spree::Role.where(name: 'admin'),
+  confirmed_at: Time.now
 )
 
 Spree::User.create!(
@@ -10,5 +11,6 @@ Spree::User.create!(
   login: Settings.test_seller_user_name,
   password: Settings.test_seller_user_password,
   spree_api_key: Settings.test_seller_user_api_key,
-  spree_roles: Spree::Role.where(name: 'user')
+  spree_roles: Spree::Role.where(name: 'user'),
+  confirmed_at: Time.now
 )
