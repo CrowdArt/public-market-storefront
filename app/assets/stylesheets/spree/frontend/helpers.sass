@@ -3,6 +3,10 @@
 .margin-text-bottom
   margin-bottom: 7px
 
+@media (max-width: $screen-sm-max)
+  .margin-text-bottom-sm
+    margin-bottom: 7px
+
 @each $side in (top, bottom, left, right)
   .no-margin-#{$side}
     margin-#{$side}: 0 !important
