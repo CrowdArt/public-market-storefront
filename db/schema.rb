@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305110344) do
+ActiveRecord::Schema.define(version: 20180312091214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -973,6 +973,7 @@ ActiveRecord::Schema.define(version: 20180305110344) do
     t.string "meta_description"
     t.string "meta_keywords"
     t.integer "depth"
+    t.boolean "hidden", default: false
     t.index ["lft"], name: "index_spree_taxons_on_lft"
     t.index ["name"], name: "index_spree_taxons_on_name"
     t.index ["parent_id"], name: "index_taxons_on_parent_id"

@@ -4,7 +4,7 @@
     <% cache [I18n.locale, @taxons] do %>
       <%= select_tag :taxon,
             options_for_select([[Spree.t(:all_departments), '']] +
-                                  @taxons.map {|t| [t.name, t.id]},
+                                  @taxons.where(hidden: false).map {|t| [t.name, t.id]},
                                   @taxon ? @taxon.id : params[:taxon]), 'aria-label' => 'Taxon', class: "form-control" %>
     <% end %>
   </div>
