@@ -3,3 +3,5 @@ en:
   devise:
     omniauth_callbacks:
       success: 'You are now signed in with your %{kind} account.'
+    confirmations:
+      reconfirmed: "You've successfully updated your email address."

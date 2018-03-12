@@ -11,5 +11,11 @@ module Spree
     def confirmation_instructions
       UserMailer.confirmation_instructions(User.first, 'faketoken')
     end
+
+    def reconfirmation_instructions
+      user = User.first
+      user.unconfirmed_email = 'newemail@public.market'
+      UserMailer.confirmation_instructions(user, 'faketoken')
+    end
   end
 end

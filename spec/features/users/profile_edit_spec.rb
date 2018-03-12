@@ -23,7 +23,6 @@ RSpec.describe 'profile edit', type: :feature, js: true do
 
   describe 'basic info' do
     before do
-      fill_in 'user_email', with: 'newemail@spree.com'
       fill_in 'user_first_name', with: 'User first name'
       fill_in 'user_last_name', with: 'User last name'
     end
@@ -32,7 +31,7 @@ RSpec.describe 'profile edit', type: :feature, js: true do
       before { click_button 'Update profile' }
 
       it { is_expected.to have_text 'Account updated' }
-      it { is_expected.to have_text 'newemail@spree.com' }
+      it { is_expected.to have_text 'User first name' }
     end
 
     context 'with incorrect info' do

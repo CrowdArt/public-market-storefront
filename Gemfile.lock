@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_auth_devise.git
-  revision: 097b5d8bd28a1909e17005db9adc1fe7e1381745
+  revision: aaae186bae60285d7f7b6fbebb01366ffbd9e0a3
   specs:
     spree_auth_devise (3.3.3)
       devise (~> 4.4.0)
@@ -665,7 +665,7 @@ GEM
     state_machines-activerecord (0.5.0)
       activerecord (>= 4.1, < 5.2)
       state_machines-activemodel (>= 0.5.0)
-    stringex (2.8.2)
+    stringex (2.8.3)
     swagger-blocks (2.0.2)
     temple (0.8.0)
     therubyracer (0.12.3)

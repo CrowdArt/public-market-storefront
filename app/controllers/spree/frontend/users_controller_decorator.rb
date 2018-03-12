@@ -31,7 +31,8 @@ Spree::UsersController.class_eval do
   def update
     @user.assign_attributes(user_params)
     if @user.save(context: :edit)
-      redirect_to spree.account_url, notice: Spree.t(:account_updated)
+      notification_msg = @user.saved_change_to_unconfirmed_email? ? :account_email_updated : :account_updated
+      redirect_to spree.account_url, notice: Spree.t(notification_msg)
     else
       render :edit
     end
