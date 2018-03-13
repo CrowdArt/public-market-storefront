@@ -3,8 +3,8 @@ $(document).ready(function() {
     $('#variant-option').text(variant.siblings('label').find('.variant-description').text());
   }
 
-  function setPriceDiff(variant) {
-    var avgPrice = parseFloat($('#average-price').text().substring(1));
+  function setPriceDiff(variant, avgPrice) {
+    var avgPrice = parseFloat(avgPrice.substring(1));
     var variantPrice = variant.data("price").substring(1);
     var showSaving = variantPrice < avgPrice
 
@@ -21,17 +21,26 @@ $(document).ready(function() {
     $('#price-diff').parent().toggleClass('hide', !showSaving)
   }
 
+  function setAveragePrice(variant) {
+    var avgPrice = variant.data("avg-price");
+
+    if (avgPrice) {
+      $("#average-price").text(avgPrice);
+      setPriceDiff(variant, avgPrice);
+    }
+  };
+
   var radios = $("#product-variants input[type='radio']");
 
   if (radios.length > 0) {
     var selectedRadio = $("#product-variants input[type='radio'][checked='checked']");
 
     setVariantOptionText(selectedRadio);
-    setPriceDiff(selectedRadio);
+    setAveragePrice(selectedRadio);
 
     radios.click(function (event) {
       setVariantOptionText($(this));
-      setPriceDiff($(this));
+      setAveragePrice($(this));
     });
   }
 })

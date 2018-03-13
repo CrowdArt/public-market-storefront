@@ -15,7 +15,7 @@ RSpec/MultipleExpectations:
   Max: 6
 
 RSpec/ExampleLength:
-  Max: 6
+  Max: 10
 
 RSpec/AnyInstance:
   Enabled: false

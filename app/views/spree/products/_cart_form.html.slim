@@ -39,16 +39,17 @@
           span.price.selling itemprop="price"
             = Spree.t('product_not_available_in_this_currency')
 
-    - if @variants.any?
+    - if @variants
       .col-md-12.col-xs-12#product-variants
         small Condition:
 
         ul.list-group.no-margin-bottom
-          - @variants.each_with_index do |variant, index|
+          - @variants.each_with_index do |variant_hash, index|
+            - variant = variant_hash[:variant]
             li
-              = radio_button_tag "variant_id", variant.id, index == 0, 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?
+              = radio_button_tag "variant_id", variant.id, index == 0, 'data-avg-price': variant_hash[:median_price], 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?
               = label_tag "variant_id_#{ variant.id }"
-                span.variant-description = variant_options variant
+                span.variant-description = variant_hash[:option_value]
                 span.price< = variant_full_price(variant)
 
                 - unless variant.can_supply?
