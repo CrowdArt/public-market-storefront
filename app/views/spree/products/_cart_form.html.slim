@@ -8,7 +8,7 @@
       .margin-text-bottom
         small Quantity
         .input-group
-          = number_field_tag :quantity, 1, class: 'title form-control', min: 1, max: 50
+          = select_tag :quantity, options_for_select(1..50), class: 'form-control'
 
     - if @product.price_in(current_currency) && !@product.price.nil?
       .col-md-7.col-xs-7.text-right data-hook="product_price"
@@ -47,7 +47,7 @@
           - @variants.each_with_index do |variant_hash, index|
             - variant = variant_hash[:variant]
             li
-              = radio_button_tag "variant_id", variant.id, index == 0, 'data-avg-price': variant_hash[:median_price], 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?
+              = radio_button_tag "variant_id", variant.id, index == 0, 'data-quantity': variant.total_on_hand, 'data-avg-price': variant_hash[:median_price], 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?
               = label_tag "variant_id_#{ variant.id }"
                 span.variant-description = variant_hash[:option_value]
                 span.price< = variant_full_price(variant)

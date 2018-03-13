@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   function setVariantOptionText(variant) {
     $('#variant-option').text(variant.siblings('label').find('.variant-description').text());
   }
@@ -30,6 +30,17 @@ $(document).ready(function() {
     }
   };
 
+  function changeQuantitySelectorOptions(count) {
+    var $el = $("#cart-form #quantity");
+    $el.empty(); // remove old options
+
+    var max = count > 50 ? 50 : count;
+    for (var i = 1; i <= max; i++) {
+      $el.append($("<option></option>")
+         .attr("value", i).text(i));
+    }
+  }
+
   var radios = $("#product-variants input[type='radio']");
 
   if (radios.length > 0) {
@@ -37,10 +48,12 @@ $(document).ready(function() {
 
     setVariantOptionText(selectedRadio);
     setAveragePrice(selectedRadio);
+    changeQuantitySelectorOptions(selectedRadio.data("quantity"));
 
     radios.click(function (event) {
       setVariantOptionText($(this));
       setAveragePrice($(this));
+      changeQuantitySelectorOptions($(this).data("quantity"));
     });
   }
 })
