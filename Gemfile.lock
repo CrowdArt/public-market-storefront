@@ -48,7 +48,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_social.git
-  revision: 22ce70c9d6b42624004e29ef9592e4213bd8dbb1
+  revision: 2d9c83f8cab890b17071dc2ab3b9556592bf9084
   specs:
     spree_social (3.3.1)
       oa-core
@@ -665,7 +665,7 @@ GEM
     state_machines-activerecord (0.5.0)
       activerecord (>= 4.1, < 5.2)
       state_machines-activemodel (>= 0.5.0)
-    stringex (2.8.3)
+    stringex (2.8.4)
     swagger-blocks (2.0.2)
     temple (0.8.0)
     therubyracer (0.12.3)
