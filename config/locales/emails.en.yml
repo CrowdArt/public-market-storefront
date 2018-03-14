@@ -90,3 +90,18 @@ en:
           </tr>
         </table>
       footer: If you did not make this request, please ignore this email.
+
+    order_confirmation:
+      subject: "Your order #%{order_id} has been confirmed"
+      preview: Thanks for supporting decentralized eCommerce. Please review and retain the following order information for your records...
+      body: |
+        <p>Hi %{first_name}</p>
+        <p>Thanks for supporting decentralized eCommerce. Please review and retain the following order information for your records.</p>
+        <h3>Order summary</h3>
+        %{order_card}
+        <hr>
+        <h3>Customer information</h3>
+        %{customer_info}
+        <hr>
+        <p>To view or manage your order, please visit: <a href="%{order_url}">%{order_url}</a></p>
+      footer: We'll notify you the moment your order has shipped.

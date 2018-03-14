@@ -1,0 +1,20 @@
+table.row
+  tbody
+    tr
+      th.large-6.columns
+        strong = Spree.t(:shipping_address)
+        p
+          = order.shipping_address.full_name
+          br
+          = order.shipping_address.address1
+
+      th.large-6.columns
+        strong = Spree.t(:billing_address)
+        p
+          = order.billing_address.full_name
+          br
+          = order.shipping_address.address1
+    tr
+      th.large-6.columns
+        strong = Spree.t(:shipping_method)
+        p = order.shipments[0].shipping_method.name

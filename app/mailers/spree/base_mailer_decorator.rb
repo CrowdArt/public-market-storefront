@@ -1,7 +1,7 @@
 Spree::BaseMailer.class_eval do
   protected
 
-  def mail_template(user, template, opts = {})
+  def mail_template(resource, template, opts = {})
     @body = I18n.t(['emails', template, 'body'].join('.'), opts)
     @preview = I18n.t(['emails', template, 'preview'].join('.'), opts)
     @footer = I18n.t(['emails', template, 'footer'].join('.'), opts)
@@ -9,7 +9,7 @@ Spree::BaseMailer.class_eval do
 
     category_header(opts[:category])
 
-    mail(to: user.email,
+    mail(to: resource.email,
          subject: subject,
          template_path: 'mailer',
          template_name: 'default')

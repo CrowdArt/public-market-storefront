@@ -1,0 +1,9 @@
+- if order.line_item_adjustments.exists?
+  - if order.all_adjustments.promotion.eligible.exists?
+    - order.all_adjustments.promotion.eligible.group_by(&:label).each do |label, adjustments|
+      tr
+        th.large-10.columns
+          = Spree.t(:promotion)
+          = label
+        th.large-2.columns.text-right
+          = Spree::Money.new(adjustments.sum(&:amount), currency: order.currency)

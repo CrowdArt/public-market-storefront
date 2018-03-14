@@ -1,0 +1,30 @@
+
+= render collection: order.line_items, partial: 'spree/shared/mailer_line_item', as: :line_item
+
+hr
+
+table.row
+  tbody
+    tr
+      / offset in nested columns is not working
+      th.large-offset-4.large-8.columns style='padding-bottom:0'
+        table.row
+          tbody
+            = render 'spree/order_mailer/subtotal', order: order
+
+            = render 'spree/order_mailer/shipment_info', order: order
+
+            = render 'spree/order_mailer/promotions_info', order: order
+
+            = render 'spree/order_mailer/taxes_info', order: order
+
+            - order.adjustments.eligible.each do |adjustment|
+              - next if (adjustment.source_type == 'Spree::TaxRate') || (adjustment.amount == 0)
+              = render 'spree/order_mailer/adjustment', adjustment: adjustment
+
+        hr
+
+        table.row
+          tbody
+            = render 'spree/order_mailer/total', order: order
+

@@ -16,3 +16,6 @@ en:
     confirm: Review Order Details
     use_as_shipping: Use as my shipping address
     account_email_updated: A message with a confirmation link has been sent to your email address.
+    order_mailer:
+      total: Total
+      subtotal: Subtotal

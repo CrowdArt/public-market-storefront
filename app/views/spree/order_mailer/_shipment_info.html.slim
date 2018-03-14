@@ -1,0 +1,6 @@
+- order.shipments.group_by { |s| s.selected_shipping_rate.try(:name) }.each do |name, shipments|
+  tr
+    th.large-10.columns
+      = name
+    th.large-2.columns.text-right
+      = Spree::Money.new(shipments.sum(&:discounted_cost), currency: order.currency)

@@ -1,0 +1,8 @@
+- if order.all_adjustments.eligible.tax.exists?
+  - order.all_adjustments.eligible.tax.group_by(&:label).each do |label, adjustments|
+    tr
+      th.large-10.columns
+        = Spree.t(:tax)
+        = label
+      th.large-2.columns.text-right
+        = Spree::Money.new(adjustments.sum(&:amount), currency: order.currency)
