@@ -1,14 +1,20 @@
-$(document).ready(function() {
+function toggleStripeInfo(visible) {
+  $('#stripe-agreement').toggle(visible)
+  $('#payment-form-button').toggleClass('col-md-offset-8 col-sm-offset-6', !visible)
+}
+
+$(document).on('turbolinks:load', function() {
   if ($('#checkout_form_payment').length) {
+    if ($('#existing_cards').length)
+      toggleStripeInfo(false)
+
     $('#use_existing_card_yes').click(function() {
-      $('#stripe-agreement').hide()
-      $('#payment-form-button').addClass('col-md-offset-8 col-sm-offset-6')
+      toggleStripeInfo(false)
       $('#existing_cards').show()
     })
 
     $('#use_existing_card_no').click(function() {
-      $('#stripe-agreement').show()
-      $('#payment-form-button').removeClass('col-md-offset-8 col-sm-offset-6')
+      toggleStripeInfo(true)
       $('#existing_cards').hide()
     })
   }
