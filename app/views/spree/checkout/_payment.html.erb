@@ -68,21 +68,4 @@
   </div>
 </div>
 
-<div class="well form-buttons" data-hook="buttons">
-  <div class='row condensed'>
-    <div id='stripe-agreement' class='col-md-8 col-sm-12 margin-text-bottom-sm'>
-      <p class='text-muted'>
-        <%= t('payment_methods.stripe_agreement').html_safe %>
-      </p>
-
-      <%= image_tag 'icons/stripe.svg', style: 'width:150px' %>
-    </div>
-
-
-    <div id='payment-form-button' class='col-md-4 col-sm-6'>
-      <%= submit_tag Spree.t(:save_and_continue), class: 'btn btn-block btn-success', style: 'padding:18px;font-size:16px' %>
-    </div>
-  </div>
-
-  <script>Spree.disableSaveOnClick();</script>
-</div>
+<%= render partial: 'spree/shared/payment_button' %>

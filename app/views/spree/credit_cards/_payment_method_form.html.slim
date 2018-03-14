@@ -13,11 +13,4 @@
           fieldset
             = render partial: "spree/checkout/payment/#{method.method_type}", locals: { payment_method: method }
 
-    .well.form-buttons data-hook="buttons"
-      .row.condensed
-        .col-md-8.margin-text-bottom-sm
-          p.text-muted == t('payment_methods.stripe_agreement')
-          = image_tag 'icons/stripe.svg', style: 'width:150px'
-
-        .col-md-4
-          = submit_tag Spree.t(:save_and_continue), class: 'btn btn-block btn-success', style: 'padding:18px;font-size:16px'
+    = render partial: 'spree/shared/payment_button'
