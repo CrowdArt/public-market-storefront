@@ -33,12 +33,13 @@ rake spree_sample:book_samples
 For search to work you'll need to manually update the products index:
 
 ```shell
-rails console
-?> Spree::Product.reindex
+rake searchkick:reindex CLASS=Spree::Product
 ```
 
-## Startup
+## Startup the Server
 
 ```shell
-foreman start -f Procfile.dev
+./bin/dev_server
 ```
+
+You should now now be able to access the storefront at http://localhost:5000
