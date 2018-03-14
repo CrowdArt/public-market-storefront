@@ -1,7 +1,10 @@
 p.black
-  | Have a question?
-  br
-  a href='mailto:support@public.market' support@public.market
+  - if @footer.present?
+    == @footer
+  - else
+    | Have a question?
+    br
+    a href='mailto:support@public.market' support@public.market
 
 table.menu
   tr
@@ -19,7 +22,7 @@ table.menu
 
 = render 'mailer/spacer', size: 10
 
-p
+p.text-center
   ' This email was sent to
   span style='text-decoration: underline' #{@_message.to.first}
   br

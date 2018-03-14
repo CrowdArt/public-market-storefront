@@ -13,19 +13,17 @@ en:
 
         <h3>Welcome to Fair Commerce</h3>
 
-        <center>
-          <table class="button">
-            <tr>
-              <td>
-                <table>
-                  <tr>
-                    <td><a href="%{root_url}">Browse Beta Market</a></td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        </center>
+        <table class="button">
+          <tr>
+            <td>
+              <table>
+                <tr>
+                  <td><a href="%{root_url}">Browse Beta Market</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
       footer: ''
 
     reset_password_instructions:
@@ -34,23 +32,19 @@ en:
       body: |
         <p>Forgot your password?</p>
         <p>Click below to reset your password and regain access to your account</p>
-        <center>
-          <table class="button">
-            <tr>
-              <td>
-                <table>
-                  <tr>
-                    <td><a href="%{edit_password_reset_url}" class="btn">Reset Password</a></td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        </center>
-      footer: |
-        <p>
-          If you did not make this request, please <a href="mailto:team@publicmarket.io?Subject=[Support]%20I%20didn't%20request%20a%20password%20reset.">notify us</a> and change your password. Someone could be trying to meddle with your account!
-        </p>
+
+        <table class="button">
+          <tr>
+            <td>
+              <table>
+                <tr>
+                  <td><a href="%{edit_password_reset_url}" class="btn">Reset Password</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      footer: If you did not make this request, please <a href="mailto:team@publicmarket.io?Subject=[Support]%20I%20didn't%20request%20a%20password%20reset.">notify us</a> and change your password. Someone could be trying to meddle with your account! 💸
 
     confirmation:
       subject: Verify your email & activate your account
@@ -62,19 +56,17 @@ en:
           Just one step away from joining Public Market ー click below to verify your email address and activate your account.
         </p>
 
-        <center>
-          <table class="button">
-            <tr>
-              <td>
-                <table>
-                  <tr>
-                    <td><a href="%{confirmation_url}" class="btn">Activate Account</a></td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        </center>
+        <table class="button">
+          <tr>
+            <td>
+              <table>
+                <tr>
+                  <td><a href="%{confirmation_url}" class="btn">Activate Account</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
       footer: By creating an account, you agree to our <a href="https://public.market/terms" target="_blank">Terms of Service</a> and <a href="https://public.market/privacy" target="_blank">Privacy Policy</a> and subscribe to our mailing list.
     reconfirmation:
       subject: Confirm to change your email address

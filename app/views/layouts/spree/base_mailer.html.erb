@@ -16,10 +16,9 @@
             <tr>
               <th class="columns first last">
                 <%= render 'mailer/spacer', size: 20 %>
-                <%= image_tag 'logo/public_market_logo_email.png' %>
+                <%= image_tag 'logo/public_market_logo_email.png', style: 'width:110px;max-width:110px' %>
                 <br/>
                 <%= yield %>
-                <%== @footer %>
                 <hr/>
                 <div class='footer'>
                   <%= render partial: 'mailer/base_mailer_footer' %>

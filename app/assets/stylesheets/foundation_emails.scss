@@ -30,7 +30,7 @@ $pre-color: #ff6908;
 $global-width: 580px;
 $global-width-small: 95%;
 $global-gutter: 16px;
-$body-background: $light-gray;
+$body-background: $white;
 $container-background: $white;
 $global-padding: 16px;
 $global-margin: 16px;
@@ -83,7 +83,7 @@ $subheader-margin-top: 4px;
 $subheader-margin-bottom: 8px;
 $hr-width: $global-width;
 $hr-border: 1px solid #999;
-$hr-margin: 20px auto;
+$hr-margin: 20px auto 10px auto;
 $anchor-text-decoration: underline;
 $anchor-color: #127DB3;
 $anchor-color-visited: $anchor-color;
@@ -164,7 +164,6 @@ hr {
   border-bottom: $hr-border;
   border-left: 0;
   margin: $hr-margin;
-  Margin: $hr-margin;
   clear: both;
 }
 
@@ -176,7 +175,6 @@ hr {
   text-align: center;
 
   p {
-    text-align: center;
     font-size: 13px;
     color: #999;
   }
