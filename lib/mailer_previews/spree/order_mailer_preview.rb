@@ -3,5 +3,9 @@ module Spree
     def confirm_email
       OrderMailer.confirm_email(Order.last)
     end
+
+    def cancel_email
+      OrderMailer.cancel_email(Order.last)
+    end
   end
 end
