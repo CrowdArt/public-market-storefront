@@ -105,3 +105,15 @@ en:
         <hr>
         <p>To view or manage your order, please visit: <a href="%{order_url}">%{order_url}</a></p>
       footer: We'll notify you the moment your order has shipped.
+
+    order_shipped:
+      subject: "Your order #%{order_id} has been shipped"
+      preview: Your order is on its way — Track your package here
+      track_package: Track your package here
+      body: |
+        <p>Hi %{first_name}</p>
+        <p>Your order is on its way!</p>
+        %{order_card}
+        <hr>
+        %{shipment_tracking}
+      footer: "Problem with your order? <a href='mailto:contact@publicmarket.io?Subject=[Support]%20Issue%20with%20my%20order%20|%20Order%20#%{order_id}'>Contact us</a>"
