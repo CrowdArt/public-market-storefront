@@ -40,7 +40,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_searchkick.git
-  revision: a05d61b202737b74782bcf7c98c260c9de766404
+  revision: 5a7e6ce0d347319e8cdcad862655ceb5897a9b5e
   specs:
     spree_searchkick (3.1.0)
       searchkick
