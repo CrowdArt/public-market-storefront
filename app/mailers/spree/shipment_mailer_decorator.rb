@@ -1,6 +1,6 @@
 Spree::ShipmentMailer.class_eval do
   def shipped_email(shipment, _resend = false)
-    shipment.respond_to?(:id) ? shipment : Spree::Shipment.find(shipment)
+    shipment = shipment.respond_to?(:id) ? shipment : Spree::Shipment.find(shipment)
     order = shipment.order
 
     opts = {

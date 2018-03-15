@@ -97,7 +97,6 @@ en:
       body: |
         <p>Hi %{first_name}</p>
         <p>Thanks for supporting decentralized eCommerce. Please review and retain the following order information for your records.</p>
-        <h3>Order summary</h3>
         %{order_card}
         <hr>
         <h3>Customer information</h3>

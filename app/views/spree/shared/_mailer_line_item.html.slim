@@ -6,7 +6,8 @@ table.row
   tbody
     tr
       th.large-2.columns
-        = image_tag product.images[0].attachment.url(:small), style: 'width:50px'
+        - image = product.images[0] ? product.images[0].attachment.url(:small) : 'noimage/small.png'
+        = image_tag image, style: 'width:50px'
 
       th.large-8.columns
         strong>
