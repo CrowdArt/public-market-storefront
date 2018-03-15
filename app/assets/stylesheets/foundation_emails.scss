@@ -148,6 +148,21 @@ $thumbnail-radius: $global-radius;
 
 @import "foundation-emails";
 
+
+// Public market override:
+// Add !important to `large-offset` classes to fix https://github.com/zurb/foundation-emails/issues/778
+@for $i from 1 through ($grid-column-count - 1) {
+  td.columns.large-offset-#{$i},
+  td.columns.large-offset-#{$i}.first,
+  td.columns.large-offset-#{$i}.last,
+  th.columns.large-offset-#{$i},
+  th.columns.large-offset-#{$i}.first,
+  th.columns.large-offset-#{$i}.last {
+    //1.5 takes in effect a whole empty cell.
+    padding-left: -zf-grid-calc-px($i, $grid-column-count, $global-width) + $global-gutter * 2 !important;
+  }
+}
+
 h1 {
   line-height: 1.6;
 
