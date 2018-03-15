@@ -1,7 +1,7 @@
 category = Spree::ShippingCategory.create!(name: 'Default')
 
 Spree::ShippingMethod.create!(
-  name: 'Free Shipping',
+  name: 'Free Shipping (5 - 8 days)',
   display_on: 'both',
   admin_name: 'free',
   code: 'free',

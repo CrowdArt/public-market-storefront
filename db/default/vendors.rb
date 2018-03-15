@@ -12,6 +12,6 @@ Spree::ShippingMethod.create!(
   code: "seller_#{vendor.id}_free",
   shipping_categories: method.shipping_categories,
   zones: method.zones,
-  calculator: method.calculator,
+  calculator: Rails.application.config.spree.calculators.shipping_methods.first.create!,
   vendor: vendor
 )
