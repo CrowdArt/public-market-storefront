@@ -122,7 +122,7 @@ en:
       preview: "We are very sorry, but your order #%{order_id} could not be filled by %{vendor_name}"
       body: |
         <p>Hi %{first_name}</p>
-        <p>We are very sorry, but your order #%{order_id} could not be filled by %{vendor_name}.</p>
+        <p>We are very sorry, but <a href='%{order_url}'><strong>your order #%{order_id}</strong></a> could not be filled by %{vendor_name}.</p>
         <p>We strive to keep our vendors listings as accurate as possible, but sometimes there are mistakes. Unfortunately this was one of them, and the vendor is unable to fill this order.</p>
         <p>You have <strong>not been charged</strong> for these items or shipping:</p>
         %{order_card}

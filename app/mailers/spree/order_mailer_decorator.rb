@@ -20,6 +20,7 @@ Spree::OrderMailer.class_eval do
     opts = {
       category: :order,
       order_id: order.number,
+      order_url: spree.order_url(order, host: Spree::Store.current.url),
       first_name: order.shipping_address.first_name,
       vendor_name: Spree::Vendor.first.name, # use only one seller for S1
       order_card: render_to_string(partial: 'mailer/orders/order_card', locals: { order: order })
