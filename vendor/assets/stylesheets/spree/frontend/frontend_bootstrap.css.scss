@@ -8,21 +8,12 @@ $font-size-h4: 20px;
 
 // -- Spree Custom Header and Footer ---------------------
 #spree-header {
-  background-color: #444;
+  background: linear-gradient(to right, #0E0E12, #0E0E12 25%, #262629 50%, #262629);
   margin-bottom: $line-height-computed;
 
   #header {
-    background-color: #232B2B;
-    padding: $line-height-computed 0;
-  }
-
-  #logo {
-    margin-top: 5px;
-
-    img {
-      max-width: 30%;
-      max-height: 5.5vmax;
-    }
+    background-color: #0E0E12;
+    padding: $line-height-computed 0 0 0;
   }
 
   .navbar-nav > li > a {
@@ -33,7 +24,7 @@ $font-size-h4: 20px;
     color: white;
 
     &:hover, &:focus {
-      background: rgba($gray-darker, 0.4);
+      background: transparent;
     }
   }
   .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
@@ -41,7 +32,7 @@ $font-size-h4: 20px;
   }
 
   .navbar {
-    min-height: 30px;
+    min-height: 35px;
     border: 0;
     margin-bottom: 0;
   }

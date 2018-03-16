@@ -72,4 +72,18 @@ RSpec.describe Spree::User, type: :model do
 
     it { expect(user.first_name).not_to be_nil }
   end
+
+  describe 'username' do
+    subject { user.username }
+
+    let(:user) { create(:bookstore_user, email: 'buyer@publicmarket.io') }
+
+    it { is_expected.to be(user.first_name) }
+
+    context 'when first name is empty' do
+      before { user.update(first_name: '') }
+
+      it { is_expected.to eq('buyer@') }
+    end
+  end
 end

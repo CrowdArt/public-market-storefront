@@ -17,6 +17,10 @@ Spree::User.class_eval do
     full_name.presence || email
   end
 
+  def username
+    first_name.presence || email.split('@').first + '@'
+  end
+
   private
 
   def send_welcome_email

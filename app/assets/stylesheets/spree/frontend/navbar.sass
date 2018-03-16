@@ -1,0 +1,81 @@
+#logo img
+  max-width: 110px
+  min-width: 90px
+  position: absolute
+  width: 80%
+
+
+li.link-to-account
+  text-align: right
+  margin-top: 20px
+  @media (max-width: 767px)
+    margin-top: 0
+    min-height: 63px
+    a.dropdown-toggle
+      font-size: 90%
+      line-height: 1.2 !important
+
+  @media (max-width: 1199px)
+    margin-top: 7px
+    .sign-in-as
+      display: block
+    .dropdown-toggle > strong
+      display: inline-block
+      max-width: 140px
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+      vertical-align: bottom
+
+select#taxon
+  padding: 10px
+
+#top-nav-bar
+  margin-top: -21px
+
+#main-nav-bar
+  .navbar-nav
+    margin: 0 -15px
+  .navbar-right
+    float: right
+
+#spree-header
+  @media (max-width: 767px)
+    #nav-bar
+      ul.dropdown-menu
+        text-align: right
+        li > a
+          color: #fff
+
+#search-bar
+  .navbar-form
+    border: 0
+    box-shadow: none
+    display: flex
+    margin: 0
+    padding: 15px 15px 15px 10px
+    width: 100%
+
+    .taxon-group
+      flex-basis: 25%
+
+    .search-group
+      flex: 1
+
+    .form-group
+      margin: 0 5px
+
+    .btn-search
+      padding: 10px 13px
+      &:before
+        content: 'Search'
+        @media (max-width: 991px)
+          content: '\e003'
+          font-family: 'Glyphicons Halflings'
+          font-style: normal
+          font-weight: normal
+          line-height: 1
+          position: relative
+          top: 1px
+
+

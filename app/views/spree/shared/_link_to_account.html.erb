@@ -1,7 +1,8 @@
 <% if spree_current_user %>
   <li class='dropdown link-to-account'>
     <a href='#' class='dropdown-toggle' role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Signed in as <%= spree_current_user.email %>
+      <span class='sign-in-as'>Signed in as </span>
+      <strong><%= spree_current_user.username %></strong>
       <span class="caret"></span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="dLabel">
