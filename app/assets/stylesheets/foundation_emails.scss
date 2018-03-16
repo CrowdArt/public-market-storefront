@@ -145,12 +145,12 @@ $thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, 0.5);
 $thumbnail-transition: box-shadow 200ms ease-out;
 $thumbnail-radius: $global-radius;
 
-
 @import "foundation-emails";
 
-
 // Public market override:
-// Add !important to `large-offset` classes to fix https://github.com/zurb/foundation-emails/issues/778
+// Add !important to padding-left in `large-offset` classes to fix https://github.com/zurb/foundation-emails/issues/778
+// Add !important to padding-left in `small-*` classes neccessary after this fix ^
+// Add !important to padding-right in `large-*` classes to fix https://github.com/zurb/foundation-emails/pull/832
 @for $i from 1 through ($grid-column-count - 1) {
   td.columns.large-offset-#{$i},
   td.columns.large-offset-#{$i}.first,
@@ -160,6 +160,24 @@ $thumbnail-radius: $global-radius;
   th.columns.large-offset-#{$i}.last {
     //1.5 takes in effect a whole empty cell.
     padding-left: -zf-grid-calc-px($i, $grid-column-count, $global-width) + $global-gutter * 2 !important;
+  }
+
+  td.columns.large-#{$i},
+  th.columns.large-#{$i} {
+    padding-right: $global-gutter / 2 !important;
+
+    &.last {
+      padding-right: $global-gutter !important;
+    }
+  }
+}
+
+@media only screen and (max-width: #{$global-breakpoint}) {
+  @for $i from 1 through $grid-column-count {
+    td.small-#{$i},
+    th.small-#{$i} {
+      padding-left: 0 !important;
+    }
   }
 }
 
