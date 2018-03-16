@@ -92,7 +92,7 @@ en:
       footer: If you did not make this request, please ignore this email.
 
     order_confirmation:
-      subject: "Your order #%{order_id} has been confirmed"
+      subject: "Your order of %{line_items_text} has been confirmed | Order #%{order_id}"
       preview: Thanks for supporting decentralized eCommerce. Please review and retain the following order information for your records...
       body: |
         <p>Hi %{first_name}</p>
@@ -106,7 +106,7 @@ en:
       footer: We'll notify you the moment your order has shipped.
 
     order_shipped:
-      subject: "Your order #%{order_id} has been shipped"
+      subject: "Your order of %{line_items_text} has been shipped | Order #%{order_id}"
       preview: Your order is on its way — Track your package here
       track_package: Track your package here
       body: |

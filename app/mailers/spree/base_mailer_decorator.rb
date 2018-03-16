@@ -19,4 +19,13 @@ Spree::BaseMailer.class_eval do
     categories = [Rails.env] | categories
     headers['X-SMTPAPI'] = { category: categories }.to_json
   end
+
+  def line_items_as_text(items)
+    first_item = items[0]
+    line = "#{first_item.quantity}x #{first_item.variant.product.name}"
+
+    return line if items.length == 1
+    more_items_count = items.length - 1
+    line + "... and #{more_items_count} other #{'item'.pluralize(more_items_count)}"
+  end
 end
