@@ -1,5 +1,9 @@
 en:
   emails:
+    unsubscribe:
+      category: Unsubscribe From This List
+      preferences: Manage Email Preferences
+
     welcome:
       subject: Welcome to Public Market
       preview: We know that commerce should be for the people. That’s why we’re building a truly peer-to-peer marketplace…

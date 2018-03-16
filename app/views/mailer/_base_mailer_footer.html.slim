@@ -23,6 +23,10 @@ table.menu
 = render 'mailer/spacer', size: 10
 
 p.text-center
+  a> href='%rawUnsubscribe%' = t('emails.unsubscribe.category')
+  ' |
+  a href='%rawPreferences%' = t('emails.unsubscribe.preferences')
+  br
   ' This email was sent to
   span style='text-decoration: underline' #{@_message.to.first}
   br

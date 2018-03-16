@@ -52,3 +52,6 @@ Style/FrozenStringLiteralComment:
 
 Rails/Output:
   Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: false

@@ -2,7 +2,7 @@ Spree::UserMailer.class_eval do
   def welcome(user_id)
     user = Spree::User.find(user_id)
 
-    mail_template(user, :welcome, category: :account, root_url: spree.root_url(host: Spree::Store.current.url))
+    mail_template(user, :welcome, category: :engagement, root_url: spree.root_url(host: Spree::Store.current.url))
   end
 
   def reset_password_instructions(user, token, _opts = {})

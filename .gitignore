@@ -34,5 +34,6 @@ config/deploy/db
 config/deploy/tmp
 
 config/settings/*.yml
+config/settings.yml
 !/config/settings/test.yml
 config/settings/secrets/*.yml
