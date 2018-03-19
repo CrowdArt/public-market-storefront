@@ -40,7 +40,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_pages.git
-  revision: aa2082ac6aff841c1881247df8e4181321f566dd
+  revision: 2f4dcfa01cbececc4478d21fc348fdf166d80fd4
   specs:
     spree_pages (0.0.1.alpha)
       spree_backend (>= 3.1.0, < 4.0)
