@@ -20,21 +20,22 @@ Spree::BaseMailer.class_eval do
 
     smtp_headers = {
       category: categories,
-      asm_group_id: unsubscribe_category(categories),
       sub: {
         '%rawUnsubscribe%': ['<%asm_group_unsubscribe_raw_url%>'],
         '%rawPreferences%': ['<%asm_preferences_raw_url%>']
       }
     }
 
+    if (unsub_category = unsubscribe_category(categories))
+      smtp_headers[:asm_group_id] = unsub_category
+    end
+
     headers['X-SMTPAPI'] = smtp_headers.to_json
   end
 
   def unsubscribe_category(categories)
-    categories.each do |c|
-      next if (unsubscribe_category = Settings["sendgrid-unsubscribe-#{c}"]).blank?
-      break unsubscribe_category
-    end
+    category = categories.detect { |c| Settings["sendgrid-unsubscribe-#{c}"].presence }
+    Settings["sendgrid-unsubscribe-#{category}"]
   end
 
   def line_items_as_text(items)
