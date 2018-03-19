@@ -73,7 +73,7 @@ GIT
 
 GIT
   remote: https://github.com/spree/spree.git
-  revision: b932e8eef3a4baea6fd66c1f7727f5c28951c83e
+  revision: 3afe7dea6d41466d795f6000a35157761ebcb271
   specs:
     spree (3.5.0.alpha)
       spree_api (= 3.5.0.alpha)
@@ -111,7 +111,7 @@ GIT
       paperclip (~> 5.2.0)
       paranoia (~> 2.3.0)
       premailer-rails
-      rails (~> 5.1.4)
+      rails (~> 5.1.5)
       ransack (~> 1.8.0)
       responders
       sprockets-rails
