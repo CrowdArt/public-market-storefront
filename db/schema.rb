@@ -10,11 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315094847) do
+ActiveRecord::Schema.define(version: 20180319155210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string "data_file_name", null: false
+    t.string "data_content_type"
+    t.integer "data_file_size"
+    t.string "data_fingerprint"
+    t.string "type", limit: 30
+    t.integer "width"
+    t.integer "height"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
@@ -313,6 +326,15 @@ ActiveRecord::Schema.define(version: 20180315094847) do
     t.index ["ship_address_id"], name: "index_spree_orders_on_ship_address_id"
     t.index ["store_id"], name: "index_spree_orders_on_store_id"
     t.index ["user_id", "created_by_id"], name: "index_spree_orders_on_user_id_and_created_by_id"
+  end
+
+  create_table "spree_pages", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "slug", null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_spree_pages_on_slug", unique: true
   end
 
   create_table "spree_payment_capture_events", id: :serial, force: :cascade do |t|

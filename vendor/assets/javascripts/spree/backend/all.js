@@ -7,6 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require spree/backend
+//= require ckeditor/init
 
 //= require_tree .
 //= require spree/backend/spree_searchkick

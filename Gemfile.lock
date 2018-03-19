@@ -39,6 +39,15 @@ GIT
       spree_extension
 
 GIT
+  remote: https://github.com/public-market/spree_pages.git
+  revision: 690ee7a9f77e8e43eb58662d64fb75d2b674d30b
+  specs:
+    spree_pages (0.0.1.alpha)
+      spree_backend (>= 3.1.0, < 4.0)
+      spree_core (>= 3.1.0, < 4.0)
+      spree_extension
+
+GIT
   remote: https://github.com/public-market/spree_searchkick.git
   revision: 5a7e6ce0d347319e8cdcad862655ceb5897a9b5e
   specs:
@@ -210,6 +219,9 @@ GEM
       nokogiri (~> 1.8)
     chronic_duration (0.10.6)
       numerizer (~> 0.1.1)
+    ckeditor (4.2.4)
+      cocaine
+      orm_adapter (~> 0.5.0)
     cldr-plurals-runtime-rb (1.0.1)
     climate_control (0.2.0)
     cocaine (0.5.8)
@@ -721,6 +733,7 @@ DEPENDENCIES
   capybara
   capybara-screenshot
   chromedriver-helper
+  ckeditor
   cocoon
   coffee-rails (~> 4.2)
   config
@@ -760,6 +773,7 @@ DEPENDENCIES
   spree_batch_api!
   spree_gateway (~> 3.3)
   spree_multi_vendor!
+  spree_pages!
   spree_searchkick!
   spree_social!
   spring

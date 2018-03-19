@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   authenticate :spree_user, ->(u) { u.admin? } do
     mount Sidekiq::Web, at: 'sidekiq'
     mount PgHero::Engine, at: 'pghero'
+    mount Ckeditor::Engine, at: 'ckeditor'
   end
 
   resources :api_docs, path: 'apidocs', only: [:index] do
