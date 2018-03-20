@@ -40,7 +40,7 @@ Spree::BaseMailer.class_eval do
 
   def line_items_as_text(items)
     first_item = items[0]
-    line = "#{first_item.quantity}x #{first_item.variant.product.name}"
+    line = "#{first_item.quantity}x \"#{first_item.variant.product.name}\""
 
     return line if items.length == 1
     more_items_count = items.length - 1
