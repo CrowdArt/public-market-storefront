@@ -1,7 +1,7 @@
 - @taxons = @taxon && @taxon.parent ? @taxon.parent.children : Spree::Taxon.roots
 = form_tag spree.products_path, method: :get, class: "navbar-form" do
   div.form-group.taxon-group
-    - cache [Time.now, I18n.locale, @taxons] do
+    - cache ['v1', I18n.locale, @taxons] do
       div.dropdown#taxon-dropdown
         - @taxon ||= @taxons.first
         button.btn.btn-default.dropdown-toggle#taxon-menu type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
