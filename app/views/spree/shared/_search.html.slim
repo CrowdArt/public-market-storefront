@@ -1,0 +1,47 @@
+- @taxons = @taxon && @taxon.parent ? @taxon.parent.children : Spree::Taxon.roots
+= form_tag spree.products_path, method: :get, class: "navbar-form" do
+  div.form-group.taxon-group
+    - cache [Time.now, I18n.locale, @taxons] do
+      div.dropdown#taxon-dropdown
+        - @taxon ||= @taxons.first
+        button.btn.btn-default.dropdown-toggle#taxon-menu type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+          span.name> = @taxon&.name
+          span.caret<
+          input#taxon name='taxon' type='hidden' value=@taxon&.id
+
+        ul.dropdown-menu aria-labelledby="taxon-menu"
+          - [[Spree.t(:all_departments), '']] + @taxons.where(hidden: false).each do |t|
+            li
+              a href="#" data-taxon-id=t.id data-taxon-name=t.name = t.name
+
+          - @taxons.where(hidden: true, parent_id: nil).each do |t|
+            - unless @divider
+              li.divider role="separator"
+              - @divider = true
+            li.disabled
+              a disabled=true href="#" = t.name
+
+  div.form-group.search-group
+    = search_field_tag :keywords, params[:keywords], autocomplete: 'off', placeholder: Spree.t(:search), class: "form-control"
+
+  = button_tag '', name: nil, type: 'submit', class: "btn btn-primary btn-search"
+
+javascript:
+  $(document).on('click', '#taxon-dropdown a', function(e) {
+    var taxonId = $(e.target).data('taxon-id')
+    if (taxonId) {
+      $('#taxon-menu .name').text($(e.target).data('taxon-name'))
+      $('#taxon').val($(e.target).data('taxon-id'))
+    } else {
+      e.stopPropagation()
+    }
+    e.preventDefault()
+  })
+
+  $('#taxon-dropdown li.disabled').popover({
+    container: 'body',
+    content: "#{t('menus.search.disabled')}",
+    title: "#{t('menus.search.coming_soon')}",
+    placement: 'right',
+    trigger: 'hover'
+  })

@@ -36,9 +36,6 @@ li.link-to-account
       text-overflow: ellipsis
       vertical-align: bottom
 
-select#taxon
-  padding: 10px
-
 #top-nav-bar
   margin-top: -21px
 
@@ -56,6 +53,8 @@ select#taxon
         text-align: right
         li > a
           color: #fff
+        .disabled > a
+          color: #999 !important
 
 #search-bar
   .navbar-form
@@ -68,6 +67,25 @@ select#taxon
 
     .taxon-group
       flex-basis: 25%
+      button
+        color: #222222
+        background: #fff
+        border: 1px solid #ccc
+        width: 100%
+        &:hover, &:active, &:focus
+          color: #222222
+          background: #eee
+          border: 1px solid #ccc
+        .name
+          display: inline-block
+          max-width: 150px
+          white-space: nowrap
+          overflow: hidden
+          text-overflow: ellipsis
+          vertical-align: bottom
+          @media (max-width: 1199px)
+            max-width: 100px
+
 
     .search-group
       flex: 1
@@ -76,6 +94,7 @@ select#taxon
       margin: 0 5px
 
     .btn-search
+      align-self: start
       padding: 10px 13px
       &:before
         content: 'Search'
