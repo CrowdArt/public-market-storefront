@@ -97,7 +97,7 @@ $stat-font-size: 40px;
 $button-padding: (
   tiny: 4px 8px 4px 8px,
   small: 5px 10px 5px 10px,
-  default: 10px 24px 10px 24px,
+  default: 12px 24px 12px 24px,
   large: 10px 20px 10px 20px,
 );
 $button-font-size: (
@@ -109,7 +109,7 @@ $button-font-size: (
 $button-color: $white;
 $button-color-alt: $medium-gray;
 $button-font-weight: 300;
-$button-margin: 0 0 $global-margin 0;
+$button-margin: 33px 0 25px;
 $button-background: $primary-color;
 $button-border: 2px solid $button-background;
 $button-radius: $global-radius;
@@ -190,6 +190,12 @@ hr {
   border-left: 0;
   margin: $hr-margin;
   clear: both;
+}
+
+@media only screen and (min-width: #{$global-breakpoint}) {
+  h1 { font-size: 28px !important }
+  h2 { font-size: 26px !important }
+  h3 { font-size: 24px !important }
 }
 
 .btn {
