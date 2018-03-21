@@ -1,6 +1,7 @@
 en:
   spree:
-    dashboard: Dashboard
+    dashboard: Dashboard2
+    all_products: All Products
     new_customer: Sign Up
     login_as_existing: Sign In
     login: Sign In
@@ -19,4 +20,4 @@ en:
     order_mailer:
       total: Total
       subtotal: Subtotal
-    all_departments: All Products
+
