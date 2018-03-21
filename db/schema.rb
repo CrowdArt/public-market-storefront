@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180319161836) do
+ActiveRecord::Schema.define(version: 20180321122902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -334,6 +334,13 @@ ActiveRecord::Schema.define(version: 20180319161836) do
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "meta_title"
+    t.string "meta_description"
+    t.string "meta_image_file_name"
+    t.string "meta_image_content_type"
+    t.integer "meta_image_file_size"
+    t.datetime "meta_image_updated_at"
+    t.boolean "live", default: true
     t.index ["slug"], name: "index_spree_pages_on_slug", unique: true
   end
 
