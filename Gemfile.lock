@@ -40,7 +40,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_pages.git
-  revision: 3b78f7fbec91e8b2b3a9447ad5640f98fae98e47
+  revision: e6fcf971184dc742f81ec5d004e4d0a865509de4
   specs:
     spree_pages (0.0.1.alpha)
       paperclip
