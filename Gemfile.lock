@@ -49,7 +49,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_searchkick.git
-  revision: 5a7e6ce0d347319e8cdcad862655ceb5897a9b5e
+  revision: 380c11ef7e810b68ced6935ea63a5634e2bc4473
   specs:
     spree_searchkick (3.1.0)
       searchkick
@@ -416,7 +416,7 @@ GEM
     logging (2.2.2)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
-    loofah (2.2.0)
+    loofah (2.2.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.12)
@@ -671,11 +671,11 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     state_machines (0.5.0)
-    state_machines-activemodel (0.5.0)
-      activemodel (>= 4.1, < 5.2)
+    state_machines-activemodel (0.5.1)
+      activemodel (>= 4.1, < 6.0)
       state_machines (>= 0.5.0)
-    state_machines-activerecord (0.5.0)
-      activerecord (>= 4.1, < 5.2)
+    state_machines-activerecord (0.5.1)
+      activerecord (>= 4.1, < 6.0)
       state_machines-activemodel (>= 0.5.0)
     stringex (2.8.4)
     swagger-blocks (2.0.2)
