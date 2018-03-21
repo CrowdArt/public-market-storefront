@@ -1,6 +1,6 @@
 en:
   spree:
-    dashboard: Dashboard2
+    dashboard: Dashboard
     all_products: All Products
     new_customer: Sign Up
     login_as_existing: Sign In
