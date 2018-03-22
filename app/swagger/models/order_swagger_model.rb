@@ -91,6 +91,12 @@ module Swagger
                   country: 'US',
                   state: 'CA'
                 },
+                line_items: [
+                  {
+                    sku: 'PIDC790519MCMPDYY8',
+                    quantity: 1
+                  }
+                ],
                 order_identifier: 'PM2104212',
                 created_at: '2018-02-16T11:15:00.093Z'
               }
