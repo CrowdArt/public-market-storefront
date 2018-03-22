@@ -4,7 +4,6 @@ Spree::ShipmentMailer.class_eval do
     order = shipment.order
 
     opts = {
-      category: :order,
       order_id: order.number,
       first_name: order.shipping_address.first_name,
       line_items_text: line_items_as_text(order.line_items),

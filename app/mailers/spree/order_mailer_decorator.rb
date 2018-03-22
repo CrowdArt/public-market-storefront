@@ -3,7 +3,6 @@ Spree::OrderMailer.class_eval do
     order = order.respond_to?(:id) ? order : Spree::Order.find(order)
 
     opts = {
-      category: :order,
       order_id: order.number,
       first_name: order.shipping_address.first_name,
       order_url: spree.order_url(order, host: Spree::Store.current.url),
@@ -19,7 +18,6 @@ Spree::OrderMailer.class_eval do
     order = order.respond_to?(:id) ? order : Spree::Order.find(order)
 
     opts = {
-      category: :order,
       order_id: order.number,
       order_url: spree.order_url(order, host: Spree::Store.current.url),
       first_name: order.shipping_address.first_name,

@@ -7,7 +7,7 @@ Spree::BaseMailer.class_eval do
     @footer = I18n.t(['emails', template, 'footer'].join('.'), opts, default: nil)
     subject = I18n.t(['emails', template, 'subject'].join('.'), opts)
 
-    set_smtp_headers(opts[:category] || template)
+    set_smtp_headers(template)
 
     mail(to: resource.email,
          subject: subject,
@@ -15,8 +15,9 @@ Spree::BaseMailer.class_eval do
          template_name: 'default')
   end
 
-  def set_smtp_headers(*categories)
-    categories = [Rails.env] | categories
+  def set_smtp_headers(template)
+    sendgrid_categories = I18n.t(['emails', template, 'categories'].join('.')) || [template]
+    categories = [Rails.env] | sendgrid_categories
 
     smtp_headers = {
       category: categories,
@@ -26,7 +27,7 @@ Spree::BaseMailer.class_eval do
       }
     }
 
-    if (unsub_category = unsubscribe_category(categories))
+    if (unsub_category = unsubscribe_category(sendgrid_categories))
       smtp_headers[:asm_group_id] = unsub_category
     end
 
