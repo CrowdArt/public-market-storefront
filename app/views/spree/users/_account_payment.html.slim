@@ -17,13 +17,13 @@
 
               p.text-muted #{card.month} / #{card.year}
 
-              - address = card.address
-              address
-                = address.address1
-                br
-                | #{address.city}, #{address.state} #{address.zipcode}
-                br
-                = address.country
+              - if (address = card.address)
+                address
+                  = address.address1
+                  br
+                  | #{address.city}, #{address.state} #{address.zipcode}
+                  br
+                  = address.country
 
               = link_to 'Remove', credit_card_path(card), method: :delete, data: { confirm: t('payment_methods.cards.delete_prompt') }
 - else

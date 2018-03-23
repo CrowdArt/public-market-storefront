@@ -35,14 +35,14 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
       end
 
       it 'adds new card' do
-        expect(page).to have_text('First name Last name')
+        expect(page).to have_text('First name Last name'.upcase)
         expect(user.credit_cards.count).to eq(1)
       end
 
       it 'deletes card' do
-        click_link 'Delete'
+        click_link 'Remove'
         page.driver.browser.switch_to.alert.accept
-        expect(page).not_to have_text('First name Last name')
+        expect(page).not_to have_text('First name Last name'.upcase)
       end
     end
 
@@ -59,7 +59,7 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
       end
 
       it 'does not add new card' do
-        expect(page).to have_text('First name Last name')
+        expect(page).to have_text('First name Last name'.upcase)
         expect(user.credit_cards.count).to eq(1)
       end
     end
@@ -80,7 +80,7 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
     end
 
     it 'adds new card' do
-      expect(page).to have_text("#{user.shipping_address.firstname} #{user.shipping_address.lastname}")
+      expect(page).to have_text("#{user.shipping_address.firstname} #{user.shipping_address.lastname}".upcase)
       expect(user.credit_cards.count).to eq(1)
     end
   end
