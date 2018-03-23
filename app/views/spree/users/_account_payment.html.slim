@@ -1,15 +1,31 @@
 - if (cards = @user.credit_cards).any?
   #existing_cards
     h3 = t('credit_cards')
-    p.form-group data-hook="existing_cards"
-      table.existing-credit-card-list
-        tbody
-          - cards.each do |card|
-            tr class=cycle('even', 'odd')
-              td = card.name
-              td = card.display_number
-              td #{card.month} / #{card.year}
-              td = link_to 'Delete', credit_card_path(card), method: :delete, data: { confirm: "Are you sure?" }
+
+    .row.condensed
+      - cards.each do |card|
+        .col-md-4.col-sm-6
+          .panel.panel-default
+            .panel-heading
+              spane.text-uppercase = card.name
+              .pull-right
+                = image_tag "credit_cards/icons/#{card.cc_type}.png"
+
+            .panel-body
+              p
+                strong = card.display_number
+
+              p.text-muted #{card.month} / #{card.year}
+
+              - address = card.address
+              address
+                = address.address1
+                br
+                | #{address.city}, #{address.state} #{address.zipcode}
+                br
+                = address.country
+
+              = link_to 'Remove', credit_card_path(card), method: :delete, data: { confirm: t('payment_methods.cards.delete_prompt') }
 - else
   p = Spree.t('no_credit_cards')
 

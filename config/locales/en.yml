@@ -17,4 +17,5 @@ en:
     cards:
       add_new: Add new payment method
       deleted: Card was deleted
+      delete_prompt: Are you sure you want to delete this bank card?
     stripe_agreement: "By submitting this form, you confirm that you have read the <a href='https://stripe.com/us/connect/legal' target='_blank'>Stripe Connected Account Agreement</a> and agree to the terms & conditions."
