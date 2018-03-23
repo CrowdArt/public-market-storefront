@@ -2,6 +2,14 @@ Spree::Order.class_eval do
   before_validation :clone_shipping_address, if: :use_shipping?
   attr_accessor :use_shipping
 
+  Spree::Order.state_machine.before_transition to: :confirm, do: :copy_billing_from_card
+
+  def copy_billing_from_card
+    card = valid_credit_cards.first
+    return if !user_id || card.blank?
+    self.bill_address = card.address.clone
+  end
+
   private
 
   def use_shipping?

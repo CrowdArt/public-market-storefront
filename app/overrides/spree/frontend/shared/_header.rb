@@ -4,4 +4,3 @@ Deface::Override.new(
   set_attributes: 'figure#logo',
   attributes: { class: 'col-sm-2 col-xs-2' }
 )
-

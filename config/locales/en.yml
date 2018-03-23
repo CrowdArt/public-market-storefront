@@ -3,8 +3,8 @@
 en:
   account:
     summary: My account
-    payment: Payment info
-    shipping: Shipping info
+    payment: Payment Methods
+    shipping: Shipping Address
     orders: My orders
 
   devise:

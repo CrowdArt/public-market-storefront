@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'checkout', type: :feature, js: true do
+RSpec.describe 'checkout', type: :feature, js: true, vcr: true do
   let(:vendor) { create(:vendor) }
   let(:variant) { create(:variant, vendor: vendor) }
   let(:user) { nil }
@@ -11,13 +11,19 @@ RSpec.describe 'checkout', type: :feature, js: true do
     country = create(:country, states_required: true)
     create(:state, name: 'Alabama', abbr: 'AL', country: country)
     create(:free_shipping_method, vendor: vendor)
-    create(:check_payment_method)
+
+    # stripe keys are from spree_gateway gem https://github.com/spree/spree_gateway/blob/master/spec/features/stripe_checkout_spec.rb
+    Spree::Gateway::StripeGateway.create!(
+      name: 'Stripe',
+      preferred_secret_key: 'sk_test_VCZnDv3GLU15TRvn8i2EsaAN',
+      preferred_publishable_key: 'pk_test_Cuf0PNtiAkkMpTVC2gwYDMIg'
+    )
 
     variant.stock_items.update_all(count_on_hand: 1, backorderable: false)
     visit spree.product_path(variant.product)
     click_button 'Add To Cart'
 
-    expect(page).to have_text Spree.t(:added_to_cart, product: variant.product.name)
+    expect(page).to have_text Spree.t(:added_to_cart, product: variant.product.name) # rubocop:disable RSpec/ExpectInHook
 
     first('#link-to-cart a').click
     click_button 'Checkout'
@@ -51,8 +57,27 @@ RSpec.describe 'checkout', type: :feature, js: true do
       end
 
       flow 'payment step' do
-        expect(page).to have_text 'Billing Address'
+        expect(page).to have_text 'Payment Information'
+
+        fill_in 'name_on_card_1', with: 'First name Last name'
+        fill_in 'card_expiry', with: '10/18'
+        fill_in 'card_number', with: '4242 4242 4242 4242'
+        # Otherwise ccType field does not get updated correctly
+        page.execute_script("$('.cardNumber').trigger('change')")
+        fill_in 'card_code', with: '911'
+
+        Capybara.default_max_wait_time = 10
+        setup_stripe_watcher
+
         click_button('Save and Continue')
+
+        wait_for_stripe # Wait for Stripe API to return + form to submit
+      end
+
+      flow 'summary order step' do
+        expect(page).to have_text 'Review Order Details'
+
+        click_button('Place Order')
         expect(page).to have_text 'Your order has been processed successfully'
       end
     end

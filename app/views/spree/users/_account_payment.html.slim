@@ -14,26 +14,3 @@
   p = Spree.t('no_credit_cards')
 
 = link_to t('payment_methods.cards.add_new'), spree.new_payment_method_path, class: 'btn btn-primary', data: { turbolinks: false }
-
-hr
-
-= render partial: 'spree/shared/error_messages', locals: { target: @user }
-
-= form_for @user, url: update_address_path, html: { id: "checkout_form_address" }, method: :put do |form|
-  .row
-    .col-sm-6 data-hook="billing_fieldset_wrapper"
-      .panel.panel-default#billing data-hook=true
-        = form.fields_for :bill_address do |bill_form|
-          .panel-heading
-            h3.panel-title = Spree.t(:billing_address)
-          .panel-body
-            = render partial: 'spree/address/form', locals: { form: bill_form, address_type: 'billing', address: @user.bill_address }
-
-            = hidden_field_tag 'use_as_shipping', '0', id: 'default_use_as_shipping'
-            p.field.checkbox data-hook="use_as_shipping"
-              = label_tag :use_as_shipping do
-                = check_box_tag 'use_as_shipping', '1', @eq_ship_address
-                = Spree.t(:use_as_shipping)
-
-  .well.text-left.form-buttons data-hook="buttons"
-    = submit_tag Spree.t(:save_my_address), class: 'btn btn-lg btn-success'

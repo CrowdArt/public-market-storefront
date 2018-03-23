@@ -70,37 +70,24 @@
           cvc: $('.cardCode:visible').val(),
           exp_month: expiration.month || 0,
           exp_year: expiration.year || 0
-        }, Spree.stripeAdditionalInfo);
+        }, Spree.stripeAdditionalInfo());
         Stripe.card.createToken(params, stripeResponseHandler);
         return false;
       }
     });
   });
-</script>
 
-<%- if @order&.has_checkout_step?('address') -%>
-  <script>
-    Spree.stripeAdditionalInfo = {
-      name: "<%= @order.bill_address.full_name %>",
-      address_line1: "<%= @order.bill_address.address1 %>",
-      address_line2: "<%= @order.bill_address.address2 %>",
-      address_city: "<%= @order.bill_address.city %>",
-      address_state: "<%= @order.bill_address.state_text %>",
-      address_zip: "<%= @order.bill_address.zipcode %>",
-      address_country: "<%= @order.bill_address.country %>"
+  Spree.stripeAdditionalInfo = function() {
+    var form = Spree.stripePaymentMethod
+    return {
+      name: form.find('#bfirstname input').val(),
+      address_line1: form.find('#baddress1 input').val(),
+      address_line2: form.find('#baddress2 input').val(),
+      address_city: form.find('#bcity input').val(),
+      address_zip: form.find('#bzipcode input').val(),
+      address_state: form.find('#bstate select option:selected').data('stateCode'),
+      address_country: form.find('#bcountry select option:selected').data('countryCode')
     }
-  </script>
-<%- elsif (bill_address = spree_current_user.billing_address) -%>
-  <script>
-    Spree.stripeAdditionalInfo = {
-      name: "<%= bill_address.full_name %>",
-      address_line1: "<%= bill_address.address1 %>",
-      address_line2: "<%= bill_address.address2 %>",
-      address_city: "<%= bill_address.city %>",
-      address_state: "<%= bill_address.state_text %>",
-      address_zip: "<%= bill_address.zipcode %>",
-      address_country: "<%= bill_address.country %>"
-    }
-  </script>
-<%- end -%>
+  }
+</script>
 

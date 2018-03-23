@@ -5,12 +5,22 @@ module Spree
 
     def new
       @payment_methods = Spree::PaymentMethod.available
+      @credit_card = Spree::CreditCard.new
+      @credit_card.address ||= @user.shipping_address&.clone || Spree::Address.build_default
       render :new
     end
 
     def create
-      return redirect_to '/account/payment' if @user.update(payment_method_params)
-      new
+      @credit_card = @user.credit_cards.build(payment_method_params)
+      if @credit_card.save
+        redirect_to '/account/payment'
+      else
+        flash[:error] = @credit_card.errors.full_messages.join(', ')
+        respond_to do |format|
+          format.html { render :new }
+          format.js
+        end
+      end
     end
 
     def destroy
@@ -30,13 +40,13 @@ module Spree
     def payment_method_params
       pm_params = params.permit(
         order: { payments_attributes: permitted_payment_attributes },
-        payment_source: permitted_source_attributes
+        payment_source: permitted_source_attributes + [:use_shipping, address_attributes: permitted_address_attributes]
       )
 
       payment_method_id = pm_params['order']['payments_attributes'].first['payment_method_id'].to_s
       source_params = pm_params.delete('payment_source')[payment_method_id]
 
-      { credit_cards_attributes: [source_params.merge(payment_method_id: payment_method_id)] }
+      source_params.merge(payment_method_id: payment_method_id)
     end
 
     def load_user

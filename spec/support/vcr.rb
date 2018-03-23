@@ -15,7 +15,7 @@ VCR.configure do |c|
 end
 
 RSpec.configure do |config|
-  config.around(:each, vcr: true) do |example|
+  config.around(:each, vcr: true, vcr_proxy: true) do |example|
     ENV['http_proxy'] = VCR.current_cassette.nil? || VCR.current_cassette.recording? ? 'http://staging.public.market:3000' : ''
     example.run
     ENV['http_proxy'] = nil
