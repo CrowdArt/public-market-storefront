@@ -23,7 +23,10 @@ RSpec.describe 'checkout', type: :feature, js: true, vcr: true do
     visit spree.product_path(variant.product)
     click_button 'Add To Cart'
 
-    expect(page).to have_text Spree.t(:added_to_cart, product: variant.product.name) # rubocop:disable RSpec/ExpectInHook
+    # rubocop:disable RSpec/ExpectInHook
+    expect(page).to have_text Spree.t(:added_to_cart, product: variant.product.name)
+    expect(page).to have_css('.cart-info.full')
+    # rubocop:enable RSpec/ExpectInHook
 
     first('#link-to-cart a').click
     click_button 'Checkout'
