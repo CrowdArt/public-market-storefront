@@ -17,3 +17,8 @@
         = render partial: 'spree/shared/user_form', locals: { f: f }
         p
           = f.submit t('forms.users.edit.update_password'), class: 'btn btn-primary'
+
+javascript:
+  $(function() {
+    initFormLeaveCheck("#edit_user_info_#{@user.id}")
+  })

@@ -14,3 +14,8 @@
             = render partial: "spree/checkout/payment/#{method.method_type}", locals: { payment_method: method }
 
     = render partial: 'spree/shared/payment_button'
+
+javascript:
+  $(function() {
+    initFormLeaveCheck('#new_credit_card')
+  })

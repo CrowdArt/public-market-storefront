@@ -1,8 +1,8 @@
 = render partial: 'spree/shared/error_messages', locals: { target: @user }
 
-= form_for @user, url: update_address_path, html: { id: "checkout_form_address" }, method: :put do |form|
+= form_for @user, url: update_address_path, html: { id: 'checkout_form_address' }, method: :put do |form|
   .row
-    .col-sm-6 data-hook="shipping_fieldset_wrapper"
+    .col-md-6 data-hook="shipping_fieldset_wrapper"
       .panel.panel-default#shipping data-hook=true
         = form.fields_for :ship_address do |ship_form|
           .panel-heading
@@ -12,3 +12,8 @@
 
   .well.text-left.form-buttons data-hook="buttons"
     = submit_tag Spree.t(:save_my_address), class: 'btn btn-lg btn-success'
+
+javascript:
+  $(function() {
+    initFormLeaveCheck('#checkout_form_address')
+  })

@@ -2,8 +2,10 @@ module Spree
   class CreditCardsController < Spree::StoreController
     before_action :authenticate_spree_user!
     before_action :load_user
+    before_action :hide_search_bar_on_mobile, only: :new
 
     def new
+      set_back_mobile_link('/account')
       @payment_methods = Spree::PaymentMethod.available
       @credit_card = Spree::CreditCard.new
       @credit_card.address ||= @user.shipping_address&.clone || Spree::Address.build_default

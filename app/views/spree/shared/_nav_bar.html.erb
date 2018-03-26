@@ -1,7 +1,7 @@
 <nav class="navbar col-sm-10" id="top-nav-bar">
   <ul id="nav-bar" class="nav navbar-nav navbar-right" data-hook>
     <li class='link-to-account'></li>
-    <li id="search-bar" data-hook>
+    <li id="search-bar" class="<%= 'hidden-xs' if @hide_search_bar_mobile %>">
       <%= render partial: 'spree/shared/search' %>
     </li>
   </ul>
