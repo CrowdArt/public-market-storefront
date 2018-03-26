@@ -1,9 +1,9 @@
-- if (cards = @user.credit_cards).any?
+- if @cards.any?
   #existing_cards
     h3 = t('credit_cards')
 
     .row.condensed
-      - cards.each do |card|
+      - @cards.each do |card|
         .col-md-4.col-sm-6
           .panel.panel-default
             .panel-heading

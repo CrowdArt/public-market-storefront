@@ -1,5 +1,5 @@
 Spree::UsersController.class_eval do
-  before_action :load_user, only: %i[update_address update_password]
+  before_action :load_user, only: %i[show update_address update_password]
 
   ORDERS_PER_USER_PAGE = 10
 
@@ -16,10 +16,9 @@ Spree::UsersController.class_eval do
   end
 
   def update_address
-    address_params = fill_shipping_address
-    @account_tab = address_params[:bill_address_attributes] ? :payment : :shipping
+    @account_tab = :shipping
 
-    if @user.update(address_params)
+    if @user.update(user_address_params)
       redirect_to "/account/#{@account_tab}"
     else
       render :show
@@ -54,28 +53,12 @@ Spree::UsersController.class_eval do
     @user = spree_current_user
   end
 
-  def fill_shipping_address
-    address_params = user_payment_params
-    if address_params[:bill_address_attributes] && billing_params[:use_as_shipping] == '1'
-      address_params[:ship_address_attributes] = address_params[:bill_address_attributes].except('id')
-      address_params[:ship_address_attributes].permit!
-    end
-    address_params
-  end
-
-  def user_payment_params
-    params.require(:user).permit(
-      bill_address_attributes: Spree::PermittedAttributes.address_attributes,
-      ship_address_attributes: Spree::PermittedAttributes.address_attributes
-    )
+  def user_address_params
+    params.require(:user).permit(ship_address_attributes: Spree::PermittedAttributes.address_attributes)
   end
 
   def user_password_params
     params.require(:user).permit(:password, :password_confirmation)
-  end
-
-  def billing_params
-    params.permit(:use_as_shipping)
   end
 
   def show_orders
@@ -98,8 +81,7 @@ Spree::UsersController.class_eval do
   end
 
   def show_payment
-    @user.bill_address ||= Spree::Address.build_default
-    @eq_ship_address = (@user.bill_address.nil? && @user.ship_address.nil?) || @user.bill_address.same_as?(@user.ship_address)
+    @cards = @user.credit_cards
   end
 
   def show_shipping
