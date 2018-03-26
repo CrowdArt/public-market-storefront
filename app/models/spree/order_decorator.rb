@@ -10,6 +10,11 @@ Spree::Order.class_eval do
     self.bill_address = card.address.clone
   end
 
+  def persist_user_address!
+    return if temporary_address || !user || !user.respond_to?(:persist_order_address)
+    user.persist_order_address(self)
+  end
+
   private
 
   def use_shipping?

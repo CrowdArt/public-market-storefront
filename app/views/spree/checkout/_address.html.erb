@@ -6,9 +6,6 @@
           <h3 class="panel-title"><%= Spree.t(:shipping_address) %></h3>
         </div>
         <div class="panel-body">
-          <% if @order.bill_address.blank? %>
-            <%= hidden_field_tag 'order[use_shipping]', '1' %>
-          <% end %>
           <%= render partial: 'spree/address/form', locals: { form: ship_form, address_type: 'shipping', address: @order.ship_address } %>
         </div>
       <% end %>

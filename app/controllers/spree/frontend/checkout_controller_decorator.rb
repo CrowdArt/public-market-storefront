@@ -35,6 +35,10 @@ Spree::CheckoutController.class_eval do
 
   private
 
+  def before_address
+    @order.ship_address ||= (spree_current_user&.ship_address&.clone || Spree::Address.build_default)
+  end
+
   def before_payment
     if @order.checkout_steps.include? 'delivery'
       packages = @order.shipments.map(&:to_package)
