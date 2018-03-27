@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_batch_api.git
-  revision: 5dda8585135c6b848df26f3d76b54c13e38f69ab
+  revision: 7fba2efc264f97428d563b08f097a3df03e04785
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -307,7 +307,7 @@ GEM
       faraday
       multi_json
     erubi (1.7.1)
-    et-orbi (1.0.9)
+    et-orbi (1.1.0)
       tzinfo
     excon (0.61.0)
     execjs (2.7.0)
