@@ -1,0 +1,26 @@
+
+ruby:
+  wrapper_class = defined?(wrapper_class) ? wrapper_class : nil
+
+.credit-card class=wrapper_class
+  .panel.panel-default
+    .panel-heading
+      .credit-card__name.text-uppercase.ellipsis = card.name
+      .pull-right
+        = image_tag "credit_cards/icons/#{card.cc_type}.png"
+
+    .panel-body
+      p
+        strong = card.display_number
+
+      p.text-muted #{card.month} / #{card.year}
+
+      - if (address = card.address)
+        address
+          = address.address1
+          br
+          | #{address.city}, #{address.state} #{address.zipcode}
+          br
+          = address.country
+
+      = link_to 'Remove', credit_card_path(card), method: :delete, data: { confirm: t('payment_methods.cards.delete_prompt') }
