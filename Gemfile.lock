@@ -32,7 +32,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_pages.git
-  revision: 79c1980224a34c40b4c27a505fb5b09bef9f254f
+  revision: 72358147e637f988b3e535ed54f0319443cb5daa
   specs:
     spree_pages (0.0.1.alpha)
       paperclip
@@ -605,7 +605,7 @@ GEM
     rufus-scheduler (3.4.2)
       et-orbi (~> 1.0)
     safe_yaml (1.0.4)
-    sass (3.5.5)
+    sass (3.5.6)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
