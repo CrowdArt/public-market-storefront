@@ -1,4 +1,5 @@
 sidekiq: bundle exec sidekiq -C config/sidekiq.yml
 web: bundle exec rails server -p 5000
 es: elasticsearch
-mailhog: docker run --rm -p 1025:1025 -p 8025:8025 --name mailhog mailhog/mailhog
+mailhog: bin/mailhog
+reputation: bin/global_reputation

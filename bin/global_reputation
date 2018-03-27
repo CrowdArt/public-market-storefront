@@ -1,0 +1,12 @@
+#!/bin/sh
+
+docker pull registry.gitlab.com/publicmarket/global-reputation
+
+docker run --rm \
+  --name global_reputation \
+  -e='SECRET_KEY_BASE=a' \
+  -e='RAILS_ENV=production' \
+  -e='DATABASE_URL=postgresql://postgres:postgres@docker.for.mac.host.internal:5432/global_reputation' \
+  -p 3001:3000 \
+  registry.gitlab.com/publicmarket/global-reputation \
+  bash -c "rake db:migrate 2>/dev/null || rake db:setup && rails s"
