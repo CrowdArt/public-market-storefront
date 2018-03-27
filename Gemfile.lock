@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/flyerhzm/bullet.git
-  revision: d47b0fd4eee8ad3282e81754bffc6b4e14f8a634
-  specs:
-    bullet (5.7.2)
-      activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.11.0)
-
-GIT
   remote: https://github.com/public-market/spree_auth_devise.git
   revision: aaae186bae60285d7f7b6fbebb01366ffbd9e0a3
   specs:
@@ -196,6 +188,9 @@ GEM
     bootswatch-rails (3.3.5)
       railties (>= 3.1)
     builder (3.2.3)
+    bullet (5.7.5)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11.0)
     byebug (10.0.1)
     camertron-eprun (1.1.1)
     cancancan (2.1.3)
@@ -729,7 +724,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootswatch-rails
-  bullet!
+  bullet
   byebug
   capybara
   capybara-screenshot

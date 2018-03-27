@@ -67,7 +67,7 @@ group :test do
 end
 
 group :development do
-  gem 'bullet', github: 'flyerhzm/bullet'
+  gem 'bullet'
   gem 'byebug'
   gem 'guard', require: false
   gem 'guard-rspec', require: false
