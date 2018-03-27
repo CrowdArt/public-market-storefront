@@ -45,3 +45,7 @@ rspec:
     - bundle exec rake db:schema:load
   script:
     - bundle exec rspec
+  artifacts:
+    paths:
+      - coverage/
+      - tmp/capybara/

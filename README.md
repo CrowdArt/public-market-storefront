@@ -1,6 +1,7 @@
 # Public Market Storefront
 
 [![Build status](https://gitlab.com/publicmarket/storefront/badges/master/pipeline.svg)](https://gitlab.com/publicmarket/storefront/commits/master)
+[![Coverage report](https://gitlab.com/gitlab-org/gitlab-ce/badges/master/coverage.svg)](https://gitlab.com/publicmarket/storefront/commits/master)
 
 ## Install Dependencies
 

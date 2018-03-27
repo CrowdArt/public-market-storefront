@@ -18,6 +18,8 @@ vendor/bundle
 !/log/.keep
 !/tmp/.keep
 
+coverage
+
 .DS_Store
 
 /node_modules
