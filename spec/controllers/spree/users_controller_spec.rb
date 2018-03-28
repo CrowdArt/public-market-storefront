@@ -8,9 +8,11 @@ RSpec.describe Spree::UsersController, type: :controller do
     allow(controller).to receive(:spree_current_user) { user }
   end
 
+  routes { Spree::Core::Engine.routes }
+
   describe '#show' do
     it 'returns paginated orders' do
-      spree_get :show, tab: :orders
+      get :show, params: { tab: :orders }
 
       expect(assigns(:orders).size).to eq 1
       expect(assigns(:orders).total_pages).to eq 1
@@ -18,7 +20,7 @@ RSpec.describe Spree::UsersController, type: :controller do
     end
 
     it 'return no orders on next page' do
-      spree_get :show, tab: :orders, page: 2
+      get :show, params: { tab: :orders, page: 2 }
 
       expect(assigns(:orders).size).to eq 0
       expect(assigns(:orders).total_pages).to eq 1

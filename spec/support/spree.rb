@@ -8,5 +8,4 @@ end
 
 RSpec.configure do |config|
   config.include SpreeBookstoreHelpers
-  config.include Spree::TestingSupport::ControllerRequests, type: :controller
 end
