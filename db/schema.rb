@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180321122902) do
+ActiveRecord::Schema.define(version: 20180328101332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,6 +153,7 @@ ActiveRecord::Schema.define(version: 20180321122902) do
     t.integer "user_id"
     t.integer "payment_method_id"
     t.boolean "default", default: false, null: false
+    t.integer "funding", default: 0
     t.index ["address_id"], name: "index_spree_credit_cards_on_address_id"
     t.index ["payment_method_id"], name: "index_spree_credit_cards_on_payment_method_id"
     t.index ["user_id"], name: "index_spree_credit_cards_on_user_id"

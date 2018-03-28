@@ -11,13 +11,7 @@ RSpec.describe 'checkout', type: :feature, js: true, vcr: true do
     country = create(:country, states_required: true)
     create(:state, name: 'Alabama', abbr: 'AL', country: country)
     create(:free_shipping_method, vendor: vendor)
-
-    # stripe keys are from spree_gateway gem https://github.com/spree/spree_gateway/blob/master/spec/features/stripe_checkout_spec.rb
-    Spree::Gateway::StripeGateway.create!(
-      name: 'Stripe',
-      preferred_secret_key: 'sk_test_VCZnDv3GLU15TRvn8i2EsaAN',
-      preferred_publishable_key: 'pk_test_Cuf0PNtiAkkMpTVC2gwYDMIg'
-    )
+    create(:stripe_card_payment_method)
 
     variant.stock_items.update_all(count_on_hand: 1, backorderable: false)
     visit spree.product_path(variant.product)

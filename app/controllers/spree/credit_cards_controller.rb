@@ -42,7 +42,7 @@ module Spree
     def payment_method_params
       pm_params = params.permit(
         order: { payments_attributes: permitted_payment_attributes },
-        payment_source: permitted_source_attributes + [:use_shipping, address_attributes: permitted_address_attributes]
+        payment_source: permitted_source_attributes + [:funding, :use_shipping, address_attributes: permitted_address_attributes]
       )
 
       payment_method_id = pm_params['order']['payments_attributes'].first['payment_method_id'].to_s

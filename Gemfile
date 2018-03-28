@@ -17,6 +17,7 @@ gem 'puma', '~> 3.7'
 gem 'dalli'
 
 gem 'config'
+gem 'enumerize'
 
 gem 'bootswatch-rails'
 

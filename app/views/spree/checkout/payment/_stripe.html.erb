@@ -34,7 +34,7 @@
         number:    '#card_number',
         exp_month: '#card_expiry',
         exp_year:  '#card_expiry',
-        cvc:       '#card_code'
+        cvc:       '#card_code',
       }
       if (response.error.param) {
         errorField = Spree.stripePaymentMethod.find(param_map[response.error.param])
@@ -53,6 +53,7 @@
       Spree.stripePaymentMethod.append("<input type='hidden' class='stripeToken' name='payment_source[" + paymentMethodId + "][last_digits]' value='" + response.card.last4 + "'/>");
       Spree.stripePaymentMethod.append("<input type='hidden' class='stripeToken' name='payment_source[" + paymentMethodId + "][month]' value='" + response.card.exp_month + "'/>");
       Spree.stripePaymentMethod.append("<input type='hidden' class='stripeToken' name='payment_source[" + paymentMethodId + "][year]' value='" + response.card.exp_year + "'/>");
+      Spree.stripePaymentMethod.append("<input type='hidden' class='stripeToken' name='payment_source[" + paymentMethodId + "][funding]' value='" + response.card.funding + "'/>");
       return Spree.stripePaymentMethod.parents("form").trigger('submit');
     }
   };
