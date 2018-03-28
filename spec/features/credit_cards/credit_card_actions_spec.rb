@@ -107,7 +107,13 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
     context 'when credit card' do
       before do
         fill_in 'card_number', with: '4242424242424242' # stripe test credit card
-        click_button 'Save and Continue'
+
+        Capybara.default_max_wait_time = 10
+        setup_stripe_watcher
+
+        click_button('Save and Continue')
+
+        wait_for_stripe # Wait for Stripe API to return + form to submit
       end
 
       it 'adds new credit card' do
@@ -119,8 +125,13 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
     context 'when debit card' do
       before do
         fill_in 'card_number', with: '4000056655665556' # stripe test debit card
-        page.execute_script("$('.cardNumber').trigger('change')")
-        click_button 'Save and Continue'
+
+        Capybara.default_max_wait_time = 10
+        setup_stripe_watcher
+
+        click_button('Save and Continue')
+
+        wait_for_stripe # Wait for Stripe API to return + form to submit
       end
 
       it 'adds new credit card' do
