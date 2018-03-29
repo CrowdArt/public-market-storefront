@@ -6,7 +6,7 @@ ruby:
   .panel.panel-default
     .panel-heading
       .credit-card__name.text-uppercase.ellipsis = card.name
-      - if card_brand = card.cc_type
+      - if card_brand = card.cc_type.presence
         .pull-right
           = image_tag "credit_cards/icons/#{card_brand}.png"
 
