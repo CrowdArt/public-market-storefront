@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'shipping info update', type: :feature, js: true do
-  let(:user) { create(:bookstore_user) }
+  let(:user) { create(:pm_user) }
 
   before do
     create(:state, name: 'Alabama', abbr: 'AL')

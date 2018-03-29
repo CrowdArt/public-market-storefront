@@ -31,7 +31,7 @@ RSpec.describe 'checkout', type: :feature, js: true, vcr: true do
   end
 
   context 'when user is authorized' do
-    let(:user) { create(:bookstore_user) }
+    let(:user) { create(:pm_user) }
 
     it 'completes checkout process' do
       flow 'address step' do

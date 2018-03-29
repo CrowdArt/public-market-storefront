@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Spree::User, type: :model do
   describe 'validates names' do
     subject do
-      build_stubbed(:bookstore_user, first_name: first_name)
+      build_stubbed(:pm_user, first_name: first_name)
     end
 
     let(:first_name) { 'valid name' }
@@ -43,7 +43,7 @@ RSpec.describe Spree::User, type: :model do
 
   describe 'validates password length' do
     subject do
-      build_stubbed(:bookstore_user, password: password)
+      build_stubbed(:pm_user, password: password)
     end
 
     context 'with correct password' do
@@ -60,13 +60,13 @@ RSpec.describe Spree::User, type: :model do
   end
 
   describe 'send welcome email' do
-    let!(:user) { create(:bookstore_user) }
+    let!(:user) { create(:pm_user) }
 
     it { expect(ActionMailer::DeliveryJob).to have_been_enqueued.with('Spree::UserMailer', 'welcome', 'deliver_now', user.id) }
   end
 
   describe 'set first & last name from shipping address' do
-    let!(:user) { create(:bookstore_user, first_name: nil, last_name: nil) }
+    let!(:user) { create(:pm_user, first_name: nil, last_name: nil) }
 
     before { user.update(ship_address: create(:address)) }
 
@@ -76,7 +76,7 @@ RSpec.describe Spree::User, type: :model do
   describe 'username' do
     subject { user.username }
 
-    let(:user) { create(:bookstore_user, email: 'buyer@publicmarket.io') }
+    let(:user) { create(:pm_user, email: 'buyer@publicmarket.io') }
 
     it { is_expected.to be(user.first_name) }
 

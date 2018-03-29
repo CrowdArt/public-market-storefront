@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'update email address', type: :feature, js: true do
   subject { page }
 
-  let(:user) { create(:bookstore_user, email: 'user@spree.com') }
+  let(:user) { create(:pm_user, email: 'user@spree.com') }
 
   before do
     stub_current_store

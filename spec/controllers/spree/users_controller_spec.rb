@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Spree::UsersController, type: :controller do
-  let(:user) { create(:bookstore_user) }
+  let(:user) { create(:pm_user) }
 
   before do
     create(:completed_order_with_totals, user: user)
