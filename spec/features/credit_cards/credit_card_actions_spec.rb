@@ -91,6 +91,8 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
   end
 
   describe 'saves funding type' do
+    subject { user.credit_cards.last.funding_credit? }
+
     let(:user) { create(:bookstore_user, shipping_address: create(:address, firstname: 'First name', lastname: 'Last name')) }
 
     before do
@@ -102,42 +104,28 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
 
       fill_in 'card_expiry', with: '10/18'
       fill_in 'card_code', with: '911'
+      fill_in 'card_number', with: card_number
+
+      Capybara.default_max_wait_time = 10
+      setup_stripe_watcher
+
+      click_button('Save and Continue')
+
+      wait_for_stripe # Wait for Stripe API to return + form to submit
+
+      expect(page).to have_text("#{user.shipping_address.firstname} #{user.shipping_address.lastname}".upcase) # rubocop:disable RSpec/ExpectInHook
     end
 
     context 'when credit card' do
-      before do
-        fill_in 'card_number', with: '4242424242424242' # stripe test credit card
+      let(:card_number) { '4242424242424242' } # stripe test credit card
 
-        Capybara.default_max_wait_time = 10
-        setup_stripe_watcher
-
-        click_button('Save and Continue')
-
-        wait_for_stripe # Wait for Stripe API to return + form to submit
-      end
-
-      it 'adds new credit card' do
-        expect(page).to have_text("#{user.shipping_address.firstname} #{user.shipping_address.lastname}".upcase)
-        expect(user.credit_cards.last.funding_credit?).to be true
-      end
+      it { is_expected.to be true }
     end
 
     context 'when debit card' do
-      before do
-        fill_in 'card_number', with: '4000056655665556' # stripe test debit card
+      let(:card_number) { '4000056655665556' } # stripe test debit card
 
-        Capybara.default_max_wait_time = 10
-        setup_stripe_watcher
-
-        click_button('Save and Continue')
-
-        wait_for_stripe # Wait for Stripe API to return + form to submit
-      end
-
-      it 'adds new credit card' do
-        expect(page).to have_text("#{user.shipping_address.firstname} #{user.shipping_address.lastname}".upcase)
-        expect(user.credit_cards.last.funding_debit?).to be true
-      end
+      it { is_expected.to be false }
     end
   end
 end

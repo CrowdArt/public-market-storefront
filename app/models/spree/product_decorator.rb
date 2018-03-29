@@ -32,4 +32,8 @@ Spree::Product.class_eval do
   def self.search_fields
     %i[name author isbn]
   end
+
+  def should_index?
+    can_supply?
+  end
 end
