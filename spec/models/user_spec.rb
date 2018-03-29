@@ -59,12 +59,6 @@ RSpec.describe Spree::User, type: :model do
     end
   end
 
-  describe 'send welcome email' do
-    let!(:user) { create(:pm_user) }
-
-    it { expect(ActionMailer::DeliveryJob).to have_been_enqueued.with('Spree::UserMailer', 'welcome', 'deliver_now', user.id) }
-  end
-
   describe 'set first & last name from shipping address' do
     let!(:user) { create(:pm_user, first_name: nil, last_name: nil) }
 
@@ -84,6 +78,30 @@ RSpec.describe Spree::User, type: :model do
       before { user.update(first_name: '') }
 
       it { is_expected.to eq('buyer@') }
+    end
+  end
+
+  describe 'welcome email' do
+    let(:user) { create(:pm_user, confirmed_at: nil) }
+
+    before do
+      stub_current_store
+    end
+
+    it 'is sent after confirmation' do
+      expect {
+        user.confirm
+      }.to have_enqueued_job(ActionMailer::DeliveryJob).with('Spree::UserMailer', 'welcome', 'deliver_now', user.id)
+    end
+
+    context 'with reconfirmation' do
+      let(:user) { create(:pm_user, unconfirmed_email: 'newemail@email.com') }
+
+      it 'is not sent' do
+        expect {
+          user.confirm
+        }.not_to have_enqueued_job(ActionMailer::DeliveryJob)
+      end
     end
   end
 end

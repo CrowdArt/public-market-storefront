@@ -7,7 +7,6 @@ Spree::User.class_eval do
   accepts_nested_attributes_for :credit_cards, allow_destroy: true
 
   before_save :fill_names, if: :ship_address_id_changed?
-  after_create :send_welcome_email
 
   def full_name
     [first_name, last_name].join(' ').strip
@@ -29,6 +28,11 @@ Spree::User.class_eval do
     s_address.attributes = order.ship_address.attributes.except('id', 'updated_at', 'created_at')
     s_address.save
     update(ship_address_id: s_address.id)
+  end
+
+  def after_confirmation
+    return if previous_changes[:unconfirmed_email]
+    send_welcome_email
   end
 
   private
