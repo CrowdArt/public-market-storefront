@@ -8,7 +8,7 @@ Spree::CreditCard.class_eval do
   attr_accessor :use_shipping
 
   # use enumerize instead of simple enum, because using enum lead to error in class_eval https://github.com/spree/spree/issues/5786
-  enumerize :funding, in: { credit: 0, debit: 1 }, default: :credit, predicates: { prefix: true }
+  enumerize :funding, in: { credit: 0, debit: 1, unknown: 2 }, default: :credit, predicates: { prefix: true }
 
   private
 

@@ -6,8 +6,9 @@ ruby:
   .panel.panel-default
     .panel-heading
       .credit-card__name.text-uppercase.ellipsis = card.name
-      .pull-right
-        = image_tag "credit_cards/icons/#{card.cc_type}.png"
+      - if card_brand = card.cc_type
+        .pull-right
+          = image_tag "credit_cards/icons/#{card_brand}.png"
 
     .panel-body
       - if spree_current_user.admin?
