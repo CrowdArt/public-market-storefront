@@ -17,20 +17,11 @@ RSpec.configure do |config|
     Searchkick.enable_callbacks
 
     SEARCHABLE_MODELS.each do |model|
-      model.after_save do
-        model.reindex
-        model.searchkick_index.refresh
-      end
-
       model.reindex
       model.searchkick_index.refresh
     end
 
     example.run
-
-    SEARCHABLE_MODELS.each do |model|
-      model.searchkick_index.delete
-    end
 
     Searchkick.disable_callbacks
   end
