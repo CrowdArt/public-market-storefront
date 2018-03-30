@@ -60,7 +60,7 @@ RSpec.describe 'checkout', type: :feature, js: true, vcr: true do
         setup_stripe_watcher
 
         fill_in 'name_on_card_1', with: 'First name Last name'
-        fill_in 'card_number', with: '4242424242424242'
+        native_fill_field 'card_number', '4242424242424242'
         # Otherwise ccType field does not get updated correctly
         page.execute_script("$('.cardNumber').trigger('change')")
 

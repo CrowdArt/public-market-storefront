@@ -12,3 +12,13 @@ Capybara.register_driver(:selenium_chrome_headless) do |app|
 end
 
 Capybara.javascript_driver = :selenium_chrome_headless
+
+module CapybaraHelpers
+  def native_fill_field(selector, text)
+    text.split('').each { |c| find_field(selector).native.send_keys(c) }
+  end
+end
+
+RSpec.configure do |config|
+  config.include CapybaraHelpers, type: :feature
+end

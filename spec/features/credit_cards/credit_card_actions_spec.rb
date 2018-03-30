@@ -105,7 +105,7 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
       Capybara.default_max_wait_time = 10
       setup_stripe_watcher
 
-      fill_in 'card_number', with: card_number
+      native_fill_field 'card_number', card_number
       # Otherwise ccType field does not get updated correctly
       page.execute_script("$('.cardNumber').trigger('change')")
 
