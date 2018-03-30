@@ -21,3 +21,12 @@ en:
     order_mailer:
       total: Total
       subtotal: Subtotal
+    your_rating: Your rating
+    positive: Positive
+    negative: Negative
+    update_positive: Update to Negative
+    update_negative: Update to Positive
+    rating_title: How was your experience with this order?
+    rating_send: Send
+    positive_feedback: 'Positive Feedback:'
+    not_enough_ratings: N/A (not enough ratings)

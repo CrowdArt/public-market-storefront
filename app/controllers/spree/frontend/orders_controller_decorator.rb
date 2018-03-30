@@ -1,4 +1,6 @@
 Spree::OrdersController.class_eval do
+  skip_before_action :check_authorization, only: [:rate]
+
   # Bookstore changes:
   # - respond to js when add to cart clicked
 
@@ -42,4 +44,25 @@ Spree::OrdersController.class_eval do
     end
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
+
+  def rate
+    order = Spree::Order.find_by!(number: params[:id])
+    authorize! :rate, order
+
+    GlobalReputation::Api::Rating.rate_order(spree_current_user, order, params[:rating])
+    Rails.cache.delete(order.rating_uid)
+
+    redirect_to(order)
+  end
+
+  def show
+    @order = Spree::Order.includes(line_items: [variant: %i[option_values images product]],
+                                   bill_address: :state, ship_address: :state)
+                         .find_by!(number: params[:id])
+
+    return unless @order.rating_uid
+    @rating = Rails.cache.fetch(@order.rating_uid) do
+      GlobalReputation::Api::Rating.find(@order.rating_uid).first
+    end
+  end
 end

@@ -1,0 +1,13 @@
+#rating-form
+  input
+    display: none
+    &:checked + .emoji
+      filter: none
+
+  .emoji
+    cursor: pointer
+    font-size: 40px
+    line-height: 50px
+    filter: grayscale(100)
+    &:hover
+      font-size: 44px

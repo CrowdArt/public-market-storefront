@@ -49,6 +49,8 @@ gem 'delayed_paperclip'
 gem 'fog-google'
 gem 'sidekiq'
 
+gem 'json_api_client'
+
 gem 'swagger-blocks'
 
 group :test do

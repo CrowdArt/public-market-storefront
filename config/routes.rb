@@ -10,6 +10,8 @@ Spree::Core::Engine.add_routes do
 
     resources :credit_cards, only: %i[create destroy]
   end
+
+  post '/orders/rate/:id', to: 'orders#rate', as: :rate_order
 end
 
 Rails.application.routes.draw do

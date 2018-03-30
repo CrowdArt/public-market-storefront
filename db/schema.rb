@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328101332) do
+ActiveRecord::Schema.define(version: 20180329111123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -315,6 +315,7 @@ ActiveRecord::Schema.define(version: 20180328101332) do
     t.integer "state_lock_version", default: 0, null: false
     t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.string "rating_uid"
     t.index ["approver_id"], name: "index_spree_orders_on_approver_id"
     t.index ["bill_address_id"], name: "index_spree_orders_on_bill_address_id"
     t.index ["canceler_id"], name: "index_spree_orders_on_canceler_id"
@@ -1108,6 +1109,7 @@ ActiveRecord::Schema.define(version: 20180328101332) do
     t.string "first_name"
     t.string "last_name"
     t.string "unconfirmed_email"
+    t.string "reputation_uid"
     t.index ["bill_address_id"], name: "index_spree_users_on_bill_address_id"
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"
     t.index ["email"], name: "email_idx_unique", unique: true
@@ -1161,6 +1163,7 @@ ActiveRecord::Schema.define(version: 20180328101332) do
     t.string "state"
     t.datetime "deleted_at"
     t.text "note"
+    t.string "reputation_uid"
     t.index ["deleted_at"], name: "index_spree_vendors_on_deleted_at"
     t.index ["name"], name: "index_spree_vendors_on_name", unique: true
     t.index ["state"], name: "index_spree_vendors_on_state"

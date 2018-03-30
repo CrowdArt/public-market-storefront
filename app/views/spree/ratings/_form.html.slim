@@ -1,0 +1,38 @@
+- if @order.rateable?
+  .row
+    .col-md-4.col-md-offset-4
+      .panel.panel-default#rating-form
+        - if @rating
+          .panel-heading
+            span> = Spree.t('your_rating')
+            - if @rating.display_value > 0
+              span 😃
+              span.text-muted = Spree.t('positive')
+            - else
+              span 😞
+              span.text-muted = Spree.t('negative')
+            - if @rating.modification.blank?
+              .pull-right
+                = link_to Spree.t("update_#{@rating.value_text}"), rate_order_path(@order, rating: @rating.available_mod), method: :post
+        - else
+          .panel-heading = Spree.t('rating_title')
+          .panel-body
+            = form_for @order, url: rate_order_path(@order), method: :post do
+              .row
+                .col-xs-6.text-center
+                  label data-toggle='tooltip' data-placement='bottom' title=Spree.t('positive')
+                    input type='radio' name='rating' value='1'
+                    span.emoji 😃
+                .col-xs-6.text-center
+                  label data-toggle='tooltip' data-placement='bottom' title=Spree.t('negative')
+                    input type='radio' name='rating' value='-1'
+                    span.emoji 😞
+              .text-center
+                button.btn.btn-sm.btn-default disabled=true type='submit' = Spree.t('rating_send')
+
+  javascript:
+    $('[data-toggle="tooltip"]').tooltip()
+
+    $('#rating-form').on('click', 'input', function(e) {
+      $('#rating-form button').prop('disabled', false);
+    })

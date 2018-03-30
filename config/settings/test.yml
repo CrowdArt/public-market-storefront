@@ -5,3 +5,6 @@ btol_password: CC94103
 # stripe keys are from spree_gateway gem https://github.com/spree/spree_gateway/blob/master/spec/features/stripe_checkout_spec.rb
 stripe_sk_key: sk_test_VCZnDv3GLU15TRvn8i2EsaAN
 stripe_pk_key: pk_test_Cuf0PNtiAkkMpTVC2gwYDMIg
+
+global_reputation_url: http://global-reputation:3001/api/v1
+global_reputation_key: fe98dddcab33ec21d31b038dd3

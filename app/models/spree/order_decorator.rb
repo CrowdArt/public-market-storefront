@@ -15,6 +15,14 @@ Spree::Order.class_eval do
     user.persist_order_address(self)
   end
 
+  def vendors
+    Spree::Vendor.joins(variants: :line_items).where(spree_line_items: { order_id: id })
+  end
+
+  def rateable?
+    shipped?
+  end
+
   private
 
   def use_shipping?

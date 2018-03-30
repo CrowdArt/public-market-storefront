@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://global-reputation:3001/api/v1/ratings
+    body:
+      encoding: UTF-8
+      string: '{"data":{"type":"ratings","attributes":{"sender":null,"receiver":null,"value":1}}}'
+    headers:
+      X-Api-Key:
+      - fe98dddcab33ec21d31b038dd3
+      User-Agent:
+      - Faraday v0.12.2
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Etag:
+      - W/"2e24360e5d0404be97be51c7a7566729"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - e6e92cbc-d638-4130-aeb2-92a42dc07fad
+      X-Runtime:
+      - '0.013799'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"data":{"id":"V2SZHSTOSGI0OX","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-03-30
+        12:26:18 UTC","sender":"UAVEJ6V477WQCW","receiver":"RS29IEL2YHX6FC"}}}'
+    http_version: 
+  recorded_at: Fri, 30 Mar 2018 12:25:56 GMT
+recorded_with: VCR 4.0.0
