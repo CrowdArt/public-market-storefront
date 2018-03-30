@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action, vcr: true, vcr_proxy: true do
   subject(:properties) { metadata[:properties] }
 

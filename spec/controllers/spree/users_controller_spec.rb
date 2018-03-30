@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Spree::UsersController, type: :controller do
   let(:user) { create(:pm_user) }
 

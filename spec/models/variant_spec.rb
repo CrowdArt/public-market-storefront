@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Spree::Variant, type: :model do
   describe 'best price changes' do
     subject { variant.product.reload.price }

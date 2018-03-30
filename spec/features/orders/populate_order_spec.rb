@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'populate order', type: :feature, js: true do
   let(:variant) { create(:variant) }
 

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'product page', type: :feature do
   let(:taxon) { create(:taxon) }
   let(:product) { create(:product, taxons: [taxon], price: 10) }

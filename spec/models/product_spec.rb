@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Spree::Product, type: :model do
   describe '#should_index?' do
     subject { product.should_index? }

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Sign Up', type: :feature do
   before do
     stub_current_store

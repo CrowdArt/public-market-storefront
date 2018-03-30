@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'shipping info update', type: :feature, js: true do
   let(:user) { create(:pm_user) }
 

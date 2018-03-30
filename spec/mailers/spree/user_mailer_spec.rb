@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Spree::UserMailer, type: :mailer do
   let(:user) { create(:pm_user) }
 

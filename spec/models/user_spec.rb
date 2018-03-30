@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Spree::User, type: :model do
   describe 'validates names' do
     subject do

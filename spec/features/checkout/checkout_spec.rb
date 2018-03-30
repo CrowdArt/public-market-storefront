@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'checkout', type: :feature, js: true, vcr: true do
   let(:vendor) { create(:vendor) }
   let(:variant) { create(:variant, vendor: vendor) }

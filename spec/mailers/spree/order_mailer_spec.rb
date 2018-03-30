@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Spree::OrderMailer, type: :mailer do
   let(:order) { create(:pm_order_with_line_items) }
 

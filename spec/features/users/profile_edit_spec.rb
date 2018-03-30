@@ -1,6 +1,4 @@
-require 'rails_helper'
-
-RSpec.describe 'profile edit', type: :feature, js: true do
+RSpec.describe 'profile edit', type: :feature do
   subject { page }
 
   let(:user) { create(:pm_user, email: 'user@spree.com', password: 'secretpassword') }

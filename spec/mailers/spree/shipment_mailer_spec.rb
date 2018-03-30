@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Spree::ShipmentMailer, type: :mailer do
   let(:shipment) { create(:pm_shipment) }
 

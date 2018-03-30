@@ -1,6 +1,4 @@
-require 'rails_helper'
-
-RSpec.describe 'update email address', type: :feature, js: true do
+RSpec.describe 'update email address', type: :feature do
   subject { page }
 
   let(:user) { create(:pm_user, email: 'user@spree.com') }
@@ -26,8 +24,7 @@ RSpec.describe 'update email address', type: :feature, js: true do
 
   describe 'visit confirmation link' do
     before do
-      visit spree.spree_user_confirmation_url(confirmation_token: user.reload.confirmation_token,
-                                              host: "http://#{Capybara.server_host}:#{Capybara.current_session.server.port}")
+      visit spree.spree_user_confirmation_url(confirmation_token: user.reload.confirmation_token)
     end
 
     it 'updates original email' do

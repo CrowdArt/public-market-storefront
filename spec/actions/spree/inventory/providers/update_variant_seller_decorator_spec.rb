@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Spree::Inventory::Providers::UpdateVariantSellerDecorator, type: :action, vcr: true do
   subject(:variant) { Spree::Inventory::Providers::DefaultVariantProvider.call(item_json) }
 

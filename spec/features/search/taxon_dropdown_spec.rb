@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'taxon dropdown', type: :feature, js: true do
   subject { page }
 

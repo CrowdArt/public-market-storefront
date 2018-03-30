@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Spree::Order, type: :model do
   describe 'ability' do
     subject(:ability) { Spree::Ability.new(order.user) }
@@ -7,6 +5,6 @@ RSpec.describe Spree::Order, type: :model do
     let(:user) { create :pm_user }
     let(:order) { create :order, user: user }
 
-    it { expect(ability.can?(:rate, order)).to be_truthy }
+    it { expect(ability.can?(:rate, order)).to be_truthy } # rubocop:disable RSpec/PredicateMatcher
   end
 end

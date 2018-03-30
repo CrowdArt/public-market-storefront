@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe GlobalReputation::Api, vcr: true do
   describe 'Rating#rate_order' do
     before do

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ApiDocsController, type: :controller do
   describe '#index' do
     subject { get :index }
