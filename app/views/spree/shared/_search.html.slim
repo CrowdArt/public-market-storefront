@@ -1,30 +1,38 @@
-- @taxons = @taxon && @taxon.parent ? @taxon.parent.children : Spree::Taxon.roots
+ruby:
+  taxons = Spree::Taxon.roots
+  taxon = Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon]
+
 = form_tag spree.products_path, method: :get, class: "navbar-form" do
-  div.form-group.taxon-group
-    - cache ['v2', I18n.locale, @taxons] do
-      div.dropdown#taxon-dropdown
-        - @taxon ||= @taxons.first
+  .form-group.taxon-group
+    - cache ['v1', I18n.locale, taxons, taxon] do
+      .dropdown#taxon-dropdown
+        ruby:
+          enabled_taxons = taxons.where(hidden: false)
+          disabled_taxons = taxons.where(hidden: true, parent_id: nil)
+          taxon ||= enabled_taxons.first unless params[:keywords] # if is not filtered - select first
+
         button.btn.btn-default.dropdown-toggle#taxon-menu type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
-          span.name> = @taxon&.name
+          span.name> = taxon&.name || Spree.t(:all_products)
           span.caret<
-          input#taxon name='taxon' type='hidden' value=@taxon&.id
+          input#taxon name='taxon' type='hidden' value=taxon&.id
 
         ul.dropdown-menu aria-labelledby="taxon-menu"
           li
-            a href="#" data-taxon-id='' data-taxon-name=Spree.t(:all_products) = Spree.t(:all_products)
-          - @taxons.where(hidden: false).each do |t|
+            a href="#" class=('checked' if taxon.blank?) data-taxon-id='' data-taxon-name=Spree.t(:all_products) = Spree.t(:all_products)
+
+          - enabled_taxons.each do |t|
             li
-              a class=(t == @taxon ? 'checked': '') href="#" data-taxon-id=t.id data-taxon-name=t.name
+              a class=(t == taxon ? 'checked': '') href="#" data-taxon-id=t.id data-taxon-name=t.name
                 = t.name
 
-          - @taxons.where(hidden: true, parent_id: nil).each do |t|
-            - unless @divider
-              li.divider role="separator"
-              - @divider = true
-            li.disabled
-              a disabled=true href="#" = t.name
+          - if disabled_taxons
+            li.divider role="separator"
 
-  div.form-group.search-group
+            - disabled_taxons.each do |t|
+              li.disabled
+                a disabled=true href="#" = t.name
+
+  .form-group.search-group
     = search_field_tag :keywords, params[:keywords], autocomplete: 'off', placeholder: Spree.t(:search), class: "form-control"
 
   = button_tag '', name: nil, type: 'submit', class: "btn btn-primary btn-search"
