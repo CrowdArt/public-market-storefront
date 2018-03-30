@@ -1,0 +1,13 @@
+h1 = t("account.#{@account_tab}")
+
+- content_for :sidebar
+  = render 'spree/users/account_menu'
+
+- if @addresses.any?
+  .row.condensed
+    = render partial: 'spree/addresses/address_card', collection: @addresses, as: :address, locals: { wrapper_class: 'col-md-4 col-sm-6' }
+
+- else
+  p = t('addresses.no_addresses')
+
+= link_to t('addresses.add_new'), spree.new_address_path, class: 'btn btn-primary'

@@ -1,5 +1,5 @@
 Spree::UsersController.class_eval do
-  before_action :load_user, only: %i[show update_address update_password]
+  before_action :load_user, only: %i[show update_password]
   before_action :hide_search_bar_on_mobile, only: %i[show edit]
 
   ORDERS_PER_USER_PAGE = 10
@@ -14,18 +14,6 @@ Spree::UsersController.class_eval do
       show_orders
     when :payment
       show_payment
-    when :shipping
-      show_shipping
-    end
-  end
-
-  def update_address
-    @account_tab = :shipping
-
-    if @user.update(user_address_params)
-      redirect_to "/account/#{@account_tab}"
-    else
-      render :show
     end
   end
 
@@ -61,10 +49,6 @@ Spree::UsersController.class_eval do
     @user = spree_current_user
   end
 
-  def user_address_params
-    params.require(:user).permit(ship_address_attributes: Spree::PermittedAttributes.address_attributes)
-  end
-
   def user_password_params
     params.require(:user).permit(:password, :password_confirmation)
   end
@@ -92,12 +76,8 @@ Spree::UsersController.class_eval do
     @cards = @user.credit_cards
   end
 
-  def show_shipping
-    @user.ship_address ||= Spree::Address.build_default
-  end
-
   def account_tab
-    tab = [params[:tab].to_s.to_sym] & %i[summary orders payment shipping]
+    tab = [params[:tab].to_s.to_sym] & %i[summary orders payment]
     tab.first || :summary
   end
 end

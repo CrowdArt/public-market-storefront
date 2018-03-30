@@ -1,0 +1,25 @@
+
+ruby:
+  wrapper_class = defined?(wrapper_class) ? wrapper_class : nil
+
+.address-card class=wrapper_class
+  .panel.panel-default
+    .panel-heading
+      .text-uppercase.ellipsis = address.full_name
+
+    .panel-body
+      p
+        strong = address.full_name
+
+      address
+        = address.address1
+        br
+        | #{address.city}, #{address.state} #{address.zipcode}
+        br
+        = address.country
+
+        .text-muted = address.phone
+
+      = link_to 'Update', edit_address_path(address)
+      br
+      = link_to 'Remove', address_path(address), method: :delete, data: { confirm: t('addresses.delete_prompt') }

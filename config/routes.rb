@@ -1,7 +1,9 @@
 Spree::Core::Engine.add_routes do
   scope :account do
-    get '/:tab', to: 'users#show', tab: /orders|payment|shipping/
-    put '/address', to: 'users#update_address', as: :update_address
+    get '/:tab', to: 'users#show', tab: /orders|payment/
+
+    get '/shipping', to: 'addresses#index', as: :user_addresses
+    get '/shipping/edit', to: 'addresses#new', as: :new_address
 
     put '/password', to: 'users#update_password', as: :update_user_password
     get '/password', to: redirect('/account/edit') # fix 404 on page refresh after password change fail
@@ -12,6 +14,8 @@ Spree::Core::Engine.add_routes do
   end
 
   post '/orders/rate/:id', to: 'orders#rate', as: :rate_order
+
+  resources :addresses, except: %i[index show new]
 end
 
 Rails.application.routes.draw do

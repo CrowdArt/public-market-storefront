@@ -1,0 +1,25 @@
+- content_for :sidebar
+  = render 'spree/users/account_menu'
+
+.row.condensed
+  .col-md-12
+    = render 'spree/shared/error_messages', target: @address
+
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title= t(:edit_shipping_address, scope: :address_book)
+
+      .panel-body
+
+        = form_for @address, html: { id: 'checkout_form_address' } do |f|
+          fieldset
+            .inner
+              = render partial: 'spree/address/form', locals: { form: f, address_type: 'shipping', address: @address }
+
+            = f.submit Spree.t(:save_my_address), class: 'btn btn-primary'
+
+javascript:
+  $(function() {
+    initFormLeaveCheck('#checkout_form_address')
+  })
