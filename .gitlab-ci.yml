@@ -32,6 +32,7 @@ rspec:
   services:
     - postgres:10.1-alpine
     - elasticsearch:latest
+  retry: 2
   cache:
     paths:
       - vendor/bundle
@@ -46,6 +47,8 @@ rspec:
   script:
     - bundle exec rspec
   artifacts:
+    when: always
+    expire_in: 1 day
     paths:
       - coverage/
       - tmp/capybara/
