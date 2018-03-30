@@ -56,15 +56,16 @@ RSpec.describe 'checkout', type: :feature, js: true, vcr: true do
       flow 'payment step' do
         expect(page).to have_text 'Payment Information'
 
-        fill_in 'name_on_card_1', with: 'First name Last name'
-        fill_in 'card_expiry', with: '10/18'
-        fill_in 'card_number', with: '4242 4242 4242 4242'
-        # Otherwise ccType field does not get updated correctly
-        page.execute_script("$('.cardNumber').trigger('change')")
-        fill_in 'card_code', with: '911'
-
         Capybara.default_max_wait_time = 10
         setup_stripe_watcher
+
+        fill_in 'name_on_card_1', with: 'First name Last name'
+        fill_in 'card_number', with: '4242424242424242'
+        # Otherwise ccType field does not get updated correctly
+        page.execute_script("$('.cardNumber').trigger('change')")
+
+        fill_in 'card_code', with: '911'
+        fill_in 'card_expiry', with: "10/#{Time.current.year + 1}"
 
         click_button('Save and Continue')
 

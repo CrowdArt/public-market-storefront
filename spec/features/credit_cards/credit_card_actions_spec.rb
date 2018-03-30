@@ -102,12 +102,15 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
 
       visit '/account/payment/edit'
 
-      fill_in 'card_expiry', with: '10/18'
-      fill_in 'card_code', with: '911'
-      fill_in 'card_number', with: card_number
-
       Capybara.default_max_wait_time = 10
       setup_stripe_watcher
+
+      fill_in 'card_number', with: card_number
+      # Otherwise ccType field does not get updated correctly
+      page.execute_script("$('.cardNumber').trigger('change')")
+
+      fill_in 'card_code', with: '911'
+      fill_in 'card_expiry', with: "10/#{Time.current.year + 1}"
 
       click_button('Save and Continue')
 
