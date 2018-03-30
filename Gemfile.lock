@@ -377,7 +377,7 @@ GEM
     hashie (3.5.7)
     highline (1.6.21)
     htmlentities (4.3.4)
-    httparty (0.16.1)
+    httparty (0.16.2)
       multi_xml (>= 0.5.2)
     httpclient (2.8.3)
     i18n (0.9.5)
