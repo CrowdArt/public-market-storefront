@@ -1,5 +1,5 @@
 module PublicMarket
-  MAX_PAGES = 1000
+  MAX_PAGES = 500
 
   module ResultsMaxPages
     def total_pages
