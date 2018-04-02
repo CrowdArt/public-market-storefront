@@ -1,5 +1,5 @@
 RSpec.describe Spree::OrderMailer, type: :mailer do
-  let(:order) { create(:pm_order_with_line_items) }
+  let(:order) { create(:order_with_line_items) }
 
   before do
     stub_current_store

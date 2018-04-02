@@ -5,7 +5,7 @@ RSpec.describe GlobalReputation::Api, vcr: true do
       GlobalReputation::Api::Rating.rate_order(user, order, value)
     end
 
-    let(:user) { create :pm_user }
+    let(:user) { create :user }
     let(:order) { create :order_with_line_items, user: user }
     let(:vendor) { create :vendor }
     let(:value) { 1 }

@@ -1,7 +1,7 @@
 RSpec.describe 'profile edit', type: :feature do
   subject { page }
 
-  let(:user) { create(:pm_user, email: 'user@spree.com', password: 'secretpassword') }
+  let(:user) { create(:user, email: 'user@spree.com', password: 'secretpassword') }
   let!(:old_password) { user.encrypted_password }
 
   before do

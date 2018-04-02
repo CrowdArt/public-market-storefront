@@ -1,5 +1,5 @@
 RSpec.describe Spree::UserMailer, type: :mailer do
-  let(:user) { create(:pm_user) }
+  let(:user) { create(:user) }
 
   before { stub_current_store }
 

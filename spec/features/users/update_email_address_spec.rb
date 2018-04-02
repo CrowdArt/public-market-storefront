@@ -1,7 +1,7 @@
 RSpec.describe 'update email address', type: :feature do
   subject { page }
 
-  let(:user) { create(:pm_user, email: 'user@spree.com') }
+  let(:user) { create(:user, email: 'user@spree.com') }
 
   before do
     stub_current_store

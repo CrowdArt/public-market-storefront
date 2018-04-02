@@ -1,5 +1,5 @@
 RSpec.describe 'credit card actions', type: :feature, js: true do
-  let(:user) { create(:pm_user) }
+  let(:user) { create(:user) }
 
   before do
     create(:state, name: 'Alabama', abbr: 'AL')
@@ -91,7 +91,7 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
   describe 'saves funding type' do
     subject { user.credit_cards.last.funding_credit? }
 
-    let(:user) { create(:pm_user, shipping_address: create(:address, firstname: 'First name', lastname: 'Last name')) }
+    let(:user) { create(:user, shipping_address: create(:address, firstname: 'First name', lastname: 'Last name')) }
 
     before do
       create(:stripe_card_payment_method, name: 'Credit card method')

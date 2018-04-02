@@ -1,5 +1,5 @@
 RSpec.describe 'shipping info update', type: :feature, js: true do
-  let(:user) { create(:pm_user) }
+  let(:user) { create(:user) }
 
   before do
     create(:state, name: 'Alabama', abbr: 'AL')

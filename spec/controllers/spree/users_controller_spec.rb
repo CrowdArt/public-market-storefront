@@ -1,5 +1,5 @@
 RSpec.describe Spree::UsersController, type: :controller do
-  let(:user) { create(:pm_user) }
+  let(:user) { create(:user) }
 
   before do
     create(:completed_order_with_totals, user: user)

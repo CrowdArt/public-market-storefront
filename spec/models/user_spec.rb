@@ -1,7 +1,7 @@
 RSpec.describe Spree::User, type: :model do
   describe 'validates names' do
     subject do
-      build_stubbed(:pm_user, first_name: first_name)
+      build_stubbed(:user, first_name: first_name)
     end
 
     let(:first_name) { 'valid name' }
@@ -41,7 +41,7 @@ RSpec.describe Spree::User, type: :model do
 
   describe 'validates password length' do
     subject do
-      build_stubbed(:pm_user, password: password)
+      build_stubbed(:user, password: password)
     end
 
     context 'with correct password' do
@@ -58,7 +58,7 @@ RSpec.describe Spree::User, type: :model do
   end
 
   describe 'set first & last name from shipping address' do
-    let!(:user) { create(:pm_user, first_name: nil, last_name: nil) }
+    let!(:user) { create(:user, first_name: nil, last_name: nil) }
 
     before { user.update(ship_address: create(:address)) }
 
@@ -68,7 +68,7 @@ RSpec.describe Spree::User, type: :model do
   describe 'username' do
     subject { user.username }
 
-    let(:user) { create(:pm_user, email: 'buyer@publicmarket.io') }
+    let(:user) { create(:user, email: 'buyer@publicmarket.io') }
 
     it { is_expected.to be(user.first_name) }
 
@@ -80,7 +80,7 @@ RSpec.describe Spree::User, type: :model do
   end
 
   describe 'welcome email' do
-    let(:user) { create(:pm_user, confirmed_at: nil) }
+    let(:user) { create(:user, confirmed_at: nil) }
 
     before do
       stub_current_store
@@ -93,7 +93,7 @@ RSpec.describe Spree::User, type: :model do
     end
 
     context 'with reconfirmation' do
-      let(:user) { create(:pm_user, unconfirmed_email: 'newemail@email.com') }
+      let(:user) { create(:user, unconfirmed_email: 'newemail@email.com') }
 
       it 'is not sent' do
         expect {
