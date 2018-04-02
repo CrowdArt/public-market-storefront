@@ -23,6 +23,10 @@ RSpec/AnyInstance:
 RSpec/FilePath:
   Enabled: false
 
+RSpec/ExpectInHook:
+  Exclude:
+    - 'features/**/*'
+
 Lint/AmbiguousBlockAssociation:
   Enabled: false
 

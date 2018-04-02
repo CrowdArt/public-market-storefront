@@ -15,10 +15,8 @@ RSpec.describe 'checkout', type: :feature, js: true, vcr: true do
     visit spree.product_path(variant.product)
     click_button 'Add To Cart'
 
-    # rubocop:disable RSpec/ExpectInHook
     expect(page).to have_text Spree.t(:added_to_cart, product: variant.product.name)
     expect(page).to have_css('.cart-info.full')
-    # rubocop:enable RSpec/ExpectInHook
 
     first('#link-to-cart a').click
     click_button 'Checkout'
@@ -37,7 +35,7 @@ RSpec.describe 'checkout', type: :feature, js: true, vcr: true do
 
         fill_in 'order_ship_address_attributes_firstname', with: 'First name'
         fill_in 'order_ship_address_attributes_lastname', with: 'Last name'
-        fill_in 'order_ship_address_attributes_address1', with: 'Alaska'
+        fill_in 'order_ship_address_attributes_address1', with: 'Street Address'
         fill_in 'order_ship_address_attributes_city', with: 'Wellington'
         select 'Alabama', from: 'order_ship_address_attributes_state_id'
         fill_in 'order_ship_address_attributes_zipcode', with: '94001'

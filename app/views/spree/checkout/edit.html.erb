@@ -14,7 +14,7 @@
 
   <div class="row" data-hook="checkout_content">
     <div class="<%= if @order.state != 'confirm' then 'col-md-9' else 'col-md-12' end %>" data-hook="checkout_form_wrapper">
-      <%= form_for @order, url: update_checkout_path(@order.state), html: { id: "checkout_form_#{@order.state}" }, remote: @order.state == 'payment' do |form| %>
+      <%= form_for @order, url: update_checkout_path(@order.state), html: { id: "checkout_form_#{@order.state}" }, remote: %w[address payment].include?(@order.state) do |form| %>
         <%= form.hidden_field :state_lock_version %>
         <%= render @order.state, form: form %>
       <% end %>

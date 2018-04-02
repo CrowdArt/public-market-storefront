@@ -69,7 +69,7 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
 
     context 'with shipping address' do
       before do
-        user.shipping_address = create(:address, firstname: 'First name', lastname: 'Last name')
+        user.addresses << create(:address, firstname: 'First name', lastname: 'Last name')
         user.save
 
         visit '/account/payment/edit'
@@ -82,8 +82,9 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
       end
 
       it 'adds new card' do
-        expect(page).to have_text("#{user.shipping_address.firstname} #{user.shipping_address.lastname}".upcase)
+        expect(page).to have_text("#{user.addresses.first.firstname} #{user.addresses.first.lastname}".upcase)
         expect(user.credit_cards.count).to eq(1)
+        expect(user.addresses.count).to eq 1
       end
     end
   end
@@ -91,7 +92,7 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
   describe 'saves funding type' do
     subject { user.credit_cards.last.funding_credit? }
 
-    let(:user) { create(:user, shipping_address: create(:address, firstname: 'First name', lastname: 'Last name')) }
+    let(:user) { create(:user, addresses: create_list(:address, 1, firstname: 'First name', lastname: 'Last name')) }
 
     before do
       create(:stripe_card_payment_method, name: 'Credit card method')
@@ -114,7 +115,7 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
 
       wait_for_stripe # Wait for Stripe API to return + form to submit
 
-      expect(page).to have_text("#{user.shipping_address.firstname} #{user.shipping_address.lastname}".upcase) # rubocop:disable RSpec/ExpectInHook
+      expect(page).to have_text("#{user.addresses.first.firstname} #{user.addresses.first.lastname}".upcase)
     end
 
     context 'when credit card' do

@@ -1,3 +1,8 @@
+ruby:
+  existing_shipping_address = @order&.ship_address || spree_current_user.addresses.first
+  firstname = existing_shipping_address&.firstname || spree_current_user.first_name
+  lastname = existing_shipping_address&.lastname || spree_current_user.last_name
+
 .well.clearfix
   = image_tag 'credit_cards/credit_card.gif', id: 'credit-card-image', class: 'pull-right', width: '170', height: '28'
   - param_prefix = "payment_source[#{payment_method.id}]"
@@ -5,11 +10,6 @@
     = label_tag "name_on_card_#{payment_method.id}" do
       = Spree.t(:name_on_card)
       abbr.required title="required" *
-
-    ruby:
-      user_shipping_address = spree_current_user.shipping_address
-      firstname = user_shipping_address&.firstname || spree_current_user.first_name
-      lastname = user_shipping_address&.lastname || spree_current_user.last_name
 
     = text_field_tag "#{param_prefix}[name]", "#{firstname} #{lastname}", { id: "name_on_card_#{payment_method.id}", class: 'form-control required' }
   p.field data-hook="card_number"
@@ -49,7 +49,10 @@
   = fields_for "#{param_prefix}[address_attributes]", @credit_card.address do |address_fields|
     - address_prefix = "payment_source_#{payment_method.id}"
     #checkout_form_address.inner
-      - if current_spree_user.shipping_address
+      - if existing_shipping_address
+        - if @order
+          = hidden_field_tag "#{param_prefix}[order_id]", @order.id
+
         p.field.checkbox
           = label_tag "#{address_prefix}_card_address_use_shipping" do
             = check_box_tag "#{param_prefix}[use_shipping]", '1', '', class: 'card_address_use_shipping', id: "#{address_prefix}_card_address_use_shipping"
@@ -123,16 +126,16 @@
               abbr class="required" title="required" *
             = address_fields.text_field :zipcode, class: 'form-control'
 
-- if current_spree_user.shipping_address
+- if existing_shipping_address
   javascript:
-    var useShippingInput = $('input.card_address_use_shipping')
+    var useShippingInput = $('input.card_address_use_shipping, #use_existing_card_yes, #use_existing_card_no')
 
     useShippingInput.on('change', function() {
       updateBillingFormState()
     })
 
     updateBillingFormState = function() {
-      var useShipping = useShippingInput.is(':checked')
+      var useShipping = $('input.card_address_use_shipping').is(':checked')
       var addressForm = useShippingInput.parents('#checkout_form_address')
       addressForm.find('#payment_billing_address').toggle(!useShipping)
       addressForm.find('#payment_billing_address input, #payment_billing_address select').prop('disabled', useShipping)

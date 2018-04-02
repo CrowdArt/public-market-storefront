@@ -3,6 +3,8 @@ Spree::CheckoutController.class_eval do
   # - payment_sources changed to credit_cards
   # - allow rendering js in checkout flow
 
+  before_action :set_addresses, only: :update
+
   # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   # Updates the order and advances to the next state (when possible.)
   def update
@@ -33,14 +35,31 @@ Spree::CheckoutController.class_eval do
   end
   # rubocop:enable Metrics/MethodLength
 
+  protected
+
+  def set_addresses
+    return unless params[:order] && params[:state] == 'address'
+
+    if params[:order][:ship_address_id]
+      params[:order].delete(:ship_address_attributes)
+
+      # https://github.com/spree-contrib/spree_address_book/blob/master/app/controllers/spree/checkout_controller_decorator.rb#L16
+      Spree::Address.find(params[:order][:ship_address_id]).user_id != spree_current_user.id && raise('Frontend address forging')
+    else
+      params[:order].delete(:ship_address_id)
+      params[:order][:ship_address_attributes][:user_id] = spree_current_user.id
+    end
+  end
+
   private
 
   def before_address
-    @order.ship_address ||= (spree_current_user&.ship_address&.clone || Spree::Address.build_default)
+    @addresses = spree_current_user&.addresses
+    @order.ship_address ||= @addresses&.first&.clone || Spree::Address.build_default
   end
 
   def before_payment
-    if @order.checkout_steps.include? 'delivery'
+    if @order.checkout_steps.include?('delivery')
       packages = @order.shipments.map(&:to_package)
       @differentiator = Spree::Stock::Differentiator.new(@order, packages)
       @differentiator.missing.each do |variant, quantity|
@@ -50,14 +69,15 @@ Spree::CheckoutController.class_eval do
 
     @payment_sources = try_spree_current_user.credit_cards if try_spree_current_user&.respond_to?(:credit_cards)
     @credit_card = Spree::CreditCard.new
-    @credit_card.address ||= spree_current_user.shipping_address || Spree::Address.build_default
+    @credit_card.address ||= @order.ship_address.clone
   end
   # rubocop:enable Metrics/AbcSize
 
   def permitted_checkout_attributes
     permitted_attributes.checkout_attributes + [
+      :ship_address_id,
       bill_address_attributes: permitted_address_attributes,
-      ship_address_attributes: permitted_address_attributes,
+      ship_address_attributes: permitted_address_attributes + [:user_id],
       payments_attributes: permitted_payment_attributes,
       shipments_attributes: permitted_shipment_attributes
     ]
@@ -65,7 +85,7 @@ Spree::CheckoutController.class_eval do
 
   def permitted_payment_attributes
     permitted_attributes.payment_attributes + [
-      source_attributes: permitted_source_attributes + [:funding, :use_shipping, address_attributes: permitted_address_attributes]
+      source_attributes: permitted_source_attributes + [:order_id, :funding, :use_shipping, address_attributes: permitted_address_attributes]
     ]
   end
 end

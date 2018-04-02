@@ -8,7 +8,7 @@ module Spree
       set_back_mobile_link('/account')
       @payment_methods = Spree::PaymentMethod.available
       @credit_card = Spree::CreditCard.new
-      @credit_card.address ||= @user.shipping_address&.clone || Spree::Address.build_default
+      @credit_card.address ||= @user.addresses&.first&.clone || Spree::Address.build_default
       render :new
     end
 
