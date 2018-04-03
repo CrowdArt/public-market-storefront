@@ -20,11 +20,11 @@
             = form_for @order, url: rate_order_path(@order), method: :post do
               .row
                 .col-xs-6.text-center
-                  label data-toggle='tooltip' data-placement='bottom' title=Spree.t('positive')
+                  label#positive-input data-toggle='tooltip' data-placement='bottom' title=Spree.t('positive')
                     input type='radio' name='rating' value='1'
                     span.emoji 😃
                 .col-xs-6.text-center
-                  label data-toggle='tooltip' data-placement='bottom' title=Spree.t('negative')
+                  label#negative-input data-toggle='tooltip' data-placement='bottom' title=Spree.t('negative')
                     input type='radio' name='rating' value='-1'
                     span.emoji 😞
               .text-center

@@ -1,0 +1,83 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://global-reputation:3001/api/v1/ratings
+    body:
+      encoding: UTF-8
+      string: '{"data":{"type":"ratings","attributes":{"sender":null,"receiver":null,"value":"1"}}}'
+    headers:
+      X-Api-Key:
+      - fe98dddcab33ec21d31b038dd3
+      User-Agent:
+      - Faraday v0.12.2
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Etag:
+      - W/"29ddee70d38d21061d6971551493c5b1"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 05d6c0cb-231b-49fd-bf23-a285d2f5171d
+      X-Runtime:
+      - '0.036029'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"data":{"id":"VH8QP8O9G3FA1Q","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-04-03
+        12:27:16 UTC","sender":"U69SO1L6AF5GPY","receiver":"RGVFDH6684UBCA"}}}'
+    http_version: 
+  recorded_at: Tue, 03 Apr 2018 12:26:58 GMT
+- request:
+    method: get
+    uri: http://global-reputation:3001/api/v1/ratings/VH8QP8O9G3FA1Q
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Api-Key:
+      - fe98dddcab33ec21d31b038dd3
+      User-Agent:
+      - Faraday v0.12.2
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Etag:
+      - W/"29ddee70d38d21061d6971551493c5b1"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - ceeafeca-1c8f-4eea-b17a-c73aee73f689
+      X-Runtime:
+      - '0.005276'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"data":{"id":"VH8QP8O9G3FA1Q","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-04-03
+        12:27:16 UTC","sender":"U69SO1L6AF5GPY","receiver":"RGVFDH6684UBCA"}}}'
+    http_version: 
+  recorded_at: Tue, 03 Apr 2018 12:26:58 GMT
+recorded_with: VCR 4.0.0
