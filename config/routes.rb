@@ -24,6 +24,10 @@ Rails.application.routes.draw do
 
   mount Spree::Core::Engine, at: '/'
 
+  scope :freshdesk do
+    get '/', to: 'freshdesk#login', as: :freshdesk
+  end
+
   require 'sidekiq/web'
   authenticate :spree_user, ->(u) { u.admin? } do
     mount Sidekiq::Web, at: 'sidekiq'

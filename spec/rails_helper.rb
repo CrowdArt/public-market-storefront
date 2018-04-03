@@ -14,4 +14,5 @@ RSpec.configure do |config|
   config.fixture_path = Rails.root.join('spec', 'fixtures')
 
   config.include Test::ScenarioFlows, type: :feature
+  config.include Devise::Test::ControllerHelpers, type: :controller
 end

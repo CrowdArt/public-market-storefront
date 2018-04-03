@@ -8,3 +8,6 @@ stripe_pk_key: pk_test_Cuf0PNtiAkkMpTVC2gwYDMIg
 
 global_reputation_url: http://global-reputation:3001/api/v1
 global_reputation_key: fe98dddcab33ec21d31b038dd3
+
+freshdesk_url: http://localhost-freshdesk.com/
+freshdesk_token: token
