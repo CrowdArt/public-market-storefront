@@ -9,12 +9,11 @@ en:
             password_confirmation:
               confirmation: "^Sorry, your passwords didn't match. Please try again."
     attributes:
-      spree/credit_card:
-        address:
-          firstname: First Name
-          lastname: Last Name
-          address1: Address
-          address2: Secondary Address
-          city: City
-          state: State
-          zipcode: Zipcode
+      spree/credit_card/address:
+        firstname: First Name
+        lastname: Last Name
+        address1: Address
+        address2: Secondary Address
+        city: City
+        state: State
+        zipcode: Zipcode
