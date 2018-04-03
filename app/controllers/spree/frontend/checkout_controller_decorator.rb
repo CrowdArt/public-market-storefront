@@ -55,7 +55,7 @@ Spree::CheckoutController.class_eval do
 
   def before_address
     @addresses = spree_current_user&.addresses
-    @order.ship_address ||= @addresses&.first&.clone || Spree::Address.build_default
+    @new_address = Spree::Address.build_default
   end
 
   def before_payment

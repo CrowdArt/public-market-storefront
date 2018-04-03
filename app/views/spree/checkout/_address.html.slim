@@ -27,8 +27,8 @@
 
     .row.condensed
       .col-md-6#new-address-form
-        = form.fields_for 'ship_address', include_id: false do |address_form|
-          = render partial: 'spree/address/form', locals: { form: address_form, address_type: 'shipping', address: @order.ship_address || Spree::Address.default }
+        = fields_for 'order[ship_address_attributes]', @new_address do |address_form|
+          = render partial: 'spree/address/form', locals: { form: address_form, address_type: 'shipping', address: @new_address }
 
 .well.text-right.form-buttons
   = submit_tag Spree.t(:save_and_continue), class: 'btn btn-lg btn-success'
