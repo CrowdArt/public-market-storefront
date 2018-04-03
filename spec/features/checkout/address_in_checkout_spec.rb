@@ -56,6 +56,26 @@ RSpec.describe 'address in checkout', type: :feature do
       expect(Spree::Order.last.ship_address.address1).to eq 'First Street'
     end
 
+    context "with another user's address" do
+      let!(:address) { create(:address, address1: 'Another street name', user: user) }
+
+      before do
+        click_button('Save and Continue')
+        expect(page).not_to have_text 'Shipping Address'
+        click_link('Address')
+      end
+
+      it 'updates existing order address' do
+        choose("order_ship_address_id_#{address.id}")
+
+        expect {
+          expect {
+            click_button('Save and Continue')
+          }.not_to change { Spree::Order.last.ship_address_id }
+        }.to change { Spree::Order.last.ship_address.address1 }
+      end
+    end
+
     describe 'can choose new', js: true do
       before { choose 'Use a new address' }
 

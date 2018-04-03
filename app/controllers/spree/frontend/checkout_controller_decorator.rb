@@ -40,22 +40,29 @@ Spree::CheckoutController.class_eval do
   def set_addresses
     return unless params[:order] && params[:state] == 'address'
 
+    # if user uses existing user's shipping address - copy it to order
+    # if user creates new address - save it to user's account
+    # if address exists in order - update instead of create new one
     if params[:order][:ship_address_id]
-      params[:order].delete(:ship_address_attributes)
-
-      # https://github.com/spree-contrib/spree_address_book/blob/master/app/controllers/spree/checkout_controller_decorator.rb#L16
-      Spree::Address.find(params[:order][:ship_address_id]).user_id != spree_current_user.id && raise('Frontend address forging')
+      address = Spree::Address.find(params[:order][:ship_address_id])
+      params[:order][:ship_address_attributes].merge!(address.attributes.except('id', 'user_id', 'updated_at', 'created_at'))
     else
-      params[:order].delete(:ship_address_id)
-      params[:order][:ship_address_attributes][:user_id] = spree_current_user.id
+      params[:save_user_address] = '1'
     end
+
+    params[:order].delete(:ship_address_id)
   end
 
   private
 
   def before_address
     @addresses = spree_current_user&.addresses
-    @new_address = Spree::Address.build_default
+    @new_address =
+      if @addresses.present? || @order.ship_address.blank?
+        Spree::Address.build_default
+      else
+        @order.ship_address
+      end
   end
 
   def before_payment

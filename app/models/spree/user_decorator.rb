@@ -26,10 +26,8 @@ Spree::User.class_eval do
   # - remove billing address save
   def persist_order_address(order)
     return unless order.ship_address
-    s_address = ship_address || build_ship_address
-    s_address.attributes = order.ship_address.attributes.except('id', 'updated_at', 'created_at')
-    s_address.save
-    update(ship_address_id: s_address.id)
+    address_attributes = order.ship_address.attributes.except('id', 'updated_at', 'created_at')
+    addresses.create(address_attributes)
   end
 
   def after_confirmation
