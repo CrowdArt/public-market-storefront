@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_multi_vendor.git
-  revision: a48721bf18692afe99c97e26e7d05b2ed13a8ca6
+  revision: e81dfa5b9f345d1481e05c826b7bb0a57d5f06b1
   specs:
     spree_multi_vendor (0.0.1.alpha)
       spree_backend (>= 3.1.0, < 4.0)
@@ -149,7 +149,7 @@ GEM
     activejob (5.1.5)
       activesupport (= 5.1.5)
       globalid (>= 0.3.6)
-    activemerchant (1.77.0)
+    activemerchant (1.78.0)
       activesupport (>= 3.2.14, < 6.x)
       builder (>= 2.1.2, < 4.0.0)
       i18n (>= 0.6.9)
@@ -320,7 +320,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
-    ffaker (2.8.1)
+    ffaker (2.9.0)
     ffi (1.9.23)
     fog-core (2.1.0)
       builder
@@ -530,7 +530,7 @@ GEM
       rack (>= 1.2.0)
     rack-protection (2.0.1)
       rack
-    rack-test (0.8.3)
+    rack-test (1.0.0)
       rack (>= 1.0, < 3)
     rails (5.1.5)
       actioncable (= 5.1.5)
