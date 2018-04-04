@@ -42,6 +42,10 @@ Metrics/BlockLength:
     - 'config/**/*'
     - 'db/**/*'
 
+Metrics/AbcSize:
+  Exclude:
+    - 'app/mailers/**/*'
+
 # DISABLED
 
 Style/Documentation:

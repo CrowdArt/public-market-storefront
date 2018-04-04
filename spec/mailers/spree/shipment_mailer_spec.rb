@@ -16,6 +16,10 @@ RSpec.describe Spree::ShipmentMailer, type: :mailer do
       expect(mail.body).to include('Your order is on its way!')
     end
 
+    it 'container support url' do
+      expect(mail.body).to include('/freshdesk')
+    end
+
     it 'sends an email' do
       expect {
         mail.deliver_now

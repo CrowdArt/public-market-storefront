@@ -11,10 +11,10 @@ table.row
       th.large-6.columns
         strong = Spree.t(:billing_address)
         p
-          = order.billing_address.full_name
+          = order.billing_address&.full_name
           br
-          = order.shipping_address.address1
+          = order.shipping_address&.address1
     tr
       th.large-6.columns
         strong = Spree.t(:shipping_method)
-        p = order.shipments[0].shipping_method.name
+        p = order.shipments[0]&.shipping_method&.name

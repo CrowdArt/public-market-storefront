@@ -118,7 +118,7 @@ en:
         %{customer_info}
         <hr>
         <p>To view or manage your order, please visit: <a href="%{order_url}">%{order_url}</a></p>
-      footer: We'll notify you the moment your order has shipped.
+      footer: We'll notify you the moment your order has shipped. Problem with your order? <a href='%{support_url}'>Create a ticket</a>
 
     order_shipped:
       categories:
@@ -132,7 +132,7 @@ en:
         %{order_card}
         <hr>
         %{shipment_tracking}
-      footer: "Problem with your order? <a href='mailto:contact@publicmarket.io?Subject=[Support]%20Issue%20with%20my%20order%20|%20Order%20#%{order_id}'>Contact us</a>"
+      footer: "Problem with your order? <a href='%{support_url}'>Create a ticket</a> or <a href='mailto:contact@publicmarket.io?Subject=[Support]%20Issue%20with%20my%20order%20|%20Order%20#%{order_id}'>Contact us</a>"
 
     order_cancel:
       categories:
@@ -147,3 +147,4 @@ en:
         %{order_card}
         <hr>
         <p>Please accept our apologies for the inconvenience. Feel free to <a href="mailto:contact@publicmarket.io?Subject=Feedback%20on%20Public%20Market">let us know</a> if you have any questions or comments. Thank you for your understanding.</p>
+      footer: Problem with your order? <a href='%{support_url}'>Create a ticket</a>

@@ -4,7 +4,7 @@ Spree::BaseMailer.class_eval do
   def mail_template(resource, template, opts = {})
     @body = I18n.t(['emails', template, 'body'].join('.'), opts)
     @preview = I18n.t(['emails', template, 'preview'].join('.'), opts)
-    @footer = I18n.t(['emails', template, 'footer'].join('.'), opts, default: nil)
+    @footer = I18n.t(['emails', template, 'footer'].join('.'), opts.merge(default: nil))
     subject = I18n.t(['emails', template, 'subject'].join('.'), opts)
 
     set_smtp_headers(template)
