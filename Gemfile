@@ -50,6 +50,8 @@ gem 'sidekiq'
 
 gem 'json_api_client'
 
+gem 'mixpanel-ruby'
+
 gem 'swagger-blocks'
 
 group :test do
