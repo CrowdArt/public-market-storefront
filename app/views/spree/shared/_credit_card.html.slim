@@ -4,13 +4,13 @@ ruby:
 
 .credit-card class=wrapper_class
   .panel.panel-default
-    .panel-heading
+    .panel-heading.condensed
       .credit-card__name.text-uppercase.ellipsis = card.name
       - if (card_icon = "credit_cards/icons/#{card.cc_type}.png") && asset_exists?(card_icon)
         .pull-right
           = image_tag(card_icon)
 
-    .panel-body
+    .panel-body.condensed
       - if spree_current_user.admin?
         i.pull-right = card.funding.humanize
 

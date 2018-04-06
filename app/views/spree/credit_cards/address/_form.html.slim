@@ -17,10 +17,8 @@
       abbr class="required" title="required" *
     = address_fields.text_field :address1, class: 'form-control'
 
-  p.form-group id="baddress2"
-    = address_fields.label :address2 do
-      = Spree.t(:address2)
-      abbr class="required" title="required" *
+  p.form-group#baddress2
+    = address_fields.label :address2, Spree.t(:second_address)
     = address_fields.text_field :address2, class: 'form-control'
 
   p.form-group id="bcity"
@@ -48,7 +46,7 @@
     = address_fields.label :zipcode do
       = Spree.t(:zipcode)
       abbr class="required" title="required" *
-    = address_fields.text_field :zipcode, class: 'form-control'
+    = address_fields.text_field :zipcode, class: 'form-control', inputmode: 'numeric', autocomplete: 'postal-code'
 
 - if existing_shipping_address
   javascript:

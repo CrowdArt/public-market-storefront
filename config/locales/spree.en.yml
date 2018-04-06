@@ -32,3 +32,5 @@ en:
     not_enough_ratings: N/A (not enough ratings)
     support: Support
     order_support: Order Support
+    second_address: Address 2 (optional)
+    street_address_2: Street Address (optional)

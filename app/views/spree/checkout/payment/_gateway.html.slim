@@ -17,7 +17,7 @@ ruby:
       = Spree.t(:card_number)
       abbr.required title="required" *
     - options_hash = Rails.env.production? ? { autocomplete: 'off' } : {}
-    = text_field_tag "#{param_prefix}[number]", '', options_hash.merge(id: 'card_number', class: 'form-control required cardNumber', size: 19, maxlength: 19, autocomplete: "off")
+    = text_field_tag "#{param_prefix}[number]", '', options_hash.merge(id: 'card_number', class: 'form-control required cardNumber', size: 19, maxlength: 19, autocomplete: "off", inputmode: 'numeric')
     |  
     span#card_type style="display:none;"
       | (
@@ -31,13 +31,13 @@ ruby:
       = label_tag "card_expiry" do
         = Spree.t(:expiration)
         abbr.required title="required"  *
-      = text_field_tag "#{param_prefix}[expiry]", '', id: 'card_expiry', class: "form-control required cardExpiry", placeholder: "MM / YY"
+      = text_field_tag "#{param_prefix}[expiry]", '', id: 'card_expiry', class: "form-control required cardExpiry", placeholder: "MM / YY", inputmode: 'numeric'
 
     .col-md-4.field data-hook="card_code"
       = label_tag "card_code" do
         = Spree.t(:card_code)
         abbr.required title="required"  *
-      = text_field_tag "#{param_prefix}[verification_value]", '', options_hash.merge(id: 'card_code', class: 'form-control required cardCode', size: 5)
+      = text_field_tag "#{param_prefix}[verification_value]", '', options_hash.merge(id: 'card_code', class: 'form-control required cardCode', size: 5, inputmode: 'numeric')
       = link_to Spree.t(:what_is_this), spree.cvv_path, target: :blank, "data-hook" => "cvv_link", id: "cvv_link"
 
   = hidden_field_tag "#{param_prefix}[cc_type]", '', id: "cc_type", class: 'ccType'

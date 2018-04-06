@@ -113,3 +113,8 @@ table {
   font-weight: 500;
   line-height: 1;
 }
+
+.panel-body.condensed, .panel-heading.condensed {
+  padding-left: 12px;
+  padding-right: 12px;
+}
