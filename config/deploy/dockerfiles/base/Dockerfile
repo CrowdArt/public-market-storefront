@@ -6,6 +6,12 @@ EXPOSE 3000
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - \
     && apt-get install -yqq git vim nodejs
 
+ENV YARN_VERSION=1.5.1
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+    && apt-get update -qq \
+    && apt-get install -yqq yarn
+
 WORKDIR /app
 
 RUN mkdir -p /app/tmp/pids \
