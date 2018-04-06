@@ -49,7 +49,7 @@ ruby:
       - if existing_shipping_address
         p.field.checkbox
           = form.label :use_shipping do
-            = form.check_box :use_shipping, value: '1', checked: true, class: 'card_address_use_shipping'
+            = form.check_box :use_shipping, value: '1', checked: card.address.same_as?(spree_current_user.addresses.first), class: 'card_address_use_shipping'
             = Spree.t(:use_shipping_address)
 
       = render partial: 'spree/credit_cards/address/form', locals: { address_fields: address_fields, country: form.object.address.country, existing_shipping_address: existing_shipping_address.present? }
