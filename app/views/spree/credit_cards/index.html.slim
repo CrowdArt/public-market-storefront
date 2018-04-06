@@ -1,7 +1,10 @@
+h1 = t('credit_cards')
+
+- content_for :sidebar
+  = render 'spree/users/account_menu'
+
 - if @cards.any?
   #existing_cards
-    h3 = t('credit_cards')
-
     .row.condensed
       = render partial: 'spree/shared/credit_card', collection: @cards, as: :card, locals: { wrapper_class: 'col-md-4 col-sm-6' }
 

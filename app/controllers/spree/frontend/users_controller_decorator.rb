@@ -12,8 +12,6 @@ Spree::UsersController.class_eval do
     case @account_tab
     when :orders
       show_orders
-    when :payment
-      show_payment
     end
   end
 
@@ -72,12 +70,8 @@ Spree::UsersController.class_eval do
     end
   end
 
-  def show_payment
-    @cards = @user.credit_cards
-  end
-
   def account_tab
-    tab = [params[:tab].to_s.to_sym] & %i[summary orders payment]
+    tab = [params[:tab].to_s.to_sym] & %i[summary orders]
     tab.first || :summary
   end
 end

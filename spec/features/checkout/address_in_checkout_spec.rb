@@ -1,4 +1,4 @@
-RSpec.describe 'address in checkout', type: :feature do
+RSpec.describe 'address in checkout', type: :feature, vcr: true do
   let(:vendor) { create(:vendor) }
   let(:variant) { create(:variant, vendor: vendor) }
   let(:user) { create(:user) }

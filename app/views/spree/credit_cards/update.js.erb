@@ -1,0 +1,6 @@
+<%= render partial: 'spree/shared/flash_messages' %>
+
+<% unless @credit_card.valid? %>
+  $('#card_number, #card_expiry, #card_code').prop("disabled", false)
+  $('.has-error').removeClass('has-error')
+<% end %>

@@ -1,0 +1,69 @@
+ruby:
+  existing_shipping_address = spree_current_user.addresses.first
+  address = card.address
+
+.well.clearfix
+  = image_tag 'credit_cards/credit_card.gif', id: 'credit-card-image', class: 'pull-right', width: '170', height: '28'
+
+  - param_prefix = "credit_card"
+
+  = form.hidden_field :id
+
+  p.field
+    = form.label :name do
+      = Spree.t(:name_on_card)
+      abbr.required title="required" *
+
+    = form.text_field :name, class: 'form-control required'
+
+  p.field data-hook="card_number"
+    = form.label :number do
+      = Spree.t(:card_number)
+      abbr.required title="required" *
+
+    = form.text_field :number, value: card.display_number, class: 'form-control required cardNumber', size: 19, maxlength: 19, autocomplete: "off", disabled: true
+
+  .row
+    .col-md-8.field data-hook="card_expiration"
+      = form.label :expiry do
+        = Spree.t(:expiration)
+        abbr.required title="required"  *
+
+      = form.text_field :expiry, value: "#{form.object.month} / #{form.object.year}", class: "form-control required cardExpiry", placeholder: "MM / YY"
+
+    .col-md-4.field data-hook="card_code"
+      = form.label :verification_value do
+        = Spree.t(:card_code)
+        abbr.required title="required"  *
+
+      = form.text_field :verification_value, class: 'form-control required cardCode', size: 5
+
+      = link_to Spree.t(:what_is_this), spree.cvv_path, target: :blank, "data-hook" => "cvv_link", id: "cvv_link"
+
+  hr
+
+  h4 = Spree.t(:billing_address)
+
+  = form.fields_for :address, card.address do |address_fields|
+    #checkout_form_address.inner
+      - if existing_shipping_address
+        p.field.checkbox
+          = form.label :use_shipping do
+            = form.check_box :use_shipping, value: '1', checked: true, class: 'card_address_use_shipping'
+            = Spree.t(:use_shipping_address)
+
+      = render partial: 'spree/credit_cards/address/form', locals: { address_fields: address_fields, country: form.object.address.country, existing_shipping_address: existing_shipping_address.present? }
+
+javascript:
+  $(function() {
+    $(".cardNumber").payment('formatCardNumber')
+    $(".cardExpiry").payment('formatCardExpiry')
+    $(".cardCode").payment('formatCardCVC')
+
+    $(document).on('click', '#cvv_link', function(event) {
+      windowName = 'cvv_info'
+      windowOptions = 'left=20,top=20,width=500,height=500,toolbar=0,resizable=0,scrollbars=1'
+      window.open($(this).attr('href'), windowName, windowOptions)
+      event.preventDefault()
+    })
+  })

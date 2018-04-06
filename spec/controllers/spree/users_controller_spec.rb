@@ -2,8 +2,8 @@ RSpec.describe Spree::UsersController, type: :controller do
   let(:user) { create(:user) }
 
   before do
+    sign_in(user)
     create(:completed_order_with_totals, user: user)
-    allow(controller).to receive(:spree_current_user) { user }
   end
 
   routes { Spree::Core::Engine.routes }

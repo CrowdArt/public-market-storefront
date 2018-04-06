@@ -1,0 +1,70 @@
+#payment_billing_address
+  p.form-group id='bfirstname'
+    = address_fields.label :firstname do
+      = Spree.t(:first_name)
+      abbr class="required" title="required" *
+    = address_fields.text_field :firstname, class: 'form-control'
+
+  p.form-group id="blastname"
+    = address_fields.label :lastname do
+      = Spree.t(:last_name)
+      abbr class="required" title="required" *
+    = address_fields.text_field :lastname, class: 'form-control'
+
+  p.form-group id="baddress1"
+    = address_fields.label :address1 do
+      = Spree.t(:address1)
+      abbr class="required" title="required" *
+    = address_fields.text_field :address1, class: 'form-control'
+
+  p.form-group id="baddress2"
+    = address_fields.label :address2 do
+      = Spree.t(:address2)
+      abbr class="required" title="required" *
+    = address_fields.text_field :address2, class: 'form-control'
+
+  p.form-group id="bcity"
+    = address_fields.label :city do
+      = Spree.t(:city)
+      abbr class="required" title="required" *
+    = address_fields.text_field :city, class: 'form-control'
+
+  p.form-group id="bcountry"
+    = address_fields.label :country_id do
+      = Spree.t(:country)
+      abbr class="required" title="required" *
+    span id="bcountry-selection"
+      / = address_fields.select :country_id, options_for_select(available_countries.map { |c| [c.name, c.id, { 'data-country-code' => c.iso }]}, @credit_card.address.country_id), {}, { disabled: true, class: 'form-control' }
+      = address_fields.select :country_id, options_for_select([[country.name, country.id, { 'data-country-code' => country.iso }]], country.id), {}, { disabled: true, class: 'form-control' }
+      = address_fields.hidden_field :country_id
+
+  p class="form-group" id="bstate"
+    = address_fields.label :state do
+      = Spree.t(:state)
+      abbr class='required' title="required" id="bstate-required" *
+    = address_fields.select :state_id, options_for_select(country.states.map { |s| [s.name, s.id, { 'data-state-code' => s.abbr }]}, address_fields.object.state_id), {}, { class: 'form-control' }
+
+  p.form-group id="bzipcode"
+    = address_fields.label :zipcode do
+      = Spree.t(:zipcode)
+      abbr class="required" title="required" *
+    = address_fields.text_field :zipcode, class: 'form-control'
+
+- if existing_shipping_address
+  javascript:
+    var useShippingInput = $('input.card_address_use_shipping, #use_existing_card_yes, #use_existing_card_no')
+
+    useShippingInput.on('change', function() {
+      updateBillingFormState()
+    })
+
+    updateBillingFormState = function() {
+      var useShipping = $('input.card_address_use_shipping').is(':checked')
+      var addressForm = useShippingInput.parents('#checkout_form_address')
+      addressForm.find('#payment_billing_address').toggle(!useShipping)
+      addressForm.find('#payment_billing_address input, #payment_billing_address bstate select').prop('disabled', useShipping)
+    }
+
+    $(function() {
+      updateBillingFormState()
+    })

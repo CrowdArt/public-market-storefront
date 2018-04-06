@@ -1,0 +1,120 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: UTF-8
+      string: email=eveline_cole%40dooley.us&card=tok_1CDtWb22AWtpwVQmH77OIG6f
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Authorization:
+      - Basic c2tfdGVzdF9WQ1puRHYzR0xVMTVUUnZuOGkyRXNhQU46
+      User-Agent:
+      - Stripe/v1 ActiveMerchantBindings/1.78.0
+      Stripe-Version:
+      - '2015-04-07'
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.78.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
+      X-Stripe-Client-User-Metadata:
+      - '{"ip":null}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 06 Apr 2018 12:18:39 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1470'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_TzCbu5FaDTqnct
+      Stripe-Version:
+      - '2015-04-07'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "cus_Cd9qzGPVuloYcS",
+          "object": "customer",
+          "account_balance": 0,
+          "created": 1523017119,
+          "currency": null,
+          "default_source": "card_1CDtWb22AWtpwVQmXPLGUmmE",
+          "delinquent": false,
+          "description": null,
+          "discount": null,
+          "email": "eveline_cole@dooley.us",
+          "invoice_prefix": "7E709D6",
+          "livemode": false,
+          "metadata": {},
+          "shipping": null,
+          "sources": {
+            "object": "list",
+            "data": [
+              {
+                "id": "card_1CDtWb22AWtpwVQmXPLGUmmE",
+                "object": "card",
+                "address_city": "Herndon",
+                "address_country": "US",
+                "address_line1": "10 Lovely Street",
+                "address_line1_check": "pass",
+                "address_line2": "Northwest",
+                "address_state": "",
+                "address_zip": "35005",
+                "address_zip_check": "pass",
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_Cd9qzGPVuloYcS",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 10,
+                "exp_year": 2019,
+                "fingerprint": "VJ3cyXmuSrVwCMLx",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": "First name",
+                "tokenization_method": null
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_Cd9qzGPVuloYcS/sources"
+          },
+          "subscriptions": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_Cd9qzGPVuloYcS/subscriptions"
+          }
+        }
+    http_version: 
+  recorded_at: Fri, 06 Apr 2018 12:18:39 GMT
+recorded_with: VCR 4.0.0

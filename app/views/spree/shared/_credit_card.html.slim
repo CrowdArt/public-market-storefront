@@ -27,4 +27,6 @@ ruby:
           br
           = address.country
 
+      = link_to 'Update', edit_credit_card_path(card), data: { turbolinks: false }
+      br
       = link_to 'Remove', credit_card_path(card), method: :delete, data: { confirm: t('payment_methods.cards.delete_prompt') }

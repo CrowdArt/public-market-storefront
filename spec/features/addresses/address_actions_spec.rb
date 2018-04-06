@@ -52,14 +52,6 @@ RSpec.describe 'address actions', type: :feature do
       expect(page).to have_text('First name 1')
     end
 
-    context "when visiting other user's address" do
-      let(:address) { create(:address, user: create(:user)) }
-
-      it 'updates shipping address' do
-        expect(page).to have_text('Authorization Failure')
-      end
-    end
-
     context 'with wrong fields' do
       before { fill_in 'address_zipcode', with: '11194001' }
 

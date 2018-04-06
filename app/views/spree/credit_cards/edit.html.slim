@@ -1,0 +1,15 @@
+- content_for :sidebar
+  = render 'spree/users/account_menu'
+
+= render partial: 'spree/shared/error_messages', locals: { target: @user }
+
+= form_for @credit_card, remote: true do |f|
+  - method = @credit_card.payment_method
+  = render partial: "spree/credit_cards/edit_form", locals: { card: @credit_card, form: f }
+
+  = render partial: 'spree/shared/payment_button'
+
+javascript:
+  $(function() {
+    initFormLeaveCheck('.edit_credit_card')
+  })

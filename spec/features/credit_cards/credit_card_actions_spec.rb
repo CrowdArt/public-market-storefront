@@ -89,7 +89,27 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
     end
   end
 
-  describe 'saves funding type' do
+  describe 'update card', vcr: true do
+    let(:card) { create(:credit_card, user: user, address: create(:address, address1: 'Initial street address')) }
+
+    before do
+      login_as(user, scope: :spree_user)
+
+      visit spree.edit_credit_card_path(card)
+
+      fill_in 'credit_card_address_attributes_address1', with: 'Alaska Street'
+      select 'Alabama', from: 'credit_card_address_attributes_state_id'
+
+      click_button 'Save and Continue'
+    end
+
+    it 'updates existing card' do
+      expect(page).to have_text('Card was successfully updated')
+      expect(card.address.reload.address1).to eq('Alaska Street')
+    end
+  end
+
+  describe 'saves funding type', vcr: true do
     subject { user.credit_cards.last.funding_credit? }
 
     let(:user) { create(:user, addresses: create_list(:address, 1, firstname: 'First name', lastname: 'Last name')) }

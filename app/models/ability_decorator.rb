@@ -5,8 +5,12 @@ class AbilityDecorator
     can :rate, Spree::Order, user_id: user.id
 
     can :manage, Spree::Address, user_id: user.id
-
     can :create, Spree::Address do
+      user.id.present?
+    end
+
+    can :manage, Spree::CreditCard, user_id: user.id
+    can :create, Spree::CreditCard do
       user.id.present?
     end
   end
