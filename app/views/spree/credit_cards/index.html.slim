@@ -5,8 +5,8 @@ h1 = t('credit_cards')
 
 - if @cards.any?
   #existing_cards
-    .row.condensed
-      = render partial: 'spree/shared/credit_card', collection: @cards, as: :card, locals: { wrapper_class: 'col-md-4 col-sm-6' }
+    .row.condensed.flex
+      = render layout: 'spree/shared/panel_card', partial: 'spree/shared/credit_card', collection: @cards, as: :card, locals: { wrapper_class: 'credit-card col-lg-4 col-md-4 col-sm-6 col-xs-12' }
 
 - else
   p = Spree.t('no_credit_cards')

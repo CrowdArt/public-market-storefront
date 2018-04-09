@@ -1,0 +1,22 @@
+.flex
+  display: flex
+  flex-wrap: nowrap
+
+  &.row
+    flex-wrap: wrap
+    // fix for safari
+    &:before, &:after
+      content: initial
+
+    & > [class*='col-']
+      display: flex
+      flex-direction: column
+
+      & > div
+        height: 100%
+
+  &.column
+    flex-direction: column
+
+.flex-grow-1
+  flex-grow: 1

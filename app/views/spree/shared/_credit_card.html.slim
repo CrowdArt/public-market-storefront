@@ -1,32 +1,32 @@
 
-ruby:
-  wrapper_class = defined?(wrapper_class) ? wrapper_class : nil
+- content_for(:panel_head, flush: true) do
+  .credit-card__name.text-uppercase.ellipsis = card.name
+    - if (card_icon = "credit_cards/icons/#{card.cc_type}.png") && asset_exists?(card_icon)
+      .pull-right
+        = image_tag(card_icon)
 
-.credit-card class=wrapper_class
-  .panel.panel-default
-    .panel-heading.condensed
-      .credit-card__name.text-uppercase.ellipsis = card.name
-      - if (card_icon = "credit_cards/icons/#{card.cc_type}.png") && asset_exists?(card_icon)
-        .pull-right
-          = image_tag(card_icon)
+- content_for(:panel_body, flush: true) do
+  - if spree_current_user.admin?
+    i.pull-right = card.funding.humanize
 
-    .panel-body.condensed
-      - if spree_current_user.admin?
-        i.pull-right = card.funding.humanize
+  p
+    strong = card.display_number
 
-      p
-        strong = card.display_number
+  p.text-muted #{card.month} / #{card.year}
 
-      p.text-muted #{card.month} / #{card.year}
-
-      - if (address = card.address)
-        address
-          = address.address1
-          br
-          | #{address.city}, #{address.state} #{address.zipcode}
-          br
-          = address.country
-
-      = link_to 'Update', edit_credit_card_path(card), data: { turbolinks: false }
+  - if (address = card.address)
+    address.no-margin-bottom
+      = address.address1
       br
-      = link_to 'Remove', credit_card_path(card), method: :delete, data: { confirm: t('payment_methods.cards.delete_prompt') }
+      | #{address.city}, #{address.state} #{address.zipcode}
+      br
+      = address.country
+
+- content_for(:panel_footer, flush: true)
+  = link_to edit_credit_card_path(card), data: { turbolinks: false }, class: 'pull-left'
+    i.glyphicon.glyphicon-pencil>
+    | Update
+
+  = link_to credit_card_path(card), method: :delete, data: { confirm: t('payment_methods.cards.delete_prompt') }, class: 'pull-right'
+    i.glyphicon.glyphicon-trash>
+    | Remove

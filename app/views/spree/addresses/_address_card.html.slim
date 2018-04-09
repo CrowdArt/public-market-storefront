@@ -1,25 +1,25 @@
 
-ruby:
-  wrapper_class = defined?(wrapper_class) ? wrapper_class : nil
+- content_for(:panel_head, flush: true)
+  .text-uppercase.ellipsis = address.full_name
 
-.address-card class=wrapper_class
-  .panel.panel-default
-    .panel-heading
-      .text-uppercase.ellipsis = address.full_name
+- content_for(:panel_body, flush: true)
+  p
+    strong = address.full_name
 
-    .panel-body
-      p
-        strong = address.full_name
+  address.no-margin-bottom
+    = address.address1
+    br
+    | #{address.city}, #{address.state} #{address.zipcode}
+    br
+    = address.country
 
-      address
-        = address.address1
-        br
-        | #{address.city}, #{address.state} #{address.zipcode}
-        br
-        = address.country
+    .text-muted = address.phone
 
-        .text-muted = address.phone
+- content_for(:panel_footer, flush: true)
+  = link_to edit_address_path(address), class: 'pull-left'
+    i.glyphicon.glyphicon-pencil>
+    | Update
 
-      = link_to 'Update', edit_address_path(address)
-      br
-      = link_to 'Remove', address_path(address), method: :delete, data: { confirm: t('addresses.delete_prompt') }
+  = link_to address_path(address), method: :delete, data: { confirm: t('addresses.delete_prompt') }, class: 'pull-right'
+    i.glyphicon.glyphicon-trash>
+    | Remove

@@ -4,8 +4,8 @@ h1 = t('account.shipping')
   = render 'spree/users/account_menu'
 
 - if @addresses.any?
-  .row.condensed
-    = render partial: 'spree/addresses/address_card', collection: @addresses, as: :address, locals: { wrapper_class: 'col-md-4 col-sm-6' }
+  .row.condensed.flex
+    = render layout: 'spree/shared/panel_card', partial: 'spree/addresses/address_card', collection: @addresses, as: :address, locals: { wrapper_class: 'address-card col-lg-4 col-md-4 col-sm-6 col-xs-12' }
 
 - else
   p = t('addresses.no_addresses')
