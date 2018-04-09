@@ -86,10 +86,33 @@ RSpec.describe Spree::User, type: :model do
       stub_current_store
     end
 
-    it 'is sent after confirmation' do
-      expect {
-        user.confirm
-      }.to have_enqueued_job(ActionMailer::DeliveryJob).with('Spree::UserMailer', 'welcome', 'deliver_now', user.id)
+    context 'when after create' do
+      it 'adds delayed welcome email job' do
+        expect {
+          user # create user
+        }.to change(DelayedWelcomeEmail.jobs, :size).by(1)
+      end
+    end
+
+    context 'when after confirmation' do
+      it 'is sent' do
+        expect {
+          user.confirm
+        }.to have_enqueued_job(ActionMailer::DeliveryJob).with('Spree::UserMailer', 'welcome', 'deliver_now', user.id)
+      end
+
+      context 'when after 1 hour' do
+        before do
+          user # create user
+          travel(1.hour + 1.minute)
+        end
+
+        it 'is not sent' do
+          expect {
+            user.confirm
+          }.not_to have_enqueued_job(ActionMailer::DeliveryJob).with('Spree::UserMailer', 'welcome', 'deliver_now', user.id)
+        end
+      end
     end
 
     context 'with reconfirmation' do
