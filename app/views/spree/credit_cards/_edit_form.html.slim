@@ -36,7 +36,7 @@ ruby:
         = Spree.t(:card_code)
         abbr.required title="required"  *
 
-      = form.text_field :verification_value, class: 'form-control required cardCode', size: 5
+      = text_field_tag :verification_value, '', class: 'form-control required cardCode', id: 'card_code', size: 5, disabled: true
 
       = link_to Spree.t(:what_is_this), spree.cvv_path, target: :blank, "data-hook" => "cvv_link", id: "cvv_link"
 
