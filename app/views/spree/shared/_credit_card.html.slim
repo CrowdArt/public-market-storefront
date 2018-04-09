@@ -1,9 +1,9 @@
 
 - content_for(:panel_head, flush: true) do
   .credit-card__name.text-uppercase.ellipsis = card.name
-    - if (card_icon = "credit_cards/icons/#{card.cc_type}.png") && asset_exists?(card_icon)
-      .pull-right
-        = image_tag(card_icon)
+  - if (card_icon = "credit_cards/icons/#{card.cc_type}.png") && asset_exists?(card_icon)
+    .pull-right
+      = image_tag(card_icon)
 
 - content_for(:panel_body, flush: true) do
   - if spree_current_user.admin?
