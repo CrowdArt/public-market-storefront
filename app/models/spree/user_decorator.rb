@@ -56,4 +56,13 @@ Spree::User.class_eval do
     self.first_name = ship_address.first_name
     self.last_name = ship_address.last_name
   end
+
+  def scramble_email_and_password
+    skip_reconfirmation!
+    self.email = 'deleted_' + SecureRandom.uuid.first(5) + email
+    self.login = email
+    self.password = SecureRandom.hex(8)
+    self.password_confirmation = password
+    save
+  end
 end

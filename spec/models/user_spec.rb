@@ -121,8 +121,27 @@ RSpec.describe Spree::User, type: :model do
       it 'is not sent' do
         expect {
           user.confirm
-        }.not_to have_enqueued_job(ActionMailer::DeliveryJob)
+        }.not_to change { ActionMailer::Base.deliveries.size }
       end
+    end
+  end
+
+  describe '#destroy' do
+    before do
+      stub_current_store
+    end
+
+    let!(:user) { create(:user) }
+
+    it 'changes email' do
+      user.destroy!
+      expect(Spree::User.with_deleted.last.email).to start_with('deleted_')
+    end
+
+    it 'skips reconfirmation' do
+      expect {
+        user.destroy!
+      }.not_to change { ActionMailer::Base.deliveries.size }
     end
   end
 end
