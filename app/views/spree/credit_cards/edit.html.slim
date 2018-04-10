@@ -3,7 +3,7 @@
 
 = render partial: 'spree/shared/error_messages', locals: { target: @user }
 
-= form_for @credit_card, remote: true do |f|
+= form_for @credit_card, remote: true, html: { id: 'edit-credit-card-form' } do |f|
   - method = @credit_card.payment_method
   = render partial: "spree/credit_cards/edit_form", locals: { card: @credit_card, form: f }
 

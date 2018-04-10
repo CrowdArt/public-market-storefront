@@ -90,22 +90,54 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
   end
 
   describe 'update card', vcr: true do
-    let(:card) { create(:credit_card, user: user, address: create(:address, address1: 'Initial street address')) }
+    let(:card) { create(:credit_card, last_digits: '4242', user: user, address: create(:address, address1: 'Initial street address')) }
 
     before do
       login_as(user, scope: :spree_user)
-
       visit spree.edit_credit_card_path(card)
-
-      fill_in 'credit_card_address_attributes_address1', with: 'Alaska Street'
-      select 'Alabama', from: 'credit_card_address_attributes_state_id'
-
-      click_button 'Save and Continue'
     end
 
-    it 'updates existing card' do
-      expect(page).to have_text('Card was successfully updated')
-      expect(card.address.reload.address1).to eq('Alaska Street')
+    context 'with new address' do
+      before do
+        fill_in 'credit_card_address_attributes_address1', with: 'Alaska Street'
+        select 'Alabama', from: 'credit_card_address_attributes_state_id'
+
+        click_button 'Save and Continue'
+      end
+
+      it 'updates existing card' do
+        expect(page).to have_text('Card was successfully updated')
+        expect(card.address.reload.address1).to eq('Alaska Street')
+      end
+    end
+
+    context 'when stripe' do
+      let(:card) do
+        create(:credit_card, last_digits: '4242',
+                             user: user,
+                             address: create(:address, user: user, address1: 'Initial street address'),
+                             payment_method: create(:stripe_card_payment_method, name: 'Credit card method'))
+      end
+
+      before do
+        Capybara.default_max_wait_time = 10
+        setup_stripe_watcher
+
+        fill_in 'card_code', with: '911'
+        fill_in 'card_expiry', with: "01/#{Time.current.year + 1}"
+        fill_in 'card_name', with: 'Super User'
+
+        native_fill_field 'card_number', '4000056655665556'
+
+        click_button('Save and Continue')
+
+        wait_for_stripe # Wait for Stripe API to return + form to submit
+      end
+
+      it 'updates existing card' do
+        expect(page).to have_text('Card was successfully updated')
+        expect(card.reload.last_digits).to eq('5556')
+      end
     end
   end
 

@@ -74,7 +74,7 @@ module Spree
 
     def card_edit_params
       params.require(:credit_card).permit(
-        permitted_source_attributes + [:id, :use_shipping, address_attributes: permitted_address_attributes]
+        permitted_source_attributes + [:id, :funding, :use_shipping, address_attributes: permitted_address_attributes]
       )
     end
 

@@ -14,14 +14,14 @@ ruby:
       = Spree.t(:name_on_card)
       abbr.required title="required" *
 
-    = form.text_field :name, class: 'form-control required'
+    = form.text_field :name, data: { value: form.object.name }, id: 'card_name', class: 'form-control required'
 
   p.field data-hook="card_number"
     = form.label :number do
       = Spree.t(:card_number)
       abbr.required title="required" *
 
-    = form.text_field :number, value: card.display_number, class: 'form-control required cardNumber', size: 19, maxlength: 19, autocomplete: "off", disabled: true
+    = form.text_field :number, value: card.display_number, data: { value: form.object.display_number }, id: 'card_number', class: 'form-control required cardNumber', size: 19, maxlength: 19, autocomplete: 'off', inputmode: 'numeric'
 
   .row
     .col-md-8.field data-hook="card_expiration"
@@ -29,16 +29,17 @@ ruby:
         = Spree.t(:expiration)
         abbr.required title="required"  *
 
-      = form.text_field :expiry, value: "#{form.object.month} / #{form.object.year}", class: "form-control required cardExpiry", placeholder: "MM / YY"
+      - formatted_expiry = "#{form.object.month.to_s.rjust(2, '0')} / #{form.object.year}"
+      = form.text_field :expiry, value: formatted_expiry, data: { value: formatted_expiry }, id: 'card_expiry', class: 'form-control required cardExpiry', inputmode: 'numeric', placeholder: 'MM / YY'
 
     .col-md-4.field data-hook="card_code"
       = form.label :verification_value do
         = Spree.t(:card_code)
         abbr.required title="required"  *
 
-      = text_field_tag :verification_value, '', class: 'form-control required cardCode', id: 'card_code', size: 5, disabled: true
+      = text_field_tag :verification_value, '', class: 'form-control required cardCode', id: 'card_code', size: 5, inputmode: 'numeric'
 
-      = link_to Spree.t(:what_is_this), spree.cvv_path, target: :blank, "data-hook" => "cvv_link", id: "cvv_link"
+      = link_to Spree.t(:what_is_this), spree.cvv_path, target: :blank, id: 'cvv_link'
 
   hr
 
@@ -53,6 +54,23 @@ ruby:
             = Spree.t(:use_shipping_address)
 
       = render partial: 'spree/credit_cards/address/form', locals: { address_fields: address_fields, country: form.object.address.country, existing_shipping_address: existing_shipping_address.present? }
+
+
+- if form.object.stripe_card?
+  = javascript_include_tag "https://js.stripe.com/v2"
+  = javascript_include_tag :stripeForm
+
+  javascript:
+    $(function() {
+      window.initStripeForm("#{form.object.payment_method.preferred_publishable_key}", '#edit-credit-card-form')
+
+      $('#card_name, #card_number, #card_expiry').on('input change keyup', function() {
+        if (Spree.newCreditCard || this.value == $(this).data('value')) return
+
+        Spree.newCreditCard = true
+        $('#card_name, #card_number, #card_expiry').val('')
+      })
+    })
 
 javascript:
   $(function() {

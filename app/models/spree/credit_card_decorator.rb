@@ -42,6 +42,8 @@ Spree::CreditCard.class_eval do
     use_shipping.in?([true, 'true', '1'])
   end
 
+  private
+
   def clone_shipping_address # rubocop:disable Metrics/AbcSize
     order = user.orders.find_by(id: order_id) if order_id
 

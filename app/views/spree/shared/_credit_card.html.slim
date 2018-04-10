@@ -12,7 +12,7 @@
   p
     strong = card.display_number
 
-  p.text-muted #{card.month} / #{card.year}
+  p.text-muted #{card.month.to_s.rjust(2, '0')} / #{card.year}
 
   - if (address = card.address)
     address.no-margin-bottom

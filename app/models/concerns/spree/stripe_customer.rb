@@ -3,8 +3,8 @@ module Spree
     extend ActiveSupport::Concern
 
     included do
+      after_validation :create_stripe_customer, on: %i[create update], if: :update_stripe_customer?
       after_validation :update_stripe_card, on: :update, if: -> { valid_stripe_card? && has_payment_profile? }
-      after_validation :create_stripe_customer, on: :create, if: -> { valid_stripe_card? && !gateway_customer_profile_id }
     end
 
     def valid_stripe_card?
@@ -40,6 +40,10 @@ module Spree
       else
         errors.add(:base, stripe_gateway_error(response.message))
       end
+    end
+
+    def update_stripe_customer?
+      valid_stripe_card? && (!gateway_customer_profile_id || gateway_payment_profile_id&.starts_with?('tok_'))
     end
 
     def update_stripe_card
