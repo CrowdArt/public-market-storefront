@@ -94,3 +94,7 @@ group :production, :staging do
   gem 'therubyracer'
   gem 'uglifier'
 end
+
+group :api_db do
+  gem 'sqlite3'
+end

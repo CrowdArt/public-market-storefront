@@ -52,7 +52,7 @@ module Bookstore
 
     config.exceptions_app = routes
 
-    unless Rails.env.test?
+    unless Rails.env.test? || Rails.env.api_db?
       config.paperclip_defaults = {
         storage: :fog,
         url: ':gcs_domain_url',

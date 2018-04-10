@@ -13,7 +13,13 @@ namespace :spree_sample do
 
   desc 'Loads Indaba inventory sample'
   task indaba_samples: :environment do
-    Spree::Inventory::UploadFileAction.call('csv', './db/samples/inventory.csv')
+    require 'sidekiq/testing'
+    Sidekiq::Testing.inline!
+    Spree::Inventory::UploadFileAction.call('csv',
+                                            './db/samples/inventory.csv', upload_options: {
+                                              vendor: Spree::Vendor.last
+                                            })
+    Spree::Product.reindex
   end
 end
 
@@ -26,5 +32,14 @@ namespace :db do
   desc 'Seed social authentication methods'
   task seed_social_auth: :environment do
     require './db/default/social_auth.rb'
+  end
+
+  desc 'Create sample db'
+  task :sample do
+    system('rake db:drop')
+    system('rake db:create')
+    system('rake db:migrate')
+    system('rake db:setup')
+    system('rake spree_sample:indaba_samples')
   end
 end

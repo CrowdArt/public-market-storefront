@@ -31,3 +31,7 @@ production:
   pool: <%= ENV['WEB_THREADS'] || 20 %>
   password: <%= Settings.db_password %>
   host: <%= ENV['DB_HOST'] %>
+
+api_db:
+  adapter: sqlite3
+  database: db/storefront_api.sqlite3
