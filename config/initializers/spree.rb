@@ -30,5 +30,12 @@ Spree.admin_path = '/dashboard'
 Spree::PermittedAttributes.user_attributes.push(:first_name, :last_name)
 Spree::PermittedAttributes.taxon_attributes.push(:hidden)
 
+Spree::PermittedAttributes.source_attributes.push(
+  :funding,
+  :card_name,
+  :use_shipping,
+  address_attributes: Spree::PermittedAttributes.address_attributes
+)
+
 FrontendConfig = Spree::FrontendConfiguration.new
 FrontendConfig.coupon_codes_enabled = false

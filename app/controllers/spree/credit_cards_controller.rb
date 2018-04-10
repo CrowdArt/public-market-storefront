@@ -3,13 +3,13 @@ module Spree
     before_action :authenticate_spree_user!
     before_action :load_user
 
-    load_and_authorize_resource class: Spree::CreditCard
+    load_and_authorize_resource class: Spree::CreditCard, find_by: :slug
 
     before_action :set_account_tab, only: %i[index edit new]
     before_action :prepare_card_form, only: %i[edit new]
 
     def index
-      @cards = @user.credit_cards
+      @cards = @user.credit_cards.order(id: :desc)
     end
 
     def new
@@ -39,15 +39,13 @@ module Spree
     end
 
     def destroy
-      card = @user.credit_cards.find(params[:id])
-
-      if card.destroy
+      if @credit_card.destroy
         flash[:success] = t('payment_methods.cards.deleted')
       else
         flash[:error] = card.errors.full_messages.join(', ')
       end
 
-      redirect_back(fallback_location: 'account/payment')
+      redirect_back(fallback_location: '/account/payment')
     end
 
     private
@@ -63,7 +61,7 @@ module Spree
     def payment_method_params
       pm_params = params.permit(
         order: { payments_attributes: permitted_payment_attributes },
-        payment_source: permitted_source_attributes + [:funding, :use_shipping, address_attributes: permitted_address_attributes]
+        payment_source: permitted_source_attributes
       )
 
       payment_method_id = pm_params['order']['payments_attributes'].first['payment_method_id'].to_s
@@ -74,7 +72,7 @@ module Spree
 
     def card_edit_params
       params.require(:credit_card).permit(
-        permitted_source_attributes + [:id, :funding, :use_shipping, address_attributes: permitted_address_attributes]
+        permitted_source_attributes + [:id]
       )
     end
 

@@ -1,6 +1,7 @@
 
 - content_for(:panel_head, flush: true) do
-  .credit-card__name.text-uppercase.ellipsis = card.name
+  .credit-card__name.text-uppercase.ellipsis = card.card_name.presence || card.name
+
   - if (card_icon = "credit_cards/icons/#{card.cc_type}.png") && asset_exists?(card_icon)
     .pull-right
       = image_tag(card_icon)

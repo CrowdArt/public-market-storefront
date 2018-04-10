@@ -2,6 +2,9 @@ Spree::CreditCard.class_eval do
   include Spree::StripeCustomer
   extend Enumerize
 
+  extend FriendlyId
+  friendly_id :slug_candidates, use: %i[slugged scoped], scope: :user
+
   belongs_to :address, class_name: 'Spree::Address', required: true, dependent: :destroy # rubocop:disable Rails/InverseOf
   accepts_nested_attributes_for :address
 
@@ -58,5 +61,12 @@ Spree::CreditCard.class_eval do
     end
 
     address.user_id = nil
+  end
+
+  def slug_candidates
+    [
+      :card_name,
+      [:card_name, -> { SecureRandom.uuid.first(5) }]
+    ]
   end
 end

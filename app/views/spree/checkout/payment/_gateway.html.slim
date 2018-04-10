@@ -2,10 +2,17 @@ ruby:
   existing_shipping_address = @order&.ship_address || spree_current_user.addresses.first
   firstname = existing_shipping_address&.firstname || spree_current_user.first_name
   lastname = existing_shipping_address&.lastname || spree_current_user.last_name
+  param_prefix = "payment_source[#{payment_method.id}]"
 
 .well.clearfix
+  p.field
+    = label_tag :card_name
+    = text_field_tag "#{param_prefix}[card_name]", '', class: 'form-control'
+
+  hr
+
   = image_tag 'credit_cards/credit_card.gif', id: 'credit-card-image', class: 'pull-right', width: '170', height: '28'
-  - param_prefix = "payment_source[#{payment_method.id}]"
+
   p.field
     = label_tag "name_on_card_#{payment_method.id}" do
       = Spree.t(:name_on_card)

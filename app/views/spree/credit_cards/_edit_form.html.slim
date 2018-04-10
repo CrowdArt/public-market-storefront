@@ -3,6 +3,12 @@ ruby:
   address = card.address
 
 .well.clearfix
+  p.field
+    = form.label :card_name
+    = form.text_field :card_name, data: { value: form.object.card_name }, class: 'form-control'
+
+  hr
+
   = image_tag 'credit_cards/credit_card.gif', id: 'credit-card-image', class: 'pull-right', width: '170', height: '28'
 
   - param_prefix = "credit_card"
