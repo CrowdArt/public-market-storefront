@@ -19,8 +19,15 @@ Spree::CheckoutController.class_eval do
         @current_order = nil
         flash.notice = Spree.t(:order_processed_successfully)
         flash['order_completed'] = true
+        Tracker.track(spree_current_user.id, "order completed", {
+          order_id: @order.id
+        })
         redirect_to completion_route
       else
+        Tracker.track(spree_current_user.id, "order change state", {
+          order_id: @order.id,
+          state: @order.state
+        })
         redirect_to checkout_state_path(@order.state)
       end
     else
