@@ -12,6 +12,7 @@ Capybara.register_driver(:selenium_chrome_headless) do |app|
 end
 
 Capybara.javascript_driver = :selenium_chrome_headless
+Capybara.server = :puma, { Silent: true }
 
 module CapybaraHelpers
   def native_fill_field(selector, text)
