@@ -27,7 +27,7 @@ ruby:
       = Spree.t(:card_number)
       abbr.required title="required" *
 
-    = form.text_field :number, value: card.display_number, data: { value: form.object.display_number }, id: 'card_number', class: 'form-control required cardNumber', size: 19, maxlength: 19, autocomplete: 'off', inputmode: 'numeric'
+    = form.phone_field :number, value: card.display_number, data: { value: form.object.display_number }, id: 'card_number', class: 'form-control required cardNumber', size: 19, maxlength: 19, autocomplete: 'off', inputmode: 'numeric'
 
   .row
     .col-md-8.field data-hook="card_expiration"
@@ -36,14 +36,14 @@ ruby:
         abbr.required title="required"  *
 
       - formatted_expiry = "#{form.object.month.to_s.rjust(2, '0')} / #{form.object.year}"
-      = form.text_field :expiry, value: formatted_expiry, data: { value: formatted_expiry }, id: 'card_expiry', class: 'form-control required cardExpiry', inputmode: 'numeric', placeholder: 'MM / YY'
+      = form.phone_field :expiry, value: formatted_expiry, data: { value: formatted_expiry }, id: 'card_expiry', class: 'form-control required cardExpiry', inputmode: 'numeric', placeholder: 'MM / YY'
 
     .col-md-4.field data-hook="card_code"
       = form.label :verification_value do
         = Spree.t(:card_code)
         abbr.required title="required"  *
 
-      = text_field_tag :verification_value, '', class: 'form-control required cardCode', id: 'card_code', size: 5, inputmode: 'numeric'
+      = phone_field_tag :verification_value, '', class: 'form-control required cardCode', id: 'card_code', size: 5, inputmode: 'numeric'
 
       = link_to Spree.t(:what_is_this), spree.cvv_path, target: :blank, id: 'cvv_link'
 

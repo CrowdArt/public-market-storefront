@@ -46,7 +46,7 @@
     = address_fields.label :zipcode do
       = Spree.t(:zipcode)
       abbr class="required" title="required" *
-    = address_fields.text_field :zipcode, class: 'form-control', inputmode: 'numeric', autocomplete: 'postal-code'
+    = address_fields.phone_field :zipcode, class: 'form-control', inputmode: 'numeric', autocomplete: 'postal-code'
 
 - if existing_shipping_address
   javascript:
