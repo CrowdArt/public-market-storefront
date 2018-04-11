@@ -1,4 +1,6 @@
 Spree::Address.class_eval do
+  acts_as_paranoid
+
   belongs_to :user, class_name: Spree.user_class.to_s, optional: true, inverse_of: :addresses
 
   EXCLUDED_KEYS_FOR_COMPARISION = %w[id user_id updated_at created_at].freeze

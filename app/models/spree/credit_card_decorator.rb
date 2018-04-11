@@ -5,6 +5,8 @@ Spree::CreditCard.class_eval do
   extend FriendlyId
   friendly_id :slug_candidates, use: %i[slugged scoped], scope: :user
 
+  acts_as_paranoid
+
   belongs_to :address, class_name: 'Spree::Address', required: true, dependent: :destroy # rubocop:disable Rails/InverseOf
   accepts_nested_attributes_for :address
 
