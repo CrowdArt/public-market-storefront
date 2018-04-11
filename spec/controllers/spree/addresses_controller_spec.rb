@@ -3,10 +3,12 @@ RSpec.describe Spree::AddressesController, type: :controller do
 
   routes { Spree::Core::Engine.routes }
 
-  describe '#edit' do
-    subject { get :edit, params: { id: address.id } }
+  before { allow(Spree::Address).to receive(:find).and_return(address) }
 
-    let(:address) { create(:address, user: user) }
+  describe '#edit' do
+    subject(:get_address_edit) { get :edit, params: { id: address.id } }
+
+    let(:address) { build_stubbed(:address, user: user) }
 
     context 'when not signed in' do
       it { is_expected.not_to be_success }
@@ -17,8 +19,14 @@ RSpec.describe Spree::AddressesController, type: :controller do
 
       it { is_expected.to be_success }
 
+      it 'loads address' do
+        expect {
+          get_address_edit
+        }.to change { assigns(:address) }.from(nil).to(address)
+      end
+
       context "when other's address" do
-        let(:address) { create(:address) }
+        let(:address) { build_stubbed(:address) }
 
         it { is_expected.not_to be_success }
       end

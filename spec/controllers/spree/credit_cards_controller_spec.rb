@@ -3,10 +3,12 @@ RSpec.describe Spree::CreditCardsController, type: :controller do
 
   routes { Spree::Core::Engine.routes }
 
+  before { allow(Spree::CreditCard).to receive(:find_by).and_return(card) }
+
   describe '#edit' do
     subject { get :edit, params: { id: card.slug } }
 
-    let(:card) { create(:credit_card, user: user) }
+    let(:card) { build_stubbed(:credit_card, user: user) }
 
     context 'when not signed in' do
       it { is_expected.not_to be_success }
@@ -18,7 +20,7 @@ RSpec.describe Spree::CreditCardsController, type: :controller do
       it { is_expected.to be_success }
 
       context "when other's card" do
-        let(:card) { create(:credit_card) }
+        let(:card) { build_stubbed(:credit_card) }
 
         it { is_expected.not_to be_success }
       end

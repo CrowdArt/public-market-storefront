@@ -1,6 +1,4 @@
 RSpec.describe ErrorsController, type: :controller do
-  before { allow(controller).to receive(:spree_current_user).and_return(nil) }
-
   describe '#not_found' do
     subject { get :not_found }
 
