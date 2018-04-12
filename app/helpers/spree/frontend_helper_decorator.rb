@@ -28,5 +28,9 @@ module Spree
       end
     end
     # rubocop:enable Metrics/AbcSize, Metrics/LineLength, Rails/OutputSafety
+
+    def compared_user_addresses(address)
+      spree_current_user.addresses.map { |a| [a, address.same_as?(a)] }
+    end
   end
 end

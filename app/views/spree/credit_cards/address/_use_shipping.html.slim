@@ -1,0 +1,38 @@
+- if existing_shipping_addresses.one?
+  - address = existing_shipping_addresses.first.first
+  - same_as_address = @credit_card.persisted? ? existing_shipping_addresses.first.second : true
+  .radio
+    = label_tag "#{address_prefix}_use_shipping_#{address.id}" do
+      = radio_button_tag "#{param_prefix}[use_shipping]", address.id, same_as_address, id: "#{address_prefix}_use_shipping_#{address.id}", class: 'card_address_use_shipping'
+      = t('forms.credit_cards.address.use_shipping', address: address.full_address)
+- else
+  - existing_shipping_addresses.each_with_index do |(address, same_as_address), idx|
+    .radio
+      = label_tag "#{address_prefix}_use_shipping_#{address.id}" do
+        = radio_button_tag "#{param_prefix}[use_shipping]", address.id, @credit_card.persisted? ? same_as_address : idx == 0, id: "#{address_prefix}_use_shipping_#{address.id}", class: 'card_address_use_shipping'
+        = address.full_address
+
+.radio
+  = label_tag 'credit_card_use_shipping_custom_address' do
+    = radio_button_tag "#{param_prefix}[use_shipping]", 'custom_address', @credit_card.persisted? ? custom_address : false, id: 'credit_card_use_shipping_custom_address', class: 'card_address_use_shipping'
+    | Use custom billing address
+
+javascript:
+  var useShippingInput, updateBillingFormState
+
+  useShippingInput = $('input.card_address_use_shipping, #use_existing_card_yes, #use_existing_card_no')
+
+  useShippingInput.on('change', function() {
+    updateBillingFormState()
+  })
+
+  updateBillingFormState = function() {
+    var customAddress = $('#credit_card_use_shipping_custom_address').is(':checked')
+    var addressForm = useShippingInput.parents('#checkout_form_address')
+    addressForm.find('#payment_billing_address').toggle(customAddress)
+    addressForm.find('#payment_billing_address input, #payment_billing_address bstate select').prop('disabled', !customAddress)
+  }
+
+  $(function() {
+    updateBillingFormState()
+  })

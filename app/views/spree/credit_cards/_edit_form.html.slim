@@ -1,7 +1,3 @@
-ruby:
-  existing_shipping_address = spree_current_user.addresses.first
-  address = card.address
-
 .well.clearfix
   p.field
     = form.label :card_name
@@ -51,16 +47,13 @@ ruby:
 
   h4 = Spree.t(:billing_address)
 
-  = form.fields_for :address, card.address do |address_fields|
+  ruby:
+    existing_shipping_addresses = compared_user_addresses(card.address)
+    custom_address = existing_shipping_addresses.all? { |a| !a[1] }
+
+  = form.fields_for :address, custom_address ? card.address : Spree::Address.build_default do |address_fields|
     #checkout_form_address.inner
-      - if existing_shipping_address
-        p.field.checkbox
-          = form.label :use_shipping do
-            = form.check_box :use_shipping, value: '1', checked: card.address.same_as?(spree_current_user.addresses.first), class: 'card_address_use_shipping'
-            = Spree.t(:use_shipping_address)
-
-      = render partial: 'spree/credit_cards/address/form', locals: { address_fields: address_fields, country: form.object.address.country, existing_shipping_address: existing_shipping_address.present? }
-
+      = render partial: 'spree/credit_cards/address/form', locals: { address_prefix: 'credit_card', param_prefix: 'credit_card', address_fields: address_fields, country: form.object.address.country, existing_shipping_addresses: existing_shipping_addresses, custom_address: custom_address }
 
 - if form.object.stripe_card?
   = javascript_include_tag "https://js.stripe.com/v2"

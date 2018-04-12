@@ -9,4 +9,8 @@ Spree::Address.class_eval do
     return false if other.nil?
     attributes.except(*EXCLUDED_KEYS_FOR_COMPARISION) == other.attributes.except(*EXCLUDED_KEYS_FOR_COMPARISION)
   end
+
+  def full_address
+    [address1, city, "#{state.abbr} #{zipcode}", country].join(', ')
+  end
 end

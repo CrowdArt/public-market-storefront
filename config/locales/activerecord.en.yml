@@ -10,6 +10,8 @@ en:
               confirmation: "^Sorry, your passwords didn't match. Please try again."
 
     attributes:
+      spree/credit_card:
+        card_name: Card Nickname
       spree/credit_card/address:
         firstname: First Name
         lastname: Last Name

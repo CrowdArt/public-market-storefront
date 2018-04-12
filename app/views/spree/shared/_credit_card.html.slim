@@ -1,12 +1,16 @@
 
 - content_for(:panel_head, flush: true) do
-  .credit-card__name.text-uppercase.ellipsis = card.card_name.presence || card.name
+  - if card.card_name.present?
+    .credit-card__name.text-uppercase.ellipsis = card.card_name
 
   - if (card_icon = "credit_cards/icons/#{card.cc_type}.png") && asset_exists?(card_icon)
     .pull-right
       = image_tag(card_icon)
 
 - content_for(:panel_body, flush: true) do
+  p
+    strong = card.name.titleize
+
   - if spree_current_user.admin?
     i.pull-right = card.funding.humanize
 

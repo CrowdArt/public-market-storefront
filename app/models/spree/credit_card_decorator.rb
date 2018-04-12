@@ -20,7 +20,7 @@ Spree::CreditCard.class_eval do
 
   delegate :provider, to: :payment_method
 
-  attr_accessor :use_shipping, :order_id
+  attr_accessor :use_shipping
 
   def expiry=(expiry) # rubocop:disable Metrics/AbcSize
     self[:month], self[:year] =
@@ -44,17 +44,13 @@ Spree::CreditCard.class_eval do
   end
 
   def use_shipping?
-    use_shipping.in?([true, 'true', '1'])
+    use_shipping.present?
   end
 
   private
 
-  def clone_shipping_address # rubocop:disable Metrics/AbcSize
-    order = user.orders.find_by(id: order_id) if order_id
-
-    if order
-      self.address = order.ship_address.clone
-    elsif (user_address = user.addresses.first).present?
+  def clone_shipping_address
+    if (user_address = user.addresses.find_by(id: use_shipping)).present?
       if address.blank?
         self.address = user_address.clone
       else

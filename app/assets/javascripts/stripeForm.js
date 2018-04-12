@@ -64,16 +64,16 @@ window.initStripeForm = function(key, formID) {
       $('#stripeError').hide();
       Spree.stripePaymentMethod.find('.error, .has-error').removeClass('error, has-error');
 
-      if (!$.payment.validateCardCVC($('#card_code').val())) {
-        $('#card_code').addClass('error').parent().addClass('has-error');
-        $('#stripeError').html('Security Code is invalid').show();
-        return false;
-      }
-
       if (!Spree.newCreditCard) {
         return Spree.stripePaymentMethod.parents("form").trigger('submit');
       } else {
         if (Spree.stripePaymentMethod.is(':visible')) {
+          if (!$.payment.validateCardCVC($('#card_code').val())) {
+            $('#card_code').addClass('error').parent().addClass('has-error');
+            $('#stripeError').html('Security Code is invalid').show();
+            return false;
+          }
+
           expiration = $('.cardExpiry:visible').payment('cardExpiryVal');
 
           params = $.extend({

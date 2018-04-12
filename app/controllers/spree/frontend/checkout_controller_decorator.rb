@@ -92,7 +92,7 @@ Spree::CheckoutController.class_eval do
 
   def permitted_payment_attributes
     permitted_attributes.payment_attributes + [
-      source_attributes: permitted_source_attributes + [:order_id]
+      source_attributes: permitted_source_attributes
     ]
   end
 end

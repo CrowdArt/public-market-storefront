@@ -21,7 +21,7 @@
                 td
                   strong= address.full_name
                 td
-                  = [address.address1, address.city, "#{address.state.abbr} #{address.zipcode}", address.country].join(', ')
+                  = address.full_address
                 td
                   = form.radio_button :ship_address_id, address.id, checked: (address.same_as?(@order.ship_address)) || idx == 0, class: 'existing-address-radio'
 

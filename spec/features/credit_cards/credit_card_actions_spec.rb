@@ -37,14 +37,14 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
         end
 
         it 'adds new card' do
-          expect(page).to have_text('First name Last name'.upcase)
+          expect(page).to have_text('First name Last name'.titleize)
           expect(user.credit_cards.count).to eq(1)
         end
 
         it 'deletes card' do
           click_link 'Remove'
           page.driver.browser.switch_to.alert.accept
-          expect(page).not_to have_text('First name Last name'.upcase)
+          expect(page).not_to have_text('First name Last name'.titleize)
         end
       end
 
@@ -61,7 +61,7 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
         end
 
         it 'does not add new card' do
-          expect(page).to have_text('First name Last name'.upcase)
+          expect(page).to have_text('First name Last name'.titleize)
           expect(user.credit_cards.count).to eq(1)
         end
       end
@@ -82,7 +82,7 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
       end
 
       it 'adds new card' do
-        expect(page).to have_text("#{user.addresses.first.firstname} #{user.addresses.first.lastname}".upcase)
+        expect(page).to have_text("#{user.addresses.first.firstname} #{user.addresses.first.lastname}".titleize)
         expect(user.credit_cards.count).to eq(1)
         expect(user.addresses.count).to eq 1
       end
@@ -167,7 +167,7 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
 
       wait_for_stripe # Wait for Stripe API to return + form to submit
 
-      expect(page).to have_text("#{user.addresses.first.firstname} #{user.addresses.first.lastname}".upcase)
+      expect(page).to have_text("#{user.addresses.first.firstname} #{user.addresses.first.lastname}".titleize)
     end
 
     context 'when credit card' do

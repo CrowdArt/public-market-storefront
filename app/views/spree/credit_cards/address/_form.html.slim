@@ -1,3 +1,9 @@
+- existing_shipping_addresses ||= compared_user_addresses(@credit_card.address)
+- custom_address ||= existing_shipping_addresses.all? { |a| !a[1] }
+
+- if existing_shipping_addresses.present?
+  = render partial: 'spree/credit_cards/address/use_shipping', locals: { address_prefix: address_prefix, param_prefix: param_prefix, card: @credit_card, existing_shipping_addresses: existing_shipping_addresses, custom_address: custom_address }
+
 #payment_billing_address
   p.form-group id='bfirstname'
     = address_fields.label :firstname do
@@ -47,22 +53,3 @@
       = Spree.t(:zipcode)
       abbr class="required" title="required" *
     = address_fields.phone_field :zipcode, class: 'form-control', inputmode: 'numeric', autocomplete: 'postal-code'
-
-- if existing_shipping_address
-  javascript:
-    var useShippingInput = $('input.card_address_use_shipping, #use_existing_card_yes, #use_existing_card_no')
-
-    useShippingInput.on('change', function() {
-      updateBillingFormState()
-    })
-
-    updateBillingFormState = function() {
-      var useShipping = $('input.card_address_use_shipping').is(':checked')
-      var addressForm = useShippingInput.parents('#checkout_form_address')
-      addressForm.find('#payment_billing_address').toggle(!useShipping)
-      addressForm.find('#payment_billing_address input, #payment_billing_address bstate select').prop('disabled', useShipping)
-    }
-
-    $(function() {
-      updateBillingFormState()
-    })

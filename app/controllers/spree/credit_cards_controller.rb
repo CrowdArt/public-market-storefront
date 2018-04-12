@@ -14,7 +14,7 @@ module Spree
 
     def new
       @credit_card = Spree::CreditCard.new
-      @credit_card.address = @user.addresses&.first&.clone || Spree::Address.build_default
+      @credit_card.address = Spree::Address.build_default
       render :new
     end
 

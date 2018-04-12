@@ -1,7 +1,7 @@
 ruby:
-  existing_shipping_address = @order&.ship_address || spree_current_user.addresses.first
-  firstname = existing_shipping_address&.firstname || spree_current_user.first_name
-  lastname = existing_shipping_address&.lastname || spree_current_user.last_name
+  user_address = spree_current_user.addresses.first
+  firstname = user_address&.firstname || spree_current_user.first_name
+  lastname = user_address&.lastname || spree_current_user.last_name
   param_prefix = "payment_source[#{payment_method.id}]"
 
 .well.clearfix
@@ -54,15 +54,5 @@ ruby:
   h4 = Spree.t(:billing_address)
 
   = fields_for "#{param_prefix}[address_attributes]", @credit_card.address do |address_fields|
-    - address_prefix = "payment_source_#{payment_method.id}"
     #checkout_form_address.inner
-      - if existing_shipping_address
-        - if @order
-          = hidden_field_tag "#{param_prefix}[order_id]", @order.id
-
-        p.field.checkbox
-          = label_tag "#{address_prefix}_card_address_use_shipping" do
-            = check_box_tag "#{param_prefix}[use_shipping]", '1', '', class: 'card_address_use_shipping', id: "#{address_prefix}_card_address_use_shipping"
-            = Spree.t(:use_shipping_address)
-
-      = render partial: 'spree/credit_cards/address/form', locals: { address_fields: address_fields, country: @credit_card.address.country, existing_shipping_address: existing_shipping_address.present? }
+      = render partial: 'spree/credit_cards/address/form', locals: { address_prefix: "payment_source_#{payment_method.id}", param_prefix: param_prefix, address_fields: address_fields, country: @credit_card.address.country }
