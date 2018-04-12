@@ -17,19 +17,16 @@ Spree::UserRegistrationsController.class_eval do
         expire_data_after_sign_in!
         respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
-      track_alias(resource.id)
-      Tracker.track(resource.id, 'signup')
+      flash[:mixpanel_actions] = [
+        "mixpanel.alias('#{resource.id}')",
+        %Q(mixpanel.track('signup', {
+          "user_id": "#{resource.id}",
+          "email": "#{resource.try(:email)}",
+        }))
+      ].to_json
     else
       clean_up_passwords(resource)
       render :new
     end
-  end
-
-  protected
-
-  def track_alias(user_id)
-    mp_params = cookies["mp_#{Settings.mixpanel_api_key}_mixpanel"]
-    return if mp_params.blank? || (distinct_id = JSON.parse(mp_params)['distinct_id']).blank?
-    Tracker.alias(user_id, distinct_id)
   end
 end
