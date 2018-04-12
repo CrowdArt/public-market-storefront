@@ -76,7 +76,7 @@ Spree::CheckoutController.class_eval do
 
     @payment_sources = try_spree_current_user.credit_cards if try_spree_current_user&.respond_to?(:credit_cards)
     @credit_card = Spree::CreditCard.new
-    @credit_card.address ||= @order.ship_address.clone
+    @credit_card.address = Spree::Address.build_default
   end
   # rubocop:enable Metrics/AbcSize
 
