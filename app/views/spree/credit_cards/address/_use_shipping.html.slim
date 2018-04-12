@@ -9,17 +9,17 @@
   .radio
     label for="use_existing_address_no"
       = radio_button_tag "#{param_prefix}[use_shipping]", 'custom_address', @credit_card.persisted? ? custom_address : false, id: 'use_existing_address_no', class: 'card_address_use_shipping'
-      | Use custom billing address
+      = t('forms.credit_cards.address.use_custom_billing_address')
 - else
   .radio
     label for='use_existing_address_yes'
       = radio_button_tag 'use_existing_address', 'yes', @credit_card.persisted? ? !custom_address : true, class: 'card_address_use_shipping'
-      = t('addresses.use_existing_shipping_address')
+      = t('forms.credit_cards.address.use_existing_address')
 
     br.visible-xs
     label for="use_existing_address_no"
       = radio_button_tag 'use_existing_address', 'no', @credit_card.persisted? ? custom_address : false, class: 'card_address_use_shipping'
-      | Use custom billing address
+      = t('forms.credit_cards.address.use_custom_billing_address')
 
   #existing_addresses
     table.existing-address-list
