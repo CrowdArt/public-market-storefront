@@ -36,7 +36,7 @@ Spree::User.class_eval do
     # don't send welcome email if:
     # - reconfirmation
     # - welcome email was sent in DelayedWelcomeEmail
-    return if previous_changes[:unconfirmed_email] || confirmation_sent_at < 1.hour.ago
+    return if previous_changes[:unconfirmed_email] || (confirmation_sent_at.present? && (confirmation_sent_at < 1.hour.ago))
     send_welcome_email
   end
 
