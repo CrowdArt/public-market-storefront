@@ -7,17 +7,25 @@ module Spree
     end
 
     def meta_properties
-      object_class = instance_variable_get('@' + controller_name.singularize).class.to_s
-      objects_with_own_tags = %w[Spree::Page] # avoid duplicate
-
-      return [] if objects_with_own_tags.include?(object_class)
-      {
-        'og:title': title,
-        'og:description': meta_data[:description],
+      opts = {
         'fb:app_id': Settings.facebook_api_key,
-        'og:type': @product ? :product : :website,
-        'og:image': meta_image
+        'og:type': @product ? :product : :website
       }
+
+      if (image = meta_image)
+        opts['og:image'] = image
+      end
+
+      # avoid duplicate
+      object_class = instance_variable_get('@' + controller_name.singularize).class.to_s
+      objects_with_own_tags = %w[Spree::Page]
+
+      return opts if objects_with_own_tags.include?(object_class)
+
+      opts.merge!(
+        'og:title': title,
+        'og:description': meta_data[:description]
+      )
     end
 
     def meta_data_tags
@@ -35,6 +43,8 @@ module Spree
     private
 
     def meta_image
+      return if @page&.meta_image&.exists?
+
       if (image = @product&.images&.first)
         image_url(image.attachment.url(:large))
       else
