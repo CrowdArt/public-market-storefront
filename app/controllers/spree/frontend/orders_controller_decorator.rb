@@ -32,7 +32,7 @@ Spree::OrdersController.class_eval do
         format.js
       end
     else
-      Tracker.track(spree_current_user.id, "item added to cart", {
+      Tracker.track(mixpanel_user_id, "item added to cart", {
         order_id: order.id,
         product_id: variant.id,
         product_name: variant.product.name

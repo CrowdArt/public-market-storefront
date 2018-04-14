@@ -4,6 +4,17 @@ class ApplicationController < ActionController::Base
   # prepend_before_action :auth_staging, if: -> { Rails.env.staging? }
   before_action :set_raven_context, if: -> { Rails.env.staging? || Rails.env.production? }
 
+  protected
+
+  def mixpanel_user_id
+    return spree_current_user if spree_current_user
+    mp_params = cookies["mp_#{Settings.mixpanel_api_key}_mixpanel"]
+    if !mp_params.blank?
+      distinct_id = JSON.parse(mp_params)['distinct_id']
+      distinct_id unless distinct_id.blank?
+    end
+  end
+
   private
 
   def set_raven_context
