@@ -13,7 +13,14 @@ Spree::UserMailer.class_eval do
 
   def confirmation_instructions(user, token, _opts = {})
     confirmation_url = spree.spree_user_confirmation_url(confirmation_token: token, host: Spree::Store.current.url)
-    template = user.pending_reconfirmation? ? :reconfirmation : :confirmation
-    mail_template(user, template, confirmation_url: confirmation_url)
+
+    template, user_email =
+      if user.pending_reconfirmation?
+        [:reconfirmation, user.unconfirmed_email]
+      else
+        [:confirmation, user.email]
+      end
+
+    mail_template(user_email, template, confirmation_url: confirmation_url)
   end
 end

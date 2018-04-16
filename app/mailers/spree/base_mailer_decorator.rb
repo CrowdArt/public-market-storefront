@@ -9,7 +9,9 @@ Spree::BaseMailer.class_eval do
 
     set_smtp_headers(template)
 
-    mail(to: resource.email,
+    resource_email = resource.is_a?(String) ? resource : resource.email
+
+    mail(to: resource_email,
          subject: subject,
          template_path: 'mailer',
          template_name: 'default')
