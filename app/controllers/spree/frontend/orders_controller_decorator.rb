@@ -5,8 +5,7 @@ Spree::OrdersController.class_eval do
   # - respond to js when add to cart clicked
 
   # Adds a new item to the order (creating a new order if none already exists)
-  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
-  def populate
+  def populate # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
     order    = current_order(create_order_if_necessary: true)
     variant  = Spree::Variant.find(params[:variant_id])
     quantity = params[:quantity].to_i
@@ -43,7 +42,6 @@ Spree::OrdersController.class_eval do
       end
     end
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
 
   def rate
     order = Spree::Order.find_by!(number: params[:id])

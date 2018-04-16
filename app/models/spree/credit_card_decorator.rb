@@ -7,7 +7,7 @@ Spree::CreditCard.class_eval do
 
   acts_as_paranoid
 
-  belongs_to :address, class_name: 'Spree::Address', required: true, dependent: :destroy # rubocop:disable Rails/InverseOf
+  belongs_to :address, class_name: 'Spree::Address', required: true, dependent: :destroy
   accepts_nested_attributes_for :address
 
   validates :month, :year, numericality: { only_integer: true }

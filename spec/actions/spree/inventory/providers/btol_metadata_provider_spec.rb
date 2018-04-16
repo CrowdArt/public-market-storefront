@@ -76,8 +76,7 @@ RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action,
 
     it { expect(Spree::Config.product_metadata_provider.constantize).to eq(described_class) }
 
-    # rubocop:disable RSpec/MultipleExpectations
-    it 'create product and variant' do
+    it 'create product and variant' do # rubocop:disable RSpec/MultipleExpectations
       expect(variant).not_to be_nil
       expect(variant.sku).to eq(item_json[:sku])
       expect(variant.option_value('condition')).to eq(item_json[:condition])
@@ -91,6 +90,5 @@ RSpec.describe Spree::Inventory::Providers::BtolMetadataProvider, type: :action,
       expect(taxons.count).to eq(1)
       expect(taxons.first.pretty_name).to eq('Categories -> Fiction -> Thrillers -> General')
     end
-    # rubocop:enable RSpec/MultipleExpectations
   end
 end

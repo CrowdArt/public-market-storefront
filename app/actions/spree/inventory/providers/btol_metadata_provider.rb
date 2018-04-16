@@ -92,7 +92,7 @@ module Spree
           Date.parse(pub_date) if pub_date.present?
         end
 
-        def btol_item(isbn)
+        def btol_item(isbn) # rubocop:disable Metrics/AbcSize
           Rails.logger.info("Request #{isbn} from B&T")
           raise 'Please specify B&T API credentials in secrets' if Settings.btol_user.blank?
 

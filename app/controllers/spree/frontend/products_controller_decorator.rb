@@ -1,6 +1,5 @@
 Spree::ProductsController.class_eval do
-  # rubocop:disable Metrics/AbcSize
-  def show
+  def show # rubocop:disable Metrics/AbcSize
     @variants = @product.variants_including_master
                         .spree_base_scopes
                         .in_stock
@@ -15,7 +14,6 @@ Spree::ProductsController.class_eval do
     @taxon = params[:taxon_id].present? ? Spree::Taxon.find(params[:taxon_id]) : @product.taxons.first
     redirect_if_legacy_path
   end
-  # rubocop:enable Metrics/AbcSize
 
   private
 

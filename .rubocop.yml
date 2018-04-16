@@ -19,6 +19,7 @@ Rails/UnknownEnv:
     - test
     - staging
     - production
+    - api_db
 
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: compact
