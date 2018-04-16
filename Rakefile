@@ -6,7 +6,7 @@ require_relative 'config/application'
 Rails.application.load_tasks
 
 namespace :spree_sample do
-  desc 'Loads sample bookstore data'
+  desc 'Loads sample storefront data'
   task book_samples: :environment do
     require './db/samples.rb'
   end

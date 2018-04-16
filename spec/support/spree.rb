@@ -1,11 +1,11 @@
 require 'spree/testing_support/controller_requests'
 
-module SpreeBookstoreHelpers
+module SpreeStorefrontHelpers
   def stub_current_store
     allow(Spree::Store).to receive(:current) { build_stubbed(:store) }
   end
 end
 
 RSpec.configure do |config|
-  config.include SpreeBookstoreHelpers
+  config.include SpreeStorefrontHelpers
 end

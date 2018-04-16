@@ -37,7 +37,7 @@ rspec:
     paths:
       - vendor/bundle
   variables:
-    POSTGRES_DB: bookstore_test
+    POSTGRES_DB: storefront_test
     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
     ELASTICSEARCH_URL: http://elasticsearch:9200
     RAILS_ENV: test

@@ -34,7 +34,7 @@ end
 def start_elastic_cluster
   ENV['TEST_CLUSTER_PORT'] = '9250'
   ENV['TEST_CLUSTER_NODES'] = '1'
-  ENV['TEST_CLUSTER_NAME'] = 'bookstore_test'
+  ENV['TEST_CLUSTER_NAME'] = 'pm_storefront_test'
 
   ENV['ELASTICSEARCH_URL'] = "http://localhost:#{ENV['TEST_CLUSTER_PORT']}"
 

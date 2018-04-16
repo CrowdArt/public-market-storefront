@@ -1,7 +1,7 @@
 Spree::OrdersController.class_eval do
   skip_before_action :check_authorization, only: [:rate]
 
-  # Bookstore changes:
+  # Storefront changes:
   # - respond to js when add to cart clicked
 
   # Adds a new item to the order (creating a new order if none already exists)

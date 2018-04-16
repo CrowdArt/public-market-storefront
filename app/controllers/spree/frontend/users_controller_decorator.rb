@@ -15,7 +15,7 @@ Spree::UsersController.class_eval do
     end
   end
 
-  # Bookstore changes:
+  # Storefront changes:
   # - save(context: :edit)
   def update
     @user.assign_attributes(user_params)

@@ -1,6 +1,6 @@
 Spree::UserRegistrationsController.class_eval do
   # POST /resource/sign_up
-  # Bookstore changes:
+  # Storefront changes:
   # - save(context: :signup)
   def create # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     @user = build_resource(spree_user_params)
