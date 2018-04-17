@@ -8,6 +8,7 @@
 .rspec
 .overcommit.yml
 .rubocop.yml
+.byebug_history
 Guardfile
 Procfile.*
 
