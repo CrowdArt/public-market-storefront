@@ -1,7 +1,7 @@
 Spree::UserSessionsController.class_eval do
   def create # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     super do |resource|
-      flash[:mixpanel_actions] = [
+      session[:mixpanel_actions] = [
         "mixpanel.identify('#{resource.id}')",
         %Q(mixpanel.people.set({
           "$first_name": "#{resource.first_name}",
@@ -13,7 +13,7 @@ Spree::UserSessionsController.class_eval do
           "user_id": "#{resource.id}",
           "email": "#{resource.try(:email)}"
         }))
-      ].to_json
+      ]
     end
   end
 end

@@ -7,12 +7,12 @@ Devise::ConfirmationsController.class_eval do
 
     if resource.errors.empty?
       set_flash_message!(:notice, notification_msg)
-      flash[:mixpanel_actions] = [
+      session[:mixpanel_actions] = [
         %Q(mixpanel.track("email confirmed", {
           "user_id": "#{resource.id}",
           "email": "#{resource.try(:email)}"
         }))
-      ].to_json
+      ]
       respond_with_navigational(resource) { redirect_to after_confirmation_path_for(resource_name, resource) }
     else
       respond_with_navigational(resource.errors, status: :unprocessable_entity) { render :new }
@@ -24,12 +24,12 @@ Devise::ConfirmationsController.class_eval do
     yield resource if block_given?
 
     if successfully_sent?(resource)
-      flash[:mixpanel_actions] = [
+      session[:mixpanel_actions] = [
         %Q(mixpanel.track("email confirmation sent", {
           "user_id": "#{resource.id}",
           "email": "#{resource.try(:email)}"
         }))
-      ].to_json
+      ]
       respond_with({}, location: after_resending_confirmation_instructions_path_for(resource_name))
     else
       respond_with(resource)

@@ -17,13 +17,13 @@ Spree::UserRegistrationsController.class_eval do
         expire_data_after_sign_in!
         respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
-      flash[:mixpanel_actions] = [
+      session[:mixpanel_actions] = [
         "mixpanel.alias('#{resource.id}')",
         %Q(mixpanel.track('signup', {
           "user_id": "#{resource.id}",
           "email": "#{resource.try(:email)}",
         }))
-      ].to_json
+      ]
     else
       clean_up_passwords(resource)
       render :new
