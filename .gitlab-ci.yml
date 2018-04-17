@@ -36,16 +36,23 @@ rspec:
   cache:
     paths:
       - vendor/bundle
+      - cc-test-reporter
   variables:
     POSTGRES_DB: storefront_test
     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
     ELASTICSEARCH_URL: http://elasticsearch:9200
     RAILS_ENV: test
   before_script:
+    # setup codeclimate test reporter
+    - wget -nc -O ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+    - chmod +x ./cc-test-reporter
+    - ./cc-test-reporter before-build
+    # setup rails test env
     - bundle check || bundle install --deployment --jobs 4 --without development staging production
     - bundle exec rake db:schema:load
   script:
     - bundle exec rspec
+    - ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $?
   artifacts:
     when: always
     expire_in: 1 day
