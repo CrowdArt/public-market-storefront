@@ -212,7 +212,6 @@ GEM
     climate_control (0.2.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
-    cocoon (1.2.11)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -745,7 +744,6 @@ DEPENDENCIES
   capybara-screenshot
   chromedriver-helper
   ckeditor
-  cocoon
   coffee-rails (~> 4.2)
   config
   dalli

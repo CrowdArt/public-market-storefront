@@ -22,7 +22,6 @@ gem 'enumerize'
 gem 'bootswatch-rails'
 
 gem 'ckeditor'
-gem 'cocoon'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'sass-rails'
