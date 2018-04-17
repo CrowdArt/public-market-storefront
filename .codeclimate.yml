@@ -18,7 +18,7 @@ plugins:
     enabled: true
   rubocop:
     enabled: true
-    channel: rubocop-0-54
+    channel: rubocop-0-55
   # css
   csslint:
     enabled: true
