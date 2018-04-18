@@ -8,6 +8,8 @@ en:
     orders: My orders
 
   devise:
+    failure:
+      invalid: Invalid credentials
     confirmations:
       confirmed: You successfully activated your account.
     user_registrations:

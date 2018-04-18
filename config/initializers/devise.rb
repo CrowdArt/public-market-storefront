@@ -1,3 +1,5 @@
+ENV['OTP_SECRET'] ||= Settings.otp_secret
+
 Devise.secret_key = Settings.secret_key_base
 
 Devise.setup do |config|

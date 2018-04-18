@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180411135922) do
+ActiveRecord::Schema.define(version: 20180417132334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_stat_statements"
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
@@ -1023,29 +1022,6 @@ ActiveRecord::Schema.define(version: 20180411135922) do
     t.index ["taxonomy_id"], name: "index_taxons_on_taxonomy_id"
   end
 
-  create_table "spree_themes", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.string "state"
-    t.string "template_file_file_name"
-    t.string "template_file_content_type"
-    t.integer "template_file_file_size"
-    t.datetime "template_file_updated_at"
-  end
-
-  create_table "spree_themes_templates", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.text "body"
-    t.string "path"
-    t.string "format"
-    t.string "locale"
-    t.string "handler"
-    t.boolean "partial", default: false
-    t.integer "theme_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["theme_id"], name: "index_spree_themes_templates_on_theme_id"
-  end
-
   create_table "spree_trackers", id: :serial, force: :cascade do |t|
     t.string "analytics_id"
     t.boolean "active", default: true
@@ -1118,6 +1094,11 @@ ActiveRecord::Schema.define(version: 20180411135922) do
     t.string "last_name"
     t.string "unconfirmed_email"
     t.string "reputation_uid"
+    t.string "encrypted_otp_secret"
+    t.string "encrypted_otp_secret_iv"
+    t.string "encrypted_otp_secret_salt"
+    t.integer "consumed_timestep"
+    t.boolean "otp_required_for_login"
     t.index ["bill_address_id"], name: "index_spree_users_on_bill_address_id"
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"
     t.index ["email"], name: "email_idx_unique", unique: true
