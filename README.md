@@ -1,7 +1,8 @@
 # Public Market Storefront
 
 [![Build status](https://gitlab.com/publicmarket/storefront/badges/master/pipeline.svg)](https://gitlab.com/publicmarket/storefront/commits/master)
-[![coverage report](https://gitlab.com/publicmarket/storefront/badges/master/coverage.svg)](https://gitlab.com/publicmarket/storefront/commits/master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6574ed206ea9e53a01f1/maintainability)](https://codeclimate.com/github/public-market/storefront/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/6574ed206ea9e53a01f1/test_coverage)](https://codeclimate.com/github/public-market/storefront/test_coverage)
 
 ## Install Dependencies
 
