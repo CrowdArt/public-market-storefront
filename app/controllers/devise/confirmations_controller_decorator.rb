@@ -8,7 +8,7 @@ Devise::ConfirmationsController.class_eval do
     if resource.errors.empty?
       set_flash_message!(:notice, notification_msg)
       session[:mixpanel_actions] = [
-        %Q(mixpanel.track("email confirmed", {
+        %(mixpanel.track("email confirmed", {
           "user_id": "#{resource.id}",
           "email": "#{resource.try(:email)}"
         }))
@@ -25,7 +25,7 @@ Devise::ConfirmationsController.class_eval do
 
     if successfully_sent?(resource)
       session[:mixpanel_actions] = [
-        %Q(mixpanel.track("email confirmation sent", {
+        %(mixpanel.track("email confirmation sent", {
           "user_id": "#{resource.id}",
           "email": "#{resource.try(:email)}"
         }))

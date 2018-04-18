@@ -32,11 +32,7 @@ Spree::OrdersController.class_eval do
         format.js
       end
     else
-      Tracker.track(mixpanel_user_id, "item added to cart", {
-        order_id: order.id,
-        product_id: variant.id,
-        product_name: variant.product.name
-      })
+      Tracker.track(mixpanel_user_id, 'item added to cart', order_id: order.id, product_id: variant.id, product_name: variant.product.name)
       respond_with(order) do |format|
         if params[:button] == 'add-to-cart'
           flash[:success] = Spree.t(:added_to_cart, product: variant.product.name)

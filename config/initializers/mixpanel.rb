@@ -4,7 +4,7 @@ module Tracker
   class << self
     # Only log in production and staging
     def method_missing(name, *args, &block)
-      if ['staging', 'production'].include?(Rails.env)
+      if %w[staging production].include?(Rails.env)
         tracker.public_send(name, *args) if tracker.respond_to?(name)
       end
     end

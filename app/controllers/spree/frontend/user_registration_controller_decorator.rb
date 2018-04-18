@@ -19,7 +19,7 @@ Spree::UserRegistrationsController.class_eval do
       end
       session[:mixpanel_actions] = [
         "mixpanel.alias('#{resource.id}')",
-        %Q(mixpanel.track('signup', {
+        %(mixpanel.track('signup', {
           "user_id": "#{resource.id}",
           "email": "#{resource.try(:email)}",
         }))

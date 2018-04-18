@@ -9,10 +9,9 @@ class ApplicationController < ActionController::Base
   def mixpanel_user_id
     return spree_current_user if spree_current_user
     mp_params = cookies["mp_#{Settings.mixpanel_api_key}_mixpanel"]
-    if !mp_params.blank?
-      distinct_id = JSON.parse(mp_params)['distinct_id']
-      distinct_id unless distinct_id.blank?
-    end
+    return if mp_params.blank?
+    distinct_id = JSON.parse(mp_params)['distinct_id']
+    distinct_id.presence
   end
 
   private
