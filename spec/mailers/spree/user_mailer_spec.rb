@@ -77,4 +77,27 @@ RSpec.describe Spree::UserMailer, type: :mailer do
       end
     end
   end
+
+  describe '#email_change' do
+    let(:user) { create(:user) }
+    let(:mail) { described_class.email_change(user.id) }
+
+    it 'is sent to correct email' do
+      expect(mail.to).to eq [user.email]
+    end
+
+    it 'contains correct subject' do
+      expect(mail.subject).to include('Email Address Changed')
+    end
+
+    it 'contains correct body' do
+      expect(mail.body).to include('request to change the email address')
+    end
+
+    it 'sends an email' do
+      expect {
+        mail.deliver_now
+      }.to change(ActionMailer::Base.deliveries, :size).by(1)
+    end
+  end
 end

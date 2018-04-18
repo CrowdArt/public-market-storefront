@@ -82,9 +82,7 @@ RSpec.describe Spree::User, type: :model do
   describe 'welcome email' do
     let(:user) { create(:user, confirmed_at: nil) }
 
-    before do
-      stub_current_store
-    end
+    before { stub_current_store }
 
     context 'when after create' do
       it 'adds delayed welcome email job' do
@@ -127,9 +125,7 @@ RSpec.describe Spree::User, type: :model do
   end
 
   describe '#destroy' do
-    before do
-      stub_current_store
-    end
+    before { stub_current_store }
 
     let!(:user) { create(:user) }
 
@@ -142,6 +138,20 @@ RSpec.describe Spree::User, type: :model do
       expect {
         user.destroy!
       }.not_to change { ActionMailer::Base.deliveries.size }
+    end
+  end
+
+  describe '#email_change' do
+    subject(:change_email) { user.update(email: 'new@super.email') }
+
+    before { stub_current_store }
+
+    let!(:user) { create(:user) }
+
+    it 'is sent' do
+      expect {
+        change_email
+      }.to have_enqueued_job(ActionMailer::DeliveryJob).with('Spree::UserMailer', 'email_change', 'deliver_now', user.id)
     end
   end
 end

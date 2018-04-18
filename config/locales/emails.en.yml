@@ -104,6 +104,18 @@ en:
         </table>
       footer: If you did not make this request, please ignore this email.
 
+    email_change:
+      categories:
+        - account
+      subject: Public Market Account - Email Address Changed
+      preview: Hi %{first_name}, Public Market recently received a request to change the email address associated with your account.
+      body: |
+        <p>Hi, %{first_name}</p>
+        <p>Public Market recently received a request to change the email address associated with your account.</p>
+        <p>If you did not recently change your Public Market account information and believe that your account has been compromised, please contact us at <a href="mailto:support@publicmarket.io">support@publicmarket.io</a>.</p>
+        <p>Best Regards,<br>The Public Market Team</p>
+      footer: ''
+
     order_confirmation:
       categories:
         - order

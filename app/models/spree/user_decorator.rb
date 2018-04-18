@@ -12,6 +12,8 @@ Spree::User.class_eval do
 
   after_create :send_welcome_email_with_delay
 
+  after_commit :send_email_change, on: :update, if: :reconfirmation_required?
+
   def full_name
     [first_name, last_name].join(' ').strip
   end
@@ -64,5 +66,9 @@ Spree::User.class_eval do
     self.password = SecureRandom.hex(8)
     self.password_confirmation = password
     save
+  end
+
+  def send_email_change
+    Spree::UserMailer.email_change(id).deliver_later
   end
 end

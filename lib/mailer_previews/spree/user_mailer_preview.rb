@@ -17,5 +17,9 @@ module Spree
       user.unconfirmed_email = 'newemail@public.market'
       UserMailer.confirmation_instructions(user, 'faketoken')
     end
+
+    def email_change
+      UserMailer.email_change(User.first.id)
+    end
   end
 end
