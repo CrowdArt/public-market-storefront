@@ -44,7 +44,7 @@ rspec:
     RAILS_ENV: test
   before_script:
     # setup codeclimate test reporter
-    - wget -nc -O ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+    - wget -nc -O ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 || true
     - chmod +x ./cc-test-reporter
     - ./cc-test-reporter before-build
     # setup rails test env
