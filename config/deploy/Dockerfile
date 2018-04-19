@@ -1,8 +1,11 @@
 FROM "registry.gitlab.com/publicmarket/storefront/base:latest"
 
-RUN apt-get install -yqq \
+RUN apt-get update -qq \
+    && apt-get install --no-install-recommends -yqq \
       cron \
-      vim
+      vim \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD ./config/deploy/cron-start /bin/cron-start
 

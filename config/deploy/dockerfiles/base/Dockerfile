@@ -4,7 +4,7 @@ EXPOSE 3000
 
 # node setup installs node sources and runs apt-get update
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - \
-    && apt-get install -yqq \
+    && apt-get install -yqq --no-install-recommends \
         git \
         nodejs
 
@@ -12,7 +12,9 @@ ENV YARN_VERSION=1.5.1
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && apt-get update -qq \
-    && apt-get install -yqq yarn
+    && apt-get install -yqq --no-install-recommends yarn \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /app
 
