@@ -108,7 +108,6 @@ en:
       categories:
         - account
       subject: Public Market Account - Email Address Changed
-      preview: Hi %{first_name}, Public Market recently received a request to change the email address associated with your account.
       body: |
         <p>Hi, %{first_name}</p>
         <p>Public Market recently received a request to change the email address associated with your account.</p>

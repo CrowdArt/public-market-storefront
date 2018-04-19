@@ -6,9 +6,12 @@
     <%= stylesheet_link_tag "foundation_emails" %>
 	</head>
 	<body>
-    <div style="display:none;font-size:1px;color:#333333;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
-      <%= @preview %>
-    </div>
+    <% if @preview %>
+      <div style="display:none;font-size:1px;color:#333333;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
+        <%= @preview %>
+      </div>
+    <% end %>
+
 	  <table class="container">
       <tr>
         <td>
