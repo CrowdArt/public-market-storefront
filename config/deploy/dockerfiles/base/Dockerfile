@@ -4,7 +4,11 @@ EXPOSE 3000
 
 # node setup installs node sources and runs apt-get update
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - \
-    && apt-get install -yqq git vim nodejs
+    && apt-get install -yqq \
+        git \
+        vim \
+        nodejs \
+        cron
 
 ENV YARN_VERSION=1.5.1
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
