@@ -19,8 +19,9 @@ gem 'dalli'
 gem 'config'
 gem 'enumerize'
 
-gem 'bootswatch-rails'
+gem 'whenever', require: false
 
+gem 'bootswatch-rails'
 gem 'ckeditor'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
@@ -41,6 +42,7 @@ gem 'spree_gateway', '~> 3.3'
 gem 'spree_multi_vendor', github: 'public-market/spree_multi_vendor'
 gem 'spree_pages'
 gem 'spree_searchkick', github: 'public-market/spree_searchkick'
+gem 'spree_sitemap', github: 'spree-contrib/spree_sitemap'
 gem 'spree_social', github: 'public-market/spree_social'
 
 gem 'delayed_paperclip'

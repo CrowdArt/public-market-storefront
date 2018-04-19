@@ -30,6 +30,7 @@ coverage
 public/assets/*
 public/uploads
 public/spree/products/*
+public/sitemap*
 
 config/deploy/bin
 config/deploy/db

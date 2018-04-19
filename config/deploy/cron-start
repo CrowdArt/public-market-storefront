@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+function cleanup {
+ echo cleanup
+ kill "${CRON_PID}"
+}
+
+trap cleanup SIGHUP SIGINT SIGTERM
+
+echo "$(date)" starting cron
+touch /var/log/cron.log
+
+bundle exec whenever -w &
+tail -f /var/log/cron.log &
+TAIL_PID=$!
+
+# export environment variables for crontab jobs
+env > /var/env-list
+
+cron -f &
+CRON_PID=$!
+
+wait "${CRON_PID}"
+
+echo exiting
+kill "${TAIL_PID}"

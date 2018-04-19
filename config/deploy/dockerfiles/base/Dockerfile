@@ -6,9 +6,7 @@ EXPOSE 3000
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - \
     && apt-get install -yqq \
         git \
-        vim \
-        nodejs \
-        cron
+        nodejs
 
 ENV YARN_VERSION=1.5.1
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
