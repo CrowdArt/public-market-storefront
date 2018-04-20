@@ -248,7 +248,7 @@ GEM
     css_parser (1.6.0)
       addressable
     dalli (2.7.8)
-    database_cleaner (1.6.2)
+    database_cleaner (1.7.0)
     declarative (0.0.10)
     declarative-option (0.1.0)
     deep_merge (1.2.1)
