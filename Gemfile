@@ -79,6 +79,7 @@ group :development do
   gem 'guard', require: false
   gem 'guard-rspec', require: false
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'pry-rails'
   gem 'rack-mini-profiler', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
