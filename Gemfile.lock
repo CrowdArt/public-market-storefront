@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/public-market/spree_auth_devise.git
-  revision: 61d4de99726310bc5844516a7de3566b544732b1
+  revision: 475aea083d155297653f9fd55aadb28028682a3f
   specs:
     spree_auth_devise (3.3.3)
       config
