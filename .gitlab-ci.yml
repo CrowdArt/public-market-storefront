@@ -42,7 +42,7 @@ rspec:
     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
     ELASTICSEARCH_URL: http://elasticsearch:9200
     RAILS_ENV: test
-    DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
+    DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: 'true'
   before_script:
     # setup codeclimate test reporter
     - wget -nc -O ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 || true
