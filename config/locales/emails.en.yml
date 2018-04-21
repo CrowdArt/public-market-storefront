@@ -82,13 +82,13 @@ en:
     reconfirmation:
       categories:
         - account
-      subject: Confirm to change your email address
+      subject: Confirm to change your account's email address
       preview: Click below to confirm you want to change the email address associated with your account...
       body: |
-        <h3>Verify Your Email</h3>
+        <h3>Change Account Email Address</h3>
 
         <p>
-          Click below to confirm you want to change the email address associated with your account.
+          Please confirm you want to change the email address currently associated with your account to your "%{@_message.to.first}" address.
         </p>
 
         <table class="button">
@@ -111,9 +111,9 @@ en:
       body: |
         <p>Hi, %{first_name}</p>
         <p>Public Market recently received a request to change the email address associated with your account.</p>
-        <p>If you did not recently change your Public Market account information and believe that your account has been compromised, please contact us at <a href="mailto:support@publicmarket.io">support@publicmarket.io</a>.</p>
+        <p>If you made this request, please disregard this notice.</p>
         <p>Best Regards,<br>The Public Market Team</p>
-      footer: ''
+      footer: 'Did not make this request? Contact us at <a href="mailto:support@publicmarket.io">support@publicmarket.io</a>.'
 
     order_confirmation:
       categories:

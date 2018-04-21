@@ -69,7 +69,7 @@ RSpec.describe Spree::UserMailer, type: :mailer do
       end
 
       it 'contains correct subject' do
-        expect(mail.subject).to include('Confirm to change your email address')
+        expect(mail.subject).to include('Confirm to change')
       end
 
       it 'contains correct body' do
