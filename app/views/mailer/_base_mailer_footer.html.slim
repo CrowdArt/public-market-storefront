@@ -22,8 +22,10 @@ table.menu
 = render 'mailer/spacer', size: 10
 
 p.text-center
-  a> href='%rawUnsubscribe%' = t('emails.unsubscribe.category')
-  ' |
+  - if @smtp_headers[:asm_groups_to_display].include?(@smtp_headers[:asm_group_id])
+    a> href='%rawUnsubscribe%' = t('emails.unsubscribe.category')
+    ' |
+
   a href='%rawPreferences%' = t('emails.unsubscribe.preferences')
   br
   ' This email was sent to

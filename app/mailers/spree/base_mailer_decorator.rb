@@ -21,7 +21,7 @@ Spree::BaseMailer.class_eval do
     sendgrid_categories = I18n.t(['emails', template, 'categories'].join('.')) || [template]
     categories = [Rails.env] | sendgrid_categories
 
-    smtp_headers = {
+    @smtp_headers = {
       category: categories,
       sub: {
         '%rawUnsubscribe%': ['<%asm_group_unsubscribe_raw_url%>'],
@@ -29,24 +29,27 @@ Spree::BaseMailer.class_eval do
       }
     }
 
-    if (unsub_category = unsubscribe_category(sendgrid_categories))
-      smtp_headers[:asm_group_id] = unsub_category
-    end
+    @smtp_headers[:asm_group_id] = unsubscribe_category(sendgrid_categories)
+    @smtp_headers[:asm_groups_to_display] = unsubscribe_preferences
 
-    headers['X-SMTPAPI'] = smtp_headers.to_json
+    headers['X-SMTPAPI'] = @smtp_headers.to_json
   end
 
   def unsubscribe_category(categories)
-    category = categories.detect { |c| Settings["sendgrid-unsubscribe-#{c}"].presence }
+    category = categories.detect { |c| Settings["sendgrid-unsubscribe-#{c}"].presence } || :required
     Settings["sendgrid-unsubscribe-#{category}"]
+  end
+
+  def unsubscribe_preferences
+    I18n.t('emails.unsubscribe_preferences').map { |g| Settings["sendgrid-unsubscribe-#{g}"].presence }.compact
   end
 
   def line_items_as_text(items)
     first_item = items[0]
     line = "#{first_item.quantity}x \"#{first_item.variant.product.name}\""
 
-    return line if items.length == 1
-    more_items_count = items.length - 1
+    return line if (items_count = items.length) == 1
+    more_items_count = items_count - 1
     line + "... and #{more_items_count} other #{'item'.pluralize(more_items_count)}"
   end
 end

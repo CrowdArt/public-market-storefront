@@ -9,7 +9,8 @@ module Spree
     end
 
     def confirmation_instructions
-      UserMailer.confirmation_instructions(User.first, 'faketoken')
+      user = User.where(unconfirmed_email: nil).first
+      UserMailer.confirmation_instructions(user, 'faketoken')
     end
 
     def reconfirmation_instructions

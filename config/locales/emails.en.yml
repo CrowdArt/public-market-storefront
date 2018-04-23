@@ -1,5 +1,8 @@
 en:
   emails:
+    unsubscribe_preferences:
+      - engagement
+
     unsubscribe:
       category: Unsubscribe From This List
       preferences: Manage Email Preferences
@@ -88,7 +91,7 @@ en:
         <h3>Change Account Email Address</h3>
 
         <p>
-          Please confirm you want to change the email address currently associated with your account to your "%{@_message.to.first}" address.
+          Please confirm you want to change the email address currently associated with your account to your "%{email}" address.
         </p>
 
         <table class="button">

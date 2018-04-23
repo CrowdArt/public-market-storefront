@@ -74,6 +74,7 @@ RSpec.describe Spree::UserMailer, type: :mailer do
 
       it 'contains correct body' do
         expect(mail.body).to include('change the email address associated with your account')
+        expect(mail.body).to include(user.unconfirmed_email)
       end
     end
   end

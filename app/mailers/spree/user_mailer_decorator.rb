@@ -21,7 +21,7 @@ Spree::UserMailer.class_eval do
         [:confirmation, user.email]
       end
 
-    mail_template(user_email, template, confirmation_url: confirmation_url)
+    mail_template(user_email, template, email: user_email, confirmation_url: confirmation_url)
   end
 
   def email_change(user_id)
