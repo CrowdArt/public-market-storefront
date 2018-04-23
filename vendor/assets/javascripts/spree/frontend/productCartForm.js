@@ -1,3 +1,5 @@
+// additional to spree/frontend/product.js
+
 $(document).on('turbolinks:load', function() {
   function setVariantOptionText(variant) {
     $('#variant-option').text(variant.siblings('label').find('.variant-description').text());
@@ -30,7 +32,7 @@ $(document).on('turbolinks:load', function() {
     }
   };
 
-  function changeQuantitySelectorOptions(count) {
+  Spree.changeQuantitySelectorOptions = function(count) {
     var $el = $("#cart-form #quantity");
     $el.empty(); // remove old options
 
@@ -39,6 +41,10 @@ $(document).on('turbolinks:load', function() {
       $el.append($("<option></option>")
          .attr("value", i).text(i));
     }
+
+    var singleItemLeft = max === 1;
+    $el.prop('disabled', singleItemLeft);
+    $('#product-hidden-quantity').attr('disabled', !singleItemLeft);
   }
 
   var radios = $("#product-variants input[type='radio']");
@@ -48,12 +54,12 @@ $(document).on('turbolinks:load', function() {
 
     setVariantOptionText(selectedRadio);
     setAveragePrice(selectedRadio);
-    changeQuantitySelectorOptions(selectedRadio.data("quantity"));
+    Spree.changeQuantitySelectorOptions(selectedRadio.data("quantity"));
 
     radios.click(function (event) {
       setVariantOptionText($(this));
       setAveragePrice($(this));
-      changeQuantitySelectorOptions($(this).data("quantity"));
+      Spree.changeQuantitySelectorOptions($(this).data("quantity"));
     });
   }
-})
+});

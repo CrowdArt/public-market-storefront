@@ -7,14 +7,14 @@ Spree::OrdersController.class_eval do
   # Adds a new item to the order (creating a new order if none already exists)
   def populate # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
     order    = current_order(create_order_if_necessary: true)
-    variant  = Spree::Variant.find(params[:variant_id])
+    @variant = Spree::Variant.find(params[:variant_id])
     quantity = params[:quantity].to_i
     options  = params[:options] || {}
 
     # 2,147,483,647 is crazy. See issue #2695.
     if quantity.between?(1, 2_147_483_647)
       begin
-        order.contents.add(variant, quantity, options)
+        order.contents.add(@variant, quantity, options)
         order.update_line_item_prices!
         order.create_tax_charge!
         order.update_with_updater!
@@ -32,13 +32,16 @@ Spree::OrdersController.class_eval do
         format.js
       end
     else
-      Tracker.track(mixpanel_user_id, 'item added to cart', order_id: order.id, product_id: variant.id, product_name: variant.product.name)
+      product_name = @variant.product.name
+
+      Tracker.track(mixpanel_user_id, 'item added to cart', order_id: order.id, product_id: @variant.id, product_name: product_name)
+
       respond_with(order) do |format|
         if params[:button] == 'add-to-cart'
-          flash[:success] = Spree.t(:added_to_cart, product: variant.product.name)
+          flash[:success] = Spree.t(:added_to_cart, product: product_name)
           format.js
         else
-          format.html { redirect_to(cart_path(variant_id: variant.id)) }
+          format.html { redirect_to(cart_path(variant_id: @variant.id)) }
         end
       end
     end

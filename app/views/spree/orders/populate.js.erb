@@ -1,2 +1,10 @@
 <%= render partial: 'spree/shared/flash_messages' %>
+
+var quantity = <%= quantity_left(@variant) %>
+
+$("#variant_id_<%= @variant.id %>").data('quantity', quantity)
+$("#variant_id_<%= @variant.id %>").data('in-stock', <%= @variant.can_supply? %>)
+
+Spree.changeQuantitySelectorOptions(quantity)
+
 Spree.fetch_cart();

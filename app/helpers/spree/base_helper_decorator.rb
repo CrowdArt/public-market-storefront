@@ -18,6 +18,10 @@ module Spree
       meta.join("\n")
     end
 
+    def quantity_left(variant)
+      current_order ? [current_order.quantity_left(variant), 1].max : variant.total_on_hand
+    end
+
     private
 
     def meta_image

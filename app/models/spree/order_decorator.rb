@@ -14,6 +14,10 @@ Spree::Order.class_eval do
     shipped?
   end
 
+  def quantity_left(variant)
+    variant.total_on_hand - quantity_of(variant)
+  end
+
   private
 
   def copy_billing_from_card
