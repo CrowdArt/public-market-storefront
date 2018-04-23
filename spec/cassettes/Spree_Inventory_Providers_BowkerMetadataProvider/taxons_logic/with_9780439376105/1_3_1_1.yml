@@ -1,0 +1,175 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://bms.bowker.com/rest/books/isbn/9780439376105?fields=all&format=xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWJ1bmRhbmNlOjE4YUJ1bmQwYW5jZTI=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 23 Apr 2018 10:42:06 GMT
+      Server:
+      - Apache/2.2.3 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '430'
+      Content-Type:
+      - text/xml
+      Set-Cookie:
+      - BIGipServerbms_pool=1287003052.20480.0000; path=/
+    body:
+      encoding: ASCII-8BIT
+      string: '<result found="1" returned="1" page="1" pagesize="10"><item id="1THbcmr92z73P"><details>http://bms.bowker.com/rest/books/id/1THbcmr92z73P?fields=all</details><title>Captain
+        Underpants and the Big, Bad Battle of the Bionic Booger Boy</title><subtitle>The
+        Night of the Nasty Nostril Nuggets</subtitle><author>Dav Pilkey (Illustrator)</author><isbn>978-0-439-37610-5</isbn><doi>10.1604/9780439376105</doi><market>USA</market><pubdate>2003-09-01</pubdate><seriestitle>Captain
+        Underpants Ser.</seriestitle><seriesvolnum>6</seriesvolnum><gradelower>Second
+        Grade</gradelower><gradeupper>Fifth Grade</gradeupper><agemin>7 Years</agemin><agemax>10
+        Years</agemax><cartonquantity>72</cartonquantity></item></result>
+
+'
+    http_version: 
+  recorded_at: Mon, 23 Apr 2018 10:42:06 GMT
+- request:
+    method: get
+    uri: http://bms.bowker.com/rest/books/id/1THbcmr92z73P?fields=all
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWJ1bmRhbmNlOjE4YUJ1bmQwYW5jZTI=
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 23 Apr 2018 10:42:06 GMT
+      Server:
+      - Apache/2.2.3 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1389'
+      Content-Type:
+      - text/xml
+      Set-Cookie:
+      - BIGipServerbms_pool=1303780268.20480.0000; path=/
+      X-Cache:
+      - MISS from d9d1c4ef819b
+      X-Cache-Lookup:
+      - MISS from d9d1c4ef819b:3128
+      Via:
+      - 1.1 d9d1c4ef819b (squid/3.3.8)
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '<result found="1"><item id="1THbcmr92z73P"><details>http://bms.bowker.com/rest/books/id/1THbcmr92z73P?fields=all</details><retailcurrency>US
+        Dollars (USD, $)</retailcurrency><retailprice>5.99</retailprice><title>Captain
+        Underpants and the Big, Bad Battle of the Bionic Booger Boy</title><subtitle>The
+        Night of the Nasty Nostril Nuggets</subtitle><author>Dav Pilkey (Illustrator)</author><bicsubject>GENERAL
+        FICTION (CHILDREN''S / TEENAGE); ADVENTURE STORIES (CHILDREN''S / TEENAGE);
+        SCHOOL STORIES (CHILDREN''S / TEENAGE); HUMOROUS STORIES (CHILDREN''S / TEENAGE)</bicsubject><isbn>978-0-439-37610-5</isbn><isbn10>0-439-37610-6</isbn10><subject>CHILDREN''S
+        FICTION; JUVENILE FICTION / General; Children''s stories; GENERAL FICTION
+        (CHILDREN''S / TEENAGE); SCHOOLS_FICTION; JUVENILE FICTION / School &amp;
+        Education; Schools_Juvenile fiction; SCHOOL STORIES (CHILDREN''S / TEENAGE);
+        HUMOROUS STORIES; JUVENILE FICTION / Humorous Stories; Humorous fiction; HUMOROUS
+        STORIES (CHILDREN''S / TEENAGE); HEROES_FICTION; JUVENILE FICTION / Action
+        &amp; Adventure / General; Heroes_Juvenile fiction; ADVENTURE STORIES (CHILDREN''S
+        / TEENAGE); CAPTAIN UNDERPANTS (FICTITIOUS CHARACTER)_FICTION; JUVENILE FICTION
+        / Humorous Stories; Captain Underpants (Fictional character)_Juvenile fiction;
+        HUMOROUS STORIES (CHILDREN''S / TEENAGE)</subject><doi>10.1604/9780439376105</doi><market>USA</market><audience>Juvenile
+        Audience</audience><binding>Trade Paper</binding><copyright>2003-01-01</copyright><pubdate>2003-09-01</pubdate><publisher>Scholastic,
+        Incorporated</publisher><status>Active Record</status><currency>US Dollars
+        (USD, $)</currency><price>5.99</price><pricedate>2016-06-02</pricedate><retailpricedate>2016-06-02</retailpricedate><pagecount>176</pagecount><size><length>7.56</length><width>5.28</width><height>.37</height><units>Inches</units></size><weight>.32
+        Pounds</weight><annotation>&lt;b&gt;The sixth book in Dav Pilkey''s mega-bestselling
+        Captain Underpants series. Now with super-cool foil covers! Shiny! Fun!&lt;/b&gt;
+        &lt;p&gt;Dav Pilkey''s newest epic novel finds George, Harold, and everyone''s
+        favorite superhero in their stickiest situation yet. This time, the boys''
+        latest prank has snotty school brainiac Melvin Sneedley in a stink. And when
+        Melvin tries to transform himself into a bionic-powered superboy, things go
+        from bad to boogers, literally, and the Bionic Booger Boy is born!&lt;/p&gt;
+        &lt;p&gt;With fun Flip-O-Rama and loads of laffs, here''s another excellent
+        adventure that will leave Captain Underpants fans begging for more. SPECIAL
+        BONUS CLIFFHANGER ENDING INCLUDED!&lt;/p&gt;</annotation><currlanguage>English</currlanguage><pub_co_uid>23513</pub_co_uid><seriestitle>Captain
+        Underpants Ser.</seriestitle><seriesvolnum>6</seriesvolnum><gradelower>Second
+        Grade</gradelower><gradeupper>Fifth Grade</gradeupper><agemin>7 Years</agemin><agemax>10
+        Years</agemax><cartonquantity>72</cartonquantity></item></result>
+
+'
+    http_version: 
+  recorded_at: Mon, 23 Apr 2018 10:42:06 GMT
+- request:
+    method: get
+    uri: https://imageweb.bowker.com/rest/images/ean/9780439376105?size=original
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic YWJ1bmRhbmNlOjE4YUJ1bmQwYW5jZTI=
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      Date:
+      - Mon, 23 Apr 2018 10:42:08 GMT
+      Server:
+      - Apache/2.2.3 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '292'
+      Connection:
+      - close
+      Content-Type:
+      - text/html; charset=iso-8859-1
+      Set-Cookie:
+      - BIGipServerimageweb=1505106860.20480.0000; path=/
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <html>
+        <head><title>Authorization Required</title></head>
+        <body>
+        <h1>Authorization Required</h1>
+        Access denied. The image '9780439376105' requires these roles: BIPImage, FreeCoverImage, pubimage. The current user, abundance, has the following roles: read, bmsusa, basic, basic2, annotation, bmsbip, bmsebk, basic3.
+
+
+        <p>
+        For more information, please see
+        <a href="http://imageweb.bowker.com/help">http://imageweb.bowker.com/help</a>.
+        </body>
+        </html>
+    http_version: 
+  recorded_at: Mon, 23 Apr 2018 10:42:08 GMT
+recorded_with: VCR 4.0.0
