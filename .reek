@@ -1,0 +1,20 @@
+---
+IrresponsibleModule:
+  enabled: false
+FeatureEnvy:
+  enabled: false
+LongParameterList:
+  max_params: 4
+ManualDispatch:
+  enabled: false
+NilCheck:
+  enabled: false
+TooManyStatements:
+  enabled: true
+  max_statements: 8
+UncommunicativeVariableName:
+  enabled: false
+UtilityFunction:
+  enabled: false
+exclude_paths:
+  - db
