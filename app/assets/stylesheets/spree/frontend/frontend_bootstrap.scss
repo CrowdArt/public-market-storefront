@@ -1,8 +1,4 @@
-$font-size-h1: 38px;
-$font-size-h4: 20px;
-
 @import "bootstrap-sprockets";
-@import "bootswatch/cosmo/variables";
 @import "bootstrap";
 @import "bootswatch/cosmo/bootswatch";
 
@@ -106,15 +102,4 @@ table {
 
 .save-user-address-wrapper {
   display: inline-block;
-}
-
-.lead {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1;
-}
-
-.panel-body.condensed, .panel-heading.condensed, .panel-footer.condensed {
-  padding-left: 12px;
-  padding-right: 12px;
 }

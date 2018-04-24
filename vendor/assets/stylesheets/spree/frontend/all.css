@@ -6,7 +6,6 @@
  *= require spree/frontend
 
  *= require_self
- *= require_tree .
  *= require spree/frontend/spree_social
  *= require spree/frontend/spree_multi_vendor
  *= require spree/frontend/spree_searchkick
