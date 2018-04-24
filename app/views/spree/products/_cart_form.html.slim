@@ -48,7 +48,7 @@
           - @variants.each_with_index do |variant_hash, index|
             - variant = variant_hash[:variant]
             li
-              = radio_button_tag "variant_id", variant.id, index == 0, 'data-quantity': quantity_left(variant), 'data-avg-price': variant_hash[:median_price], 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?
+              = radio_button_tag "variant_id", variant.id, index == 0, 'data-quantity': [quantity_left(variant), 1].max, 'data-avg-price': variant_hash[:median_price], 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?
               = label_tag "variant_id_#{ variant.id }"
                 span.variant-description = variant_hash[:option_value]
                 span.price< = variant_full_price(variant)

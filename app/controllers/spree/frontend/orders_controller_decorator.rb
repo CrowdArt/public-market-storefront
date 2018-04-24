@@ -1,4 +1,6 @@
 Spree::OrdersController.class_eval do
+  include Spree::BaseHelper
+
   skip_before_action :check_authorization, only: [:rate]
 
   # Storefront changes:
@@ -71,9 +73,22 @@ Spree::OrdersController.class_eval do
   private
 
   def customize_populate_error(err)
-    errors = err.record.errors
+    record = err.record
+    errors = record.errors
+
     # quantity validation message is ovveriden only in controller
     # to show custom message only in controller
-    errors.include?(:quantity) ? Spree.t(:variant_quantity_not_available) : errors.full_messages.join(', ')
+    if errors.include?(:quantity)
+      variant = record.variant
+      display_name = variant.name.to_s
+
+      if (variant_options = variant.options_text).present?
+        display_name += " (#{variant_options})"
+      end
+
+      Spree.t(:variant_quantity_not_available, title: display_name, available_items: quantity_left(variant) + 1)
+    else
+      errors.full_messages.join(', ')
+    end
   end
 end

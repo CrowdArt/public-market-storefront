@@ -1,6 +1,6 @@
 <%= render partial: 'spree/shared/flash_messages' %>
 
-var quantity = <%= quantity_left(@variant) %>
+var quantity = <%= [quantity_left(@variant), 1].max %>
 
 $("#variant_id_<%= @variant.id %>").data('quantity', quantity)
 $("#variant_id_<%= @variant.id %>").data('in-stock', <%= @variant.can_supply? %>)
