@@ -4,6 +4,8 @@ en:
       edit:
         update_info: Update profile
         update_password: Update password
+      confirm_password: Confirm Password
+
     credit_cards:
       address:
         use_shipping: "Use my shipping address: %{address}"

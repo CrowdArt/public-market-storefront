@@ -22,3 +22,19 @@
   [class*="col-"]
     padding-left:  ($grid-gutter-width / 4)
     padding-right: ($grid-gutter-width / 4)
+
+.text-above-line
+  display: flex
+  align-items: center
+  font-size: 20px
+  font-weight: bold
+
+  &:before, &:after
+    border-top: 1px solid $gray-lighter
+    content: ''
+    display: block
+    flex: 1
+
+  span
+    color: $gray-light
+    margin: 10px

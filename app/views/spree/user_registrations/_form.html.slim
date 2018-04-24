@@ -1,0 +1,6 @@
+.form-group
+  = f.email_field :email, placeholder: Spree.t(:email), class: 'form-control'
+.form-group
+  = f.password_field :password, placeholder: Spree.t(:password), class: 'form-control'
+.form-group
+  = f.password_field :password_confirmation, placeholder: t('forms.users.confirm_password'), class: 'form-control'

@@ -1,0 +1,56 @@
+.btn.btn-white-background
+  background-color: white
+  color: $brand-primary
+
+  &:hover
+    background-color: darken(white, 5%)
+    &:disabled
+      background-color: white
+
+.btn-blue
+  background-color: $pm-blue
+  color: white
+
+%social-btn
+  text-align: left
+
+  &:before
+    display: inline-block
+    height: 24px
+    margin-right: 15px
+    vertical-align: middle
+
+  span
+    vertical-align: middle
+
+
+// fbk-btn is in use to avoid blocking by adblock
+.fbk-btn
+  @extend %social-btn
+  background-color: #3b5998
+  border-color: #3b5998
+  color: white
+
+  &:before
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 1792 1792"><path d="M1579 128q35 0 60 25t25 60v1366q0 35-25 60t-60 25h-391v-595h199l30-232h-229V689q0-56 23.5-84t91.5-28l122-1V369q-63-9-178-9-136 0-217.5 80T948 666v171H748v232h200v595H213q-35 0-60-25t-25-60V213q0-35 25-60t60-25h1366z"/></svg>')
+
+  &:hover, &:focus, &:active
+    background-color: #2d4373
+    border-color: #3b5998
+    color: white
+
+// ggl-btn is in use to avoid blocking by adblock
+.ggl-btn
+  @extend %social-btn
+  background-color: #fff
+  color: $text-color
+  border-color: $gray-lighter
+
+  &:hover, &:focus, &:active
+    background-color: #fff
+    color: $text-color
+
+  &:before
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 48 48"><defs><path id="a" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></defs><clipPath id="b"><use overflow="visible" xlink:href="#a"/></clipPath><path fill="#FBBC05" d="M0 37V11l17 13z" clip-path="url(#b)"/><path fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z" clip-path="url(#b)"/><path fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z" clip-path="url(#b)"/><path fill="#4285F4" d="M48 48L17 24l-4-3 35-10z" clip-path="url(#b)"/></svg>')
+
+
