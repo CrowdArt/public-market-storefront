@@ -1,3 +1,5 @@
+![Public Market Banner](.github/publicmarket_banner.png)
+
 # Public Market Storefront
 
 [![Build status](https://gitlab.com/publicmarket/storefront/badges/master/pipeline.svg)](https://gitlab.com/publicmarket/storefront/commits/master)
