@@ -19,7 +19,7 @@ Spree::OrdersController.class_eval do
         order.create_tax_charge!
         order.update_with_updater!
       rescue ActiveRecord::RecordInvalid => e
-        error = e.record.errors.full_messages.join(', ')
+        error = customize_populate_error(e)
       end
     else
       error = Spree.t(:please_enter_reasonable_quantity)
@@ -66,5 +66,14 @@ Spree::OrdersController.class_eval do
     @rating = Rails.cache.fetch(@order.rating_uid) do
       GlobalReputation::Api::Rating.find(@order.rating_uid).first
     end
+  end
+
+  private
+
+  def customize_populate_error(err)
+    errors = err.record.errors
+    # quantity validation message is ovveriden only in controller
+    # to show custom message only in controller
+    errors.include?(:quantity) ? Spree.t(:variant_quantity_not_available) : errors.full_messages.join(', ')
   end
 end

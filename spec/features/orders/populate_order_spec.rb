@@ -18,7 +18,7 @@ RSpec.describe 'populate order', type: :feature, js: true do
       before { click_button 'Add To Cart' }
 
       it 'shows alert' do
-        expect(page).to have_text 'is not available'
+        expect(page).to have_text "You've requested more inventory than is available from this seller, at the moment."
         expect(page).not_to have_text Spree.t(:added_to_cart, product: variant.product.name)
       end
     end
