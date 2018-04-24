@@ -14,14 +14,14 @@ http_interactions:
       User-Agent:
       - Ruby
       Authorization:
-      - Basic YWJ1bmRhbmNlOjE4YUJ1bmQwYW5jZTI=
+      - Basic <BOWKER_AUTH>
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Mon, 23 Apr 2018 10:41:37 GMT
+      - Tue, 24 Apr 2018 11:04:25 GMT
       Server:
       - Apache/2.2.3 (CentOS)
       Vary:
@@ -31,12 +31,12 @@ http_interactions:
       Content-Type:
       - text/xml
       Set-Cookie:
-      - BIGipServerbms_pool=1169562540.20480.0000; path=/
+      - BIGipServerbms_pool=1035344812.20480.0000; path=/
     body:
       encoding: ASCII-8BIT
       string: '<result found="0" returned="0" page="1" pagesize="10"/>
 
 '
     http_version: 
-  recorded_at: Mon, 23 Apr 2018 10:41:37 GMT
+  recorded_at: Tue, 24 Apr 2018 11:04:26 GMT
 recorded_with: VCR 4.0.0

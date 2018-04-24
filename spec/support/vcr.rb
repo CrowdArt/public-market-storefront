@@ -9,9 +9,9 @@ VCR.configure do |c|
     allow_playback_repeats: true
   }
 
-  secrets = YAML.load_file('config/settings/test.yml')
-  c.filter_sensitive_data('<BTOL_USER>') { secrets['btol_user'] }
-  c.filter_sensitive_data('<BTOL_PASSWORD>') { secrets['btol_password'] }
+  if Settings.bowker_user
+    c.filter_sensitive_data('<BOWKER_AUTH>') { Base64.encode64(Settings.bowker_user + ':' + Settings.bowker_password).strip }
+  end
 end
 
 RSpec.configure do |config|

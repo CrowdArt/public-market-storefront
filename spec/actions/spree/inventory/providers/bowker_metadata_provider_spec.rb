@@ -14,7 +14,7 @@ RSpec.describe Spree::Inventory::Providers::BowkerMetadataProvider, type: :actio
     it { expect(properties[:language]).not_to be_nil }
     it { expect(properties[:pages]).not_to be_nil }
     it { expect(metadata[:taxons]).to include('Fiction', 'Thrillers', 'Suspense') }
-    it { expect(metadata[:images]).to be_empty }
+    it { expect(metadata[:images]).not_to be_empty }
   end
 
   context 'with unknown isbn' do
@@ -56,7 +56,7 @@ RSpec.describe Spree::Inventory::Providers::BowkerMetadataProvider, type: :actio
       expect(variant.price).to be > 0
       expect(variant.total_on_hand).to eq(1)
       expect(variant.product.name).to eq('Dark Places')
-      expect(variant.product.images.count).to eq(0)
+      expect(variant.product.images.count).to eq(1)
       expect(variant.product.property(:author)).to eq('Gillian Flynn')
       expect(variant.product.property(:language)).to eq('English')
       expect(variant.product.property(:pages)).to eq('368')

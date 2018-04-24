@@ -60,7 +60,6 @@ module Spree
         end
 
         def images(product)
-          return []
           [{ file: image(isbn), title: product.dig('title') }]
         end
 
@@ -78,8 +77,11 @@ module Spree
         end
 
         def image(isbn)
-          HTTParty.get("https://imageweb.bowker.com/rest/images/ean/#{isbn}?size=original",
-                       basic_auth: creds)
+          file = Tempfile.new(isbn)
+          file.binmode
+          file << HTTParty.get("https://imageweb.bowker.com/rest/images/ean/#{isbn}?size=original",
+                               basic_auth: creds).body
+          file
         end
       end
     end
