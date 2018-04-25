@@ -1,4 +1,4 @@
-FROM "registry.gitlab.com/publicmarket/storefront/base:latest"
+FROM "registry.gitlab.com/publicmarket/public-market-storefront/base:latest"
 
 RUN apt-get update -qq \
     && apt-get install --no-install-recommends -yqq \

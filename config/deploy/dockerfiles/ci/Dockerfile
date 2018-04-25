@@ -1,4 +1,4 @@
-FROM "registry.gitlab.com/publicmarket/storefront/base:latest"
+FROM "registry.gitlab.com/publicmarket/public-market-storefront/base:latest"
 
 # setup chrome for feature specs
 RUN curl -sS -L https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \

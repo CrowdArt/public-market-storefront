@@ -1,6 +1,6 @@
 variables:
   DOCKER_DRIVER: overlay2 # use faster volume driver
-  DOCKER_IMAGE: registry.gitlab.com/publicmarket/storefront
+  DOCKER_IMAGE: registry.gitlab.com/publicmarket/public-market-storefront
 
 stages:
   - build
