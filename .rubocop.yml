@@ -9,6 +9,7 @@ AllCops:
   Exclude:
     - 'db/schema.rb'
     - 'db/migrate/*'
+    - 'config/initializers/simple_form_bootstrap.rb'
 
 Rails:
   Enabled: true

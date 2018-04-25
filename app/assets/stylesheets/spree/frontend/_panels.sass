@@ -4,6 +4,14 @@
     padding-right: 12px
 
 .panel-body
+  &__big-padding
+    padding: 80px 150px
+
+    @media (max-width: $screen-sm-max)
+      padding: 40px 15px
+
+.panel-centered-wide
+  margin: 0 auto
+
   @media (min-width: $screen-sm-min)
-    &__big-padding
-      padding: 80px 150px
+    width: 690px

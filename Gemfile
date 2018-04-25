@@ -26,6 +26,7 @@ gem 'ckeditor'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'sass-rails'
+gem 'simple_form'
 gem 'slim'
 gem 'turbolinks', '~> 5'
 

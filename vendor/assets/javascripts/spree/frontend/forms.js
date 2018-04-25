@@ -14,3 +14,10 @@ function initFormLeaveCheck(forms) {
       return 'You have unsaved changes, are you sure you want to discard them?'
   })
 }
+
+$(document).on('keyup', '.form-group-invalid input, .form-group-invalid textarea', function() {
+  $(this).parents('.form-group-invalid')
+         .removeClass('form-group-invalid')
+         .find('.invalid-feedback')
+         .remove()
+})

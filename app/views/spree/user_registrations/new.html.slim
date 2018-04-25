@@ -1,35 +1,24 @@
 - @body_id = 'signup'
 
-= render partial: 'spree/shared/error_messages', locals: { target: @user }
+.panel.no-border.panel-centered-wide.user-registration-panel
+  .panel-body.panel-body__big-padding
+    h3.upcase.text-center.no-margin-top Register
 
-.col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
-  .panel.no-border
-    .panel-body.panel-body__big-padding
-      .text-center
-        h1.upcase Register
+    .social-login-form
+      a.btn.btn-block.fbk-btn href=path_for_omniauth(:spree_user, :facebook)
+        span Continue with Facebook
 
-      .social-login-form
-        a.btn.btn-block.fbk-btn href=path_for_omniauth(:spree_user, :facebook)
-          span Continue with Facebook
+      a.btn.btn-block.ggl-btn href=path_for_omniauth(:spree_user, :google_oauth2)
+        span Continue with Google
 
-        a.btn.btn-block.ggl-btn href=path_for_omniauth(:spree_user, :google_oauth2)
-          span Continue with Google
+    .divider-with-text
+      span.upcase.or-divider or
 
-      br
+    = simple_form_for resource, as: :spree_user, url: spree.registration_path, wrapper: :vertical_without_label do |f|
+      = render partial: 'form', locals: { f: f }
 
-      .text-above-line
-        span.upcase or
+      = f.button :submit, Spree.t(:sign_up), class: 'btn btn-primary btn-lg btn-block upcase'
 
-      br
-
-      #new-customer data-hook="login"
-        = form_for resource, as: :spree_user, url: spree.registration_path do |f|
-          = render partial: 'form', locals: { f: f }
-
-          p = f.submit Spree.t(:sign_up), class: 'btn btn-lg btn-blue btn-block upcase'
-
-      br
-
-      .text-center
-        ' Have an account?
-        = link_to Spree.t(:sign_in), spree.login_path
+    .text-center
+      ' Have an account?
+      = link_to Spree.t(:sign_in), spree.login_path

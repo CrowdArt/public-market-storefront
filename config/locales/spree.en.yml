@@ -38,3 +38,4 @@ en:
     buy_now: Buy Now
     variant_quantity_not_available: "We're sorry, You've requested more of %{title}, than the %{available_items} available from the seller you've selected."
     sign_up: Sign Up
+    sign_in: Sign In
