@@ -39,3 +39,4 @@ en:
     variant_quantity_not_available: "We're sorry, You've requested more of <strong>%{title}</strong>, than the %{available_items} available from the seller."
     sign_up: Sign Up
     sign_in: Sign In
+    welcome_back: Welcome Back

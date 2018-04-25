@@ -1,0 +1,20 @@
+- @body_id = 'login'
+
+.panel.no-border.panel-centered-wide.user-signin-panel
+  .panel-body.panel-body__big-padding
+    h3.upcase.text-center.no-margin-top = Spree.t(:welcome_back)
+
+    = render partial: 'spree/shared/social_buttons'
+
+    .divider-with-text
+      span.upcase.or-divider or
+
+    = render partial: 'spree/shared/login'
+
+    .text-center
+      span.signup-link
+        ' Don't have an account?
+        = link_to Spree.t(:sign_up), spree.signup_path
+
+      p
+        = link_to Spree.t(:forgot_password), spree.recover_password_path, class: 'muted-link recover-link'

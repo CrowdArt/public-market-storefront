@@ -1,0 +1,5 @@
+= simple_form_for Spree::User.new, as: :spree_user, url: spree.create_new_session_path, wrapper: :vertical_without_label do |f|
+  = f.input :email, placeholder: Spree.t(:email), autofocus: true
+  = f.input :password, placeholder: Spree.t(:password)
+
+  = f.button :submit, Spree.t(:sign_in), class: 'btn btn-primary btn-lg btn-block upcase'

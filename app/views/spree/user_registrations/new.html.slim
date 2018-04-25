@@ -1,15 +1,10 @@
 - @body_id = 'signup'
 
-.panel.no-border.panel-centered-wide.user-registration-panel
+.panel.no-border.panel-centered-wide.user-signin-panel
   .panel-body.panel-body__big-padding
     h3.upcase.text-center.no-margin-top Register
 
-    .social-login-form
-      a.btn.btn-block.fbk-btn href=path_for_omniauth(:spree_user, :facebook)
-        span Continue with Facebook
-
-      a.btn.btn-block.ggl-btn href=path_for_omniauth(:spree_user, :google_oauth2)
-        span Continue with Google
+    = render 'spree/shared/social_buttons'
 
     .divider-with-text
       span.upcase.or-divider or
