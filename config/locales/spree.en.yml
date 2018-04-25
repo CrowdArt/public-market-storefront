@@ -3,8 +3,8 @@ en:
     dashboard: Dashboard
     all_products: All Products
     new_customer: Sign Up
-    login_as_existing: Sign In
-    login: Sign In
+    login_as_existing: Log In
+    login: Log In
     you_have_no_orders_yet: You have not placed any orders on Public Market yet.
     my_orders: Order history
     credit_cards: Credit Cards
@@ -38,5 +38,5 @@ en:
     buy_now: Buy Now
     variant_quantity_not_available: "We're sorry, You've requested more of <strong>%{title}</strong>, than the %{available_items} available from the seller."
     sign_up: Sign Up
-    sign_in: Sign In
+    sign_in: Log In
     welcome_back: Welcome Back
