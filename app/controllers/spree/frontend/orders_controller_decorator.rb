@@ -1,5 +1,6 @@
 Spree::OrdersController.class_eval do
   include Spree::BaseHelper
+  include ActionView::Helpers::TextHelper
 
   skip_before_action :check_authorization, only: [:rate]
 
@@ -7,7 +8,7 @@ Spree::OrdersController.class_eval do
   # - respond to js when add to cart clicked
 
   # Adds a new item to the order (creating a new order if none already exists)
-  def populate # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
+  def populate # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
     order    = current_order(create_order_if_necessary: true)
     @variant = Spree::Variant.find(params[:variant_id])
     quantity = params[:quantity].to_i
@@ -27,24 +28,21 @@ Spree::OrdersController.class_eval do
       error = Spree.t(:please_enter_reasonable_quantity)
     end
 
-    if error
-      flash[:error] = error
-      respond_to do |format|
-        format.html { redirect_back_or_default(spree.root_path) }
-        format.js
-      end
-    else
-      product_name = @variant.product.name
+    product_name = @variant.product.name
 
-      Tracker.track(mixpanel_user_id, 'item added to cart', order_id: order.id, product_id: @variant.id, product_name: product_name)
+    Tracker.track(mixpanel_user_id, 'item added to cart', order_id: order.id, product_id: @variant.id, product_name: product_name) if error.blank?
 
-      respond_with(order) do |format|
-        if params[:button] == 'add-to-cart'
-          flash[:success] = Spree.t(:added_to_cart, product: product_name)
-          format.js
+    respond_with(order) do |format|
+      if params[:button] == 'add-to-cart'
+        if error
+          flash[:error] = error
         else
-          format.html { redirect_to(cart_path(variant_id: @variant.id)) }
+          flash[:success] = Spree.t(:added_to_cart, product: product_name)
         end
+
+        format.js
+      else
+        format.html { redirect_to(cart_path(variant_id: @variant.id)) }
       end
     end
   end
@@ -80,13 +78,13 @@ Spree::OrdersController.class_eval do
     # to show custom message only in controller
     if errors.include?(:quantity)
       variant = record.variant
-      display_name = variant.name.to_s
+      display_name = truncate(variant.name.to_s, length: 25)
 
       if (variant_options = variant.options_text).present?
         display_name += " (#{variant_options})"
       end
 
-      Spree.t(:variant_quantity_not_available, title: display_name, available_items: quantity_left(variant) + 1)
+      Spree.t(:variant_quantity_not_available, title: display_name, available_items: variant.total_on_hand)
     else
       errors.full_messages.join(', ')
     end

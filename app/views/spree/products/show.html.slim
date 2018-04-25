@@ -21,12 +21,13 @@
     .col-md-8.col-sm-7
       .row
         .col-md-5.col-md-push-7.col-sm-12#cart-form data-hook='cart_form'
-          .well.no-border
-            - if @product.can_supply?
-              = render partial: 'cart_form'
-            - else
-              .text-center
-                h4 Out of stock
+          .panel.no-border
+            .panel-body
+              - if @product.can_supply?
+                = render partial: 'cart_form'
+              - else
+                .text-center
+                  h4 Out of stock
 
         .col-md-7.col-md-pull-5.col-sm-12 data-hook='product_right_part'
           h1.product-title itemprop='name' = @product.name

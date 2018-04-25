@@ -1,7 +1,9 @@
+<% flash_delay ||= 3000 %>
+
 $('.alert').remove();
 
 <% flash.each do |type, message| %>
   <% flash.discard(type) %>
   $("#content").prepend("<%= j render partial: 'spree/shared/flash_message', locals: { type: type, message: message } %>");
-  $(".alert").delay(3000).fadeOut("slow");
+  $(".alert").delay(<%= flash_delay %>).fadeOut("slow");
 <% end %>

@@ -1,4 +1,4 @@
-<%= render partial: 'spree/shared/flash_messages' %>
+<%= render partial: 'spree/shared/flash_messages', locals: { flash_delay: 15000 } %>
 
 var quantity = <%= [quantity_left(@variant), 1].max %>
 
