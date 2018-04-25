@@ -2,7 +2,7 @@
 
 .panel.no-border.panel-centered-wide.user-signin-panel
   .panel-body.panel-body__big-padding
-    h3.upcase.text-center.no-margin-top Register
+    h3.upcase.text-center.no-margin-top = Spree.t(:register)
 
     = render 'spree/shared/social_buttons'
 
@@ -10,7 +10,11 @@
       span.upcase.or-divider or
 
     = simple_form_for resource, as: :spree_user, url: spree.registration_path, wrapper: :vertical_without_label do |f|
-      = render partial: 'form', locals: { f: f }
+      = f.input :email, placeholder: Spree.t(:email), required: true
+
+      = f.input :password, placeholder: Spree.t(:password), required: true, wrapper: :vertical_small_error
+
+      = f.input :password_confirmation, placeholder: t('forms.users.confirm_password'), required: true, wrapper: :vertical_small_error
 
       = f.button :submit, Spree.t(:sign_up), class: 'btn btn-primary btn-lg btn-block upcase'
 

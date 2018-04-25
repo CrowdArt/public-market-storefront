@@ -5,6 +5,10 @@ Spree::CheckoutController.class_eval do
 
   before_action :set_addresses, only: :update
 
+  def registration
+    render 'spree/user_registrations/new', locals: { resource: Spree::User.new }
+  end
+
   # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   # Updates the order and advances to the next state (when possible.)
   def update

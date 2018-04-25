@@ -23,7 +23,7 @@ RSpec.describe 'checkout', type: :feature, js: true, vcr: true do
   end
 
   context 'when user is unathorized' do
-    it { expect(page).to have_text 'Create a new account' }
+    it { expect(page).to have_text 'REGISTER' }
   end
 
   context 'when user is authorized' do
