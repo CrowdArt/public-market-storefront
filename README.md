@@ -1,4 +1,4 @@
-![Public Market Banner](.github/publicmarket_banner.png)
+![Public Market Banner](.github/public_market_foundation_banner.jpg)
 
 # Public Market Storefront
 
