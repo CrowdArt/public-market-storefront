@@ -1,7 +1,11 @@
-# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 en:
   devise:
     omniauth_callbacks:
       success: 'You are now signed in with your %{kind} account.'
     confirmations:
+      confirmed: You successfully activated your account.
       reconfirmed: "You've successfully updated your email address."
+    failure:
+      invalid: Invalid email or password.
+    user_registrations:
+      signed_up_but_unconfirmed: Verification email sent to %{email}. Open it to activate your account.

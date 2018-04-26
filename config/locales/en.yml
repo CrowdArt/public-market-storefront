@@ -7,14 +7,6 @@ en:
     shipping: Shipping Address
     orders: My orders
 
-  devise:
-    failure:
-      invalid: Invalid credentials
-    confirmations:
-      confirmed: You successfully activated your account.
-    user_registrations:
-      signed_up_but_unconfirmed: Verification email sent to %{email}. Open it to activate your account.
-
   payment_methods:
     cards:
       add_new: Add new payment method
