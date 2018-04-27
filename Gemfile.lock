@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/public-market/spree_auth_devise.git
+  remote: https://github.com/abundance-labs/spree_auth_devise.git
   revision: 475aea083d155297653f9fd55aadb28028682a3f
   specs:
     spree_auth_devise (3.3.3)
@@ -12,8 +12,8 @@ GIT
       spree_extension
 
 GIT
-  remote: https://github.com/public-market/spree_batch_api.git
-  revision: abe930fdfe7e3ffde8f139a13f9ca9c535f9c03a
+  remote: https://github.com/abundance-labs/spree_batch_api.git
+  revision: 45f5483ce7fe13dbb66184703646447d12e9135b
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -25,7 +25,7 @@ GIT
       spree_extension
 
 GIT
-  remote: https://github.com/public-market/spree_multi_vendor.git
+  remote: https://github.com/abundance-labs/spree_multi_vendor.git
   revision: 81c74d701016c66599bd90dffe4422cf19c1c052
   specs:
     spree_multi_vendor (0.0.1.alpha)
@@ -36,7 +36,7 @@ GIT
       stripe
 
 GIT
-  remote: https://github.com/public-market/spree_searchkick.git
+  remote: https://github.com/abundance-labs/spree_searchkick.git
   revision: 380c11ef7e810b68ced6935ea63a5634e2bc4473
   specs:
     spree_searchkick (3.1.0)
@@ -44,7 +44,7 @@ GIT
       spree_core (>= 3.1.0, < 4.0)
 
 GIT
-  remote: https://github.com/public-market/spree_social.git
+  remote: https://github.com/abundance-labs/spree_social.git
   revision: b86a8b7442436c61ce62399cd7b01ca89d326a1f
   specs:
     spree_social (3.3.1)
@@ -70,7 +70,7 @@ GIT
 
 GIT
   remote: https://github.com/spree/spree.git
-  revision: 187ee0c54e6bd042ace71e1fa3d33d66353f5ba0
+  revision: 577546534a350c81dfabf6a4c5b59ef2186ac2f4
   specs:
     spree (3.5.0.rc1)
       spree_api (= 3.5.0.rc1)
@@ -285,7 +285,7 @@ GEM
       dry-configurable (~> 0.1, >= 0.1.3)
     dry-core (0.4.5)
       concurrent-ruby (~> 1.0)
-    dry-equalizer (0.2.0)
+    dry-equalizer (0.2.1)
     dry-initializer (2.4.0)
     dry-logic (0.4.2)
       dry-container (~> 0.2, >= 0.2.6)
