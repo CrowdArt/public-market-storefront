@@ -1,5 +1,7 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] = 'test'
+
+require_relative 'support/simplecov'
 require File.expand_path('../config/environment', __dir__)
 require 'rspec/rails'
 require 'test/scenario_flows'
