@@ -26,12 +26,14 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_multi_vendor.git
-  revision: 14433ff997efdb18e0e6f46a5b69279d6474debd
+  revision: 81c74d701016c66599bd90dffe4422cf19c1c052
   specs:
     spree_multi_vendor (0.0.1.alpha)
       spree_backend (>= 3.1.0, < 4.0)
       spree_core (>= 3.1.0, < 4.0)
       spree_extension
+      spree_gateway
+      stripe
 
 GIT
   remote: https://github.com/public-market/spree_searchkick.git
@@ -180,7 +182,7 @@ GEM
     ast (2.4.0)
     attr_encrypted (3.1.0)
       encryptor (~> 3.0.0)
-    autoprefixer-rails (8.3.0)
+    autoprefixer-rails (8.3.0.1)
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)
@@ -352,7 +354,7 @@ GEM
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (0.2.5)
     foundation_emails (2.2.1.0)
-    friendly_id (5.2.3)
+    friendly_id (5.2.4)
       activerecord (>= 4.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -538,7 +540,7 @@ GEM
     puma (3.11.4)
     rabl (0.13.1)
       activesupport (>= 2.3.14)
-    rack (2.0.4)
+    rack (2.0.5)
     rack-attack (5.2.0)
       rack
     rack-mini-profiler (1.0.0)
@@ -720,6 +722,8 @@ GEM
       activerecord (>= 4.1, < 6.0)
       state_machines-activemodel (>= 0.5.0)
     stringex (2.8.4)
+    stripe (3.13.0)
+      faraday (~> 0.10)
     swagger-blocks (2.0.2)
     temple (0.8.0)
     therubyracer (0.12.3)
