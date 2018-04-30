@@ -2,26 +2,20 @@
 
 - cache cache_key_for_product do
   .row data-hook='product_show' itemscope=true itemtype='https://schema.org/Product'
-    .col-md-4.col-sm-5 data-hook='product_left_part'
+    .col-md-3.col-sm-5 data-hook='product_left_part'
       div data-hook='product_left_part_wrap'
         #product-images data-hook='product_images'
           #main-image.panel.panel-default data-hook=true
             .panel-body.text-center
-              = large_image(@product, itemprop: "image", style: 'max-width: 100%')
+              = large_image(@product, itemprop: "image")
 
           #thumbnails data-hook=true
             = render partial: 'thumbnails'
-        div.hidden-xs data-hook='product_properties'
-          - @properties = capture do
-            = render partial: 'properties'
-          = @properties
-        div data-hook='promotions'
-          = render partial: 'promotions'
 
-    .col-md-8.col-sm-7
+    .col-md-9.col-sm-7
       .row
-        .col-md-5.col-md-push-7.col-sm-12#cart-form data-hook='cart_form'
-          .panel.no-border
+        .col-md-5.col-md-push-7.col-sm-12 data-hook='cart_form'
+          #cart-form.panel.no-border
             .panel-body
               - if @product.can_supply?
                 = render partial: 'cart_form'
@@ -33,12 +27,23 @@
           h1.product-title itemprop='name' = @product.name
 
           - if author = @product.author
-            h4.no-margin-top
-              strong> #{author.property_name.humanize}:
-              i = author.value
+            h4.product-author.no-margin-top
+              span.byline By
+              span.author = author.value
 
-          #product-description data-hook='product_description'itemprop='description'
-            = product_description(@product)
+          #accordian
+            #product-description.card data-hook='product_description' itemprop='description'
+              h4 Product Details
+              = product_description(@product)
+            #product-properties.card data-hook='product_properties'
+              h4 Properties
+              - @properties = capture do
+                = render partial: 'properties'
+              = @properties
+            #product-reviews.card data-hook='product_reviews'
+              h4 Reviews
+            #product-promotions.card data-hook='promotions'
+              h4 Product Promotions
+              = render partial: 'promotions'
 
     .col-xs-12.visible-xs = @properties
-

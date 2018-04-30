@@ -1,27 +1,24 @@
 = form_for :order, url: populate_orders_path, remote: true do |f|
   .row.condensed data-hook="inside_product_cart_form" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
     .col-md-5.col-xs-5
-      strong.nowrap
+      .margin-text-bottom
+        span.label.label-default ✔ Market Choice
+
+    - if @product.price_in(current_currency) && !@product.price.nil?
+      .avg-product-price.text-right
+        ' Avg Price:
+        span.price#average-price = display_price(@product)
+
+    .col-md-12.col-xs-12#product-variants
+      .buy-option.nowrap
         ' Buy
         span#variant-option
 
-      .margin-text-bottom
-        small Quantity
-        .input-group
-          = select_tag :quantity, options_for_select(1..50), class: 'form-control'
-          = hidden_field_tag :quantity, 1, disabled: true, id: 'product-hidden-quantity'
-
-    - if @product.price_in(current_currency) && !@product.price.nil?
-      .col-md-7.col-xs-7.text-right data-hook="product_price"
-        #product-price
-          strong.text-danger-dark
-            span.lead.price.selling content=@product.price_in(current_currency).amount.to_d itemprop="price"
-              = display_price(@product)
-            span content=current_currency itemprop="priceCurrency"
-
-          div
-            ' Avg Price:
-            span.price#average-price = display_price(@product)
+      .product-price data-hook="product_price"
+        - if @product.price_in(current_currency) && !@product.price.nil?
+          span content=@product.price_in(current_currency).amount.to_d itemprop="price"
+            = display_price(@product)
+          span content=current_currency itemprop="priceCurrency"
 
           .hide.nowrap
             ' Save:
@@ -33,40 +30,36 @@
             br
             span.out-of-stock= Spree.t(:out_of_stock)
 
-    - else
-      #product-price
-        br
-        div
-          span.price.selling itemprop="price"
+        - else
+          span itemprop="price"
             = Spree.t('product_not_available_in_this_currency')
 
-    - if @variants
-      .col-md-12.col-xs-12#product-variants
-        small Condition:
+      .est-token-rewards
+        '  25 Estimated Token Rewards
 
-        ul.list-group.no-margin-bottom
-          - @variants.each_with_index do |variant_hash, index|
-            - variant = variant_hash[:variant]
-            li
-              = radio_button_tag "variant_id", variant.id, index == 0, 'data-quantity': [quantity_left(variant), 1].max, 'data-avg-price': variant_hash[:median_price], 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?
-              = label_tag "variant_id_#{ variant.id }"
-                span.variant-description = variant_hash[:option_value]
-                span.price< = variant_full_price(variant)
+      .variants
+        - if @variants
+          label CONDITION
+          ul.list-group.no-margin-bottom
+            - @variants.each_with_index do |variant_hash, index|
+              - variant = variant_hash[:variant]
+              li
+                = radio_button_tag "variant_id", variant.id, index == 0, 'data-quantity': [quantity_left(variant), 1].max, 'data-avg-price': variant_hash[:median_price], 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?
+                = label_tag "variant_id_#{ variant.id }"
+                  span.variant-description = variant_hash[:option_value]
+                  span.price< = variant_full_price(variant)
 
-                - unless variant.can_supply?
-                  br
-                  span.out-of-stock= Spree.t(:out_of_stock)
-    - else
-      = hidden_field_tag "variant_id", @product.master.id
+                  - unless variant.can_supply?
+                    br
+                    span.out-of-stock= Spree.t(:out_of_stock)
+        - else
+          = hidden_field_tag "variant_id", @product.master.id
 
-    .col-md-12.col-xs-12
-      .margin-text-bottom
-        span.label.label-default ✔ Market Choice
-
-      - if (vendor = Spree::Vendor.last)
-        strong
-          span> = t('products.sold_by')
-          = link_to 'Indaba Test Group Inc.', vendor_path(vendor), target: '_blank'
+      .quantity
+        label QTY
+        .input-group
+          = select_tag :quantity, options_for_select(1..50), class: 'form-control'
+          = hidden_field_tag :quantity, 1, disabled: true, id: 'product-hidden-quantity'
 
     - if @product.can_supply?
       .col-md-12.col-xs-12
@@ -77,3 +70,12 @@
 
         = button_tag class: 'btn btn-primary btn-primary-inverse btn-block', id: 'add-to-cart-button', value: 'add-to-cart', type: :submit, data: { disable_with: 'Processing' } do
           = Spree.t(:add_to_cart)
+
+    - if (vendor = Spree::Vendor.last)
+      .col-md-12.col-xs-12
+        .vendor
+          p
+            = t('products.sold_by')
+            = link_to 'Indaba Test Group Inc.', vendor_path(vendor), target: '_blank'
+          p
+            ' 98% Positive Ratings
