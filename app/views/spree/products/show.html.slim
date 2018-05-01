@@ -32,18 +32,18 @@
               span.author = author.value
 
           #accordian
-            #product-description.card data-hook='product_description' itemprop='description'
+            .product-description.card data-hook='product_description' itemprop='description'
               h4 Product Details
               = product_description(@product)
-            #product-properties.card data-hook='product_properties'
+            .product-properties.card data-hook='product_properties'
               h4 Properties
               - @properties = capture do
                 = render partial: 'properties'
               = @properties
-            #product-reviews.card data-hook='product_reviews'
+            .product-reviews.card data-hook='product_reviews'
               h4 Reviews
-            #product-promotions.card data-hook='promotions'
-              h4 Product Promotions
-              = render partial: 'promotions'
 
-    .col-xs-12.visible-xs = @properties
+  .row.product-promotions
+    .col-md-12
+      h2 You May Also Like
+      = render partial: 'promotions'
