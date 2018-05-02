@@ -5,7 +5,7 @@ h1 = t('credit_cards')
 
 - if @cards.any?
   #existing_cards
-    .row.condensed.flex
+    .row.condensed.flex.eq-height-columns
       = render layout: 'spree/shared/panel_card', partial: 'spree/shared/credit_card', collection: @cards, as: :card, locals: { wrapper_class: 'credit-card col-lg-4 col-md-4 col-sm-6 col-xs-12' }
 
 - else

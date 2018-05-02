@@ -1,0 +1,21 @@
+#spree-header
+  header
+    .row
+      .col-md-2.col-sm-2#logo
+        = logo
+
+      .col-md-10.col-sm-10
+        .row.condensed.nav-row.flex.align-center
+          .col-md-6.col-sm-6
+            = render partial: 'spree/shared/primary_navbar'
+
+          .col-md-6.col-sm-6#search-bar
+            = render partial: 'spree/shared/search'
+            = render partial: 'spree/shared/main_nav_bar'
+
+        .row.condensed
+          .col-md-12
+            = render partial: 'spree/shared/secondary_navbar'
+
+javascript:
+  Spree.fetch_cart()

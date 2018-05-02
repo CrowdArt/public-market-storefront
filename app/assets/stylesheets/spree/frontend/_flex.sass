@@ -8,7 +8,7 @@
     &:before, &:after
       content: initial
 
-    & > [class*='col-']
+    &.eq-height-columns > [class*='col-']
       display: flex
       flex-direction: column
 
@@ -17,6 +17,9 @@
 
   &.column
     flex-direction: column
+
+  &.align-center
+    align-items: center
 
 .flex-grow-1
   flex-grow: 1

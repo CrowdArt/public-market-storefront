@@ -1,13 +1,18 @@
-nav.col-md-12
-  #main-nav-bar.navbar
-    - if @back_mobile_link
-      ul.nav.navbar-nav.pull-left.visible-xs
-        li = link_to '< Back', @back_mobile_link
+ul.nav.navbar-nav.nav-buttons.pull-left
+  - if @back_mobile_link
+    li.pull-left.visible-xs = link_to '< Back', @back_mobile_link
 
-    ul.nav.navbar-nav.navbar-right data-hook=''
-      li#link-to-cart data-hook=''
-        noscript
-          = link_to_cart
+  li.pull-left.link-to-account
+    = link_to account_path
+      span.glyphicon.glyphicon-user aria-hidden="true"
 
-      javascript:
-        Spree.fetch_cart()
+  li.upcase.pull-left#link-to-cart
+    noscript
+      = link_to_cart
+
+    a href='/cart'
+      span.glyphicon.glyphicon-shopping-cart aria-hidden="true"
+
+javascript:
+  Spree.fetch_cart()
+  //Spree.fetch_account()

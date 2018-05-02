@@ -1,0 +1,4 @@
+ul.nav.navbar-nav.navbar-left.secondary-navbar
+  - Spree::Taxon.roots.where(parent_id: nil).reorder(position: :asc).each do |t|
+    li.pull-left
+      = link_to t.name, t, class: 'upcase'

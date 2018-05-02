@@ -3,16 +3,14 @@
   display: block
   max-width: 150px
   min-width: 100px
+  margin: 0 auto
+  margin-top: 22px
   z-index: 1
   img
     width: 100%
 
 li.link-to-account
-  text-align: right
-  margin-top: 20px
   @media (max-width: 767px)
-    margin-top: 0
-    min-height: 63px
     a.dropdown-toggle
       font-size: 10px
       line-height: 1.2 !important
@@ -20,7 +18,6 @@ li.link-to-account
       font-size: 12px
 
   @media (max-width: 1199px)
-    margin-top: 7px
     .sign-in-as
       display: block
     .dropdown-toggle > strong
@@ -31,24 +28,21 @@ li.link-to-account
       text-overflow: ellipsis
       vertical-align: bottom
 
-#top-nav-bar
-  margin-top: -21px
-
-#main-nav-bar
-  .navbar-nav
-    margin: 0 -15px
-  .navbar-right
-    float: right
-
 #spree-header
+  header
+    padding: 0 15px
+
   .dropdown-menu > li > a
     padding: 5px 25px
     &.checked:before
       content: '\002713'
       position: absolute
       left: 10px
+
+  .nav-row
+    border-bottom: 1px solid #202028
+
   @media (max-width: 767px)
-    background: #262629
     #nav-bar
       ul.dropdown-menu
         text-align: right
@@ -57,26 +51,46 @@ li.link-to-account
         .disabled > a
           color: #999 !important
 
+  .secondary-navbar
+    a
+      border-bottom: 3px solid $brand-primary
+
 #search-bar
+  display: flex
+
+  @media (max-width: $screen-xs-max)
+    flex-wrap: wrap
+
   .navbar-form
     border: 0
     box-shadow: none
     display: flex
     margin: 0
-    padding: 15px 15px 15px 10px
-    width: 100%
+    flex: 1
+    padding: 0
+
+    @media (max-width: $screen-xs-max)
+      flex: 1 0 100%
+
+    .input-group
+      display: flex
+      flex: 1
 
     .taxon-group
       flex-basis: 25%
+
       button
-        color: #222222
-        background: #fff
-        border: 1px solid #ccc
+        background: #33333e
+        border-color: #33333e
         width: 100%
+
+        @media (max-width: $screen-sm-max)
+          padding: 10px 6px
+
         &:hover, &:active, &:focus
-          color: #222222
-          background: #eee
-          border: 1px solid #ccc
+          background: #33333e
+          border-color: #33333e
+
         .name
           display: inline-block
           max-width: 150px
@@ -87,23 +101,39 @@ li.link-to-account
           @media (max-width: 1199px)
             max-width: 100px
 
-
     .search-group
       flex: 1
-
-    .form-group
-      margin: 0 5px
+      input
+        background-color: #202028
+        border-color: #202028
+        width: 100%
+        &:focus
+          box-shadow: none
 
     .btn-search
-      align-self: start
-      padding: 10px 13px
+      background-color: #202028
+      // align-self: start
+      // padding: 10px 13px
+
       &:before
-        content: 'Search'
-        @media (max-width: 991px)
-          content: '\e003'
-          font-family: 'Glyphicons Halflings'
-          font-style: normal
-          font-weight: normal
-          line-height: 1
-          position: relative
-          top: 1px
+        content: '\e003'
+        color: $brand-primary
+        font-family: 'Glyphicons Halflings'
+        font-style: normal
+        font-weight: normal
+        line-height: 1
+        position: relative
+        vertical-align: middle
+
+      &:hover, &:focus
+        text-decoration: none
+
+  .nav-buttons
+    .glyphicon
+      font-size: 24px
+
+    .badge
+      position: absolute
+      top: 2px
+      right: 2px
+      z-index: 1

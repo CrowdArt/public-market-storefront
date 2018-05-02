@@ -4,11 +4,10 @@
 
 // -- Spree Custom Header and Footer ---------------------
 #spree-header {
-  background: linear-gradient(to right, #0E0E12, #0E0E12 25%, #262629 50%, #262629);
+  background-color: $brand-black;
   margin-bottom: 0;
 
   #header {
-    background-color: #0E0E12;
     padding: $line-height-computed 0 0 0;
   }
 
