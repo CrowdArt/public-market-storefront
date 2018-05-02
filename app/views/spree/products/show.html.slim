@@ -43,7 +43,9 @@
             .product-reviews.card data-hook='product_reviews'
               h4 Reviews
 
-  .row.product-promotions
-    .col-md-12
-      h2 You May Also Like
-      = render partial: 'promotions'
+- content_for :promos_footer
+  .container.product-promotions
+    .row
+      .col-md-12
+        h2 You May Also Like
+        = render partial: 'promotions'
