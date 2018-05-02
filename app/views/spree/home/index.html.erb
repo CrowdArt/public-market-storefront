@@ -1,0 +1,32 @@
+<% @body_id = 'home-page' %>
+
+<% content_for :hero do %>
+  <div class="jumbotron" data-hook="homepage_hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+          <h1>ZERO-FEE, REWARD-DRIVEN, BLOCKCHAIN-BASED MARKETPLACE</h1>
+          <h3>Let's Transform eCommerce</h3>
+          <p class="signup">
+            <%= link_to "CREATE ACCOUNT", signup_path, {class: "btn btn-primary"} %>
+          </p>
+          <p class="members">
+            Already a member? <%= link_to "Sign in", login_path %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :sidebar do %>
+  <div data-hook="homepage_sidebar_navigation">
+    <%= render partial: 'spree/shared/taxonomies' %>
+  </div>
+<% end %>
+
+<div data-hook="homepage_products">
+  <% cache(cache_key_for_products) do %>
+    <%= render partial: 'spree/shared/products', locals: { products: @products } %>
+  <% end %>
+</div>
