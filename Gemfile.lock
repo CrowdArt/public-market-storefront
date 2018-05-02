@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_multi_vendor.git
-  revision: 81c74d701016c66599bd90dffe4422cf19c1c052
+  revision: 6c7ec834e4cf4c39ef520caeaac5ec1594406812
   specs:
     spree_multi_vendor (0.0.1.alpha)
       spree_backend (>= 3.1.0, < 4.0)
@@ -182,7 +182,7 @@ GEM
     ast (2.4.0)
     attr_encrypted (3.1.0)
       encryptor (~> 3.0.0)
-    autoprefixer-rails (8.3.0.1)
+    autoprefixer-rails (8.4.1)
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)
@@ -456,7 +456,7 @@ GEM
     mixpanel-ruby (2.2.0)
     monetize (1.7.0)
       money (~> 6.9)
-    money (6.11.0)
+    money (6.11.1)
       i18n (>= 0.6.4, < 1.1)
     multi_json (1.13.1)
     multi_xml (0.6.0)
