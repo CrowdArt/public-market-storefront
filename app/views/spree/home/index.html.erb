@@ -17,12 +17,43 @@
       </div>
     </div>
   </div>
-<% end %>
 
-<% content_for :sidebar do %>
-  <div data-hook="homepage_sidebar_navigation">
-    <%= render partial: 'spree/shared/taxonomies' %>
-  </div>
+  <section class="how container">
+    <row>
+      <div class="col-md-12 col-xs-12">
+        <h2>How Public Market Changes E-Commerce</h2>
+      </div>
+    </row>
+    <row>
+      <div class="col-md-4 col-xs-12">
+        <div class="box col-xs-12">
+          <%= image_tag 'icon-zero-fees.png', class: 'icon' %>
+          <h3>Zero Fees</h3>
+          <p>
+            Merchants can list and sell their products for fiat, with no mandatory seller fees (including listing and transaction fees).
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 col-xs-12">
+        <div class="box col-xs-12">
+          <%= image_tag 'icon-buyer-rewards.png', class: 'icon' %>
+          <h3>Buyer Rewards</h3>
+          <p>
+            Merchants may use a portion of their savings fees to offer buyers “cashback” rewards in the form of blockchain-based incentives.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 col-xs-12">
+        <div class="box col-xs-12">
+          <%= image_tag 'icon-token-market.png', class: 'icon' %>
+          <h3>Token Market</h3>
+          <p>
+            Merchants may buy tokens from the open market to fuel their rewards & consumer incentives.
+          </p>
+        </div>
+      </div>
+    </row>
+  </section>
 <% end %>
 
 <div data-hook="homepage_products">
