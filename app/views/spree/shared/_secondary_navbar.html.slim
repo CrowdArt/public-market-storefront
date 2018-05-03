@@ -1,4 +1,6 @@
-ul.nav.navbar-nav.navbar-left.secondary-navbar
-  - Spree::Taxon.roots.where(parent_id: nil).reorder(position: :asc).each do |t|
-    li.pull-left
-      = link_to t.name, t, class: 'upcase'
+- taxon = Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon]
+
+ul.nav.navbar-nav.navbar-left
+  - Spree::Taxon.roots.reorder(position: :asc).each do |t|
+    li.pull-left class=('active' if t == taxon)
+      = link_to t.name, spree.products_path(taxon: t.id), class: 'upcase'

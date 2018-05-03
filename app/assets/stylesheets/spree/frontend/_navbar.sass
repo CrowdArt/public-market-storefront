@@ -1,15 +1,15 @@
 #logo a
-  box-sizing: content-box
   display: block
-  max-width: 150px
+  max-width: 165px
   min-width: 100px
-  margin: 0 auto
-  margin-top: 22px
   z-index: 1
   img
     width: 100%
 
 li.link-to-account
+  .glyphicon-user
+    padding-right: 10px
+
   @media (max-width: 767px)
     a.dropdown-toggle
       font-size: 10px
@@ -29,18 +29,12 @@ li.link-to-account
       vertical-align: bottom
 
 #spree-header
-  header
-    padding: 0 15px
-
   .dropdown-menu > li > a
     padding: 5px 25px
     &.checked:before
       content: '\002713'
       position: absolute
       left: 10px
-
-  .nav-row
-    border-bottom: 1px solid #202028
 
   @media (max-width: 767px)
     #nav-bar
@@ -52,12 +46,14 @@ li.link-to-account
           color: #999 !important
 
   .secondary-navbar
-    a
+    border-top: 1px solid #202028
+    ul
+      margin: 0
+
+    .active > a
       border-bottom: 3px solid $brand-primary
 
 #search-bar
-  display: flex
-
   @media (max-width: $screen-xs-max)
     flex-wrap: wrap
 
@@ -83,9 +79,10 @@ li.link-to-account
         background: #33333e
         border-color: #33333e
         width: 100%
+        padding: 17px 18px
 
         @media (max-width: $screen-sm-max)
-          padding: 10px 6px
+          padding: 17px 6px
 
         &:hover, &:active, &:focus
           background: #33333e
@@ -103,10 +100,13 @@ li.link-to-account
 
     .search-group
       flex: 1
+
       input
         background-color: #202028
         border-color: #202028
+        color: white
         width: 100%
+        height: 58px
         &:focus
           box-shadow: none
 
@@ -137,3 +137,6 @@ li.link-to-account
       top: 2px
       right: 2px
       z-index: 1
+
+#link-to-cart a
+  padding-left: 0

@@ -1,0 +1,29 @@
+- if spree_current_user
+  li.dropdown.link-to-account.pull-left
+    a.dropdown-toggle href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      span.glyphicon.glyphicon-user> style='vertical-align:middle' aria-hidden="true"
+      span style='vertical-align:middle' = spree_current_user.full_name_or_email
+      span.caret style='vertical-align:middle'
+
+    ul.dropdown-menu aria-labelledby="dLabel"
+      li = link_to Spree.t(:my_account), spree.account_path
+
+      - if spree_current_user.admin? || spree_current_user.vendors.any?
+        li
+          = link_to Spree.t(:dashboard), spree.admin_path, target: '_blank'
+
+      - if spree_current_user.admin?
+        li.divider role="separator"
+        li
+          = link_to 'Pghero', '/pghero', target: '_blank'
+        li
+          = link_to 'Sidekiq', '/sidekiq', target: '_blank'
+
+      li.divider role="separator"
+
+      li = link_to Spree.t(:support), main_app.freshdesk_path, target: '_blank'
+      li = link_to Spree.t(:logout), spree.logout_path
+- else
+  li.pull-left.link-to-account
+    = link_to spree.login_path
+      span.glyphicon.glyphicon-user aria-hidden="true"
