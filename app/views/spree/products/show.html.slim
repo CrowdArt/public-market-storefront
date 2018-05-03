@@ -31,17 +31,16 @@
               span.byline By
               span.author = author.value
 
-          #accordian
+          #main-accordion.accordion
             .product-description.card data-hook='product_description' itemprop='description'
+              a.pull-right role='button' data-toggle='collapse' data-parent='#main-accordion' href="#details" aria-expanded='true' aria-controls='details'
               h4 Product Details
-              = product_description(@product)
+              #details.collapse = product_description(@product)
             .product-properties.card data-hook='product_properties'
+              a.pull-right role='button' data-toggle='collapse' data-parent='#main-accordion' href="#properties" aria-expanded='false' aria-controls='properties'
               h4 Properties
-              - @properties = capture do
+              #properties.collapse.in
                 = render partial: 'properties'
-              = @properties
-            .product-reviews.card data-hook='product_reviews'
-              h4 Reviews
 
 - content_for :promos_footer
   .container.product-promotions
@@ -49,3 +48,6 @@
       .col-md-12
         h2 You May Also Like
         = render partial: 'promotions'
+
+javascript:
+  $('.collapse').collapse();

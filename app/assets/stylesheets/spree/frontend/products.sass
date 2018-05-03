@@ -10,13 +10,23 @@ body#product-details
     font-size: 16px
     color: #8A8E91
 
-  #accordian
+  .accordion
     padding-top: 5px
     padding-top: 25px
     .card
       border-top: 1px solid #eaeaea
       padding-bottom: 25px
 
+      a[data-toggle='collapse']
+        text-decoration: none
+        color: $text-color
+        font-size: 26px
+        transform: rotate(45deg)
+        transition: transform 0.2s
+        &:after
+          content: '﹢'
+        &.collapsed
+          transform: rotate(0deg)
       h4
         font-size: 14px
         font-weight: bold
