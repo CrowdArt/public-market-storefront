@@ -21,8 +21,8 @@ build:
     - docker build -f ./config/deploy/dockerfiles/ci/Dockerfile -t $DOCKER_IMAGE/ci:latest .
     - docker push $DOCKER_IMAGE/ci:latest
     # master image inherits from base and copies code
-    - docker build -f ./config/deploy/Dockerfile -t $DOCKER_IMAGE:latest .
-    - docker push $DOCKER_IMAGE:latest
+    # - docker build -f ./config/deploy/Dockerfile -t $DOCKER_IMAGE:latest .
+    # - docker push $DOCKER_IMAGE:latest
     # cleanup
     - docker system prune -f
 
