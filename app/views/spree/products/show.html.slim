@@ -1,8 +1,8 @@
 - @body_id = 'product-details'
 
 - cache cache_key_for_product do
-  .row data-hook='product_show' itemscope=true itemtype='https://schema.org/Product'
-    .col-md-3.col-sm-5 data-hook='product_left_part'
+  .row.product-grid data-hook='product_show' itemscope=true itemtype='https://schema.org/Product'
+    .col-sm-5.col-md-4.product-images-item
       div data-hook='product_left_part_wrap'
         #product-images data-hook='product_images'
           #main-image.panel.panel-default data-hook=true
@@ -12,35 +12,34 @@
           #thumbnails data-hook=true
             = render partial: 'thumbnails'
 
-    .col-md-9.col-sm-7
-      .row
-        .col-md-5.col-md-push-7.col-sm-12 data-hook='cart_form'
-          #cart-form.panel.no-border
-            .panel-body
-              - if @product.can_supply?
-                = render partial: 'cart_form'
-              - else
-                .text-center
-                  h4 Out of stock
+    .col-sm-5.col-md-4.product-title-item
+      h1.product-title itemprop='name' = @product.name
 
-        .col-md-7.col-md-pull-5.col-sm-12 data-hook='product_right_part'
-          h1.product-title itemprop='name' = @product.name
+      - if author = @product.author
+        h4.product-author.no-margin-top
+          span.byline By
+          span.author = author.value
 
-          - if author = @product.author
-            h4.product-author.no-margin-top
-              span.byline By
-              span.author = author.value
+    .col-sm-7.col-md-4.product-cart-item
+      #cart-form.panel.no-border
+        .panel-body
+          - if @product.can_supply?
+            = render partial: 'cart_form'
+          - else
+            .text-center
+              h4 Out of stock
 
-          #main-accordion.accordion
-            .product-description.card data-hook='product_description' itemprop='description'
-              a.pull-right role='button' data-toggle='collapse' data-parent='#main-accordion' href="#details" aria-expanded='true' aria-controls='details'
-              h4 Product Details
-              #details.collapse = product_description(@product)
-            .product-properties.card data-hook='product_properties'
-              a.pull-right role='button' data-toggle='collapse' data-parent='#main-accordion' href="#properties" aria-expanded='false' aria-controls='properties'
-              h4 Properties
-              #properties.collapse.in
-                = render partial: 'properties'
+    .col-sm-12.product-content-item
+      #main-accordion.accordion
+        .product-description.card data-hook='product_description' itemprop='description'
+          a.pull-right role='button' data-toggle='collapse' data-parent='#main-accordion' href="#details" aria-expanded='true' aria-controls='details'
+          h4 Product Details
+          #details.collapse = product_description(@product)
+        .product-properties.card data-hook='product_properties'
+          a.pull-right role='button' data-toggle='collapse' data-parent='#main-accordion' href="#properties" aria-expanded='false' aria-controls='properties'
+          h4 Properties
+          #properties.collapse.in
+            = render partial: 'properties'
 
 - content_for :promos_footer
   .container.product-promotions

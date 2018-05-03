@@ -41,6 +41,12 @@
   color: white;
 }
 
+@media (min-width: 1440px) {
+  .container {
+    width: 1410px;
+  }
+}
+
 // -- Spree Layout Custom Rules -------------------------
 
 .alert-notice { @extend .alert-success; }

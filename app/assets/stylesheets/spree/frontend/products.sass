@@ -1,4 +1,35 @@
 body#product-details
+  @supports (display: grid)
+    .product-grid
+      display: grid
+      grid-template-areas: "images" "title" "cart" "content"
+
+      @media (min-width: $screen-sm-min)
+        grid-template-columns: 1fr 1fr
+        grid-template-rows: auto auto auto
+        grid-template-areas: "images cart" "title title" "content content"
+
+      @media (min-width: $screen-md-min)
+        grid-template-columns: 2fr 4fr 3fr
+        grid-template-rows: 1fr 100fr
+        grid-template-areas: "images title cart" "images content cart"
+
+    .product-images-item
+      grid-area: images
+      width: 100%
+
+    .product-title-item
+      grid-area: title
+      width: 100%
+
+    .product-cart-item
+      grid-area: cart
+      width: 100%
+
+    .product-content-item
+      grid-area: content
+      width: 100%
+
   .content-wrap
     background-color: #fff
 
