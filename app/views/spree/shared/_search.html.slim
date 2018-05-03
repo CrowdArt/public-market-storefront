@@ -9,7 +9,6 @@ ruby:
         ruby:
           enabled_taxons = taxons.where(hidden: false)
           disabled_taxons = taxons.where(hidden: true, parent_id: nil)
-          taxon ||= enabled_taxons.first unless params[:keywords] # if is not filtered - select first
 
         button.btn.btn-default.dropdown-toggle#taxon-menu type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
           span.name> = taxon&.name || Spree.t(:all_products)
