@@ -30,4 +30,28 @@ RSpec.describe Spree::Product, type: :model do
       end
     end
   end
+
+  describe '#estimated_ptrn' do
+    subject { product.estimated_ptrn }
+
+    let(:product) { build_stubbed(:product, price: price) }
+
+    context 'when price < 1 $' do
+      let(:price) { 0.19 }
+
+      it { is_expected.to eq(0) }
+    end
+
+    context 'when price < 10 $' do
+      let(:price) { 6.21 }
+
+      it { is_expected.to eq(0) }
+    end
+
+    context 'when price > 10 $' do
+      let(:price) { 60.21 }
+
+      it { is_expected.to eq(6) }
+    end
+  end
 end

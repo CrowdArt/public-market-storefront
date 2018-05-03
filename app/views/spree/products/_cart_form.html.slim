@@ -1,15 +1,15 @@
 = form_for :order, url: populate_orders_path, remote: true do |f|
   .row.condensed data-hook="inside_product_cart_form" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
-    .col-md-5.col-xs-5
-      .margin-text-bottom
+    .col-xs-5
+      .market-choice
         span.label.label-default ✔ Market Choice
 
     - if @product.price_in(current_currency) && !@product.price.nil?
-      .avg-product-price.text-right
+      .text-savings.text-right
         ' Avg Price:
         span.price#average-price = display_price(@product)
 
-    .col-md-12.col-xs-12#product-variants
+    .col-xs-12#product-variants
       .buy-option.nowrap
         ' Buy
         span#variant-option
@@ -34,8 +34,7 @@
           span itemprop="price"
             = Spree.t('product_not_available_in_this_currency')
 
-      .est-token-rewards
-        '  25 Estimated Token Rewards
+      .est-token-rewards Estimated PTRN Rewards: ~ #{@product.estimated_ptrn}
 
       .variants
         - if @variants
@@ -55,27 +54,25 @@
         - else
           = hidden_field_tag "variant_id", @product.master.id
 
-      .quantity
-        label QTY
-        .input-group
-          = select_tag :quantity, options_for_select(1..50), class: 'form-control'
-          = hidden_field_tag :quantity, 1, disabled: true, id: 'product-hidden-quantity'
+      = f.field_container :quantity, class: ['form-group'] do
+        = f.label :quantity, 'QTY'
+        = select_tag :quantity, options_for_select(1..50), class: 'form-control'
+        = hidden_field_tag :quantity, 1, disabled: true, id: 'product-hidden-quantity'
 
     - if @product.can_supply?
-      .col-md-12.col-xs-12
-        hr style='margin:10px 0'
+      .col-xs-12
+        = button_tag class: 'btn btn-primary btn-primary-inverse btn-block', id: 'add-to-cart-button', value: 'add-to-cart', type: :submit, data: { disable_with: 'Processing' } do
+          = Spree.t(:add_to_cart)
 
         = button_tag class: 'btn btn-primary btn-block', id: 'buy-now-button', type: :submit, data: { disable_with: 'Processing' } do
           = Spree.t(:buy_now)
 
-        = button_tag class: 'btn btn-primary btn-primary-inverse btn-block', id: 'add-to-cart-button', value: 'add-to-cart', type: :submit, data: { disable_with: 'Processing' } do
-          = Spree.t(:add_to_cart)
-
     - if (vendor = Spree::Vendor.last)
-      .col-md-12.col-xs-12
-        .vendor
-          p
-            = t('products.sold_by')
-            = link_to 'Indaba Test Group Inc.', vendor_path(vendor), target: '_blank'
-          p
-            ' 98% Positive Ratings
+      .col-xs-12.text-center
+        small
+          br
+          = t('products.sold_by')
+          '
+          = link_to vendor.name, vendor_path(vendor), target: '_blank'
+          br
+          .text-success 98% Positive Ratings

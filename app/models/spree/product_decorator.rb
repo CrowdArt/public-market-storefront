@@ -36,4 +36,8 @@ Spree::Product.class_eval do
   def should_index?
     can_supply?
   end
+
+  def estimated_ptrn
+    (price * 0.1).floor
+  end
 end

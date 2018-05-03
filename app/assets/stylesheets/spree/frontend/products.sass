@@ -11,7 +11,7 @@ body#product-details
 
       @media (min-width: $screen-md-min)
         grid-template-columns: 2fr 4fr 3fr
-        grid-template-rows: 1fr 100fr
+        grid-template-rows: auto 1fr
         grid-template-areas: "images title cart" "images content cart"
 
     .product-images-item
@@ -104,62 +104,45 @@ body#product-details
   #cart-form
     border-top: 6px solid #0e0e12
     background-color: #f4f4f4
+    .panel-body
+        padding: 20px
+      @media (min-width: $screen-md-min)
+        padding: 30px 50px
+    .market-choice
+      margin-bottom: 7px
+      .label
+        font-size: 10px
+        padding: 4px 10px
+        text-transform: uppercase
     .buy-option
-      font-family: $font-family-roboto
       font-size: 18px
       font-weight: 700
       color: #454a50
-    .avg-product-price
-      font-family: $font-family-roboto
-      font-size: 16px
-      line-height: 1.56
-      color: #cc0000
     .product-price
-      font-family: $font-family-roboto
       font-size: 26px
       font-weight: 700
       color: #454a50
     .est-token-rewards
-      font-family: $font-family-roboto
       margin-top: 5px
       font-size: 14px
       line-height: 1.64
       color: #454a50
+    .form-group
+      label
+        font-family: $font-family-roboto-condensed
+        font-size: 14px
+        font-weight: 700
+        font-stretch: condensed
     .variants
       margin-top: 8px
       label
-        font-family: $font-family-roboto-condensed
-        font-size: 14px
-        font-weight: 700
-        font-stretch: condensed
         color: #454a50
       ul li
         list-style: none
-        font-family: $font-family-roboto
         input
-          font-family: $font-family-roboto
           margin-right: 7px
         label
-          font-family: $font-family-roboto
           font-weight: 500
-    .quantity
-      margin-top: 8px
-      label
-        font-family: $font-family-roboto-condensed
-        font-size: 14px
-        font-weight: 700
-        font-stretch: condensed
-        color: #454a50
-      select
-        width: 280px
-        -webkit-appearance: none
-        -moz-appearance: none
-    .vendor
-      margin-top: 15px
-      font-family: $font-family-roboto
-      font-size: 14px
-      line-height: 1.29
-      color: #787C80
 
     button
       font-family: $font-family-roboto
