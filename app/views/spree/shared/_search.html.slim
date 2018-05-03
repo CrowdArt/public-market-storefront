@@ -38,9 +38,7 @@ ruby:
 
 - content_for :promos_footer
   javascript:
-    $(document).on('turbolinks:load', function() {
-      Spree.typeaheadSearch()
-    });
+    Spree.typeaheadSearch()
 
 javascript:
   $(document).on('click', '#taxon-dropdown a', function(e) {
