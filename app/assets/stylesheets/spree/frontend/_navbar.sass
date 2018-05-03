@@ -1,33 +1,3 @@
-#logo a
-  display: block
-  max-width: 165px
-  min-width: 100px
-  z-index: 1
-  img
-    width: 100%
-
-li.link-to-account
-  .glyphicon-user
-    padding-right: 10px
-
-  @media (max-width: 767px)
-    a.dropdown-toggle
-      font-size: 10px
-      line-height: 1.2 !important
-    strong
-      font-size: 12px
-
-  @media (max-width: 1199px)
-    .sign-in-as
-      display: block
-    .dropdown-toggle > strong
-      display: inline-block
-      max-width: 140px
-      white-space: nowrap
-      overflow: hidden
-      text-overflow: ellipsis
-      vertical-align: bottom
-
 #spree-header
   .dropdown-menu > li > a
     padding: 5px 25px
@@ -36,26 +6,29 @@ li.link-to-account
       position: absolute
       left: 10px
 
-  @media (max-width: 767px)
-    #nav-bar
-      ul.dropdown-menu
-        text-align: right
-        li > a
-          color: #fff
-        .disabled > a
-          color: #999 !important
-
   .secondary-navbar
-    border-top: 1px solid #202028
-    ul
-      margin: 0
+    border-top: 1px solid $brand-light-black
+    li > a:hover
+      color: $brand-primary
 
-    .active > a
-      border-bottom: 3px solid $brand-primary
+#logo a
+  display: block
+  max-width: 165px
+  min-width: 100px
+  z-index: 1
+  img
+    width: 100%
 
 #search-bar
   @media (max-width: $screen-xs-max)
     flex-wrap: wrap
+
+    ul.dropdown-menu
+      text-align: right
+      li > a
+        color: #fff
+      .disabled > a
+        color: #999 !important
 
   .navbar-form
     border: 0
@@ -102,8 +75,8 @@ li.link-to-account
       flex: 1
 
       input
-        background-color: #202028
-        border-color: #202028
+        background-color: $brand-light-black
+        border-color: $brand-light-black
         color: white
         width: 100%
         height: 58px
@@ -111,9 +84,7 @@ li.link-to-account
           box-shadow: none
 
     .btn-search
-      background-color: #202028
-      // align-self: start
-      // padding: 10px 13px
+      background-color: $brand-light-black
 
       &:before
         content: '\e003'
@@ -128,15 +99,35 @@ li.link-to-account
       &:hover, &:focus
         text-decoration: none
 
-  .nav-buttons
-    .glyphicon
-      font-size: 24px
-
-    .badge
-      position: absolute
-      top: 2px
-      right: 2px
-      z-index: 1
-
 #link-to-cart a
   padding-left: 0
+
+.link-to-account
+  .glyphicon-user
+    padding-right: 10px
+
+  @media (max-width: 767px)
+    a.dropdown-toggle
+      font-size: 10px
+      line-height: 1.2 !important
+    strong
+      font-size: 12px
+
+  @media (max-width: 1199px)
+    .dropdown-toggle > strong
+      display: inline-block
+      max-width: 140px
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+      vertical-align: bottom
+
+.nav-buttons
+  .glyphicon
+    font-size: 24px
+
+  .badge
+    position: absolute
+    top: 2px
+    right: 2px
+    z-index: 1
