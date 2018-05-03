@@ -31,10 +31,16 @@ ruby:
               li.disabled
                 a disabled=true href="#" = t.name
 
-    .search-group
+    .search-group.flex
       = search_field_tag :keywords, params[:keywords], autocomplete: 'off', placeholder: Spree.t(:search), class: "form-control"
 
     = button_tag '', name: nil, type: 'submit', class: "btn btn-link btn-search"
+
+- content_for :promos_footer
+  javascript:
+    $(document).on('turbolinks:load', function() {
+      Spree.typeaheadSearch()
+    });
 
 javascript:
   $(document).on('click', '#taxon-dropdown a', function(e) {
