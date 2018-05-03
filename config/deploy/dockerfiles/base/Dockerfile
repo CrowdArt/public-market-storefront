@@ -8,7 +8,7 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - \
         git \
         nodejs
 
-ENV YARN_VERSION=1.5.1
+ENV YARN_VERSION=1.6.0
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && apt-get update -qq \
