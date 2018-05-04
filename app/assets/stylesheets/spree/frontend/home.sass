@@ -10,7 +10,7 @@ body#home-page
 
     .content
       width: 640px
-      margin: 35px auto
+      margin: 40px auto
 
 
     h1
@@ -30,13 +30,19 @@ body#home-page
 
     .btn
       font-size: 18px
-      font-weight: 700
-      padding: 20px 40px
+      font-weight: 500
+      padding: 18px 40px
       border-radius: 0
 
     .btn-primary
-      background-color: #801853
-      border-color: #801853
+      background-color: $btn-hero-bg
+      border-color: $btn-hero-bg
+      &:hover
+        background: rgba($btn-hero-bg, .9)
+        border-color: rgba($btn-hero-bg, .9)
+      &:focus, &:active, &:focus:active
+        background: darken($btn-hero-bg, 5%)
+        border-color: darken($btn-hero-bg, 5%)
 
     p.members
       font-family: $font-family-roboto
@@ -46,7 +52,7 @@ body#home-page
         color: #fff
 
     @media (max-width: $screen-xs-max)
-      height: 480px
+      height: 460px
       .content
         width: 300px
         margin: 4px auto
@@ -58,9 +64,7 @@ body#home-page
           margin-bottom: 26px
         .btn
           font-size: 16px
-          font-weight: 700
-          padding: 18px 40px
-
+          font-weight: 500
 
   section
     h2
