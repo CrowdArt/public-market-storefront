@@ -14,9 +14,9 @@
         ' Buy
         span#variant-option
       br
-      strong.nowrap style='font-size:26px' data-hook="product_price"
+      strong.nowrap#product-price data-hook="product_price"
         - if @product.price_in(current_currency) && !@product.price.nil?
-          span content=@product.price_in(current_currency).amount.to_d itemprop="price"
+          span.price.selling style='font-size:26px' content=@product.price_in(current_currency).amount.to_d itemprop="price"
             = display_price(@product)
           span content=current_currency itemprop="priceCurrency"
 
@@ -38,6 +38,12 @@
 
       .variants.form-group
         - if @variants
+          / = render layout: 'spree/shared/dropdown', locals: { items: @variants } do |hash|
+            small.text-muted.hide-in-dropdown style='display:block' Condition
+            span> = hash[:option_value]
+            span> -
+            span = hash[:variant].price_in(current_currency).money
+
           label CONDITION
           ul.list-group.no-margin-bottom
             - @variants.each_with_index do |variant_hash, index|

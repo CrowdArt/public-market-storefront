@@ -36,11 +36,11 @@
         .product-description.card data-hook='product_description' itemprop='description'
           a.pull-right role='button' data-toggle='collapse' data-parent='#main-accordion' href="#details" aria-expanded='true' aria-controls='details'
           h6.upcase Product Details
-          #details.collapse = product_description(@product)
+          #details.collapse.in = product_description(@product)
         .product-properties.card data-hook='product_properties'
-          a.pull-right role='button' data-toggle='collapse' data-parent='#main-accordion' href="#properties" aria-expanded='false' aria-controls='properties'
+          a.pull-right.collapsed role='button' data-toggle='collapse' data-parent='#main-accordion' href="#properties" aria-expanded='false' aria-controls='properties'
           h6.upcase Properties
-          #properties.collapse.in
+          #properties.collapse
             = render partial: 'properties'
 
 - content_for :promos_footer
@@ -51,4 +51,4 @@
         = render partial: 'promotions'
 
 javascript:
-  $('.collapse').collapse();
+  $('.collapse').collapse({ toggle: false });

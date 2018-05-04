@@ -1,0 +1,10 @@
+.dropdown.rich-dropdown
+  button.btn-block data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+    = yield items.first
+  ul.dropdown-menu
+    - items.each do |item|
+      li
+        a href='#' = yield item
+
+javascript:
+  pm.initRichDropDown();

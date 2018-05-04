@@ -9,3 +9,28 @@
     color: $brand-danger
     font-size: 12px
     margin-top: 4px
+
+.rich-dropdown
+  button
+    padding: 10px 16px
+    background: #feffff
+    text-align: left
+    &:after
+      content: ''
+      display: inline-block
+      width: 0
+      height: 0
+      margin-left: 2px
+      vertical-align: middle
+      border-top: 4px dashed
+      border-top: 4px solid \9
+      border-right: 4px solid transparent
+      border-left: 4px solid transparent
+      float: right
+  .dropdown-menu
+    width: 100%
+    & > li > a:hover, & > li > a:focus
+      .text-muted
+        color: #fff
+    .hide-in-dropdown
+      display: none !important
