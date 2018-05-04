@@ -26,7 +26,7 @@
     </row>
     <row>
       <div class="col-md-4 col-xs-12">
-        <div class="box col-xs-12">
+        <div class="box col-md-12">
           <%= image_tag 'icon-zero-fees.png', class: 'icon' %>
           <h3>Zero Fees</h3>
           <p>
@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="col-md-4 col-xs-12">
-        <div class="box col-xs-12">
+        <div class="box col-md-12">
           <%= image_tag 'icon-buyer-rewards.png', class: 'icon' %>
           <h3>Buyer Rewards</h3>
           <p>
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="col-md-4 col-xs-12">
-        <div class="box col-xs-12">
+        <div class="box col-md-12">
           <%= image_tag 'icon-token-market.png', class: 'icon' %>
           <h3>Token Market</h3>
           <p>
@@ -54,6 +54,38 @@
       </div>
     </row>
   </section>
+
+  <section class="top-categories container">
+    <row>
+      <div class="col-md-12 col-xs-12">
+        <h2>Top Categories</h2>
+        <span>View All</span>
+      </div>
+    </row>
+    <row>
+      <div class="col-md-6 col-xs-12">
+        <div class="box col-xs-6">
+          <h3>PS4 Games</h3>
+          <p>Starting at $14.99</p>
+          <%= link_to "SHOP NOW", products_path, {class: "btn btn-primary"} %>
+        </div>
+        <div class="box slant col-xs-6">
+          <%= image_tag 'uncharted.png' %>
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="box col-xs-6">
+          <h3>Top Selling Books</h3>
+          <p>Starting at $2.99</p>
+          <%= link_to "SHOP NOW", products_path, {class: "btn btn-primary"} %>
+        </div>
+        <div class="box slant col-xs-6">
+          <%= image_tag 'top-selling-books.png' %>
+        </div>
+      </div>
+    </row>
+  </section>
+
 <% end %>
 
 <div data-hook="homepage_products">
