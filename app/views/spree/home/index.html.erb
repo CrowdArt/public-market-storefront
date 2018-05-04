@@ -4,17 +4,15 @@
   <% unless spree_user_signed_in? %>
     <div class="jumbotron" data-hook="homepage_hero">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-            <h1>Because you deserve the lowest possible price</h1>
-            <h3>Join the shopping revolution</h3>
-            <p class="signup">
-              <%= link_to "CREATE ACCOUNT", signup_path, {class: "btn btn-primary"} %>
-            </p>
-            <p class="members">
-              Already a member? <%= link_to Spree.t(:login), login_path %>
-            </p>
-          </div>
+        <div class="content text-center">
+          <h1>Join the Reward-Driven Shopping Revolution</h1>
+          <h3>Zero fees for sellers. Lower prices for you.</h3>
+          <p class="signup">
+            <%= link_to "CREATE ACCOUNT", signup_path, {class: "btn btn-primary"} %>
+          </p>
+          <p class="members">
+            Already a member? <%= link_to Spree.t(:login), login_path %>
+          </p>
         </div>
       </div>
     </div>
