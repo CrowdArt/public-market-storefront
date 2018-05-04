@@ -31,8 +31,6 @@
                 button.btn.btn-sm.btn-default disabled=true type='submit' = Spree.t('rating_send')
 
   javascript:
-    $('[data-toggle="tooltip"]').tooltip()
-
     $('#rating-form').on('click', 'input', function(e) {
       $('#rating-form button').prop('disabled', false);
     })
