@@ -10,11 +10,11 @@
         span.price#average-price = display_price(@product)
 
     .col-xs-12#product-variants
-      .buy-option.nowrap
+      strong.nowrap style='font-size:18px'
         ' Buy
         span#variant-option
-
-      .product-price data-hook="product_price"
+      br
+      strong.nowrap style='font-size:26px' data-hook="product_price"
         - if @product.price_in(current_currency) && !@product.price.nil?
           span content=@product.price_in(current_currency).amount.to_d itemprop="price"
             = display_price(@product)

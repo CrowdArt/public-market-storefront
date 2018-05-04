@@ -12,15 +12,15 @@
           #thumbnails data-hook=true
             = render partial: 'thumbnails'
 
-    .col-sm-5.col-md-4.product-title-item
+    .col-xs-12.col-sm-5.col-md-4.product-title-item
       h1.product-title itemprop='name' = @product.name
 
       - if author = @product.author
-        h4.product-author.no-margin-top
+        .product-author.no-margin-top
           span.byline By
           span.author = author.value
 
-    .col-sm-7.col-md-4.product-cart-item
+    .col-xs-12.col-sm-7.col-md-4.product-cart-item
       #cart-form.panel.no-border
         .panel-body
           - if @product.can_supply?
@@ -35,11 +35,11 @@
       #main-accordion.accordion
         .product-description.card data-hook='product_description' itemprop='description'
           a.pull-right role='button' data-toggle='collapse' data-parent='#main-accordion' href="#details" aria-expanded='true' aria-controls='details'
-          h4 Product Details
+          h6.upcase Product Details
           #details.collapse = product_description(@product)
         .product-properties.card data-hook='product_properties'
           a.pull-right role='button' data-toggle='collapse' data-parent='#main-accordion' href="#properties" aria-expanded='false' aria-controls='properties'
-          h4 Properties
+          h6.upcase Properties
           #properties.collapse.in
             = render partial: 'properties'
 

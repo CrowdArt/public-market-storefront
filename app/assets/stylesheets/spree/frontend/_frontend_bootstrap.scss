@@ -2,6 +2,12 @@
 @import "bootstrap";
 @import "bootswatch/cosmo/bootswatch";
 
+@media (max-width: $screen-xs-max) {
+  .col-xs-12 {
+    margin-bottom: $grid-gutter-width / 4
+  }
+}
+
 // -- Spree Custom Header and Footer ---------------------
 #spree-header {
   background-color: $brand-black;
@@ -58,12 +64,6 @@
 
 .progress-steps {
   margin-top: $line-height-computed;
-}
-
-h1 {
-  font-weight: 400;
-  margin-top: 0;
-  margin-bottom: 30px;
 }
 
 // Center cart line items
