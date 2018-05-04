@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  # prepend_before_action :auth_staging, if: -> { Rails.env.staging? }
+  prepend_before_action :auth_staging, if: -> { Rails.env.staging? }
   before_action :set_raven_context, if: -> { Rails.env.staging? || Rails.env.production? }
 
   protected
