@@ -28,6 +28,8 @@
           - else
             .text-center
               h4 Out of stock
+      - if @product.can_supply?
+        p.text-center = render 'spree/shared/payment_methods'
 
     .col-sm-12.product-content-item
       #main-accordion.accordion

@@ -61,7 +61,7 @@
 
     - if @product.can_supply?
       .col-xs-12
-        = button_tag class: 'btn btn-primary btn-primary-inverse btn-block', id: 'add-to-cart-button', value: 'add-to-cart', type: :submit, data: { disable_with: 'Processing' } do
+        = button_tag class: 'btn btn-default btn-block', id: 'add-to-cart-button', value: 'add-to-cart', type: :submit, data: { disable_with: 'Processing' } do
           = Spree.t(:add_to_cart)
 
         = button_tag class: 'btn btn-primary btn-block', id: 'buy-now-button', type: :submit, data: { disable_with: 'Processing' } do

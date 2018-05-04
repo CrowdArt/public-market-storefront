@@ -1,15 +1,31 @@
 button, .btn
-  &:focus
+  font-size: 14px
+  letter-spacing: 0.4px
+  padding: 16px 18px
+  text-transform: uppercase
+
+  &:focus, &:active, &:focus:active
     outline: none
+    box-shadow: none
 
-.btn.btn-primary-inverse
-  background-color: white
-  color: $brand-primary
+button[data-toggle="dropdown"]
+  text-transform: none
 
+.btn-primary
   &:hover
-    background-color: darken(white, 5%)
-    &:disabled
-      background-color: white
+    background: rgba($btn-primary-bg, .9)
+    border-color: rgba($btn-primary-bg, .9)
+  &:focus, &:active, &:focus:active
+    background: darken($btn-primary-bg, 5%)
+    border-color: darken($btn-primary-bg, 5%)
+
+.btn-default
+  &:hover
+    background: rgba($btn-default-bg, .9)
+    border-color: rgba($btn-default-bg, .9)
+  &:focus, &:active, &:focus:active
+    background: darken($btn-default-bg, 15%)
+    border-color: darken($btn-default-bg, 15%)
 
 %social-btn
   font-size: 16px
