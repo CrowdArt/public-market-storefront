@@ -59,7 +59,7 @@
     <row>
       <div class="col-md-12 col-xs-12">
         <h2>Top Categories</h2>
-        <span>View All</span>
+        <%= link_to "View All", products_path, {class: "view-all"} %>
       </div>
     </row>
     <row>
@@ -88,8 +88,16 @@
 
 <% end %>
 
-<div data-hook="homepage_products">
-  <% cache(cache_key_for_products) do %>
-    <%= render partial: 'spree/shared/products', locals: { products: @products } %>
-  <% end %>
-</div>
+<section class="top-products container">
+  <row>
+    <div class="col-md-12 col-xs-12">
+      <h2>Top Products</h2>
+      <%= link_to "View All", products_path, {class: "view-all"} %>
+    </div>
+  </row>
+  <div data-hook="homepage_products">
+    <% cache(cache_key_for_products) do %>
+      <%= render partial: 'spree/shared/products', locals: { products: @products } %>
+    <% end %>
+  </div>
+</section>
