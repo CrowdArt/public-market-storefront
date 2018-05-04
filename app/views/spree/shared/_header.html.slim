@@ -1,22 +1,24 @@
 #spree-header
   header.container
-    .row.condensed.flex.align-center
-      .col-md-2.col-sm-2.col-xs-12#logo
+    .row.condensed.flex.align-center.between.nowrap-md
+      #logo
         = logo
 
-      .col-md-10.col-sm-10
+      .col-lg-11.col-md-10.col-sm-12
         .row.condensed.nav-row.flex.align-center
-          .col-md-5.col-sm-5.col-xs-12
+          .col-md-4.col-sm-5.col-xs-12
             = render partial: 'spree/shared/primary_navbar'
 
-          .col-md-7.col-sm-7.col-xs-12.flex.align-center#search-bar
+          .col-md-8.col-sm-7.col-xs-12.flex.align-center.end#search-bar
             = render partial: 'spree/shared/search'
             = render partial: 'spree/shared/main_nav_bar'
 
-        - if spree_user_signed_in?
-          .row.condensed
-            .col-md-12.secondary-navbar
-              = render partial: 'spree/shared/secondary_navbar'
+        / use divider instead of border because rows/cols have paddings
+        hr.divider
+
+        .row.condensed
+          .col-md-12.secondary-navbar
+            = render partial: 'spree/shared/secondary_navbar'
 
 javascript:
   Spree.fetch_cart()

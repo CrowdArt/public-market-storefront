@@ -4,14 +4,14 @@ ul.nav.navbar-nav.nav-buttons.pull-left
 
   li.pull-left.link-to-account
     = link_to account_path
-      span.glyphicon.glyphicon-user aria-hidden="true"
+      = image_tag 'icons/user.svg'
 
   li.upcase.pull-left#link-to-cart
     noscript
       = link_to_cart
 
     a href='/cart'
-      span.glyphicon.glyphicon-shopping-cart aria-hidden="true"
+      = image_tag 'icons/cart.svg'
 
 javascript:
   Spree.fetch_cart()

@@ -6,6 +6,11 @@ en:
       orders: Order History
       payment: Payment Methods
       shipping: Shipping Address
+
     search:
       coming_soon: Coming Soon!
       disabled: As we test the platform, purchasable items are limited to books. We appreciate your patience.
+
+    primary-nav:
+      how-it-works: How it Works
+      become-a-seller: Sell on Public Market

@@ -33,15 +33,15 @@ module Spree
       spree_current_user.addresses.map { |a| [a, address.same_as?(a)] }
     end
 
-    def link_to_cart(text = nil)
+    def link_to_cart(text = nil) # rubocop:disable Metrics/AbcSize
       text = text ? h(text) : Spree.t('cart')
       css_class = nil
 
-      if simple_current_order.nil? || simple_current_order.item_count.zero?
-        text = "<span class='glyphicon glyphicon-shopping-cart'></span>"
+      if simple_current_order.nil? || (orders_count = simple_current_order.item_count).zero?
+        text = image_tag('icons/cart.svg')
         css_class = 'empty'
       else
-        text = "<span class='glyphicon glyphicon-shopping-cart'></span><span class='badge'>#{simple_current_order.item_count}</span>"
+        text = "#{image_tag('icons/cart.svg')}<span class='badge'>#{orders_count}</span>"
         css_class = 'full'
       end
 

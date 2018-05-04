@@ -6,17 +6,27 @@
       position: absolute
       left: 10px
 
-  .secondary-navbar
+  hr.divider
     border-top: 1px solid $brand-light-black
-    li > a
-      padding: 10px 15px
-      &:hover
-        color: $brand-primary
+    margin: 0 15px
+
+  .secondary-navbar
+    li
+      & > a
+        padding: 10px 15px
+        text-transform: uppercase
+        border-bottom: 3px solid transparent
+
+        &:hover
+          border-bottom: 3px solid #fff
+
+      &.active > a
+        border-bottom: 3px solid $brand-primary
 
 #logo a
   display: block
-  max-width: 165px
-  min-width: 100px
+  max-width: 135px
+  min-width: 110px
   z-index: 1
   img
     width: 100%
@@ -40,6 +50,10 @@
     flex: 1
     padding: 0
 
+    @media (min-width: $screen-sm-min)
+      min-width: 350px
+      max-width: 468px
+
     @media (max-width: $screen-xs-max)
       flex: 1 0 100%
 
@@ -54,7 +68,7 @@
         background: #33333e
         border-color: #33333e
         width: 100%
-        padding: 18px 18px
+        padding: 17px 18px
         font-weight: normal
 
         @media (max-width: $screen-sm-max)
@@ -102,12 +116,9 @@
       &:hover, &:focus
         text-decoration: none
 
-#link-to-cart a
-  padding-left: 0
-
 .link-to-account
-  .glyphicon-user
-    padding-right: 10px
+  img
+    margin-right: 10px
 
   @media (max-width: 767px)
     a.dropdown-toggle
@@ -126,11 +137,15 @@
       vertical-align: bottom
 
 .nav-buttons
-  .glyphicon
-    font-size: 24px
+  li + li
+    a
+      padding-left: 0
+
+  li:last-of-type > a
+    padding-right: 7px
 
   .badge
     position: absolute
-    top: 2px
-    right: 2px
+    top: 3px
+    right: 0
     z-index: 1
