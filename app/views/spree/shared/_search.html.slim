@@ -63,5 +63,5 @@ javascript:
   })
 
   $('#keywords').on('change, keyup', function() {
-    $(this).parents('.input-group').toggleClass('filled', $.trim($(this).val()) !== '')
+    $(this).parents('.input-group').toggleClass('filled', $(this).val().trim() !== '')
   })
