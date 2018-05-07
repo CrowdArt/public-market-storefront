@@ -1,8 +1,8 @@
 window.pm = window.pm || {}
 window.pm.initRichDropDown = function () {
-  console.log('test')
-  $(document).on('click', '.rich-dropdown .dropdown-menu a', function (e) {
-    console.log(e)
-    e.preventDefault()
+  $(document).on('click', '.rich-dropdown .dropdown-item', function (e) {
+    var button = $(e.target).closest('.rich-dropdown').find('button');
+    var item = $(e.target).closest('label')
+    button.html(item.html());
   })
 }

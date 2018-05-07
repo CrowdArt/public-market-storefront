@@ -12,6 +12,8 @@ Spree::ProductsController.class_eval do
 
     @product_properties = @product.product_properties.includes(:property)
     @taxon = params[:taxon_id].present? ? Spree::Taxon.find(params[:taxon_id]) : @product.taxons.first
+    @selected = @variants.first
+    @selected[:selected] = true if @selected.present?
     redirect_if_legacy_path
   end
 

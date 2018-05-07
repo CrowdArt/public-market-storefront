@@ -2,7 +2,7 @@
 
 $(document).on('turbolinks:load', function() {
   function setVariantOptionText(variant) {
-    $('#variant-option').text(variant.siblings('label').find('.variant-description').text());
+    $('#variant-option').text(variant.closest('.dropdown-item').find('.variant-description').text());
   }
 
   function setPriceDiff(variant, avgPrice) {

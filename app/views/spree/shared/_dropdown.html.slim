@@ -1,10 +1,17 @@
+/ Rich dropdown is dropdown for showing html content in dropdown. Usage:
+  = render layout: 'spree/shared/dropdown', locals: { items: @items, selected: @items.first } do |item, index|
+    - unless index.nil?
+     .hide = radio_button_tag 'item_id', item.id, item.selected?
+    = label_tag "item_id_#{item.id}" do
+      span Rich content using #{item.inspect}
+
 .dropdown.rich-dropdown
   button.btn-block data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
-    = yield items.first
+    = yield(selected, nil)
   ul.dropdown-menu
-    - items.each do |item|
-      li
-        a href='#' = yield item
+    - items.each_with_index do |item, index|
+      li.dropdown-item
+        = yield(item, index)
 
 javascript:
   pm.initRichDropDown();

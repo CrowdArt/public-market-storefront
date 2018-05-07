@@ -35,34 +35,24 @@
             = Spree.t('product_not_available_in_this_currency')
 
       .est-token-rewards Estimated PTRN Rewards: ~ #{@product.estimated_ptrn}
-
+      br
       .variants.form-group
         - if @variants
-          / = render layout: 'spree/shared/dropdown', locals: { items: @variants } do |hash|
-            small.text-muted.hide-in-dropdown style='display:block' Condition
-            span> = hash[:option_value]
-            span> -
-            span = hash[:variant].price_in(current_currency).money
-
-          label CONDITION
-          ul.list-group.no-margin-bottom
-            - @variants.each_with_index do |variant_hash, index|
-              - variant = variant_hash[:variant]
-              li
-                = radio_button_tag "variant_id", variant.id, index == 0, 'data-quantity': [quantity_left(variant), 1].max, 'data-avg-price': variant_hash[:median_price], 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?
-                = label_tag "variant_id_#{ variant.id }"
-                  span.variant-description = variant_hash[:option_value]
-                  span.price< = variant_full_price(variant)
-
-                  - unless variant.can_supply?
-                    br
-                    span.out-of-stock= Spree.t(:out_of_stock)
+          = render layout: 'spree/shared/dropdown', locals: { items: @variants, selected: @variants.first } do |hash, index|
+            - variant = hash[:variant]
+            - unless index.nil?
+              .hide = radio_button_tag 'variant_id', variant.id, hash[:selected], 'data-quantity': [quantity_left(variant), 1].max, 'data-avg-price': hash[:median_price], 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?
+            = label_tag "variant_id_#{variant.id}"
+              small.text-muted.hide-in-dropdown style='display:block' Condition
+              span.variant-description> = hash[:option_value]
+              span> -
+              span = variant.price_in(current_currency).money
         - else
           = hidden_field_tag "variant_id", @product.master.id
 
       = f.field_container :quantity, class: ['form-group'] do
         = f.label :quantity, 'QTY'
-        = select_tag :quantity, options_for_select(1..50), class: 'form-control'
+        = select_tag :quantity, options_for_select(1..50), class: 'form-control', style: 'width:85px'
         = hidden_field_tag :quantity, 1, disabled: true, id: 'product-hidden-quantity'
 
     - if @product.can_supply?

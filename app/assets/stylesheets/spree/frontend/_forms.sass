@@ -27,6 +27,10 @@
       border-right: 4px solid transparent
       border-left: 4px solid transparent
       float: right
+  label
+    font-weight: normal
+    margin: 0
+    display: inline
   .dropdown-menu
     width: 100%
     & > li > a:hover, & > li > a:focus
@@ -34,3 +38,11 @@
         color: #fff
     .hide-in-dropdown
       display: none !important
+    .dropdown-item
+      label
+        display: block
+        font-weight: normal
+        padding: 3px 20px
+        &:hover, &:focus
+          color: $dropdown-link-hover-color
+          background-color: $dropdown-link-hover-bg
