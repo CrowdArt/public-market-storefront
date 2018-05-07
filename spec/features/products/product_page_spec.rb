@@ -30,7 +30,9 @@ RSpec.describe 'product page', type: :feature do
       expect(page).to have_text(first_avg_price - first_with_min_price.price)
       expect(page).to have_text('Save:')
 
-      choose 'Second'
+      click_button('First')
+      find('label', text: 'Second').click
+      # choose 'Second',
 
       expect(page).not_to have_text('Save:')
     end
