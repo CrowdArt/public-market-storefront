@@ -4,11 +4,12 @@ ruby:
 
 = form_tag spree.products_path, method: :get, class: "navbar-form" do
   .input-group class=('filled' if params[:keywords].present?)
-    - cache ['v2', I18n.locale, taxons, taxon] do
+    - cache ['v3', I18n.locale, taxons, taxon] do
       .input-group-btn.taxon-group#taxon-dropdown
         ruby:
           enabled_taxons = taxons.where(hidden: false)
           disabled_taxons = taxons.where(hidden: true, parent_id: nil)
+          taxon ||= enabled_taxons.first unless params[:keywords] # if is not filtered - select first
 
         button.btn.btn-default.dropdown-toggle#taxon-menu type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
           span.name> = taxon&.name || Spree.t(:all_products)
@@ -24,7 +25,7 @@ ruby:
               a class=(t == taxon ? 'checked': '') href="#" data-taxon-id=t.id data-taxon-name=t.name
                 = t.name
 
-          - if disabled_taxons
+          - if disabled_taxons.present?
             li.divider role="separator"
 
             - disabled_taxons.each do |t|

@@ -1,9 +1,9 @@
 RSpec.describe 'taxon dropdown', type: :feature, js: true do
   subject { page }
 
-  let!(:taxon) { create(:taxon) }
+  let!(:taxon) { create(:taxonomy) }
 
-  describe 'shows default first category' do
+  describe 'shows first category by default' do
     before { visit '/' }
 
     it { is_expected.to have_text(taxon.name) }
