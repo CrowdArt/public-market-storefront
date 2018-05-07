@@ -35,7 +35,6 @@
             = Spree.t('product_not_available_in_this_currency')
 
       .est-token-rewards Estimated PTRN Rewards: ~ #{@product.estimated_ptrn}
-      br
       .variants.form-group
         - if @variants
           = render layout: 'spree/shared/dropdown', locals: { items: @variants, selected: @variants.first } do |hash, index|
