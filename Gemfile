@@ -22,6 +22,7 @@ gem 'enumerize'
 gem 'whenever', require: false
 
 gem 'bootswatch-rails'
+gem 'browser'
 gem 'ckeditor'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
