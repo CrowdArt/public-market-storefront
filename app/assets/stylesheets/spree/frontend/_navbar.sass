@@ -67,9 +67,9 @@
       button
         background: #33333e
         border-color: #33333e
-        width: 100%
-        padding: 17px 18px
         font-weight: normal
+        padding: 17px 18px
+        width: 100%
 
         @media (max-width: $screen-sm-max)
           padding: 17px 6px
@@ -100,21 +100,33 @@
         &:focus
           box-shadow: none
 
+    .input-group.filled
+      .btn-search:before
+        color: $brand-primary
+
+      .btn-search:focus:before
+        color: darken($brand-primary, 10%)
+
     .btn-search
       background-color: $brand-light-black
+      max-height: 58px
 
       &:before
         content: '\e003'
-        color: rgba(255, 255, 255, 0.5) 
+        color: rgba(255, 255, 255, 0.3)
         font-family: 'Glyphicons Halflings'
         font-style: normal
         font-weight: normal
         line-height: 1
         position: relative
+        transition: color .2s
         vertical-align: middle
 
       &:hover, &:focus
         text-decoration: none
+
+        &:before
+          color: #fff
 
 .link-to-account
   img

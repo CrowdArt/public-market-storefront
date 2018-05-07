@@ -3,7 +3,7 @@ ruby:
   taxon = Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon]
 
 = form_tag spree.products_path, method: :get, class: "navbar-form" do
-  .input-group
+  .input-group class=('filled' if params[:keywords].present?)
     - cache ['v2', I18n.locale, taxons, taxon] do
       .input-group-btn.taxon-group#taxon-dropdown
         ruby:
@@ -60,4 +60,8 @@ javascript:
     title: "#{t('menus.search.coming_soon')}",
     placement: 'right',
     trigger: 'hover'
+  })
+
+  $('#keywords').on('change, keyup', function() {
+    $(this).parents('.input-group').toggleClass('filled', $.trim($(this).val()) !== '')
   })
