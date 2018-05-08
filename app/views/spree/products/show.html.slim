@@ -12,15 +12,7 @@
           #thumbnails data-hook=true
             = render partial: 'thumbnails'
 
-    .col-xs-12.col-sm-5.col-md-4.product-title-item
-      h1.product-title itemprop='name' = @product.name
-
-      - if author = @product.author
-        .product-author.no-margin-top
-          span.byline By
-          span.author = author.value
-
-    .col-xs-12.col-sm-7.col-md-4.product-cart-item
+    .col-xs-12.col-sm-7.col-md-4.col-md-push-4.product-cart-item
       #cart-form.panel.no-border
         .panel-body
           - if @product.can_supply?
@@ -31,7 +23,15 @@
       - if @product.can_supply?
         p.text-center = render 'spree/shared/payment_methods'
 
-    .col-sm-12.product-content-item
+    .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
+      h1.product-title itemprop='name' = @product.name
+
+      - if author = @product.author
+        .product-author.no-margin-top
+          span.byline By
+          span.author = author.value
+
+    .col-xs-12.col-sm-12.product-content-item
       #main-accordion.accordion
         .product-description.card data-hook='product_description' itemprop='description'
           a.pull-right role='button' data-toggle='collapse' data-parent='#main-accordion' href="#details" aria-expanded='true' aria-controls='details'

@@ -2,7 +2,7 @@ body#product-details
   @supports (display: grid)
     .product-grid
       display: grid
-      grid-template-areas: "images" "title" "cart" "content"
+      grid-template-areas: "images" "title" "content" "cart"
 
       @media (min-width: $screen-sm-min)
         grid-template-columns: 1fr 1fr
@@ -20,10 +20,12 @@ body#product-details
 
     .product-title-item
       grid-area: title
+      right: auto
       width: 100%
 
     .product-cart-item
       grid-area: cart
+      left: auto
       width: 100%
 
     .product-content-item
