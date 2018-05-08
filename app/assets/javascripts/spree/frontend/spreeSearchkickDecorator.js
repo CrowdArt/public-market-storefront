@@ -38,7 +38,9 @@ Spree.typeaheadSearch = function() {
     }
   });
 
-  $('#keywords').on('typeahead:selected', function() {
-    $(this).typeahead("val", ''); // disable fill
-  });
+  $('#keywords').on('typeahead:selected', function(e, s) {
+    $(this).typeahead("val", s.name); // fill name
+  }).on('typeahead:cursorchange', function(e, s, d) {
+    $(this).val($(this).typeahead('val')); // disable suggestion fill
+  })
 }
