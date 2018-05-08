@@ -10,7 +10,8 @@
 //= require accounting.min
 
 //= require spree/frontend
-//= require spree/frontend/publicMarket
 
 //= require spree/frontend/spree_auth
 //= require spree/frontend/spree_searchkick
+
+//= require spree/frontend/publicMarket
