@@ -1,36 +1,37 @@
 ruby:
   taxons = Spree::Taxon.roots
-  taxon = Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon]
+  enabled_taxons = taxons.where(hidden: false)
+  disabled_taxons = taxons.where(hidden: true, parent_id: nil)
+  taxon =
+    if params[:taxon]
+      Spree::Taxon.find_by(id: params[:taxon])
+    elsif params[:keywords].blank?
+      enabled_taxons.first
+    end
 
 = form_tag spree.products_path, method: :get, class: "navbar-form" do
-  .input-group class=('filled' if params[:keywords].present?)
-    - cache ['v3', I18n.locale, taxons, taxon] do
-      .input-group-btn.taxon-group#taxon-dropdown
-        ruby:
-          enabled_taxons = taxons.where(hidden: false)
-          disabled_taxons = taxons.where(hidden: true, parent_id: nil)
-          taxon ||= enabled_taxons.first unless params[:keywords] # if is not filtered - select first
+  .input-group#search-input-group class=('filled' if params[:keywords].present?)
+    ul.dropdown-menu#taxon-dropdown aria-labelledby="taxon-menu"
+      li
+        a href="#" class=('checked' if taxon.blank?) data-taxon-id='' data-taxon-name=Spree.t(:all_products) = Spree.t(:all_products)
 
-        button.btn.btn-default.dropdown-toggle#taxon-menu type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
-          span.name> = taxon&.name || Spree.t(:all_products)
-          span.caret<
-          input#taxon name='taxon' type='hidden' value=taxon&.id
+      - enabled_taxons.each do |t|
+        li
+          a class=(t == taxon ? 'checked': '') href="#" data-taxon-id=t.id data-taxon-name=t.name
+            = t.name
 
-        ul.dropdown-menu aria-labelledby="taxon-menu"
-          li
-            a href="#" class=('checked' if taxon.blank?) data-taxon-id='' data-taxon-name=Spree.t(:all_products) = Spree.t(:all_products)
+      - disabled_taxons.each do |t|
+        li.disabled
+          a.link-muted.flex.between.align-center disabled=true href="#"
+            span = t.name
 
-          - enabled_taxons.each do |t|
-            li
-              a class=(t == taxon ? 'checked': '') href="#" data-taxon-id=t.id data-taxon-name=t.name
-                = t.name
+            span.text-success.pull-right COMING SOON
 
-          - if disabled_taxons.present?
-            li.divider role="separator"
-
-            - disabled_taxons.each do |t|
-              li.disabled
-                a disabled=true href="#" = t.name
+    .input-group-btn.taxon-group
+      button.btn.btn-default.dropdown-toggle#taxon-menu type="button" data-target='#search-input-group' data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+        span.name> = taxon&.name || Spree.t(:all_products)
+        span.caret<
+        input#taxon name='taxon' type='hidden' value=taxon&.id
 
     .search-group.flex
       = search_field_tag :keywords, params[:keywords], autocomplete: 'off', placeholder: Spree.t(:search), class: "form-control"
