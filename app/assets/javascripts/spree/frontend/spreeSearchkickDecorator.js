@@ -23,24 +23,24 @@ Spree.typeaheadSearch = function() {
     source: products,
     templates: {
       suggestion: function(product) {
-        return "<a class='plain-link' href='" + product.link + "'> \
-                  <div class='product-suggestion'> \
-                    <div class='product-suggestion__image'> \
-                      <img src='" + product.image + "'/> \
-                    </div>\
-                    <div> \
-                      <div class='product-suggestion__name'>" + product.name + "</div> \
-                      <div class='product-suggestion__price'>From: " + product.price + "</div> \
-                    </div>\
-                  </div> \
-                </a>";
+        return "<div class='product-suggestion'> \
+                  <div class='product-suggestion__image'> \
+                    <img src='" + product.image + "'/> \
+                  </div>\
+                  <div> \
+                    <div class='product-suggestion__name'>" + product.name + "</div> \
+                    <div class='product-suggestion__price'>From: " + product.price + "</div> \
+                  </div>\
+                </div>";
       }
     }
   });
 
   $('#keywords').on('typeahead:selected', function(e, s) {
     $(this).typeahead("val", s.name); // fill name
+  }).on('typeahead:select', function(e, s) {
+    window.location = s.link; // redirect directly to product for S1
   }).on('typeahead:cursorchange', function(e, s, d) {
     $(this).val($(this).typeahead('val')); // disable suggestion fill
-  })
+  });
 }

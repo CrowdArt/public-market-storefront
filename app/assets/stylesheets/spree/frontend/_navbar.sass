@@ -176,26 +176,19 @@
   &.tt-open
     display: block
 
-  a
-    display: block
-    color: white
-    padding: 0 20px
-
-    &:hover
-      color: white
-
-    &.tt-cursor
-      background-color: #42424e
-
   .product-suggestion
     display: flex
-    padding: 10px 0
+    cursor: pointer
+    padding: 10px 20px
 
     & > div + div
       margin-left: 15px
 
     img
       max-width: 56px
+
+    &.tt-cursor
+      background-color: #42424e
 
 #taxon-dropdown.dropdown-menu
   background-color: $brand-gray-black
