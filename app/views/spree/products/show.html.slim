@@ -38,9 +38,9 @@
           h6.upcase Product Details
           #details.collapse class=(browser.device.mobile? ? '' : 'in') = product_description(@product)
         .product-properties.card data-hook='product_properties'
-          a.pull-right.collapsed role='button' data-toggle='collapse' data-parent='#main-accordion' href="#properties" aria-expanded='false' aria-controls='properties'
+          a.pull-right.collapsed role='button' data-toggle='collapse' data-parent='#main-accordion' href="#properties" aria-expanded='true' aria-controls='properties'
           h6.upcase Properties
-          #properties.collapse
+          #properties.collapse class=(browser.device.mobile? ? '' : 'in')
             = render partial: 'properties'
 
 / - content_for :promos_footer
