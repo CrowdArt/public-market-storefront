@@ -24,7 +24,7 @@
         p.text-center = render 'spree/shared/payment_methods'
 
     .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
-      h1.product-title itemprop='name' = @product.name
+      h1.product-title itemprop='name' = sanitize(@product.name)
 
       - if author = @product.author
         .product-author.no-margin-top
