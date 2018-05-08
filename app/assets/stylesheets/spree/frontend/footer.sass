@@ -1,0 +1,29 @@
+#main-footer
+  background-color: $brand-black
+  padding: 50px 0
+  text-align: center
+  @media (min-width: $screen-sm-min)
+    text-align: left
+  .media-links
+    margin-top: 20px
+    a
+      margin-right: 10px
+      text-decoration: none
+      svg
+        #twitter, #medium, #facebook, #g-plus
+          transition: 0.1s ease-in-out
+        &:hover
+          #twitter, #medium, #facebook, #g-plus
+            fill: $brand-primary
+  strong
+    color: rgba(255, 255, 255, 0.8)
+    font-weight: 500
+    text-transform: uppercase
+  ul
+    margin-top: 12px
+    a
+      color: rgba(255, 255, 255, 0.5)
+      line-height: 1.94
+      text-decoration: none
+      &:focus, &:hover
+        color: rgba(255, 255, 255, 0.8)

@@ -47,5 +47,9 @@ module Spree
 
       link_to text.html_safe, spree.cart_path, class: "cart-info #{css_class}" # rubocop:disable Rails/OutputSafety
     end
+
+    def inline_svg(path)
+      raw(Rails.application.assets.find_asset(path + '.svg').to_s)
+    end
   end
 end
