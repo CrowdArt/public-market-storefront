@@ -1,4 +1,6 @@
-function initFormLeaveCheck(forms) {
+window.pm = window.pm || {}
+
+window.pm.initFormLeaveCheck = function(forms) {
   $(forms).on('change, keyup', 'input, textarea, select', function() {
     $(this).parents('form').addClass('form-dirty')
     $('body').attr('data-turbolinks', false)
