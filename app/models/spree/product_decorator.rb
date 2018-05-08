@@ -40,4 +40,26 @@ Spree::Product.class_eval do
   def estimated_ptrn
     (price * 0.1).floor
   end
+
+  def self.autocomplete(keywords) # rubocop:disable Metrics/MethodLength
+    if keywords
+      Spree::Product.search(
+        keywords,
+        includes: [master: :prices],
+        fields: autocomplete_fields,
+        match: :word_start,
+        limit: 10,
+        misspellings: { below: 3 },
+        where: search_where
+      ).uniq
+    else
+      Spree::Product.search(
+        '*',
+        includes: [master: :prices],
+        fields: autocomplete_fields,
+        misspellings: { below: 3 },
+        where: search_where
+      )
+    end
+  end
 end

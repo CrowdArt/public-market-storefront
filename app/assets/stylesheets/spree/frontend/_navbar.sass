@@ -167,11 +167,15 @@
   color: white
   display: none
   left: 0
-  padding: 10px 0
+  max-height: 350px
+  overflow-y: auto
   position: absolute
   top: 100%
   width: 100%
   z-index: 100
+
+  @media (max-width: $screen-phone)
+    -webkit-overflow-scrolling: touch
 
   &.tt-empty
     padding: 0
@@ -179,5 +183,20 @@
   &.tt-open
     display: block
 
-  .tt-suggestion
-    cursor: pointer
+  a
+    display: block
+    color: white
+    padding: 0 20px
+
+    &.tt-cursor
+      background-color: lighten($brand-light-black, 10%)
+
+  .product-suggestion
+    display: flex
+    padding: 10px 0
+
+    & > div + div
+      margin-left: 15px
+
+    img
+      max-width: 56px

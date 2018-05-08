@@ -17,6 +17,14 @@ Spree::ProductsController.class_eval do
     redirect_if_legacy_path
   end
 
+  def autocomplete
+    keywords = params[:keywords] ||= nil
+    @products = Spree::Product.autocomplete(keywords)
+    respond_to do |format|
+      format.json
+    end
+  end
+
   private
 
   def prepare_buy_box_variants(option_variants)
