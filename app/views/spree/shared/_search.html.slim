@@ -11,7 +11,7 @@ ruby:
 
 = form_tag spree.products_path, method: :get, class: "navbar-form" do
   .input-group#search-input-group class=('filled' if params[:keywords].present?)
-    ul.dropdown-menu#taxon-dropdown aria-labelledby="taxon-menu"
+    ul.dropdown-menu.visible-scroll#taxon-dropdown aria-labelledby="taxon-menu"
       li
         a href="#" class=('checked' if taxon.blank?) data-taxon-id='' data-taxon-name=Spree.t(:all_products) = Spree.t(:all_products)
 
@@ -38,7 +38,7 @@ ruby:
 
     = button_tag '', name: nil, type: 'submit', class: "btn btn-link btn-search"
 
-    .keyword-suggestions.visible-scroll.tt-empty
+    .keyword-suggestions.tt-empty
 
 - content_for :promos_footer
   javascript:

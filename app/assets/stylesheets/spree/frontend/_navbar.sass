@@ -160,8 +160,8 @@
   color: white
   display: none
   left: 0
-  max-height: 350px
-  overflow-y: auto
+  padding: 10px 0
+  padding-right: 8px
   position: absolute
   top: 100%
   width: 100%
@@ -169,6 +169,11 @@
 
   @media (max-width: $screen-phone)
     -webkit-overflow-scrolling: touch
+
+  .tt-dataset
+    @extend .visible-scroll
+    max-height: 350px
+    overflow-y: auto
 
   &.tt-empty
     padding: 0
@@ -186,6 +191,9 @@
 
     img
       max-width: 56px
+
+    &__info
+      overflow: hidden
 
     &.tt-cursor
       background-color: #42424e
@@ -209,5 +217,5 @@
     .disabled .text-success
       border: 1px solid
 
-    &:hover
+    a:hover
       background-color: #42424e
