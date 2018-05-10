@@ -1,25 +1,29 @@
+ruby:
+  root_taxons = Spree::Taxon.roots.reorder(position: :asc)
+  enabled_taxons = root_taxons.where(hidden: false)
+  disabled_taxons = root_taxons.where(hidden: true, parent_id: nil)
+  taxon = Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon]
+
 #spree-header
   header.container-fluid.flex.align-center.between.nowrap-md
     .hidden-xs.hidden-sm#logo
       = logo
 
     .top-navbar
-      .nav-row.flex.between.align-center
-        .primary-navbar.hidden-xs.hidden-sm
-          = render partial: 'spree/shared/primary_navbar'
+      .flex.between.align-center
+        = render partial: 'spree/shared/primary_navbar'
 
         .visible-xs.visible-sm
-          = render partial: 'spree/shared/mobile_menu'
+          = render partial: 'spree/shared/mobile_menu', locals: { enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
 
-        .flex.wrap.end.align-center#search-bar
-          = render partial: 'spree/shared/search'
+        .flex.nowrap.end.align-center
+          = render partial: 'spree/shared/search', locals: { taxon: taxon, enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
           = render partial: 'spree/shared/main_nav_bar'
 
       / use divider instead of border because rows/cols have paddings
       hr.divider.hidden-xs.hidden-sm
 
-      .secondary-navbar.hidden-xs.hidden-sm
-        = render partial: 'spree/shared/secondary_navbar'
+      = render partial: 'spree/shared/secondary_navbar', locals: { taxon: taxon, taxons: root_taxons }
 
 - content_for :bottom_scripts
   javascript:

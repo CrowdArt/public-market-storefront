@@ -1,4 +1,4 @@
-input#mobile-nav-toggle type='checkbox'
+input#mobile-nav-toggle hidden=true type='checkbox'
 
 label.no-margin for='mobile-nav-toggle'
   = image_tag 'icons/menu.svg'
@@ -8,47 +8,38 @@ nav.mobile-menu role='navigation' aria-expanded='false' aria-label='Main menu'
     li.link-to-account
       = link_to account_path, class: ('link-to__sign-in' unless spree_user_signed_in?)
         = image_tag 'icons/user.svg'
+        span = spree_user_signed_in? ? spree_current_user.full_name_or_email : Spree.t(:sign_in)
 
-        - if spree_user_signed_in?
-          span.welcome-link Welcome #{spree_current_user.first_name}!
-        - else
-          span Sign in
-
-    li.divider role="separator"
+    li.divider role='separator'
 
     li = link_to 'HOME', root_path
-
-    ruby:
-      taxons = Spree::Taxon.roots
-      enabled_taxons = taxons.where(hidden: false)
-      disabled_taxons = taxons.where(hidden: true, parent_id: nil)
 
     - enabled_taxons.each do |t|
       li
         a.taxon-link.upcase href="#" data-taxon-id=t.id data-taxon-name=t.name = t.name
 
-      li.divider role="separator"
+      li.divider role='separator'
 
     - disabled_taxons.each do |t|
       li
-        a.link-muted.flex.between.align-center.upcase disabled=true href="#"
+        a.btn.btn-link.link-muted.flex.align-center.disabled.disabled-category disabled=true href="#"
           span = t.name
           span.text-success.pull-right COMING SOON
 
-      li.divider role="separator"
+      li.divider role='separator'
 
     - %w[how-it-works become-a-seller].each do |link|
       li
-        a.disabled href="#" disabled=true = t("menus.primary-nav.#{link}")
+        a.btn.btn-link.disabled disabled=true href="#" = t("menus.primary-nav.#{link}")
 
     - if spree_user_signed_in?
-      li.divider role="separator"
+      li.divider role='separator'
 
       - if spree_current_user.admin?
         li = link_to 'Pghero', '/pghero', target: '_blank'
         li = link_to 'Sidekiq', '/sidekiq', target: '_blank'
 
-        li.divider role="separator"
+        li.divider role='separator'
 
       li = link_to Spree.t(:support), main_app.freshdesk_path, target: '_blank'
       li = link_to Spree.t(:logout), spree.logout_path

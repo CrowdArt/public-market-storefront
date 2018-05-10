@@ -1,8 +1,4 @@
 #mobile-nav-toggle
-  position: absolute
-  opacity: 0
-  display: none
-
   & + label
     padding: 0 7.5px
 
@@ -31,7 +27,7 @@
   top: 0
   height: 100%
   max-width: 400px
-  width: 80vw
+  width: 85vw
   z-index: 1040
 
   ul
@@ -51,8 +47,12 @@
       img
         margin-right: 10px
 
-    .link-muted
+    .btn-link
+      text-align: unset
+
+    .disabled-category
       color: $text-muted
+      text-transform: uppercase
 
       .text-success
         border: 1px solid
@@ -63,7 +63,7 @@
       border-top: 1px solid $brand-light-black
 
 // tablet
-@media (max-width: $screen-xs-max)
+@media (max-width: $screen-sm-max)
   #spree-header
     position: fixed
     left: 0
@@ -78,18 +78,14 @@
     &.hide-up
       top: -58px
 
-  #search-bar
-    flex-wrap: nowrap
-
-  .link-to-account
-    a.dropdown-toggle
+    .link-to-account a.dropdown-toggle
       font-size: 10px
-      line-height: 1.2 !important
-    strong
-      font-size: 12px
 
   .nav-buttons
     margin: 0
 
   .keyword-suggestions
     -webkit-overflow-scrolling: touch
+
+  .taxon-group button
+    padding: 17px 6px

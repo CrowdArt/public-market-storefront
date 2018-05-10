@@ -1,4 +1,4 @@
-ul.nav.navbar-nav.navbar-left
+ul.nav.navbar-nav.primary-navbar.hidden-xs.hidden-sm
   - %w[how-it-works become-a-seller].each do |link|
-    li.pull-left data-toggle='tooltip' data-placement='bottom' data-html='true' data-title='<span class="text-success">COMING SOON</text-success>'
+    li data-toggle='tooltip' data-placement='bottom' data-html='true' data-title='<span class="text-success">COMING SOON</text-success>'
       a.btn.btn-link.disabled href="#" disabled=true = t("menus.primary-nav.#{link}")

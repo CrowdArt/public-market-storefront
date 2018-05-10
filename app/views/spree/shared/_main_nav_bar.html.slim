@@ -3,7 +3,7 @@ ul.nav.navbar-nav.nav-buttons.flex
     li.pull-left.visible-xs = link_to '< Back', @back_mobile_link
 
   li.pull-left.link-to-account.hidden-xxs
-    = link_to account_path
+    = link_to account_path, class: 'ellipsis'
       = image_tag 'icons/user.svg'
 
   li.upcase.pull-left#link-to-cart

@@ -1,16 +1,9 @@
 ruby:
-  taxons = Spree::Taxon.roots
-  enabled_taxons = taxons.where(hidden: false)
-  disabled_taxons = taxons.where(hidden: true, parent_id: nil)
-  taxon =
-    if params[:taxon]
-      Spree::Taxon.find_by(id: params[:taxon])
-    elsif params[:keywords].blank?
-      enabled_taxons.first
-    end
+  # first enabled if All Products wasn't selected
+  taxon ||= enabled_taxons.first if params[:taxon].nil?
 
 = form_tag spree.products_path, method: :get, class: "navbar-search-form flex" do
-  .input-group.flex#search-input-group class=('filled' if params[:keywords].present?)
+  .input-group.flex.flex-1#search-input-group class=('filled' if params[:keywords].present?)
     ul.dropdown-menu.visible-scroll#taxon-dropdown aria-labelledby="taxon-menu"
       li
         a href="#" class=('checked' if taxon.blank?) data-taxon-id='' data-taxon-name=Spree.t(:all_products) = Spree.t(:all_products)
@@ -28,44 +21,43 @@ ruby:
             span.text-success.pull-right COMING SOON
 
     .input-group-btn.taxon-group.hidden-xxs
-      button.btn.btn-default.dropdown-toggle#taxon-menu type="button" data-target='#search-input-group' data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+      button.btn.btn-default.dropdown-toggle.ellipsis#taxon-menu type="button" data-target='#search-input-group' data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
         span.name> = taxon&.name || Spree.t(:all_products)
         span.caret<
         input#taxon name='taxon' type='hidden' value=taxon&.id
 
-    .search-group.flex
+    .search-group.flex.flex-1
       = search_field_tag :keywords, params[:keywords], autocomplete: 'off', placeholder: Spree.t(:search), class: "form-control"
 
     = button_tag '', name: nil, type: 'submit', class: "btn btn-link btn-search"
 
     .keyword-suggestions.tt-empty
 
-- content_for :promos_footer
+- content_for :bottom_scripts
   javascript:
     Spree.typeaheadSearch()
 
-javascript:
-  $(document).on('click', '#taxon-dropdown a', function(e) {
-    var taxonId = $(e.target).data('taxon-id')
-    if (taxonId !== undefined) {
-      $('#taxon-dropdown a').removeClass('checked')
-      $(e.target).addClass('checked')
-      $('#taxon-menu .name').text($(e.target).data('taxon-name'))
-      $('#taxon').val($(e.target).data('taxon-id'))
-    } else {
-      e.stopPropagation()
-    }
-    e.preventDefault()
-  })
+    $(document).on('click', '#taxon-dropdown a', function(e) {
+      var taxonId = $(e.target).data('taxon-id')
+      if (taxonId !== undefined) {
+        $('#taxon-dropdown a').removeClass('checked')
+        $(e.target).addClass('checked')
+        $('#taxon-menu .name').text($(e.target).data('taxon-name'))
+        $('#taxon').val($(e.target).data('taxon-id'))
+      } else {
+        e.stopPropagation()
+      }
+      e.preventDefault()
+    })
 
-  $('#taxon-dropdown li.disabled').popover({
-    container: 'body',
-    content: "#{t('menus.search.disabled')}",
-    title: "#{t('menus.search.coming_soon')}",
-    placement: 'right',
-    trigger: 'hover'
-  })
+    $('#taxon-dropdown li.disabled').popover({
+      container: 'body',
+      content: "#{t('menus.search.disabled')}",
+      title: "#{t('menus.search.coming_soon')}",
+      placement: 'right',
+      trigger: 'hover'
+    })
 
-  $('#keywords').on('change, keyup', function() {
-    $(this).parents('.input-group').toggleClass('filled', $(this).val().trim() !== '')
-  })
+    $('#keywords').on('change, keyup', function() {
+      $(this).parents('.input-group').toggleClass('filled', $(this).val().trim() !== '')
+    })
