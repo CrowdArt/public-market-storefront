@@ -1,8 +1,8 @@
-ul.nav.navbar-nav.nav-buttons.pull-left
+ul.nav.navbar-nav.nav-buttons.flex
   - if @back_mobile_link
     li.pull-left.visible-xs = link_to '< Back', @back_mobile_link
 
-  li.pull-left.link-to-account
+  li.pull-left.link-to-account.hidden-xxs
     = link_to account_path
       = image_tag 'icons/user.svg'
 

@@ -9,8 +9,8 @@ ruby:
       enabled_taxons.first
     end
 
-= form_tag spree.products_path, method: :get, class: "navbar-form" do
-  .input-group#search-input-group class=('filled' if params[:keywords].present?)
+= form_tag spree.products_path, method: :get, class: "navbar-search-form flex" do
+  .input-group.flex#search-input-group class=('filled' if params[:keywords].present?)
     ul.dropdown-menu.visible-scroll#taxon-dropdown aria-labelledby="taxon-menu"
       li
         a href="#" class=('checked' if taxon.blank?) data-taxon-id='' data-taxon-name=Spree.t(:all_products) = Spree.t(:all_products)
@@ -27,7 +27,7 @@ ruby:
 
             span.text-success.pull-right COMING SOON
 
-    .input-group-btn.taxon-group
+    .input-group-btn.taxon-group.hidden-xxs
       button.btn.btn-default.dropdown-toggle#taxon-menu type="button" data-target='#search-input-group' data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
         span.name> = taxon&.name || Spree.t(:all_products)
         span.caret<

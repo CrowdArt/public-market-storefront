@@ -1,0 +1,92 @@
+#mobile-nav-toggle
+  position: absolute
+  opacity: 0
+  display: none
+
+  & + label
+    padding: 0 7.5px
+
+  &:checked
+    & ~ .mobile-menu
+      transform: translateX(100vw)
+
+    & ~ .backdrop
+      display: block
+      left: 0
+      top: 0
+      width: 100%
+      height: 100%
+      z-index: 1000
+      cursor: default
+      position: fixed
+
+.mobile-menu
+  cursor: pointer
+  color: #fff
+  background-color: $brand-black
+  transition: .3s transform
+  overflow-y: scroll
+  position: fixed
+  left: -100%
+  top: 0
+  height: 100%
+  max-width: 400px
+  width: 80vw
+  z-index: 1040
+
+  ul
+    padding: 0
+
+  li
+    list-style: none
+    a
+      text-decoration: none
+      padding: 12px 20px
+      display: block
+
+      &:not(.link-to__sign-in):not(.link-muted)
+        color: #fff
+
+    &.link-to-account
+      img
+        margin-right: 10px
+
+    .link-muted
+      color: $text-muted
+
+      .text-success
+        border: 1px solid
+        font-size: 10px
+        padding: 4px 9px
+
+    &.divider
+      border-top: 1px solid $brand-light-black
+
+// tablet
+@media (max-width: $screen-xs-max)
+  #spree-header
+    position: fixed
+    left: 0
+    top: 0
+    transition: top .3s
+    width: 100%
+    z-index: 1040
+
+    header
+      margin: 0 -7.5px
+
+  #search-bar
+    flex-wrap: nowrap
+
+  .link-to-account
+    a.dropdown-toggle
+      font-size: 10px
+      line-height: 1.2 !important
+    strong
+      font-size: 12px
+
+  .nav-buttons
+    margin: 0
+
+  .keyword-suggestions
+    -webkit-overflow-scrolling: touch

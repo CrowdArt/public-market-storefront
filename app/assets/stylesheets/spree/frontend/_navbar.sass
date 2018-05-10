@@ -1,4 +1,7 @@
 #spree-header
+  header
+    max-width: 1410px
+
   .dropdown-menu > li > a
     padding: 5px 25px
     &.checked:before
@@ -23,35 +26,34 @@
       &.active > a
         border-bottom: 3px solid $brand-primary
 
+  @media (max-width: $screen-md-max)
+    hr.divider
+      margin: 0 7px
+
+    .primary-navbar, .secondary-navbar
+      li > a
+        padding: 7px
+
 #logo a
   display: block
   max-width: 135px
   min-width: 110px
+  margin-right: 15px
   z-index: 1
   img
     width: 100%
 
-#search-bar
-  @media (max-width: $screen-xs-max)
-    flex-wrap: wrap
+.top-navbar
+  width: 100%
 
-  .navbar-form
-    border: 0
-    box-shadow: none
-    display: flex
-    margin: 0
-    flex: 1
-    padding: 0
+#search-bar
+  .navbar-search-form
+    max-width: 450px
 
     @media (min-width: $screen-sm-min)
       min-width: 350px
-      max-width: 468px
-
-    @media (max-width: $screen-xs-max)
-      flex: 1 0 100%
 
     .input-group
-      display: flex
       flex: 1
 
     .taxon-group
@@ -122,16 +124,6 @@
           color: #fff
 
 .link-to-account
-  img
-    margin-right: 10px
-
-  @media (max-width: 767px)
-    a.dropdown-toggle
-      font-size: 10px
-      line-height: 1.2 !important
-    strong
-      font-size: 12px
-
   @media (max-width: 1199px)
     .dropdown-toggle > strong
       display: inline-block
@@ -142,12 +134,11 @@
       vertical-align: bottom
 
 .nav-buttons
-  li + li
-    a
-      padding-left: 0
+  li > a
+    padding: 7.5px
 
-  li:last-of-type > a
-    padding-right: 7px
+  img
+    max-width: 100%
 
   .badge
     position: absolute
@@ -166,9 +157,6 @@
   top: 100%
   width: 100%
   z-index: 100
-
-  @media (max-width: $screen-phone)
-    -webkit-overflow-scrolling: touch
 
   .tt-dataset
     @extend .visible-scroll

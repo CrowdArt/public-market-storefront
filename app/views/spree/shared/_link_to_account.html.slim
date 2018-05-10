@@ -1,9 +1,9 @@
 - if spree_current_user
-  li.dropdown.link-to-account.pull-left
+  li.dropdown.link-to-account.pull-left.hidden-xxs
     a.dropdown-toggle href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
       = image_tag 'icons/user.svg'
-      span style='vertical-align:middle' = spree_current_user.full_name_or_email
-      span.caret style='vertical-align:middle'
+      span.margin-text-left.hidden-xs style='vertical-align:middle' = spree_current_user.full_name_or_email
+      span.caret.hidden-xs style='vertical-align:middle'
 
     ul.dropdown-menu aria-labelledby="dLabel"
       li = link_to Spree.t(:my_account), spree.account_path
@@ -24,7 +24,7 @@
       li = link_to Spree.t(:support), main_app.freshdesk_path, target: '_blank'
       li = link_to Spree.t(:logout), spree.logout_path
 - else
-  li.pull-left.link-to-account
+  li.pull-left.link-to-account.hidden-xxs
     = link_to spree.login_path
       = image_tag 'icons/user.svg'
-      span style='vertical-align:middle' = Spree.t(:login)
+      span.margin-text-left.hidden-xs style='vertical-align:middle' = Spree.t(:login)

@@ -1,6 +1,5 @@
 .flex
   display: flex
-  flex-wrap: nowrap
 
   &.row
     flex-wrap: wrap
@@ -33,6 +32,9 @@
   &.nowrap-md
     @media (min-width: $screen-md-min)
       flex-wrap: nowrap
+
+.flex-1
+  flex: 1
 
 .flex-grow-1
   flex-grow: 1

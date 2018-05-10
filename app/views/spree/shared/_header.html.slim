@@ -1,24 +1,40 @@
 #spree-header
-  header.container
-    .row.condensed.flex.align-center.between.nowrap-md
-      #logo
-        = logo
+  header.container-fluid.flex.align-center.between.nowrap-md
+    .hidden-xs.hidden-sm#logo
+      = logo
 
-      .col-lg-11.col-md-10.col-sm-12
-        .row.condensed.nav-row.flex.align-center
-          .col-md-4.col-sm-5.col-xs-12
-            = render partial: 'spree/shared/primary_navbar'
+    .top-navbar
+      .nav-row.flex.between.align-center
+        .primary-navbar.hidden-xs.hidden-sm
+          = render partial: 'spree/shared/primary_navbar'
 
-          .col-md-8.col-sm-7.col-xs-12.flex.wrap.align-center.end#search-bar
-            = render partial: 'spree/shared/search'
-            = render partial: 'spree/shared/main_nav_bar'
+        .visible-xs.visible-sm
+          = render partial: 'spree/shared/mobile_menu'
 
-        / use divider instead of border because rows/cols have paddings
-        hr.divider
+        .flex.wrap.end.align-center#search-bar
+          = render partial: 'spree/shared/search'
+          = render partial: 'spree/shared/main_nav_bar'
 
-        .row.condensed
-          .col-md-12.secondary-navbar
-            = render partial: 'spree/shared/secondary_navbar'
+      / use divider instead of border because rows/cols have paddings
+      hr.divider.hidden-xs.hidden-sm
+
+      .secondary-navbar.hidden-xs.hidden-sm
+        = render partial: 'spree/shared/secondary_navbar'
 
 javascript:
   Spree.fetch_cart()
+
+  var lastY = $(window).scrollTop();
+
+  $(window).on('scroll', function() {
+    var currY = $(this).scrollTop()
+    if (currY < 58) return
+
+    if (currY > lastY) {
+      $('#spree-header').css('top', '-58px')
+    } else {
+      $('#spree-header').css('top', 0)
+    }
+
+    lastY = currY;
+  });
