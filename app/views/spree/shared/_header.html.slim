@@ -25,16 +25,26 @@ javascript:
   Spree.fetch_cart()
 
   var lastY = $(window).scrollTop();
+  var navbarHeight = $('#spree-header').outerHeight();
+  var scrolled = false
 
-  $(window).on('scroll', function() {
-    var currY = $(this).scrollTop()
-    if (currY < 58) return
-
-    if (currY > lastY) {
-      $('#spree-header').css('top', '-58px')
-    } else {
-      $('#spree-header').css('top', 0)
+  // throttle, swap with lodash
+  setInterval(function() {
+    if (scrolled) {
+      checkScroll();
+      scrolled = false;
     }
+  }, 250);
+
+  var checkScroll = function() {
+    var currY = $(this).scrollTop()
+    var hideNav = currY > lastY && currY > navbarHeight;
+
+    $('#spree-header').toggleClass('hide-up', hideNav)
 
     lastY = currY;
+  };
+
+  $(window).scroll(function(){
+    scrolled = true;
   });

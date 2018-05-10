@@ -68,12 +68,15 @@
     position: fixed
     left: 0
     top: 0
-    transition: top .3s
+    transition: top .3s ease-in-out
     width: 100%
     z-index: 1040
 
     header
       margin: 0 -7.5px
+
+    &.hide-up
+      top: -58px
 
   #search-bar
     flex-wrap: nowrap
