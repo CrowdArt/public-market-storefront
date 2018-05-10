@@ -21,30 +21,10 @@
       .secondary-navbar.hidden-xs.hidden-sm
         = render partial: 'spree/shared/secondary_navbar'
 
-javascript:
-  Spree.fetch_cart()
+- content_for :bottom_scripts
+  javascript:
+    Spree.fetch_cart()
 
-  var lastY = $(window).scrollTop();
-  var navbarHeight = $('#spree-header').outerHeight();
-  var scrolled = false
-
-  // throttle, swap with lodash
-  setInterval(function() {
-    if (scrolled) {
-      checkScroll();
-      scrolled = false;
-    }
-  }, 250);
-
-  var checkScroll = function() {
-    var currY = $(this).scrollTop()
-    var hideNav = currY > lastY && currY > navbarHeight;
-
-    $('#spree-header').toggleClass('hide-up', hideNav)
-
-    lastY = currY;
-  };
-
-  $(window).scroll(function(){
-    scrolled = true;
-  });
+    $(function() {
+      window.pm.initNavHide()
+    })
