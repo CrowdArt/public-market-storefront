@@ -1,5 +1,5 @@
 sidekiq: bundle exec sidekiq -C config/sidekiq.yml
-web: bundle exec rails server -p 5000
+web: bundle exec rails server -b 0.0.0.0 -p 5000
 es: elasticsearch
 mailhog: bin/mailhog
 reputation: bin/global_reputation
