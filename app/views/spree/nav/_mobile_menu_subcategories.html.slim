@@ -4,7 +4,7 @@ input.subtaxon-toggle id="subtaxons-#{taxon.id}" hidden=true type='checkbox'
     li
       label.enabled-category.flex.start.menu-arrow-left for="subtaxons-#{taxon.id}" #{taxon.name}
 
-    - taxon.children.each do |st|
+    - taxon.children.reorder('name').each do |st|
       li
         = link_to st.name, spree.products_path(taxon: st.id)
 
