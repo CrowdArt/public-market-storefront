@@ -30,6 +30,7 @@ protocol for eCommerce. The Public Market protocol radically lowers costs for bo
 <p align="center">
   <img src=".github/ALPM_SF.png?raw=true" alt="Public Market Model Image"/>
 </p>
+
 ---
 
 # Information
