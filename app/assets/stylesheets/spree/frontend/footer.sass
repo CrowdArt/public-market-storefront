@@ -1,50 +1,54 @@
 #main-footer
-  background-color: $brand-black
-  padding: 50px 0
-  text-align: center
-  @media (min-width: $screen-sm-min)
-    text-align: left
-  .media-links
-    margin-top: 20px
-    a
-      margin-right: 10px
-      text-decoration: none
-      svg
-        width: 28px
-        .st1, .st2, .st3
-          transition: 0.2s ease-in-out
-        &:hover
+  background: image-url('footer-pattern.png')
+  background-position: 0px 4px
+  padding-top: 20px
+  .footer-wrap
+    background-color: $brand-black
+    padding: 50px 0
+    text-align: center
+    @media (min-width: $screen-sm-min)
+      text-align: left
+    .media-links
+      margin-top: 20px
+      a
+        margin-right: 10px
+        text-decoration: none
+        svg
+          width: 28px
           .st1, .st2, .st3
-            fill: $brand-primary
-  .subs-block
-    background: $brand-light-black
-    float: right
-    margin: -90px 0px 50px 50px
-    overflow: hidden
-    width: 100%
-    @media (min-width: $screen-sm-min)
-      transform: skewX(-30deg)
-      width: 60%
-      margin-right: 50px
-    @media (min-width: $screen-sm-min)
-      width: 70%
-    .subs-content
-      color: #fff
-      padding: 10px 10px 20px 10px
+            transition: 0.2s ease-in-out
+          &:hover
+            .st1, .st2, .st3
+              fill: $brand-primary
+    .subs-block
+      background: $brand-light-black
+      float: right
+      margin: -90px 0px 50px 50px
+      overflow: hidden
+      width: 100%
       @media (min-width: $screen-sm-min)
-        padding: 10px 15% 20px 15%
-        transform: skewX(30deg)
-      input
-          padding: 26px 18px
-  strong
-    color: rgba(255, 255, 255, 0.8)
-    font-weight: 500
-    text-transform: uppercase
-  ul
-    margin-top: 12px
-    a
-      color: rgba(255, 255, 255, 0.5)
-      line-height: 1.94
-      text-decoration: none
-      &:focus, &:hover
-        color: rgba(255, 255, 255, 0.8)
+        transform: skewX(-30deg)
+        width: 60%
+        margin-right: 50px
+      @media (min-width: $screen-sm-min)
+        width: 70%
+      .subs-content
+        color: #fff
+        padding: 10px 10px 20px 10px
+        @media (min-width: $screen-sm-min)
+          padding: 10px 15% 20px 15%
+          transform: skewX(30deg)
+        input
+            padding: 26px 18px
+    strong
+      color: rgba(255, 255, 255, 0.8)
+      font-weight: 500
+      text-transform: uppercase
+    ul
+      margin-top: 12px
+      a
+        color: rgba(255, 255, 255, 0.5)
+        line-height: 1.94
+        text-decoration: none
+        &:focus, &:hover
+          color: rgba(255, 255, 255, 0.8)

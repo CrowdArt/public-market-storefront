@@ -1,53 +1,54 @@
 footer#main-footer
-  .container
-    - if spree_user_signed_in?
-      .subs-block
-        .subs-content
-          h4 = t('footer.subscribe')
-          .row.condensed
-            .col-xs-12.col-sm-12.col-md-7
-              = email_field_tag 'subscribe_email', nil, class: 'form-control', placeholder: t('footer.subscribe_email_placeholder')
-            .col-xs-12.col-sm-12.col-md-5
-              button.btn.btn-primary.btn-block = t('footer.subscribe_button')
-    .row
-      .col-xs-12.col-sm-3
-        p
-          a href=root_path = image_tag 'logo/public_market_logo_white.svg', width: 150
-        p.small = t('footer.copyright')
+  .footer-wrap
+    .container
+      - if spree_user_signed_in?
+        .subs-block
+          .subs-content
+            h4 = t('footer.subscribe')
+            .row.condensed
+              .col-xs-12.col-sm-12.col-md-7
+                = email_field_tag 'subscribe_email', nil, class: 'form-control', placeholder: t('footer.subscribe_email_placeholder')
+              .col-xs-12.col-sm-12.col-md-5
+                button.btn.btn-primary.btn-block = t('footer.subscribe_button')
+      .row
+        .col-xs-12.col-sm-3
+          p
+            a href=root_path = image_tag 'logo/public_market_logo_white.svg', width: 150
+          p.small = t('footer.copyright')
 
-        .media-links
-          a href='https://t.me/publicmrkt' target='_blank' = inline_svg('icons/icon-telegram')
-          a href='https://medium.com/@publicmrkt' target='_blank' = inline_svg('icons/icon-medium')
-          a href='https://twitter.com/publicmrkt' target='_blank' = inline_svg('icons/icon-twitter')
-          a href='https://www.reddit.com/r/PublicMarket/' target='_blank' = inline_svg('icons/icon-reddit')
-      .col-xs-12.col-sm-3
-        strong = t('footer.company')
-        ul.list-unstyled
-          li
-            a href='#' = t('footer.about_us')
-          li
-            a href='#' = t('footer.careers')
-          li
-            a href='#' = t('footer.investors')
-          li
-            a href='#' = t('footer.how_it_works')
-      .col-xs-12.col-sm-3
-        strong = t('footer.sell_with_us')
-        ul.list-unstyled
-          li
-            a href='#' = t('footer.why_sell')
-          li
-            a href='#' = t('footer.get_started')
-          li
-            a href='#' = t('footer.affiliate')
-      .col-xs-12.col-sm-3
-        strong = t('footer.support')
-        ul.list-unstyled
-          li
-            a href='#' = t('footer.account')
-          li
-            a href='#' = t('footer.shipping')
-          li
-            a href='#' = t('footer.returns')
-          li
-            a href='#' = t('footer.help')
+          .media-links
+            a href='https://t.me/publicmrkt' target='_blank' = inline_svg('icons/icon-telegram')
+            a href='https://medium.com/@publicmrkt' target='_blank' = inline_svg('icons/icon-medium')
+            a href='https://twitter.com/publicmrkt' target='_blank' = inline_svg('icons/icon-twitter')
+            a href='https://www.reddit.com/r/PublicMarket/' target='_blank' = inline_svg('icons/icon-reddit')
+        .col-xs-12.col-sm-3
+          strong = t('footer.company')
+          ul.list-unstyled
+            li
+              a href='#' = t('footer.about_us')
+            li
+              a href='#' = t('footer.careers')
+            li
+              a href='#' = t('footer.investors')
+            li
+              a href='#' = t('footer.how_it_works')
+        .col-xs-12.col-sm-3
+          strong = t('footer.sell_with_us')
+          ul.list-unstyled
+            li
+              a href='#' = t('footer.why_sell')
+            li
+              a href='#' = t('footer.get_started')
+            li
+              a href='#' = t('footer.affiliate')
+        .col-xs-12.col-sm-3
+          strong = t('footer.support')
+          ul.list-unstyled
+            li
+              a href='#' = t('footer.account')
+            li
+              a href='#' = t('footer.shipping')
+            li
+              a href='#' = t('footer.returns')
+            li
+              a href='#' = t('footer.help')
