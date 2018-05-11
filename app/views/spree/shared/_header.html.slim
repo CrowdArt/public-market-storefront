@@ -4,6 +4,11 @@ ruby:
   disabled_taxons = root_taxons.where(hidden: true, parent_id: nil)
   taxon = Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon]
 
+/ MOBILE MENU
+.visible-xs.visible-sm
+  = render partial: 'spree/nav/mobile_menu', locals: { enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
+
+/ MAIN NAVBAR
 #spree-header
   header.container-fluid.flex.align-center.between.nowrap-md
     .hidden-xs.hidden-sm#logo
@@ -11,19 +16,21 @@ ruby:
 
     .top-navbar
       .flex.between.align-center
-        = render partial: 'spree/shared/navbar_top_row'
-
+        / MOBILE MENU TOGGLE
         .visible-xs.visible-sm
-          = render partial: 'spree/shared/mobile_menu', locals: { enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
+          label.no-margin.mobile-menu-btn for='mobile-nav-toggle'
+            = image_tag 'icons/menu.svg'
+
+        = render partial: 'spree/nav/navbar_top_row'
 
         .flex.nowrap.end.align-center
-          = render partial: 'spree/shared/search', locals: { taxon: taxon, enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
-          = render partial: 'spree/shared/navbar_top_right'
+          = render partial: 'spree/nav/search', locals: { taxon: taxon, enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
+          = render partial: 'spree/nav/navbar_top_right'
 
       / use divider instead of border because rows/cols have paddings
       hr.divider.hidden-xs.hidden-sm
 
-      = render partial: 'spree/shared/navbar_bottom_row', locals: { taxon: taxon, taxons: root_taxons }
+      = render partial: 'spree/nav/navbar_bottom_row', locals: { taxon: taxon, taxons: root_taxons }
 
 - content_for :bottom_scripts
   javascript:

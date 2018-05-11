@@ -1,0 +1,15 @@
+- %w[how-it-works become-a-seller].each do |link|
+  li
+    a.btn.btn-link.disabled disabled=true href="#" = t("menus.navbar-top-row.#{link}")
+
+- if spree_user_signed_in?
+  li.divider role='separator'
+
+  - if spree_current_user.admin?
+    li = link_to 'Pghero', '/pghero', target: '_blank'
+    li = link_to 'Sidekiq', '/sidekiq', target: '_blank'
+
+    li.divider role='separator'
+
+  li = link_to Spree.t(:support), main_app.freshdesk_path, target: '_blank'
+  li = link_to Spree.t(:logout), spree.logout_path
