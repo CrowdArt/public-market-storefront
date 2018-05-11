@@ -1,6 +1,26 @@
 # master spree locales: https://github.com/spree/spree/blob/master/core/config/locales/en.yml
 
 en:
+  hero:
+    header: Join the Rewards-Driven Shopping Revolution
+    subheader: Zero fees for sellers. Lower prices for you.
+    call_to_action: Start Earning
+
+  how_it_works:
+    header: How Public Market Changes E-Commerce
+    zero_fees: Zero Fees
+    zero_fees_text: Merchants can list and sell their products for fiat, with no mandatory seller fees (including listing and transaction fees).
+    buyer_rewards: Buyer Rewards
+    buyer_rewards_text: Merchants may use a portion of their savings fees to offer buyers “cashback” rewards in the form of blockchain-based incentives.
+    token_market: Token Market
+    token_market_text: Merchants may buy tokens from the open market to fuel their rewards & consumer incentives.
+
+  home:
+    top_selling_header: Top Selling Books
+    staff_picks_header: Enjoy this Month's Staff Picks
+    top_categories_header: Top Categories
+    top_products_header: Top Products
+
   account:
     summary: My account
     payment: Payment Methods

@@ -5,10 +5,10 @@
     <div class="jumbotron" data-hook="homepage_hero">
       <div class="container">
         <div class="content text-center">
-          <h1>Join the Rewards-Driven Shopping Revolution</h1>
-          <h3>Zero fees for sellers. Lower prices for you.</h3>
+          <h1><%= t('hero.header') %></h1>
+          <h3><%= t('hero.subheader') %></h3>
           <p class="signup">
-            <%= link_to "START EARNING", signup_path, {class: "btn btn-primary"} %>
+            <%= link_to t('hero.call_to_action'), signup_path, {class: "btn btn-primary"} %>
           </p>
         </div>
       </div>
@@ -17,34 +17,34 @@
     <section class="how container">
       <div class="row">
         <div class="col-md-12 col-xs-12">
-          <h2>How Public Market Changes E-Commerce</h2>
+          <h2><%= t('how_it_works.header') %></h2>
         </div>
       </div>
       <div class="row">
         <div class="col-md-4 col-xs-12">
           <div class="box col-md-12">
             <%= image_tag 'icons/zero-fees.svg', class: 'icon' %>
-            <h3>Zero Fees</h3>
+            <h3><%= t('how_it_works.zero_fees') %></h3>
             <p>
-              Merchants can list and sell their products for fiat, with no mandatory seller fees (including listing and transaction fees).
+              <%= t('how_it_works.zero_fees_text') %>
             </p>
           </div>
         </div>
         <div class="col-md-4 col-xs-12">
           <div class="box col-md-12">
             <%= image_tag 'icons/buyer-rewards.svg', class: 'icon' %>
-            <h3>Buyer Rewards</h3>
+            <h3><%= t('how_it_works.buyer_rewards') %></h3>
             <p>
-              Merchants may use a portion of their savings fees to offer buyers “cashback” rewards in the form of blockchain-based incentives.
+              <%= t('how_it_works.buyer_rewards_text') %>
             </p>
           </div>
         </div>
         <div class="col-md-4 col-xs-12">
           <div class="box col-md-12">
             <%= image_tag 'icons/token-market.svg', class: 'icon' %>
-            <h3>Token Market</h3>
+            <h3><%= t('how_it_works.token_market') %></h3>
             <p>
-              Merchants may buy tokens from the open market to fuel their rewards & consumer incentives.
+              <%= t('how_it_works.token_market_text') %>
             </p>
           </div>
         </div>
@@ -55,7 +55,7 @@
   <section class="top-categories container">
     <div class="row">
       <div class="col-md-12 col-xs-12">
-        <h2>Top Categories</h2>
+        <h2><%= t('home.top_categories_header') %></h2>
         <%= link_to "View All", products_path, {class: "view-all"} %>
       </div>
     </div>
@@ -88,7 +88,7 @@
 <section class="top-products container">
   <div class="row">
     <div class="col-md-12 col-xs-12">
-      <h2>Top Products</h2>
+      <h2><%= t('home.top_products_header') %></h2>
       <%= link_to "View All", products_path, {class: "view-all"} %>
     </div>
   </div>
