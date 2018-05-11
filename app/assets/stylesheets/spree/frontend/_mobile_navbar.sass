@@ -72,20 +72,24 @@
   .divider
     border-top: 1px solid $brand-light-black
 
+.mobile-menu__inner-wrapper
+  position: relative
+
 .mobile-menu__items
   position: relative
   transition: .25s transform
   will-change: transform
-  &.slide-left
-    transform: translateX(-100%)
 
-.subtaxon-toggle:checked + .subcategories
-  transform: translateX(0)
+.subtaxon-toggle:checked
+  & + .subcategories
+    transform: translateX(0)
+  & ~ .mobile-menu__items
+    transform: translateX(-100%)
 
 .subcategories
   overflow-y: auto
   position: absolute
-  left: 100%
+  left: 0
   top: 0
   transform: translateX(100%)
   transition: .25s transform
