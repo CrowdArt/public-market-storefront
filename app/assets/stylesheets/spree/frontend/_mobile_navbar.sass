@@ -82,22 +82,22 @@
 
 .subtaxon-toggle:checked
   & + .subcategories
+    height: auto
     transform: translateX(0)
+
   & ~ .mobile-menu__items
     transform: translateX(-100%)
 
 .subcategories
   overflow-y: auto
   position: absolute
+  height: 100%
   left: 0
   top: 0
   transform: translateX(100%)
   transition: .25s transform
   width: 100%
   will-change: transform
-
-  ul
-    padding: 0
 
   li
     list-style: none
