@@ -1,4 +1,6 @@
 #spree-header
+  background-color: $brand-black
+
   header
     max-width: 1410px
 
@@ -6,9 +8,27 @@
     border-top: 1px solid $brand-light-black
     margin: 0 15px
 
-  .secondary-navbar li
+  .navbar-nav
+    margin: 0
+
+    li > a
+      color: #fff
+      padding-top: 7.5px
+      padding-bottom: 7.5px
+
+      @media (max-width: $screen-md-max)
+        padding: 7.5px
+
+    &.condensed > li > a
+      padding: 7.5px
+
+    &:hover, &:focus
+      background: none
+
+  .navbar-bottom-row li
     & > a
-      padding: 10px 15px
+      padding-top: 10px
+      padding-bottom: 10px
       text-transform: uppercase
       border-bottom: 3px solid transparent
 
@@ -22,11 +42,7 @@
     hr.divider
       margin: 0 7px
 
-    .primary-navbar, .secondary-navbar
-      li > a
-        padding: 7px
-
-#taxon-dropdown a.checked:before
+#taxon-dropdown .checked:before
   content: '\002713'
   position: absolute
   left: 10px
@@ -94,10 +110,7 @@
       &:before
         color: #fff
 
-.nav-buttons
-  li > a
-    padding: 7.5px
-
+.navbar-top-right
   img
     max-width: 100%
 
@@ -154,21 +167,27 @@
 #taxon-dropdown.dropdown-menu
   background-color: $brand-gray-black
   border: none
-  margin: 0
   overflow-y: auto
   padding: 10px 0
   max-height: 350px
   width: 100%
 
   li
-    &:not(.disabled) > a
+    &:not(.disabled) a
       color: #fff
 
-    & > a
+    a
       padding: 10px 40px
 
-    .disabled .text-success
-      border: 1px solid
+      &:hover
+        background-color: #42424e
 
-    a:hover
-      background-color: #42424e
+      &.disabled
+        display: flex
+        align-items: center
+        justify-content: space-between
+
+    .text-success
+      border: 1px solid
+      font-size: 10px
+      padding: 4px 9px

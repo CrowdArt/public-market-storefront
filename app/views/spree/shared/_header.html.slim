@@ -11,19 +11,19 @@ ruby:
 
     .top-navbar
       .flex.between.align-center
-        = render partial: 'spree/shared/primary_navbar'
+        = render partial: 'spree/shared/navbar_top_row'
 
         .visible-xs.visible-sm
           = render partial: 'spree/shared/mobile_menu', locals: { enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
 
         .flex.nowrap.end.align-center
           = render partial: 'spree/shared/search', locals: { taxon: taxon, enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
-          = render partial: 'spree/shared/main_nav_bar'
+          = render partial: 'spree/shared/navbar_top_right'
 
       / use divider instead of border because rows/cols have paddings
       hr.divider.hidden-xs.hidden-sm
 
-      = render partial: 'spree/shared/secondary_navbar', locals: { taxon: taxon, taxons: root_taxons }
+      = render partial: 'spree/shared/navbar_bottom_row', locals: { taxon: taxon, taxons: root_taxons }
 
 - content_for :bottom_scripts
   javascript:

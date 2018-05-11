@@ -14,36 +14,7 @@
   }
 }
 
-// -- Spree Custom Header and Footer ---------------------
-#spree-header {
-  background-color: $brand-black;
-  margin-bottom: 0;
-
-  #header {
-    padding: $line-height-computed 0 0 0;
-  }
-
-  .navbar-nav > li > a {
-    padding-top: 7px;
-    padding-bottom: 7px;
-    line-height: $line-height-computed;
-
-    color: #fff;
-
-    &:hover, &:focus {
-      background: transparent;
-    }
-  }
-  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-    background-color: transparent;
-  }
-
-  .navbar {
-    min-height: 35px;
-    border: 0;
-    margin-bottom: 0;
-  }
-}
+// -- Spree Custom Footer ---------------------
 
 #spree-footer {
   background: $gray-dark;

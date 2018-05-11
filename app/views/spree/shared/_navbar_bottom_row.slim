@@ -1,4 +1,4 @@
-ul.nav.navbar-nav.secondary-navbar.hidden-xs.hidden-sm
+ul.nav.navbar-nav.navbar-bottom-row.hidden-xs.hidden-sm
   - taxons.each do |t|
     li class=('active' if t == taxon) data-toggle=('tooltip' if t.hidden?) data-placement='bottom' data-html='true' data-title='<span class="text-success">COMING SOON</text-success>'
       = link_to t.name, t.hidden? ? '#' : spree.products_path(taxon: t.id), disabled: t.hidden?, class: "btn btn-link #{('disabled' if t.hidden?)}"

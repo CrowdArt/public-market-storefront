@@ -4,7 +4,7 @@ ruby:
 
 = form_tag spree.products_path, method: :get, class: "navbar-search-form flex" do
   .input-group.flex.flex-1#search-input-group class=('filled' if params[:keywords].present?)
-    ul.dropdown-menu.visible-scroll#taxon-dropdown aria-labelledby="taxon-menu"
+    ul.dropdown-menu.no-margin.visible-scroll#taxon-dropdown aria-labelledby="taxon-menu"
       li
         a href="#" class=('checked' if taxon.blank?) data-taxon-id='' data-taxon-name=Spree.t(:all_products) = Spree.t(:all_products)
 
@@ -15,10 +15,9 @@ ruby:
 
       - disabled_taxons.each do |t|
         li.disabled
-          a.link-muted.flex.between.align-center disabled=true href="#"
+          a.btn.btn-link.disabled.link-muted disabled=true href="#"
             span = t.name
-
-            span.text-success.pull-right COMING SOON
+            span.text-success COMING SOON
 
     .input-group-btn.taxon-group.hidden-xxs
       button.btn.btn-default.dropdown-toggle.ellipsis#taxon-menu type="button" data-target='#search-input-group' data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"

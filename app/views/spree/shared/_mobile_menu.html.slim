@@ -8,7 +8,7 @@ nav.mobile-menu role='navigation' aria-expanded='false' aria-label='Main menu'
     li.link-to-account
       = link_to account_path, class: ('link-to__sign-in' unless spree_user_signed_in?)
         = image_tag 'icons/user.svg'
-        span = spree_user_signed_in? ? spree_current_user.full_name_or_email : Spree.t(:sign_in)
+        span.margin-text-left = spree_user_signed_in? ? spree_current_user.full_name_or_email : Spree.t(:sign_in)
 
     li.divider role='separator'
 
@@ -22,15 +22,15 @@ nav.mobile-menu role='navigation' aria-expanded='false' aria-label='Main menu'
 
     - disabled_taxons.each do |t|
       li
-        a.btn.btn-link.link-muted.flex.align-center.disabled.disabled-category disabled=true href="#"
+        a.btn.btn-link.link-muted.disabled.disabled-category disabled=true href="#"
           span = t.name
-          span.text-success.pull-right COMING SOON
+          span.text-success COMING SOON
 
       li.divider role='separator'
 
     - %w[how-it-works become-a-seller].each do |link|
       li
-        a.btn.btn-link.disabled disabled=true href="#" = t("menus.primary-nav.#{link}")
+        a.btn.btn-link.disabled disabled=true href="#" = t("menus.navbar-top-row.#{link}")
 
     - if spree_user_signed_in?
       li.divider role='separator'
