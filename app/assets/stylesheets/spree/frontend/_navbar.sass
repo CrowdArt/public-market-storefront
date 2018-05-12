@@ -69,8 +69,11 @@
 .navbar-search-form
   max-width: 450px
 
-  @media (min-width: $screen-sm-min)
-    min-width: 350px
+  @media screen and (min-width: $screen-md)
+    min-width: 355px
+
+  @media screen and (min-width: 600px) and (max-width: $screen-md-min), screen and (min-width: $screen-lg)
+    min-width: 400px
 
   .taxon-group
     flex-basis: 30%
@@ -91,32 +94,36 @@
     border-color: $brand-light-black
     color: #fff
     height: 58px
+    padding: 10px 15px
+    padding-right: 0
     &:focus
       box-shadow: none
-
-  .input-group.filled
-    .btn-search:before
-      color: $brand-primary
-
-    .btn-search:focus:before
-      color: darken($brand-primary, 10%)
 
   .btn-search
     background-color: $brand-light-black
     max-height: 58px
+    padding: 10px 15px
 
     &:before
-      content: '\e003'
-      color: rgba(255, 255, 255, 0.3)
-      font-family: 'Glyphicons Halflings'
-      transition: color .2s
+      @include magnifying-glass-bg(rgba(255, 255, 255, 0.3))
+      content: ''
+      display: inline-block
+      transition: background-image .2s
+      height: 32px
+      width: 32px
       vertical-align: middle
+      will-change: background-image
 
     &:hover, &:focus
-      text-decoration: none
-
       &:before
-        color: #fff
+        @include magnifying-glass-bg(#fff)
+
+  .input-group.filled
+    .btn-search:before
+      @include magnifying-glass-bg($brand-primary)
+
+    .btn-search:focus:before
+      @include magnifying-glass-bg(darken($brand-primary, 10%))
 
 .navbar-top-right
   img
