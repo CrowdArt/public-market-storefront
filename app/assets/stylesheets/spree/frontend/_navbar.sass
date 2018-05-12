@@ -69,11 +69,11 @@
 .navbar-search-form
   max-width: 450px
 
-  @media screen and (min-width: $screen-md)
-    min-width: 355px
-
-  @media screen and (min-width: 600px) and (max-width: $screen-md-min), screen and (min-width: $screen-lg)
+  @media screen and (min-width: 600px) and (max-width: $screen-md-min), screen and (min-width: 1100px)
     min-width: 400px
+
+  @media screen and (min-width: $screen-md) and (max-width: 1099px)
+    min-width: 355px
 
   .taxon-group
     flex-basis: 30%
