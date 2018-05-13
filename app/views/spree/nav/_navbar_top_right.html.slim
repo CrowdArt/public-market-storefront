@@ -1,6 +1,6 @@
 ul.nav.navbar-nav.condensed.navbar-top-right.flex
-  - if @back_mobile_link
-    li.pull-left.visible-xs = link_to '< Back', @back_mobile_link
+  / - if @back_mobile_link
+  /   li.pull-left.visible-xs = link_to '< Back', @back_mobile_link
 
   li.pull-left.link-to-account.hidden-xxs
     = link_to account_path, class: 'ellipsis'
