@@ -4,26 +4,27 @@ ruby:
 
 = form_tag spree.products_path, method: :get, class: "navbar-search-form flex" do
   .input-group.flex.flex-1#search-input-group class=('filled' if params[:keywords].present?)
-    ul.dropdown-menu.no-margin.visible-scroll#taxon-dropdown aria-labelledby="taxon-menu"
-      li
-        a href="#" class=('checked' if taxon.blank?) data-taxon-id='' data-taxon-name=Spree.t(:all_products) = Spree.t(:all_products)
-
-      - enabled_taxons.each do |t|
+    - cache([:v1, :navbar_taxons_dropdown, root_taxons, taxon])
+      ul.dropdown-menu.no-margin.visible-scroll#taxon-dropdown aria-labelledby="taxon-menu"
         li
-          a class=(t == taxon ? 'checked': '') href="#" data-taxon-id=t.id data-taxon-name=t.name
-            = t.name
+          a href="#" class=('checked' if taxon.blank?) data-taxon-id='' data-taxon-name=Spree.t(:all_products) = Spree.t(:all_products)
 
-      - disabled_taxons.each do |t|
-        li.disabled
-          a.btn.btn-link.disabled.link-muted disabled=true href="#"
-            span = t.name
-            span.text-success COMING SOON
+        - enabled_taxons.each do |t|
+          li
+            a class=(t == taxon ? 'checked': '') href="#" data-taxon-id=t.id data-taxon-name=t.name
+              = t.name
 
-    .input-group-btn.taxon-group.hidden-xxs
-      button.btn.btn-default.dropdown-toggle.ellipsis#taxon-menu type="button" data-target='#search-input-group' data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
-        span.name> = taxon&.name || Spree.t(:all_products)
-        span.caret<
-        input#taxon name='taxon' type='hidden' value=taxon&.id
+        - disabled_taxons.each do |t|
+          li.disabled
+            a.btn.btn-link.disabled.link-muted disabled=true href="#"
+              span = t.name
+              span.text-success COMING SOON
+
+      .input-group-btn.taxon-group.hidden-xxs
+        button.btn.btn-default.dropdown-toggle.ellipsis#taxon-menu type="button" data-target='#search-input-group' data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+          span.name> = taxon&.name || Spree.t(:all_products)
+          span.caret<
+          input#taxon name='taxon' type='hidden' value=taxon&.id
 
     .search-group.flex.flex-1
       = search_field_tag :keywords, params[:keywords], autocomplete: 'off', placeholder: Spree.t(:search), class: "form-control"

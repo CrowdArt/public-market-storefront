@@ -15,6 +15,8 @@ Spree::Core::Engine.add_routes do
 
   post '/orders/rate/:id', to: 'orders#rate', as: :rate_order
 
+  get '/taxons/mobile_menu_childs', to: 'taxons#mobile_menu_childs'
+
   resources :addresses, except: %i[index show new]
 end
 

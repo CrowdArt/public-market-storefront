@@ -1,12 +1,14 @@
 ruby:
   root_taxons = Spree::Taxon.roots.reorder(position: :asc)
   enabled_taxons = root_taxons.where(hidden: false)
-  disabled_taxons = root_taxons.where(hidden: true, parent_id: nil)
+  disabled_taxons = root_taxons.where(hidden: true)
   taxon = Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon]
 
-/ MOBILE MENU
-.visible-xs.visible-sm
-  = render partial: 'spree/nav/mobile_menu', locals: { enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
+- cache([:v1, :mobile_menu, root_taxons, taxon, spree_current_user])
+  / MOBILE MENU
+  / not reloaded on turbolinks visits
+  .visible-xs.visible-sm id='mobile-menu-wrapper' data-turbolinks-permanent=true
+    = render partial: 'spree/nav/mobile_menu', locals: { enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
 
 / MAIN NAVBAR
 #spree-header
@@ -16,21 +18,26 @@ ruby:
 
     .top-navbar
       .flex.between.align-center
-        / MOBILE MENU TOGGLE
-        .visible-xs.visible-sm
-          label.no-margin.mobile-menu-btn for='mobile-nav-toggle'
-            = image_tag 'icons/menu.svg'
+        - cache([:v1, :navbar_top_row])
+          / MOBILE MENU TOGGLE
+          .visible-xs.visible-sm
+            label.no-margin.mobile-menu-btn for='mobile-nav-toggle'
+              = image_tag 'icons/menu.svg'
 
-        = render partial: 'spree/nav/navbar_top_row'
+          = render partial: 'spree/nav/navbar_top_row'
 
+        / PART WITH NO CACHE BECAUSE OF KEYWORD PARAMS
         .flex.nowrap.end.align-center
-          = render partial: 'spree/nav/search', locals: { taxon: taxon, enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
-          = render partial: 'spree/nav/navbar_top_right'
+          = render partial: 'spree/nav/search', locals: { taxon: taxon, root_taxons: root_taxons, enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
 
-      / use divider instead of border because rows/cols have paddings
-      hr.divider.hidden-xs.hidden-sm
+          - cache([:v1, :navbar_top_right, spree_current_user])
+            = render partial: 'spree/nav/navbar_top_right'
 
-      = render partial: 'spree/nav/navbar_bottom_row', locals: { taxon: taxon, taxons: root_taxons }
+      - cache([:v1, :navbar_bottom_row, root_taxons, taxon])
+        / use divider instead of border because rows/cols have paddings
+        hr.divider.hidden-xs.hidden-sm
+
+        = render partial: 'spree/nav/navbar_bottom_row', locals: { taxon: taxon, taxons: root_taxons }
 
 - content_for :bottom_scripts
   javascript:
@@ -38,4 +45,14 @@ ruby:
 
     $(function() {
       window.pm.initNavHide()
+    })
+
+    // close navbar on turbolinks visit
+    $(document).on('turbolinks:before-visit', function() {
+      $('#mobile-nav-toggle').prop('checked', false)
+    })
+
+    // load subcategories on mobile menu open
+    $('#mobile-nav-toggle').one('change', function() {
+      Spree.loadMobileSubcategories()
     })

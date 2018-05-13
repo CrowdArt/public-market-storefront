@@ -5,7 +5,7 @@ nav.mobile-menu role='navigation' aria-expanded='false' aria-label='Main menu'
 
   .mobile-menu__inner-wrapper
     / HIDDEN SECOND LEVEL TAXONS
-    = render collection: enabled_taxons, partial: 'spree/nav/mobile_menu_subcategories', as: :taxon
+    / second level taxons are loaded here in ajax query Spree.loadMobileSubcategories()
 
     ul.mobile-menu__items
       li = link_to 'HOME', root_path
