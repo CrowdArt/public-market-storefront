@@ -1,6 +1,6 @@
 / mobile + tablet view if signed in
 / always show if not signed in
-li.link-to-account class=('visible-xs visible-sm' if spree_user_signed_in?)
+li.link-to-account.hidden-xxs class=('visible-xs visible-sm' if spree_user_signed_in?)
   = link_to spree_user_signed_in? ? account_path : login_path, class: 'ellipsis'
     = image_tag 'icons/user.svg'
     span.margin-text-left.hidden-xs = spree_current_user&.full_name_or_email || Spree.t(:login)
