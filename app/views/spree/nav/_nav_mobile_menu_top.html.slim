@@ -1,7 +1,7 @@
 ul
   li
-    = link_to account_path, class: ('link-to__sign-in' unless spree_user_signed_in?)
+    = link_to spree_user_signed_in? ? account_path : login_path, class: "ellipsis #{'link-to__sign-in' unless spree_user_signed_in?}"
       = image_tag 'icons/user.svg'
-      span.margin-text-left = spree_user_signed_in? ? spree_current_user.full_name_or_email : Spree.t(:sign_in)
+      span.margin-text-left = spree_current_user&.full_name_or_email || Spree.t(:sign_in)
 
   li.divider role='separator'

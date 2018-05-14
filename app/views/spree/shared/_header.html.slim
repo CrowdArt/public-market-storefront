@@ -30,7 +30,7 @@ ruby:
         .flex.flex-1.nowrap.end.align-center
           = render partial: 'spree/nav/search', locals: { taxon: taxon, root_taxons: root_taxons, enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
 
-          - cache([:v1, :navbar_top_right, spree_current_user])
+          - cache([:v2, :navbar_top_right, spree_current_user])
             = render partial: 'spree/nav/navbar_top_right'
 
       - cache([:v1, :navbar_bottom_row, root_taxons, taxon])

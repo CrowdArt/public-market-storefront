@@ -136,8 +136,13 @@
     z-index: 1
 
   .link-to-account
-    @media (max-width: 1199px)
+    max-width: 280px
+
+    @media (min-width: $screen-sm) and (max-width: $screen-md-max)
       max-width: 140px
+
+    .dropdown-toggle span
+      vertical-align: middle
 
 .keyword-suggestions
   background-color: #2b2b33

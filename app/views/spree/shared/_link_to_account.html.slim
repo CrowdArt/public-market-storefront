@@ -1,30 +1,10 @@
-- if spree_current_user
-  li.dropdown.link-to-account.hidden-xxs
-    a.dropdown-toggle.ellipsis href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-      = image_tag 'icons/user.svg'
-      span.margin-text-left.hidden-xs style='vertical-align:middle' = spree_current_user.full_name_or_email
-      span.caret.hidden-xs style='vertical-align:middle'
+/ mobile + tablet view if signed in
+/ always show if not signed in
+li.link-to-account class=('visible-xs visible-sm' if spree_user_signed_in?)
+  = link_to spree_user_signed_in? ? account_path : login_path, class: 'ellipsis'
+    = image_tag 'icons/user.svg'
+    span.margin-text-left.hidden-xs = spree_current_user&.full_name_or_email || Spree.t(:login)
 
-    ul.dropdown-menu aria-labelledby="dLabel"
-      li = link_to Spree.t(:my_account), spree.account_path
-
-      - if spree_current_user.admin? || spree_current_user.vendors.any?
-        li
-          = link_to Spree.t(:dashboard), spree.admin_path, target: '_blank'
-
-      - if spree_current_user.admin?
-        li.divider role="separator"
-        li
-          = link_to 'Pghero', '/pghero', target: '_blank'
-        li
-          = link_to 'Sidekiq', '/sidekiq', target: '_blank'
-
-      li.divider role="separator"
-
-      li = link_to Spree.t(:support), main_app.freshdesk_path, target: '_blank'
-      li = link_to Spree.t(:logout), spree.logout_path
-- else
-  li.link-to-account.ellipsis.hidden-xxs
-    = link_to spree.login_path, class: 'ellipsis'
-      = image_tag 'icons/user.svg'
-      span.margin-text-left.hidden-xs style='vertical-align:middle' = Spree.t(:login)
+/ DESKTOP DROPDOWN MENU
+- if spree_user_signed_in?
+  = render partial: 'spree/nav/navbar_user_dropdown'

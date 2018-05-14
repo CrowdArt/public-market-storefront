@@ -11,5 +11,5 @@
 
     li.divider role='separator'
 
-  li = link_to Spree.t(:support), main_app.freshdesk_path, target: '_blank'
-  li = link_to Spree.t(:logout), spree.logout_path
+  li = link_to Spree.t(:support), main_app.freshdesk_path, rel: 'noopener', target: '_blank'
+  li = link_to Spree.t(:logout), spree.logout_path, data: { turbolinks: false }
