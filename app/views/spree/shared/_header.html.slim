@@ -4,7 +4,7 @@ ruby:
   disabled_taxons = root_taxons.where(hidden: true)
   taxon = Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon]
 
-- cache([:v1, :mobile_menu, root_taxons, taxon, spree_current_user])
+- cache([:v2, :mobile_menu, root_taxons, taxon, spree_current_user])
   / MOBILE MENU
   / not reloaded on turbolinks visits
   .visible-xs.visible-sm id='mobile-menu-wrapper' data-turbolinks-permanent=true
@@ -27,7 +27,7 @@ ruby:
           = render partial: 'spree/nav/navbar_top_row'
 
         / PART WITH NO CACHE BECAUSE OF KEYWORD PARAMS
-        .flex.nowrap.end.align-center
+        .flex.flex-1.nowrap.end.align-center
           = render partial: 'spree/nav/search', locals: { taxon: taxon, root_taxons: root_taxons, enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
 
           - cache([:v1, :navbar_top_right, spree_current_user])
