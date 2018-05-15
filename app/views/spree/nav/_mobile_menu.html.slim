@@ -9,7 +9,7 @@ nav.mobile-menu role='navigation' aria-expanded='false' aria-label='Main menu'
     / second level taxons are loaded here in ajax query Spree.loadMobileSubcategories()
 
     ul.mobile-menu__items
-      li = link_to 'HOME', root_path
+      li = link_to 'HOME', spree.root_path
 
       - enabled_taxons.each do |t|
         li
