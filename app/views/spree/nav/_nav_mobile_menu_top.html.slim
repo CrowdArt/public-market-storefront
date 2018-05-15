@@ -1,7 +1,10 @@
 ul
   li
-    = link_to spree_user_signed_in? ? account_path : login_path, class: "ellipsis #{'link-to__sign-in' unless spree_user_signed_in?}"
-      = image_tag 'icons/user.svg'
-      span.margin-text-left = spree_current_user&.full_name_or_email || Spree.t(:sign_in)
+    = link_to spree_user_signed_in? ? account_path : login_path, class: "ellipsis link-to-account #{'link-to__sign-in' unless spree_user_signed_in?}"
+      = image_tag 'icons/user.svg', class: 'vertical-middle'
+      .flex-inline.column.vertical-middle
+        span = spree_current_user&.full_name_or_email || Spree.t(:sign_in)
+        - if spree_user_signed_in?
+          small.text-muted = Spree.t(:my_account)
 
   li.divider role='separator'
