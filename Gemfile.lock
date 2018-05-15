@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_multi_vendor.git
-  revision: 7845997e334ccbf8c05e7571f61791fc291bec8c
+  revision: 67453d860b8442f0cc9833222223f61e8e6c1267
   specs:
     spree_multi_vendor (0.0.1.alpha)
       spree_backend (>= 3.1.0, < 4.0)
@@ -171,7 +171,7 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (5.0.0)
       activerecord (>= 4.2.8)
-    acts_as_list (0.9.11)
+    acts_as_list (0.9.12)
       activerecord (>= 3.0)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
@@ -182,7 +182,7 @@ GEM
     ast (2.4.0)
     attr_encrypted (3.1.0)
       encryptor (~> 3.0.0)
-    autoprefixer-rails (8.4.1)
+    autoprefixer-rails (8.5.0)
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)
@@ -455,15 +455,15 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     mixpanel-ruby (2.2.0)
-    monetize (1.7.0)
-      money (~> 6.9)
-    money (6.11.1)
+    monetize (1.8.0)
+      money (~> 6.11.2)
+    money (6.11.3)
       i18n (>= 0.6.4, < 1.1)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     nenv (0.3.0)
-    nio4r (2.3.0)
+    nio4r (2.3.1)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     notiffany (0.1.1)
@@ -723,7 +723,7 @@ GEM
       activerecord (>= 4.1, < 6.0)
       state_machines-activemodel (>= 0.5.0)
     stringex (2.8.4)
-    stripe (3.13.0)
+    stripe (3.15.0)
       faraday (~> 0.10)
     swagger-blocks (2.0.2)
     temple (0.8.0)
