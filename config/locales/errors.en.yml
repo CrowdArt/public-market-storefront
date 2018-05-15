@@ -1,7 +1,10 @@
 en:
   errors:
     error_pages:
-      header: Oops!
-      not_found: Error 404. Requested page not found!
-      internal_server_error: Error 500. Internal server error!
-      button: Take me home
+      not_found:
+        title: 404 ERROR
+        subtitle: Sorry, page not found
+      internal_server_error:
+        title: 500 ERROR
+        subtitle: Oops! You broke our site
+      button: Back to Home

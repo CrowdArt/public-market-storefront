@@ -1,6 +1,9 @@
-.text-center
-  i.glyphicon.glyphicon-exclamation-sign style='font-size:150px;margin-bottom:20px'
-  h1 = t('errors.error_pages.header')
-  h2 = t("errors.error_pages.#{action_name}")
+- content_for :head
+  = stylesheet_link_tag 'error_pages', media: 'screen'
+
+.text-center.error-page-container
+  = image_tag 'error-page.svg'
+  h1 = t("errors.error_pages.#{action_name}.title")
+  p = t("errors.error_pages.#{action_name}.subtitle")
   br
-  = link_to t('errors.error_pages.button'), spree.root_path, class: 'btn btn-success btn-wide'
+  = link_to t('errors.error_pages.button'), spree.root_path, class: 'btn btn-primary'
