@@ -4,7 +4,7 @@ ruby:
   disabled_taxons = root_taxons.where(hidden: true)
   taxon = Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon]
 
-- cache([:v4, :mobile_menu, root_taxons, taxon, spree_current_user])
+- cache([:v5, :mobile_menu, root_taxons, taxon, spree_current_user])
   / MOBILE MENU
   / not reloaded on turbolinks visits
   .visible-xs.visible-sm id='mobile-menu-wrapper' data-turbolinks-permanent=true
