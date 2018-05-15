@@ -46,6 +46,27 @@
     &.active > a
       border-bottom: 3px solid $brand-primary
 
+  .navbar-top-right
+    margin-left: 7.5px
+
+    .badge
+      position: absolute
+      top: 3px
+      right: 0
+      z-index: 1
+
+    .link-to-account
+      max-width: 280px
+
+      @media (min-width: $screen-sm) and (max-width: $screen-md-max)
+        max-width: 140px
+
+      img
+        padding: 5px
+
+      .dropdown-toggle span
+        vertical-align: middle
+
   @media (max-width: $screen-md-max)
     hr.divider
       margin: 0 7px
@@ -124,28 +145,6 @@
 
     .btn-search:focus:before
       @include magnifying-glass-bg(darken($brand-primary, 10%))
-
-.navbar-top-right
-  img
-    max-width: 100%
-
-  .badge
-    position: absolute
-    top: 3px
-    right: 0
-    z-index: 1
-
-  .link-to-account
-    max-width: 280px
-
-    @media (min-width: $screen-sm) and (max-width: $screen-md-max)
-      max-width: 140px
-
-    img
-      padding: 5px
-
-    .dropdown-toggle span
-      vertical-align: middle
 
 .keyword-suggestions
   background-color: #2b2b33
