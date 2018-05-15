@@ -68,4 +68,14 @@ Spree::Product.class_eval do
       )
     end
   end
+
+  # TODO: filter articles boosted by admins
+  def self.staff_picks # rubocop:disable Metrics/MethodLength
+    Spree::Product.search(
+      '*',
+      includes: [master: :prices],
+      limit: 3,
+      where: search_where
+    )
+  end
 end

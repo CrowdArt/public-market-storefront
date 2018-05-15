@@ -131,6 +131,124 @@ body#home-page
         color: #0e0e12
         margin-top: 140px
 
+  section.staff-picks
+    position: relative
+    background-color: #181A1E
+    background-image: image-url('staff-picks-bg.png')
+    background-origin: border-box
+    background-position-x: right
+    background-position-y: top
+    background-repeat: no-repeat
+    background-size: cover
+    margin-bottom: 50px
+    padding-top: 50px
+    height: 525px
+    overflow: visible
+    @media (max-width: $screen-md-max)
+      background-position-x: center
+      height: auto
+    .offer
+      position: absolute
+      z-index: 200
+      top: 0
+      left: 0
+      background: #ffd261
+      padding: 6px 20px 6px 40px
+      min-width: 350px
+      &:after
+        content: " "
+        position: absolute
+        display: block
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+        z-index: -1
+        background: #ffd261
+        transform-origin: bottom left
+        transform: skew(-45deg, 0deg)
+      h4
+        color: #454a50
+        font-size: 18px
+        font-weight: 700
+        letter-spacing: 0.5px
+        text-transform: uppercase
+      @media (max-width: $screen-sm-max)
+        padding: 6px 10px 6px 20px
+        min-width: inherit
+        h4
+          font-size: 16px
+    .content
+      margin: 100px 0 88px 120px
+      text-align: left
+      width: 232px
+      h3
+        font-family: $font-family-roboto-slab
+        font-size: 37px
+        font-weight: 300
+        line-height: 48px
+        color: #ffffff
+        margin-bottom: 28px
+      .btn
+        padding: 16px 55px
+    .staff-picks-items
+      position: absolute
+      top: 108px
+      right: 532px
+      list-style-type: none
+      li
+        position: absolute
+        top: 128px
+        left: 0
+        box-shadow: 12px 7px 18px -7px rgba(0, 0, 0, 0.5)
+        transform: perspective(600px) rotateY(-25deg)
+        z-index: 1002
+        transition: transform .5s
+        &:hover
+          transform: perspective(600px) rotateY(-15deg)
+        img
+          width: 234px
+        &:nth-child(2)
+          top: 42px
+          left: 76px
+          transform: perspective(600px) rotateY(-30deg)
+          z-index: 1001
+          &:hover
+            transform: perspective(600px) rotateY(-20deg)
+          img
+            width: 278px
+        &:nth-child(3)
+          top: -30px
+          left: 164px
+          transform: perspective(600px) rotateY(-20deg)
+          z-index: 1000
+          &:hover
+            transform: perspective(600px) rotateY(-10deg)
+          img
+            width: 302px
+      @media (max-width: $screen-md-max)
+        top: 134px
+        right: 412px
+        li
+          top: 128px
+          left: 0
+          img
+            width: 160px
+          &:nth-child(2)
+            top: 75px
+            left: 62px
+            img
+              width: 188px
+          &:nth-child(3)
+            top: 28px
+            left: 124px
+            img
+              width: 208px
+      @media (max-width: $screen-sm-max)
+        right: 332px
+      @media (max-width: $screen-xs-max)
+        display: none
+
   .product-list-item
     .panel
       border: none
