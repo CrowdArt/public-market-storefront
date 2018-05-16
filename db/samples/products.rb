@@ -16,7 +16,7 @@ require 'ffaker'
   sku = FFaker::IdentificationMX.curp
   product.master = Spree::Variant.where(sku: sku, is_master: true).first_or_initialize do |master|
     master.sku = sku
-    master.price = Random.rand(20)
+    master.price = master.cost_price = Random.rand(20)
     master.option_values = Spree::OptionValue.order('RANDOM()').first(2)
 
     image_path =

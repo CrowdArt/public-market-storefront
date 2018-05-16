@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_batch_api.git
-  revision: 45f5483ce7fe13dbb66184703646447d12e9135b
+  revision: ccaba445001aed56630603296d2c74604653922e
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -26,9 +26,10 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_multi_vendor.git
-  revision: 67453d860b8442f0cc9833222223f61e8e6c1267
+  revision: 274ce33bfca546773f3ec455eda61c6be71bd711
   specs:
     spree_multi_vendor (0.0.1.alpha)
+      sidekiq
       spree_backend (>= 3.1.0, < 4.0)
       spree_core (>= 3.1.0, < 4.0)
       spree_extension
@@ -284,7 +285,7 @@ GEM
     dry-container (0.6.0)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 0.1, >= 0.1.3)
-    dry-core (0.4.5)
+    dry-core (0.4.6)
       concurrent-ruby (~> 1.0)
     dry-equalizer (0.2.1)
     dry-initializer (2.4.0)
@@ -325,7 +326,7 @@ GEM
     enumerize (2.2.2)
       activesupport (>= 3.2)
     erubi (1.7.1)
-    et-orbi (1.1.0)
+    et-orbi (1.1.1)
       tzinfo
     excon (0.61.0)
     execjs (2.7.0)
@@ -357,6 +358,9 @@ GEM
     foundation_emails (2.2.1.0)
     friendly_id (5.2.4)
       activerecord (>= 4.0.0)
+    fugit (1.1.1)
+      et-orbi (~> 1.1, >= 1.1.1)
+      raabro (~> 1.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     google-api-client (0.19.8)
@@ -539,6 +543,7 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.2)
     puma (3.11.4)
+    raabro (1.1.5)
     rabl (0.13.1)
       activesupport (>= 2.3.14)
     rack (2.0.5)
@@ -635,8 +640,8 @@ GEM
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
-    rufus-scheduler (3.4.2)
-      et-orbi (~> 1.0)
+    rufus-scheduler (3.5.0)
+      fugit (~> 1.1, >= 1.1.1)
     safe_yaml (1.0.4)
     sass (3.5.6)
       sass-listen (~> 4.0.0)
@@ -666,7 +671,7 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
-    sidekiq-scheduler (2.2.1)
+    sidekiq-scheduler (2.2.2)
       redis (>= 3, < 5)
       rufus-scheduler (~> 3.2)
       sidekiq (>= 3)
