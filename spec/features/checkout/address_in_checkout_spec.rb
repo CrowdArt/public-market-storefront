@@ -77,7 +77,7 @@ RSpec.describe 'address in checkout', type: :feature, vcr: true do
     end
 
     describe 'can choose new', js: true do
-      before { choose 'Use a new address' }
+      before { choose 'Use a new address', visible: false }
 
       include_context 'with address'
 

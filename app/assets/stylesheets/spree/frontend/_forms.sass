@@ -46,3 +46,16 @@
         &:hover, &:focus
           color: $dropdown-link-hover-color
           background-color: $dropdown-link-hover-bg
+
+
+.radio label
+  padding-left: 0
+
+input[type="radio"]
+  opacity: 0
+  & + span
+    background: image-url('unchecked.svg') 0px center no-repeat
+    padding-left: 25px
+    transition: 0.2s
+  &:checked + span
+    background: image-url('checked.svg') 0px center no-repeat

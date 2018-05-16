@@ -7,11 +7,11 @@
       .radio
         label for='use_existing_address_yes'
           = radio_button_tag 'use_existing_address', 'yes', true
-          = t('addresses.use_existing_shipping_address')
+          span = t('addresses.use_existing_shipping_address')
         br.visible-xs
         label for="use_existing_address_no"
           = radio_button_tag 'use_existing_address', 'no'
-          = t('addresses.use_new_shipping_address')
+          span = t('addresses.use_new_shipping_address')
 
       #existing_addresses.select_address
         table.existing-address-list
