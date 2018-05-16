@@ -82,14 +82,15 @@
       </div>
     </div>
   </section>
-
 <% end %>
 
-<section class="staff-picks container">
-  <div data-hook="homepage_staff_picks">
-    <%= render partial: 'spree/shared/staff_picks', locals: { staff_picks: @staff_picks } %>
-  </div>
-</section>
+<% unless @staff_picks.empty? %>
+  <section class="staff-picks container">
+    <div data-hook="homepage_staff_picks">
+      <%= render partial: 'spree/shared/staff_picks', locals: { staff_picks: @staff_picks } %>
+    </div>
+  </section>
+<% end %>
 
 <section class="top-products container">
   <div class="row">

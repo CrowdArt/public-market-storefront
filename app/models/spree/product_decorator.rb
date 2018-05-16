@@ -69,13 +69,15 @@ Spree::Product.class_eval do
     end
   end
 
-  # TODO: filter articles boosted by admins
   def self.staff_picks # rubocop:disable Metrics/MethodLength
     Spree::Product.search(
       '*',
       includes: [master: :prices],
       limit: 3,
-      where: search_where
+      order: {boost_factor: :desc},
+      where: search_where.merge({
+        boost_factor: {gt: 1}
+      })
     )
   end
 end
