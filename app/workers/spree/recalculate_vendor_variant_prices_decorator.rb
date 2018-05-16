@@ -6,8 +6,11 @@ Spree::RecalculateVendorVariantPrices.class_eval do
 
     Spree::Product.skip_callback(:touch, :after, :touch_taxons)
 
-    Searchkick.callbacks(:bulk) do
-      vendor.variants.includes(:default_price).find_each(&:adjust_price!)
+    Searchkick.callbacks(false) do
+      vendor.variants
+            .where(is_master: false)
+            .includes(:default_price)
+            .find_each(&:adjust_price!)
     end
 
     Spree::Product.set_callback(:touch, :after, :touch_taxons)
