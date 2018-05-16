@@ -37,7 +37,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_searchkick.git
-  revision: 380c11ef7e810b68ced6935ea63a5634e2bc4473
+  revision: 932f1aa501286781f7b25b9f206dadfd475c76e7
   specs:
     spree_searchkick (3.1.0)
       searchkick
@@ -649,7 +649,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    searchkick (3.0.3)
+    searchkick (3.1.0)
       activemodel (>= 4.2)
       elasticsearch (>= 5)
       hashie

@@ -33,6 +33,10 @@ Spree::Product.class_eval do
     %i[name author isbn]
   end
 
+  def index_data
+    { slug: slug }
+  end
+
   def should_index?
     can_supply?
   end
