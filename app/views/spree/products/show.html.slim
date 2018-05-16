@@ -27,9 +27,17 @@
       h1.product-title itemprop='name' = sanitize(@product.name)
 
       - if author = @product.author
-        .product-author.no-margin-top
-          span.byline By
+        p.product-author.no-margin-top
+          span.byline> By
           span.author = author.value
+
+      .row
+        - @variations.each do |variation|
+          .col-xs-6.col-sm-4
+            a.variation-link href="/products/#{variation[:slug]}" class=('checked' if @product.slug == variation[:slug])
+              = variation[:name]
+              br
+              = Spree::Money.new(variation[:price])
 
     .col-xs-12.col-sm-12.product-content-item
       #main-accordion.accordion
@@ -43,12 +51,12 @@
           #properties.collapse class=(browser.device.mobile? ? '' : 'in')
             = render partial: 'properties'
 
-/ - content_for :promos_footer
-/   .container.product-promotions
-/     .row
-/       .col-md-12
-/         h2 You May Also Like
-/         = render partial: 'promotions'
-
 javascript:
   $('.collapse').collapse({ toggle: false });
+
+- if Rails.env.production? || Rails.env.staging?
+  javascript:
+    mixpanel.track("product view", {
+      "id": "#{@product.id}",
+      "name": "#{@product.name}"
+    });

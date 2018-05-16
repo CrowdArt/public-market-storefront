@@ -103,6 +103,22 @@ body#product-details
       font-weight: bold
       color: #0e0e12
 
+  .variation-link
+    background: image-url('unchecked.svg') 15px center no-repeat
+    border: 1px solid #eaeaea
+    border-radius: 4px
+    color: $text-color
+    display: block
+    padding: 9px 9px 9px 45px
+    text-decoration: none
+    transition: 0.2s ease-in-out
+    &.checked
+      background-image: image-url('checked.svg')
+      border-color: $brand-primary
+      background-color: rgba($brand-primary, 0.05)
+    &:hover
+      border-color: $brand-primary
+
   #cart-form
     border-top: 6px solid #0e0e12
     background-color: #f4f4f4
