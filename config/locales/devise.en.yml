@@ -5,6 +5,7 @@ en:
     confirmations:
       confirmed: You successfully activated your account.
       reconfirmed: "You've successfully updated your email address."
+      send_instructions: You will receive an email with instructions about how to confirm your account in a few minutes.
     failure:
       invalid: Invalid email or password.
     user_registrations:
