@@ -3,12 +3,12 @@ en:
     omniauth_callbacks:
       success: 'You are now signed in with your %{kind} account.'
     confirmations:
-      confirmed: You successfully activated your account.
+      confirmed: You successfully verified & fully activated your account.
       reconfirmed: "You've successfully updated your email address."
-      send_instructions: You will receive an email with instructions about how to confirm your account in a few minutes.
+      send_instructions: Verification email sent to %{email}. Open it to verify your account.
     failure:
       invalid: Invalid email or password.
     user_registrations:
-      signed_up_but_unconfirmed: Verification email sent to %{email}. Open it to activate your account.
+      signed_up_but_unconfirmed: Verification email sent to %{email}. Open it to verify your account.
     unconfirmed_email: Unverified
     send_confirmation_email: Send Verification Email
