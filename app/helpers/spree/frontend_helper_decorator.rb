@@ -51,5 +51,24 @@ module Spree
     def inline_svg(path)
       raw(Rails.application.assets.find_asset(path + '.svg').to_s)
     end
+
+    def vendor_reputation_text(vendor)
+      reputation = cached_reputation(vendor)
+
+      if reputation.present? && reputation.score.present?
+        number_to_percentage(reputation.score * 100, precision: 1)
+      else
+        Spree.t('not_enough_ratings')
+      end
+    end
+
+    def cached_reputation(vendor)
+      uid = vendor&.reputation_uid
+      return unless uid
+
+      Rails.cache.fetch(GlobalReputation::Api::Reputation.cache_key(uid), expires_in: 1.hour) do
+        GlobalReputation::Api::Reputation.find(uid).first
+      end
+    end
   end
 end

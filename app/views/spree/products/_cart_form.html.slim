@@ -40,7 +40,7 @@
           = render layout: 'spree/shared/dropdown', locals: { items: @variants, selected: @variants.first } do |hash, index|
             - variant = hash[:variant]
             - unless index.nil?
-              .hide = radio_button_tag 'variant_id', variant.id, hash[:selected], 'data-quantity': [quantity_left(variant), 1].max, 'data-avg-price': hash[:median_price], 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?
+              .hide = radio_button_tag 'variant_id', variant.id, hash[:selected], 'data-quantity': [quantity_left(variant), 1].max, 'data-avg-price': hash[:median_price], 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?, 'data-vendor': variant.vendor&.name, 'data-vendor-path': (vendor_path(variant.vendor) if variant.vendor), 'data-vendor-rep': vendor_reputation_text(variant.vendor)
             = label_tag "variant_id_#{variant.id}"
               small.text-muted.hide-in-dropdown style='display:block' Condition
               span.variant-description> = hash[:option_value]
@@ -62,12 +62,11 @@
         = button_tag class: 'btn btn-primary btn-block', id: 'buy-now-button', type: :submit, data: { disable_with: 'Processing' } do
           = Spree.t(:buy_now)
 
-    - if (vendor = Spree::Vendor.last)
-      .col-xs-12.text-center
-        small
-          br
-          = t('products.sold_by')
-          '
-          = link_to vendor.name, vendor_path(vendor), target: '_blank'
-          br
-          .text-success 98% Positive Ratings
+    .col-xs-12.text-center
+      small
+        br
+        = t('products.sold_by')
+        '
+        a#vendor-link href='#' target='_blank'
+        br
+        #vendor-rep.text-success &nbsp;

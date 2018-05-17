@@ -32,6 +32,11 @@ $(document).on('turbolinks:load', function() {
     }
   };
 
+  function setVendorInfo(variant) {
+    $('#vendor-link').prop('href', variant.data('vendor-path')).text(variant.data('vendor'));
+    $('#vendor-rep').text(variant.data('vendor-rep'));
+  }
+
   Spree.changeQuantitySelectorOptions = function(count) {
     var $el = $("#cart-form #quantity");
     $el.empty(); // remove old options
@@ -54,11 +59,13 @@ $(document).on('turbolinks:load', function() {
 
     setVariantOptionText(selectedRadio);
     setAveragePrice(selectedRadio);
+    setVendorInfo(selectedRadio);
     Spree.changeQuantitySelectorOptions(selectedRadio.data("quantity"));
 
     radios.click(function (event) {
       setVariantOptionText($(this));
       setAveragePrice($(this));
+      setVendorInfo($(this));
       Spree.changeQuantitySelectorOptions($(this).data("quantity"));
     });
   }

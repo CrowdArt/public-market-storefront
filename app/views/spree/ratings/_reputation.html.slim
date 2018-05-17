@@ -1,6 +1,3 @@
 h5
   span> = Spree.t('positive_feedback')
-  - if @reputation.present? && @reputation.score.present?
-    = number_to_percentage(@reputation.score * 100, precision: 1)
-  - else
-    = Spree.t('not_enough_ratings')
+  = vendor_reputation_text(@vendor)

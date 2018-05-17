@@ -22,6 +22,7 @@ module GlobalReputation
         def rate_order(user, order, value)
           vendor = order.vendors.first
           begin
+            Rails.cache.delete(Reputation.cache_key(vendor.reputation_uid))
             update_rating(order, user, vendor, value)
           rescue JsonApiClient::Errors::NotAuthorized => e
             message = 'Forgot to setup Global Reputation API?'
@@ -55,6 +56,9 @@ module GlobalReputation
     end
 
     class Reputation < Base
+      def self.cache_key(reputation_uid)
+        [:reputation, :v1, reputation_uid]
+      end
     end
   end
 end
