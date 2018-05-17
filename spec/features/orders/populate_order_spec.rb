@@ -10,7 +10,7 @@ RSpec.describe 'populate order', type: :feature, js: true do
     before { click_button 'Add To Cart' }
 
     it 'adds variant to order' do
-      expect(page).to have_text Spree.t(:added_to_cart, product: variant.product.name)
+      expect(page).to have_text Spree.t(:added_to_cart)
       expect(page).not_to have_text Spree.t(:shopping_cart)
     end
 
@@ -19,7 +19,7 @@ RSpec.describe 'populate order', type: :feature, js: true do
 
       it 'shows alert' do
         expect(page).to have_text "We're sorry, You've requested more of"
-        expect(page).not_to have_text Spree.t(:added_to_cart, product: variant.product.name)
+        expect(page).not_to have_text Spree.t(:added_to_cart)
       end
     end
   end

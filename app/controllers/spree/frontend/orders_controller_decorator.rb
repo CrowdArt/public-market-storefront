@@ -37,7 +37,7 @@ Spree::OrdersController.class_eval do
         if error
           flash[:error] = error
         else
-          flash[:success] = Spree.t(:added_to_cart, product: product_name)
+          flash[:success] = render_to_string(partial: 'spree/orders/added_to_cart', formats: [:html])
         end
 
         format.js

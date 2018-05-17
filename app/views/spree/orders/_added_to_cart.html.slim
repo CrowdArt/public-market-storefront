@@ -1,0 +1,7 @@
+.alert-fullwidth-top.alert-added-to-cart.flex.wrap.center.align-center
+  .info-sign-left.text-center.margin-text-bottom-xs = Spree.t(:added_to_cart)
+  / wrap buttons on mobile
+  span
+    = link_to Spree.t(:view_cart), spree.cart_path, class: 'btn btn-outlined-white'
+    span.or-text or
+    = link_to Spree.t(:continue_shopping), request.referer.present? ? :back : products_path, class: 'btn btn-outlined-white'
