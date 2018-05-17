@@ -1,5 +1,6 @@
 Spree::OrderMailer.class_eval do
   def confirm_email(order, _resend = false)
+    return if order.blank?
     order = order.respond_to?(:id) ? order : Spree::Order.find(order)
 
     opts = {
@@ -16,6 +17,7 @@ Spree::OrderMailer.class_eval do
   end
 
   def cancel_email(order, _resend = false)
+    return if order.blank?
     order = order.respond_to?(:id) ? order : Spree::Order.find(order)
 
     opts = {
