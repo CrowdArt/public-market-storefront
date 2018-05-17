@@ -29,7 +29,7 @@ Spree::Product.class_eval do
     %i[name author]
   end
 
-  # enable searchkick callbacks in RecalculateVendorVariantPrices
+  # enable searchkick callbacks in RecalculateVendorVariantPrice
   # when price is included in searchkick index
   def self.search_fields
     %i[name author isbn]
