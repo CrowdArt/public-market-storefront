@@ -42,6 +42,10 @@ Spree::User.class_eval do
     send_welcome_email
   end
 
+  def active_for_authentication?
+    !deleted?
+  end
+
   private
 
   def send_welcome_email_with_delay

@@ -1,4 +1,23 @@
 Devise::ConfirmationsController.class_eval do
+  def create # rubocop:disable Metrics/AbcSize
+    current_user_params = spree_user_signed_in? ? { email: spree_current_user.email } : resource_params
+
+    self.resource = resource_class.send_confirmation_instructions(current_user_params)
+    yield resource if block_given?
+
+    if successfully_sent?(resource)
+      session[:mixpanel_actions] = [
+        %(mixpanel.track("email confirmation sent", {
+          "user_id": "#{resource.id}",
+          "email": "#{resource.try(:email)}"
+        }))
+      ]
+      respond_with({}, location: after_resending_confirmation_instructions_path_for(resource_name))
+    else
+      respond_with(resource)
+    end
+  end
+
   def show # rubocop:disable Metrics/AbcSize
     self.resource = resource_class.confirm_by_token(params[:confirmation_token])
     yield resource if block_given?
@@ -19,20 +38,9 @@ Devise::ConfirmationsController.class_eval do
     end
   end
 
-  def create # rubocop:disable Metrics/AbcSize
-    self.resource = resource_class.send_confirmation_instructions(resource_params)
-    yield resource if block_given?
+  protected
 
-    if successfully_sent?(resource)
-      session[:mixpanel_actions] = [
-        %(mixpanel.track("email confirmation sent", {
-          "user_id": "#{resource.id}",
-          "email": "#{resource.try(:email)}"
-        }))
-      ]
-      respond_with({}, location: after_resending_confirmation_instructions_path_for(resource_name))
-    else
-      respond_with(resource)
-    end
+  def after_resending_confirmation_instructions_path_for(resource_name)
+    spree_user_signed_in? ? account_path : new_session_path(resource_name)
   end
 end

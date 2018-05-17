@@ -3,7 +3,12 @@
     dt = Spree.t(:profile)
     dd
       ' #{@user.full_name_or_email}
-      | (#{link_to Spree.t(:edit), spree.edit_account_path})
+      | (#{link_to Spree.t(:edit_email_password), spree.edit_account_path})
+      - unless @user.confirmed?
+        div
+          span.label.label-danger.vertical-middle> = t('devise.unconfirmed_email')
+          span.vertical-middle
+            | (#{link_to(t('devise.send_confirmation_email'), spree_user_confirmation_path, method: :post)})
     br
     dt= Spree.t(:credit_balance, scope: [:store_credits])
     dd
