@@ -64,5 +64,25 @@ RSpec.describe Spree::Inventory::Providers::BowkerMetadataProvider, type: :actio
       expect(taxons.count).to eq(1)
       expect(taxons.first.pretty_name).to eq('Categories -> Fiction -> Thrillers -> Suspense')
     end
+
+    context 'with empty subject' do
+      let(:item_json) do
+        {
+          condition: 'Good',
+          ean: '9781600421570',
+          notes: 'Good copy ready to ship same',
+          price: '69.83',
+          quantity: 2,
+          sku: 'PMI-3-ING-2400029166561'
+        }
+      end
+
+      it 'does not create additional taxons' do
+        expect(variant).not_to be_nil
+        taxons = variant.product.taxons
+        expect(taxons.count).to eq(1)
+        expect(taxons.first.pretty_name).to eq('Categories')
+      end
+    end
   end
 end
