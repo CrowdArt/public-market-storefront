@@ -1,0 +1,11 @@
+en:
+  orders:
+    remove_item: Remove
+    ptrn_rewards: PTRN Rewards
+    checkout: Proceed to Checkout
+    buyer_rewards: Buyer Rewards
+    buyer_rewards_desc: Earn "cashback" blockchain-based tokens on each purchase!
+    free_shipping: Free Shipping
+    free_shipping_desc: All Public Market products enjoy with 5-8 day free shipping within the US.
+    easy_returns: Easy Returns
+    easy_returns_desc: Return within 30 days of delivery for a full refund. Satisfaction Guarnateed.

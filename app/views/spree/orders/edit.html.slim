@@ -1,0 +1,48 @@
+- @body_id = 'cart'
+
+.cart_container data-hook="cart_container"
+  h3.upcase.text-center-xs = Spree.t(:shopping_cart)
+  br
+
+  - if @order.line_items.empty?
+    div data-hook="empty_cart"
+      .alert.alert-info= Spree.t(:your_cart_is_empty)
+      p= link_to Spree.t(:continue_shopping), products_path, class: 'btn btn-default'
+
+  - else
+    = form_for @order, url: update_cart_path, html: { id: 'update-cart' } do |order_form|
+      = render partial: 'form', locals: { order_form: order_form }
+      .row
+        .hidden-xs.col-sm-7.col-md-9
+          = link_to products_path, class: 'continue' do
+            span.glyphicon.glyphicon-arrow-left>
+            = Spree.t(:continue_shopping)
+        .col-xs-12.col-sm-5.col-md-3
+          p
+            span.upcase = t('orders.ptrn_rewards')
+            span.pull-right = @order.ptrn_rewards
+          p
+            strong.upcase = Spree.t(:total)
+            strong.pull-right = @order.display_total
+          .form-group
+            button.btn.btn-lg.btn-block.btn-primary#checkout-link name='checkout' = t('orders.checkout')
+            br
+            .text-center = image_tag 'icons/stripe.svg', style: 'width:120px'
+br
+- [{ icon: 'buyer-rewards.svg', locale_key: 'buyer_rewards' },
+  { icon: 'free-shipping.svg', locale_key: 'free_shipping' },
+  { icon: 'easy-returns.svg', locale_key: 'easy_returns' }].each do |i|
+  .panel.panel-default.no-border
+    .panel-body.text-center-xs
+      .row.flex.align-center
+        .col-xs-12.col-sm-1.text-right.text-center-xs
+          = image_tag('icons/' + i[:icon])
+        .col-xs-12.col-sm-11
+          .col-xs-12
+            h4.upcase= t('orders.' + i[:locale_key])
+            p = t("orders.#{i[:locale_key]}_desc")
+
+
+javascript:
+  Spree.current_order_id = "#{@order.number}"
+  Spree.current_order_token = "#{@order.guest_token}"

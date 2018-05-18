@@ -18,6 +18,10 @@ Spree::Order.class_eval do
     variant.total_on_hand - quantity_of(variant)
   end
 
+  def ptrn_rewards
+    line_items.map(&:variant).map(&:product).map(&:estimated_ptrn).sum
+  end
+
   private
 
   def copy_billing_from_card
