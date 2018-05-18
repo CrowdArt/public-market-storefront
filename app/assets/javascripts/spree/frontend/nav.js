@@ -14,6 +14,7 @@ window.pm.initNavHide = function() {
   }, 250);
 
   var checkScroll = function() {
+    if ($('.mobile-menu-btn').is(':not(:visible)')) return
     var currY = $(this).scrollTop()
     var hideNav = currY > lastY && currY > navbarHeight;
 
@@ -22,7 +23,7 @@ window.pm.initNavHide = function() {
     lastY = currY;
   };
 
-  $(window).scroll(function(){
+  $(window).scroll(function() {
     scrolled = true;
   });
 }

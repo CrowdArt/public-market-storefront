@@ -1,6 +1,38 @@
-.alert-fullwidth-top
+.alert-dismissible
+  .close
+    font-weight: 400
+    line-height: 14px
+    opacity: 1
+
+  @media (max-width: $screen-xs)
+    padding-right: 15px
+
+    .close
+      right: auto
+
+.alert
+  &.alert-top
+    margin-bottom: 0
+    position: absolute
+    width: 100%
+    z-index: 1
+
+    &.affix
+      position: fixed
+      top: 0
+
+    &.fade
+      opacity: 1 // override default bootstrap fade effect
+      transition: transform .2s
+      transform: translateY(-100%)
+      will-change: transform
+      &.in
+        transform: translateY(0)
+
+.alert-added-to-cart
   font-size: 14px
   font-weight: 500
+  line-height: 16px
 
   .btn
     padding: 8px 15px
@@ -9,8 +41,7 @@
     @media (max-width: $screen-xs)
       padding: 8px 10px
 
-.alert-added-to-cart
-  .info-sign-left
+  .check-left
     margin-right: 20px
 
   .or-text

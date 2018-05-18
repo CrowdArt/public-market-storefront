@@ -10,9 +10,11 @@
   <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
     <%= render partial: 'spree/shared/header' %>
 
-    <%= yield :hero if content_for? :hero %>
+    <%= yield :hero if content_for?(:hero) %>
 
     <div class="fluid-container content-wrap">
+      <%= yield :content_top if content_for?(:content_top) %>
+
       <div class="container">
         <div class="row" data-hook>
           <%= spree_breadcrumbs(@taxon) %>

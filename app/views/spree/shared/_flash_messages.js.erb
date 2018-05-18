@@ -1,9 +1,21 @@
+<% auto_close ||= false %>
+<% sticky ||= false %>
 <% flash_delay ||= 3000 %>
 
-$('.alert').remove();
+$('.alert-top').remove();
 
 <% flash.each do |type, message| %>
   <% flash.discard(type) %>
-  $(".content-wrap").prepend("<%= j render partial: 'spree/shared/flash_message', locals: { type: type, message: message } %>");
-  $(".alert").delay(<%= flash_delay %>).fadeOut("slow");
+
+  $(".content-wrap").before("<%= j render partial: 'spree/shared/flash_message', locals: { type: type, message: message } %>");
+
+  <% if auto_close %>
+    $(".alert-top").delay(<%= flash_delay %>).fadeOut("slow");
+  <% end %>
+
+  <% if sticky %>
+    window.pm.initStickyAlert()
+  <% end %>
+
+  $('.alert-top').addClass('in')
 <% end %>
