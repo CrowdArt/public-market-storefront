@@ -13,21 +13,22 @@
 .alert
   &.alert-top
     margin-bottom: 0
-    position: absolute
-    width: 100%
-    z-index: 1
+    &-sticky
+      position: absolute
+      width: 100%
+      z-index: 1
 
-    &.affix
-      position: fixed
-      top: 0
+      &.affix
+        position: fixed
+        top: 0
 
-    &.fade
-      opacity: 1 // override default bootstrap fade effect
-      transition: transform .2s
-      transform: translateY(-100%)
-      will-change: transform
-      &.in
-        transform: translateY(0)
+      &.fade
+        opacity: 1 // override default bootstrap fade effect
+        transition: transform .2s
+        transform: translateY(-100%)
+        will-change: transform
+        &.in
+          transform: translateY(0)
 
 .alert-added-to-cart
   font-size: 14px

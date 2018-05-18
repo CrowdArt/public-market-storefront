@@ -49,7 +49,7 @@ module Spree
     end
 
     def inline_svg(path)
-      raw(Rails.application.assets.find_asset(path + '.svg').to_s)
+      raw(Rails.application.assets.find_asset(path + '.svg').to_s) # rubocop:disable Rails/OutputSafety
     end
 
     def vendor_reputation_text(vendor)
@@ -69,6 +69,21 @@ module Spree
       Rails.cache.fetch(GlobalReputation::Api::Reputation.cache_key(uid), expires_in: 1.hour) do
         GlobalReputation::Api::Reputation.find(uid).first
       end
+    end
+
+    def flash_messages(opts = {})
+      ignore_types = ['order_completed'].concat(Array(opts[:ignore_types]).map(&:to_s) || [])
+
+      close_button = button_tag('class' => 'close', 'data-dismiss' => 'alert', 'aria-label' => Spree.t(:close)) do
+        content_tag('span', '&times;'.html_safe, 'aria-hidden' => true) # rubocop:disable Rails/OutputSafety
+      end
+
+      flash.each do |msg_type, text|
+        unless ignore_types.include?(msg_type)
+          concat(content_tag(:div, (close_button + text), class: "alert alert-dismissible alert-top alert-#{msg_type}"))
+        end
+      end
+      nil
     end
   end
 end
