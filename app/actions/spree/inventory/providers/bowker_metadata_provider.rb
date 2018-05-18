@@ -61,7 +61,8 @@ module Spree
         end
 
         def images(product)
-          [{ file: image(isbn), title: product.dig('title') }]
+          return [] if (img = image(isbn)).blank?
+          [{ file: img, title: product.dig('title') }]
         end
 
         def creds
@@ -78,10 +79,11 @@ module Spree
         end
 
         def image(isbn)
+          response = HTTParty.get("https://imageweb.bowker.com/rest/images/ean/#{isbn}?size=original", basic_auth: creds)
+          return unless response.success? # bowker can return AccessDenied response with FreeCoverImage #157634247
           file = Tempfile.new(isbn)
           file.binmode
-          file << HTTParty.get("https://imageweb.bowker.com/rest/images/ean/#{isbn}?size=original",
-                               basic_auth: creds).body
+          file << response.body
           file
         end
       end

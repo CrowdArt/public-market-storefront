@@ -84,5 +84,23 @@ RSpec.describe Spree::Inventory::Providers::BowkerMetadataProvider, type: :actio
         expect(taxons.first.pretty_name).to eq('Categories')
       end
     end
+
+    context 'with empty image' do
+      let(:item_json) do
+        {
+          condition: 'Good',
+          ean: '9780253202505',
+          notes: 'Good copy ready to ship same',
+          price: '69.83',
+          quantity: 2,
+          sku: 'SKU'
+        }
+      end
+
+      it 'does not save image' do
+        expect(variant).not_to be_nil
+        expect(variant.images.count).to eq(0)
+      end
+    end
   end
 end
