@@ -121,28 +121,57 @@ body#home-page
 
   section.top-categories
     .box
+      position: relative
       background-color: #fff
-      padding: 36px 20px 20px 20px
+      background-image: image-url('slant-bg.png')
+      background-origin: border-box
+      background-position-x: right
+      background-position-y: top
+      background-repeat: no-repeat
+      background-size: auto
       min-height: 530px
-      margin-bottom: 26px
-      text-align: center
-      img
-        margin-top: 70px
-        margin-left: -40px
-        max-width: 100%
-      &.slant
-        background-image: image-url('slant-bg.png')
-        background-origin: border-box
-        background-position-x: left
-        background-position-y: bottom
-        background-repeat: no-repeat
-        background-size: auto
-        padding: 0
-      h3
-        font-size: 30px
-        text-transform: uppercase
-        color: #0e0e12
-        margin-top: 140px
+      padding: 0
+      .content
+        position: relative
+        width: 255px
+        margin: 200px 0 20px 60px
+        text-align: left
+        h3
+          font-size: 30px
+          text-transform: uppercase
+          color: #0e0e12
+        p
+          margin-bottom: 20px
+        .btn
+          padding: 16px 50px
+      figure
+        position: absolute
+        top: 80px
+        right: 20px
+        width: auto
+        text-align: right
+        img
+          max-width: 80%
+    @media (max-width: $screen-md-max)
+      .box
+        padding-top: 20px
+        margin-bottom: 24px
+        .content
+          width: 100%
+          margin: 0
+          text-align: center
+          h3
+            font-size: 24px
+        figure
+          position: relative
+          top: unset
+          right: unset
+          margin: 25px auto 0
+          text-align: center
+          width: 260px
+          img
+            max-width: 100%
+            max-height: 300px
 
   section.staff-picks
     position: relative

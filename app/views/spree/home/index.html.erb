@@ -57,30 +57,35 @@
 
   <section class="top-categories container">
     <div class="row">
-      <div class="col-md-12 col-xs-12">
+      <div class="col-md-12">
         <h2><%= t('home.top_categories_header') %></h2>
         <%= link_to "View All", products_path, {class: "view-all"} %>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6 col-xs-12">
-        <div class="box col-xs-6">
-          <h3>PS4 Games</h3>
-          <p>Starting at $14.99</p>
-          <%= link_to "SHOP NOW", products_path, {class: "btn btn-primary"} %>
-        </div>
-        <div class="box slant col-xs-6">
-          <%= image_tag 'uncharted.png' %>
+      <div class="col-md-6 col-sm-12">
+        <div class="box col-md-12">
+          <div class="content">
+            <h3>PS4 Games</h3>
+            <p>Starting at $14.99</p>
+            <%= link_to "SHOP NOW", products_path, {class: "btn btn-primary"} %>
+          </div>
+          <figure>
+            <%= image_tag 'uncharted.png' %>
+          </figure>
         </div>
       </div>
-      <div class="col-md-6 col-xs-12">
-        <div class="box col-xs-6">
-          <h3>Top Selling Books</h3>
-          <p>Starting at $2.99</p>
-          <%= link_to "SHOP NOW", products_path, {class: "btn btn-primary"} %>
-        </div>
-        <div class="box slant col-xs-6">
-          <%= image_tag 'top-selling-books.png' %>
+
+      <div class="col-md-6 col-sm-12">
+        <div class="box col-md-12">
+          <div class="content">
+            <h3>Top Selling Books</h3>
+            <p>Starting at $2.99</p>
+            <%= link_to "SHOP NOW", products_path, {class: "btn btn-primary"} %>
+          </div>
+          <figure>
+            <%= image_tag 'top-selling-books.png' %>
+          </figure>
         </div>
       </div>
     </div>
