@@ -61,12 +61,13 @@
   font-family: 'Glyphicons Halflings'
 
 .check-left:before
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="13" height="10" viewBox="0 0 13 10"><path fill="#FFF" fill-rule="evenodd" d="M3.805 9.594a.163.163 0 0 1-.074-.015.54.54 0 0 1-.439-.293L.962 5.214a.617.617 0 0 1-.058-.454.534.534 0 0 1 .271-.352.571.571 0 0 1 .447-.051.622.622 0 0 1 .366.27l1.949 3.414L11.129.834a.532.532 0 0 1 .41-.176c.166 0 .305.056.418.169a.567.567 0 0 1 .168.417.532.532 0 0 1-.176.41L4.244 9.39l-.03.029a.532.532 0 0 1-.41.176z"/></svg>')
+  @include check-icon-bg(#fff)
   content: ''
   display: inline-block
   margin-right: 10px
-  height: 10px
-  width: 13px
+  height: 16px
+  width: 16px
+  vertical-align: bottom
 
 .visible-scroll
   &::-webkit-scrollbar
