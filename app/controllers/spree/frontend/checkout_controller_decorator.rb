@@ -5,6 +5,8 @@ Spree::CheckoutController.class_eval do
 
   before_action :set_addresses, only: :update
 
+  before_action :before_address, :before_delivery, :before_payment, only: [:edit]
+
   def registration
     render 'spree/user_registrations/new', locals: { resource: Spree::User.new }
   end
@@ -72,13 +74,13 @@ Spree::CheckoutController.class_eval do
   end
 
   def before_payment
-    if @order.checkout_steps.include?('delivery')
-      packages = @order.shipments.map(&:to_package)
-      @differentiator = Spree::Stock::Differentiator.new(@order, packages)
-      @differentiator.missing.each do |variant, quantity|
-        @order.contents.remove(variant, quantity)
-      end
-    end
+    # if @order.checkout_steps.include?('delivery')
+    #   packages = @order.shipments.map(&:to_package)
+    #   @differentiator = Spree::Stock::Differentiator.new(@order, packages)
+    #   @differentiator.missing.each do |variant, quantity|
+    #     @order.contents.remove(variant, quantity)
+    #   end
+    # end
 
     @payment_sources = try_spree_current_user.credit_cards if try_spree_current_user&.respond_to?(:credit_cards)
     @credit_card = Spree::CreditCard.new
