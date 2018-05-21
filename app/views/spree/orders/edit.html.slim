@@ -15,7 +15,7 @@
       .row
         .hidden-xs.col-sm-7.col-md-9
           = link_to products_path, class: 'continue' do
-            span.glyphicon.glyphicon-arrow-left>
+            = image_tag 'icons/back.svg', style: 'margin-right: 10px'
             = Spree.t(:continue_shopping)
         .col-xs-12.col-sm-5.col-md-3
           p
@@ -25,7 +25,8 @@
             strong.upcase = Spree.t(:total)
             strong.pull-right = @order.display_total
           .form-group
-            button.btn.btn-lg.btn-block.btn-primary#checkout-link name='checkout' = t('orders.checkout')
+            #checkout-div
+              button.btn.btn-lg.btn-block.btn-primary#checkout-link name='checkout' = t('orders.checkout')
             br
             .text-center = image_tag 'icons/stripe.svg', style: 'width:120px'
 br
@@ -41,7 +42,6 @@ br
           .col-xs-12
             h4.upcase= t('orders.' + i[:locale_key])
             p = t("orders.#{i[:locale_key]}_desc")
-
 
 javascript:
   Spree.current_order_id = "#{@order.number}"
