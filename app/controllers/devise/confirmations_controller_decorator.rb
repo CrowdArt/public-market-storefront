@@ -43,4 +43,9 @@ Devise::ConfirmationsController.class_eval do
   def after_resending_confirmation_instructions_path_for(resource_name)
     spree_user_signed_in? ? account_path : new_session_path(resource_name)
   end
+
+  def devise_i18n_options(options)
+    email = resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email
+    options.merge(email: email)
+  end
 end

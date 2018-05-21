@@ -17,4 +17,14 @@ RSpec.describe Spree::UserConfirmationsController, type: :controller do
       expect(response).to redirect_to(root_path)
     end
   end
+
+  describe '#create' do
+    before { sign_in(user) }
+
+    it 'shows notice message' do
+      post :create
+
+      expect(flash[:notice]).to eq(I18n.t('devise.confirmations.send_instructions', email: user.email))
+    end
+  end
 end
