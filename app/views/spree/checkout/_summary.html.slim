@@ -1,0 +1,24 @@
+.flex.between.align-center
+  h4.upcase.text-color = Spree.t(:order_summary)
+  a href='#' = Spree.t(:view_cart)
+
+p.flex.between.upcase
+  span TOken rewards
+  span 380
+
+- order.all_adjustments.nonzero.tax.eligible.group_by(&:label).each do |label, adjustments|
+  p.flex.between.upcase
+    span = label
+    span = Spree::Money.new(adjustments.sum(&:amount), currency: order.currency).to_html
+
+p.flex.between.upcase
+  span = Spree.t(:shipping)
+
+  - shipping_total = Spree::Money.new(order.shipments.to_a.sum(&:cost), currency: order.currency)
+  span data-currency=Money::Currency.find(order.currency).symbol thousands-separator=shipping_total.thousands_separator decimal-mark=shipping_total.decimal_mark
+    = shipping_total.to_html
+
+p.flex.between.upcase
+  strong = Spree.t(:total)
+  strong#summary-order-total data-currency=Money::Currency.find(order.currency).symbol
+    = order.display_total.to_html

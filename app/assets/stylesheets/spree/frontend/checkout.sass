@@ -1,17 +1,37 @@
-#checkout
-  h1
-    margin-bottom: 20px
-  ul.progress-steps
-    margin-top: 0
+.checkout-form-address, .checkout-form-payment
+  margin-bottom: 30px
 
-  .card_options
-    input#use_existing_card_yes + label
-      margin-right: 75px
+  h4, .card-options, .address-options
+    margin-bottom: 15px
 
-#checkout_form_address
-  label[for='use_existing_address_yes']
-    margin-right: 75px
+.checkout-form-payment
+  #existing_cards
+    img
+      margin-right: 15px
+      max-width: 35px
 
-  #existing_addresses
-    td
-      padding: 5px
+.checkout-form
+  .panel-body
+    padding: 40px 45px
+
+  &--state-input
+    flex-basis: 60%
+
+.checkout-form-summary
+  .panel-body
+    padding: 40px 30px
+
+.credit-cards-selector, .address-selector
+  button
+    padding: 15px
+
+    label, span
+        font-weight: bold
+
+  .dropdown-menu
+    border-top: none
+    margin: 0
+    padding: 0
+
+    .dropdown-item label
+      padding: 15px

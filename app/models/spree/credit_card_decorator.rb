@@ -38,9 +38,15 @@ Spree::CreditCard.class_eval do
     self[:month] = self[:month].to_i if self[:month]
   end
 
-  def display_number
+  def display_number(short: false)
     return '' unless last_digits
-    "XXXX-XXXX-XXXX-#{last_digits}"
+    prefix = short ? 'x' : 'XXXX-XXXX-XXXX'
+    "#{prefix}-#{last_digits}"
+  end
+
+  def name_with_initial
+    first_name, last_name = name.split(' ')
+    "#{first_name} #{last_name&.first}."
   end
 
   def use_shipping?

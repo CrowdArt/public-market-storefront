@@ -5,7 +5,9 @@
     = label_tag "item_id_#{item.id}" do
       span Rich content using #{item.inspect}
 
-.dropdown.rich-dropdown
+- dropdown_class ||= nil
+
+.dropdown.rich-dropdown class=dropdown_class
   button.btn-block data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
     = yield(selected, nil)
   ul.dropdown-menu

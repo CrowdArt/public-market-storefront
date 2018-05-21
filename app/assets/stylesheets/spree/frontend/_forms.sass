@@ -1,6 +1,11 @@
 .form-control
   box-shadow: none
 
+  &.input-lg
+    font-size: $font-size-base
+    line-height: $line-height-base
+    padding: 16px 20px
+
 .form-group-invalid
   input
     border-color: $brand-danger
@@ -28,10 +33,19 @@
       border-right: 4px solid transparent
       border-left: 4px solid transparent
       float: right
+
   label
     font-weight: normal
+    cursor: pointer
     margin: 0
     display: inline
+
+  &--outline
+    button
+      transition: border .2s
+      &:focus
+        border: 1px solid $brand-primary
+
   .dropdown-menu
     width: 100%
     & > li > a:hover, & > li > a:focus
@@ -48,15 +62,43 @@
           color: $dropdown-link-hover-color
           background-color: $dropdown-link-hover-bg
 
-
 .radio label
   padding-left: 0
 
 input[type="radio"]
   opacity: 0
+
   & + span
     background: image-url('unchecked.svg') 0px center no-repeat
     padding-left: 25px
-    transition: 0.2s
+    transition: .2s
+
   &:checked + span
     background: image-url('checked.svg') 0px center no-repeat
+    font-weight: bold
+
+.input-with-hint
+  position: relative
+
+  input
+    &::placeholder
+      color: transparent
+
+    & + label
+      color: rgba(69, 74, 80, .65)
+      font-weight: normal
+      margin: 0
+      position: absolute
+      transition: transform .25s
+      will-change: transform
+
+    &:focus, &[value]
+      & + label
+        transform: translate(-12%, -0.7em) scale(.75, .75)
+
+    &.input-lg
+      padding-bottom: 6px
+
+      & + label
+        top: 1em
+        left: 21px

@@ -1,0 +1,48 @@
+- address_id = address_type.chars.first
+
+.form-group id="#{address_id}firstname"
+  = form.text_field :firstname, class: 'form-control input-lg', placeholder: Spree.t(:first_name)
+
+.form-group id="#{address_id}lastname"
+  = form.text_field :lastname, class: 'form-control input-lg', placeholder: Spree.t(:last_name)
+
+.form-group id="#{address_id}address1"
+  = form.text_field :address1, class: 'form-control input-lg', placeholder: Spree.t(:address1)
+
+.form-group id="#{address_id}country"
+  / = address_fields.select :country_id, options_for_select(available_countries.map { |c| [c.name, c.id, { 'data-country-code' => c.iso }]}, @credit_card.address.country_id), {}, { disabled: true, class: 'form-control' }
+  = form.collection_select :country_id, available_countries, :id, :name, {}, { class: 'form-control input-lg' }
+  = form.hidden_field :country_id
+
+.form-group.input-with-hint id="#{address_id}city"
+  = form.text_field :city, class: 'form-control input-lg'
+  = form.label :city, Spree.t(:city)
+
+.flex
+  ruby:
+    have_states = !address.country.states.empty?
+    state_elements = [
+      form.collection_select(:state_id, address.country.states,
+                              :id, :name,
+                              {include_blank: true},
+                              {class: have_states ? 'form-control input-lg' : 'form-control hidden',
+                              required: have_states,
+                              disabled: !have_states}) +
+      form.text_field(:state_name,
+                              class: !have_states ? 'form-control input-lg' : 'form-control hidden',
+                              required: !have_states,
+                              disabled: have_states)
+      ].join.gsub('"', "'").gsub("\n", "")
+
+  .form-group.margin-text-right.checkout-form--state-input id="#{address_id}state"
+    == state_elements
+
+    noscript
+      = form.text_field :state_name, class: 'form-control', required: true
+
+  .input-with-hint.form-group id="#{address_id}zipcode"
+    = form.phone_field :zipcode, class: 'form-control input-lg', inputmode: 'numeric', autocomplete: 'postal-code'
+    = form.label :zipcode, t('forms.address.zip_postal_code')
+
+.form-group id="#{address_id}phone"
+  = form.phone_field :phone, class: 'form-control input-lg', placeholder: Spree.t(:phone)

@@ -1,0 +1,73 @@
+ruby:
+  user_address = spree_current_user.addresses.first
+  firstname = user_address&.firstname || spree_current_user.first_name
+  lastname = user_address&.lastname || spree_current_user.last_name
+  param_prefix = "payment_source[#{payment_method.id}]"
+
+- content_for :bottom_scripts
+  = javascript_include_tag "https://js.stripe.com/v2"
+  = javascript_include_tag :stripeForm
+
+  javascript:
+    $(function() {
+      window.initStripeForm("#{payment_method.preferred_publishable_key}", '#edit-credit-card-form')
+
+      $('#card_name, #card_number, #card_expiry').on('input change keyup', function() {
+        if (Spree.newCreditCard || this.value == $(this).data('value')) return
+
+        Spree.newCreditCard = true
+        $('#card_name, #card_number, #card_expiry').val('')
+      })
+    })
+
+    $(function() {
+      $(".cardNumber").payment('formatCardNumber')
+      $(".cardExpiry").payment('formatCardExpiry')
+      $(".cardCode").payment('formatCardCVC')
+
+      $(document).on('click', '#cvv_link', function(event) {
+        windowName = 'cvv_info'
+        windowOptions = 'left=20,top=20,width=500,height=500,toolbar=0,resizable=0,scrollbars=1'
+        window.open($(this).attr('href'), windowName, windowOptions)
+        event.preventDefault()
+      })
+    })
+
+#credit-card-form
+  p.credit-card-brands = render 'spree/shared/payment_methods'
+  p.credit-card-number-label = t('forms.credit_cards.number')
+
+  p.field
+    = label_tag "name_on_card_#{payment_method.id}" do
+      = Spree.t(:name_on_card)
+      abbr.required title="required" *
+
+    = text_field_tag "#{param_prefix}[name]", "#{firstname} #{lastname}", { id: "name_on_card_#{payment_method.id}", class: 'form-control required' }
+
+  p.field data-hook="card_number"
+    = label_tag "card_number" do
+      = Spree.t(:card_number)
+      abbr.required title="required" *
+    = phone_field_tag "#{param_prefix}[number]", '', id: 'card_number', class: 'form-control required cardNumber', size: 19, maxlength: 19, autocomplete: "off", inputmode: 'numeric'
+
+  .row
+    .col-md-8.field data-hook="card_expiration"
+      = label_tag "card_expiry" do
+        = Spree.t(:expiration)
+        abbr.required title="required"  *
+      = phone_field_tag "#{param_prefix}[expiry]", '', id: 'card_expiry', class: "form-control required cardExpiry", placeholder: "MM / YY", inputmode: 'numeric'
+
+    .col-md-4.field data-hook="card_code"
+      = label_tag "card_code" do
+        = Spree.t(:card_code)
+        abbr.required title="required"  *
+      = phone_field_tag "#{param_prefix}[verification_value]", '',id: 'card_code', class: 'form-control required cardCode', size: 5, inputmode: 'numeric'
+      = link_to Spree.t(:what_is_this), spree.cvv_path, target: :blank, "data-hook" => "cvv_link", id: "cvv_link"
+
+  = hidden_field_tag "#{param_prefix}[cc_type]", '', id: "cc_type", class: 'ccType'
+
+  h4.upcase.text-color = Spree.t(:billing_address)
+
+  = fields_for "#{param_prefix}[address_attributes]", @credit_card.address do |address_fields|
+    #checkout_form_address.inner
+      = render partial: 'spree/checkout/payment/billing_form', locals: { address_prefix: "payment_source_#{payment_method.id}", param_prefix: param_prefix, address_fields: address_fields, country: @credit_card.address.country }

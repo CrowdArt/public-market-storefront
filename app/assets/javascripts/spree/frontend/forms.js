@@ -23,3 +23,8 @@ $(document).on('keyup', '.form-group-invalid input, .form-group-invalid textarea
          .find('.invalid-feedback')
          .remove()
 })
+
+$(document).on('change', ".input-with-hint input", function() {
+  var val = $(this).val()
+  val ? $(this).attr('value', val) : $(this).removeAttr('value')
+});
