@@ -2,29 +2,28 @@ ruby:
   # first enabled if All Products wasn't selected
   taxon ||= enabled_taxons.first if params[:taxon].nil?
 
-= form_tag spree.products_path, method: :get, class: "navbar-search-form flex" do
-  .input-group.flex.flex-1#search-input-group class=('filled' if params[:keywords].present?)
-    - cache([:v1, :navbar_taxons_dropdown, root_taxons, taxon])
-      ul.dropdown-menu.no-margin.visible-scroll#taxon-dropdown aria-labelledby="taxon-menu"
+= form_tag spree.products_path, method: :get, class: "navbar-search-form flex flex-1 #{'filled' if params[:keywords].present?}", id: 'navbar-keyword-form' do
+  - cache([:v1, :navbar_taxons_dropdown, root_taxons, taxon])
+    ul.dropdown-menu.no-margin.visible-scroll#taxon-dropdown aria-labelledby="taxon-menu"
+      li
+        a href="#" class=('checked' if taxon.blank?) data-taxon-id='' data-taxon-name=Spree.t(:all_products) = Spree.t(:all_products)
+
+      - enabled_taxons.each do |t|
         li
-          a href="#" class=('checked' if taxon.blank?) data-taxon-id='' data-taxon-name=Spree.t(:all_products) = Spree.t(:all_products)
+          a class=(t == taxon ? 'checked': '') href="#" data-taxon-id=t.id data-taxon-name=t.name
+            = t.name
 
-        - enabled_taxons.each do |t|
-          li
-            a class=(t == taxon ? 'checked': '') href="#" data-taxon-id=t.id data-taxon-name=t.name
-              = t.name
+      - disabled_taxons.each do |t|
+        li.disabled
+          a.btn.btn-link.disabled.link-muted disabled=true href="#"
+            span = t.name
+            span.text-success COMING SOON
 
-        - disabled_taxons.each do |t|
-          li.disabled
-            a.btn.btn-link.disabled.link-muted disabled=true href="#"
-              span = t.name
-              span.text-success COMING SOON
-
-      .input-group-btn.taxon-group.hidden-xxs
-        button.btn.btn-default.dropdown-toggle.ellipsis#taxon-menu type="button" data-target='#search-input-group' data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
-          span.name> = taxon&.name || Spree.t(:all_products)
-          span.caret<
-          input#taxon name='taxon' type='hidden' value=taxon&.id
+    .input-group-btn.taxon-group.hidden-xxs
+      button.btn.btn-default.dropdown-toggle.ellipsis#taxon-menu type="button" data-target='#navbar-keyword-form' data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+        span.name> = taxon&.name || Spree.t(:all_products)
+        span.caret<
+        input#taxon name='taxon' type='hidden' value=taxon&.id
 
     .search-group.flex.flex-1
       = search_field_tag :keywords, params[:keywords], autocomplete: 'off', placeholder: Spree.t(:search), class: "form-control"
@@ -58,6 +57,6 @@ ruby:
       trigger: 'hover'
     })
 
-    $('#keywords').on('change, keyup', function() {
-      $(this).parents('.input-group').toggleClass('filled', $(this).val().trim() !== '')
+    $('#navbar-keyword-form #keywords').on('change, keyup', function() {
+      $(this).parents('form').toggleClass('filled', $(this).val().trim() !== '')
     })
