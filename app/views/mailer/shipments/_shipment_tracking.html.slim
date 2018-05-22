@@ -1,6 +1,9 @@
 - if shipment.tracking
-  p.text-right.text-muted style='font-size:14px;margin:0' == t('emails.order_shipped.track_package', vendor_name: shipment.stock_location.vendor.name)
+  p.text-right.text-muted style='font-size:14px;margin:0' == t('emails.order_shipped.track_package', vendor_name: shipment.stock_location.vendor&.name)
   p.text-right.text-bold style='font-size:14px'
     = Spree.t(:tracking_number)
     ' :
-    = link_to(shipment.tracking, shipment.tracking_url, class: 'text-bold')
+    - if shipment.tracking_url
+      = link_to(shipment.tracking, shipment.tracking_url, class: 'text-bold')
+    - else
+      = shipment.tracking
