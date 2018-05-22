@@ -1,28 +1,27 @@
-#checkout_form_address.checkout-form-address
-  h4.upcase.text-color = Spree.t(:shipping_address)
+h4.upcase.text-color = Spree.t(:shipping_address)
 
-  - if @addresses.present?
-    .address-options
-      .radio
-        label for='use_existing_address_yes'
-          = radio_button_tag 'use_existing_address', 'yes', true
-          span = t('addresses.use_existing_shipping_address')
+- if @addresses.present?
+  .address-options
+    .radio
+      label for='use_existing_address_yes'
+        = radio_button_tag 'use_existing_address', 'yes', true
+        span = t('addresses.use_existing_shipping_address')
 
-      .radio
-        label for="use_existing_address_no"
-          = radio_button_tag 'use_existing_address', 'no'
-          span = t('addresses.use_new_shipping_address')
+    .radio
+      label for="use_existing_address_no"
+        = radio_button_tag 'use_existing_address', 'no'
+        span = t('addresses.use_new_shipping_address')
 
-    #existing_addresses
-      = render layout: 'spree/shared/dropdown', locals: { items: @addresses, selected: @addresses.first, dropdown_class: 'rich-dropdown--outline address-selector' } do |address, index|
-        - unless index.nil?
-          .hide = form.radio_button :ship_address_id, address.id, checked: (address.same_as?(@order.ship_address)), class: 'existing-address-radio'
+  #existing_addresses
+    = render layout: 'spree/shared/dropdown', locals: { items: @addresses, selected: @addresses.first, dropdown_class: 'rich-dropdown--outline address-selector' } do |address, index|
+      - unless index.nil?
+        .hide = form.radio_button :ship_address_id, address.id, checked: (address.same_as?(@order.ship_address)), class: 'existing-address-radio'
 
-        = label_tag "order_ship_address_#{address.id}"
-          span = address.full_address
+      = label_tag "order_ship_address_#{address.id}"
+        span = address.full_address
 
-  = hidden_field_tag 'order[ship_address_attributes][id]', @order.ship_address_id
+= hidden_field_tag 'order[ship_address_attributes][id]', @order.ship_address_id
 
-  #new-address-form
-    = fields_for 'order[ship_address_attributes]', @new_address do |address_form|
-      = render partial: 'spree/checkout/address_form', locals: { form: address_form, address_type: 'shipping', address: @new_address }
+#new-address-form
+  = fields_for 'order[ship_address_attributes]', @new_address do |address_form|
+    = render partial: 'spree/checkout/address_form', locals: { form: address_form, address_type: 'shipping', address: @new_address }

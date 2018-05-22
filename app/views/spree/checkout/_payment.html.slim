@@ -1,31 +1,30 @@
 ruby:
   payment_method = @order.available_payment_methods.first
 
-#checkout_form_payment.checkout-form-payment
-  / only stripe support
-  = hidden_field_tag "order[payments_attributes][][payment_method_id]", payment_method.id
+/ only stripe support
+= hidden_field_tag "order[payments_attributes][][payment_method_id]", payment_method.id
 
-  h4.upcase.text-color = Spree.t(:payment_methods)
+h4.upcase.text-color = Spree.t(:payment_methods)
 
-  - if @payment_sources.present?
-    .card-options
-      .radio
-        label for="use_existing_card_yes"
-          = radio_button_tag 'use_existing_card', 'yes', true
-          span = Spree.t(:use_existing_cc)
-      .radio
-        label for="use_existing_card_no"
-          = radio_button_tag 'use_existing_card', 'no'
-          span = Spree.t(:use_new_cc_or_payment_method)
+- if @payment_sources.present?
+  .card-options
+    .radio
+      label for="use_existing_card_yes"
+        = radio_button_tag 'use_existing_card', 'yes', true
+        span = Spree.t(:use_existing_cc)
+    .radio
+      label for="use_existing_card_no"
+        = radio_button_tag 'use_existing_card', 'no'
+        span = Spree.t(:use_new_cc_or_payment_method)
 
-    #existing_cards
-      = render layout: 'spree/shared/dropdown', locals: { items: @payment_sources, selected: @payment_sources.first, dropdown_class: 'rich-dropdown--outline credit-cards-selector' } do |card, index|
-        - unless index.nil?
-          .hide = radio_button_tag "order[existing_card]", card.id, card[:selected], { class: "existing-cc-radio" }
+  #existing_cards
+    = render layout: 'spree/shared/dropdown', locals: { items: @payment_sources, selected: @payment_sources.first, dropdown_class: 'rich-dropdown--outline credit-cards-selector' } do |card, index|
+      - unless index.nil?
+        .hide = radio_button_tag "order[existing_card]", card.id, card[:selected], { class: "existing-cc-radio" }
 
-        = label_tag "order_existing_card_#{card.id}"
-          = image_tag("credit_cards/icons/#{card.cc_type}.svg")
-          span = payment_method_dropdown_item(card)
+      = label_tag "order_existing_card_#{card.id}"
+        = image_tag("credit_cards/icons/#{card.cc_type}.svg")
+        span = payment_method_dropdown_item(card)
 
-  #payment-methods
-    = render partial: "spree/checkout/payment/stripe_new", locals: { payment_method: payment_method }
+#payment-methods
+  = render partial: "spree/checkout/payment/stripe_new", locals: { payment_method: payment_method }

@@ -1,7 +1,7 @@
 - @body_id = 'checkout-page'
 
 .row
-  .col-md-offset-2.col-md-5.checkout-form
+  .col-lg-offset-1.col-lg-6.col-md-7.col-sm-12.checkout-form
     .panel.no-border
       .panel-body
         = render partial: 'spree/shared/error_messages', locals: { target: @order }
@@ -9,20 +9,24 @@
         = form_for @order, url: update_checkout_path(@order.state) do |form|
           = form.hidden_field :state_lock_version
 
-          = render 'payment', form: form
-          = render 'address', form: form
+          section.checkout-form-payment#checkout_form_payment
+            = render 'payment', form: form
+
+          section.checkout-form-address#checkout_form_address
+            = render 'address', form: form
+
+          section.review-totals.visible-xs.visible-sm
+            = render partial: 'summary', locals: { order: @order, title: :review_submit }
 
           .form-buttons
             = submit_tag t('forms.checkout.submit_your_order'), class: 'btn btn-block btn-primary'
-
-          br
 
           p.text-small.text-muted == t('payment_methods.stripe_agreement')
 
           .text-center
             = image_tag 'icons/stripe.svg', style: 'width:120px'
 
-  .col-md-3.checkout-form-summary
+  .col-lg-4.col-md-5.hidden-xs.hidden-sm.checkout-form-summary
     .panel.no-border
       .panel-body
         = render partial: 'summary', locals: { order: @order }

@@ -1,5 +1,6 @@
 en:
   forms:
+    leaving: You have unsaved changes, are you sure you want to discard them?
     users:
       edit:
         update_info: Update profile
