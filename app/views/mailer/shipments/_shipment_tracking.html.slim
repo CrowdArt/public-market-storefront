@@ -1,10 +1,6 @@
-- if shipment.tracking_url
-  table.button
-    tr
-      td
-        table
-          tr
-            td
-              = link_to(Spree.t('emails.order_shipped.track_package'), shipment.tracking_url, class: 'btn')
-- elsif shipment.tracking
-  p #{Spree.t(:tracking_number)}: #{shipment.tracking}
+- if shipment.tracking
+  p.text-right.text-muted style='font-size:14px;margin:0' == t('emails.order_shipped.track_package', vendor_name: shipment.stock_location.vendor.name)
+  p.text-right.text-bold style='font-size:14px'
+    = Spree.t(:tracking_number)
+    ' :
+    = link_to(shipment.tracking, shipment.tracking_url, class: 'text-bold')

@@ -85,7 +85,7 @@ $hr-width: $global-width;
 $hr-border: 1px solid #999;
 $hr-margin: 20px auto 10px auto;
 $anchor-text-decoration: underline;
-$anchor-color: #127DB3;
+$anchor-color: #0C99AE;
 $anchor-color-visited: $anchor-color;
 $anchor-color-hover: darken($primary-color, 10%);
 $anchor-color-active: $anchor-color-hover;
@@ -208,6 +208,7 @@ hr {
   p {
     font-size: 13px;
     color: #999;
+    line-height: 1.9;
   }
 
   .menu {
@@ -221,4 +222,12 @@ p.black {
 
 .text-big {
   font-size: $h3-font-size;
+}
+
+.text-muted {
+  color: #999999;
+}
+
+.text-bold {
+  font-weight: bold;
 }

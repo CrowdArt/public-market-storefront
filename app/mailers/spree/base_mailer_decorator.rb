@@ -1,4 +1,6 @@
 Spree::BaseMailer.class_eval do
+  include ActionView::Helpers::TextHelper
+
   protected
 
   def mail_template(resource, template, opts = {})
@@ -46,7 +48,7 @@ Spree::BaseMailer.class_eval do
 
   def line_items_as_text(items)
     first_item = items[0]
-    line = "#{first_item.quantity}x \"#{first_item.variant.product.name}\""
+    line = "#{first_item.quantity}x \"#{truncate(first_item.variant.product.name, length: 40)}\""
 
     return line if (items_count = items.length) == 1
     more_items_count = items_count - 1

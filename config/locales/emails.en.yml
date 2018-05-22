@@ -1,5 +1,6 @@
 en:
   emails:
+    manage_order: View/Manage Order
     unsubscribe_preferences:
       - engagement
 
@@ -139,14 +140,13 @@ en:
         - order
       subject: "Your order of %{line_items_text} has been shipped | Order #%{order_id}"
       preview: Your order is on its way — Track your package here
-      track_package: Track your package here
+      track_package: "<b>%{vendor_name}</b> invites you to check on the status of your order via the below link:"
       body: |
         <p>Hi %{first_name}</p>
         <p>Your order is on its way!</p>
         %{order_card}
-        <hr>
         %{shipment_tracking}
-      footer: "Problem with your order? <a href='%{support_url}'>Create a ticket</a> or <a href='mailto:contact@publicmarket.io?Subject=[Support]%20Issue%20with%20my%20order%20|%20Order%20#%{order_id}'>Contact us</a>"
+      footer: "Problem with your order? <a href='%{support_url}'>Create a ticket</a>"
 
     order_cancel:
       categories:

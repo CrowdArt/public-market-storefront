@@ -27,6 +27,8 @@ p.text-center
     ' |
 
   a href='%rawPreferences%' = t('emails.unsubscribe.preferences')
+  span<> •
+  a href='mailto:contact@publicmarket.io?Subject=[Support]' = t('emails.contact_us')
   br
   ' This email was sent to
   span style='text-decoration: underline' #{@_message.to.first}

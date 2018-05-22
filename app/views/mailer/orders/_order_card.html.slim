@@ -1,3 +1,5 @@
+- shipment ||= nil
+
 h3 = Spree.t(:order_summary)
 
 = render collection: order.line_items, partial: 'spree/shared/mailer_line_item', as: :line_item
@@ -27,4 +29,17 @@ table.row
         table.row
           tbody
             = render 'spree/order_mailer/total', order: order
+
+        table.row
+          tbody
+            tr
+              th.large-offset-2.large-8.small-12.columns
+                table.button.expanded
+                  tr
+                    td
+                      table
+                        tr
+                          td
+                            a href=order_url(order, host: Spree::Store.current.url) = t('emails.manage_order')
+
 
