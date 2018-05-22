@@ -35,7 +35,7 @@
       .row
         - @variations.each do |variation|
           .col-xs-6.col-sm-4
-            a.variation-link href="/products/#{variation[:slug]}" class=('checked' if @product.slug == variation[:slug])
+            a.variation-link href="/products/#{variation[:slug]}" class=('checked' if variation[:ids].include?(@product.id))
               = variation[:name]
               br
               = Spree::Money.new(variation[:price])

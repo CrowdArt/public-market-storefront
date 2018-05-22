@@ -42,7 +42,11 @@ module Spree
 
           def results(products, _product)
             groups = products.group_by { |p| p['format'] }.map do |k, v|
-              { name: format_text(k), price: min_price(v), slug: v.first['slug'] }
+              {
+                name: format_text(k),
+                price: min_price(v),
+                slug: v.first['slug'],
+                ids: v.map(&:_id).map(&:to_i) }
             end
             groups.length < 2 ? [] : groups
           end
