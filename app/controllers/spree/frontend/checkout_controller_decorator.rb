@@ -18,7 +18,7 @@ Spree::CheckoutController.class_eval do
       @order.temporary_address = !params[:save_user_address]
       unless @order.next
         flash[:error] = @order.errors.full_messages.join("\n")
-        redirect_to(checkout_state_path(@order.state)) && return
+        redirect_to checkout_path && return
       end
 
       if @order.completed?
@@ -29,14 +29,14 @@ Spree::CheckoutController.class_eval do
         redirect_to completion_route
       else
         Tracker.track(mixpanel_user_id, 'order change state', order_id: @order.id, state: @order.state)
-        redirect_to checkout_state_path(@order.state)
+        redirect_to checkout_path
       end
     else
       respond_to do |format|
         format.html { render :edit }
         format.js do
           flash[:error] = @order.errors.full_messages.join("\n")
-          render :update
+          render :update, status: :unprocessable_entity
         end
       end
     end
@@ -46,7 +46,7 @@ Spree::CheckoutController.class_eval do
   protected
 
   def set_addresses
-    return unless params[:order] && params[:state] == 'address'
+    return if params[:order].blank?
 
     # if user uses existing user's shipping address - copy it to order
     # if user creates new address - save it to user's account

@@ -14,14 +14,13 @@ h4.upcase.text-color = Spree.t(:shipping_address)
 
   #existing_addresses style='display:none'
     = render layout: 'spree/shared/dropdown', locals: { items: @addresses, selected: @addresses.first, dropdown_class: 'rich-dropdown--outline address-selector' } do |address, index|
-      - unless index.nil?
-        .hide = form.radio_button :ship_address_id, address.id, checked: (address.same_as?(@order.ship_address)), class: 'existing-address-radio'
+      .hide = form.radio_button :ship_address_id, address.id, checked: (address.same_as?(@order.ship_address) || index.nil?), class: 'existing-address-radio'
 
       = label_tag "order_ship_address_#{address.id}"
         span = address.full_address
 
 = hidden_field_tag 'order[ship_address_attributes][id]', @order.ship_address_id
 
-#new-address-form style='display:none'
+#new-address-form style=('display:none' if @addresses.present?)
   = fields_for 'order[ship_address_attributes]', @new_address do |address_form|
     = render partial: 'spree/checkout/address_form', locals: { form: address_form, address_type: 'shipping', address: @new_address }

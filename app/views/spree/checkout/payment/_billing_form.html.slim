@@ -6,13 +6,13 @@
 
 #payment_billing_address
   .form-group#bfirstname
-    = address_fields.text_field :firstname, class: 'form-control input-lg', placeholder: Spree.t(:first_name)
+    = address_fields.text_field :firstname, class: 'form-control input-lg', placeholder: Spree.t(:first_name), required: true
 
   .form-group#blastname
-    = address_fields.text_field :lastname, class: 'form-control input-lg', placeholder: Spree.t(:last_name)
+    = address_fields.text_field :lastname, class: 'form-control input-lg', placeholder: Spree.t(:last_name), required: true
 
   .form-group#baddress1
-    = address_fields.text_field :address1, class: 'form-control input-lg', placeholder: Spree.t(:address1)
+    = address_fields.text_field :address1, class: 'form-control input-lg', placeholder: Spree.t(:address1), required: true
 
   .form-group#bcountry
     / = address_fields.select :country_id, options_for_select(available_countries.map { |c| [c.name, c.id, { 'data-country-code' => c.iso }]}, @credit_card.address.country_id), {}, { disabled: true, class: 'form-control' }
@@ -20,7 +20,7 @@
     = address_fields.hidden_field :country_id
 
   .form-group.input-with-hint#bcity
-    = address_fields.text_field :city, class: 'form-control input-lg'
+    = address_fields.text_field :city, class: 'form-control input-lg', required: true
     = address_fields.label :city, Spree.t(:city)
 
   .flex
@@ -28,8 +28,8 @@
       = address_fields.select :state_id, options_for_select(country.states.map { |s| [s.name, s.id, { 'data-state-code' => s.abbr }]}, address_fields.object.state_id), {}, { class: 'form-control input-lg' }
 
     .input-with-hint.form-group#bzipcode
-      = address_fields.phone_field :zipcode, class: 'form-control input-lg', inputmode: 'numeric', autocomplete: 'postal-code'
+      = address_fields.phone_field :zipcode, class: 'form-control input-lg', inputmode: 'numeric', autocomplete: 'postal-code', required: true
       = address_fields.label :zipcode, t('forms.address.zip_postal_code')
 
   .form-group#bphone
-    = address_fields.phone_field :phone, class: 'form-control input-lg'
+    = address_fields.phone_field :phone, class: 'form-control input-lg', placeholder: Spree.t(:phone)

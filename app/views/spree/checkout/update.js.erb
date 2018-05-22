@@ -1,4 +1,4 @@
-<%= render partial: 'spree/shared/flash_messages' %>
+<%= render partial: 'spree/shared/flash_messages', locals: { sticky: true } %>
 
 <% if !@order.valid? && %w[address payment].include?(@order.state) %>
   $('input[type="radio"]:checked').click()

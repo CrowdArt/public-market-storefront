@@ -1,13 +1,13 @@
 - address_id = address_type.chars.first
 
 .form-group id="#{address_id}firstname"
-  = form.text_field :firstname, class: 'form-control input-lg', placeholder: Spree.t(:first_name)
+  = form.text_field :firstname, class: 'form-control input-lg', placeholder: Spree.t(:first_name), required: true
 
 .form-group id="#{address_id}lastname"
-  = form.text_field :lastname, class: 'form-control input-lg', placeholder: Spree.t(:last_name)
+  = form.text_field :lastname, class: 'form-control input-lg', placeholder: Spree.t(:last_name), required: true
 
 .form-group id="#{address_id}address1"
-  = form.text_field :address1, class: 'form-control input-lg', placeholder: Spree.t(:address1)
+  = form.text_field :address1, class: 'form-control input-lg', placeholder: Spree.t(:address1), required: true
 
 .form-group id="#{address_id}country"
   / = address_fields.select :country_id, options_for_select(available_countries.map { |c| [c.name, c.id, { 'data-country-code' => c.iso }]}, @credit_card.address.country_id), {}, { disabled: true, class: 'form-control' }
@@ -15,7 +15,7 @@
   = form.hidden_field :country_id
 
 .form-group.input-with-hint id="#{address_id}city"
-  = form.text_field :city, class: 'form-control input-lg'
+  = form.text_field :city, class: 'form-control input-lg', required: true
   = form.label :city, Spree.t(:city)
 
 .flex
@@ -41,7 +41,7 @@
       = form.text_field :state_name, class: 'form-control', required: true
 
   .input-with-hint.form-group id="#{address_id}zipcode"
-    = form.phone_field :zipcode, class: 'form-control input-lg', inputmode: 'numeric', autocomplete: 'postal-code'
+    = form.phone_field :zipcode, class: 'form-control input-lg', inputmode: 'numeric', autocomplete: 'postal-code', required: true
     = form.label :zipcode, t('forms.address.zip_postal_code')
 
 .form-group id="#{address_id}phone"

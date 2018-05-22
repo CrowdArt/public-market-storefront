@@ -4,7 +4,7 @@
       .panel-body
         = render partial: 'spree/shared/error_messages', locals: { target: @order }
 
-        = form_for @order, url: update_checkout_path(@order.state) do |form|
+        = form_for @order, url: update_checkout_path(@order.state), remote: true, html: { id: 'checkout-form-confirm' } do |form|
           = form.hidden_field :state_lock_version
 
           section.checkout-form-payment#checkout_form_payment

@@ -26,5 +26,5 @@ h4.upcase.text-color = Spree.t(:payment_methods)
         = image_tag("credit_cards/icons/#{card.cc_type}.svg")
         span = payment_method_dropdown_item(card)
 
-#payment-methods style='display:none'
+#payment-methods style=('display:none' if @payment_sources.present?)
   = render partial: "spree/checkout/payment/stripe_new", locals: { payment_method: payment_method }

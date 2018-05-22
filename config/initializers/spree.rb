@@ -14,7 +14,6 @@ Spree.config do |config|
   config.product_metadata_provider = 'Spree::Inventory::Providers::BowkerMetadataProvider'
   config.allow_guest_checkout = false
   config.address_requires_phone = false
-  config.always_include_confirm_step = true
 end
 
 Rails.application.config.after_initialize do |app|
