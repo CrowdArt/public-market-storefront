@@ -2,6 +2,7 @@ en:
   orders:
     remove_item: Remove
     ptrn_rewards: PTRN Rewards
+    shipping: Shipping
     checkout: Proceed to Checkout
     buyer_rewards: Buyer Rewards
     buyer_rewards_desc: Earn "cashback" blockchain-based tokens on each purchase!

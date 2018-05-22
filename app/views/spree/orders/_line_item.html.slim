@@ -17,8 +17,7 @@
               = Spree.t(:out_of_stock)
         .col-xs-12.col-sm-2
           span.small-xs= line_item.single_money.to_html
-          br
-          small= t('products.rewards', rewards: variant.product.estimated_ptrn)
+          .text-rewards= t('products.rewards', rewards: variant.product.estimated_ptrn)
         .col-xs-12.col-sm-2
           .row.condensed.flex.align-center
             .col-xs-6.col-sm-8

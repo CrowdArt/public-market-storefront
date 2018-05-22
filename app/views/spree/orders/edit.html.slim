@@ -22,6 +22,9 @@
             span.upcase = t('orders.ptrn_rewards')
             span.pull-right = @order.ptrn_rewards
           p
+            span.upcase = t('orders.shipping')
+            span.pull-right FREE
+          p
             strong.upcase = Spree.t(:total)
             strong.pull-right = @order.display_total
           .form-group
