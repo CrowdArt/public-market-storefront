@@ -69,12 +69,12 @@ Spree::Product.class_eval do
     end
   end
 
-  def self.staff_picks # rubocop:disable Metrics/MethodLength
+  def self.staff_picks(limit=3) # rubocop:disable Metrics/MethodLength
     Spree::Product.search(
       '*',
       includes: [master: :prices],
       fields: %i[boost_factor],
-      limit: 3,
+      limit: limit,
       order: {boost_factor: {order: :desc, unmapped_type: :date}},
       where: search_where.merge({
         boost_factor: {gt: 1}
