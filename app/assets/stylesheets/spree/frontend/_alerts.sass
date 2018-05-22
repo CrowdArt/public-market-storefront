@@ -13,14 +13,20 @@
 .alert
   &.alert-top
     margin-bottom: 0
+
     &-sticky
       position: absolute
       width: 100%
       z-index: 1
+      // fix alerts under navbar on small screens
+      @media (max-width: $screen-sm-max)
+        position: fixed
 
       &.affix
         position: fixed
-        top: 0
+        // fix top position on large screens
+        @media (min-width: $screen-md)
+          top: 0
 
       &.fade
         opacity: 1 // override default bootstrap fade effect

@@ -43,10 +43,6 @@ ruby:
   javascript:
     Spree.fetch_cart()
 
-    $(function() {
-      window.pm.initNavHide()
-    })
-
     // close navbar on turbolinks visit
     $(document).on('turbolinks:before-visit', function() {
       $('#mobile-nav-toggle').prop('checked', false)
