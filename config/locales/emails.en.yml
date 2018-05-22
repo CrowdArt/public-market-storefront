@@ -1,6 +1,7 @@
 en:
   emails:
     manage_order: View/Manage Order
+    contact_us: Contact Us
     unsubscribe_preferences:
       - engagement
 
