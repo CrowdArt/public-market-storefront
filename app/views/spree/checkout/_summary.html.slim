@@ -1,7 +1,7 @@
 - title ||= :order_summary
 
-.flex.between.align-center
-  h4.no-margin-top.upcase.text-color = Spree.t(title)
+.flex.between.align-center.checkout-form-summary--title
+  h4.no-margin.upcase.text-color = Spree.t(title)
   = link_to Spree.t(:view_cart), cart_path, data: { confirm: t('forms.leaving') }
 
 - rewards = @order.ptrn_rewards
@@ -26,7 +26,7 @@ p.flex.between.upcase
   span data-currency=Money::Currency.find(order.currency).symbol thousands-separator=shipping_total.thousands_separator decimal-mark=shipping_total.decimal_mark
     == shipping_total
 
-p.flex.between.upcase
+.flex.between.upcase
   strong = Spree.t(:total)
   strong#summary-order-total data-currency=Money::Currency.find(order.currency).symbol
     = order.display_total.to_html

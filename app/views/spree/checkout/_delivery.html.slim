@@ -1,0 +1,11 @@
+h4.upcase.text-color = Spree.t(:delivery)
+
+hr.no-margin
+
+- shipping_method = Spree::ShippingMethod.first
+
+.radio
+  label.flex.between for="order_shipments_attributes_0_selected_shipping_rate"
+    = radio_button_tag 'order_shipments_attributes_0_selected_shipping_rate', 'yes', true
+    span = shipping_method.name
+    strong FREE

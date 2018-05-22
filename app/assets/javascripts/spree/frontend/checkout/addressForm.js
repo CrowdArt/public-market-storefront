@@ -18,6 +18,6 @@ $(document).on('turbolinks:load', function() {
       $('#existing_addresses').hide()
     })
 
-    $('input[type="radio"]:checked').click()
+    $('#checkout_form_address input[type="radio"]:checked').click()
   }
 })

@@ -5,14 +5,17 @@
       max-width: 35px
 
 .checkout-form
-  section
+  section, &--stripe-agreement
     margin-bottom: 30px
 
   h4, .card-options, .address-options, .form-buttons
-    margin-bottom: 15px
+    margin: 0 0 15px
 
   .panel-body
-    padding: 40px 45px
+    padding: 30px 15px
+
+    @media (min-width: $screen-xs)
+      padding: 40px 45px
 
   &--state-input
     flex-basis: 60%
@@ -21,12 +24,12 @@
   .panel-body
     padding: 40px 30px
 
+  &--title
+    margin-bottom: 15px
+
 .credit-cards-selector, .address-selector
   button
     padding: 15px
-
-    label, span
-        font-weight: bold
 
   .dropdown-menu
     border-top: none
@@ -35,3 +38,7 @@
 
     .dropdown-item label
       padding: 15px
+
+.credit-cards-selector button
+  label, span
+    font-weight: bold

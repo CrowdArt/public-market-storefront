@@ -43,5 +43,5 @@ en:
     successfully_created: Address has been successfully created
     successfully_removed: Address has been successfully removed
     delete_prompt: Are you sure you want to delete this shipping address?
-    use_new_shipping_address: Use a new address
+    use_new_shipping_address: Use a new shipping address
     use_existing_shipping_address: Ship to existing address

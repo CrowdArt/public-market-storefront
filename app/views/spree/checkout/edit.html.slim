@@ -1,5 +1,3 @@
-- @body_id = 'checkout-page'
-
 .row
   .col-lg-offset-1.col-lg-6.col-md-7.col-sm-12.checkout-form
     .panel.no-border
@@ -15,13 +13,16 @@
           section.checkout-form-address#checkout_form_address
             = render 'address', form: form
 
+          section.checkout-form-delivery
+            = render 'delivery', form: form
+
           section.review-totals.visible-xs.visible-sm
             = render partial: 'summary', locals: { order: @order, title: :review_submit }
 
           .form-buttons
             = submit_tag t('forms.checkout.submit_your_order'), class: 'btn btn-block btn-primary'
 
-          p.text-small.text-muted == t('payment_methods.stripe_agreement')
+          .text-small.text-muted.checkout-form--stripe-agreement == t('payment_methods.stripe_agreement')
 
           .text-center
             = image_tag 'icons/stripe.svg', style: 'width:120px'
@@ -30,7 +31,3 @@
     .panel.no-border
       .panel-body
         = render partial: 'summary', locals: { order: @order }
-
-javascript:
-  Spree.current_order_id = "#{@order.number}"
-  Spree.current_order_token = "#{@order.guest_token}"

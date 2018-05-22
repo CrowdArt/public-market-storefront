@@ -17,7 +17,7 @@ h4.upcase.text-color = Spree.t(:payment_methods)
         = radio_button_tag 'use_existing_card', 'no'
         span = Spree.t(:use_new_cc_or_payment_method)
 
-  #existing_cards
+  #existing_cards style='display:none'
     = render layout: 'spree/shared/dropdown', locals: { items: @payment_sources, selected: @payment_sources.first, dropdown_class: 'rich-dropdown--outline credit-cards-selector' } do |card, index|
       - unless index.nil?
         .hide = radio_button_tag "order[existing_card]", card.id, card[:selected], { class: "existing-cc-radio" }
@@ -26,5 +26,5 @@ h4.upcase.text-color = Spree.t(:payment_methods)
         = image_tag("credit_cards/icons/#{card.cc_type}.svg")
         span = payment_method_dropdown_item(card)
 
-#payment-methods
+#payment-methods style='display:none'
   = render partial: "spree/checkout/payment/stripe_new", locals: { payment_method: payment_method }

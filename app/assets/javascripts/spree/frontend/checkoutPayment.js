@@ -19,5 +19,7 @@ $(document).on('turbolinks:load', function() {
       $('#existing_cards').hide()
       $('#payment-methods').find('input, #bstate select').prop('disabled', false)
     })
+
+    $('#checkout_form_payment input[type="radio"]:checked').click()
   }
 })

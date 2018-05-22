@@ -1,8 +1,8 @@
-- existing_shipping_addresses ||= compared_user_addresses(@credit_card.address)
-- custom_address ||= existing_shipping_addresses.all? { |a| !a[1] }
+/ - existing_shipping_addresses ||= compared_user_addresses(@credit_card.address)
+/ - custom_address ||= existing_shipping_addresses.all? { |a| !a[1] }
 
-- if existing_shipping_addresses.present?
-  = render partial: 'spree/credit_cards/address/use_shipping', locals: { address_prefix: address_prefix, param_prefix: param_prefix, card: @credit_card, existing_shipping_addresses: existing_shipping_addresses, custom_address: custom_address }
+/ - if existing_shipping_addresses.present?
+/   = render partial: 'spree/credit_cards/address/use_shipping', locals: { address_prefix: address_prefix, param_prefix: param_prefix, card: @credit_card, existing_shipping_addresses: existing_shipping_addresses, custom_address: custom_address }
 
 #payment_billing_address
   .form-group#bfirstname
