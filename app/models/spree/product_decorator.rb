@@ -75,9 +75,7 @@ Spree::Product.class_eval do
       includes: [master: :prices],
       fields: %i[boost_factor],
       limit: 3,
-      # Ordering is failing in tests when there are is no result set.
-      # TODO: Stub products or upgrade spree searchkik to support ignore_unmapped
-      # order: {boost_factor: {order: 'desc', ignore_unmapped: true}},
+      order: {boost_factor: {order: :desc, unmapped_type: :date}},
       where: search_where.merge({
         boost_factor: {gt: 1}
       })
