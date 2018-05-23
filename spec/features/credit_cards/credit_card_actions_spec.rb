@@ -120,7 +120,6 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
       end
 
       before do
-        Capybara.default_max_wait_time = 10
         setup_stripe_watcher
 
         fill_in 'card_code', with: '911'
@@ -153,7 +152,6 @@ RSpec.describe 'credit card actions', type: :feature, js: true do
 
       visit '/account/payment/edit'
 
-      Capybara.default_max_wait_time = 10
       setup_stripe_watcher
 
       native_fill_field 'card_number', card_number

@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', function() {
   if ($('#checkout_form_address #existing_addresses').length) {
     $('#use_existing_address_yes').click(function() {
       $("#new-address-form").hide();
-      $("#new-address-form").find('input, select').prop('disabled', true)
+      $("#new-address-form").find('input, #bstate select').prop('disabled', true)
 
       $('.existing-address-radio').prop('disabled', false)
 
@@ -11,7 +11,7 @@ $(document).on('turbolinks:load', function() {
 
     $('#use_existing_address_no').click(function() {
       $("#new-address-form").show();
-      $("#new-address-form").find('input, select').prop('disabled', false)
+      $("#new-address-form").find('input, #bstate select').prop('disabled', false)
 
       $('.existing-address-radio').prop('disabled', true)
 

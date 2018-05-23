@@ -1,51 +1,36 @@
-- address_id = address_type.chars.first
+/ - existing_shipping_addresses ||= compared_user_addresses(@credit_card.address)
+/ - custom_address ||= existing_shipping_addresses.all? { |a| !a[1] }
 
-.form-group id="#{address_id}firstname"
+/ - if existing_shipping_addresses.present?
+/   = render partial: 'spree/credit_cards/address/use_shipping', locals: { address_prefix: address_prefix, param_prefix: param_prefix, card: @credit_card, existing_shipping_addresses: existing_shipping_addresses, custom_address: custom_address }
+
+- country = form.object.country
+
+.form-group id="#{address_type}firstname"
   = form.text_field :firstname, class: 'form-control input-lg', placeholder: Spree.t(:first_name), required: true
 
-.form-group id="#{address_id}lastname"
+.form-group id="#{address_type}lastname"
   = form.text_field :lastname, class: 'form-control input-lg', placeholder: Spree.t(:last_name), required: true
 
-.form-group id="#{address_id}address1"
+.form-group id="#{address_type}address1"
   = form.text_field :address1, class: 'form-control input-lg', placeholder: Spree.t(:address1), required: true
 
-.form-group.custom-select-wrapper id="#{address_id}country"
+.form-group.custom-select-wrapper id="#{address_type}country"
   / = address_fields.select :country_id, options_for_select(available_countries.map { |c| [c.name, c.id, { 'data-country-code' => c.iso }]}, @credit_card.address.country_id), {}, { disabled: true, class: 'form-control' }
-  = form.collection_select :country_id, available_countries, :id, :name, {}, { class: 'form-control input-lg' }
+  = form.select :country_id, options_for_select([[country.name, country.id, { 'data-country-code' => country.iso }]], country.id), {}, { disabled: true, class: 'form-control input-lg' }
   = form.hidden_field :country_id
 
-.form-group.input-with-hint id="#{address_id}city"
+.form-group.input-with-hint id="#{address_type}city"
   = form.text_field :city, class: 'form-control input-lg', required: true
   = form.label :city, Spree.t(:city)
 
-.flex
-  ruby:
-    have_states = !address.country.states.empty?
-    state_elements = [
-      form.collection_select(:state_id, address.country.states,
-                              :id, :name,
-                              { include_blank: true },
-                              {
-                                class: have_states ? 'form-control input-lg' : 'form-control hidden',
-                                required: have_states,
-                                disabled: !have_states
-                              }
-                            ) +
-      form.text_field(:state_name,
-                              class: !have_states ? 'form-control input-lg' : 'form-control hidden',
-                              required: !have_states,
-                              disabled: have_states)
-      ].join.gsub('"', "'").gsub("\n", "")
+.flex.wrap-xs
+  .form-group.custom-select-wrapper.no-margin-text-right-xs.checkout-form--state-input.flex-grow-1 id="#{address_type}state"
+    = form.select :state_id, options_for_select(country.states.map { |s| [s.name, s.id, { 'data-state-code' => s.abbr }]}, form.object.state_id), {}, { class: 'form-control input-lg' }
 
-  .form-group.custom-select-wrapper.margin-text-right.checkout-form--state-input id="#{address_id}state"
-    == state_elements
-
-    noscript
-      = form.text_field :state_name, class: 'form-control', required: true
-
-  .input-with-hint.form-group id="#{address_id}zipcode"
+  .input-with-hint.form-group.flex-grow-1 id="#{address_type}zipcode"
     = form.phone_field :zipcode, class: 'form-control input-lg', inputmode: 'numeric', autocomplete: 'postal-code', required: true
     = form.label :zipcode, t('forms.address.zip_postal_code')
 
-.form-group id="#{address_id}phone"
+.form-group id="#{address_type}phone"
   = form.phone_field :phone, class: 'form-control input-lg', placeholder: Spree.t(:phone)

@@ -28,5 +28,5 @@ ruby:
   h4.upcase.text-color = Spree.t(:billing_address)
 
   = fields_for "#{param_prefix}[address_attributes]", @credit_card.address do |address_fields|
-    #checkout_form_address.inner
-      = render partial: 'spree/checkout/payment/billing_form', locals: { address_prefix: "payment_source_#{payment_method.id}", param_prefix: param_prefix, address_fields: address_fields, country: @credit_card.address.country }
+    #payment_billing_address
+      = render partial: 'spree/checkout/address_form', locals: { form: address_fields, address_type: 'b' }

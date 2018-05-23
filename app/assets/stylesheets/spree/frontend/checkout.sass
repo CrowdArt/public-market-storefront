@@ -18,7 +18,10 @@
       padding: 40px 45px
 
   &--state-input
-    flex-basis: 60%
+    width: 60%
+
+    @media (max-width: $screen-xs-max)
+      width: 100%
 
 .checkout-form-summary
   .panel-body

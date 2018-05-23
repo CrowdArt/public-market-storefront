@@ -1,6 +1,5 @@
 shared_context 'with filled stripe credit card' do
   before do
-    Capybara.default_max_wait_time = 10
     setup_stripe_watcher
 
     fill_in 'name_on_card_1', with: 'First name Last name'
@@ -18,7 +17,6 @@ shared_context 'with filled stripe credit card' do
     fill_in 'payment_source_1_address_attributes_lastname', with: 'Last name'
     fill_in 'payment_source_1_address_attributes_address1', with: 'Alaska'
     fill_in 'payment_source_1_address_attributes_city', with: 'Wellington'
-    select 'Alabama', from: 'payment_source_1_address_attributes_state_id'
     fill_in 'payment_source_1_address_attributes_zipcode', with: '94001'
   end
 end

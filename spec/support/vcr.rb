@@ -6,8 +6,7 @@ VCR.configure do |c|
   c.ignore_hosts '127.0.0.1', '0.0.0.0', 'localhost', 'elasticsearch'
   c.configure_rspec_metadata!
   c.default_cassette_options = {
-    allow_playback_repeats: true,
-    record: :new_episodes
+    allow_playback_repeats: true
   }
 
   c.filter_sensitive_data('<BOWKER_AUTH>') { Base64.encode64(Settings.bowker_user + ':' + Settings.bowker_password).strip } if Settings.bowker_user

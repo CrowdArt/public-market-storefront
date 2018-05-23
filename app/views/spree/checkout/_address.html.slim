@@ -24,4 +24,4 @@ h4.upcase.text-color = Spree.t(:shipping_address)
 
 #new-address-form style=('display:none' if @addresses.present?)
   = fields_for 'order[ship_address_attributes]', @new_address do |address_form|
-    = render partial: 'spree/checkout/address_form', locals: { form: address_form, address_type: 'shipping', address: @new_address }
+    = render partial: 'spree/checkout/address_form', locals: { form: address_form, address_type: 's' }
