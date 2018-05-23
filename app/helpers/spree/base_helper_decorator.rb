@@ -1,11 +1,5 @@
 module Spree
   module BaseHelper
-    def variant_options(variant, _options = {})
-      variant.option_values
-             .includes(:option_type)
-             .find_by(spree_option_types: { name: :condition })&.presentation
-    end
-
     def meta_data_tags
       meta = meta_data.map do |name, content|
         tag('meta', name: name, content: content)

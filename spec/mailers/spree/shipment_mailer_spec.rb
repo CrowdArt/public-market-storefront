@@ -1,5 +1,5 @@
 RSpec.describe Spree::ShipmentMailer, type: :mailer do
-  let(:shipment) { create(:shipment) }
+  let(:shipment) { create(:shipment, order: create(:order_with_vendor_items)) }
 
   before do
     stub_current_store
