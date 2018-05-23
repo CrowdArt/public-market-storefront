@@ -13,13 +13,13 @@ en:
     attributes:
       spree/credit_card:
         card_name: Card Nickname
-      spree/credit_card/address:
-        firstname: First Name
-        lastname: Last Name
-        address1: Address
-        address2: Secondary Address
-        city: City
-        state: State
-        zipcode: Zipcode
+        address:
+          firstname: First Name
+          lastname: Last Name
+          address1: Address
+          address2: Secondary Address
+          city: City
+          state: State
+          zipcode: Zipcode
       spree/address:
         address2: Address 2 (Optional)

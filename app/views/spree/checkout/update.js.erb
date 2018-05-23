@@ -1,7 +1,6 @@
 <%= render partial: 'spree/shared/flash_messages', locals: { sticky: true } %>
 
-<% if !@order.valid? && %w[address payment].include?(@order.state) %>
+<% unless @order.valid? %>
   $('input[type="radio"]:checked').click()
   $('#order_state_lock_version').val(<%= @order.state_lock_version %>)
-  $('#card_number, #card_expiry, #card_code').prop("disabled", false)
 <% end %>

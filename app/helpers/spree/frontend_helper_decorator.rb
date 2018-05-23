@@ -71,7 +71,7 @@ module Spree
       end
     end
 
-    def flash_messages(opts = {})
+    def flash_messages(opts = {}) # rubocop:disable Metrics/AbcSize
       ignore_types = ['order_completed'].concat(Array(opts[:ignore_types]).map(&:to_s) || [])
 
       close_button = button_tag('class' => 'close', 'data-dismiss' => 'alert', 'aria-label' => Spree.t(:close)) do
@@ -80,7 +80,8 @@ module Spree
 
       flash.each do |msg_type, text|
         unless ignore_types.include?(msg_type)
-          concat(content_tag(:div, (close_button + text), class: "alert alert-dismissible alert-top alert-#{msg_type}"))
+          alert_class = "alert alert-dismissible alert-top alert-#{msg_type}"
+          concat(content_tag(:div, content_tag(:div, close_button + text, class: 'container'), class: alert_class))
         end
       end
       nil

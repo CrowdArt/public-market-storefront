@@ -25,6 +25,7 @@ RSpec/FilePath:
 
 RSpec/ExpectInHook:
   Exclude:
+    - 'contexts/**/*'
     - 'features/**/*'
 
 Lint/AmbiguousBlockAssociation:

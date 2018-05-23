@@ -1,10 +1,11 @@
 Spree::Order.class_eval do
-  checkout_flow do
-    go_to_state :payment
-    go_to_state :complete
-  end
+  Spree::Order.state_machine.before_transition to: :confirm, do: :copy_billing_from_card
 
-  Spree::Order.state_machine.before_transition to: :complete, do: :copy_billing_from_card
+  def transition_to_complete!
+    ApplicationRecord.transaction do
+      while state != 'complete' && self.next; end
+    end
+  end
 
   def persist_user_address!
     return if temporary_address || !user || !user.respond_to?(:persist_order_address)

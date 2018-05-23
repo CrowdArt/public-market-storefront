@@ -48,7 +48,7 @@ window.pm.initStripeElementsForm = function(key, formID, paramPrefix) {
   }
 
   form.on('ajax:beforeSend', function(event, xhr, status) {
-    if ($(cardWrapperId).is(':visible')) return true
+    if (!$(cardWrapperId).is(':visible')) return true
     if (!tokenRetrieved) createStripeToken(event)
     return tokenRetrieved
   }).on('ajax:error', function(e) {

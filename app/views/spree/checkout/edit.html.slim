@@ -2,8 +2,6 @@
   .col-lg-offset-1.col-lg-6.col-md-7.col-sm-12.checkout-form
     .panel.no-border
       .panel-body
-        = render partial: 'spree/shared/error_messages', locals: { target: @order }
-
         = form_for @order, url: update_checkout_path(@order.state), remote: true, html: { id: 'checkout-form-confirm' } do |form|
           = form.hidden_field :state_lock_version
 
@@ -20,7 +18,7 @@
             = render partial: 'summary', locals: { order: @order, title: :review_submit }
 
           .form-buttons
-            = submit_tag t('forms.checkout.submit_your_order'), class: 'btn btn-block btn-primary'
+            = submit_tag t('forms.checkout.submit_your_order'), class: 'btn btn-block btn-primary', data: { 'disable-with': 'Processing order...' }
 
           .text-small.text-muted.checkout-form--stripe-agreement == t('payment_methods.stripe_agreement')
 

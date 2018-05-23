@@ -16,8 +16,11 @@ Spree::CheckoutController.class_eval do
   def update
     if @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
       @order.temporary_address = !params[:save_user_address]
-      unless @order.next
-        flash[:error] = @order.errors.full_messages.join("\n")
+
+      @order.transition_to_complete!
+
+      if (errors = @order.errors).any?
+        flash[:error] = errors.full_messages.join("\n")
         redirect_to checkout_path && return
       end
 
@@ -63,8 +66,14 @@ Spree::CheckoutController.class_eval do
 
   private
 
+  def skip_state_validation?
+    false
+  end
+
   def before_address
-    @addresses = spree_current_user&.addresses
+    return unless spree_user_signed_in?
+
+    @addresses = spree_current_user.addresses.order(:id)
     @new_address =
       if @addresses.present? || @order.ship_address.blank?
         Spree::Address.build_default
@@ -82,7 +91,7 @@ Spree::CheckoutController.class_eval do
     #   end
     # end
 
-    @payment_sources = try_spree_current_user.credit_cards if try_spree_current_user&.respond_to?(:credit_cards)
+    @payment_sources = try_spree_current_user.credit_cards.order(:id) if try_spree_current_user&.respond_to?(:credit_cards)
     @credit_card = Spree::CreditCard.new
     @credit_card.address = Spree::Address.build_default
   end

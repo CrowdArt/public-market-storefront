@@ -20,11 +20,11 @@ h4.upcase.text-color = Spree.t(:payment_methods)
   #existing_cards style='display:none'
     = render layout: 'spree/shared/dropdown', locals: { items: @payment_sources, selected: @payment_sources.first, dropdown_class: 'rich-dropdown--outline credit-cards-selector' } do |card, index|
       - unless index.nil?
-        .hide = radio_button_tag "order[existing_card]", card.id, card[:selected], { class: "existing-cc-radio" }
+        .hide = radio_button_tag "order[existing_card]", card.id, card == @payment_sources.first, { class: "existing-cc-radio" }
 
       = label_tag "order_existing_card_#{card.id}"
         = image_tag("credit_cards/icons/#{card.cc_type}.svg")
         span = payment_method_dropdown_item(card)
 
 #payment-methods style=('display:none' if @payment_sources.present?)
-  = render partial: "spree/checkout/payment/stripe_new", locals: { payment_method: payment_method }
+  = render partial: "spree/checkout/payment/stripe_form", locals: { payment_method: payment_method }
