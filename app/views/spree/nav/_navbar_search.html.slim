@@ -49,13 +49,15 @@ ruby:
       e.preventDefault()
     })
 
-    $('#taxon-dropdown li.disabled').popover({
-      container: 'body',
-      content: "#{t('menus.search.disabled')}",
-      title: "#{t('menus.search.coming_soon')}",
-      placement: 'right',
-      trigger: 'hover'
-    })
+    if (!isMobile()) {
+      $('#taxon-dropdown li.disabled').popover({
+        container: 'body',
+        content: "#{t('menus.search.disabled')}",
+        title: "#{t('menus.search.coming_soon')}",
+        placement: 'right',
+        trigger: 'hover'
+      })
+    }
 
     $('#navbar-keyword-form #keywords').on('change, keyup', function() {
       $(this).parents('form').toggleClass('filled', $(this).val().trim() !== '')

@@ -28,7 +28,7 @@ ruby:
 
         / PART WITH NO CACHE BECAUSE OF KEYWORD PARAMS
         .flex.flex-1.nowrap.end.align-center
-          = render partial: 'spree/nav/search', locals: { taxon: taxon, root_taxons: root_taxons, enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
+          = render partial: 'spree/nav/navbar_search', locals: { taxon: taxon, root_taxons: root_taxons, enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
 
           - cache([:v3, :navbar_top_right, spree_current_user])
             = render partial: 'spree/nav/navbar_top_right'
