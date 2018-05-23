@@ -23,16 +23,17 @@
     border: 1px solid $input-border
     &:after
       content: ''
-      display: inline-block
+      position: absolute
       width: 0
       height: 0
-      margin-left: 2px
-      vertical-align: middle
+      top: 0
+      bottom: 0
+      right: 16px
+      margin: auto 0
       border-top: 4px dashed
       border-top: 4px solid \9
       border-right: 4px solid transparent
       border-left: 4px solid transparent
-      float: right
 
   label
     font-weight: normal
@@ -58,6 +59,7 @@
         display: block
         font-weight: normal
         padding: 3px 20px
+        transition: background-color .2s, color .2s
         &:hover, &:focus
           color: $dropdown-link-hover-color
           background-color: $dropdown-link-hover-bg
@@ -102,3 +104,28 @@ input[type="radio"]
       & + label
         top: 1em
         left: 21px
+
+.custom-select-wrapper
+  position: relative
+
+  select
+    -webkit-appearance: none
+    -moz-appearance: none
+    appearance: none
+
+    &::-ms-expand
+      display: none
+
+  &:after
+    content: ''
+    width: 0
+    height: 0
+    position: absolute
+    pointer-events: none
+    border-left: 5px solid transparent
+    border-right: 5px solid transparent
+    top: 0
+    bottom: 0
+    margin: auto 0
+    right: .75em
+    border-top: 8px solid $brand-black

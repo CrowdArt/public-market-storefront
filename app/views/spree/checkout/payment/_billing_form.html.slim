@@ -14,7 +14,7 @@
   .form-group#baddress1
     = address_fields.text_field :address1, class: 'form-control input-lg', placeholder: Spree.t(:address1), required: true
 
-  .form-group#bcountry
+  .form-group.custom-select-wrapper#bcountry
     / = address_fields.select :country_id, options_for_select(available_countries.map { |c| [c.name, c.id, { 'data-country-code' => c.iso }]}, @credit_card.address.country_id), {}, { disabled: true, class: 'form-control' }
     = address_fields.select :country_id, options_for_select([[country.name, country.id, { 'data-country-code' => country.iso }]], country.id), {}, { disabled: true, class: 'form-control input-lg' }
     = address_fields.hidden_field :country_id
@@ -24,7 +24,7 @@
     = address_fields.label :city, Spree.t(:city)
 
   .flex
-    .form-group.margin-text-right.checkout-form--state-input#bstate
+    .form-group.margin-text-right.checkout-form--state-input.custom-select-wrapper#bstate
       = address_fields.select :state_id, options_for_select(country.states.map { |s| [s.name, s.id, { 'data-state-code' => s.abbr }]}, address_fields.object.state_id), {}, { class: 'form-control input-lg' }
 
     .input-with-hint.form-group#bzipcode
