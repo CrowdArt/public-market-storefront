@@ -23,7 +23,9 @@ h4.upcase.text-color = Spree.t(:payment_methods)
         .hide = radio_button_tag "order[existing_card]", card.id, card == @payment_sources.first, { class: "existing-cc-radio" }
 
       = label_tag "order_existing_card_#{card.id}"
-        = image_tag("credit_cards/icons/#{card.cc_type}.svg")
+        - card_icon = "credit_cards/icons/#{card.cc_type}.svg"
+        - if asset_exists?(card_icon)
+          = image_tag(card_icon)
         span = payment_method_dropdown_item(card)
 
 #payment-methods style=('display:none' if @payment_sources.present?)

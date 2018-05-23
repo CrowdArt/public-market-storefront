@@ -1,11 +1,11 @@
-
 - content_for(:panel_head, flush: true) do
   - if card.card_name.present?
     .credit-card__name.text-uppercase.ellipsis = card.card_name
 
-  - if (card_icon = "credit_cards/icons/#{card.cc_type}.svg") && asset_exists?(card_icon)
+  - card_icon = "credit_cards/icons/#{card.cc_type}.svg"
+  - if asset_exists?(card_icon)
     .pull-right
-      = image_tag(card_icon)
+      = image_tag(card_icon, style: 'width:35px')
 
 - content_for(:panel_body, flush: true) do
   p
