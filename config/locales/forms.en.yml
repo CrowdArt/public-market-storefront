@@ -13,6 +13,8 @@ en:
         use_existing_address: Use an existing address
         use_custom_billing_address: Use custom billing address
       number: Credit Card Number
+      new-credit-card: New Credit Card
+      edit-credit-card: Edit Credit Card
 
     address:
       zip_postal_code: Zip / Postal Code

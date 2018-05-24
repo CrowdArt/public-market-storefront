@@ -31,4 +31,5 @@ h4.upcase.text-color = Spree.t(:payment_methods)
 
 #payment-methods style=('display:none' if @payment_sources.present?)
   = fields_for "payment_source[#{payment_method_id}]", @credit_card do |card_form|
+    p.credit-card-brands--small = render 'spree/shared/payment_methods'
     = render partial: "spree/credit_cards/stripe_form", locals: { form: card_form, form_id: '#checkout-form' }

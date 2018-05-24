@@ -5,7 +5,9 @@
   .col-md-8
     .panel.panel-default.no-border
       .panel-body
-        h4.upcase.text-color = Spree.t(:new_credit_card)
+        .flex.between.align-center
+          h4.upcase.text-color = t('forms.credit_cards.edit-credit-card')
+          .credit-card-brands--small = render 'spree/shared/payment_methods'
 
         = form_for @credit_card, remote: true, html: { id: 'credit-card-edit-form' } do |f|
           = f.hidden_field :id

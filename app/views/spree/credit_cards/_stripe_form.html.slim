@@ -2,19 +2,13 @@ ruby:
   show_card_name ||= false
   edit_card_info ||= false
   allow_use_shipping_for_billing ||= false
-  user_address = spree_current_user.addresses.first
-  firstname = user_address&.firstname || spree_current_user.first_name
-  lastname = user_address&.lastname || spree_current_user.last_name
 
 - content_for :bottom_scripts
-  = javascript_include_tag "https://js.stripe.com/v3"
+  = javascript_include_tag 'https://js.stripe.com/v3'
   = javascript_include_tag :stripeForm
 
   javascript:
     window.pm.initStripeForm("#{form.object.payment_method.preferred_publishable_key}", "#{form_id}", "#{form.object_name}")
-
-p.credit-card-brands = render 'spree/shared/payment_methods'
-p.credit-card-number-label = t('forms.credit_cards.number')
 
 - if show_card_name
   .form-group.input-with-hint
@@ -22,7 +16,7 @@ p.credit-card-number-label = t('forms.credit_cards.number')
     = form.label :card_name, Spree.t(:card_name)
 
 .form-group.input-with-hint
-  = form.text_field :name, value: "#{firstname} #{lastname}", class: 'form-control input-lg'
+  = form.text_field :name, class: 'form-control input-lg'
   = form.label :name, Spree.t(:name_on_card)
 
 .form-group.flex.wrap
