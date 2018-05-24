@@ -1,0 +1,21 @@
+- custom_address = existing_shipping_addresses.all? { |a| !a[1] }
+- form_prefix = form.object_name
+
+.address-options
+  .radio
+    label for="#{form_prefix}_use_existing_address_yes"
+      = radio_button_tag "#{form_prefix}_use_existing_address", 'yes', form.object.persisted? ? !custom_address : true
+      span = t('forms.credit_cards.address.use_existing_address')
+
+  .radio
+    label for="#{form_prefix}_use_existing_address_no"
+      = radio_button_tag "#{form_prefix}_use_existing_address", 'no', form.object.persisted? ? custom_address : false
+      span = t('forms.credit_cards.address.use_custom_billing_address')
+
+.address-fields-form--existing-addresses
+  = render layout: 'spree/shared/dropdown', locals: { items: existing_shipping_addresses, selected: existing_shipping_addresses.find { |a| a[1] } || existing_shipping_addresses.first, dropdown_class: 'rich-dropdown--outline address-selector' } do |(address, same_as_address), index|
+    - unless index.nil?
+      = form.radio_button "use_shipping", address.id, checked: same_as_address || index == 0, class: 'hide'
+
+    = form.label "use_shipping_#{address.id}"
+      span = address.full_address

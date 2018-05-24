@@ -1,23 +1,19 @@
-$(document).on('turbolinks:load', function() {
-  if ($('#checkout_form_address #existing_addresses').length) {
-    $('#use_existing_address_yes').click(function() {
-      $("#new-address-form").hide();
-      $("#new-address-form").find('input, #bstate select').prop('disabled', true)
+window.pm = window.pm || {}
 
-      $('.existing-address-radio').prop('disabled', false)
+window.pm.initAddressFormToggles = function(formAttr) {
+  var form = $('#' + formAttr + '-address-fields-form')
 
-      $('#existing_addresses').show()
-    })
+  function toggleAddressForms() {
+    var toggleInput = $("input[name='" + formAttr + "_use_existing_address']:checked")
+    var hideNewAddress = toggleInput.val() == 'yes'
 
-    $('#use_existing_address_no').click(function() {
-      $("#new-address-form").show();
-      $("#new-address-form").find('input, #bstate select').prop('disabled', false)
-
-      $('.existing-address-radio').prop('disabled', true)
-
-      $('#existing_addresses').hide()
-    })
-
-    $('#checkout_form_address input[type="radio"]:checked').click()
+    $(form).find('.address-fields-form--new-address').toggle(!hideNewAddress).find('input, #bstate select').prop('disabled', hideNewAddress)
+    $(form).find('.address-fields-form--existing-addresses').toggle(hideNewAddress).find('input').prop('disabled', !hideNewAddress)
   }
-})
+
+  $("input[name='" + formAttr + "_use_existing_address']").click(function() {
+    toggleAddressForms()
+  })
+
+  toggleAddressForms()
+}

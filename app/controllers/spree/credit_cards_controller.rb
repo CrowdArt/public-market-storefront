@@ -6,15 +6,17 @@ module Spree
     load_and_authorize_resource class: Spree::CreditCard, find_by: :slug
 
     before_action :set_account_tab, only: %i[index edit new]
-    before_action :prepare_card_form, only: %i[edit new]
+    before_action :load_stripe_payment_method, only: %i[new create]
 
     def index
       @cards = @user.credit_cards.order(id: :desc)
     end
 
     def new
-      @credit_card = Spree::CreditCard.new
-      @credit_card.address = Spree::Address.build_default
+      @credit_card = Spree::CreditCard.new(
+        payment_method: @stripe_payment_method,
+        address: Spree::Address.build_default
+      )
       render :new
     end
 
@@ -22,6 +24,8 @@ module Spree
 
     def create
       @credit_card = @user.credit_cards.build(payment_method_params)
+      @credit_card.payment_method = @stripe_payment_method
+
       if @credit_card.save
         redirect_to user_payment_methods_path
       else
@@ -59,21 +63,11 @@ module Spree
     end
 
     def payment_method_params
-      pm_params = params.permit(
-        order: { payments_attributes: permitted_payment_attributes },
-        payment_source: permitted_source_attributes
-      )
-
-      payment_method_id = pm_params['order']['payments_attributes'].first['payment_method_id'].to_s
-      source_params = pm_params.delete('payment_source')[payment_method_id]
-
-      source_params.merge(payment_method_id: payment_method_id)
+      params.require(:credit_card).permit(permitted_source_attributes)
     end
 
     def card_edit_params
-      params.require(:credit_card).permit(
-        permitted_source_attributes + [:id]
-      )
+      params.require(:credit_card).permit(permitted_source_attributes + [:id])
     end
 
     def load_user
@@ -84,10 +78,8 @@ module Spree
       @account_tab = :payment
     end
 
-    def prepare_card_form
-      hide_search_bar_on_mobile
-      set_back_mobile_link('/account')
-      @payment_methods = Spree::PaymentMethod.available
+    def load_stripe_payment_method
+      @stripe_payment_method = Spree::PaymentMethod.available.find_by(type: 'Spree::Gateway::StripeGateway')
     end
   end
 end

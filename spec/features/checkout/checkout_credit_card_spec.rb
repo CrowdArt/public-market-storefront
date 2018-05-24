@@ -16,7 +16,7 @@ RSpec.describe 'Credit card in checkout flow', type: :feature, js: true, vcr: tr
       click_button 'Proceed to Checkout'
     end
 
-    include_context 'with filled stripe credit card'
+    include_context 'with filled stripe credit card in checkout'
 
     it 'completes checkout process' do
       expect(page).to have_text 'PAYMENT METHODS'

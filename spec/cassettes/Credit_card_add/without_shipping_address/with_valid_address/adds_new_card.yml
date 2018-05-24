@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: UTF-8
-      string: email=eveline_cole%40dooley.us&card=tok_1CDtWb22AWtpwVQmH77OIG6f
+      string: email=maxine%40bailey.info&card=tok_1CVPMA22AWtpwVQmDZpmxRxT
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
@@ -31,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 06 Apr 2018 12:18:39 GMT
+      - Thu, 24 May 2018 19:44:16 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1470'
+      - '1453'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -51,7 +51,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_TzCbu5FaDTqnct
+      - req_jDmsKJOOnbOFco
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -60,17 +60,17 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_Cd9qzGPVuloYcS",
+          "id": "cus_CvFrTp4CmjwB6Z",
           "object": "customer",
           "account_balance": 0,
-          "created": 1523017119,
+          "created": 1527191055,
           "currency": null,
-          "default_source": "card_1CDtWb22AWtpwVQmXPLGUmmE",
+          "default_source": "card_1CVPMA22AWtpwVQmlLXVMzJb",
           "delinquent": false,
           "description": null,
           "discount": null,
-          "email": "eveline_cole@dooley.us",
-          "invoice_prefix": "7E709D6",
+          "email": "maxine@bailey.info",
+          "invoice_prefix": "E93FBAB",
           "livemode": false,
           "metadata": {},
           "shipping": null,
@@ -78,26 +78,26 @@ http_interactions:
             "object": "list",
             "data": [
               {
-                "id": "card_1CDtWb22AWtpwVQmXPLGUmmE",
+                "id": "card_1CVPMA22AWtpwVQmlLXVMzJb",
                 "object": "card",
-                "address_city": "Herndon",
+                "address_city": "Wellington",
                 "address_country": "US",
-                "address_line1": "10 Lovely Street",
+                "address_line1": "Alaska",
                 "address_line1_check": "pass",
-                "address_line2": "Northwest",
-                "address_state": "",
-                "address_zip": "35005",
+                "address_line2": null,
+                "address_state": "AL",
+                "address_zip": "94001",
                 "address_zip_check": "pass",
                 "brand": "Visa",
                 "country": "US",
-                "customer": "cus_Cd9qzGPVuloYcS",
+                "customer": "cus_CvFrTp4CmjwB6Z",
                 "cvc_check": "pass",
                 "dynamic_last4": null,
-                "exp_month": 10,
-                "exp_year": 2019,
-                "fingerprint": "VJ3cyXmuSrVwCMLx",
-                "funding": "credit",
-                "last4": "4242",
+                "exp_month": 12,
+                "exp_year": 2020,
+                "fingerprint": "oqxXQNLfpOSk3nV8",
+                "funding": "debit",
+                "last4": "5556",
                 "metadata": {},
                 "name": "First name",
                 "tokenization_method": null
@@ -105,16 +105,16 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 1,
-            "url": "/v1/customers/cus_Cd9qzGPVuloYcS/sources"
+            "url": "/v1/customers/cus_CvFrTp4CmjwB6Z/sources"
           },
           "subscriptions": {
             "object": "list",
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_Cd9qzGPVuloYcS/subscriptions"
+            "url": "/v1/customers/cus_CvFrTp4CmjwB6Z/subscriptions"
           }
         }
     http_version: 
-  recorded_at: Fri, 06 Apr 2018 12:18:39 GMT
+  recorded_at: Thu, 24 May 2018 19:44:16 GMT
 recorded_with: VCR 4.0.0

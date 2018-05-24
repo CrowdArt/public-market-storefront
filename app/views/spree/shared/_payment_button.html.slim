@@ -1,8 +1,0 @@
-.well.form-buttons
-  .row.condensed
-    #stripe-agreement.col-md-8.col-sm-12.margin-text-bottom-sm
-      p.text-muted == t('payment_methods.stripe_agreement')
-      = image_tag 'icons/stripe.svg', style: 'width:150px'
-
-    #payment-form-button.col-md-4.col-sm-6 data-hook="buttons"
-      = submit_tag Spree.t(:save_and_continue), class: 'btn btn-block btn-success', style: 'padding:18px;font-size:16px'

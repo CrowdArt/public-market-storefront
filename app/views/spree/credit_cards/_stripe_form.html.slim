@@ -1,0 +1,57 @@
+ruby:
+  show_card_name ||= false
+  edit_card_info ||= false
+  allow_use_shipping_for_billing ||= false
+  user_address = spree_current_user.addresses.first
+  firstname = user_address&.firstname || spree_current_user.first_name
+  lastname = user_address&.lastname || spree_current_user.last_name
+
+- content_for :bottom_scripts
+  = javascript_include_tag "https://js.stripe.com/v3"
+  = javascript_include_tag :stripeForm
+
+  javascript:
+    window.pm.initStripeForm("#{form.object.payment_method.preferred_publishable_key}", "#{form_id}", "#{form.object_name}")
+
+p.credit-card-brands = render 'spree/shared/payment_methods'
+p.credit-card-number-label = t('forms.credit_cards.number')
+
+- if show_card_name
+  .form-group.input-with-hint
+    = form.text_field :card_name, class: 'form-control input-lg'
+    = form.label :card_name, Spree.t(:card_name)
+
+.form-group.input-with-hint
+  = form.text_field :name, value: "#{firstname} #{lastname}", class: 'form-control input-lg'
+  = form.label :name, Spree.t(:name_on_card)
+
+.form-group.flex.wrap
+  - if edit_card_info
+    - formatted_expiry = "#{form.object.month.to_s.rjust(2, '0')} / #{form.object.year}"
+    = text_field_tag :card_number, [form.object.display_number, ' ', formatted_expiry].join(''), disabled: true, class: 'form-control flex-1 input-lg', id: 'credit-card-info'
+
+  #new-stripe-card-wrapper.large.flex-grow-1 class=('hide' if edit_card_info)
+  - if edit_card_info
+    button.btn.btn-default.btn-lg#toggle-credit-card-edit type='button' Edit
+
+  #stripe-card-errors.text-small.text-danger role="alert"
+
+#stripe-card-inputs hidden=true
+
+br
+
+.billing-adddress-form id="#{form.object_name}-address-fields-form"
+  h4.upcase.text-color = Spree.t(:billing_address)
+
+  - if allow_use_shipping_for_billing
+    - existing_shipping_addresses = compared_user_addresses(form.object.address)
+    - if existing_shipping_addresses.present?
+      = render partial: 'spree/credit_cards/address/use_existing', locals: { form: form, existing_shipping_addresses: existing_shipping_addresses }
+
+      - content_for :bottom_scripts
+        javascript:
+          pm.initAddressFormToggles("#{form.object_name}")
+
+  = form.fields_for :address_attributes, form.object.address do |address_fields|
+    .address-fields-form--new-address style=('display:none' if allow_use_shipping_for_billing && existing_shipping_addresses.present?)
+      = render partial: 'spree/addresses/fields', locals: { form: address_fields, address_type: 'b' }

@@ -1,18 +1,26 @@
 - content_for :header
   = render partial: 'spree/checkout/nav/header'
 
+- content_for :bottom_scripts
+  javascript:
+    $('#checkout-form').on('ajax:beforeSend', function() {
+      $(this).addClass('checkout-loading')
+    }).on('ajax:error', function() {
+      $(this).removeClass('checkout-loading')
+    })
+
 .row
   .col-lg-offset-1.col-lg-6.col-md-7.col-sm-12.checkout-form
     .panel.no-border
       .panel-body
-        = form_for @order, url: update_checkout_path(@order.state), remote: true, html: { id: 'checkout-form-confirm' } do |form|
+        = form_for @order, url: update_checkout_path(@order.state), remote: true, html: { id: 'checkout-form' } do |form|
           = form.hidden_field :state_lock_version
 
           section.checkout-form-payment#checkout_form_payment
-            = render 'payment', form: form
+            = render partial: 'payment', locals: { form: form }
 
-          section.checkout-form-address#checkout_form_address
-            = render 'address', form: form
+          section.checkout-form-address id="#{form.object_name}-address-fields-form"
+            = render partial: 'address', locals: { form: form }
 
           section.checkout-form-delivery
             = render 'delivery', form: form
@@ -23,10 +31,7 @@
           .form-buttons
             = submit_tag t('forms.checkout.submit_your_order'), class: 'btn btn-block btn-primary', data: { 'disable-with': 'Processing order...' }
 
-          .text-small.text-muted.checkout-form--stripe-agreement == t('payment_methods.stripe_agreement')
-
-          .text-center
-            = image_tag 'icons/stripe.svg', style: 'width:120px'
+          = render partial: 'spree/credit_cards/stripe_agreement'
 
   .col-lg-4.col-md-5.hidden-xs.hidden-sm.checkout-form-summary
     .panel.no-border

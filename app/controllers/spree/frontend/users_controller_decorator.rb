@@ -1,6 +1,5 @@
 Spree::UsersController.class_eval do
   before_action :load_user, only: %i[show update_password]
-  before_action :hide_search_bar_on_mobile, only: %i[show edit]
 
   ORDERS_PER_USER_PAGE = 10
 

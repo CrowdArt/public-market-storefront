@@ -8,7 +8,7 @@
 - dropdown_class ||= nil
 
 .dropdown.rich-dropdown class=dropdown_class
-  button.btn-block data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+  button.btn-block data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' type='button'
     = yield(selected, nil)
   ul.dropdown-menu
     - items.each_with_index do |item, index|

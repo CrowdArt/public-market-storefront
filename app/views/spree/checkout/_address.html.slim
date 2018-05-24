@@ -1,27 +1,33 @@
+- form_prefix = form.object_name
+
 h4.upcase.text-color = Spree.t(:shipping_address)
 
 - if @addresses.present?
   .address-options
     .radio
-      label for='use_existing_address_yes'
-        = radio_button_tag 'use_existing_address', 'yes', true
+      label for="#{form_prefix}_use_existing_address_yes"
+        = radio_button_tag "#{form_prefix}_use_existing_address", 'yes', true
         span = t('addresses.use_existing_shipping_address')
 
     .radio
-      label for="use_existing_address_no"
-        = radio_button_tag 'use_existing_address', 'no'
+      label for="#{form_prefix}_use_existing_address_no"
+        = radio_button_tag "#{form_prefix}_use_existing_address", 'no'
         span = t('addresses.use_new_shipping_address')
 
-  #existing_addresses style='display:none'
+  .address-fields-form--existing-addresses style='display:none'
     = render layout: 'spree/shared/dropdown', locals: { items: @addresses, selected: @addresses.first, dropdown_class: 'rich-dropdown--outline address-selector' } do |address, index|
       - unless index.nil?
-        .hide = form.radio_button :ship_address_id, address.id, checked: address == @addresses.first, class: 'existing-address-radio'
+        = form.radio_button :ship_address_id, address.id, checked: address == @addresses.first, class: 'hide existing-address-radio'
 
       = label_tag "order_ship_address_id_#{address.id}"
         span = address.full_address
 
 = hidden_field_tag 'order[ship_address_attributes][id]', @order.ship_address_id
 
-#new-address-form style=('display:none' if @addresses.present?)
+.address-fields-form--new-address style=('display:none' if @addresses.present?)
   = fields_for 'order[ship_address_attributes]', @new_address do |address_form|
-    = render partial: 'spree/addresses/form', locals: { form: address_form, address_type: 's' }
+    = render partial: 'spree/addresses/fields', locals: { form: address_form, address_type: 's' }
+
+- content_for :bottom_scripts
+  javascript:
+    pm.initAddressFormToggles("#{form.object_name}")

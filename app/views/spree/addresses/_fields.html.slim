@@ -1,0 +1,30 @@
+- country = form.object.country
+
+.form-group id="#{address_type}firstname"
+  = form.text_field :firstname, class: 'form-control input-lg', placeholder: Spree.t(:first_name), required: true
+
+.form-group id="#{address_type}lastname"
+  = form.text_field :lastname, class: 'form-control input-lg', placeholder: Spree.t(:last_name), required: true
+
+.form-group id="#{address_type}address1"
+  = form.text_field :address1, class: 'form-control input-lg', placeholder: Spree.t(:address1), required: true
+
+.form-group.custom-select-wrapper id="#{address_type}country"
+  / = address_fields.select :country_id, options_for_select(available_countries.map { |c| [c.name, c.id, { 'data-country-code' => c.iso }]}, @credit_card.address.country_id), {}, { disabled: true, class: 'form-control' }
+  = form.select :country_id, options_for_select([[country.name, country.id, { 'data-country-code' => country.iso }]], country.id), {}, { disabled: true, class: 'form-control input-lg' }
+  = form.hidden_field :country_id
+
+.form-group.input-with-hint id="#{address_type}city"
+  = form.text_field :city, class: 'form-control input-lg', required: true
+  = form.label :city, Spree.t(:city)
+
+.flex.wrap-xs
+  .form-group.custom-select-wrapper.no-margin-text-right-xs.checkout-form--state-input.flex-grow-1 id="#{address_type}state"
+    = form.select :state_id, options_for_select(country.states.map { |s| [s.name, s.id, { 'data-state-code' => s.abbr }]}, form.object.state_id), {}, { class: 'form-control input-lg' }
+
+  .input-with-hint.form-group.flex-grow-1 id="#{address_type}zipcode"
+    = form.phone_field :zipcode, class: 'form-control input-lg', inputmode: 'numeric', autocomplete: 'postal-code', required: true
+    = form.label :zipcode, t('forms.address.zip_postal_code')
+
+.form-group id="#{address_type}phone"
+  = form.phone_field :phone, class: 'form-control input-lg', placeholder: Spree.t(:phone)

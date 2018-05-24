@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: UTF-8
-      string: email=ping.dach%40zboncakbreitenberg.us&card=tok_1CDuFe22AWtpwVQmZS5GMKdT
+      string: email=sharri%40glover.name&card=tok_1CVPM622AWtpwVQm7zUz4jpU
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
@@ -31,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 06 Apr 2018 13:05:11 GMT
+      - Thu, 24 May 2018 19:44:11 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1479'
+      - '1428'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -51,7 +51,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_dtJ5CAs1E5UQzd
+      - req_fuZ9KMpD5NbzY9
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -60,17 +60,17 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_CdAalUnr51tmgG",
+          "id": "cus_CvFrS3hX0vVRoE",
           "object": "customer",
           "account_balance": 0,
-          "created": 1523019911,
+          "created": 1527191051,
           "currency": null,
-          "default_source": "card_1CDuFd22AWtpwVQmEm0rUNQW",
+          "default_source": "card_1CVPM522AWtpwVQm64VzjxQl",
           "delinquent": false,
           "description": null,
           "discount": null,
-          "email": "ping.dach@zboncakbreitenberg.us",
-          "invoice_prefix": "7371FD5",
+          "email": "sharri@glover.name",
+          "invoice_prefix": "A4FAE54",
           "livemode": false,
           "metadata": {},
           "shipping": null,
@@ -78,43 +78,43 @@ http_interactions:
             "object": "list",
             "data": [
               {
-                "id": "card_1CDuFd22AWtpwVQmEm0rUNQW",
+                "id": "card_1CVPM522AWtpwVQm64VzjxQl",
                 "object": "card",
-                "address_city": "Herndon",
+                "address_city": "",
                 "address_country": "US",
-                "address_line1": "10 Lovely Street",
-                "address_line1_check": "pass",
-                "address_line2": "Northwest",
-                "address_state": "",
-                "address_zip": "35005",
-                "address_zip_check": "pass",
+                "address_line1": "",
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": "STATE_ABBR_1",
+                "address_zip": "",
+                "address_zip_check": null,
                 "brand": "Visa",
                 "country": "US",
-                "customer": "cus_CdAalUnr51tmgG",
+                "customer": "cus_CvFrS3hX0vVRoE",
                 "cvc_check": "pass",
                 "dynamic_last4": null,
-                "exp_month": 10,
-                "exp_year": 2019,
-                "fingerprint": "VJ3cyXmuSrVwCMLx",
-                "funding": "credit",
-                "last4": "4242",
+                "exp_month": 12,
+                "exp_year": 2020,
+                "fingerprint": "oqxXQNLfpOSk3nV8",
+                "funding": "debit",
+                "last4": "5556",
                 "metadata": {},
-                "name": "First name",
+                "name": "",
                 "tokenization_method": null
               }
             ],
             "has_more": false,
             "total_count": 1,
-            "url": "/v1/customers/cus_CdAalUnr51tmgG/sources"
+            "url": "/v1/customers/cus_CvFrS3hX0vVRoE/sources"
           },
           "subscriptions": {
             "object": "list",
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_CdAalUnr51tmgG/subscriptions"
+            "url": "/v1/customers/cus_CvFrS3hX0vVRoE/subscriptions"
           }
         }
     http_version: 
-  recorded_at: Fri, 06 Apr 2018 13:05:12 GMT
+  recorded_at: Thu, 24 May 2018 19:44:11 GMT
 recorded_with: VCR 4.0.0
