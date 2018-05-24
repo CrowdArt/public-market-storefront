@@ -1,0 +1,19 @@
+.row.condensed
+  .col-md-12
+    = render 'spree/shared/error_messages', target: @address
+
+  .col-md-6
+    .panel.panel-default.no-border
+      .panel-body
+        h4.upcase.text-color.no-margin-top = t(form_title, scope: :address_book)
+
+        = form_for @address, html: { id: 'checkout_form_address' } do |f|
+          = render partial: 'spree/addresses/form', locals: { form: f, address_type: 's' }
+
+          = f.submit Spree.t(:save_my_address), class: 'btn btn-primary'
+
+- content_for :bottom_scripts
+  javascript:
+    $(function() {
+      pm.initFormLeaveCheck('#checkout_form_address')
+    })

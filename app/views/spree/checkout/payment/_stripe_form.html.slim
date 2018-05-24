@@ -29,4 +29,4 @@ ruby:
 
   = fields_for "#{param_prefix}[address_attributes]", @credit_card.address do |address_fields|
     #payment_billing_address
-      = render partial: 'spree/checkout/address_form', locals: { form: address_fields, address_type: 'b' }
+      = render partial: 'spree/addresses/form', locals: { form: address_fields, address_type: 'b' }
