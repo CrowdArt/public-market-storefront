@@ -1,0 +1,28 @@
+- cache([:v1, :checkout_navbar, spree_current_user])
+  .visible-xs.visible-sm
+    = render partial: 'spree/nav/mobile_menu'
+
+  #spree-header.checkout-header
+    header.container-fluid.flex.align-center.between.nowrap-md
+      .hidden-xs.hidden-sm#logo
+        = logo
+
+      .top-navbar
+        .flex.between.align-center
+          / MOBILE MENU TOGGLE
+          .visible-xs.visible-sm
+            label.no-margin.mobile-menu-btn for='mobile-nav-toggle'
+              = image_tag 'icons/menu.svg'
+
+          .flex.flex-1.margin-text-right.between.align-center
+            h4.text-white = Spree.t(:secure_checkout)
+
+            ul.nav.navbar-nav.condensed.navbar-top-right.flex
+              = render partial: 'spree/shared/link_to_account'
+
+- content_for :bottom_scripts
+  javascript:
+    // close navbar on turbolinks visit
+    $(document).on('turbolinks:before-visit', function() {
+      $('#mobile-nav-toggle').prop('checked', false)
+    })

@@ -2,7 +2,6 @@ li.dropdown.link-to-account.hidden-xs.hidden-sm
   a.dropdown-toggle.ellipsis href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
     = image_tag 'icons/user.svg'
     span.margin-text-horizont-eq = spree_current_user.full_name_or_email
-    span.caret
 
   ul.dropdown-menu aria-labelledby="dLabel"
     li = link_to Spree.t(:my_account), spree.account_path

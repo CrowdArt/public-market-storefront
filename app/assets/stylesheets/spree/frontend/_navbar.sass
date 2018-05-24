@@ -59,8 +59,9 @@
       img
         padding: 5px
 
-      .dropdown-toggle span
-        vertical-align: middle
+      .dropdown-toggle
+        padding-right: 20px
+        @include with-caret-after(10px)
 
   @media (max-width: $screen-md-max)
     hr.divider
@@ -102,16 +103,11 @@
       padding: 17px 20px
       width: 100%
 
+      @include with-caret-after(8px)
+
       &:hover, &:focus
         background: $brand-gray-black
         border-color: $brand-gray-black
-
-      .caret
-        position: absolute
-        top: 0
-        bottom: 0
-        margin: auto 0
-        right: 6px
 
   .search-group input
     background-color: $brand-light-black
@@ -215,3 +211,10 @@
       border: 1px solid
       font-size: 10px
       padding: 4px 9px
+
+.checkout-header
+  h4
+    font-size: 24px
+    margin: 16px 0
+    @media (min-width: $screen-xs)
+      text-transform: uppercase
