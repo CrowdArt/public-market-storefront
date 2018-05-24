@@ -14,9 +14,11 @@ FactoryBot.define do
       order.line_items.reload
 
       order.create_proposed_shipments
+      order.update_with_updater!
     end
 
     factory :vendor_order_ready_to_ship do
+      state 'complete'
       payment_state 'paid'
       shipment_state 'ready'
 
@@ -26,6 +28,7 @@ FactoryBot.define do
           shipment.inventory_units.update_all state: 'on_hand'
           shipment.update_column('state', 'ready')
         end
+        order.update_column(:completed_at, Time.current)
         order.reload
       end
 

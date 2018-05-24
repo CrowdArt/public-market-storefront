@@ -15,6 +15,10 @@ class AbilityDecorator
 
     can :create, Spree::CreditCard
     can :manage, Spree::CreditCard, user_id: user.id
+
+    can :update, Spree::Orders::VendorView do |view|
+      view.vendor.users.include?(user)
+    end
   end
 end
 
