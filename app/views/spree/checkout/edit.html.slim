@@ -1,3 +1,7 @@
+/ force reload next pages after checkout because of https://github.com/turbolinks/turbolinks/issues/321
+- content_for :head
+  meta name='stripe-refresh' content=Time.zone.now.to_i data-turbolinks-track='reload'
+
 - content_for :header
   = render partial: 'spree/checkout/nav/header'
 
