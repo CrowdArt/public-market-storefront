@@ -13,7 +13,7 @@
 <%= csrf_meta_tags %>
 
 <% if Rails.env.production? || Rails.env.staging? %>
-  <%= render partial: 'spree/shared/sentry' %>
+  <%= render partial: 'shared/sentry' %>
 <% end %>
 
 <%= render 'spree/shared/paths' %>
