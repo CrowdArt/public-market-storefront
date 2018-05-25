@@ -5,7 +5,7 @@ Spree::OrderMailer.class_eval do
 
     opts = {
       order_id: order.number,
-      first_name: order.shipping_address&.first_name,
+      first_name: order.user_firstname,
       order_url: spree.order_url(order, host: Spree::Store.current.url),
       line_items_text: line_items_as_text(order.line_items),
       order_card: render_to_string(partial: 'mailer/orders/order_card', locals: { order: order }),
@@ -23,7 +23,7 @@ Spree::OrderMailer.class_eval do
     opts = {
       order_id: order.number,
       order_url: spree.order_url(order, host: Spree::Store.current.url),
-      first_name: order.shipping_address.first_name,
+      first_name: order.user_firstname,
       vendor_name: Spree::Vendor.first.name, # use only one seller for S1
       order_card: render_to_string(partial: 'mailer/orders/order_card', locals: { order: order }),
       support_url: main_app.freshdesk_url(host: Spree::Store.current.url)

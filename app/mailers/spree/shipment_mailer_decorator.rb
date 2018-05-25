@@ -5,7 +5,7 @@ Spree::ShipmentMailer.class_eval do
 
     opts = {
       order_id: order.number,
-      first_name: order.shipping_address.first_name,
+      first_name: order.user_first_name,
       line_items_text: line_items_as_text(order.line_items),
       order_card: render_to_string(partial: 'mailer/orders/order_card', locals: { order: order, shipment: shipment }),
       shipment_tracking: render_to_string(partial: 'mailer/shipments/shipment_tracking', locals: { shipment: shipment }),

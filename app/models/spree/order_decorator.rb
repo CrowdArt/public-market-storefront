@@ -1,6 +1,10 @@
 Spree::Order.class_eval do
   Spree::Order.state_machine.before_transition to: :confirm, do: :copy_billing_from_card
 
+  def user_firstname
+    user.first_name.presence || billing_address.first_name
+  end
+
   def transition_to_complete!
     ApplicationRecord.transaction do
       while state != 'complete' && self.next; end

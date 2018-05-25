@@ -17,6 +17,10 @@ RSpec.describe Spree::OrderMailer, type: :mailer do
       expect(mail.body).to include('Please review and retain the following order information for your records.')
     end
 
+    it 'user name from billing address' do
+      expect(mail.body).to include(order.billing_address.first_name)
+    end
+
     it 'container support url' do
       expect(mail.body).to include('/freshdesk')
     end
