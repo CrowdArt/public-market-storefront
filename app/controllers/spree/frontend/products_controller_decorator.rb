@@ -7,7 +7,7 @@ Spree::ProductsController.class_eval do
                         .includes(:option_values)
                         .reorder('spree_option_values.position ASC, spree_prices.amount ASC')
                         .select('spree_prices.amount')
-                        .group_by { |v| v.option_values.first.presentation } # assume that first option value is main
+                        .group_by(&:main_option_type)
                         .map(&method(:prepare_buy_box_variants))
 
     @product_properties = @product.product_properties.includes(:property)
