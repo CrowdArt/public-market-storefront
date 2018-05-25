@@ -12,7 +12,7 @@ en:
 
     attributes:
       spree/credit_card:
-        card_name: Card Nickname
+        card_name: Card nickname
         address:
           firstname: First Name
           lastname: Last Name
