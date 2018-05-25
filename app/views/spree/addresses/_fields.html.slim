@@ -1,5 +1,11 @@
 - country = form.object.country
 
+= render partial: 'spree/shared/phone_input_scripts'
+
+- content_for :bottom_scripts
+  javascript:
+    window.pm.initPhoneInput("##{address_type}phone")
+
 .form-group id="#{address_type}firstname"
   = form.text_field :firstname, class: 'form-control input-lg', placeholder: Spree.t(:first_name), required: true
 
@@ -26,5 +32,7 @@
     = form.phone_field :zipcode, class: 'form-control input-lg', inputmode: 'numeric', autocomplete: 'postal-code', required: true
     = form.label :zipcode, t('forms.address.zip_postal_code')
 
-.form-group id="#{address_type}phone"
-  = form.phone_field :phone, class: 'form-control input-lg', placeholder: Spree.t(:phone)
+.form-group.with-error-hint.address-phone-input id="#{address_type}phone"
+  = phone_field_tag "#{form.object_name}[phone_without_code]", '', class: 'form-control input-lg'
+  = form.hidden_field :phone, class: 'form-control input-lg'
+  span.text-small.text-danger

@@ -3,6 +3,9 @@ Spree::Address.class_eval do
 
   belongs_to :user, class_name: Spree.user_class.to_s, optional: true, inverse_of: :addresses
 
+  phony_normalize :phone, default_country_code: 'US'
+  validates :phone, phony_plausible: true
+
   EXCLUDED_KEYS_FOR_COMPARISION = %w[id user_id updated_at created_at].freeze
 
   def same_as?(other)

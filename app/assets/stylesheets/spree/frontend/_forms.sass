@@ -124,3 +124,28 @@ input[type="radio"]
     margin: auto 0
     right: .75em
     border-top: 8px solid $brand-black
+
+.with-error-hint
+  & > span
+    display: none
+
+  &.has-error > span
+    display: inline-block
+
+.intl-tel-input
+  width: 100%
+
+  .selected-flag:focus
+    outline: none
+
+  .country-list .country
+    transition: background-color .2s, color .2s
+    .dial-code
+      transition: color .2s
+
+    &.highlight
+      color: $dropdown-link-hover-color
+      background-color: $dropdown-link-hover-bg !important
+
+      .dial-code
+        color: darken($dropdown-link-hover-color, 5%)

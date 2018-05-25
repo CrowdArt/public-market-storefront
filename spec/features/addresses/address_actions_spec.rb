@@ -17,13 +17,12 @@ RSpec.describe 'address actions', type: :feature do
       fill_in 'address_city', with: 'Wellington'
       select 'Alabama', from: 'address_state_id'
       fill_in 'address_zipcode', with: '94001'
-      fill_in 'address_phone', with: '+19997774088'
     end
 
     it 'updates shipping address' do
       click_button 'Save my address'
-      expect(user.addresses.count).to eq 1
       expect(page).to have_text('Wellington')
+      expect(user.addresses.count).to eq 1
     end
 
     context 'with wrong fields' do
@@ -33,6 +32,19 @@ RSpec.describe 'address actions', type: :feature do
         expect {
           click_button 'Save my address'
         }.not_to change(user, :addresses)
+      end
+    end
+
+    context 'with phone number', js: true do
+      before do
+        fill_in 'address_phone_without_code', with: '+19997774088'
+        click_button 'Save my address'
+      end
+
+      it 'updates shipping address with phone number' do
+        expect(page).to have_text('Wellington')
+        expect(user.addresses.count).to eq 1
+        expect(user.addresses.last.phone).to eq '+19997774088'
       end
     end
   end

@@ -18,6 +18,7 @@ gem 'dalli'
 
 gem 'config'
 gem 'enumerize'
+gem 'phony_rails'
 
 gem 'whenever', require: false
 

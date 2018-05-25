@@ -10,4 +10,4 @@ h1 = t('account.shipping')
 - else
   p = t('addresses.no_addresses')
 
-= link_to t('addresses.add_new'), spree.new_address_path, class: 'btn btn-primary'
+= link_to t('addresses.add_new'), spree.new_address_path, class: 'btn btn-primary', data: { turbolinks: false }

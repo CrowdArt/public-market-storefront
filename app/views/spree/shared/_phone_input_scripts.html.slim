@@ -1,0 +1,9 @@
+- unless @intl_tel_input_loaded
+  - @intl_tel_input_loaded = true
+
+  - content_for :head
+    = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.15/css/intlTelInput.css'
+
+  - content_for :bottom_scripts
+    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.15/js/intlTelInput.min.js'
+    = javascript_include_tag 'phoneInput'

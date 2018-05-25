@@ -523,6 +523,10 @@ GEM
     pg_query (1.0.2)
     pghero (2.1.1)
       activerecord
+    phony (2.16.3)
+    phony_rails (0.14.7)
+      activesupport (>= 3.0)
+      phony (> 2.15)
     polyamorous (1.3.3)
       activerecord (>= 3.0)
     polyglot (0.3.5)
@@ -808,6 +812,7 @@ DEPENDENCIES
   pg (= 0.21.0)
   pg_query
   pghero
+  phony_rails
   pry-rails
   puma (~> 3.7)
   rack-attack

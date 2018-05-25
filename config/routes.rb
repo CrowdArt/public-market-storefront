@@ -1,3 +1,7 @@
+Spree::Core::Engine.routes.draw do
+  get 'products/top-selling', to: 'products#top_selling'
+end
+
 Spree::Core::Engine.add_routes do
   scope :account do
     get '/:tab', to: 'users#show', tab: /orders/
