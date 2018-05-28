@@ -1,5 +1,7 @@
 {
   "name": "public-market-storefront",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "raven-js": "^3.25.2"
+  }
 }

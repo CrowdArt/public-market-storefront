@@ -18,6 +18,7 @@ assets_to_precompile = %w[
   ckeditor/*
   stripeForm
   phoneInput
+  raven-js/dist/raven.js
 ]
 
 Rails.application.config.assets.precompile += assets_to_precompile

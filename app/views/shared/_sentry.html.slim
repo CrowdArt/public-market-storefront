@@ -1,6 +1,6 @@
-= javascript_include_tag 'https://cdn.ravenjs.com/3.16.1/raven.min.js', crossorigin: 'anonymous'
+= javascript_include_tag 'raven-js'
 
 javascript:
-  Raven.config("#{Settings.sentry_dsn}", {
+  Raven.config("#{Settings.sentry_public_dsn}", {
     environment: "#{Rails.env}"
   }).install()
