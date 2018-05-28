@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_multi_vendor.git
-  revision: 40719d6136e7cff5f21d87ef710e909509d3e4d5
+  revision: 42ec814f9c5634979767a213a168ed0ef41c3816
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq
@@ -183,7 +183,7 @@ GEM
     ast (2.4.0)
     attr_encrypted (3.1.0)
       encryptor (~> 3.0.0)
-    autoprefixer-rails (8.5.0)
+    autoprefixer-rails (8.5.1)
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)
@@ -243,7 +243,7 @@ GEM
       activesupport (>= 3.0)
       deep_merge (~> 1.2.1)
       dry-validation (>= 0.10.4)
-    connection_pool (2.2.1)
+    connection_pool (2.2.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
@@ -854,4 +854,4 @@ DEPENDENCIES
   zonebie
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
