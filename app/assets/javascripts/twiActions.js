@@ -7,5 +7,5 @@ window.pm.shareOnTwitter = function(link, text) {
   var encodedText = encodeURIComponent(text)
   var encodedUrl = encodeURIComponent(link)
 
-  window.open(`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedText}&related=publicmarket`, 'sharer', `top=${top},left=${left},toolbar=0,status=0,width=520,height=570px`)
+  window.open("https://twitter.com/intent/tweet?url=" + encodedUrl + "&text=" + encodedText + "related=publicmarket", 'sharer', "top=" + top + ",left=" + left + ",toolbar=0,status=0,width=520,height=570px")
 }
