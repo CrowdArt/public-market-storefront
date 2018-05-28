@@ -8,7 +8,7 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - \
         git \
         nodejs
 
-ENV YARN_VERSION=1.6.0
+ENV YARN_VERSION=1.7.0
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && apt-get update -qq \
@@ -25,5 +25,5 @@ ENV BUNDLE_JOBS=4 \
     BUNDLE_RETRY=3 \
     BUNDLE_PATH=/vendor/bundle
 
-ENV BUNDLER_VERSION=1.16.1
+ENV BUNDLER_VERSION=1.16.2
 RUN gem install bundler --no-ri --no-rdoc -v "$BUNDLER_VERSION"
