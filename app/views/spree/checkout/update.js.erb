@@ -1,4 +1,4 @@
-<%= render partial: 'spree/shared/flash_messages', locals: { sticky: true } %>
+<%= render partial: 'spree/shared/flash_messages', locals: { sticky: true, additional_class: 'slide-down' } %>
 
 <% unless @order.valid? %>
   $('input[type="radio"]:checked').click()

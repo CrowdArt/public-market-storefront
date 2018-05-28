@@ -1,24 +1,27 @@
-<% auto_close ||= false %>
 <% sticky ||= false %>
 <% additional_class ||= '' %>
-<% alert_class = "alert-top#{'-sticky' if sticky}" %>
-<% close_delay ||= 3000 %>
+<% alert_class = "alert-top #{'alert-top-sticky' if sticky}" %>
+<% open_delay ||= nil %>
 <% messages ||= flash %>
 
-$(".<%= alert_class %>").remove();
+$(".alert-top").remove();
 
 <% messages.each do |type, message| %>
   <% flash.discard(type) %>
 
   $(".content-wrap").before("<%= j render partial: 'spree/shared/flash_message', locals: { type: type, message: message, alert_class: [alert_class, additional_class].compact.join(' ') } %>");
 
-  <% if auto_close %>
-    $(".<%= alert_class %>").delay(<%= close_delay %>).fadeOut("slow");
-  <% end %>
-
   <% if sticky %>
     window.pm.initStickyAlert()
   <% end %>
 
-  $(".<%= alert_class %>").addClass('in')
+  var openAlert = function() {
+    $(".alert-top").addClass('in')
+  }
+
+  <% if open_delay %>
+    setTimeout(openAlert, <%= open_delay %>)
+  <% else %>
+    openAlert()
+  <% end %>
 <% end %>

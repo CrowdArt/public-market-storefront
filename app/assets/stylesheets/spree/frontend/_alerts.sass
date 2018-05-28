@@ -14,7 +14,7 @@
   &.alert-top
     margin-bottom: 0
 
-    &-sticky
+    &.alert-top-sticky
       position: absolute
       width: 100%
       z-index: 1
@@ -28,14 +28,14 @@
         @media (min-width: $screen-md)
           top: 0
 
-      &.fade
-        opacity: 1 // override default bootstrap fade effect
-        transition-property: transform
-        transition-duration: .2s
-        transform: translateY(-100%)
-        will-change: transform
-        &.in
-          transform: translateY(0)
+    &.fade.slide-down
+      opacity: 1 // override default bootstrap fade effect
+      transition-property: transform
+      transition-duration: .2s
+      transform: translateY(-100%)
+      will-change: transform
+      &.in
+        transform: translateY(0)
 
 .alert-added-to-cart
   font-size: 14px

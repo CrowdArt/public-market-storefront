@@ -6,7 +6,7 @@ ruby:
     - content_for :bottom_scripts
       - message = { info: render(partial: 'spree/users/confirm_alert') }
       javascript:
-        #{render(partial: 'spree/shared/flash_messages.js', formats: %i[js], locals: { messages: message, sticky: true, additional_class: 'transition-delay-1000' })}
+        #{render(partial: 'spree/shared/flash_messages.js', formats: %i[js], locals: { messages: message, open_delay: 1000, additional_class: 'slide-down' })}
 
   .panel.no-border
     .panel-body.successull-order-completion
