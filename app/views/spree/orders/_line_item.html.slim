@@ -1,30 +1,35 @@
 - variant = line_item.variant
+- item_form ||= nil
 
-= order_form.fields_for :line_items, line_item do |item_form|
-  .row.line-item
-    .col-xs-4.col-sm-1
-      - if variant.images.length == 0
-        = link_to small_image(variant.product, class: 'img-responsive'), variant.product
-      - else
-        = link_to image_tag(variant.images.first.attachment.url(:small), class: 'img-responsive'), variant.product
-    .col-xs-8.col-sm-11
-      .row
-        .col-xs-12.col-sm-6.col-md-7
-          p= link_to line_item.name, product_path(variant.product), class: 'plain-link'
-          small.text-muted= variant.options_text
-          - if line_item.insufficient_stock?
-            small.out-of-stock
-              = Spree.t(:out_of_stock)
-        .col-xs-12.col-sm-2
-          span.small-xs= line_item.single_money.to_html
-          .text-rewards= t('products.rewards', rewards: variant.product.estimated_ptrn)
-        .col-xs-12.col-sm-2
-          .row.condensed.flex.align-center
-            .col-xs-6.col-sm-8
+.row.line-item
+  .col-xs-4.col-sm-1
+    - if variant.images.length == 0
+      = link_to small_image(variant.product, class: 'img-responsive'), variant.product
+    - else
+      = link_to image_tag(variant.images.first.attachment.url(:small), class: 'img-responsive'), variant.product
+  .col-xs-8.col-sm-11
+    .row
+      .col-xs-12.col-sm-6.col-md-7
+        p= link_to line_item.name, product_path(variant.product), class: 'plain-link'
+        small.text-muted= variant.options_text
+        - if line_item.insufficient_stock?
+          small.out-of-stock
+            = Spree.t(:out_of_stock)
+      .col-xs-12.col-sm-2
+        span.small-xs= line_item.single_money.to_html
+        .text-rewards= t('products.rewards', rewards: variant.product.estimated_ptrn)
+      .col-xs-12.col-sm-2
+        .row.condensed.flex.align-center
+          .col-xs-6.col-sm-8
+            - if item_form
               = item_form.number_field :quantity, min: 0, class: "form-control line_item_quantity", size: 5
+            - else
+              = line_item.quantity
+
+          - if item_form
             .col-xs-6.col-sm-12
               a.delete href='#' id="delete_#{dom_id(line_item)}" style='font-size:12px' = t('orders.remove_item')
-        .col-xs-12.hidden-xs.col-sm-2.col-md-1
-          = line_item.display_amount.to_html unless line_item.quantity.nil?
-  hr
 
+      .col-xs-12.hidden-xs.col-sm-2.col-md-1
+        = line_item.display_amount.to_html unless line_item.quantity.nil?
+hr

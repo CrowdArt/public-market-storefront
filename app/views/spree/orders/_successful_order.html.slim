@@ -1,0 +1,31 @@
+= render partial: 'shared/facebook_scripts'
+= render partial: 'shared/twitter_scripts'
+
+- content_for :bottom_scripts
+  javascript:
+    $('.fbk-btn').click(function() {
+      window.pm.shareOnFb("https://public.market", "#{t('orders.sharing_text')}")
+    })
+
+    $('.twi-btn').click(function() {
+      window.pm.shareOnTwitter("#{root_url}", "#{t('orders.sharing_text')}")
+    })
+
+.text-center
+  h3.text-black = accurate_title
+
+  p
+    = Spree.t(:order_processed_successfully)
+    br
+    = Spree.t(:you_earned)
+
+  .ptrn-container
+    h4.no-margin.upcase.text-black #{order.ptrn_rewards} patron
+
+    = link_to Spree.t(:learn_about_ptrn), '#'
+
+  p.sharing-hint = Spree.t(:share_order_hint)
+
+  .flex.buttons-section
+    button.btn.fbk-btn.brand-icon.flex-1.margin-text-right
+    button.btn.twi-btn.brand-icon.flex-1

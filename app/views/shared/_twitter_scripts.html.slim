@@ -1,0 +1,5 @@
+- unless @twitter_sharing_loaded
+  - @twitter_sharing_loaded = true
+
+  - content_for :bottom_scripts
+    = javascript_include_tag 'twiActions'

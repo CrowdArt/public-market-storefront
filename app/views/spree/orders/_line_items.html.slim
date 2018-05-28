@@ -1,0 +1,24 @@
+- order_form ||= nil
+
+.container-fluid
+  .row.hidden-xs.row-header
+    .col-sm-1
+      h6.upcase = Spree.t(:item)
+    .col-sm-11
+      .row
+        .col-sm-6.col-md-7
+        .col-sm-2
+          h6.upcase = Spree.t(:price)
+        .col-sm-2
+          h6.upcase = Spree.t(:qty)
+        .col-sm-2.col-md-1
+          h6.upcase = Spree.t(:total)
+
+  hr.visible-xs
+
+  - if order_form
+    - line_items.each do |line_item|
+      = order_form.fields_for :line_items, line_item do |item_form|
+        = render partial: 'spree/orders/line_item', locals: { line_item: line_item, item_form: item_form }
+  - else
+    = render partial: 'spree/orders/line_item', collection: line_items

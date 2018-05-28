@@ -1,0 +1,30 @@
+- if order.has_step?("address")
+  .col-md-3.col-sm-3.col-xs-6 data-hook="order-bill-address"
+    h4
+      = Spree.t(:billing_address)
+      = link_to "(#{Spree.t(:edit)})", checkout_state_path(:payment), data: { turbolinks: false } unless order.completed?
+    = render 'spree/shared/address', address: order.bill_address
+
+  - if order.has_step?("delivery")
+    .col-md-3.col-sm-3.col-xs-6 data-hook="order-ship-address"
+      h4
+        = Spree.t(:shipping_address)
+        = link_to "(#{Spree.t(:edit)})", checkout_state_path(:address) unless order.completed?
+      = render 'spree/shared/address', address: order.ship_address
+    .col-md-3.col-sm-3.col-xs-6 data-hook="order-shipment"
+      h4
+        = Spree.t(:shipments)
+        = link_to "(#{Spree.t(:edit)})", checkout_state_path(:delivery) unless order.completed?
+      .delivery
+        - order.shipments.each do |shipment|
+          div
+            = Spree.t(:shipment_details, stock_location: shipment.stock_location.name, shipping_method: shipment.selected_shipping_rate.name)
+      = render 'spree/shared/shipment_tracking', order: order if order.shipped?
+
+- if order.has_step?("payment")
+  .col-md-3.col-sm-3.col-xs-6 data-hook="order-payment"
+    h4
+      = Spree.t(:payment_information)
+      = link_to "(#{Spree.t(:edit)})", checkout_state_path(:payment), data: { turbolinks: false } unless order.completed?
+    .payment-info
+      = render collection: order.payments.valid, partial: 'spree/shared/payment'

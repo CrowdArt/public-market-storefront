@@ -1,0 +1,8 @@
+- unless @fb_sharing_loaded
+  - @fb_sharing_loaded = true
+
+  - content_for :bottom_scripts
+    = javascript_include_tag 'fbActions'
+
+    javascript:
+      window.pm.initFb("#{Settings.facebook_api_key}")

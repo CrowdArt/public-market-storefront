@@ -1,22 +1,6 @@
 = render partial: 'spree/shared/error_messages', locals: { target: @order }
 
-.row.hidden-xs.row-header
-  .col-sm-1
-    h6.upcase = Spree.t(:item)
-  .col-sm-11
-    .row
-      .col-sm-6.col-md-7
-      .col-sm-2
-        h6.upcase = Spree.t(:price)
-      .col-sm-2
-        h6.upcase = Spree.t(:qty)
-      .col-sm-2.col-md-1
-        h6.upcase = Spree.t(:total)
-
-hr.visible-xs
-= render partial: 'spree/orders/line_item', collection: order_form.object.line_items, locals: { order_form: order_form }
-
-
+= render partial: 'spree/orders/line_items', locals: { line_items: order_form.object.line_items, order_form: order_form }
 
 / table#cart-detail.table data-hook=""
   tbody#line_items data-hook=""

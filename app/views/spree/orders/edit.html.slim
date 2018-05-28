@@ -12,26 +12,22 @@
   - else
     = form_for @order, url: update_cart_path, html: { id: 'update-cart' } do |order_form|
       = render partial: 'form', locals: { order_form: order_form }
-      .row
-        .hidden-xs.col-sm-7.col-md-9
-          = link_to products_path, class: 'continue' do
-            = image_tag 'icons/back.svg', style: 'margin-right: 10px'
-            = Spree.t(:continue_shopping)
-        .col-xs-12.col-sm-5.col-md-3
-          p
-            span.upcase = t('orders.ptrn_rewards')
-            span.pull-right = @order.ptrn_rewards
-          p
-            span.upcase = t('orders.shipping')
-            span.pull-right FREE
-          p
-            strong.upcase = Spree.t(:total)
-            strong.pull-right = @order.display_total
-          .form-group
-            #checkout-div
-              button.btn.btn-lg.btn-block.btn-primary#checkout-link name='checkout' = t('orders.checkout')
-            br
-            .text-center = image_tag 'icons/stripe.svg', style: 'width:120px'
+
+      .container-fluid
+        .row
+          .hidden-xs.col-sm-7.col-md-9
+            = link_to products_path, class: 'continue' do
+              = image_tag 'icons/back.svg', style: 'margin-right: 10px'
+              = Spree.t(:continue_shopping)
+
+          .col-xs-12.col-sm-5.col-md-3
+            = render partial: 'spree/shared/order_total', locals: { order: @order }
+
+            .form-group
+              #checkout-div
+                button.btn.btn-lg.btn-block.btn-primary#checkout-link name='checkout' = t('orders.checkout')
+              br
+              .text-center = image_tag 'icons/stripe.svg', style: 'width:120px'
 br
 - [{ icon: 'buyer-rewards.svg', locale_key: 'buyer_rewards' },
   { icon: 'free-shipping.svg', locale_key: 'free_shipping' },

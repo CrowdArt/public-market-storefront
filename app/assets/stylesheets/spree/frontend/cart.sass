@@ -1,19 +1,29 @@
 .cart_container
   padding: 15px
   background: #fff
+
   @media (min-width: $screen-sm-min)
     padding: 15px 25px
+
   @media (min-width: $screen-md-min)
-    padding: 15px 100px
+    padding: 15px 90px
+
   .line-item
     margin-top: 15px
+
     @media (max-width: $screen-xs)
       img
         width: 100%
+
+    @media (max-width: $screen-md-max)
+      input
+        padding: 8px
+
   .row-header
     background: #f4f4f4
     h6
       color: $text-color
+
   @media (max-width: $screen-xs)
     #checkout-div
       position: fixed

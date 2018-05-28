@@ -18,6 +18,8 @@ assets_to_precompile = %w[
   ckeditor/*
   stripeForm
   phoneInput
+  fbActions
+  twiActions
   raven-js/dist/raven.js
 ]
 
