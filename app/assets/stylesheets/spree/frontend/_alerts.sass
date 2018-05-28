@@ -30,7 +30,8 @@
 
       &.fade
         opacity: 1 // override default bootstrap fade effect
-        transition: transform .2s
+        transition-property: transform
+        transition-duration: .2s
         transform: translateY(-100%)
         will-change: transform
         &.in
@@ -57,3 +58,6 @@
   @media (max-width: $screen-xs)
     .margin-text-bottom-xs
       width: 100%
+
+.alert-confirm-email
+  font-size: 14px

@@ -26,8 +26,7 @@ Spree::CheckoutController.class_eval do
 
       if @order.completed?
         @current_order = nil
-        flash.notice = Spree.t(:order_processed_successfully)
-        flash['order_completed'] = true
+        flash[:order_completed] = true
         Tracker.track(mixpanel_user_id, 'order completed', order_id: @order.id)
         redirect_to completion_route
       else

@@ -27,6 +27,7 @@ en:
     payment: Payment Methods
     shipping: Shipping Address
     orders: My orders
+    confirm_alert: "Please verify your email address by opening the email we sent to <strong>%{email}</strong>"
 
   payment_methods:
     cards:

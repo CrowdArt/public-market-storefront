@@ -2,14 +2,20 @@ ruby:
   order_just_completed = order_just_completed?(@order)
 
 - if order_just_completed
+  - unless spree_current_user.confirmed?
+    - content_for :bottom_scripts
+      - message = { info: render(partial: 'spree/users/confirm_alert') }
+      javascript:
+        #{render(partial: 'spree/shared/flash_messages.js', formats: %i[js], locals: { messages: message, sticky: true, additional_class: 'transition-delay-1000' })}
+
   .panel.no-border
     .panel-body.successull-order-completion
       = render partial: 'spree/orders/successful_order', locals: { order: @order }
 
-      = render partial: 'spree/ratings/form'
-
 .panel.no-border
   .panel-body.cart_container
+    = render partial: 'spree/ratings/form'
+
     h3.text-black = order_just_completed ? Spree.t(:order_summary) : accurate_title
 
     = render partial: 'spree/orders/line_items', locals: { line_items: @order.line_items }

@@ -1,17 +1,19 @@
 <% auto_close ||= false %>
 <% sticky ||= false %>
+<% additional_class ||= '' %>
 <% alert_class = "alert-top#{'-sticky' if sticky}" %>
-<% flash_delay ||= 3000 %>
+<% close_delay ||= 3000 %>
+<% messages ||= flash %>
 
 $(".<%= alert_class %>").remove();
 
-<% flash.each do |type, message| %>
+<% messages.each do |type, message| %>
   <% flash.discard(type) %>
 
-  $(".content-wrap").before("<%= j render partial: 'spree/shared/flash_message', locals: { type: type, message: message, alert_class: alert_class } %>");
+  $(".content-wrap").before("<%= j render partial: 'spree/shared/flash_message', locals: { type: type, message: message, alert_class: [alert_class, additional_class].compact.join(' ') } %>");
 
   <% if auto_close %>
-    $(".<%= alert_class %>").delay(<%= flash_delay %>).fadeOut("slow");
+    $(".<%= alert_class %>").delay(<%= close_delay %>).fadeOut("slow");
   <% end %>
 
   <% if sticky %>

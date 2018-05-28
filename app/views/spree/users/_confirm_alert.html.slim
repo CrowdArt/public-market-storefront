@@ -1,0 +1,6 @@
+.alert-confirm-email.text-center
+  == t('account.confirm_alert', email: spree_current_user.unconfirmed_email || spree_current_user.email)
+  br
+    = link_to('Resend', spree_user_confirmation_path, method: :post, class: 'white-link')
+    | &nbsp;/&nbsp;
+    = link_to('Change email address', edit_account_path, class: 'white-link')
