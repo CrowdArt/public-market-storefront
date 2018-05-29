@@ -38,7 +38,7 @@ RSpec.describe 'Checkout', type: :feature, js: true do
       end
 
       it 'shows alert' do
-        expect(page).to have_text 'Please verify your email address'
+        expect(page).to have_text I18n.t('account.confirm_alert', email: user.email)
       end
     end
   end
