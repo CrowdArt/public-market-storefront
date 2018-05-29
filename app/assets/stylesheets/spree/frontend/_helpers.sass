@@ -64,14 +64,21 @@
   content: '\e257'
   font-family: 'Glyphicons Halflings'
 
+.check-left, .info-icon-left
+  &:before
+    content: ''
+    display: inline-block
+    margin-right: 10px
+    height: 16px
+    width: 16px
+
 .check-left:before
   @include check-icon-bg(#fff)
-  content: ''
-  display: inline-block
-  margin-right: 10px
-  height: 16px
-  width: 16px
   vertical-align: bottom
+
+.info-icon-left:before
+  @include info-icon-bg(#fff)
+  vertical-align: text-bottom
 
 .visible-scroll
   &::-webkit-scrollbar
