@@ -2,7 +2,7 @@ ruby:
   root_taxons = Spree::Taxon.roots.reorder(position: :asc)
   enabled_taxons = root_taxons.where(hidden: false)
   disabled_taxons = root_taxons.where(hidden: true)
-  taxon = Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon]
+  taxon = @taxon&.root || (Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon])
 
 - cache([:v5, :mobile_menu, root_taxons, taxon, spree_current_user])
   / MOBILE MENU
@@ -33,7 +33,7 @@ ruby:
           - cache([:v3, :navbar_top_right, spree_current_user])
             = render partial: 'spree/nav/navbar_top_right'
 
-      - cache([:v2, :navbar_bottom_row, root_taxons, taxon])
+      - cache([:v3, :navbar_bottom_row, root_taxons, taxon])
         / use divider instead of border because rows/cols have paddings
         hr.divider.hidden-xs.hidden-sm
 

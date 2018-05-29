@@ -1,0 +1,9 @@
+- if (products = taxon_preview(taxon)).present?
+  section.taxon-section
+    .taxon-heading
+      .flex.align-center.between-xxs.margin-text-bottom
+        h2.upcase.text-black = taxon.name
+        = link_to 'View all', seo_url(taxon), class: 'margin-text-left'
+
+    .product-list.row.flex.eq-height-columns
+      = render partial: 'spree/products/product', collection: products, locals: { card_size: 'col-lg-4 col-md-4 col-sm-6 col-xs-6', taxon: @taxon }

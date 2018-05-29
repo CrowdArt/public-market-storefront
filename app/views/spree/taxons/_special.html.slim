@@ -1,0 +1,6 @@
+nav#books-specials
+  h3.upcase.text-black.no-margin-top = Spree.t(:specials)
+
+  ul.taxon-links
+    - t('menus.specials').each do |s|
+      li = link_to(s, '#', class: 'plain-link')

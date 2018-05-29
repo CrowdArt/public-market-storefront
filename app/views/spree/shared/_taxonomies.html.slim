@@ -1,0 +1,12 @@
+- max_level = Spree::Config[:max_level_in_taxons_menu] || 1
+
+nav#taxonomies
+  - @taxonomies.each do |taxonomy|
+    - cache [I18n.locale, taxonomy, max_level, @taxon] do
+      - if (taxons = taxonomy.root.children).any?
+        h3.upcase.text-black.no-margin-top = Spree.t("shop_by_#{taxonomy.name.downcase}", default: Spree.t(:shop_by_taxonomy, taxonomy: taxonomy.name))
+
+        ul.taxon-links
+          - taxons.each do |taxon|
+            - css_class = ['plain-link', ('active' if @taxon && @taxon.self_and_ancestors.include?(taxon))].join(' ')
+            li = link_to(taxon.name, seo_url(taxon), class: css_class)
