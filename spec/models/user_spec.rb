@@ -82,8 +82,6 @@ RSpec.describe Spree::User, type: :model do
   describe 'welcome email' do
     let(:user) { create(:user, confirmed_at: nil) }
 
-    before { stub_current_store }
-
     context 'when after create' do
       it 'adds delayed welcome email job' do
         expect {
@@ -125,8 +123,6 @@ RSpec.describe Spree::User, type: :model do
   end
 
   describe '#destroy' do
-    before { stub_current_store }
-
     let!(:user) { create(:user) }
 
     it 'changes email' do
@@ -143,8 +139,6 @@ RSpec.describe Spree::User, type: :model do
 
   describe '#email_change' do
     subject(:change_email) { user.update(email: 'new@super.email') }
-
-    before { stub_current_store }
 
     let!(:user) { create(:user) }
 

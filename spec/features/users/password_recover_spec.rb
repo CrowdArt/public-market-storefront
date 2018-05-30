@@ -1,6 +1,5 @@
 RSpec.describe 'password recover', type: :feature do
   before do
-    stub_current_store
     visit 'password/recover'
   end
 

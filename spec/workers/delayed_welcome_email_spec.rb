@@ -3,8 +3,6 @@ RSpec.describe DelayedWelcomeEmail, type: :worker do
 
   let(:user) { create(:user, confirmed_at: nil) }
 
-  before { stub_current_store }
-
   describe '#perform' do
     it 'sends welcome email' do
       expect {

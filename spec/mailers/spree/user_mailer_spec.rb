@@ -1,6 +1,4 @@
 RSpec.describe Spree::UserMailer, type: :mailer do
-  before { stub_current_store }
-
   describe '#welcome' do
     let(:user) { create(:user) }
     let(:mail) { described_class.welcome(user.id) }

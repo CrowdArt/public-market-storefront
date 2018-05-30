@@ -30,15 +30,18 @@ RSpec.describe 'Checkout', type: :feature, js: true do
     it { expect(page).to have_button 'Submit your order' }
 
     context 'with unconfirmed email' do
-      let(:user) { create(:user) }
+      let!(:user) { create(:user, confirmed_at: nil) }
 
       before do
-        user.update_columns(confirmed_at: nil) # avoid sending confirmation email
+        ActionMailer::Base.deliveries.clear # clear after user created
         click_button 'Submit your order'
       end
 
-      it 'shows alert' do
+      it 'sends confirmation email and shows alert' do
         expect(page).to have_text ActionView::Base.full_sanitizer.sanitize(I18n.t('account.confirm_alert', email: user.email))
+
+        expect(ActionMailer::Base.deliveries.count).to eq 1
+        expect(ActionMailer::Base.deliveries.first.subject).to include('Verify your email & activate your account')
       end
     end
   end

@@ -5,7 +5,6 @@ RSpec.describe Spree::UserSessionsController, type: :controller do
 
   before do
     @request.env['devise.mapping'] = Devise.mappings[:spree_user] # rubocop:disable RSpec/InstanceVariable
-    stub_current_store
   end
 
   describe '#create' do

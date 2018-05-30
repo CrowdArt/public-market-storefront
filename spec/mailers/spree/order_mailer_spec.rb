@@ -3,7 +3,6 @@ RSpec.describe Spree::OrderMailer, type: :mailer do
 
   before do
     allow(Spree::Vendor).to receive(:first) { build_stubbed(:vendor) }
-    stub_current_store
   end
 
   describe '#confirm_email' do

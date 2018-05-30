@@ -4,8 +4,6 @@ RSpec.describe 'Sign In', type: :feature do
   let(:password) { 'password' }
 
   before do
-    stub_current_store
-
     visit spree.login_path
 
     fill_in 'Email', with: email

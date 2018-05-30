@@ -1,7 +1,5 @@
 RSpec.describe 'Sign Up', type: :feature do
   before do
-    stub_current_store
-
     visit spree.signup_path
 
     fill_in 'Email', with: email

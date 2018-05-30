@@ -4,8 +4,6 @@ RSpec.describe 'update email address', type: :feature do
   let(:user) { create(:user, email: 'user@spree.com') }
 
   before do
-    stub_current_store
-
     login_as(user, scope: :spree_user)
 
     visit spree.edit_account_path

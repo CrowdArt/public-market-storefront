@@ -9,7 +9,7 @@ Spree::ShipmentMailer.class_eval do
       line_items_text: line_items_as_text(order.line_items),
       order_card: render_to_string(partial: 'mailer/orders/order_card', locals: { order: order, shipment: shipment }),
       shipment_tracking: render_to_string(partial: 'mailer/shipments/shipment_tracking', locals: { shipment: shipment }),
-      support_url: main_app.freshdesk_url(host: Spree::Store.current.url)
+      support_url: main_app.freshdesk_url
     }
 
     mail_template(order, :order_shipped, opts)
