@@ -1,0 +1,424 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/accounts
+    body:
+      encoding: UTF-8
+      string: country=US&type=custom&email=creola.keeling%40abshire.info&legal_entity[business_name]=Ankunding%2C+Mraz+and+Bode&legal_entity[dob][day]=29&legal_entity[dob][month]=5&legal_entity[dob][year]=1998&legal_entity[first_name]=Ed&legal_entity[last_name]=Nader&legal_entity[personal_id_number]=023-06-0361&legal_entity[type]=company&legal_entity[address][city]=Boyerborough&legal_entity[address][country]=US&legal_entity[address][line1]=4161+Harvey+Stream&legal_entity[address][postal_code]=91110&legal_entity[address][state]=OK&tos_acceptance[date]=1527605592&tos_acceptance[ip]=100.16.89.166
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.15.0
+      Authorization:
+      - Bearer sk_test_5EdEIBWTO1bLIqVSPdsHZcTr
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.15.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
+        AnfiniLPro.lan 17.5.0 Darwin Kernel Version 17.5.0: Mon Mar  5 22:24:32 PST
+        2018; root:xnu-4570.51.1~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro.lan"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 29 May 2018 14:53:14 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2195'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_2QRiotHfzzEEIj
+      Stripe-Version:
+      - '2018-02-06'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "acct_1CX9CHGwf7rfb7D8",
+          "object": "account",
+          "business_name": "Ankunding, Mraz and Bode",
+          "business_url": null,
+          "charges_enabled": true,
+          "country": "US",
+          "created": 1527605593,
+          "debit_negative_balances": false,
+          "decline_charge_on": {
+            "avs_failure": false,
+            "cvc_failure": false
+          },
+          "default_currency": "usd",
+          "details_submitted": false,
+          "display_name": null,
+          "email": "creola.keeling@abshire.info",
+          "external_accounts": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/accounts/acct_1CX9CHGwf7rfb7D8/external_accounts"
+          },
+          "keys": {
+            "secret": "sk_test_1zRDFmwJgUEKD090io2mv3EY",
+            "publishable": "pk_test_CP9zywVvfbc4pKtzi3flbLP5"
+          },
+          "legal_entity": {
+            "additional_owners": [],
+            "address": {
+              "city": "Boyerborough",
+              "country": "US",
+              "line1": "4161 Harvey Stream",
+              "line2": null,
+              "postal_code": "91110",
+              "state": "OK"
+            },
+            "business_name": "Ankunding, Mraz and Bode",
+            "business_tax_id_provided": false,
+            "dob": {
+              "day": 29,
+              "month": 5,
+              "year": 1998
+            },
+            "first_name": "Ed",
+            "last_name": "Nader",
+            "personal_address": {
+              "city": null,
+              "country": "US",
+              "line1": null,
+              "line2": null,
+              "postal_code": null,
+              "state": null
+            },
+            "personal_id_number_provided": true,
+            "ssn_last_4_provided": true,
+            "type": "company",
+            "verification": {
+              "details": null,
+              "details_code": null,
+              "document": null,
+              "document_back": null,
+              "status": "pending"
+            }
+          },
+          "metadata": {},
+          "payout_schedule": {
+            "delay_days": 2,
+            "interval": "daily"
+          },
+          "payout_statement_descriptor": null,
+          "payouts_enabled": false,
+          "product_description": null,
+          "statement_descriptor": "",
+          "support_email": null,
+          "support_phone": null,
+          "timezone": "Etc/UTC",
+          "tos_acceptance": {
+            "date": 1527605592,
+            "ip": "100.16.89.166",
+            "user_agent": null
+          },
+          "type": "custom",
+          "verification": {
+            "disabled_reason": null,
+            "due_by": null,
+            "fields_needed": [
+              "external_account",
+              "legal_entity.business_tax_id"
+            ]
+          }
+        }
+    http_version: 
+  recorded_at: Tue, 29 May 2018 14:53:14 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/accounts
+    body:
+      encoding: UTF-8
+      string: country=US&type=custom&email=malorie.toy%40hand.ca&legal_entity[business_name]=Crist%2C+Larson+and+Reilly&legal_entity[dob][day]=29&legal_entity[dob][month]=5&legal_entity[dob][year]=1998&legal_entity[first_name]=Kiara&legal_entity[last_name]=Schultz&legal_entity[personal_id_number]=258-08-2529&legal_entity[type]=company&legal_entity[address][city]=Ankundingstad&legal_entity[address][country]=US&legal_entity[address][line1]=55055+Cummerata+Path&legal_entity[address][postal_code]=91110&legal_entity[address][state]=AZ&tos_acceptance[date]=1527605594&tos_acceptance[ip]=39.170.240.159
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.15.0
+      Authorization:
+      - Bearer sk_test_5EdEIBWTO1bLIqVSPdsHZcTr
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.15.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
+        AnfiniLPro.lan 17.5.0 Darwin Kernel Version 17.5.0: Mon Mar  5 22:24:32 PST
+        2018; root:xnu-4570.51.1~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro.lan"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 29 May 2018 14:53:16 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2196'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_G274f6yWXMcmEM
+      Stripe-Version:
+      - '2018-02-06'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "acct_1CX9CJADrQH39IVQ",
+          "object": "account",
+          "business_name": "Crist, Larson and Reilly",
+          "business_url": null,
+          "charges_enabled": true,
+          "country": "US",
+          "created": 1527605595,
+          "debit_negative_balances": false,
+          "decline_charge_on": {
+            "avs_failure": false,
+            "cvc_failure": false
+          },
+          "default_currency": "usd",
+          "details_submitted": false,
+          "display_name": null,
+          "email": "malorie.toy@hand.ca",
+          "external_accounts": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/accounts/acct_1CX9CJADrQH39IVQ/external_accounts"
+          },
+          "keys": {
+            "secret": "sk_test_kw0CpfQdRGror6Z5lKGYnJXn",
+            "publishable": "pk_test_6NOeBYQUr2k5JYgKlZSA53Iq"
+          },
+          "legal_entity": {
+            "additional_owners": [],
+            "address": {
+              "city": "Ankundingstad",
+              "country": "US",
+              "line1": "55055 Cummerata Path",
+              "line2": null,
+              "postal_code": "91110",
+              "state": "AZ"
+            },
+            "business_name": "Crist, Larson and Reilly",
+            "business_tax_id_provided": false,
+            "dob": {
+              "day": 29,
+              "month": 5,
+              "year": 1998
+            },
+            "first_name": "Kiara",
+            "last_name": "Schultz",
+            "personal_address": {
+              "city": null,
+              "country": "US",
+              "line1": null,
+              "line2": null,
+              "postal_code": null,
+              "state": null
+            },
+            "personal_id_number_provided": true,
+            "ssn_last_4_provided": true,
+            "type": "company",
+            "verification": {
+              "details": null,
+              "details_code": null,
+              "document": null,
+              "document_back": null,
+              "status": "pending"
+            }
+          },
+          "metadata": {},
+          "payout_schedule": {
+            "delay_days": 2,
+            "interval": "daily"
+          },
+          "payout_statement_descriptor": null,
+          "payouts_enabled": false,
+          "product_description": null,
+          "statement_descriptor": "",
+          "support_email": null,
+          "support_phone": null,
+          "timezone": "Etc/UTC",
+          "tos_acceptance": {
+            "date": 1527605594,
+            "ip": "39.170.240.159",
+            "user_agent": null
+          },
+          "type": "custom",
+          "verification": {
+            "disabled_reason": null,
+            "due_by": null,
+            "fields_needed": [
+              "external_account",
+              "legal_entity.business_tax_id"
+            ]
+          }
+        }
+    http_version: 
+  recorded_at: Tue, 29 May 2018 14:53:16 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: UTF-8
+      string: email=cathrine%40wildermancartwright.us&card=tok_visa
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Authorization:
+      - Basic c2tfdGVzdF81RWRFSUJXVE8xYkxJcVZTUGRzSFpjVHI6
+      User-Agent:
+      - Stripe/v1 ActiveMerchantBindings/1.78.0
+      Stripe-Version:
+      - '2015-04-07'
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.78.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
+      X-Stripe-Client-User-Metadata:
+      - '{"ip":null}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 29 May 2018 14:53:17 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1437'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_bYKRRbn7RmpJPe
+      Stripe-Version:
+      - '2015-04-07'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "cus_Cx3IeyrjA0vPRb",
+          "object": "customer",
+          "account_balance": 0,
+          "created": 1527605597,
+          "currency": null,
+          "default_source": "card_1CX9CLI93ruT9p2PVrgwfAua",
+          "delinquent": false,
+          "description": null,
+          "discount": null,
+          "email": "cathrine@wildermancartwright.us",
+          "invoice_prefix": "87CC55D",
+          "livemode": false,
+          "metadata": {},
+          "shipping": null,
+          "sources": {
+            "object": "list",
+            "data": [
+              {
+                "id": "card_1CX9CLI93ruT9p2PVrgwfAua",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_Cx3IeyrjA0vPRb",
+                "cvc_check": null,
+                "dynamic_last4": null,
+                "exp_month": 5,
+                "exp_year": 2019,
+                "fingerprint": "nFWZcG1SSLrd81Cf",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": null,
+                "tokenization_method": null
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_Cx3IeyrjA0vPRb/sources"
+          },
+          "subscriptions": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_Cx3IeyrjA0vPRb/subscriptions"
+          }
+        }
+    http_version: 
+  recorded_at: Tue, 29 May 2018 14:53:17 GMT
+recorded_with: VCR 4.0.0

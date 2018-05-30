@@ -18,7 +18,7 @@ Spree::Order.class_eval do
   end
 
   def vendors
-    Spree::Vendor.joins(variants: :line_items).where(spree_line_items: { order_id: id })
+    Spree::Vendor.joins(variants: :line_items).where(spree_line_items: { order_id: id }).uniq
   end
 
   def rateable?

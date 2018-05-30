@@ -47,6 +47,13 @@ Spree::CheckoutController.class_eval do
         end
       end
     end
+  rescue Spree::Core::GatewayError => e
+    before_payment
+    flash[:error] = e.message
+    respond_to do |format|
+      format.html { render :edit }
+      format.js { render :update, status: :unprocessable_entity }
+    end
   end
   # rubocop:enable Metrics/MethodLength
 

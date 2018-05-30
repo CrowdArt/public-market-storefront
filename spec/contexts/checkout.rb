@@ -1,8 +1,10 @@
-shared_context 'with filled product cart' do
+shared_context 'with filled product cart' do |args = {}|
   before do
     login_as(user, scope: :spree_user) if user
 
-    vendor = create(:vendor)
+    args[:stripe_account] = true if args[:stripe_account].nil?
+
+    vendor = create(:vendor, stripe_account: args[:stripe_account])
     country = create(:country, states_required: true)
     create(:state, name: 'Alabama', abbr: 'AL', country: country)
     create(:free_shipping_method, vendor: vendor)

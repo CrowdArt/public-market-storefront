@@ -1,0 +1,424 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/accounts
+    body:
+      encoding: UTF-8
+      string: country=US&type=custom&email=julie%40rodriguezsatterfield.ca&legal_entity[business_name]=Koch+LLC&legal_entity[dob][day]=30&legal_entity[dob][month]=5&legal_entity[dob][year]=1998&legal_entity[first_name]=Marin&legal_entity[last_name]=Johnson&legal_entity[personal_id_number]=038-11-4240&legal_entity[type]=company&legal_entity[address][city]=Lake+Aubreyport&legal_entity[address][country]=US&legal_entity[address][line1]=32188+Hansen+Mill&legal_entity[address][postal_code]=91110&legal_entity[address][state]=NE&tos_acceptance[date]=1527674486&tos_acceptance[ip]=248.168.148.156
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.15.0
+      Authorization:
+      - Bearer sk_test_5EdEIBWTO1bLIqVSPdsHZcTr
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.15.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
+        AnfiniLPro.lan 17.5.0 Darwin Kernel Version 17.5.0: Mon Mar  5 22:24:32 PST
+        2018; root:xnu-4570.51.1~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro.lan"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 30 May 2018 10:01:27 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2174'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_zH0lsfjRq4DY6B
+      Stripe-Version:
+      - '2018-02-06'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "acct_1CXR7SCVysZobzVD",
+          "object": "account",
+          "business_name": "Koch LLC",
+          "business_url": null,
+          "charges_enabled": true,
+          "country": "US",
+          "created": 1527674487,
+          "debit_negative_balances": false,
+          "decline_charge_on": {
+            "avs_failure": false,
+            "cvc_failure": false
+          },
+          "default_currency": "usd",
+          "details_submitted": false,
+          "display_name": null,
+          "email": "julie@rodriguezsatterfield.ca",
+          "external_accounts": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/accounts/acct_1CXR7SCVysZobzVD/external_accounts"
+          },
+          "keys": {
+            "secret": "sk_test_TgEuJ35eHcyU2DxXI43a665S",
+            "publishable": "pk_test_EhpD0pD7QFJMuFu6TWg4TxG8"
+          },
+          "legal_entity": {
+            "additional_owners": [],
+            "address": {
+              "city": "Lake Aubreyport",
+              "country": "US",
+              "line1": "32188 Hansen Mill",
+              "line2": null,
+              "postal_code": "91110",
+              "state": "NE"
+            },
+            "business_name": "Koch LLC",
+            "business_tax_id_provided": false,
+            "dob": {
+              "day": 30,
+              "month": 5,
+              "year": 1998
+            },
+            "first_name": "Marin",
+            "last_name": "Johnson",
+            "personal_address": {
+              "city": null,
+              "country": "US",
+              "line1": null,
+              "line2": null,
+              "postal_code": null,
+              "state": null
+            },
+            "personal_id_number_provided": true,
+            "ssn_last_4_provided": true,
+            "type": "company",
+            "verification": {
+              "details": null,
+              "details_code": null,
+              "document": null,
+              "document_back": null,
+              "status": "pending"
+            }
+          },
+          "metadata": {},
+          "payout_schedule": {
+            "delay_days": 2,
+            "interval": "daily"
+          },
+          "payout_statement_descriptor": null,
+          "payouts_enabled": false,
+          "product_description": null,
+          "statement_descriptor": "",
+          "support_email": null,
+          "support_phone": null,
+          "timezone": "Etc/UTC",
+          "tos_acceptance": {
+            "date": 1527674486,
+            "ip": "248.168.148.156",
+            "user_agent": null
+          },
+          "type": "custom",
+          "verification": {
+            "disabled_reason": null,
+            "due_by": null,
+            "fields_needed": [
+              "external_account",
+              "legal_entity.business_tax_id"
+            ]
+          }
+        }
+    http_version: 
+  recorded_at: Wed, 30 May 2018 10:01:27 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/accounts
+    body:
+      encoding: UTF-8
+      string: country=US&type=custom&email=lucille%40jacobson.ca&legal_entity[business_name]=Emmerich-Osinski&legal_entity[dob][day]=30&legal_entity[dob][month]=5&legal_entity[dob][year]=1998&legal_entity[first_name]=Sunday&legal_entity[last_name]=Predovic&legal_entity[personal_id_number]=484-06-1433&legal_entity[type]=company&legal_entity[address][city]=Bauchtown&legal_entity[address][country]=US&legal_entity[address][line1]=47102+Preston+Cliffs&legal_entity[address][postal_code]=91110&legal_entity[address][state]=MD&tos_acceptance[date]=1527674487&tos_acceptance[ip]=166.87.151.223
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.15.0
+      Authorization:
+      - Bearer sk_test_5EdEIBWTO1bLIqVSPdsHZcTr
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.15.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
+        AnfiniLPro.lan 17.5.0 Darwin Kernel Version 17.5.0: Mon Mar  5 22:24:32 PST
+        2018; root:xnu-4570.51.1~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro.lan"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 30 May 2018 10:01:29 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2178'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_rwsncCTqdAxAR1
+      Stripe-Version:
+      - '2018-02-06'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "acct_1CXR7UJPDo64XojC",
+          "object": "account",
+          "business_name": "Emmerich-Osinski",
+          "business_url": null,
+          "charges_enabled": true,
+          "country": "US",
+          "created": 1527674488,
+          "debit_negative_balances": false,
+          "decline_charge_on": {
+            "avs_failure": false,
+            "cvc_failure": false
+          },
+          "default_currency": "usd",
+          "details_submitted": false,
+          "display_name": null,
+          "email": "lucille@jacobson.ca",
+          "external_accounts": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/accounts/acct_1CXR7UJPDo64XojC/external_accounts"
+          },
+          "keys": {
+            "secret": "sk_test_Y0OZFM1lsyxoSoacvZEs5Zvr",
+            "publishable": "pk_test_Qg9MW6V0C3oULE1eyRN6pHKb"
+          },
+          "legal_entity": {
+            "additional_owners": [],
+            "address": {
+              "city": "Bauchtown",
+              "country": "US",
+              "line1": "47102 Preston Cliffs",
+              "line2": null,
+              "postal_code": "91110",
+              "state": "MD"
+            },
+            "business_name": "Emmerich-Osinski",
+            "business_tax_id_provided": false,
+            "dob": {
+              "day": 30,
+              "month": 5,
+              "year": 1998
+            },
+            "first_name": "Sunday",
+            "last_name": "Predovic",
+            "personal_address": {
+              "city": null,
+              "country": "US",
+              "line1": null,
+              "line2": null,
+              "postal_code": null,
+              "state": null
+            },
+            "personal_id_number_provided": true,
+            "ssn_last_4_provided": true,
+            "type": "company",
+            "verification": {
+              "details": null,
+              "details_code": null,
+              "document": null,
+              "document_back": null,
+              "status": "pending"
+            }
+          },
+          "metadata": {},
+          "payout_schedule": {
+            "delay_days": 2,
+            "interval": "daily"
+          },
+          "payout_statement_descriptor": null,
+          "payouts_enabled": false,
+          "product_description": null,
+          "statement_descriptor": "",
+          "support_email": null,
+          "support_phone": null,
+          "timezone": "Etc/UTC",
+          "tos_acceptance": {
+            "date": 1527674487,
+            "ip": "166.87.151.223",
+            "user_agent": null
+          },
+          "type": "custom",
+          "verification": {
+            "disabled_reason": null,
+            "due_by": null,
+            "fields_needed": [
+              "external_account",
+              "legal_entity.business_tax_id"
+            ]
+          }
+        }
+    http_version: 
+  recorded_at: Wed, 30 May 2018 10:01:29 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: UTF-8
+      string: email=candice.lueilwitz%40hane.info&card=tok_visa
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Authorization:
+      - Basic c2tfdGVzdF81RWRFSUJXVE8xYkxJcVZTUGRzSFpjVHI6
+      User-Agent:
+      - Stripe/v1 ActiveMerchantBindings/1.78.0
+      Stripe-Version:
+      - '2015-04-07'
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.78.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
+      X-Stripe-Client-User-Metadata:
+      - '{"ip":null}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 30 May 2018 10:01:31 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1433'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_H4lEC29c0JJU3E
+      Stripe-Version:
+      - '2015-04-07'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "cus_CxLpWg2bErsThR",
+          "object": "customer",
+          "account_balance": 0,
+          "created": 1527674490,
+          "currency": null,
+          "default_source": "card_1CXR7WI93ruT9p2PmMchB5VN",
+          "delinquent": false,
+          "description": null,
+          "discount": null,
+          "email": "candice.lueilwitz@hane.info",
+          "invoice_prefix": "A2F6371",
+          "livemode": false,
+          "metadata": {},
+          "shipping": null,
+          "sources": {
+            "object": "list",
+            "data": [
+              {
+                "id": "card_1CXR7WI93ruT9p2PmMchB5VN",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_CxLpWg2bErsThR",
+                "cvc_check": null,
+                "dynamic_last4": null,
+                "exp_month": 5,
+                "exp_year": 2019,
+                "fingerprint": "nFWZcG1SSLrd81Cf",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": null,
+                "tokenization_method": null
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_CxLpWg2bErsThR/sources"
+          },
+          "subscriptions": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_CxLpWg2bErsThR/subscriptions"
+          }
+        }
+    http_version: 
+  recorded_at: Wed, 30 May 2018 10:01:31 GMT
+recorded_with: VCR 4.0.0

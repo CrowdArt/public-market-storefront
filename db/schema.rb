@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180515161946) do
+ActiveRecord::Schema.define(version: 20180525131042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -374,6 +374,18 @@ ActiveRecord::Schema.define(version: 20180515161946) do
     t.text "preferences"
     t.integer "position", default: 0
     t.index ["id", "type"], name: "index_spree_payment_methods_on_id_and_type"
+  end
+
+  create_table "spree_payment_transfers", force: :cascade do |t|
+    t.bigint "payment_id"
+    t.bigint "vendor_id"
+    t.decimal "amount", precision: 10, scale: 2
+    t.decimal "fee", precision: 10, scale: 2
+    t.string "response_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_id"], name: "index_spree_payment_transfers_on_payment_id"
+    t.index ["vendor_id"], name: "index_spree_payment_transfers_on_vendor_id"
   end
 
   create_table "spree_payments", id: :serial, force: :cascade do |t|

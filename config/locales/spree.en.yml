@@ -51,3 +51,6 @@ en:
     learn_about_ptrn: Learn about Patron and how it works
     share_order_hint: Share the good news with friends and earn additonal Patron tokens redeemable for products on Public Market.
     specials: Specials
+    vendors_transfers_failed: Payment could not be processed, seller can't receive transfer, please contact support.
+    vendors_transfer_negative: Payment could not be processed, seller %{vendor} can't process payment, please contact support.
+

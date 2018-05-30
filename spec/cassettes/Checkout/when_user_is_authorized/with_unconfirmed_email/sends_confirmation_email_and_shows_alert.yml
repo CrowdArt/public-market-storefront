@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: UTF-8
-      string: email=petra.gusikowski%40raynor.ca&card[number]=4111111111111111&card[exp_month]=12&card[exp_year]=2019&card[cvc]=123&card[name]=Spree+Commerce&card[address_line1]=10+Lovely+Street&card[address_line2]=Northwest&card[address_country]=NAME_3&card[address_zip]=35005&card[address_state]=STATE_NAME_3&card[address_city]=Herndon
+      string: email=candace_shanahan%40treutelvon.info&card=tok_visa
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
@@ -31,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 30 May 2018 10:42:40 GMT
+      - Wed, 30 May 2018 13:44:48 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1495'
+      - '1438'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -51,7 +51,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_eP8tENSYUbA48W
+      - req_pURrFo3FhC8s5D
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -60,17 +60,17 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_CxMUE956oB69iH",
+          "id": "cus_CxPQq0Tl9zQkYg",
           "object": "customer",
           "account_balance": 0,
-          "created": 1527676959,
+          "created": 1527687887,
           "currency": null,
-          "default_source": "card_1CXRlL22AWtpwVQmLJLKrwJy",
+          "default_source": "card_1CXUbb22AWtpwVQmyKRdmKf4",
           "delinquent": false,
           "description": null,
           "discount": null,
-          "email": "petra.gusikowski@raynor.ca",
-          "invoice_prefix": "D898F2F",
+          "email": "candace_shanahan@treutelvon.info",
+          "invoice_prefix": "D2DA435",
           "livemode": false,
           "metadata": {},
           "shipping": null,
@@ -78,51 +78,114 @@ http_interactions:
             "object": "list",
             "data": [
               {
-                "id": "card_1CXRlL22AWtpwVQmLJLKrwJy",
+                "id": "card_1CXUbb22AWtpwVQmyKRdmKf4",
                 "object": "card",
-                "address_city": "Herndon",
-                "address_country": "NAME_3",
-                "address_line1": "10 Lovely Street",
-                "address_line1_check": "pass",
-                "address_line2": "Northwest",
-                "address_state": "STATE_NAME_3",
-                "address_zip": "35005",
-                "address_zip_check": "pass",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
                 "brand": "Visa",
                 "country": "US",
-                "customer": "cus_CxMUE956oB69iH",
-                "cvc_check": "pass",
+                "customer": "cus_CxPQq0Tl9zQkYg",
+                "cvc_check": null,
                 "dynamic_last4": null,
-                "exp_month": 12,
+                "exp_month": 5,
                 "exp_year": 2019,
-                "fingerprint": "nMGtzMc0CKPKDH0u",
-                "funding": "unknown",
-                "last4": "1111",
+                "fingerprint": "VJ3cyXmuSrVwCMLx",
+                "funding": "credit",
+                "last4": "4242",
                 "metadata": {},
-                "name": "Spree Commerce",
+                "name": null,
                 "tokenization_method": null
               }
             ],
             "has_more": false,
             "total_count": 1,
-            "url": "/v1/customers/cus_CxMUE956oB69iH/sources"
+            "url": "/v1/customers/cus_CxPQq0Tl9zQkYg/sources"
           },
           "subscriptions": {
             "object": "list",
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_CxMUE956oB69iH/subscriptions"
+            "url": "/v1/customers/cus_CxPQq0Tl9zQkYg/subscriptions"
           }
         }
     http_version: 
-  recorded_at: Wed, 30 May 2018 10:42:40 GMT
+  recorded_at: Wed, 30 May 2018 13:44:48 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/customers/cus_CxMUE956oB69iH/cards/card_1CXRlL22AWtpwVQmLJLKrwJy
+    uri: https://api.stripe.com/v1/accounts
     body:
       encoding: UTF-8
-      string: exp_month=12&exp_year=2019&name=Spree+Commerce&address_city=Herndon&address_country=US&address_state=STATE_ABBR_3&address_line1=10+Lovely+Street&address_line2=Northwest&address_zip=35005
+      string: country=US&type=custom&email=noel_swaniawski%40durgan.co.uk&legal_entity[business_name]=Kirlin+LLC&legal_entity[dob][day]=30&legal_entity[dob][month]=5&legal_entity[dob][year]=1998&legal_entity[first_name]=Shanna&legal_entity[last_name]=Huel&legal_entity[personal_id_number]=440-38-5103&legal_entity[type]=company&legal_entity[address][city]=Noellastad&legal_entity[address][country]=US&legal_entity[address][line1]=6484+Jenkins+Mall&legal_entity[address][postal_code]=91110&legal_entity[address][state]=MS&tos_acceptance[date]=1527687888&tos_acceptance[ip]=102.218.181.80
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.15.0
+      Authorization:
+      - Bearer sk_test_VCZnDv3GLU15TRvn8i2EsaAN
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.15.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
+        AnfiniLPro.lan 17.5.0 Darwin Kernel Version 17.5.0: Mon Mar  5 22:24:32 PST
+        2018; root:xnu-4570.51.1~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro.lan"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 30 May 2018 13:44:49 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '224'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_nGc90Or4h1pKWI
+      Stripe-Version:
+      - '2013-10-29'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "message": "You can only create new accounts if you've registered your platform, which you can do at https://dashboard.stripe.com/account/applications/settings.",
+            "type": "invalid_request_error"
+          }
+        }
+    http_version: 
+  recorded_at: Wed, 30 May 2018 13:44:50 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers/cus_CxPQq0Tl9zQkYg/cards/card_1CXUbb22AWtpwVQmyKRdmKf4
+    body:
+      encoding: UTF-8
+      string: exp_month=12&exp_year=2019&name=Spree+Commerce&address_city=Herndon&address_country=US&address_state=STATE_ABBR_4&address_line1=10+Lovely+Street&address_line2=Northwest&address_zip=35005
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
@@ -148,11 +211,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 30 May 2018 10:42:43 GMT
+      - Wed, 30 May 2018 13:44:54 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '634'
+      - '631'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -168,7 +231,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_FwuvRWYLeOOWrJ
+      - req_IGipzGIXoBlJWL
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -177,422 +240,30 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "card_1CXRlL22AWtpwVQmLJLKrwJy",
+          "id": "card_1CXUbb22AWtpwVQmyKRdmKf4",
           "object": "card",
           "address_city": "Herndon",
           "address_country": "US",
           "address_line1": "10 Lovely Street",
           "address_line1_check": "pass",
           "address_line2": "Northwest",
-          "address_state": "STATE_ABBR_3",
+          "address_state": "STATE_ABBR_4",
           "address_zip": "35005",
           "address_zip_check": "pass",
           "brand": "Visa",
           "country": "US",
-          "customer": "cus_CxMUE956oB69iH",
-          "cvc_check": "pass",
+          "customer": "cus_CxPQq0Tl9zQkYg",
+          "cvc_check": null,
           "dynamic_last4": null,
           "exp_month": 12,
           "exp_year": 2019,
-          "fingerprint": "nMGtzMc0CKPKDH0u",
-          "funding": "unknown",
-          "last4": "1111",
+          "fingerprint": "VJ3cyXmuSrVwCMLx",
+          "funding": "credit",
+          "last4": "4242",
           "metadata": {},
           "name": "Spree Commerce",
           "tokenization_method": null
         }
     http_version: 
-  recorded_at: Wed, 30 May 2018 10:42:43 GMT
-- request:
-    method: post
-    uri: https://api.stripe.com/v1/customers/cus_CxMUE956oB69iH/cards/card_1CXRlL22AWtpwVQmLJLKrwJy
-    body:
-      encoding: UTF-8
-      string: exp_month=12&exp_year=2019&name=Spree+Commerce&address_city=Herndon&address_country=US&address_state=STATE_ABBR_3&address_line1=10+Lovely+Street&address_line2=Northwest&address_zip=35005
-    headers:
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Authorization:
-      - Basic c2tfdGVzdF9WQ1puRHYzR0xVMTVUUnZuOGkyRXNhQU46
-      User-Agent:
-      - Stripe/v1 ActiveMerchantBindings/1.78.0
-      Stripe-Version:
-      - '2015-04-07'
-      X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.78.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
-      X-Stripe-Client-User-Metadata:
-      - '{"ip":null}'
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Wed, 30 May 2018 10:42:45 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '634'
-      Connection:
-      - keep-alive
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Methods:
-      - GET, POST, HEAD, OPTIONS, DELETE
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Expose-Headers:
-      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
-      Access-Control-Max-Age:
-      - '300'
-      Cache-Control:
-      - no-cache, no-store
-      Request-Id:
-      - req_m6UMwl1adU1XGo
-      Stripe-Version:
-      - '2015-04-07'
-      Strict-Transport-Security:
-      - max-age=31556926; includeSubDomains; preload
-    body:
-      encoding: UTF-8
-      string: |
-        {
-          "id": "card_1CXRlL22AWtpwVQmLJLKrwJy",
-          "object": "card",
-          "address_city": "Herndon",
-          "address_country": "US",
-          "address_line1": "10 Lovely Street",
-          "address_line1_check": "pass",
-          "address_line2": "Northwest",
-          "address_state": "STATE_ABBR_3",
-          "address_zip": "35005",
-          "address_zip_check": "pass",
-          "brand": "Visa",
-          "country": "US",
-          "customer": "cus_CxMUE956oB69iH",
-          "cvc_check": "pass",
-          "dynamic_last4": null,
-          "exp_month": 12,
-          "exp_year": 2019,
-          "fingerprint": "nMGtzMc0CKPKDH0u",
-          "funding": "unknown",
-          "last4": "1111",
-          "metadata": {},
-          "name": "Spree Commerce",
-          "tokenization_method": null
-        }
-    http_version: 
-  recorded_at: Wed, 30 May 2018 10:42:45 GMT
-- request:
-    method: post
-    uri: https://api.stripe.com/v1/charges
-    body:
-      encoding: UTF-8
-      string: card=card_1CXRlL22AWtpwVQmLJLKrwJy&amount=1999&currency=usd&description=Spree+Order+ID%3A+R545252867-PZ2VD9WY&payment_user_agent=Stripe%2Fv1+ActiveMerchantBindings%2F1.78.0&customer=cus_CxMUE956oB69iH&capture=false
-    headers:
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Authorization:
-      - Basic c2tfdGVzdF9WQ1puRHYzR0xVMTVUUnZuOGkyRXNhQU46
-      User-Agent:
-      - Stripe/v1 ActiveMerchantBindings/1.78.0
-      Stripe-Version:
-      - '2015-04-07'
-      X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.78.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
-      X-Stripe-Client-User-Metadata:
-      - '{"ip":null}'
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Wed, 30 May 2018 10:42:46 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '1837'
-      Connection:
-      - keep-alive
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Methods:
-      - GET, POST, HEAD, OPTIONS, DELETE
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Expose-Headers:
-      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
-      Access-Control-Max-Age:
-      - '300'
-      Cache-Control:
-      - no-cache, no-store
-      Request-Id:
-      - req_p4TiH8GqfLP4Z0
-      Stripe-Version:
-      - '2015-04-07'
-      Strict-Transport-Security:
-      - max-age=31556926; includeSubDomains; preload
-    body:
-      encoding: UTF-8
-      string: |
-        {
-          "id": "ch_1CXRlS22AWtpwVQmG3VoBGaD",
-          "object": "charge",
-          "amount": 1999,
-          "amount_refunded": 0,
-          "application": null,
-          "application_fee": null,
-          "balance_transaction": null,
-          "captured": false,
-          "created": 1527676966,
-          "currency": "usd",
-          "customer": "cus_CxMUE956oB69iH",
-          "description": "Spree Order ID: R545252867-PZ2VD9WY",
-          "destination": null,
-          "dispute": null,
-          "failure_code": null,
-          "failure_message": null,
-          "fraud_details": {},
-          "invoice": null,
-          "livemode": false,
-          "metadata": {},
-          "on_behalf_of": null,
-          "order": null,
-          "outcome": {
-            "network_status": "approved_by_network",
-            "reason": null,
-            "risk_level": "normal",
-            "seller_message": "Payment complete.",
-            "type": "authorized"
-          },
-          "paid": true,
-          "receipt_email": null,
-          "receipt_number": null,
-          "refunded": false,
-          "refunds": {
-            "object": "list",
-            "data": [],
-            "has_more": false,
-            "total_count": 0,
-            "url": "/v1/charges/ch_1CXRlS22AWtpwVQmG3VoBGaD/refunds"
-          },
-          "review": null,
-          "shipping": null,
-          "source": {
-            "id": "card_1CXRlL22AWtpwVQmLJLKrwJy",
-            "object": "card",
-            "address_city": "Herndon",
-            "address_country": "US",
-            "address_line1": "10 Lovely Street",
-            "address_line1_check": "pass",
-            "address_line2": "Northwest",
-            "address_state": "STATE_ABBR_3",
-            "address_zip": "35005",
-            "address_zip_check": "pass",
-            "brand": "Visa",
-            "country": "US",
-            "customer": "cus_CxMUE956oB69iH",
-            "cvc_check": "pass",
-            "dynamic_last4": null,
-            "exp_month": 12,
-            "exp_year": 2019,
-            "fingerprint": "nMGtzMc0CKPKDH0u",
-            "funding": "unknown",
-            "last4": "1111",
-            "metadata": {},
-            "name": "Spree Commerce",
-            "tokenization_method": null
-          },
-          "source_transfer": null,
-          "statement_descriptor": null,
-          "status": "succeeded",
-          "transfer_group": null
-        }
-    http_version: 
-  recorded_at: Wed, 30 May 2018 10:42:46 GMT
-- request:
-    method: post
-    uri: https://api.stripe.com/v1/customers/cus_CxMUE956oB69iH/cards/card_1CXRlL22AWtpwVQmLJLKrwJy
-    body:
-      encoding: UTF-8
-      string: exp_month=12&exp_year=2019&name=Spree+Commerce&address_city=Herndon&address_country=US&address_state=STATE_ABBR_3&address_line1=10+Lovely+Street&address_line2=Northwest&address_zip=35005
-    headers:
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Authorization:
-      - Basic c2tfdGVzdF9WQ1puRHYzR0xVMTVUUnZuOGkyRXNhQU46
-      User-Agent:
-      - Stripe/v1 ActiveMerchantBindings/1.78.0
-      Stripe-Version:
-      - '2015-04-07'
-      X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.78.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
-      X-Stripe-Client-User-Metadata:
-      - '{"ip":null}'
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Wed, 30 May 2018 10:42:47 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '634'
-      Connection:
-      - keep-alive
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Methods:
-      - GET, POST, HEAD, OPTIONS, DELETE
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Expose-Headers:
-      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
-      Access-Control-Max-Age:
-      - '300'
-      Cache-Control:
-      - no-cache, no-store
-      Request-Id:
-      - req_KIbXt3hDCdkWM5
-      Stripe-Version:
-      - '2015-04-07'
-      Strict-Transport-Security:
-      - max-age=31556926; includeSubDomains; preload
-    body:
-      encoding: UTF-8
-      string: |
-        {
-          "id": "card_1CXRlL22AWtpwVQmLJLKrwJy",
-          "object": "card",
-          "address_city": "Herndon",
-          "address_country": "US",
-          "address_line1": "10 Lovely Street",
-          "address_line1_check": "pass",
-          "address_line2": "Northwest",
-          "address_state": "STATE_ABBR_3",
-          "address_zip": "35005",
-          "address_zip_check": "pass",
-          "brand": "Visa",
-          "country": "US",
-          "customer": "cus_CxMUE956oB69iH",
-          "cvc_check": "pass",
-          "dynamic_last4": null,
-          "exp_month": 12,
-          "exp_year": 2019,
-          "fingerprint": "nMGtzMc0CKPKDH0u",
-          "funding": "unknown",
-          "last4": "1111",
-          "metadata": {},
-          "name": "Spree Commerce",
-          "tokenization_method": null
-        }
-    http_version: 
-  recorded_at: Wed, 30 May 2018 10:42:47 GMT
-- request:
-    method: post
-    uri: https://api.stripe.com/v1/customers/cus_CxMUE956oB69iH/cards/card_1CXRlL22AWtpwVQmLJLKrwJy
-    body:
-      encoding: UTF-8
-      string: exp_month=12&exp_year=2019&name=Spree+Commerce&address_city=Herndon&address_country=US&address_state=STATE_ABBR_3&address_line1=10+Lovely+Street&address_line2=Northwest&address_zip=35005
-    headers:
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Authorization:
-      - Basic c2tfdGVzdF9WQ1puRHYzR0xVMTVUUnZuOGkyRXNhQU46
-      User-Agent:
-      - Stripe/v1 ActiveMerchantBindings/1.78.0
-      Stripe-Version:
-      - '2015-04-07'
-      X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.78.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
-      X-Stripe-Client-User-Metadata:
-      - '{"ip":null}'
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Wed, 30 May 2018 10:42:48 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '634'
-      Connection:
-      - keep-alive
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Methods:
-      - GET, POST, HEAD, OPTIONS, DELETE
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Expose-Headers:
-      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
-      Access-Control-Max-Age:
-      - '300'
-      Cache-Control:
-      - no-cache, no-store
-      Request-Id:
-      - req_lokUtZOzr9622D
-      Stripe-Version:
-      - '2015-04-07'
-      Strict-Transport-Security:
-      - max-age=31556926; includeSubDomains; preload
-    body:
-      encoding: UTF-8
-      string: |
-        {
-          "id": "card_1CXRlL22AWtpwVQmLJLKrwJy",
-          "object": "card",
-          "address_city": "Herndon",
-          "address_country": "US",
-          "address_line1": "10 Lovely Street",
-          "address_line1_check": "pass",
-          "address_line2": "Northwest",
-          "address_state": "STATE_ABBR_3",
-          "address_zip": "35005",
-          "address_zip_check": "pass",
-          "brand": "Visa",
-          "country": "US",
-          "customer": "cus_CxMUE956oB69iH",
-          "cvc_check": "pass",
-          "dynamic_last4": null,
-          "exp_month": 12,
-          "exp_year": 2019,
-          "fingerprint": "nMGtzMc0CKPKDH0u",
-          "funding": "unknown",
-          "last4": "1111",
-          "metadata": {},
-          "name": "Spree Commerce",
-          "tokenization_method": null
-        }
-    http_version: 
-  recorded_at: Wed, 30 May 2018 10:42:49 GMT
+  recorded_at: Wed, 30 May 2018 13:44:54 GMT
 recorded_with: VCR 4.0.0

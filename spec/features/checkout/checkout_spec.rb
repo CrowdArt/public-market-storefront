@@ -5,7 +5,7 @@ require 'contexts/checkout'
 RSpec.describe 'Checkout', type: :feature, js: true do
   let(:user) { nil }
 
-  context 'when user is unathorized' do
+  context 'when user is unathorized', vcr: true do
     include_context 'with filled product cart'
 
     before do
