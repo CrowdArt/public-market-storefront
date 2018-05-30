@@ -52,7 +52,7 @@ rspec:
     - bundle check || bundle install --deployment --jobs 4 --without development staging production
     - bundle exec rake db:schema:load
   script:
-    - bundle exec rspec
+    - bundle exec rspec --format progress
     - ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $?
   artifacts:
     when: always
