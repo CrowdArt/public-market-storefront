@@ -59,7 +59,6 @@
     <div class="row">
       <div class="col-md-12">
         <h2><%= t('home.top_categories_header') %></h2>
-        <%= link_to "View All", products_path, {class: "view-all"} %>
         <div class="divider"></div>
       </div>
     </div>
@@ -69,7 +68,10 @@
           <div class="content">
             <h3>PS4 Games</h3>
             <p>Starting at $14.99</p>
-            <%= link_to "SHOP NOW", products_path, {class: "btn btn-primary"} %>
+            <% t = Spree::Taxon.where(name: 'Video Games', hidden: false).first %>
+            <div data-toggle="<%= 'tooltip' if t.nil? %>" data-placement="bottom" data-html="true" data-title="<span class='text-success'>COMING SOON</text-success>">
+              <%= link_to 'SHOP NOW', (t.nil? ? '#' : top_selling_taxon_path(t.id)), disabled: t.nil?, class: "btn btn-primary #{('disabled' if t.nil?)}" %>
+            </div>
           </div>
           <figure>
             <%= image_tag 'uncharted.png' %>
@@ -82,7 +84,10 @@
           <div class="content">
             <h3>Top Selling Books</h3>
             <p>Starting at $2.99</p>
-            <%= link_to "SHOP NOW", products_path, {class: "btn btn-primary"} %>
+            <% t = Spree::Taxon.where(name: 'Books', hidden: false).first %>
+            <div data-toggle="<%= 'tooltip' if t.nil? %>" data-placement="bottom" data-html="true" data-title="<span class='text-success'>COMING SOON</text-success>">
+              <%= link_to 'SHOP NOW', (t.nil? ? '#' : top_selling_taxon_path(t.id)), disabled: t.nil?, class: "btn btn-primary #{('disabled' if t.nil?)}" %>
+            </div>
           </div>
           <figure>
             <%= image_tag 'top-selling-books.png' %>
@@ -105,7 +110,7 @@
   <div class="row">
     <div class="col-md-12 col-xs-12">
       <h2><%= t('home.top_products_header') %></h2>
-      <%= link_to "View All", products_path, {class: "view-all"} %>
+      <%= link_to "View All", top_selling_path, {class: "view-all"} %>
       <div class="divider"></div>
     </div>
   </div>
