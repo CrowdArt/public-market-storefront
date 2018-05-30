@@ -1,6 +1,8 @@
 Spree::Product.class_eval do
   include Spree::Core::NumberGenerator.new(prefix: 'PM', letters: true, length: 13)
 
+  scope :in_stock, -> { joins(variants: :stock_items).where('spree_stock_items.count_on_hand > ? OR spree_variants.track_inventory = ?', 0, false) }
+
   def author
     product_properties.joins(:property)
                       .where("spree_properties.name = 'author' OR spree_properties.name = 'manufacturer'")
@@ -43,6 +45,11 @@ Spree::Product.class_eval do
     can_supply?
   end
 
+  def self.search_import
+    query = active
+    query
+  end
+
   def estimated_ptrn
     (price * 0.1).floor
   end
@@ -69,16 +76,16 @@ Spree::Product.class_eval do
     end
   end
 
-  def self.staff_picks(limit=3) # rubocop:disable Metrics/MethodLength
+  def self.staff_picks(limit = 3)
     Spree::Product.search(
       '*',
       includes: [master: :prices],
       fields: %i[boost_factor],
       limit: limit,
-      order: {boost_factor: {order: :desc, unmapped_type: :date}},
-      where: search_where.merge({
-        boost_factor: {gt: 1}
-      })
+      order: { boost_factor: { order: :desc, unmapped_type: :date }},
+      where: search_where.merge(
+        boost_factor: { gt: 1 }
+      )
     )
   end
 end
