@@ -4,9 +4,20 @@ RSpec.configure do |config|
   SEARCHABLE_MODELS = [Spree::Product].freeze
 
   config.before(:suite) do
-    start_elastic_cluster unless elastic_cluster_present?
-    SEARCHABLE_MODELS.each(&:reindex)
     Searchkick.disable_callbacks
+  end
+
+  config.when_first_matching_example_defined(type: :feature) do
+    config.before(:suite) do
+      start_elastic_cluster unless elastic_cluster_present?
+      SEARCHABLE_MODELS.each(&:reindex)
+    end
+  end
+
+  config.when_first_matching_example_defined(:search) do
+    config.before(:suite) do
+      start_elastic_cluster unless elastic_cluster_present?
+    end
   end
 
   config.after(:suite) do
@@ -39,7 +50,7 @@ def start_elastic_cluster
   ENV['ELASTICSEARCH_URL'] = "http://localhost:#{ENV['TEST_CLUSTER_PORT']}"
 
   return if Elasticsearch::Extensions::Test::Cluster.running?
-  Elasticsearch::Extensions::Test::Cluster.start(timeout: 10)
+  Elasticsearch::Extensions::Test::Cluster.start(timeout: 10, quiet: true)
 end
 
 def stop_elastic_cluster
