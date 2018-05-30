@@ -45,11 +45,6 @@ Spree::Product.class_eval do
     can_supply?
   end
 
-  def self.search_import
-    query = active
-    query
-  end
-
   def estimated_ptrn
     (price * 0.1).floor
   end
