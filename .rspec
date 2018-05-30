@@ -1,2 +1,4 @@
 --require rails_helper
 --profile
+--color
+--format Fuubar

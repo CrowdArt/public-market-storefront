@@ -1,5 +1,5 @@
 rspec_options = {
-  cmd: 'bundle exec rspec --profile --color -f documentation',
+  cmd: 'bundle exec rspec --format documentation',
   failed_mode: :focus
 }
 
