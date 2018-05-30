@@ -40,6 +40,4 @@ table.row
                       table
                         tr
                           td
-                            a href=order_url(order, host: Spree::Store.current.url) = t('emails.manage_order')
-
-
+                            a href=order_url(order) = t('emails.manage_order')
