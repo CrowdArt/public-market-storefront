@@ -5,12 +5,12 @@ http_interactions:
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: UTF-8
-      string: email=markus%40lubowitz.biz&card=tok_visa
+      string: email=royce%40labadie.us&card=tok_visa
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
       Authorization:
-      - Basic c2tfdGVzdF9WQ1puRHYzR0xVMTVUUnZuOGkyRXNhQU46
+      - Basic c2tfdGVzdF81RWRFSUJXVE8xYkxJcVZTUGRzSFpjVHI6
       User-Agent:
       - Stripe/v1 ActiveMerchantBindings/1.78.0
       Stripe-Version:
@@ -31,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 30 May 2018 13:44:41 GMT
+      - Wed, 30 May 2018 13:55:12 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1425'
+      - '1422'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -51,7 +51,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_tTeSJmeFoIrvJZ
+      - req_CH9J8sOrAct8NX
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -60,17 +60,17 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_CxPQ0lJBAmyqHR",
+          "id": "cus_CxPamzOdu3hrF2",
           "object": "customer",
           "account_balance": 0,
-          "created": 1527687880,
+          "created": 1527688512,
           "currency": null,
-          "default_source": "card_1CXUbU22AWtpwVQmBXUm68Le",
+          "default_source": "card_1CXUlgI93ruT9p2PjAi5W6q1",
           "delinquent": false,
           "description": null,
           "discount": null,
-          "email": "markus@lubowitz.biz",
-          "invoice_prefix": "AF494FA",
+          "email": "royce@labadie.us",
+          "invoice_prefix": "436536D",
           "livemode": false,
           "metadata": {},
           "shipping": null,
@@ -78,7 +78,7 @@ http_interactions:
             "object": "list",
             "data": [
               {
-                "id": "card_1CXUbU22AWtpwVQmBXUm68Le",
+                "id": "card_1CXUlgI93ruT9p2PjAi5W6q1",
                 "object": "card",
                 "address_city": null,
                 "address_country": null,
@@ -90,12 +90,12 @@ http_interactions:
                 "address_zip_check": null,
                 "brand": "Visa",
                 "country": "US",
-                "customer": "cus_CxPQ0lJBAmyqHR",
+                "customer": "cus_CxPamzOdu3hrF2",
                 "cvc_check": null,
                 "dynamic_last4": null,
                 "exp_month": 5,
                 "exp_year": 2019,
-                "fingerprint": "VJ3cyXmuSrVwCMLx",
+                "fingerprint": "nFWZcG1SSLrd81Cf",
                 "funding": "credit",
                 "last4": "4242",
                 "metadata": {},
@@ -105,29 +105,29 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 1,
-            "url": "/v1/customers/cus_CxPQ0lJBAmyqHR/sources"
+            "url": "/v1/customers/cus_CxPamzOdu3hrF2/sources"
           },
           "subscriptions": {
             "object": "list",
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_CxPQ0lJBAmyqHR/subscriptions"
+            "url": "/v1/customers/cus_CxPamzOdu3hrF2/subscriptions"
           }
         }
     http_version: 
-  recorded_at: Wed, 30 May 2018 13:44:41 GMT
+  recorded_at: Wed, 30 May 2018 13:55:12 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/accounts
     body:
       encoding: UTF-8
-      string: country=US&type=custom&email=michele_morar%40koeppmuller.biz&legal_entity[business_name]=Orn%2C+Veum+and+Wunsch&legal_entity[dob][day]=30&legal_entity[dob][month]=5&legal_entity[dob][year]=1998&legal_entity[first_name]=Lynetta&legal_entity[last_name]=Simonis&legal_entity[personal_id_number]=419-85-4126&legal_entity[type]=company&legal_entity[address][city]=North+Leandrohaven&legal_entity[address][country]=US&legal_entity[address][line1]=7580+Chanda+Fort&legal_entity[address][postal_code]=91110&legal_entity[address][state]=FL&tos_acceptance[date]=1527687881&tos_acceptance[ip]=165.194.139.177
+      string: country=US&type=custom&email=rowena%40wiegand.us&legal_entity[business_name]=Stark%2C+Haley+and+Kilback&legal_entity[dob][day]=30&legal_entity[dob][month]=5&legal_entity[dob][year]=1998&legal_entity[first_name]=Armando&legal_entity[last_name]=Runolfsdottir&legal_entity[personal_id_number]=713-12-6176&legal_entity[type]=company&legal_entity[address][city]=Port+Sherieton&legal_entity[address][country]=US&legal_entity[address][line1]=86946+Reyes+Rapid&legal_entity[address][postal_code]=91110&legal_entity[address][state]=WI&tos_acceptance[date]=1527688513&tos_acceptance[ip]=6.181.104.253
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/3.15.0
       Authorization:
-      - Bearer sk_test_VCZnDv3GLU15TRvn8i2EsaAN
+      - Bearer sk_test_5EdEIBWTO1bLIqVSPdsHZcTr
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
@@ -140,17 +140,17 @@ http_interactions:
       - "*/*"
   response:
     status:
-      code: 400
-      message: Bad Request
+      code: 200
+      message: OK
     headers:
       Server:
       - nginx
       Date:
-      - Wed, 30 May 2018 13:44:42 GMT
+      - Wed, 30 May 2018 13:55:15 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '224'
+      - '2199'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -166,18 +166,107 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_y6p9pk6zdRkydQ
+      - req_nVSHmPKAiAK2kM
       Stripe-Version:
-      - '2013-10-29'
+      - '2018-02-06'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
     body:
       encoding: UTF-8
       string: |
         {
-          "error": {
-            "message": "You can only create new accounts if you've registered your platform, which you can do at https://dashboard.stripe.com/account/applications/settings.",
-            "type": "invalid_request_error"
+          "id": "acct_1CXUliAcQwi6Yk4b",
+          "object": "account",
+          "business_name": "Stark, Haley and Kilback",
+          "business_url": null,
+          "charges_enabled": true,
+          "country": "US",
+          "created": 1527688514,
+          "debit_negative_balances": false,
+          "decline_charge_on": {
+            "avs_failure": false,
+            "cvc_failure": false
+          },
+          "default_currency": "usd",
+          "details_submitted": false,
+          "display_name": null,
+          "email": "rowena@wiegand.us",
+          "external_accounts": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/accounts/acct_1CXUliAcQwi6Yk4b/external_accounts"
+          },
+          "keys": {
+            "secret": "sk_test_EL1wROmIMUc5y3STwjY1Uxy9",
+            "publishable": "pk_test_oIYZGIxEm658w8MwOcTplEuZ"
+          },
+          "legal_entity": {
+            "additional_owners": [],
+            "address": {
+              "city": "Port Sherieton",
+              "country": "US",
+              "line1": "86946 Reyes Rapid",
+              "line2": null,
+              "postal_code": "91110",
+              "state": "WI"
+            },
+            "business_name": "Stark, Haley and Kilback",
+            "business_tax_id_provided": false,
+            "dob": {
+              "day": 30,
+              "month": 5,
+              "year": 1998
+            },
+            "first_name": "Armando",
+            "last_name": "Runolfsdottir",
+            "personal_address": {
+              "city": null,
+              "country": "US",
+              "line1": null,
+              "line2": null,
+              "postal_code": null,
+              "state": null
+            },
+            "personal_id_number_provided": true,
+            "ssn_last_4_provided": true,
+            "type": "company",
+            "verification": {
+              "details": null,
+              "details_code": null,
+              "document": null,
+              "document_back": null,
+              "status": "pending"
+            }
+          },
+          "metadata": {},
+          "payout_schedule": {
+            "delay_days": 2,
+            "interval": "daily"
+          },
+          "payout_statement_descriptor": null,
+          "payouts_enabled": false,
+          "product_description": null,
+          "statement_descriptor": "",
+          "support_email": null,
+          "support_phone": null,
+          "timezone": "Etc/UTC",
+          "tos_acceptance": {
+            "date": 1527688513,
+            "ip": "6.181.104.253",
+            "user_agent": null
+          },
+          "type": "custom",
+          "verification": {
+            "disabled_reason": null,
+            "due_by": null,
+            "fields_needed": [
+              "external_account",
+              "legal_entity.business_tax_id"
+            ]
           }
         }
     http_version: 
-  recorded_at: Wed, 30 May 2018 13:44:42 GMT
+  recorded_at: Wed, 30 May 2018 13:55:15 GMT
 recorded_with: VCR 4.0.0
