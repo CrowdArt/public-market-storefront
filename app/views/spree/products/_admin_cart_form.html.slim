@@ -1,0 +1,41 @@
+.panel.no-border#admin-cart-form
+  .panel-body
+    h5 Buy from Other sellers
+
+    = form_for :order, url: populate_orders_path, remote: true do |f|
+      = hidden_field_tag :quantity, 1
+
+      - @admin_variants.group_by { |v| v.main_option_type.parameterize }.each do |o, variants|
+        .hide.admin-variants id='admin-variant-#{o}'
+          - variants.each do |v|
+            - vendor = v.vendor
+            .hide = radio_button_tag 'variant_id', v.id, false, id: "admin_variant_id_#{v.id}"
+
+            .panel
+              .panel-body.flex.between.wrap
+                .flex-grow-1
+                  strong
+                    span.text-danger> #{v.price_in(current_currency).money}
+                    | + FREE Shipping
+                  br
+                  span Sold by: #{link_to(vendor.name, vendor_path(vendor), target: '_blank')}
+                  .text-small = vendor_reputation_text(vendor)
+
+                .flex.align-center
+                  = f.button class: 'btn btn-primary', value: 'add-to-cart', type: :submit do
+                    label.no-margin for="admin_variant_id_#{v.id}"
+                      = Spree.t(:add_to_cart)
+
+- content_for :bottom_scripts
+  javascript:
+    $("#product-variants input[type='radio']").click(function() {
+      toggleAdminVariants()
+    })
+
+    var toggleAdminVariants = function() {
+      var curVar = $("#product-variants input[type='radio']:checked")
+      $('.admin-variants').addClass('hide')
+      $("#admin-variant-" + curVar.data('option-name')).removeClass('hide')
+    }
+
+    toggleAdminVariants()

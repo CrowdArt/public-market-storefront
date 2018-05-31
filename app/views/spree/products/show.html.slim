@@ -24,6 +24,9 @@
       - if @product.can_supply?
         p.text-center = render 'spree/shared/payment_methods'
 
+        - if spree_current_user&.admin? && @admin_variants.any?
+          = render partial: 'admin_cart_form'
+
     .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
       h1.product-title itemprop='name' = sanitize(@product.name)
 

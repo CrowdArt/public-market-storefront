@@ -36,6 +36,11 @@ Spree::ProductsController.class_eval do
 
     median_price = Spree::Price.new(amount: variants.map(&:price).median, currency: current_currency)
 
+    if spree_current_user.admin?
+      @admin_variants ||= []
+      @admin_variants.concat(variants.drop(1))
+    end
+
     {
       option_value: option_value,
       variant: variants.first,
