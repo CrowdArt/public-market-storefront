@@ -81,11 +81,11 @@ group :development do
   gem 'byebug'
   gem 'guard', require: false
   gem 'guard-rspec', require: false
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', require: false
   gem 'pry-rails'
   gem 'rack-mini-profiler', require: false
-  gem 'spring'
-  gem 'spring-watcher-listen'
+  gem 'spring', require: false
+  gem 'spring-watcher-listen', require: false
   gem 'web-console'
 end
 
