@@ -6,7 +6,7 @@ RSpec.describe 'Checkout', type: :feature, js: true do
   let(:user) { nil }
 
   context 'when user is unathorized', vcr: true do
-    include_context 'with filled product cart'
+    include_context 'with filled product cart', stripe_account: false
 
     before do
       click_button 'Proceed to Checkout'

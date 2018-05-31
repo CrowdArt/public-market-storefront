@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/accounts
     body:
       encoding: UTF-8
-      string: country=US&type=custom&email=latoyia.gorczany%40lehner.us&legal_entity[business_name]=Conroy-Krajcik&legal_entity[dob][day]=30&legal_entity[dob][month]=5&legal_entity[dob][year]=1998&legal_entity[first_name]=Houston&legal_entity[last_name]=Towne&legal_entity[personal_id_number]=192-48-7939&legal_entity[type]=company&legal_entity[address][city]=North+Sanjuanita&legal_entity[address][country]=US&legal_entity[address][line1]=493+Keebler+Corners&legal_entity[address][postal_code]=91110&legal_entity[address][state]=TX&tos_acceptance[date]=1527671482&tos_acceptance[ip]=150.125.36.181
+      string: country=US&type=custom&email=hallie%40parisianprohaska.us&legal_entity[business_name]=Will%2C+Hand+and+Armstrong&legal_entity[dob][day]=31&legal_entity[dob][month]=5&legal_entity[dob][year]=1998&legal_entity[first_name]=Sharika&legal_entity[last_name]=Kerluke&legal_entity[personal_id_number]=362-46-3078&legal_entity[type]=company&legal_entity[address][city]=Port+Calebmouth&legal_entity[address][country]=US&legal_entity[address][line1]=54653+Kemmer+Fields&legal_entity[address][postal_code]=91110&legal_entity[address][state]=OR&tos_acceptance[date]=1527770789&tos_acceptance[ip]=92.201.40.36
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/3.15.0
@@ -15,8 +15,8 @@ http_interactions:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"3.15.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
-        AnfiniLPro.lan 17.5.0 Darwin Kernel Version 17.5.0: Mon Mar  5 22:24:32 PST
-        2018; root:xnu-4570.51.1~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro.lan"}'
+        AnfiniLPro.lan 17.5.0 Darwin Kernel Version 17.5.0: Fri Apr 13 19:32:32 PDT
+        2018; root:xnu-4570.51.2~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro.lan"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -29,11 +29,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 30 May 2018 09:11:23 GMT
+      - Thu, 31 May 2018 12:46:30 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '2185'
+      - '2204'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_8SZspWNpBHBSr4
+      - req_rknPane9pPHR9y
       Stripe-Version:
       - '2018-02-06'
       Strict-Transport-Security:
@@ -58,13 +58,13 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "acct_1CXQL1H5yW250aB5",
+          "id": "acct_1CXqAjEflE7dEYEX",
           "object": "account",
-          "business_name": "Conroy-Krajcik",
+          "business_name": "Will, Hand and Armstrong",
           "business_url": null,
           "charges_enabled": true,
           "country": "US",
-          "created": 1527671483,
+          "created": 1527770790,
           "debit_negative_balances": false,
           "decline_charge_on": {
             "avs_failure": false,
@@ -73,37 +73,37 @@ http_interactions:
           "default_currency": "usd",
           "details_submitted": false,
           "display_name": null,
-          "email": "latoyia.gorczany@lehner.us",
+          "email": "hallie@parisianprohaska.us",
           "external_accounts": {
             "object": "list",
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/accounts/acct_1CXQL1H5yW250aB5/external_accounts"
+            "url": "/v1/accounts/acct_1CXqAjEflE7dEYEX/external_accounts"
           },
           "keys": {
-            "secret": "sk_test_tV911TsToZEVn8xjFeE7TG8d",
-            "publishable": "pk_test_c7lrY6j9Tl2HzrBCBdNIwtgE"
+            "secret": "sk_test_XGhU1L682TXCRSQ6QC2FAGWM",
+            "publishable": "pk_test_ojh2SoqunVN7W2t2ysk7LRMN"
           },
           "legal_entity": {
             "additional_owners": [],
             "address": {
-              "city": "North Sanjuanita",
+              "city": "Port Calebmouth",
               "country": "US",
-              "line1": "493 Keebler Corners",
+              "line1": "54653 Kemmer Fields",
               "line2": null,
               "postal_code": "91110",
-              "state": "TX"
+              "state": "OR"
             },
-            "business_name": "Conroy-Krajcik",
+            "business_name": "Will, Hand and Armstrong",
             "business_tax_id_provided": false,
             "dob": {
-              "day": 30,
+              "day": 31,
               "month": 5,
               "year": 1998
             },
-            "first_name": "Houston",
-            "last_name": "Towne",
+            "first_name": "Sharika",
+            "last_name": "Kerluke",
             "personal_address": {
               "city": null,
               "country": "US",
@@ -136,8 +136,8 @@ http_interactions:
           "support_phone": null,
           "timezone": "Etc/UTC",
           "tos_acceptance": {
-            "date": 1527671482,
-            "ip": "150.125.36.181",
+            "date": 1527770789,
+            "ip": "92.201.40.36",
             "user_agent": null
           },
           "type": "custom",
@@ -151,24 +151,24 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Wed, 30 May 2018 09:11:23 GMT
+  recorded_at: Thu, 31 May 2018 12:46:30 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: UTF-8
-      string: email=colby%40keeling.ca&card=tok_visa
+      string: email=rico%40oconnerohara.us&card=tok_visa
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
       Authorization:
       - Basic c2tfdGVzdF81RWRFSUJXVE8xYkxJcVZTUGRzSFpjVHI6
       User-Agent:
-      - Stripe/v1 ActiveMerchantBindings/1.78.0
+      - Stripe/v1 ActiveMerchantBindings/1.79.0
       Stripe-Version:
       - '2015-04-07'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.78.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
+      - '{"bindings_version":"1.79.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
       X-Stripe-Client-User-Metadata:
       - '{"ip":null}'
       Accept-Encoding:
@@ -183,11 +183,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 30 May 2018 09:11:25 GMT
+      - Thu, 31 May 2018 12:46:32 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1422'
+      - '1426'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -203,7 +203,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_vSXiYcbXHypNNs
+      - req_MKuwb5Dq8Me0Wj
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -212,17 +212,17 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_CxL1hQ4lMaHSj6",
+          "id": "cus_Cxlix1EEVtUupq",
           "object": "customer",
           "account_balance": 0,
-          "created": 1527671484,
+          "created": 1527770791,
           "currency": null,
-          "default_source": "card_1CXQL2I93ruT9p2PyJdKmLtO",
+          "default_source": "card_1CXqAlI93ruT9p2PFqlZZpPc",
           "delinquent": false,
           "description": null,
           "discount": null,
-          "email": "colby@keeling.ca",
-          "invoice_prefix": "E88C9F6",
+          "email": "rico@oconnerohara.us",
+          "invoice_prefix": "C1714C1",
           "livemode": false,
           "metadata": {},
           "shipping": null,
@@ -230,7 +230,7 @@ http_interactions:
             "object": "list",
             "data": [
               {
-                "id": "card_1CXQL2I93ruT9p2PyJdKmLtO",
+                "id": "card_1CXqAlI93ruT9p2PFqlZZpPc",
                 "object": "card",
                 "address_city": null,
                 "address_country": null,
@@ -242,7 +242,7 @@ http_interactions:
                 "address_zip_check": null,
                 "brand": "Visa",
                 "country": "US",
-                "customer": "cus_CxL1hQ4lMaHSj6",
+                "customer": "cus_Cxlix1EEVtUupq",
                 "cvc_check": null,
                 "dynamic_last4": null,
                 "exp_month": 5,
@@ -257,16 +257,16 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 1,
-            "url": "/v1/customers/cus_CxL1hQ4lMaHSj6/sources"
+            "url": "/v1/customers/cus_Cxlix1EEVtUupq/sources"
           },
           "subscriptions": {
             "object": "list",
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_CxL1hQ4lMaHSj6/subscriptions"
+            "url": "/v1/customers/cus_Cxlix1EEVtUupq/subscriptions"
           }
         }
     http_version: 
-  recorded_at: Wed, 30 May 2018 09:11:25 GMT
+  recorded_at: Thu, 31 May 2018 12:46:33 GMT
 recorded_with: VCR 4.0.0

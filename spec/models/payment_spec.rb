@@ -3,6 +3,7 @@ RSpec.describe Spree::Payment, type: :model, vcr: true do
     create(:payment,
            payment_method: create(:stripe_card_payment_method),
            amount: order.total,
+           response_code: nil,
            order: order)
   end
 
@@ -29,6 +30,38 @@ RSpec.describe Spree::Payment, type: :model, vcr: true do
           expect(payment.reload.state).to eq('completed')
           expect(payment.reload.response_code).to be_truthy
           expect(transfer.response_code).to be_truthy
+        end
+
+        describe 'refund' do
+          subject(:refund) { create(:refund, payment: payment.reload, payment_transfer: transfer, amount: amount, transaction_id: nil) }
+
+          context 'when amount is greater than possible' do
+            let(:amount) { payment.amount * 2 }
+
+            it 'raises error' do
+              expect { refund }.to raise_error(ActiveRecord::RecordInvalid, /Amount is greater/)
+            end
+          end
+
+          context 'when refund full amount' do
+            let(:amount) { transfer.amount }
+
+            it 'refund successfully' do
+              expect(refund.transaction_id).to be_truthy
+              expect(refund.reversal_id).to be_truthy
+            end
+          end
+
+          context 'when refund partially' do
+            let(:amount) { transfer.amount - 1 }
+
+            it 'refund successfully' do
+              expect(refund.transaction_id).to be_truthy
+              expect(refund.reversal_id).to be_truthy
+              expect(refund.amount).to eq(amount)
+              expect(transfer.credit_allowed).to eq(transfer.amount - refund.amount)
+            end
+          end
         end
       end
     end
@@ -65,6 +98,23 @@ RSpec.describe Spree::Payment, type: :model, vcr: true do
           expect(payment.reload.state).to eq('completed')
           expect(payment.reload.response_code).to be_truthy
           expect(payment.payment_transfers.map(&:response_code)).to all(be_truthy)
+        end
+
+        describe 'refund' do
+          subject(:refund) { create(:refund, payment: payment.reload, payment_transfer: transfer, amount: amount, transaction_id: nil) }
+
+          let(:transfer) { payment.payment_transfers.last }
+
+          context 'when refund partially' do
+            let(:amount) { transfer.amount - 1 }
+
+            it 'refund successfully' do
+              expect(refund.transaction_id).to be_truthy
+              expect(refund.reversal_id).to be_truthy
+              expect(refund.amount).to eq(amount)
+              expect(transfer.credit_allowed).to eq(transfer.amount - refund.amount)
+            end
+          end
         end
       end
 

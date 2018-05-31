@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180525131042) do
+ActiveRecord::Schema.define(version: 2018_05_31_092259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -624,7 +624,10 @@ ActiveRecord::Schema.define(version: 20180525131042) do
     t.datetime "updated_at", null: false
     t.integer "refund_reason_id"
     t.integer "reimbursement_id"
+    t.bigint "payment_transfer_id"
+    t.string "reversal_id"
     t.index ["payment_id"], name: "index_spree_refunds_on_payment_id"
+    t.index ["payment_transfer_id"], name: "index_spree_refunds_on_payment_transfer_id"
     t.index ["refund_reason_id"], name: "index_refunds_on_refund_reason_id"
     t.index ["reimbursement_id"], name: "index_spree_refunds_on_reimbursement_id"
   end

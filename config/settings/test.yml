@@ -1,8 +1,8 @@
 secret_key_base: 9f3099a5f3e3f77d9a07efca73e36a992b23bd4d5395da2e1026a16a42c4807ec9a7971a7df905a0a8f756d7a0b876548fe44846a0ee3a4c8cf8c3dc08724a22
 
 # stripe keys are from spree_gateway gem https://github.com/spree/spree_gateway/blob/master/spec/features/stripe_checkout_spec.rb
-stripe_sk_key: sk_test_VCZnDv3GLU15TRvn8i2EsaAN
-stripe_pk_key: pk_test_Cuf0PNtiAkkMpTVC2gwYDMIg
+stripe_sk_key: sk_test_5EdEIBWTO1bLIqVSPdsHZcTr
+stripe_pk_key: pk_test_DEn5gHefSvta6zn2DL5caDwq
 
 global_reputation_url: http://global-reputation:3001/api/v1
 global_reputation_key: fe98dddcab33ec21d31b038dd3
