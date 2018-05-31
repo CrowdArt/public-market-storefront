@@ -538,7 +538,7 @@ GEM
     parser (2.5.1.0)
       ast (~> 2.4.0)
     patron (0.13.1)
-    pg (0.21.0)
+    pg (1.0.0)
     pg_query (1.0.2)
     pghero (2.1.1)
       activerecord
@@ -829,7 +829,7 @@ DEPENDENCIES
   json_api_client
   listen (>= 3.0.5, < 3.2)
   mixpanel-ruby
-  pg (= 0.21.0)
+  pg
   pg_query
   pghero
   phony_rails

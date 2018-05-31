@@ -7,7 +7,7 @@ end
 
 gem 'rails', '5.2.0'
 
-gem 'pg', '0.21.0'
+gem 'pg'
 gem 'pg_query' # used by pghero
 gem 'pghero'
 
