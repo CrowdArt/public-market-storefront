@@ -85,7 +85,7 @@ group :development do
   gem 'pry-rails'
   gem 'rack-mini-profiler', require: false
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
   gem 'web-console'
 end
 

@@ -861,7 +861,7 @@ DEPENDENCIES
   spree_sitemap!
   spree_social!
   spring
-  spring-watcher-listen (~> 2.0.0)
+  spring-watcher-listen
   sqlite3
   swagger-blocks
   therubyracer
