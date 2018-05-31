@@ -26,4 +26,8 @@ class ApplicationController < ActionController::Base
       name == Settings.basic_auth_name && password == Settings.basic_auth_password
     end
   end
+
+  def save_return_to
+    session[:spree_user_return_to] = request.referer
+  end
 end

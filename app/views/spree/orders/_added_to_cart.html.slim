@@ -4,4 +4,4 @@
   span
     = link_to Spree.t(:view_cart), spree.cart_path, class: 'btn btn-outlined-white'
     span.or-text or
-    = link_to Spree.t(:continue_shopping), request.referer.present? ? :back : products_path, class: 'btn btn-outlined-white'
+    = link_to Spree.t(:continue_shopping), session[:spree_user_return_to] || products_path, class: 'btn btn-outlined-white'

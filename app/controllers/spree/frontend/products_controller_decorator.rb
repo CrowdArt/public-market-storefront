@@ -1,4 +1,6 @@
 Spree::ProductsController.class_eval do
+  before_action :save_return_to, only: :show
+
   def show # rubocop:disable Metrics/AbcSize
     @variants = @product.variants_including_master
                         .spree_base_scopes
