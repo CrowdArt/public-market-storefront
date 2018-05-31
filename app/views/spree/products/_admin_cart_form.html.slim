@@ -19,7 +19,7 @@
                     | + FREE Shipping
                   br
                   span Sold by: #{link_to(vendor.name, vendor_path(vendor), target: '_blank')}
-                  .text-small = vendor_reputation_text(vendor)
+                  .text-small Rating: #{vendor_reputation_text(vendor)}
 
                 .flex.align-center
                   = f.button class: 'btn btn-primary', value: 'add-to-cart', type: :submit do
