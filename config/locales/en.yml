@@ -21,6 +21,8 @@ en:
     staff_picks_btn_text: Explore
     top_categories_header: Top Categories
     top_products_header: Top Selling Products
+    product_card_books: Top Selling Books
+    product_card_video_games: PS4 Games
 
   account:
     summary: My account
