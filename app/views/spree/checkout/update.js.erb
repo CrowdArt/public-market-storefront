@@ -1,6 +1,6 @@
 <%= render partial: 'spree/shared/flash_messages', locals: { sticky: true, additional_class: 'slide-down' } %>
 
-<% unless @order.valid? %>
+<% if @order.errors.any? %>
   $('input[type="radio"]:checked').click()
   $('#order_state_lock_version').val(<%= @order.state_lock_version %>)
 <% end %>

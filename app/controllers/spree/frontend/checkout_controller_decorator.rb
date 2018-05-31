@@ -19,30 +19,26 @@ Spree::CheckoutController.class_eval do
 
       @order.transition_to_complete!
 
-      if (errors = @order.errors).any?
-        flash[:error] = errors.full_messages.join("\n")
-        redirect_to checkout_path && return
-      end
-
       if @order.completed?
         @current_order = nil
         flash[:order_completed] = true
         Tracker.track(mixpanel_user_id, 'order completed', order_id: @order.id)
+
         respond_to do |format|
           format.html { redirect_to completion_route }
           format.js do
             render js: "window.location.href='#{completion_route}'"
           end
         end
-      else
-        Tracker.track(mixpanel_user_id, 'order change state', order_id: @order.id, state: @order.state)
-        redirect_to checkout_path
       end
-    else
+    end
+
+    if (errors = @order.errors).any?
+      flash[:error] = errors.full_messages.join("\n")
+
       respond_to do |format|
         format.html { render :edit }
         format.js do
-          flash[:error] = @order.errors.full_messages.join("\n")
           render :update, status: :unprocessable_entity
         end
       end
