@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 18 May 2018 09:33:59 GMT
+      - Thu, 31 May 2018 12:08:11 GMT
       Server:
       - Apache/2.2.3 (CentOS)
       Vary:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/xml
       Set-Cookie:
-      - BIGipServerbms_pool=1270225836.20480.0000; path=/
+      - BIGipServerbms_pool=1303780268.20480.0000; path=/
     body:
       encoding: ASCII-8BIT
       string: '<result found="1" returned="1" page="1" pagesize="10"><item id="1TH9JT6PEz73P"><details>http://bms.bowker.com/rest/books/id/1TH9JT6PEz73P?fields=all</details><title>French
@@ -41,7 +41,7 @@ http_interactions:
 
 '
     http_version: 
-  recorded_at: Fri, 18 May 2018 09:33:59 GMT
+  recorded_at: Thu, 31 May 2018 12:08:11 GMT
 - request:
     method: get
     uri: http://bms.bowker.com/rest/books/id/1TH9JT6PEz73P?fields=all
@@ -63,7 +63,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 18 May 2018 09:33:59 GMT
+      - Thu, 31 May 2018 12:08:11 GMT
       Server:
       - Apache/2.2.3 (CentOS)
       Vary:
@@ -73,7 +73,7 @@ http_interactions:
       Content-Type:
       - text/xml
       Set-Cookie:
-      - BIGipServerbms_pool=1085676460.20480.0000; path=/
+      - BIGipServerbms_pool=1303780268.20480.0000; path=/
       X-Cache:
       - MISS from 21f8dccfb426
       X-Cache-Lookup:
@@ -98,7 +98,7 @@ http_interactions:
 
 '
     http_version: 
-  recorded_at: Fri, 18 May 2018 09:33:59 GMT
+  recorded_at: Thu, 31 May 2018 12:08:11 GMT
 - request:
     method: get
     uri: https://imageweb.bowker.com/rest/images/ean/9780253202505?size=original
@@ -120,7 +120,7 @@ http_interactions:
       message: Forbidden
     headers:
       Date:
-      - Fri, 18 May 2018 09:34:00 GMT
+      - Thu, 31 May 2018 12:08:12 GMT
       Server:
       - Apache/2.2.3 (CentOS)
       Vary:
@@ -132,7 +132,7 @@ http_interactions:
       Content-Type:
       - text/html; charset=iso-8859-1
       Set-Cookie:
-      - BIGipServerimageweb=1538661292.20480.0000; path=/
+      - BIGipServerimageweb=1572215724.20480.0000; path=/
     body:
       encoding: ASCII-8BIT
       string: |-
@@ -149,5 +149,5 @@ http_interactions:
         </body>
         </html>
     http_version: 
-  recorded_at: Fri, 18 May 2018 09:34:00 GMT
+  recorded_at: Thu, 31 May 2018 12:08:13 GMT
 recorded_with: VCR 4.0.0

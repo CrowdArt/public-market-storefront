@@ -85,21 +85,41 @@ RSpec.describe Spree::Inventory::Providers::BowkerMetadataProvider, type: :actio
       end
     end
 
-    context 'with empty image' do
-      let(:item_json) do
-        {
-          condition: 'Good',
-          ean: '9780253202505',
-          notes: 'Good copy ready to ship same',
-          price: '69.83',
-          quantity: 2,
-          sku: 'SKU'
-        }
+    describe 'product images' do
+      context 'with empty image' do
+        let(:item_json) do
+          {
+            condition: 'Good',
+            ean: '9780253202505',
+            notes: 'Good copy ready to ship same',
+            price: '69.83',
+            quantity: 2,
+            sku: 'SKU'
+          }
+        end
+
+        it 'does not save image' do
+          expect(variant).not_to be_nil
+          expect(variant.product.images.count).to eq(0)
+        end
       end
 
-      it 'does not save image' do
-        expect(variant).not_to be_nil
-        expect(variant.images.count).to eq(0)
+      context 'with not readable tempfile' do
+        let(:item_json) do
+          {
+            condition: 'Good',
+            ean: '9780321532015',
+            notes: 'Good copy ready to ship same',
+            price: '69.83',
+            quantity: 2,
+            sku: 'SKU'
+          }
+        end
+
+        it 'saves image' do
+          expect(variant).not_to be_nil
+          expect(variant.product.images.count).to eq(1)
+        end
       end
     end
   end

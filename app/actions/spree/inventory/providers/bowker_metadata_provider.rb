@@ -84,6 +84,7 @@ module Spree
           file = Tempfile.new(isbn)
           file.binmode
           file << response.body
+          file.flush # https://github.com/thoughtbot/paperclip/issues/1899
           file
         end
       end
