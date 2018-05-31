@@ -1,4 +1,5 @@
 - @body_id = 'product-details'
+- admin = spree_current_user&.admin?
 
 - cache cache_key_for_product do
   .row.product-grid data-hook='product_show' itemscope=true itemtype='https://schema.org/Product'
@@ -24,7 +25,7 @@
       - if @product.can_supply?
         p.text-center = render 'spree/shared/payment_methods'
 
-        - if spree_current_user&.admin? && @admin_variants.any?
+        - if admin && @admin_variants.any?
           = render partial: 'admin_cart_form'
 
     .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
@@ -64,3 +65,19 @@ javascript:
       "id": "#{@product.id}",
       "name": "#{@product.name}"
     });
+
+/ render here to avoid cache issues
+- if admin && @admin_variants.any?
+  - content_for :bottom_scripts
+    javascript:
+      $("#product-variants input[type='radio']").click(function() {
+        toggleAdminVariants()
+      })
+
+      var toggleAdminVariants = function() {
+        var curVar = $("#product-variants input[type='radio']:checked")
+        $('.admin-variants').addClass('hide')
+        $("#admin-variant-" + curVar.data('option-name')).removeClass('hide')
+      }
+
+      toggleAdminVariants()

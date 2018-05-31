@@ -25,17 +25,3 @@
                   = f.button class: 'btn btn-primary', value: 'add-to-cart', type: :submit do
                     label.no-margin for="admin_variant_id_#{v.id}"
                       = Spree.t(:add_to_cart)
-
-- content_for :bottom_scripts
-  javascript:
-    $("#product-variants input[type='radio']").click(function() {
-      toggleAdminVariants()
-    })
-
-    var toggleAdminVariants = function() {
-      var curVar = $("#product-variants input[type='radio']:checked")
-      $('.admin-variants').addClass('hide')
-      $("#admin-variant-" + curVar.data('option-name')).removeClass('hide')
-    }
-
-    toggleAdminVariants()
