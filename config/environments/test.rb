@@ -47,4 +47,6 @@ Rails.application.configure do
   config.active_job.queue_adapter = :test
 
   ActionMailer::Base.default from: '"Public Market" <noreply@publicmarket.io>'
+
+  config.active_record.sqlite3.represent_boolean_as_integer = true # fix deprecation warning in specs
 end

@@ -11,13 +11,13 @@ RSpec.describe Spree::AddressesController, type: :controller do
     let(:address) { build_stubbed(:address, user: user) }
 
     context 'when not signed in' do
-      it { is_expected.not_to be_success }
+      it { is_expected.not_to be_successful }
     end
 
     context 'when signed in' do
       before { sign_in(user) }
 
-      it { is_expected.to be_success }
+      it { is_expected.to be_successful }
 
       it 'loads address' do
         expect {
@@ -28,7 +28,7 @@ RSpec.describe Spree::AddressesController, type: :controller do
       context "when other's address" do
         let(:address) { build_stubbed(:address) }
 
-        it { is_expected.not_to be_success }
+        it { is_expected.not_to be_successful }
       end
     end
   end

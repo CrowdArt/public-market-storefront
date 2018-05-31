@@ -1,3 +1,7 @@
+Rails.application.configure do
+  config.use_paperclip = true
+end
+
 Paperclip.options[:content_type_mappings] = {
   aspx: %w[image/jpeg]
 }

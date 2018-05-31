@@ -11,18 +11,18 @@ RSpec.describe Spree::CreditCardsController, type: :controller do
     let(:card) { build_stubbed(:credit_card, user: user) }
 
     context 'when not signed in' do
-      it { is_expected.not_to be_success }
+      it { is_expected.not_to be_successful }
     end
 
     context 'when signed in' do
       before { sign_in(user) }
 
-      it { is_expected.to be_success }
+      it { is_expected.to be_successful }
 
       context "when other's card" do
         let(:card) { build_stubbed(:credit_card) }
 
-        it { is_expected.not_to be_success }
+        it { is_expected.not_to be_successful }
       end
     end
   end
@@ -33,7 +33,7 @@ RSpec.describe Spree::CreditCardsController, type: :controller do
     let!(:card) { create(:credit_card, user: user) }
 
     context 'when not signed in' do
-      it { is_expected.not_to be_success }
+      it { is_expected.not_to be_successful }
     end
 
     context 'when signed in' do
@@ -50,7 +50,7 @@ RSpec.describe Spree::CreditCardsController, type: :controller do
       context "when other's card" do
         let!(:card) { create(:credit_card) } # rubocop:disable RSpec/LetSetup
 
-        it { is_expected.not_to be_success }
+        it { is_expected.not_to be_successful }
 
         it 'does not delete card' do
           expect {
