@@ -1,0 +1,18 @@
+.taxon-filter.flex-1
+  .dropdown.rich-dropdown
+    button.btn-block data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' type='button'
+      .flex.between.align-center
+        div
+          span.text-muted Filter by
+          br
+          span.upcase.text-white = filter_name
+
+        .caret-circle
+          span.caret
+
+    ul.dropdown-menu
+      - items.each_with_index do |item, index|
+        li.dropdown-item
+          = label_tag "filter_#{filter_name.downcase}_id_#{item[:id]}", class: 'flex between' do
+            span = item[:name]
+            = check_box_tag "filter_#{filter_name.downcase}_id_#{item[:id]}", item[:id], false

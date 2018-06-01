@@ -5,13 +5,41 @@
   @media (max-width: $screen-md-max)
     margin-top: 15px
 
-.taxon-filters > div
-  background-color: #2e3137
-  height: 68px
+.taxon-filters
+  background-color: $filters-bg
   margin-bottom: 60px
 
   @media (max-width: $screen-md-max)
     margin-bottom: 40px
+
+  @media (max-width: $screen-xs-max)
+    padding: 25px 30px
+
+  .taxon-filter
+    max-width: 350px
+
+    .dropdown.open button
+      background-color: darken($filters-bg, 7%)
+
+    button
+      background-color: $filters-bg
+      border: none
+      border-right: 1px solid $filters-button-border
+      padding: 12px 30px
+      transition: background-color .2s
+
+      &:after
+        content: none
+
+    .dropdown-menu
+      border: 0
+      margin: 0
+      padding: 15px 0
+
+      .dropdown-item
+        label
+          display: flex
+          padding: 7.5px 35px
 
 .taxon-links
   list-style: none

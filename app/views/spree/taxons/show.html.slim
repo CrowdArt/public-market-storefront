@@ -6,8 +6,8 @@ ruby:
   .col-md-12.root-taxon-title
     h1.upcase.text-black = @taxon.name
 
-  .col-md-12.taxon-filters
-    div
+  .col-md-12
+    = render partial: 'spree/products/filters'
 
 - content_for :sidebar do
   = render partial: 'spree/shared/taxonomies'
