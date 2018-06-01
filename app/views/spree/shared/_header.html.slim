@@ -1,7 +1,7 @@
 ruby:
   root_taxons = Spree::Taxon.roots
-  enabled_taxons = root_taxons.where(hidden: false)
-  disabled_taxons = root_taxons.where(hidden: true)
+  enabled_taxons = root_taxons.visible
+  disabled_taxons = root_taxons.hidden
   taxon = @taxon&.root || (Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon])
 
 - cache([:v5, :mobile_menu, root_taxons, taxon, spree_current_user])

@@ -14,7 +14,7 @@ Spree::TaxonsController.class_eval do
 
   # fetch taxons in mobile nav menu
   def mobile_menu_childs
-    root_taxons = Spree::Taxon.roots.where(hidden: false).reorder(position: :asc)
+    root_taxons = Spree::Taxon.roots.visible.reorder(:name)
     render collection: root_taxons, partial: 'spree/nav/mobile_menu_subcategories', as: :taxon
   end
 end

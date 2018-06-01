@@ -68,7 +68,7 @@
           <div class="content">
             <h3><%= t('home.product_card_video_games') %></h3>
             <p>Starting at $14.99</p>
-            <% t = Spree::Taxon.where(name: 'Video Games', hidden: false).first %>
+            <% t = Spree::Taxon.visible.find_by(name: 'Video Games') %>
             <div data-toggle="<%= 'tooltip' if t.nil? %>" data-placement="bottom" data-html="true" data-title="<span class='text-success'>COMING SOON</text-success>">
               <%= link_to 'SHOP NOW', (t.nil? ? '#' : top_selling_taxon_path(t.id)), disabled: t.nil?, class: "btn btn-primary #{('disabled' if t.nil?)}" %>
             </div>
@@ -84,7 +84,7 @@
           <div class="content">
             <h3><%= t('home.product_card_books') %></h3>
             <p>Starting at $2.99</p>
-            <% t = Spree::Taxon.where(name: 'Books', hidden: false).first %>
+            <% t = Spree::Taxon.visible.find_by(name: 'Books') %>
             <div data-toggle="<%= 'tooltip' if t.nil? %>" data-placement="bottom" data-html="true" data-title="<span class='text-success'>COMING SOON</text-success>">
               <%= link_to 'SHOP NOW', (t.nil? ? '#' : top_selling_taxon_path(t.id)), disabled: t.nil?, class: "btn btn-primary #{('disabled' if t.nil?)}" %>
             </div>
