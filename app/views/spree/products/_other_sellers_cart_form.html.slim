@@ -1,13 +1,14 @@
 .panel.no-border#admin-cart-form
   .panel-body
-    h5 Buy from Other sellers
+    h4 Buy from Other sellers
 
     = form_for :order, url: populate_orders_path, remote: true do |f|
       = hidden_field_tag :quantity, 1
 
-      - @admin_variants.group_by { |v| v.main_option_type.parameterize }.each do |o, variants|
-        .hide.admin-variants id='admin-variant-#{o}'
-          - variants.each do |v|
+      - variants.each do |o, vars|
+        h5 = o
+        .admin-variants
+          - vars.each do |v|
             - vendor = v.vendor
             .hide = radio_button_tag 'variant_id', v.id, false, id: "admin_variant_id_#{v.id}"
 

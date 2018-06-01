@@ -1,21 +1,9 @@
 Spree::ProductsController.class_eval do
-  before_action :save_return_to, only: :show
+  before_action :save_return_to, :load_taxon, only: :show
 
   def show # rubocop:disable Metrics/AbcSize
-    @variants = @product.variants_including_master
-                        .spree_base_scopes
-                        .in_stock
-                        .active(current_currency)
-                        .includes(:option_values)
-                        .reorder('spree_option_values.position ASC, spree_prices.amount ASC')
-                        .select('spree_prices.amount')
-                        .group_by(&:main_option_type)
-                        .map(&method(:prepare_buy_box_variants))
-
     @product_properties = @product.product_properties.includes(:property)
-    @taxon = params[:taxon_id].present? ? Spree::Taxon.find(params[:taxon_id]) : @product.taxons.first
-    @selected = @variants.first
-    @selected[:selected] = true if @selected.present?
+
     @variations = Spree::Inventory::FindProductVariations.call(@product)
     redirect_if_legacy_path
   end
@@ -30,21 +18,8 @@ Spree::ProductsController.class_eval do
 
   private
 
-  def prepare_buy_box_variants(option_variants)
-    option_value = option_variants[0]
-    variants = option_variants[1]
-
-    median_price = Spree::Price.new(amount: variants.map(&:price).median, currency: current_currency)
-
-    if spree_current_user&.admin?
-      @admin_variants ||= []
-      @admin_variants.concat(variants.drop(1))
-    end
-
-    {
-      option_value: option_value,
-      variant: variants.first,
-      median_price: median_price.money
-    }
+  def load_taxon
+    taxon_id = params[:taxon_id]
+    @taxon = taxon_id.present? ? Spree::Taxon.find(taxon_id) : @product.taxons.first
   end
 end

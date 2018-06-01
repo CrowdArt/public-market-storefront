@@ -1,7 +1,10 @@
 - @body_id = 'product-details'
-- admin = spree_current_user&.admin?
 
-- cache cache_key_for_product do
+- cache(cache_key_for_product(@product, admin: spree_current_user&.admin?)) do
+  ruby:
+    can_supply = @product.can_supply?
+    variants, other_seller_variants = product_variants if can_supply
+
   .row.product-grid data-hook='product_show' itemscope=true itemtype='https://schema.org/Product'
     .col-sm-5.col-md-4.product-images-item
       div data-hook='product_left_part_wrap'
@@ -16,17 +19,17 @@
     .col-xs-12.col-sm-7.col-md-4.col-md-push-4.product-cart-item
       #cart-form.panel.no-border
         .panel-body
-          - if @product.can_supply?
-            = render partial: 'cart_form'
+          - if can_supply
+            = render partial: 'cart_form', locals: { variants: variants }
           - else
             .text-center
               h4 Out of stock
 
-      - if @product.can_supply?
+      - if can_supply
         p.text-center = render 'spree/shared/payment_methods'
 
-        - if admin && @admin_variants.any?
-          = render partial: 'admin_cart_form'
+        - if other_seller_variants.present?
+          = render partial: 'other_sellers_cart_form', locals: { variants: other_seller_variants }
 
     .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
       h1.product-title itemprop='name' = sanitize(@product.name)
@@ -65,19 +68,3 @@ javascript:
       "id": "#{@product.id}",
       "name": "#{@product.name}"
     });
-
-/ render here to avoid cache issues
-- if admin && @admin_variants.any?
-  - content_for :bottom_scripts
-    javascript:
-      $("#product-variants input[type='radio']").click(function() {
-        toggleAdminVariants()
-      })
-
-      var toggleAdminVariants = function() {
-        var curVar = $("#product-variants input[type='radio']:checked")
-        $('.admin-variants').addClass('hide')
-        $("#admin-variant-" + curVar.data('option-name')).removeClass('hide')
-      }
-
-      toggleAdminVariants()

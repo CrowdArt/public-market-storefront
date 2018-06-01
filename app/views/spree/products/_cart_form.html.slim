@@ -24,23 +24,20 @@
             ' Save:
             span.price#price-diff
 
-          - if @product.master.can_supply?
-            link href="https://schema.org/InStock" itemprop="availability"
-          - elsif @product.variants.empty?
-            br
-            span.out-of-stock= Spree.t(:out_of_stock)
+          link href="https://schema.org/InStock" itemprop="availability"
 
         - else
           span itemprop="price"
             = Spree.t('product_not_available_in_this_currency')
 
       .est-token-rewards = t('products.rewards', rewards: @product.estimated_ptrn)
+
       .variants.form-group
-        - if @variants.present?
-          = render layout: 'spree/shared/dropdown', locals: { items: @variants, selected: @variants.first } do |hash, index|
+        - if variants.present?
+          = render layout: 'spree/shared/dropdown', locals: { items: variants, selected: variants.first } do |hash, index|
             - variant = hash[:variant]
             - unless index.nil?
-              .hide = radio_button_tag 'variant_id', variant.id, hash[:selected], 'data-quantity': [quantity_left(variant), 1].max, 'data-avg-price': hash[:median_price], 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?, 'data-vendor': variant.vendor&.name, 'data-vendor-path': (vendor_path(variant.vendor) if variant.vendor), 'data-vendor-rep': vendor_reputation_text(variant.vendor), 'data-option-name': hash[:option_value].parameterize
+              .hide = radio_button_tag 'variant_id', variant.id, hash[:selected], 'data-quantity': [quantity_left(variant), 1].max, 'data-avg-price': hash[:median_price], 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?, 'data-vendor': variant.vendor&.name, 'data-vendor-path': (vendor_path(variant.vendor) if variant.vendor), 'data-vendor-rep': vendor_reputation_text(variant.vendor)
             = label_tag "variant_id_#{variant.id}"
               small.text-muted.hide-in-dropdown style='display:block' Condition
               span.variant-description> = hash[:option_value]
