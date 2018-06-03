@@ -195,7 +195,7 @@ body#home-page
     overflow: visible
     @media (max-width: $screen-md-max)
       background-position-x: center
-      height: auto
+      height: 472px
     .offer
       position: absolute
       z-index: 200
@@ -299,15 +299,60 @@ body#home-page
         display: none
 
   .product-list
-    margin-top: 10px
+    margin: 9px 20px 0px 20px
+    // max-width: 940px
+    display: grid
+    grid-gap: 30px
+
+    @media (min-width: $screen-lg-min)
+      grid-gap: 30px
+
+    @media (max-width: $screen-md-max)
+      grid-gap: 20px
+
+    @media (max-width: $screen-sm-max)
+      grid-gap: 6px
+
+    @media (max-width: $screen-xs-max)
+      grid-gap: 5px
+
+  // No grid support
+  .product-list
+    display: flex
+    flex-wrap: wrap
+
+  .product-list
+    display: grid
+    margin: 0 auto
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))
+    grid-auto-rows: minmax(150px, 1fr)
+
+    @media (min-width: $screen-lg-min)
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr))
+
+    @media (max-width: $screen-md-max)
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr))
+
+    @media (max-width: $screen-sm-max)
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr))
+
+    @media (max-width: $screen-xs-max)
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr))
+
   .product-list-item
     margin-top: -8px
-    padding-left: 8px
-    padding-right: 8px
+    margin-left: 5px
+    margin-right: 5px
+    flex: 1 1 200px
+
+    @supports (display: grid)
+      margin: 0
+
     .panel
       border: none
+      margin-bottom: 0
     .panel-body
-      padding: 28px 16px 20px
+      padding: 40px 40px 55px
       .info, .price
         font-family: $font-family-roboto
         font-size: 16px
@@ -319,15 +364,19 @@ body#home-page
           color: #454a50
       img
         margin-bottom: 22px
-    @media (max-width: $screen-md-max)
-      padding-left: 6px
-      padding-right: 6px
-      margin-top: -10px
-    @media (max-width: $screen-xs-max)
-      padding-left: 3px
-      padding-right: 3px
-      margin-top: -16px
+        max-width: 100%
+
+    // @media (max-width: $screen-md-max)
+    //   .panel-body
+    //     padding: 22px 33px 24px
+
+    @media (max-width: $screen-sm-max)
       .panel-body
+        padding: 22px 28px 24px
         .info, .price
           font-size: 14px
           line-height: 1.29
+
+    @media (max-width: $screen-xs-max)
+      .panel-body
+        padding: 22px 28px 24px

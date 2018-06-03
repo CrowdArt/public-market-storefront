@@ -99,21 +99,17 @@
 <% end %>
 
 <% unless @staff_picks.empty? %>
-  <section class="staff-picks container">
+  <section class="staff-picks">
     <div data-hook="homepage_staff_picks">
       <%= render partial: 'spree/shared/staff_picks', locals: { staff_picks: @staff_picks } %>
     </div>
   </section>
 <% end %>
 
-<section class="top-products container">
-  <div class="row">
-    <div class="col-md-12 col-xs-12">
-      <h2><%= t('home.top_products_header') %></h2>
-      <%= link_to "View All", top_selling_path, {class: "view-all"} %>
-      <div class="divider"></div>
-    </div>
-  </div>
+<section class="top-products">
+  <h2><%= t('home.top_products_header') %></h2>
+  <%= link_to "View All", top_selling_path, {class: "view-all"} %>
+  <div class="divider"></div>
   <div data-hook="homepage_products">
     <% cache(cache_key_for_products) do %>
       <%= render partial: 'spree/shared/products', locals: { products: @products } %>
