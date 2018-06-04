@@ -54,4 +54,22 @@ RSpec.describe Spree::Product, type: :model do
       it { is_expected.to eq(6) }
     end
   end
+
+  describe 'boost_factor and images relation' do
+    subject { product.boost_factor }
+
+    let(:product) { create :product, master: create(:master_variant, images: images) }
+
+    context 'when has images' do
+      let(:images) { create_list :image, 1 }
+
+      it { is_expected.to eq(1) }
+    end
+
+    context 'when no images' do
+      let(:images) { [] }
+
+      it { is_expected.to eq(0) }
+    end
+  end
 end

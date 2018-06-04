@@ -1,6 +1,8 @@
 Spree::Product.class_eval do
   include Spree::Core::NumberGenerator.new(prefix: 'PM', letters: true, length: 13)
 
+  before_create :reset_boost_factor_if_no_images
+
   scope :in_stock, -> { joins(variants: :stock_items).where('spree_stock_items.count_on_hand > ? OR spree_variants.track_inventory = ?', 0, false) }
 
   def author
@@ -82,5 +84,13 @@ Spree::Product.class_eval do
         boost_factor: { gt: 1 }
       )
     )
+  end
+
+  private
+
+  def reset_boost_factor_if_no_images
+    return if master.images.present?
+
+    self.boost_factor = 0
   end
 end
