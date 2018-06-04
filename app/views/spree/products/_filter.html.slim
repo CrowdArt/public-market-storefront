@@ -1,3 +1,5 @@
+- filter_input_name = "filter_#{filter_name.downcase}_id"
+
 .taxon-filter.flex-1
   .dropdown.rich-dropdown
     button.btn-block data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' type='button'
@@ -12,7 +14,13 @@
 
     ul.dropdown-menu
       - items.each_with_index do |item, index|
+        - filter_input_id = "filter_#{filter_name.downcase}_#{item[:id]}"
+
         li.dropdown-item
-          = label_tag "filter_#{filter_name.downcase}_id_#{item[:id]}", class: 'flex between' do
+          = label_tag filter_input_id, class: 'flex between' do
             span = item[:name]
-            = check_box_tag "filter_#{filter_name.downcase}_id_#{item[:id]}", item[:id], false
+            = check_box_tag filter_input_name, item[:id], false, id: filter_input_id
+
+- content_for :bottom_scripts
+  javascript:
+    Spree.initTaxonFilterTags("#{filter_input_name}")

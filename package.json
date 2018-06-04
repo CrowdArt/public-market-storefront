@@ -2,6 +2,7 @@
   "name": "public-market-storefront",
   "private": true,
   "dependencies": {
+    "bootstrap-tagsinput": "^0.7.1",
     "raven-js": "^3.25.2"
   }
 }

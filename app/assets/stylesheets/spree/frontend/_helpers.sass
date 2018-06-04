@@ -120,3 +120,31 @@
   content: ''
   border-top: 0
   border-bottom: 4px dashed
+
+.tags-without-input
+  input
+    display: none
+
+  .bootstrap-tagsinput
+    background: transparent
+    border: none
+    box-shadow: none
+    cursor: pointer
+    padding: 0
+
+    .tag
+      font-size: 10px
+      font-family: $font-family-roboto-condensed
+      display: inline-block
+      padding: 4px 10px
+      padding-right: 4px
+      min-width: 100px
+      text-align: left
+
+      span
+        font-family: $font-family-sans-serif
+        font-weight: 400
+        float: right
+
+        &:hover
+          box-shadow: none

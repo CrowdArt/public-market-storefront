@@ -1,16 +1,36 @@
 
-.taxon-filters
-  .flex.hidden-xs
-    - taxon_filters(@taxon.root.permalink).each do |f|
-      = render partial: 'spree/products/filter', locals: { filter_name: f[:filter], items: f[:options] }
+.taxon-filters-container
+  .taxon-filters
+    .flex.hidden-xs
+      - taxon_filters(@taxon.root.permalink).each do |f|
+        = render partial: 'spree/products/filter', locals: { filter_name: f[:filter], items: f[:options] }
 
-  .visible-xs.text-center
-    span.text-white.upcase.vertical-middle Filter
-    .pull-right.text-white >
+    .visible-xs.text-center
+      span.text-white.upcase.vertical-middle Filter
+      .pull-right.text-white >
+
+  .taxon-filters--tags.tags-without-input
+    input#filter-tags
+
+- content_for :head
+  = stylesheet_link_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.css'
 
 - content_for :bottom_scripts
+  = javascript_include_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.js'
+
   javascript:
     // disable closing dropdown on label click
-    $('.taxon-filter .dropdown-menu label' ).on('click', function(e) {
+    $('.taxon-filter .dropdown-menu label').on('click', function(e) {
       e.stopPropagation()
     });
+
+    $('#filter-tags').tagsinput({
+      tagClass: 'upcase label label-primary',
+      itemValue: 'id',
+      itemText: 'text'
+    })
+
+    // uncheck inputs in filters
+    $('#filter-tags').on('beforeItemRemove', function(event) {
+      $('#' + event.item.id).prop('checked', false)
+    })

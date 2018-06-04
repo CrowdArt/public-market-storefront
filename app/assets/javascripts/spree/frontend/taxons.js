@@ -9,3 +9,10 @@ Spree.loadMobileSubcategories = function() {
     }
   })
 }
+
+Spree.initTaxonFilterTags = function(name) {
+  $("input[name='" + name + "']").change(function() {
+    var action = this.checked ? 'add' : 'remove'
+    $('#filter-tags').tagsinput(action, { id: $(this).attr('id'), text: $(this).siblings('span').text() })
+  })
+}
