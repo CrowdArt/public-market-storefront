@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_batch_api.git
-  revision: 6926fcec48e9deb2a70d198092a91846bda58d64
+  revision: cae94267f5eacf6f5423e1e3032543e35e613883
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -693,7 +693,7 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
-    sidekiq-scheduler (2.2.2)
+    sidekiq-scheduler (3.0.0)
       redis (>= 3, < 5)
       rufus-scheduler (~> 3.2)
       sidekiq (>= 3)
