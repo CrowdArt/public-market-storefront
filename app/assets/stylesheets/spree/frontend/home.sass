@@ -340,6 +340,7 @@ body#home-page
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr))
 
   .product-list-item
+    background: #fff
     margin-top: -8px
     margin-left: 5px
     margin-right: 5px
@@ -348,11 +349,19 @@ body#home-page
     @supports (display: grid)
       margin: 0
 
-    .panel
-      border: none
-      margin-bottom: 0
-    .panel-body
+    .product-body
+      margin: 0
       padding: 40px 40px 55px
+      text-align: center
+      a
+        color: #454a50
+      img
+        margin: 0
+        max-width: 100%
+        padding: 0
+    .product-footer
+      margin-top: 30px
+      padding: 0
       .info, .price
         font-family: $font-family-roboto
         font-size: 16px
@@ -360,23 +369,22 @@ body#home-page
         line-height: 1.38
         text-align: center
         color: #454a50
-        a
-          color: #454a50
-      img
-        margin-bottom: 22px
-        max-width: 100%
 
-    // @media (max-width: $screen-md-max)
-    //   .panel-body
-    //     padding: 22px 33px 24px
+    @media (max-width: $screen-md-max)
+      .product-body
+        padding: 22px 33px 24px
+      .product-footer
+        margin-top: 22px
 
     @media (max-width: $screen-sm-max)
-      .panel-body
+      .product-body
         padding: 22px 28px 24px
+      .product-footer
+        margin-top: 16px
         .info, .price
           font-size: 14px
           line-height: 1.29
 
     @media (max-width: $screen-xs-max)
-      .panel-body
+      .product-body
         padding: 22px 28px 24px
