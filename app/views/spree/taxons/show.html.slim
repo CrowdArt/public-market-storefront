@@ -22,4 +22,5 @@ ruby:
 
 - unless params[:keywords].present?
   - cache([I18n.locale, @taxon]) do
-    = render partial: 'taxon', collection: @taxon.children
+    / show hidden taxons on last place
+    = render partial: 'taxon', collection: @taxon.children.reorder(hidden: :asc, lft: :asc)
