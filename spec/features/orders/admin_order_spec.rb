@@ -69,6 +69,28 @@ RSpec.describe 'admin order', type: :feature, js: true do
         expect(page).to have_text(line_item.price)
         expect(page).not_to have_text("Total: $#{order.total}")
       end
+
+      it 'show transfers' do
+        expect(page).to have_text('TRANSFER ID')
+        expect(page).not_to have_text(order.total)
+        expect(page).to have_link(class: 'action-refund')
+      end
+
+      describe 'refund transfer' do
+        let!(:refund_reason) { create :refund_reason }
+
+        before { click_link(class: 'action-refund') }
+
+        it 'show refund page' do
+          expect(page).not_to have_text(order.total)
+
+          select refund_reason.name, from: 'Reason'
+
+          click_button 'Refund'
+
+          expect(page).to have_text('Refunds')
+        end
+      end
     end
   end
 end

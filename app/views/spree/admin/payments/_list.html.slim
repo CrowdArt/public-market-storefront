@@ -1,0 +1,28 @@
+table#payments.table.table-bordered data-order-id="#{@order.number}"
+  thead
+    tr data-hook="payments_header"
+      th= Spree::Payment.human_attribute_name(:number)
+      th= "#{Spree.t('date')}/#{Spree.t('time')}"
+      th.text-center= Spree.t(:amount)
+      th.text-center= Spree.t(:payment_method)
+      th.text-center= Spree.t(:transfer_id)
+      th.text-center= Spree.t(:payment_state)
+      th.actions.text-center
+  tbody
+    - payments.each do |payment|
+      - payment.payment_transfers.where(vendor: current_spree_vendor).each do |transfer|
+        tr data-hook="payments_row" data-number="#{payment.number}" id="#{dom_id(payment)}"
+          td= payment.number
+          td= pretty_time(payment.created_at)
+          td.amount.text-center= transfer.money
+          td.text-center= payment_method_name(payment)
+          td.text-center= transfer.response_code
+          td.text-center
+            span class="label label-#{payment.state}"
+              = Spree.t(payment.state, scope: :payment_states, default: payment.state.capitalize)
+          td.actions.actions-2.text-center
+            - payment.actions.each do |action|
+              - if action == 'credit'
+                = link_to_with_icon('refund', Spree.t(:refund), new_admin_order_payment_refund_path(@order, payment), no_text: true, class: "btn btn-default btn-sm")
+              / - else
+                = link_to_with_icon(action, Spree.t(action), fire_admin_order_payment_path(@order, payment, e: action), method: :put, no_text: true, data: { action: action }, class: "btn btn-default btn-sm") if can?(action.to_sym, payment)

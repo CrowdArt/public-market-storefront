@@ -53,4 +53,6 @@ en:
     specials: Specials
     vendors_transfers_failed: Payment could not be processed, seller can't receive transfer, please contact support.
     vendors_transfer_negative: Payment could not be processed, seller %{vendor} can't process payment, please contact support.
+    transfer_id: Transfer ID
+    transfer_amount: Transfer Amount
 
