@@ -1,32 +1,7 @@
 module Spree
   module TaxonsHelper
-    # Retrieve products in stock here
-    def taxon_preview(taxon, max = 5) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-      products = taxon.active_products
-                      .in_stock
-                      .select('DISTINCT (spree_products.id), spree_products.*, spree_products_taxons.position')
-                      .limit(max)
-
-      if products.size < max
-        products_arel = Spree::Product.arel_table
-        taxon.descendants.each do |child_taxon|
-          to_get = max - products.length
-
-          products += child_taxon.active_products
-                                 .in_stock
-                                 .select('DISTINCT (spree_products.id), spree_products.*, spree_products_taxons.position')
-                                 .where(products_arel[:id].not_in(products.map(&:id)))
-                                 .limit(to_get)
-
-          break if products.size >= max
-        end
-      end
-
-      # hide taxon preview if taxon depth < 3 and there are less than 5 results
-      # if taxon depth >= 3 always show taxon preview
-      return [] if taxon.depth < 3 && products.size != max
-
-      products
+    def taxons_preview(taxon)
+      Spree::Inventory::Searchers::SearchTaxons.new(taxon).call
     end
 
     def taxon_filters(kind)

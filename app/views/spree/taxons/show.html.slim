@@ -17,10 +17,10 @@ ruby:
 
   / = render partial: 'spree/shared/filters' if @taxon.leaf?
 
-- if @taxon.leaf?
+- if @taxon.depth.positive?
   = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, card_size: 'col-lg-3 col-md-3 col-sm-6 col-xs-6' }
 
 - unless params[:keywords].present?
   - cache([I18n.locale, @taxon]) do
     / show hidden taxons on last place
-    = render partial: 'taxon', collection: @taxon.children.reorder(hidden: :asc, lft: :asc)
+    = render partial: 'taxon', collection: taxons_preview(@taxon)
