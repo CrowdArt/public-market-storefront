@@ -18,8 +18,14 @@
   .taxon-filter
     max-width: 350px
 
+    .taxon-filter--title span
+      transition: color .15s
+
     .dropdown.open button
-      background-color: darken($filters-bg, 7%)
+      background-color: darken($filters-bg, 10%)
+
+      .taxon-filter--title span
+        color: $brand-primary
 
     button
       background-color: $filters-bg
@@ -30,6 +36,9 @@
 
       &:after
         content: none
+
+      &:hover
+        background-color: darken($filters-bg, 10%)
 
     .dropdown-menu
       border: 0

@@ -2,8 +2,7 @@
 .taxon-filters-container
   .taxon-filters
     .flex.hidden-xs
-      - taxon_filters(@taxon.root.permalink).each do |f|
-        = render partial: 'spree/products/filter', locals: { filter_name: f[:filter], items: f[:options] }
+      = render partial: 'filter', collection: taxon_filters(@taxon.root.permalink), as: :filter
 
     .visible-xs.text-center
       span.text-white.upcase.vertical-middle Filter

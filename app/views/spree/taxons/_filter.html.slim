@@ -1,10 +1,13 @@
-- filter_input_name = "filter_#{filter_name.downcase}_id"
+ruby:
+  filter_name = filter[:filter]
+  items = filter[:options]
+  filter_input_name = "filter_#{filter_name.downcase}_id"
 
 .taxon-filter.flex-1
   .dropdown.rich-dropdown
     button.btn-block data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' type='button'
       .flex.between.align-center
-        div
+        .taxon-filter--title
           span.text-muted Filter by
           br
           span.upcase.text-white = filter_name
