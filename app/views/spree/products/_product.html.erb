@@ -2,7 +2,7 @@
 <% max_mobile ||= max_mobile %>
 <% index = local_assigns[:product_counter] || 0 %>
 
-<div id="product_<%= product.id %>" class="product-list-item <%= 'hidden-xxs' if max_mobile && index >= max_mobile %>" data-hook="products_list_item" itemscope itemtype="https://schema.org/Product">
+<div id="product_<%= product.id %>" class="product-grid-item <%= 'hidden-xxs' if max_mobile && index >= max_mobile %>" data-hook="products_grid_item" itemscope itemtype="https://schema.org/Product">
   <div class="product-body">
     <% cache(taxon.present? ? [I18n.locale, current_currency, taxon, product] : cache_key_for_product(product)) do %>
       <%= link_to url, itemprop: "url" do %>

@@ -298,7 +298,7 @@ body#home-page
       @media (max-width: $screen-xs-max)
         display: none
 
-  .product-list
+  .product-grid
     margin: 9px 20px 0px 20px
     // max-width: 940px
     display: grid
@@ -317,11 +317,11 @@ body#home-page
       grid-gap: 5px
 
   // No grid support
-  .product-list
+  .product-grid
     display: flex
     flex-wrap: wrap
 
-  .product-list
+  .product-grid
     display: grid
     margin: 0 auto
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))
@@ -339,7 +339,7 @@ body#home-page
     @media (max-width: $screen-xs-max)
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr))
 
-  .product-list-item
+  .product-grid-item
     background: #fff
     margin-top: -8px
     margin-left: 5px
@@ -351,6 +351,7 @@ body#home-page
 
     .product-body
       margin: 0
+      height: auto
       padding: 40px 40px 55px
       text-align: center
       a
