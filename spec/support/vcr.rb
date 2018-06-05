@@ -10,6 +10,8 @@ VCR.configure do |c|
   }
 
   c.filter_sensitive_data('<BOWKER_AUTH>') { Base64.encode64(Settings.bowker_user + ':' + Settings.bowker_password).strip } if Settings.bowker_user
+  c.filter_sensitive_data('<STRIPE_SECRET>') { Settings.stripe_secret_key }
+  c.filter_sensitive_data('<STRIPE_PUB>') { Settings.stripe_publishable_key }
 end
 
 RSpec.configure do |config|
