@@ -23,7 +23,7 @@ module Spree
         def boost_by
           {
             boost_factor: { factor: 1, missing: 1, modifier: 'none' },
-            conversions: { factor: 1 }
+            conversions: { factor: 1, missing: 1, modifier: 'none' }
           }
         end
 
