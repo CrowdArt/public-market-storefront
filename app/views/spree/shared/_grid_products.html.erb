@@ -20,8 +20,8 @@
 </div>
 
 <% if products.any? %>
-  <div id="products" class="product-list row flex eq-height-columns" data-hook>
-    <%= render partial: 'spree/products/product', collection: products, locals: { taxon: @taxon, max_mobile: max_mobile, card_size: card_size } %>
+  <div id="products" class="product-grid" data-hook>
+    <%= render partial: 'spree/products/grid_product', collection: products, as: :product, locals: { taxon: @taxon, max_mobile: max_mobile, card_size: card_size } %>
   </div>
 <% end %>
 
