@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/accounts
     body:
       encoding: UTF-8
-      string: country=US&type=custom&email=maribel%40langosh.com&legal_entity[business_name]=Lowe%2C+Jerde+and+Ziemann&legal_entity[dob][day]=31&legal_entity[dob][month]=5&legal_entity[dob][year]=1998&legal_entity[first_name]=Logan&legal_entity[last_name]=Mante&legal_entity[personal_id_number]=757-62-1595&legal_entity[type]=company&legal_entity[address][city]=Hongtown&legal_entity[address][country]=US&legal_entity[address][line1]=68842+Sunni+Brook&legal_entity[address][postal_code]=91110&legal_entity[address][state]=NH&tos_acceptance[date]=1527772666&tos_acceptance[ip]=182.56.25.20
+      string: country=US&type=custom&email=cindy_schmitt%40mcclure.name&legal_entity[business_name]=Pacocha+and+Sons&legal_entity[dob][day]=5&legal_entity[dob][month]=6&legal_entity[dob][year]=1998&legal_entity[first_name]=Wilfredo&legal_entity[last_name]=Shields&legal_entity[personal_id_number]=909-10-3021&legal_entity[type]=company&legal_entity[address][city]=South+Patty&legal_entity[address][country]=US&legal_entity[address][line1]=15699+Bode+Fall&legal_entity[address][postal_code]=91110&legal_entity[address][state]=AZ&tos_acceptance[date]=1528197427&tos_acceptance[ip]=44.233.180.137
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/3.15.0
@@ -15,8 +15,8 @@ http_interactions:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"3.15.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
-        AnfiniLPro.lan 17.5.0 Darwin Kernel Version 17.5.0: Fri Apr 13 19:32:32 PDT
-        2018; root:xnu-4570.51.2~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro.lan"}'
+        Artems-MBP.lan 17.5.0 Darwin Kernel Version 17.5.0: Fri Apr 13 19:32:32 PDT
+        2018; root:xnu-4570.51.2~1/RELEASE_X86_64 x86_64","hostname":"Artems-MBP.lan"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -29,7 +29,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 31 May 2018 13:17:47 GMT
+      - Tue, 05 Jun 2018 11:17:08 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_VyLgNG7TgBtK3x
+      - req_Tq0HBGI14Adzdf
       Stripe-Version:
       - '2018-02-06'
       Strict-Transport-Security:
@@ -58,13 +58,13 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "acct_1CXqf1JJqnSNH2W1",
+          "id": "acct_1CZdA0AUc3wUSeGU",
           "object": "account",
-          "business_name": "Lowe, Jerde and Ziemann",
+          "business_name": "Pacocha and Sons",
           "business_url": null,
           "charges_enabled": true,
           "country": "US",
-          "created": 1527772667,
+          "created": 1528197428,
           "debit_negative_balances": false,
           "decline_charge_on": {
             "avs_failure": false,
@@ -73,37 +73,37 @@ http_interactions:
           "default_currency": "usd",
           "details_submitted": false,
           "display_name": null,
-          "email": "maribel@langosh.com",
+          "email": "cindy_schmitt@mcclure.name",
           "external_accounts": {
             "object": "list",
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/accounts/acct_1CXqf1JJqnSNH2W1/external_accounts"
+            "url": "/v1/accounts/acct_1CZdA0AUc3wUSeGU/external_accounts"
           },
           "keys": {
-            "secret": "sk_test_e1vGdUZktzrMEZoekRuZQ7Zo",
-            "publishable": "pk_test_JrobrjiVNt8SwFRtEU8PQppv"
+            "secret": "sk_test_PFXPV6N14v7Tf6dZVTb6etgx",
+            "publishable": "pk_test_YfzYfkFUxOJojnIxgiKVE2k9"
           },
           "legal_entity": {
             "additional_owners": [],
             "address": {
-              "city": "Hongtown",
+              "city": "South Patty",
               "country": "US",
-              "line1": "68842 Sunni Brook",
+              "line1": "15699 Bode Fall",
               "line2": null,
               "postal_code": "91110",
-              "state": "NH"
+              "state": "AZ"
             },
-            "business_name": "Lowe, Jerde and Ziemann",
+            "business_name": "Pacocha and Sons",
             "business_tax_id_provided": false,
             "dob": {
-              "day": 31,
-              "month": 5,
+              "day": 5,
+              "month": 6,
               "year": 1998
             },
-            "first_name": "Logan",
-            "last_name": "Mante",
+            "first_name": "Wilfredo",
+            "last_name": "Shields",
             "personal_address": {
               "city": null,
               "country": "US",
@@ -136,8 +136,8 @@ http_interactions:
           "support_phone": null,
           "timezone": "Etc/UTC",
           "tos_acceptance": {
-            "date": 1527772666,
-            "ip": "182.56.25.20",
+            "date": 1528197427,
+            "ip": "44.233.180.137",
             "user_agent": null
           },
           "type": "custom",
@@ -151,13 +151,13 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Thu, 31 May 2018 13:17:47 GMT
+  recorded_at: Tue, 05 Jun 2018 11:17:08 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/accounts
     body:
       encoding: UTF-8
-      string: country=US&type=custom&email=jae.reichel%40bahringer.ca&legal_entity[business_name]=Kling+Group&legal_entity[dob][day]=31&legal_entity[dob][month]=5&legal_entity[dob][year]=1998&legal_entity[first_name]=Ellis&legal_entity[last_name]=Beier&legal_entity[personal_id_number]=349-02-0102&legal_entity[type]=company&legal_entity[address][city]=Marqueriteville&legal_entity[address][country]=US&legal_entity[address][line1]=45200+Kulas+Branch&legal_entity[address][postal_code]=91110&legal_entity[address][state]=VT&tos_acceptance[date]=1527772667&tos_acceptance[ip]=233.78.189.26
+      string: country=US&type=custom&email=mikaela.wiegand%40cronin.info&legal_entity[business_name]=Berge%2C+Swift+and+Klocko&legal_entity[dob][day]=5&legal_entity[dob][month]=6&legal_entity[dob][year]=1998&legal_entity[first_name]=Marchelle&legal_entity[last_name]=Kuvalis&legal_entity[personal_id_number]=316-84-8950&legal_entity[type]=company&legal_entity[address][city]=South+Alethia&legal_entity[address][country]=US&legal_entity[address][line1]=4298+Stacee+Curve&legal_entity[address][postal_code]=91110&legal_entity[address][state]=AZ&tos_acceptance[date]=1528197428&tos_acceptance[ip]=111.83.114.64
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/3.15.0
@@ -167,8 +167,8 @@ http_interactions:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"3.15.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
-        AnfiniLPro.lan 17.5.0 Darwin Kernel Version 17.5.0: Fri Apr 13 19:32:32 PDT
-        2018; root:xnu-4570.51.2~1/RELEASE_X86_64 x86_64","hostname":"AnfiniLPro.lan"}'
+        Artems-MBP.lan 17.5.0 Darwin Kernel Version 17.5.0: Fri Apr 13 19:32:32 PDT
+        2018; root:xnu-4570.51.2~1/RELEASE_X86_64 x86_64","hostname":"Artems-MBP.lan"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -181,11 +181,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 31 May 2018 13:17:49 GMT
+      - Tue, 05 Jun 2018 11:17:10 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '2172'
+      - '2201'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -201,7 +201,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_J5LDWfBSEhNpna
+      - req_maEtwLQ9smzwSF
       Stripe-Version:
       - '2018-02-06'
       Strict-Transport-Security:
@@ -210,13 +210,13 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "acct_1CXqf2BGpj5FoGsj",
+          "id": "acct_1CZdA1GQ185FmUKd",
           "object": "account",
-          "business_name": "Kling Group",
+          "business_name": "Berge, Swift and Klocko",
           "business_url": null,
           "charges_enabled": true,
           "country": "US",
-          "created": 1527772668,
+          "created": 1528197429,
           "debit_negative_balances": false,
           "decline_charge_on": {
             "avs_failure": false,
@@ -225,37 +225,37 @@ http_interactions:
           "default_currency": "usd",
           "details_submitted": false,
           "display_name": null,
-          "email": "jae.reichel@bahringer.ca",
+          "email": "mikaela.wiegand@cronin.info",
           "external_accounts": {
             "object": "list",
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/accounts/acct_1CXqf2BGpj5FoGsj/external_accounts"
+            "url": "/v1/accounts/acct_1CZdA1GQ185FmUKd/external_accounts"
           },
           "keys": {
-            "secret": "sk_test_8xcksXC1ButLUyTHFOywhc80",
-            "publishable": "pk_test_sZXuLetguCmBbroQfFYrutCE"
+            "secret": "sk_test_l7Ic3gfhMGpIb6AVsIKzbPtn",
+            "publishable": "pk_test_XCNuIinh7eEhjm19usbB7Rvv"
           },
           "legal_entity": {
             "additional_owners": [],
             "address": {
-              "city": "Marqueriteville",
+              "city": "South Alethia",
               "country": "US",
-              "line1": "45200 Kulas Branch",
+              "line1": "4298 Stacee Curve",
               "line2": null,
               "postal_code": "91110",
-              "state": "VT"
+              "state": "AZ"
             },
-            "business_name": "Kling Group",
+            "business_name": "Berge, Swift and Klocko",
             "business_tax_id_provided": false,
             "dob": {
-              "day": 31,
-              "month": 5,
+              "day": 5,
+              "month": 6,
               "year": 1998
             },
-            "first_name": "Ellis",
-            "last_name": "Beier",
+            "first_name": "Marchelle",
+            "last_name": "Kuvalis",
             "personal_address": {
               "city": null,
               "country": "US",
@@ -288,8 +288,8 @@ http_interactions:
           "support_phone": null,
           "timezone": "Etc/UTC",
           "tos_acceptance": {
-            "date": 1527772667,
-            "ip": "233.78.189.26",
+            "date": 1528197428,
+            "ip": "111.83.114.64",
             "user_agent": null
           },
           "type": "custom",
@@ -303,26 +303,28 @@ http_interactions:
           }
         }
     http_version: 
-  recorded_at: Thu, 31 May 2018 13:17:49 GMT
+  recorded_at: Tue, 05 Jun 2018 11:17:10 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: UTF-8
-      string: email=michel%40funk.us&card=tok_visa
+      string: email=dawn%40robelcasper.com&card=tok_visa
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
       Authorization:
       - Basic c2tfdGVzdF81RWRFSUJXVE8xYkxJcVZTUGRzSFpjVHI6
       User-Agent:
-      - Stripe/v1 ActiveMerchantBindings/1.79.0
+      - Stripe/v1 ActiveMerchantBindings/1.79.2
       Stripe-Version:
       - '2015-04-07'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.79.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
+      - '{"bindings_version":"1.79.2","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
       X-Stripe-Client-User-Metadata:
       - '{"ip":null}'
+      Connection:
+      - close
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -335,13 +337,13 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 31 May 2018 13:17:50 GMT
+      - Tue, 05 Jun 2018 11:17:12 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1420'
+      - '1426'
       Connection:
-      - keep-alive
+      - close
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
@@ -355,7 +357,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_lEweMvrwzUE2zl
+      - req_Sz5uF47FjDWFcg
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -364,17 +366,17 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_CxmDq2QKIHfZRb",
+          "id": "cus_CzcO1btUCAT8eY",
           "object": "customer",
           "account_balance": 0,
-          "created": 1527772670,
+          "created": 1528197431,
           "currency": null,
-          "default_source": "card_1CXqf4I93ruT9p2PPuXPaIRw",
+          "default_source": "card_1CZdA3I93ruT9p2PVGVhFiiC",
           "delinquent": false,
           "description": null,
           "discount": null,
-          "email": "michel@funk.us",
-          "invoice_prefix": "05E1A3F",
+          "email": "dawn@robelcasper.com",
+          "invoice_prefix": "5ADC2A2",
           "livemode": false,
           "metadata": {},
           "shipping": null,
@@ -382,7 +384,7 @@ http_interactions:
             "object": "list",
             "data": [
               {
-                "id": "card_1CXqf4I93ruT9p2PPuXPaIRw",
+                "id": "card_1CZdA3I93ruT9p2PVGVhFiiC",
                 "object": "card",
                 "address_city": null,
                 "address_country": null,
@@ -394,10 +396,10 @@ http_interactions:
                 "address_zip_check": null,
                 "brand": "Visa",
                 "country": "US",
-                "customer": "cus_CxmDq2QKIHfZRb",
+                "customer": "cus_CzcO1btUCAT8eY",
                 "cvc_check": null,
                 "dynamic_last4": null,
-                "exp_month": 5,
+                "exp_month": 6,
                 "exp_year": 2019,
                 "fingerprint": "nFWZcG1SSLrd81Cf",
                 "funding": "credit",
@@ -409,37 +411,39 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 1,
-            "url": "/v1/customers/cus_CxmDq2QKIHfZRb/sources"
+            "url": "/v1/customers/cus_CzcO1btUCAT8eY/sources"
           },
           "subscriptions": {
             "object": "list",
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_CxmDq2QKIHfZRb/subscriptions"
+            "url": "/v1/customers/cus_CzcO1btUCAT8eY/subscriptions"
           }
         }
     http_version: 
-  recorded_at: Thu, 31 May 2018 13:17:51 GMT
+  recorded_at: Tue, 05 Jun 2018 11:17:12 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: UTF-8
-      string: card=card_1CXqf4I93ruT9p2PPuXPaIRw&amount=10000&currency=usd&description=Spree+Order+ID%3A+R701342832-PLU0KMOG&payment_user_agent=Stripe%2Fv1+ActiveMerchantBindings%2F1.79.0&customer=cus_CxmDq2QKIHfZRb
+      string: card=card_1CZdA3I93ruT9p2PVGVhFiiC&amount=10000&currency=usd&description=Spree+Order+ID%3A+R054714185-P5Z0PLIX&payment_user_agent=Stripe%2Fv1+ActiveMerchantBindings%2F1.79.2&customer=cus_CzcO1btUCAT8eY
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
       Authorization:
       - Basic c2tfdGVzdF81RWRFSUJXVE8xYkxJcVZTUGRzSFpjVHI6
       User-Agent:
-      - Stripe/v1 ActiveMerchantBindings/1.79.0
+      - Stripe/v1 ActiveMerchantBindings/1.79.2
       Stripe-Version:
       - '2015-04-07'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.79.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
+      - '{"bindings_version":"1.79.2","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
       X-Stripe-Client-User-Metadata:
       - '{"ip":null}'
+      Connection:
+      - close
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -452,13 +456,13 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 31 May 2018 13:17:52 GMT
+      - Tue, 05 Jun 2018 11:17:13 GMT
       Content-Type:
       - application/json
       Content-Length:
       - '1804'
       Connection:
-      - keep-alive
+      - close
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
@@ -472,7 +476,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_qNOx8PD6EpFUSR
+      - req_nlHDdWccP4sFmd
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -481,18 +485,18 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_1CXqf5I93ruT9p2PIj8epI9B",
+          "id": "ch_1CZdA5I93ruT9p2PdIR3c5ES",
           "object": "charge",
           "amount": 10000,
           "amount_refunded": 0,
           "application": null,
           "application_fee": null,
-          "balance_transaction": "txn_1CXqf6I93ruT9p2P5iiehAuO",
+          "balance_transaction": "txn_1CZdA5I93ruT9p2PLQrGsYQ9",
           "captured": true,
-          "created": 1527772671,
+          "created": 1528197433,
           "currency": "usd",
-          "customer": "cus_CxmDq2QKIHfZRb",
-          "description": "Spree Order ID: R701342832-PLU0KMOG",
+          "customer": "cus_CzcO1btUCAT8eY",
+          "description": "Spree Order ID: R054714185-P5Z0PLIX",
           "destination": null,
           "dispute": null,
           "failure_code": null,
@@ -519,12 +523,12 @@ http_interactions:
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/charges/ch_1CXqf5I93ruT9p2PIj8epI9B/refunds"
+            "url": "/v1/charges/ch_1CZdA5I93ruT9p2PdIR3c5ES/refunds"
           },
           "review": null,
           "shipping": null,
           "source": {
-            "id": "card_1CXqf4I93ruT9p2PPuXPaIRw",
+            "id": "card_1CZdA3I93ruT9p2PVGVhFiiC",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -536,10 +540,10 @@ http_interactions:
             "address_zip_check": null,
             "brand": "Visa",
             "country": "US",
-            "customer": "cus_CxmDq2QKIHfZRb",
+            "customer": "cus_CzcO1btUCAT8eY",
             "cvc_check": null,
             "dynamic_last4": null,
-            "exp_month": 5,
+            "exp_month": 6,
             "exp_year": 2019,
             "fingerprint": "nFWZcG1SSLrd81Cf",
             "funding": "credit",
@@ -554,26 +558,28 @@ http_interactions:
           "transfer_group": null
         }
     http_version: 
-  recorded_at: Thu, 31 May 2018 13:17:52 GMT
+  recorded_at: Tue, 05 Jun 2018 11:17:13 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/transfers
     body:
       encoding: UTF-8
-      string: source_transaction=ch_1CXqf5I93ruT9p2PIj8epI9B&destination=acct_1CXqf1JJqnSNH2W1&amount=6776&currency=usd
+      string: source_transaction=ch_1CZdA5I93ruT9p2PdIR3c5ES&destination=acct_1CZdA1GQ185FmUKd&amount=6776&currency=usd
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
       Authorization:
       - Basic c2tfdGVzdF81RWRFSUJXVE8xYkxJcVZTUGRzSFpjVHI6
       User-Agent:
-      - Stripe/v1 ActiveMerchantBindings/1.79.0
+      - Stripe/v1 ActiveMerchantBindings/1.79.2
       Stripe-Version:
       - '2015-04-07'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.79.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
+      - '{"bindings_version":"1.79.2","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
       X-Stripe-Client-User-Metadata:
       - '{"ip":null}'
+      Connection:
+      - close
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -586,13 +592,13 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 31 May 2018 13:17:54 GMT
+      - Tue, 05 Jun 2018 11:17:15 GMT
       Content-Type:
       - application/json
       Content-Length:
       - '924'
       Connection:
-      - keep-alive
+      - close
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
@@ -606,7 +612,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_pUIywxMgH4pF09
+      - req_jaX5D4Puf4NsuJ
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -615,18 +621,18 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tr_1CXqf7I93ruT9p2PxtzjO8tm",
+          "id": "tr_1CZdA6I93ruT9p2PoGP1VPyH",
           "object": "transfer",
           "amount": 6776,
           "amount_reversed": 0,
           "application_fee": null,
-          "balance_transaction": "txn_1CXqf7I93ruT9p2PH68WK2ku",
-          "created": 1527772673,
+          "balance_transaction": "txn_1CZdA6I93ruT9p2PDQnl22Nb",
+          "created": 1528197434,
           "currency": "usd",
-          "date": 1527772673,
+          "date": 1528197434,
           "description": null,
-          "destination": "acct_1CXqf1JJqnSNH2W1",
-          "destination_payment": "py_1CXqf7JJqnSNH2W1J2eBjrCy",
+          "destination": "acct_1CZdA1GQ185FmUKd",
+          "destination_payment": "py_1CZdA6GQ185FmUKdWawWD79u",
           "failure_code": null,
           "failure_message": null,
           "livemode": false,
@@ -638,37 +644,39 @@ http_interactions:
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/transfers/tr_1CXqf7I93ruT9p2PxtzjO8tm/reversals"
+            "url": "/v1/transfers/tr_1CZdA6I93ruT9p2PoGP1VPyH/reversals"
           },
           "reversed": false,
-          "source_transaction": "ch_1CXqf5I93ruT9p2PIj8epI9B",
+          "source_transaction": "ch_1CZdA5I93ruT9p2PdIR3c5ES",
           "source_type": "card",
           "statement_descriptor": null,
           "status": "paid",
-          "transfer_group": "group_ch_1CXqf5I93ruT9p2PIj8epI9B",
+          "transfer_group": "group_ch_1CZdA5I93ruT9p2PdIR3c5ES",
           "type": "stripe_account"
         }
     http_version: 
-  recorded_at: Thu, 31 May 2018 13:17:55 GMT
+  recorded_at: Tue, 05 Jun 2018 11:17:15 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/transfers
     body:
       encoding: UTF-8
-      string: source_transaction=ch_1CXqf5I93ruT9p2PIj8epI9B&destination=acct_1CXqf2BGpj5FoGsj&amount=2904&currency=usd
+      string: source_transaction=ch_1CZdA5I93ruT9p2PdIR3c5ES&destination=acct_1CZdA0AUc3wUSeGU&amount=2904&currency=usd
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
       Authorization:
       - Basic c2tfdGVzdF81RWRFSUJXVE8xYkxJcVZTUGRzSFpjVHI6
       User-Agent:
-      - Stripe/v1 ActiveMerchantBindings/1.79.0
+      - Stripe/v1 ActiveMerchantBindings/1.79.2
       Stripe-Version:
       - '2015-04-07'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.79.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
+      - '{"bindings_version":"1.79.2","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
       X-Stripe-Client-User-Metadata:
       - '{"ip":null}'
+      Connection:
+      - close
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -681,13 +689,13 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 31 May 2018 13:17:56 GMT
+      - Tue, 05 Jun 2018 11:17:17 GMT
       Content-Type:
       - application/json
       Content-Length:
       - '924'
       Connection:
-      - keep-alive
+      - close
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
@@ -701,7 +709,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_tV5dIogNYj6sog
+      - req_QjEdbTMp3s1xIT
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -710,18 +718,18 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tr_1CXqfAI93ruT9p2PFtkkqlsd",
+          "id": "tr_1CZdA8I93ruT9p2PdqNhkctr",
           "object": "transfer",
           "amount": 2904,
           "amount_reversed": 0,
           "application_fee": null,
-          "balance_transaction": "txn_1CXqfAI93ruT9p2PQDP8k3hX",
-          "created": 1527772676,
+          "balance_transaction": "txn_1CZdA8I93ruT9p2Pc9jg8Ltl",
+          "created": 1528197436,
           "currency": "usd",
-          "date": 1527772676,
+          "date": 1528197436,
           "description": null,
-          "destination": "acct_1CXqf2BGpj5FoGsj",
-          "destination_payment": "py_1CXqfABGpj5FoGsj3wlHs0Rr",
+          "destination": "acct_1CZdA0AUc3wUSeGU",
+          "destination_payment": "py_1CZdA8AUc3wUSeGUOobviu5F",
           "failure_code": null,
           "failure_message": null,
           "livemode": false,
@@ -733,37 +741,39 @@ http_interactions:
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/transfers/tr_1CXqfAI93ruT9p2PFtkkqlsd/reversals"
+            "url": "/v1/transfers/tr_1CZdA8I93ruT9p2PdqNhkctr/reversals"
           },
           "reversed": false,
-          "source_transaction": "ch_1CXqf5I93ruT9p2PIj8epI9B",
+          "source_transaction": "ch_1CZdA5I93ruT9p2PdIR3c5ES",
           "source_type": "card",
           "statement_descriptor": null,
           "status": "paid",
-          "transfer_group": "group_ch_1CXqf5I93ruT9p2PIj8epI9B",
+          "transfer_group": "group_ch_1CZdA5I93ruT9p2PdIR3c5ES",
           "type": "stripe_account"
         }
     http_version: 
-  recorded_at: Thu, 31 May 2018 13:17:56 GMT
+  recorded_at: Tue, 05 Jun 2018 11:17:17 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/transfers/tr_1CXqfAI93ruT9p2PFtkkqlsd/reversals
+    uri: https://api.stripe.com/v1/transfers/tr_1CZdA6I93ruT9p2PoGP1VPyH/reversals
     body:
       encoding: UTF-8
-      string: amount=2804
+      string: amount=6676
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
       Authorization:
       - Basic c2tfdGVzdF81RWRFSUJXVE8xYkxJcVZTUGRzSFpjVHI6
       User-Agent:
-      - Stripe/v1 ActiveMerchantBindings/1.79.0
+      - Stripe/v1 ActiveMerchantBindings/1.79.2
       Stripe-Version:
       - '2015-04-07'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.79.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
+      - '{"bindings_version":"1.79.2","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
       X-Stripe-Client-User-Metadata:
       - '{"ip":null}'
+      Connection:
+      - close
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -776,13 +786,13 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 31 May 2018 13:17:58 GMT
+      - Tue, 05 Jun 2018 11:17:18 GMT
       Content-Type:
       - application/json
       Content-Length:
       - '260'
       Connection:
-      - keep-alive
+      - close
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
@@ -796,7 +806,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_9vYAhf1Z7rkD5G
+      - req_3wRTmxoPWKwES3
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -805,36 +815,38 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "trr_1CXqfBI93ruT9p2PS45tZlwz",
+          "id": "trr_1CZdAAI93ruT9p2P8KcW4LSy",
           "object": "transfer_reversal",
-          "amount": 2804,
-          "balance_transaction": "txn_1CXqfBI93ruT9p2P5IoPkG2X",
-          "created": 1527772677,
+          "amount": 6676,
+          "balance_transaction": "txn_1CZdAAI93ruT9p2Pbi5ssA1P",
+          "created": 1528197438,
           "currency": "usd",
           "metadata": {},
-          "transfer": "tr_1CXqfAI93ruT9p2PFtkkqlsd"
+          "transfer": "tr_1CZdA6I93ruT9p2PoGP1VPyH"
         }
     http_version: 
-  recorded_at: Thu, 31 May 2018 13:17:58 GMT
+  recorded_at: Tue, 05 Jun 2018 11:17:18 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/charges/ch_1CXqf5I93ruT9p2PIj8epI9B/refunds
+    uri: https://api.stripe.com/v1/charges/ch_1CZdA5I93ruT9p2PdIR3c5ES/refunds
     body:
       encoding: UTF-8
-      string: amount=2804&expand[]=charge
+      string: amount=6676&expand[]=charge
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
       Authorization:
       - Basic c2tfdGVzdF81RWRFSUJXVE8xYkxJcVZTUGRzSFpjVHI6
       User-Agent:
-      - Stripe/v1 ActiveMerchantBindings/1.79.0
+      - Stripe/v1 ActiveMerchantBindings/1.79.2
       Stripe-Version:
       - '2015-04-07'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.79.0","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
+      - '{"bindings_version":"1.79.2","lang":"ruby","lang_version":"2.5.0 p0 (2017-12-25)","platform":"x86_64-darwin17","publisher":"active_merchant"}'
       X-Stripe-Client-User-Metadata:
       - '{"ip":null}'
+      Connection:
+      - close
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -847,13 +859,13 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 31 May 2018 13:18:00 GMT
+      - Tue, 05 Jun 2018 11:17:20 GMT
       Content-Type:
       - application/json
       Content-Length:
       - '2693'
       Connection:
-      - keep-alive
+      - close
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
@@ -867,7 +879,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_uYb1cdHNzMCa8P
+      - req_t3XKYOcZEk3saF
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -876,23 +888,23 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "re_1CXqfDI93ruT9p2PMg8EBpmZ",
+          "id": "re_1CZdABI93ruT9p2PuyhIt0ci",
           "object": "refund",
-          "amount": 2804,
-          "balance_transaction": "txn_1CXqfDI93ruT9p2PLhwrkBxN",
+          "amount": 6676,
+          "balance_transaction": "txn_1CZdABI93ruT9p2P9ikFMuCV",
           "charge": {
-            "id": "ch_1CXqf5I93ruT9p2PIj8epI9B",
+            "id": "ch_1CZdA5I93ruT9p2PdIR3c5ES",
             "object": "charge",
             "amount": 10000,
-            "amount_refunded": 2804,
+            "amount_refunded": 6676,
             "application": null,
             "application_fee": null,
-            "balance_transaction": "txn_1CXqf6I93ruT9p2P5iiehAuO",
+            "balance_transaction": "txn_1CZdA5I93ruT9p2PLQrGsYQ9",
             "captured": true,
-            "created": 1527772671,
+            "created": 1528197433,
             "currency": "usd",
-            "customer": "cus_CxmDq2QKIHfZRb",
-            "description": "Spree Order ID: R701342832-PLU0KMOG",
+            "customer": "cus_CzcO1btUCAT8eY",
+            "description": "Spree Order ID: R054714185-P5Z0PLIX",
             "destination": null,
             "dispute": null,
             "failure_code": null,
@@ -918,12 +930,12 @@ http_interactions:
               "object": "list",
               "data": [
                 {
-                  "id": "re_1CXqfDI93ruT9p2PMg8EBpmZ",
+                  "id": "re_1CZdABI93ruT9p2PuyhIt0ci",
                   "object": "refund",
-                  "amount": 2804,
-                  "balance_transaction": "txn_1CXqfDI93ruT9p2PLhwrkBxN",
-                  "charge": "ch_1CXqf5I93ruT9p2PIj8epI9B",
-                  "created": 1527772679,
+                  "amount": 6676,
+                  "balance_transaction": "txn_1CZdABI93ruT9p2P9ikFMuCV",
+                  "charge": "ch_1CZdA5I93ruT9p2PdIR3c5ES",
+                  "created": 1528197439,
                   "currency": "usd",
                   "metadata": {},
                   "reason": null,
@@ -933,12 +945,12 @@ http_interactions:
               ],
               "has_more": false,
               "total_count": 1,
-              "url": "/v1/charges/ch_1CXqf5I93ruT9p2PIj8epI9B/refunds"
+              "url": "/v1/charges/ch_1CZdA5I93ruT9p2PdIR3c5ES/refunds"
             },
             "review": null,
             "shipping": null,
             "source": {
-              "id": "card_1CXqf4I93ruT9p2PPuXPaIRw",
+              "id": "card_1CZdA3I93ruT9p2PVGVhFiiC",
               "object": "card",
               "address_city": null,
               "address_country": null,
@@ -950,10 +962,10 @@ http_interactions:
               "address_zip_check": null,
               "brand": "Visa",
               "country": "US",
-              "customer": "cus_CxmDq2QKIHfZRb",
+              "customer": "cus_CzcO1btUCAT8eY",
               "cvc_check": null,
               "dynamic_last4": null,
-              "exp_month": 5,
+              "exp_month": 6,
               "exp_year": 2019,
               "fingerprint": "nFWZcG1SSLrd81Cf",
               "funding": "credit",
@@ -965,9 +977,9 @@ http_interactions:
             "source_transfer": null,
             "statement_descriptor": null,
             "status": "succeeded",
-            "transfer_group": "group_ch_1CXqf5I93ruT9p2PIj8epI9B"
+            "transfer_group": "group_ch_1CZdA5I93ruT9p2PdIR3c5ES"
           },
-          "created": 1527772679,
+          "created": 1528197439,
           "currency": "usd",
           "metadata": {},
           "reason": null,
@@ -975,5 +987,5 @@ http_interactions:
           "status": "succeeded"
         }
     http_version: 
-  recorded_at: Thu, 31 May 2018 13:18:00 GMT
+  recorded_at: Tue, 05 Jun 2018 11:17:20 GMT
 recorded_with: VCR 4.0.0
