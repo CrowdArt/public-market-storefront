@@ -4,7 +4,6 @@ Spree::ProductsController.class_eval do
   def show # rubocop:disable Metrics/AbcSize
     @product_properties = @product.product_properties.includes(:property)
 
-    @variations = Spree::Inventory::FindProductVariations.call(@product)
     redirect_if_legacy_path
   end
 

@@ -51,6 +51,10 @@ Spree::Product.class_eval do
     (price * 0.1).floor
   end
 
+  def variations
+    Spree::Inventory::FindProductVariations.call(self)
+  end
+
   def self.autocomplete(keywords) # rubocop:disable Metrics/MethodLength
     if keywords
       Spree::Product.search(
