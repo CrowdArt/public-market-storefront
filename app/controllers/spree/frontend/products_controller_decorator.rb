@@ -1,7 +1,7 @@
 Spree::ProductsController.class_eval do
   before_action :save_return_to, :load_taxon, only: :show
 
-  def show # rubocop:disable Metrics/AbcSize
+  def show
     @product_properties = @product.product_properties.includes(:property)
 
     redirect_if_legacy_path

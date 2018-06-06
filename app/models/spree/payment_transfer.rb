@@ -29,7 +29,7 @@ module Spree
 
     private
 
-    def reverse(reverse_cents)
+    def reverse(reverse_cents) # rubocop:disable Metrics/AbcSize
       response = payment.payment_method.reverse_transfer(reverse_cents, response_code)
 
       unless response.success?

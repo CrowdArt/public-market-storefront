@@ -7,5 +7,5 @@ Deface::Override.new(
             <%= f.label :number, Spree.t(:product_number) %>
             <%= f.text_field :number, class: 'form-control' %>
           <% end %>
-        HTML
+  HTML
 )

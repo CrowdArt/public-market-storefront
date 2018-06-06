@@ -21,5 +21,5 @@ Deface::Override.new(
               </li>
             <% end %>
           </ul>
-        HTML
+  HTML
 )

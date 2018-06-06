@@ -11,5 +11,5 @@ Deface::Override.new(
             <td><strong>Weight</strong></td>
             <td><%= @product.weight %> ounces</td>
           </tr>
-        HTML
+  HTML
 )

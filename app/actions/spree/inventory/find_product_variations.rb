@@ -46,7 +46,8 @@ module Spree
                 name: format_text(k),
                 price: min_price(v),
                 slug: v.first['slug'],
-                ids: v.map(&:_id).map(&:to_i) }
+                ids: v.map(&:_id).map(&:to_i)
+              }
             end
             groups.length < 2 ? [] : groups
           end

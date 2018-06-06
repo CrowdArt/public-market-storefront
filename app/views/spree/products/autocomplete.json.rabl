@@ -8,7 +8,7 @@ node(:image) do |product|
   if (image = product.variant_images.first)
     image.attachment.url(:small)
   else
-    image_url("noimage/small.png")
+    image_url('noimage/small.png')
   end
 end
 

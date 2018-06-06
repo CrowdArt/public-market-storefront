@@ -11,7 +11,7 @@ module Spree
 
     private
 
-    def books_filters
+    def books_filters # rubocop:disable Metrics/MethodLength
       [
         {
           filter: 'Format',

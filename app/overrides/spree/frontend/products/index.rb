@@ -11,5 +11,5 @@ Deface::Override.new(
         "results": "<%= @products.length %>"
       });
     </script>
-HTML
+  HTML
 )

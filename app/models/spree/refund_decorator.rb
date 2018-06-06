@@ -20,12 +20,12 @@ Spree::Refund.class_eval do
 
   def update_reversal_id(reversal_id)
     self.reversal_id = reversal_id
-    update_columns(reversal_id: reversal_id)
+    update_columns(reversal_id: reversal_id) # rubocop:disable Rails/SkipsModelValidations
   end
 
   def update_transaction_id(transaction_id)
     self.transaction_id = transaction_id
-    update_columns(transaction_id: transaction_id)
+    update_columns(transaction_id: transaction_id) # rubocop:disable Rails/SkipsModelValidations
     update_order
   end
 

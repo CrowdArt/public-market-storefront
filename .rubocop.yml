@@ -1,11 +1,6 @@
 AllCops:
   DisplayCopNames: true
-  TargetRubyVersion: 2.4
-  Include:
-    - '**/config.ru'
-    - '**/Gemfile'
-    - '**/Rakefile'
-    - '**/Guardfile'
+  TargetRubyVersion: 2.5
   Exclude:
     - 'db/schema.rb'
     - 'db/migrate/*'

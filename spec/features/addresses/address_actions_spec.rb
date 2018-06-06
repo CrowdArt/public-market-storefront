@@ -1,4 +1,3 @@
-
 RSpec.describe 'address actions', type: :feature do
   let(:user) { create(:user) }
 
