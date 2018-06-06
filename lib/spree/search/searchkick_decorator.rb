@@ -1,5 +1,9 @@
 Spree::Search::Searchkick.class_eval do
+  attr_accessor :enable_aggs
+
   def aggregations
+    return unless enable_aggs
+
     fs = {
       price_range: price_ranges_agg
     }
@@ -18,6 +22,12 @@ Spree::Search::Searchkick.class_eval do
   end
 
   private
+
+  def prepare(params)
+    super
+    @properties[:conversions] = params[:conversions]
+    self.enable_aggs = params[:enable_aggs]
+  end
 
   def where_query
     where_query = {
