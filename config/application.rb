@@ -26,9 +26,13 @@ module Storefront
           Rails.configuration.cache_classes ? require(c) : load(c)
         end
       end
+
+      Dir[Rails.root.join('lib', '**', '*.rb')].each do |path|
+        Rails.configuration.cache_classes ? require(path) : load(path)
+      end
     end
 
-    Dir[Rails.root.join('lib', '**', '*.rb')].each { |path| require path }
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1

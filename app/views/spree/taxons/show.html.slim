@@ -1,13 +1,15 @@
 ruby:
   @sidebar_class = 'hidden-sm hidden-xs'
   @content_class = 'col-sm-12 col-sm-8 col-md-9'
+  show_products = @taxon.depth.positive?
 
 - content_for :under_breadcrumbs
   .col-md-12.root-taxon-title
     h1.upcase.text-black = @taxon.name
 
-  .col-md-12
-    = render partial: 'filters'
+  - if show_products
+    .col-md-12
+      = render partial: 'filters'
 
 - content_for :sidebar do
   = render partial: 'spree/shared/taxonomies'
@@ -15,9 +17,7 @@ ruby:
   - if @taxon.root.permalink == 'books'
     = render partial: 'spree/taxons/special'
 
-  / = render partial: 'spree/shared/filters' if @taxon.leaf?
-
-- if @taxon.depth.positive?
+- if show_products
   = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, card_size: 'col-lg-3 col-md-3 col-sm-6 col-xs-6' }
 
 - unless params[:keywords].present?

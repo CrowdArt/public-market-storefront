@@ -167,3 +167,11 @@ body#product-details
     img
       margin-bottom: 15px
       max-width: 90%
+
+#products
+  transition: opacity .25s
+  will-change: opacity
+
+  &.products-loading
+    opacity: .6
+    pointer-events: none

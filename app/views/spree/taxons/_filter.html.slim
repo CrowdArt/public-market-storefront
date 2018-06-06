@@ -1,7 +1,8 @@
 ruby:
-  filter_name = filter[:filter]
+  filter_name = filter[:name].humanize
   items = filter[:options]
-  filter_input_name = "filter_#{filter_name.downcase}_id"
+  params_option = params.dig('search', filter_name.downcase)
+  filter_input_name = "search[#{filter_name.downcase}][]"
 
 .taxon-filter.flex-1
   .dropdown.rich-dropdown
@@ -17,13 +18,9 @@ ruby:
 
     ul.dropdown-menu
       - items.each_with_index do |item, index|
-        - filter_input_id = "filter_#{filter_name.downcase}_#{item[:id]}"
+        - filter_input_id = "search_#{filter_name.downcase}_#{item[:id]}"
 
         li.dropdown-item
           = label_tag filter_input_id, class: 'flex between' do
-            span = item[:name]
-            = check_box_tag filter_input_name, item[:id], false, id: filter_input_id
-
-- content_for :bottom_scripts
-  javascript:
-    Spree.initTaxonFilterTags("#{filter_input_name}")
+            span = item[:label]
+            = check_box_tag filter_input_name, item[:value], params_option&.include?(item[:value]), id: filter_input_id

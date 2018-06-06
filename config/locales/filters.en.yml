@@ -1,0 +1,7 @@
+en:
+  filters:
+    price_ranges:
+      to_5: 'Under 5$'
+      from_5_to_10: '$5-10'
+      from_10_to_20: '$11-20'
+      from_20: '$20+'
