@@ -7,7 +7,6 @@ module Spree
         def call
           result = search_products.aggs
           @buckets = result.dig('categories', 'buckets')
-          pp @buckets
 
           taxon.children
                .map(&method(:find_bucket))
@@ -50,7 +49,7 @@ module Spree
         end
 
         def sort_taxons(taxon)
-          [taxon[:taxon].hidden, -taxon[:score]]
+          [taxon[:taxon].hidden ? 1 : 0, -taxon[:score]]
         end
 
         def eager_product(hit)
