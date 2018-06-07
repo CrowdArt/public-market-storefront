@@ -12,11 +12,8 @@
   .taxon-filters--tags.tags-without-input
     input#filter-tags
 
-- content_for :head
-  = stylesheet_link_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.css'
-
 - content_for :bottom_scripts
-  = javascript_include_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.js'
-
   javascript:
-    Spree.initTaxonFilter()
+    document.addEventListener('turbolinks:load', function() {
+      Spree.initTaxonFilter()
+    })

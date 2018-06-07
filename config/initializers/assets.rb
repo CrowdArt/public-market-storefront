@@ -21,7 +21,6 @@ assets_to_precompile = %w[
   fbActions
   twiActions
   bootstrap-tagsinput/dist/bootstrap-tagsinput.js
-  bootstrap-tagsinput/dist/bootstrap-tagsinput.css
   raven-js/dist/raven.js
 ]
 

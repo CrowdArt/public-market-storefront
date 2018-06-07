@@ -16,7 +16,7 @@
     .text-muted = address.phone
 
 - content_for(:panel_footer, flush: true)
-  = link_to edit_address_path(address), class: 'pull-left'
+  = link_to edit_address_path(address), data: { turbolinks: false }, class: 'pull-left'
     i.glyphicon.glyphicon-pencil>
     | Update
 
