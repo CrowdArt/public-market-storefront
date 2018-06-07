@@ -1,0 +1,10 @@
+/ - if 'spree/products' == params[:controller] && @taxon || @taxonomies.present?
+/   - content_for :sidebar do
+/     div
+/       = render partial: 'spree/shared/taxonomies'
+
+- if params[:keywords]
+  = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, card_size: 'col-lg-3 col-md-3 col-sm-6 col-xs-6' }
+- else
+  - cache(cache_key_for_products) do
+    = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, card_size: 'col-lg-3 col-md-3 col-sm-6 col-xs-6' }

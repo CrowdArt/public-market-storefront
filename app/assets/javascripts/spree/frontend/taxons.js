@@ -15,6 +15,13 @@ Spree.initTaxonFilter = function() {
 
   var manageFilterTags = function(el) {
     var action = el.checked ? 'add' : 'remove'
+
+    if ($(el).is(':radio')) {
+      $("input[name='" + $(el).prop('name') + "']").not('#' + $(el).prop('id')).each(function(idx, otherRadio) {
+        $('#filter-tags').tagsinput('remove', { id: $(otherRadio).attr('id'), text: $(otherRadio).siblings('span').text() }, { preventTrigger: true })
+      })
+    }
+
     $('#filter-tags').tagsinput(action, { id: $(el).attr('id'), text: $(el).siblings('span').text() }, { preventTrigger: true })
   }
 

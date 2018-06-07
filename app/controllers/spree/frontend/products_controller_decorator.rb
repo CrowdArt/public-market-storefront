@@ -1,6 +1,24 @@
 Spree::ProductsController.class_eval do
   before_action :save_return_to, :load_taxon, only: :show
 
+  def best_selling
+    # params.merge(taxon: @taxon.id) if @taxon
+    @products = build_searcher(params.merge(sort: { popularity: :all_time })).call
+    render action: :index
+  end
+
+  def index
+    searcher_opts = {}
+
+    # NOTE: products should be searchable by root taxon
+    # if params[:taxon].present? && (@taxon = Spree::Taxon.find(params[:taxon]))
+    #   searcher_opts[:taxon_ids] = [@taxon.id]
+    # end
+
+    @products = build_searcher(params, searcher_opts).call
+    @taxonomies = Spree::Taxonomy.includes(root: :children)
+  end
+
   def show
     @product_properties = @product.product_properties.includes(:property)
 

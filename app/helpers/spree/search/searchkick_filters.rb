@@ -1,5 +1,5 @@
 module Spree
-  module Core
+  module Search
     module SearchkickFilters
       def self.applicable_filters(aggregations) # rubocop:disable Metrics/MethodLength
         es_filters = []

@@ -20,6 +20,10 @@ Rails.application.config.after_initialize do |app|
   app.config.spree.stock_splitters << Spree::Stock::Splitter::VendorSplitter
 end
 
+Rails.application.config.to_prepare do
+  Spree::Config.searcher_class = Spree::Inventory::Searchers::ProductSearcher
+end
+
 Spree::Auth::Config[:signout_after_password_change] = false
 Spree::Auth::Config[:confirmable] = true
 

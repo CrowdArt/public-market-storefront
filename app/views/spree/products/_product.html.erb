@@ -5,12 +5,8 @@
 
 <div id="product_<%= product.id %>" class="<%= card_size %> product-list-item <%= 'hidden-xxs' if max_mobile && index >= max_mobile %>" data-hook="products_list_item" itemscope itemtype="https://schema.org/Product">
   <div class="panel panel-default">
-    <% cache(taxon.present? ? [I18n.locale, current_currency, taxon, product] : cache_key_for_product(product, admin: spree_current_user&.admin?)) do %>
+    <% cache(taxon.present? ? [I18n.locale, current_currency, taxon, product] : cache_key_for_product(product)) do %>
       <div class="panel-body text-center product-body">
-        <div class='margin-text-bottom pull-right'>
-          Format: <%= product.property('format') %>
-        </div>
-
         <%= link_to url, itemprop: "url" do %>
           <%= large_image(product, itemprop: "image") %><br/>
           <%= content_tag(:span, truncate(product.name, length: 50), class: 'info', itemprop: "name", title: product.name) %>

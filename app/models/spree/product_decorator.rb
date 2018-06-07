@@ -29,6 +29,32 @@ Spree::Product.class_eval do
     update(price: min_price) if min_price
   end
 
+  def search_data # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    json = {
+      name: name,
+      description: description,
+      active: available?,
+      created_at: created_at,
+      updated_at: updated_at,
+      price: price,
+      currency: currency,
+      conversions: orders.complete.count,
+      conversions_month: orders.complete.where('completed_at > ?', 1.month.ago).count,
+      taxon_ids: taxon_and_ancestors.map(&:id),
+      taxon_names: taxon_and_ancestors.map(&:name)
+    }
+
+    Spree::Property.find_each do |prop|
+      json.merge!(Hash[prop.name.downcase, property(prop.name)])
+    end
+
+    Spree::Taxonomy.find_each do |taxonomy|
+      json.merge!(Hash["#{taxonomy.name.downcase}_ids", taxon_by_taxonomy(taxonomy.id).map(&:id)])
+    end
+
+    json
+  end
+
   def self.autocomplete_fields
     %i[name author]
   end

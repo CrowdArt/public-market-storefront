@@ -2,22 +2,50 @@ module Spree
   module Inventory
     module Searchers
       class BaseSearcher < Spree::BaseAction
+        attr_writer :keywords, :page, :per_page
+
+        option :keywords, optional: true
+        option :per_page, optional: true, default: proc { Spree::Config[:products_per_page] }
+        option :page, optional: true, default: proc { 1 }
+        option :smart_aggs, optional: true, default: proc { true }
+
         def call
           raise 'Not Implemented'
         end
 
         def search_products
-          Spree::Product.search(query, boost_by: boost_by, body_options: body_options, where: where)
+          prepare_params
+
+          Spree::Product.search(
+            keywords,
+            fields: fields,
+            boost_by: boost_by,
+            body_options: body_options,
+            order: order,
+            page: page,
+            per_page: per_page,
+            smart_aggs: smart_aggs,
+            where: where
+          )
         end
 
-        protected
+        private
+
+        def prepare_params
+          self.keywords = '*' if keywords.blank?
+
+          self.per_page = per_page.to_i
+          self.per_page = Spree::Config[:products_per_page] unless per_page.positive?
+
+          self.page = [PublicMarket::MAX_PAGES, [page.to_i, 1].max].min
+        end
+
+        def fields
+          Spree::Product.search_fields
+        end
 
         def where
           nil
-        end
-
-        def query
-          '*'
         end
 
         def boost_by
@@ -32,6 +60,10 @@ module Spree
         end
 
         def aggs
+          nil
+        end
+
+        def order
           nil
         end
       end

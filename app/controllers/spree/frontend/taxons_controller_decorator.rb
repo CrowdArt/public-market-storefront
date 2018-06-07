@@ -5,8 +5,7 @@ Spree::TaxonsController.class_eval do
     @taxon = Spree::Taxon.friendly.find(params[:id])
     return unless @taxon
 
-    @searcher = build_searcher(params.merge(taxon: @taxon.id, include_images: true))
-    @products = @searcher.retrieve_products
+    @products = build_searcher(params, taxon_ids: [@taxon.id]).call
 
     @taxonomies = Spree::Taxonomy.where(id: @taxon.taxonomy_id)
                                  .includes(root: { children: :products })

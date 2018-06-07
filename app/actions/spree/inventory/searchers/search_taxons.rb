@@ -4,6 +4,8 @@ module Spree
       class SearchTaxons < BaseSearcher
         param :taxon
 
+        option :smart_aggs, optional: true, default: proc { false }
+
         def call
           result = search_products.aggs
           @buckets = result.dig('categories', 'buckets')

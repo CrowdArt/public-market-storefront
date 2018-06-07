@@ -5,3 +5,11 @@ en:
       from_5_to_10: '$5-10'
       from_10_to_20: '$11-20'
       from_20: '$20+'
+    by:
+      filter: Filter by
+      sort: Sort by
+
+    sort-options:
+      popular:
+        all_time: All Time Popular
+        month: Popular this month
