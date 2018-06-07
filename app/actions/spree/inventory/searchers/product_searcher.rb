@@ -77,7 +77,7 @@ module Spree
         end
 
         def add_price_filter(query) # rubocop:disable Metrics/AbcSize
-          return if (price_ranges = filter['price']).blank?
+          return {} if (price_ranges = filter['price']).blank?
 
           price_filters = []
 

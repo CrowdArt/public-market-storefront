@@ -1,6 +1,12 @@
+- content_for :head
+  = stylesheet_link_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.css'
+
+  = javascript_include_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.js', defer: true
+  = javascript_include_tag 'taxonFilters', defer: true
+
 .taxon-filters-container
   .taxon-filters
-    = form_tag '', method: :get, remote: true, id: 'taxon-filters-form' do
+    = form_tag '.', method: :get, remote: true, id: 'taxon-filters-form' do
       .flex.hidden-xs
         = render partial: 'filter', collection: taxon_filters(@taxon.id), as: :filter, locals: { type: :filter }
         = render partial: 'filter', collection: taxon_sortings(@taxon), as: :filter, locals: { type: :sort }
@@ -12,8 +18,4 @@
   .taxon-filters--tags.tags-without-input
     input#filter-tags
 
-- content_for :bottom_scripts
-  javascript:
-    document.addEventListener('turbolinks:load', function() {
-      Spree.initTaxonFilter()
-    })
+= javascript_include_tag 'taxonFilterTags', defer: true

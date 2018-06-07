@@ -42,9 +42,6 @@
     <%= yield :promos_footer if content_for? :promos_footer %>
     <%= render 'spree/shared/footer' %>
 
-    <!-- these scripts are included in all views because turbolinks can't handle script loading on page -->
-    <%= javascript_include_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.js', async: true %>
-
     <%= yield :bottom_scripts if content_for? :bottom_scripts %>
   </body>
 </html>
