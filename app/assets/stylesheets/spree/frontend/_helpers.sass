@@ -133,13 +133,16 @@
     padding: 0
 
     .tag
-      font-size: 10px
+      font-size: 12px
       font-family: $font-family-roboto-condensed
       display: inline-block
       padding: 4px 10px
       padding-right: 4px
       min-width: 100px
       text-align: left
+
+      @media (max-width: $screen-xs)
+        font-size: 10px
 
       span
         font-family: $font-family-sans-serif
