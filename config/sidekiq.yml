@@ -5,4 +5,5 @@
   - paperclip
   - mailers
   - upload
+  - searchkick
   - recalculation
