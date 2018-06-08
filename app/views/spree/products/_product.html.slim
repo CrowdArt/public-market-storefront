@@ -28,16 +28,21 @@ div id="product_#{product.id}" class="#{card_size} product-list-item #{'hidden-x
 
           .collapse id="admin-info-#{product.id}"
             small
-              strong Boost factor: #{product.boost_factor}
+              strong> Boost factor:
+              | #{product.boost_factor}
             br
             small
-              strong Format: #{product.property(:format)}
+              strong> Format:
+              | #{product.property(:format)}
             br
             small
-              strong PM Format: #{PublicMarket::Variations::BookVariation::Properties.find_book_format(product.property(:format))}
+              strong> PM Format:
+              | #{PublicMarket::Variations::BookVariation::Properties.find_book_format(product.property(:format))}
             br
             small
-              strong Completed orders: #{product.orders.complete.count}
+              strong> Completed orders:
+              | #{product.orders.complete.count}
             br
             small
-              strong Completed (30 days): #{product.orders.complete.where('completed_at > ?', 1.month.ago).count}
+              strong> Completed (30 days):
+              | #{product.orders.complete.where('completed_at > ?', 1.month.ago).count}

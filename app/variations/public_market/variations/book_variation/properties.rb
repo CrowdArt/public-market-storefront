@@ -17,15 +17,17 @@ module PublicMarket
             book_format.find { |_k, v| v.include?(format.downcase) }&.first
           end
 
-          def book_format
+          def book_format # rubocop:disable Metrics/MethodLength
             {
               'Hardcover' => [
+                'hardcover',
                 'trade cloth',
                 'library binding',
                 "children's board books"
 
               ],
               'Paperback' => [
+                'paperback',
                 'trade paper',
                 'mass Market',
                 'perfect',
