@@ -1,5 +1,6 @@
 window.pm = window.pm || {}
 
+// tags toggle
 window.pm.manageFilterTags = function(el) {
   var action = el.checked ? 'add' : 'remove'
 
@@ -14,8 +15,10 @@ window.pm.manageFilterTags = function(el) {
 
 $(document).on('change', "#taxon-filters-form input", function() {
   pm.manageFilterTags(this)
+}).on('change', "#taxon-filters-form input", window.pm.debounce(function() {
+  // bind separate listener to use debounce
   $(this).parents('form').submit()
-})
+}, 500))
 
 $(document).on('ajax:beforeSend', '#taxon-filters-form', function() {
   $('#products').addClass('products-loading')

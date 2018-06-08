@@ -27,25 +27,34 @@ module Spree
           where_query.merge(add_search_filters(where_query))
         end
 
-        def aggs
+        def aggs # rubocop:disable Metrics/MethodLength
           return unless enable_aggs
 
-          aggregations = { price_range: { range: price_ranges_agg }}
+          aggregations = {
+            price_range: {
+              range: price_ranges_agg
+            },
+            variations: {
+              terms: {
+                field: :variations
+              }
+            }
+          }
 
           Spree::Taxonomy.filterable.each do |taxonomy|
             field = taxonomy.filter_name.to_sym
-            aggregations[field] = { terms: { field: field, size: 1000 }}
+            aggregations[field] = { terms: { field: field }}
           end
 
           Spree::Property.filterable.each do |property|
             field = property.filter_name.to_sym
-            aggregations[field] = { terms: { field: field, size: 1000 }}
+            aggregations[field] = { terms: { field: field }}
           end
 
           aggregations
         end
 
-        ALLOWED_WHERE_PARAMS = %w[format].freeze
+        ALLOWED_WHERE_PARAMS = %w[format variations].freeze
         def add_search_filters(query)
           return query unless filter
 

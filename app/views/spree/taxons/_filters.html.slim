@@ -6,9 +6,9 @@
 
 .taxon-filters-container
   .taxon-filters
-    = form_tag '.', method: :get, remote: true, id: 'taxon-filters-form' do
+    = form_tag url_for, method: :get, remote: true, id: 'taxon-filters-form' do
       .flex.hidden-xs
-        = render partial: 'filter', collection: taxon_filters(@taxon.id), as: :filter, locals: { type: :filter }
+        = render partial: 'filter', collection: taxon_filters(@taxon), as: :filter, locals: { type: :filter }
         = render partial: 'filter', collection: taxon_sortings(@taxon), as: :filter, locals: { type: :sort }
 
       .visible-xs.text-center
