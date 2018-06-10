@@ -5,7 +5,7 @@ RSpec.describe Spree::Variant, type: :model do
     let!(:variant) { create(:variant, price: 10, count_on_hand: 10) }
 
     context 'when variant changes price' do
-      before { variant.update(price: 1) }
+      before { variant.update(cost_price: 1, price: 1) }
 
       it { is_expected.to eq(1) }
     end
