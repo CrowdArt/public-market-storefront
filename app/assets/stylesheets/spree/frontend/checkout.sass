@@ -46,11 +46,16 @@
     margin: 0
     padding: 0
 
-    .dropdown-item label
-      padding: 15px
-      &:hover
-        background-color: rgba(12, 187, 212, .1)
-        color: $text-color
+    .dropdown-item
+      label
+        padding: 15px
+        &:hover
+          background-color: rgba(12, 187, 212, .1)
+          color: $text-color
+
+      input:checked + label
+        color: $dropdown-link-hover-color
+        background-color: $dropdown-link-hover-bg
 
 .credit-cards-selector button
   label, span

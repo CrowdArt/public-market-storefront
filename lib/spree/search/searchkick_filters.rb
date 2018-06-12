@@ -33,15 +33,16 @@ module Spree
       send("#{type}_filter", filter) if respond_to?(filter_method, include_private: true)
     end
 
-    # show all filters in dev
-    MIN_PRODUCTS_TO_FILTER = Rails.env.development? ? 0 : 20
-
     def self.property_filter(filter)
-      filter['buckets'].reject { |b| b['doc_count'] < MIN_PRODUCTS_TO_FILTER }
-                       .map do |h|
-                         v = h['key']
-                         { label: v, value: v, id: v.parameterize }
-                       end
+      filters = filter['buckets'].map do |h|
+        v = h['key']
+        disabled = h['doc_count'].zero?
+        { label: v, value: v, id: v.parameterize, disabled: disabled }
+      end
+
+      return if filters.count { |f| !f[:disabled] } <= 1 # don't show if 0 or 1 enabled options
+
+      filters
     end
 
     def self.price_filters(aggs)
@@ -54,11 +55,15 @@ module Spree
     end
 
     def self.price_filter(filter)
-      filter['buckets'].reject { |b| b['doc_count'] < MIN_PRODUCTS_TO_FILTER }
-                       .map do |h|
-                         v = h['key']
-                         { label: I18n.t("filters.price_ranges.#{v}"), value: v, id: v }
-                       end
+      filters = filter['buckets'].map do |h|
+        v = h['key']
+        disabled = h['doc_count'].zero?
+        { label: I18n.t("filters.price_ranges.#{v}"), value: v, id: v, disabled: disabled }
+      end
+
+      return if filters.count { |f| !f[:disabled] } <= 1 # don't show if 0 or 1 enabled options
+
+      filters
     end
   end
 end

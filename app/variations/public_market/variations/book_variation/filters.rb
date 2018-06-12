@@ -3,10 +3,10 @@ module PublicMarket
     module BookVariation
       class Filters
         class << self
-          def applicable_filters(aggregations, min_products)
+          def applicable_filters(aggregations)
             filters = []
 
-            if (variation_options = book_format_filter(aggregations['variations'], min_products)).present?
+            if (variation_options = book_format_filter(aggregations['variations'])).present?
               filters << {
                 name: 'Format',
                 type: :variations,
@@ -17,15 +17,16 @@ module PublicMarket
             filters
           end
 
-          def book_format_filter(filter, min_products)
-            formats = BookVariation::Properties.book_format.keys
-
-            formats.reject do |k|
-              bucket = filter['buckets'].find { |b| b['key'] == k }
-              bucket.blank? || bucket['doc_count'] < min_products
-            end.map do |f| # rubocop:disable Style/MultilineBlockChain
-              { label: f, value: f, id: f.parameterize }
+          def book_format_filter(filter) # rubocop:disable Metrics/AbcSize
+            filters = BookVariation::Properties.book_format.keys.map do |f|
+              bucket = filter['buckets'].find { |b| b['key'] == f }
+              disabled = bucket.blank? || bucket['doc_count'].zero?
+              { label: f, value: f, id: f.parameterize, disabled: disabled }
             end
+
+            return if filters.count { |f| !f[:disabled] } <= 1 # don't show if 0 or 1 enabled options
+
+            filters
           end
         end
       end

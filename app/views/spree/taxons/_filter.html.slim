@@ -24,9 +24,10 @@ ruby:
         - filter_input_id = "#{type}_#{filter_type.downcase}_#{item[:id]}"
 
         li.dropdown-item
-          = label_tag filter_input_id, class: 'flex between' do
-            span = item[:label]
-            - if type == :filter
-              = check_box_tag input_name, item[:value], params_option&.include?(item[:value]), id: filter_input_id
-            - else
-              = radio_button_tag input_name, item[:value], params_option == item[:value].to_s, id: filter_input_id
+          div class=(type == :filter ? 'checkbox checkbox-right' : 'radio radio-right') class=('disabled' if item[:disabled])
+            = label_tag filter_input_id, class: 'flex between' do
+              span = item[:label]
+              - if type == :filter
+                = check_box_tag input_name, item[:value], params_option&.include?(item[:value]), id: filter_input_id, disabled: item[:disabled]
+              - else
+                = radio_button_tag input_name, item[:value], params_option == item[:value].to_s, id: filter_input_id, disabled: item[:disabled]
