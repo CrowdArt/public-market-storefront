@@ -74,5 +74,13 @@ module Spree
       end
       nil
     end
+
+    def product_image_or_default(product, style)
+      if (image = product.images.first).present?
+        image.attachment.url(style)
+      else
+        image_path("noimage/#{style}.png")
+      end
+    end
   end
 end

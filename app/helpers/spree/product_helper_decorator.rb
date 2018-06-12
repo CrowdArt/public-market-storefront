@@ -38,14 +38,6 @@ module Spree
       [variants, other_seller_variants]
     end
 
-    def product_image_or_default(product, style)
-      if (image = product.images.first).present?
-        image.attachment.url(style)
-      else
-        image_path("noimage/#{style}.png")
-      end
-    end
-
     private
 
     def prepare_buy_box_variants(option_variants) # rubocop:disable Metrics/AbcSize
