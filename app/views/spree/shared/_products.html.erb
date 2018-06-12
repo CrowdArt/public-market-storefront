@@ -19,7 +19,7 @@
   <% end %>
 
   <% if products.any? %>
-    <div class="product-list row flex eq-height-columns" data-hook>
+    <div class="product-list row max-condensed-xs flex eq-height-columns">
       <%= render partial: 'spree/products/product', collection: products, locals: { taxon: @taxon, max_mobile: max_mobile, card_size: card_size } %>
     </div>
   <% end %>

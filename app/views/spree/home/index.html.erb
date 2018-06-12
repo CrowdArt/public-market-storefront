@@ -111,8 +111,6 @@
   <%= link_to "View All", top_selling_path, {class: "view-all"} %>
   <div class="divider"></div>
   <div data-hook="homepage_products">
-    <% cache(cache_key_for_products) do %>
-      <%= render partial: 'spree/shared/grid_products', locals: { products: @products } %>
-    <% end %>
+    <%= render partial: 'spree/shared/products', locals: { products: @products } %>
   </div>
 </section>

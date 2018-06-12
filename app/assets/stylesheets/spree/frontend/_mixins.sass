@@ -21,3 +21,11 @@
     border-top: 4px solid \9
     border-right: 4px solid transparent
     border-left: 4px solid transparent
+
+@mixin condensed-row($divider: 4)
+  margin-left: -($grid-gutter-width / $divider)
+  margin-right: -($grid-gutter-width / $divider)
+
+  [class*="col-"]
+    padding-left:  ($grid-gutter-width / $divider)
+    padding-right: ($grid-gutter-width / $divider)
