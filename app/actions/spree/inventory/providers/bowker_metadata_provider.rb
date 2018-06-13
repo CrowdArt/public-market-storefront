@@ -54,8 +54,7 @@ module Spree
         def taxons(product)
           return [] if (subject = product.dig('subject')).blank?
           subjects = subject.split('; ')
-          subjects.reject { |s| s.include?('(') }
-                  .map { |s| s.split(' / ') }
+          subjects.map { |s| s.split(' / ') }
                   .max_by(&:length)
                   .map(&:humanize)
         end

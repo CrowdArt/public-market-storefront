@@ -86,6 +86,17 @@ RSpec.describe Spree::Inventory::Providers::BowkerMetadataProvider, type: :actio
       end
     end
 
+    context 'with round brackets in subject' do
+      let(:isbn) { '9780807823767' }
+
+      it 'saves variant' do
+        expect(variant).not_to be_nil
+        taxons = variant.product.taxons
+        expect(taxons.count).to eq(1)
+        expect(taxons.first.pretty_name).to eq('Categories -> Charlotte (n.c.)')
+      end
+    end
+
     describe 'product images' do
       context 'with empty image' do
         let(:isbn) { '9780253202505' }
