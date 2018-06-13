@@ -38,7 +38,7 @@ RSpec.describe Spree::Inventory::Providers::BowkerMetadataProvider, type: :actio
 
     let(:item_json) do
       {
-        ean: '9780307341570',
+        ean: isbn,
         sku: 'SKU',
         quantity: '1',
         price: '9.61',
@@ -46,6 +46,8 @@ RSpec.describe Spree::Inventory::Providers::BowkerMetadataProvider, type: :actio
         notes: 'A book with obvious wear.'
       }
     end
+
+    let(:isbn) { '9780307341570' }
 
     it { expect(Spree::Config.product_metadata_provider.constantize).to eq(described_class) }
 
@@ -66,16 +68,7 @@ RSpec.describe Spree::Inventory::Providers::BowkerMetadataProvider, type: :actio
     end
 
     context 'with empty subject' do
-      let(:item_json) do
-        {
-          condition: 'Good',
-          ean: '9781600421570',
-          notes: 'Good copy ready to ship same',
-          price: '69.83',
-          quantity: 2,
-          sku: 'PMI-3-ING-2400029166561'
-        }
-      end
+      let(:isbn) { '9781600421570' }
 
       it 'does not create additional taxons' do
         expect(variant).not_to be_nil
@@ -85,18 +78,17 @@ RSpec.describe Spree::Inventory::Providers::BowkerMetadataProvider, type: :actio
       end
     end
 
+    context 'with multiple details' do
+      let(:isbn) { '9781423204237' }
+
+      it 'saves variant' do
+        expect(variant).not_to be_nil
+      end
+    end
+
     describe 'product images' do
       context 'with empty image' do
-        let(:item_json) do
-          {
-            condition: 'Good',
-            ean: '9780253202505',
-            notes: 'Good copy ready to ship same',
-            price: '69.83',
-            quantity: 2,
-            sku: 'SKU'
-          }
-        end
+        let(:isbn) { '9780253202505' }
 
         it 'does not save image' do
           expect(variant).not_to be_nil
@@ -105,16 +97,7 @@ RSpec.describe Spree::Inventory::Providers::BowkerMetadataProvider, type: :actio
       end
 
       context 'with not readable tempfile' do
-        let(:item_json) do
-          {
-            condition: 'Good',
-            ean: '9780321532015',
-            notes: 'Good copy ready to ship same',
-            price: '69.83',
-            quantity: 2,
-            sku: 'SKU'
-          }
-        end
+        let(:isbn) { '9780321532015' }
 
         it 'saves image' do
           expect(variant).not_to be_nil

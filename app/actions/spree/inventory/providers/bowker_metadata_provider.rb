@@ -70,9 +70,13 @@ module Spree
         end
 
         def product_details(isbn)
-          url = "https://bms.bowker.com/rest/books/isbn/#{isbn}?fields=all&format=xml"
+          url = "https://bms.bowker.com/rest/books/isbn/#{isbn}?format=xml"
           result = HTTParty.get(url, basic_auth: creds).parsed_response
-          detail_url = result.dig('result', 'item', 'details')
+          item = result.dig('result', 'item')
+          return if item.blank?
+
+          detail_url = item.is_a?(Array) ? item[0]['details'] : item['details']
+
           return if detail_url.blank?
 
           HTTParty.get(detail_url, basic_auth: creds).parsed_response
