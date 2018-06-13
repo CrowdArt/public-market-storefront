@@ -73,6 +73,12 @@ Spree::CheckoutController.class_eval do
 
   private
 
+  def check_registration
+    return if spree_current_user
+    store_location
+    redirect_to spree.checkout_registration_path
+  end
+
   def skip_state_validation?
     false
   end
