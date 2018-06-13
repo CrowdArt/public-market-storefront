@@ -4,12 +4,10 @@ module PublicMarket
       class Properties
         class << self
           def variation_properties(product)
-            [format(product)]
-          end
-
-          def format(product)
-            format = product.property(:format)
-            find_book_format(format) || format
+            return if (formats = product.property(:format)).blank?
+            formats.split('; ').map do |f|
+              find_book_format(f) || 'Other'
+            end.uniq
           end
 
           def find_book_format(format)
@@ -24,7 +22,6 @@ module PublicMarket
                 'trade cloth',
                 'library binding',
                 "children's board books"
-
               ],
               'Paperback' => [
                 'paperback',
@@ -33,7 +30,8 @@ module PublicMarket
                 'perfect',
                 'digest paperback',
                 'uk-b format paperback'
-              ]
+              ],
+              'Other' => ['other']
             }
           end
         end
