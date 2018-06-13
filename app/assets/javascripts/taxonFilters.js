@@ -3,14 +3,16 @@ window.pm = window.pm || {}
 // tags toggle
 window.pm.manageFilterTags = function(el) {
   var action = el.checked ? 'add' : 'remove'
+  var elementId = $(el).attr('id')
 
   if ($(el).is(':radio')) {
     $("input[name='" + $(el).prop('name') + "']").not('#' + $(el).prop('id')).each(function(idx, otherRadio) {
-      $('#filter-tags').tagsinput('remove', { id: $(otherRadio).attr('id'), text: $(otherRadio).siblings('span').text() }, { preventTrigger: true })
+      var otherId = $(otherRadio).attr('id')
+      $('#filter-tags').tagsinput('remove', { id: otherId, text: $("label[for='" + otherId + "']").text() }, { preventTrigger: true })
     })
   }
 
-  $('#filter-tags').tagsinput(action, { id: $(el).attr('id'), text: $(el).siblings('span').text() }, { preventTrigger: true })
+  $('#filter-tags').tagsinput(action, { id: elementId, text: $("label[for='" + elementId + "']").text() }, { preventTrigger: true })
 }
 
 $(document).on('change', "#taxon-filters-form input", function() {

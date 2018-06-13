@@ -8,7 +8,7 @@ ruby:
   input_name += '[]' if type == :filter # array of params
 
 .taxon-filter.flex-1
-  .dropdown.rich-dropdown
+  .dropdown
     button.btn-block data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' type='button'
       .flex.between.align-center
         div
@@ -24,10 +24,10 @@ ruby:
         - filter_input_id = "#{type}_#{filter_type.downcase}_#{item[:id]}"
 
         li.dropdown-item
-          div class=(type == :filter ? 'checkbox checkbox-right' : 'radio radio-right') class=('disabled' if item[:disabled])
-            = label_tag filter_input_id, class: 'flex between' do
-              span = item[:label]
-              - if type == :filter
-                = check_box_tag input_name, item[:value], params_option&.include?(item[:value]), id: filter_input_id, disabled: item[:disabled]
-              - else
-                = radio_button_tag input_name, item[:value], params_option == item[:value].to_s, id: filter_input_id, disabled: item[:disabled]
+          div class=(type == :filter ? 'checkbox checkbox-blue checkbox-right' : 'radio radio-blue radio-right') class=('disabled' if item[:disabled])
+            - if type == :filter
+              = check_box_tag input_name, item[:value], params_option&.include?(item[:value]), id: filter_input_id, disabled: item[:disabled]
+            - else
+              = radio_button_tag input_name, item[:value], params_option == item[:value].to_s, id: filter_input_id, disabled: item[:disabled]
+
+            = label_tag filter_input_id, item[:label], class: 'flex between align-center'
