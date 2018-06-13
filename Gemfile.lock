@@ -46,7 +46,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_social.git
-  revision: b86a8b7442436c61ce62399cd7b01ca89d326a1f
+  revision: c8ca41a547d6e0488da81e87222ddffd16a9a39b
   specs:
     spree_social (3.3.1)
       oa-core
