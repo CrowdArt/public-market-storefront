@@ -47,10 +47,8 @@ module Spree
 
       median_price = Spree::Price.new(amount: variants.map(&:price).median, currency: current_currency)
 
-      if spree_current_user&.admin?
-        @other_seller_variants ||= []
-        @other_seller_variants.concat(variants.reject { |v| v.vendor == selected_variant.vendor })
-      end
+      @other_seller_variants ||= []
+      @other_seller_variants.concat(variants.reject { |v| v.vendor == selected_variant.vendor })
 
       {
         option_value: option_value,
