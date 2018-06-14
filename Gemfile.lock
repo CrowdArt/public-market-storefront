@@ -320,10 +320,10 @@ GEM
       dry-equalizer (~> 0.2)
       dry-logic (~> 0.4, >= 0.4.0)
       dry-types (~> 0.13.1)
-    elasticsearch (6.0.3)
-      elasticsearch-api (= 6.0.3)
-      elasticsearch-transport (= 6.0.3)
-    elasticsearch-api (6.0.3)
+    elasticsearch (6.1.0)
+      elasticsearch-api (= 6.1.0)
+      elasticsearch-transport (= 6.1.0)
+    elasticsearch-api (6.1.0)
       multi_json
     elasticsearch-extensions (0.0.27)
       ansi
@@ -331,7 +331,7 @@ GEM
       oj
       patron
       ruby-prof
-    elasticsearch-transport (6.0.3)
+    elasticsearch-transport (6.1.0)
       faraday
       multi_json
     encryptor (3.0.0)
