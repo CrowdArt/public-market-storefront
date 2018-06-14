@@ -98,4 +98,10 @@ RSpec.describe Spree::Product, type: :model do
       it { expect(product.name).to eq Spree::Product::MISSING_TITLE }
     end
   end
+
+  describe '#number' do
+    subject(:product) { create(:product).number }
+
+    it { is_expected.to include('PM') }
+  end
 end
