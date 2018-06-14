@@ -8,6 +8,7 @@ module Spree
         option :per_page, optional: true, default: proc { Spree::Config[:products_per_page] }
         option :page, optional: true, default: proc { 1 }
         option :smart_aggs, optional: true, default: proc { true }
+        option :limit, optional: true, default: proc { nil }
 
         def call
           raise 'Not Implemented'
@@ -18,6 +19,7 @@ module Spree
 
           Spree::Product.search(
             keywords,
+            includes: includes,
             fields: fields,
             boost_by: boost_by,
             body_options: body_options,
@@ -25,7 +27,8 @@ module Spree
             page: page,
             per_page: per_page,
             smart_aggs: smart_aggs,
-            where: where
+            where: where,
+            limit: limit
           )
         end
 
@@ -49,10 +52,7 @@ module Spree
         end
 
         def boost_by
-          {
-            boost_factor: { factor: 1, missing: 1, modifier: 'none' },
-            conversions: { factor: 1, missing: 1, modifier: 'none' }
-          }
+          nil
         end
 
         def body_options
@@ -64,6 +64,10 @@ module Spree
         end
 
         def order
+          nil
+        end
+
+        def includes
           nil
         end
       end

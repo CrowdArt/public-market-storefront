@@ -14,6 +14,12 @@ RSpec.describe Spree::Product, type: :model do
       it { is_expected.to be true }
     end
 
+    context 'when has empty name' do
+      let(:product) { create(:product, name: nil) }
+
+      it { is_expected.to be false }
+    end
+
     describe 'triggers reindex on update', search: true do
       let!(:product) { create(:product) }
 
@@ -27,6 +33,17 @@ RSpec.describe Spree::Product, type: :model do
           product.master.stock_items.first.adjust_count_on_hand(10)
           Spree::Product.searchkick_index.refresh
         }.to change { Spree::Product.search.count }.from(0).to(1)
+      end
+
+      context 'with empty name' do
+        let!(:product) { create(:product_in_stock, name: nil) }
+
+        it 'adds product to index on update' do
+          expect {
+            product.update(name: 'New correct name')
+            Spree::Product.searchkick_index.refresh
+          }.to change { Spree::Product.search.count }.from(0).to(1)
+        end
       end
     end
   end
@@ -70,6 +87,15 @@ RSpec.describe Spree::Product, type: :model do
       let(:images) { [] }
 
       it { is_expected.to eq(0) }
+    end
+  end
+
+  describe '#name' do
+    context 'with empty name' do
+      subject(:product) { create(:product, name: nil) }
+
+      it { is_expected.to be_valid }
+      it { expect(product.name).to eq Spree::Product::MISSING_TITLE }
     end
   end
 end

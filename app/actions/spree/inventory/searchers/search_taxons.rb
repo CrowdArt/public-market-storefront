@@ -38,6 +38,13 @@ module Spree
 
         private
 
+        def boost_by
+          {
+            boost_factor: { factor: 1, missing: 1, modifier: 'none' },
+            conversions: { factor: 1, missing: 1, modifier: 'none' }
+          }
+        end
+
         def find_bucket(child_taxon)
           bucket = @buckets.find { |b| b['key'] == child_taxon.id }
           return if bucket.blank?
