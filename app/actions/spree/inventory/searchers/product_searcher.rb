@@ -120,6 +120,13 @@ module Spree
             { key: :from_20, from: 20 }
           ]
         end
+
+        def boost_by
+          {
+            boost_factor: { factor: 1, missing: 1, modifier: 'none' },
+            conversions: { factor: 1, missing: 1, modifier: 'none' }
+          }
+        end
       end
     end
   end
