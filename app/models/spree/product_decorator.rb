@@ -3,7 +3,9 @@ module Spree
     MISSING_TITLE = '[Missing title]'.freeze
 
     def self.included(base) # rubocop:disable Metrics/AbcSize
-      singleton_class.prepend ClassMethods
+      class << base
+        prepend ClassMethods
+      end
       base.prepend InstanceMethods
 
       base.include Spree::Core::NumberGenerator.new(prefix: 'PM', letters: true, length: 13)
@@ -84,44 +86,10 @@ module Spree
     end
 
     module ClassMethods
-      def search_where
-        {
-          active: true,
-          price: { not: nil },
-          boost_factor: { gt: 1 }
-        }
-      end
-
-      def autocomplete_fields
-        %i[name author]
-      end
-
       # enable searchkick callbacks in RecalculateVendorVariantPrice
       # when price is included in searchkick index
       def search_fields
         %i[name author isbn]
-      end
-
-      def autocomplete(keywords) # rubocop:disable Metrics/MethodLength
-        if keywords
-          Spree::Product.search(
-            keywords,
-            includes: [master: :prices],
-            fields: autocomplete_fields,
-            match: :word_start,
-            limit: 10,
-            misspellings: { below: 3 },
-            where: search_where
-          ).uniq
-        else
-          Spree::Product.search(
-            '*',
-            includes: [master: :prices],
-            fields: autocomplete_fields,
-            misspellings: { below: 3 },
-            where: search_where
-          )
-        end
       end
     end
   end

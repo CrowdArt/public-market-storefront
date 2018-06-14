@@ -14,7 +14,7 @@ module Spree
           raise 'Not Implemented'
         end
 
-        def search_products
+        def search_products # rubocop:disable Metrics/MethodLength
           prepare_params
 
           Spree::Product.search(
@@ -22,6 +22,8 @@ module Spree
             includes: includes,
             fields: fields,
             boost_by: boost_by,
+            match: word_match,
+            misspellings: misspellings,
             body_options: body_options,
             order: order,
             page: page,
@@ -68,6 +70,14 @@ module Spree
         end
 
         def includes
+          nil
+        end
+
+        def word_match
+          nil
+        end
+
+        def misspellings
           nil
         end
       end

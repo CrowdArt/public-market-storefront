@@ -26,8 +26,7 @@ Spree::ProductsController.class_eval do
   end
 
   def autocomplete
-    keywords = params[:keywords] ||= nil
-    @products = Spree::Product.autocomplete(keywords)
+    @products = Spree::Inventory::Searchers::Autocomplete.new(limit: 10, keywords: params[:keywords]).call.results
     respond_to do |format|
       format.json
     end
