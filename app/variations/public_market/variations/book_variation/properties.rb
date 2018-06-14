@@ -26,10 +26,12 @@ module PublicMarket
               'Paperback' => [
                 'paperback',
                 'trade paper',
-                'mass Market',
+                'mass market',
                 'perfect',
                 'digest paperback',
-                'uk-b format paperback'
+                'uk-a format paperback',
+                'uk-b format paperback',
+                'uk-trade paper'
               ],
               'Other' => ['other']
             }
