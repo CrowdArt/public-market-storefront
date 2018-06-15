@@ -15,23 +15,29 @@ window.pm.manageFilterTags = function(el) {
   $('#filter-tags').tagsinput(action, { id: elementId, text: $("label[for='" + elementId + "']").text() }, { preventTrigger: true })
 }
 
-$(document).on('change', "#taxon-filters-form input", function() {
+$(document).on('change', "#search-filters-form input", function() {
   pm.manageFilterTags(this)
-}).on('change', "#taxon-filters-form input", window.pm.debounce(function() {
+}).on('change', "#search-filters-form input", window.pm.debounce(function() {
   // bind separate listener to use debounce
   $(this).parents('form').submit()
 }, 500))
 
-$(document).on('ajax:beforeSend', '#taxon-filters-form', function() {
+$(document).on('change', '#per_page_selector', function() {
+  $('#search-filters-form #per_page').val($(this).val()).trigger('change')
+})
+
+$(document).on('ajax:beforeSend', '#search-filters-form', function() {
   $('#products').addClass('products-loading')
+  $('#per_page_selector').attr('disabled', true)
 }).on('ajax:complete', function(xhr, status) {
   $('#products').removeClass('products-loading')
+  $('#per_page_selector').attr('disabled', false)
 }).on('ajax:success', function(xhr, status) {
-  history.pushState({}, '', '//' + location.host + location.pathname + '?' + $('#taxon-filters-form').serialize())
+  history.pushState({}, '', '//' + location.host + location.pathname + '?' + $('#search-filters-form').serialize())
 })
 
 // disable closing dropdown on label click
-$(document).on('click', '.taxon-filter .dropdown-menu label', function(e) {
+$(document).on('click', '.search-filter .dropdown-menu label', function(e) {
   e.stopPropagation()
 })
 

@@ -2,6 +2,8 @@ module Spree
   module Inventory
     module Searchers
       class StaffPicks < ProductSearcher
+        option :includes, optional: true, default: proc { [master: %i[prices images]] }
+
         private
 
         def fields
@@ -21,10 +23,6 @@ module Spree
               order: :desc, unmapped_type: :integer
             }
           }
-        end
-
-        def includes
-          [master: :prices]
         end
       end
     end

@@ -2,11 +2,9 @@ module Spree
   module Inventory
     module Searchers
       class Autocomplete < ProductSearcher
-        private
+        option :includes, optional: true, default: proc { [master: %i[prices images]] }
 
-        def includes
-          [master: %i[prices images]]
-        end
+        private
 
         def fields
           %i[name author]

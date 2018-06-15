@@ -9,7 +9,15 @@ en:
       filter: Filter by
       sort: Sort by
 
+    per-page: 'Results per page:'
+
     sort-options:
       popular:
         all_time: All Time Popular
         month: Popular this month
+
+    taxonomy_title:
+      root:
+        books: Categories
+      child:
+        books: Subcategories

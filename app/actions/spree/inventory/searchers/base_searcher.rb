@@ -9,6 +9,7 @@ module Spree
         option :page, optional: true, default: proc { 1 }
         option :smart_aggs, optional: true, default: proc { true }
         option :limit, optional: true, default: proc { nil }
+        option :includes, optional: true, default: proc { nil }
 
         def call
           raise 'Not Implemented'
@@ -66,10 +67,6 @@ module Spree
         end
 
         def order
-          nil
-        end
-
-        def includes
           nil
         end
 

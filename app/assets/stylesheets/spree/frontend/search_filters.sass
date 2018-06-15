@@ -1,0 +1,44 @@
+.search-filters-container
+  margin-bottom: 20px
+
+.search-filters
+  background-color: $filters-bg
+  margin-bottom: 12px
+
+  @media (max-width: $screen-xs-max)
+    padding: 25px 30px
+
+  .search-filter
+    max-width: 350px
+
+    .dropdown.open button, button:hover
+      background-color: darken($filters-bg, 7%)
+
+    button
+      background-color: $filters-bg
+      border: none
+      border-right: 1px solid $filters-button-border
+      padding: 12px 30px
+      text-align: left
+      transition: background-color .2s
+
+      &:after
+        content: none
+
+    .dropdown-menu
+      border: 0
+      margin: 0
+      padding: 15px 0
+      width: 100%
+
+      .dropdown-item
+        padding: 7.5px 35px
+
+        &:hover
+          background-color: $body-bg
+
+.search-filters--tags
+  min-height: 24px
+
+.per-page-selector
+  width: 75px

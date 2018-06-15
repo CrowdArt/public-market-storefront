@@ -1,0 +1,23 @@
+- content_for :head
+  = stylesheet_link_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.css'
+
+  = javascript_include_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.js', defer: true
+  = javascript_include_tag 'searchFilters', defer: true
+
+.search-filters-container
+  .search-filters
+    = form_tag url_for, method: :get, remote: true, id: 'search-filters-form' do
+      = hidden_field_tag :per_page, params[:per_page]
+
+      .flex.hidden-xs
+        = render partial: 'spree/search/filter', collection: search_filters(@taxon), as: :filter, locals: { type: :filter }
+        = render partial: 'spree/search/filter', collection: search_sorting_options(@taxon), as: :filter, locals: { type: :sort }
+
+      .visible-xs.text-center
+        span.text-white.upcase.vertical-middle Filter
+        .pull-right.text-white >
+
+  .search-filters--tags.tags-without-input
+    input#filter-tags
+
+= javascript_include_tag 'searchFilterTags', defer: true

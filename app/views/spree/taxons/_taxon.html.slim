@@ -2,7 +2,7 @@
   section.taxon-section
     .taxon-heading
       .flex.align-center.between-xxs.margin-text-bottom
-        h2.upcase = link_to taxon[:taxon].name, seo_url(taxon[:taxon]), class: 'plain-link text-black'
+        h2.upcase = link_to taxon[:taxon].name, seo_url(taxon[:taxon]), class: 'plain-link'
         = link_to 'View all', seo_url(taxon[:taxon]), class: 'margin-text-left'
 
     = render partial: 'spree/shared/products', locals: { products: taxon[:products].take(4).to_a, taxon: taxon[:taxon], max_mobile: 2, card_size: 'col-lg-3 col-md-3 col-sm-6 col-xs-6' }

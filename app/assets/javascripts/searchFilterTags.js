@@ -5,6 +5,6 @@ $('#filter-tags').tagsinput({
 })
 
 // add initial tags
-$('#taxon-filters-form input:checked').each(function(){
+$('#search-filters-form input:checked').each(function(){
   pm.manageFilterTags(this)
 })

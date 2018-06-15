@@ -29,7 +29,7 @@ module Spree
                   avg: { script: { source: '_score' }}
                 },
                 products: {
-                  top_hits: { size: 5, _source: { includes: [:_id] }}
+                  top_hits: { size: 4, _source: { includes: [:_id] }}
                 }
               }
             }
@@ -48,7 +48,6 @@ module Spree
         def find_bucket(child_taxon)
           bucket = @buckets.find { |b| b['key'] == child_taxon.id }
           return if bucket.blank?
-          return if bucket['doc_count'] < 5 && taxon.depth < 3
 
           {
             taxon: child_taxon,

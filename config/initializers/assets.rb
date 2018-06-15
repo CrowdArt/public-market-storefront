@@ -20,8 +20,8 @@ assets_to_precompile = %w[
   phoneInput
   fbActions
   twiActions
-  taxonFilters
-  taxonFilterTags
+  searchFilters
+  searchFilterTags
   bootstrap-tagsinput/dist/bootstrap-tagsinput.css
   bootstrap-tagsinput/dist/bootstrap-tagsinput.js
   raven-js/dist/raven.js
