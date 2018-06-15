@@ -11,6 +11,7 @@ module Spree
       base.include Spree::Core::NumberGenerator.new(prefix: 'PM', letters: true, length: 13)
 
       base.before_validation :set_missing_title, if: -> { name.blank? }
+
       base.before_create :reset_boost_factor_if_no_images, if: -> { master.images.blank? }
 
       base.scope :in_stock, lambda {
@@ -19,6 +20,10 @@ module Spree
     end
 
     module InstanceMethods
+      def should_generate_new_friendly_id?
+        name_changed? || super
+      end
+
       def author
         product_properties.joins(:property)
                           .where("spree_properties.name = 'author' OR spree_properties.name = 'manufacturer'")

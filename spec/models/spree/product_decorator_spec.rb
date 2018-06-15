@@ -99,6 +99,22 @@ RSpec.describe Spree::Product, type: :model do
     end
   end
 
+  describe '#slug' do
+    context 'when name is changed' do
+      subject(:update_product) do
+        product.update(name: 'New super name')
+      end
+
+      let!(:product) { create(:product, name: nil) }
+
+      it 'resets slug' do
+        expect {
+          update_product
+        }.to change(product.reload, :slug).to('new-super-name')
+      end
+    end
+  end
+
   describe '#number' do
     subject(:product) { create(:product).number }
 
