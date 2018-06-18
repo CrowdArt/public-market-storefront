@@ -36,6 +36,7 @@ rspec:
   cache:
     paths:
       - vendor/bundle
+      - node_modules
       - cc-test-reporter
   variables:
     POSTGRES_DB: storefront_test
@@ -50,6 +51,7 @@ rspec:
     - ./cc-test-reporter before-build
     # setup rails test env
     - bundle check || bundle install --deployment --jobs 4 --without development staging production
+    - yarn
     - bundle exec rake db:schema:load
   script:
     - bundle exec rspec --format progress
