@@ -18,15 +18,15 @@ module PublicMarket
           end
 
           def book_format_filter(filter) # rubocop:disable Metrics/AbcSize
-            filters = BookVariation::Properties.book_format.keys.map do |f|
+            BookVariation::Properties.book_format.keys.map do |f|
               bucket = filter['buckets'].find { |b| b['key'] == f }
               disabled = bucket.blank? || bucket['doc_count'].zero?
               { label: f, value: f, id: f.parameterize, disabled: disabled }
             end
 
-            return if filters.count { |f| !f[:disabled] } <= 1 # don't show if 0 or 1 enabled options
+            # return if filters.count { |f| !f[:disabled] } <= 1 # don't show if 0 or 1 enabled options
 
-            filters
+            # filters
           end
         end
       end
