@@ -5,7 +5,8 @@ module Spree
     end
 
     def best_selling
-      @products = build_searcher(params.merge(sort: { popularity: :all_time })).call
+      params[:sort] ||= { popularity: 'all_time' }
+      @products = build_searcher(params).call
 
       respond_to do |format|
         format.html { render action: :index }
