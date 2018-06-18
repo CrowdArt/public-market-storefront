@@ -1,0 +1,29 @@
+ruby:
+  card_size ||= nil
+  max_mobile ||= nil
+  show_results_per_page ||= false
+
+- content_for :head do
+  - if products.respond_to?(:total_pages)
+    = rel_next_prev_link_tags products
+
+#products
+  - if products.empty?
+    .info-icon-left.text-info
+      = Spree.t(:no_products_found)
+
+  - else
+
+    - if show_results_per_page
+      .flex.end.align-center
+        span.text-muted.margin-text-right = t('filters.per-page')
+        .custom-select-wrapper.per-page-selector
+          = select_tag :per_page_selector, options_for_select(Spree::Core::ControllerHelpers::Search::ALLOWED_PER_PAGE, params['per_page']), { class: 'form-control' }
+
+      hr.margin-text-top
+
+    .product-list.row.max-condensed-xs.flex.eq-height-columns
+      = render partial: 'spree/products/product', collection: products, locals: { taxon: @taxon, max_mobile: max_mobile, card_size: card_size }
+
+    - if products.respond_to?(:total_pages)
+      = paginate products, theme: 'twitter-bootstrap-3'

@@ -25,7 +25,7 @@ ruby:
         input#taxon name='taxon' type='hidden' value=taxon&.id
 
     .search-group.flex.flex-1
-      = search_field_tag :keywords, params[:keywords], autocomplete: 'off', placeholder: Spree.t(:search), class: "form-control"
+      = search_field_tag :keywords, params[:keywords], id: 'nav-keyword', autocomplete: 'off', placeholder: Spree.t(:search), class: "form-control"
 
     = button_tag '', name: nil, type: 'submit', class: "btn btn-link btn-search"
 
@@ -58,6 +58,17 @@ ruby:
       })
     }
 
-    $('#navbar-keyword-form #keywords').on('change, keyup', function() {
+
+    $(document).on('submit', '#navbar-keyword-form', function() {
+      var filtersForm = $('#search-filters-form')
+      var allowSubmit = filtersForm.length === 0
+      if (!allowSubmit) {
+        var topNavKeywordValue = $(this).find('input[name="keywords"]').val()
+        $('#keywords').val(topNavKeywordValue).trigger('change')
+      }
+      return allowSubmit
+    })
+
+    $('#navbar-keyword-form #nav-keyword').on('change, keyup', function() {
       $(this).parents('form').toggleClass('filled', $(this).val().trim() !== '')
     })

@@ -5,12 +5,17 @@ module Spree
       base.skip_before_action :set_current_order, only: :mobile_menu_childs
     end
 
-    def show
+    def show # rubocop:disable Metrics/AbcSize
       @taxon = Spree::Taxon.friendly.find(params[:id])
       return unless @taxon
 
       return if browser.device.mobile? && !@taxon.depth.positive?
       @products = build_searcher(params, taxon_ids: [@taxon.id]).call
+
+      respond_to do |format|
+        format.html
+        format.js { render 'spree/shared/search/products' }
+      end
     end
 
     # fetch taxons in mobile nav menu

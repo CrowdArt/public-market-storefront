@@ -76,9 +76,13 @@
   @include check-icon-bg(#fff)
   vertical-align: bottom
 
-.info-icon-left:before
-  @include info-icon-bg(#fff)
-  vertical-align: text-bottom
+.info-icon-left
+  &:before
+    @include info-icon-bg
+    vertical-align: text-top
+  &.text-info
+    &:before
+      @include info-icon-bg($brand-info)
 
 .visible-scroll
   &::-webkit-scrollbar

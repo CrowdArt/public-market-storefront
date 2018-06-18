@@ -2,9 +2,25 @@ window.pm = window.pm || {}
 
 // tags toggle
 window.pm.manageFilterTags = function(el) {
-  var action = el.checked ? 'add' : 'remove'
+  var action = null
   var elementId = $(el).attr('id')
+  var value = $(el).val().trim()
 
+  // tags value equals text in filter if checkbox/radio
+  if ($(el).is(':checkbox') || $(el).is(':radio')) {
+    action = el.checked ? 'add' : 'remove'
+    value = $("label[for='" + elementId + "']").text()
+  } else if ($(el).prop('name') === 'keywords') {
+    // remove old keyword tag
+    $('#filter-tags').tagsinput('remove', { id: elementId }, { preventTrigger: true })
+
+    if (value !== '') {
+      action = 'add'
+      value = 'Search: ' + value
+    }
+  }
+
+  // remove other tags related to radio
   if ($(el).is(':radio')) {
     $("input[name='" + $(el).prop('name') + "']").not('#' + $(el).prop('id')).each(function(idx, otherRadio) {
       var otherId = $(otherRadio).attr('id')
@@ -12,9 +28,10 @@ window.pm.manageFilterTags = function(el) {
     })
   }
 
-  $('#filter-tags').tagsinput(action, { id: elementId, text: $("label[for='" + elementId + "']").text() }, { preventTrigger: true })
+  $('#filter-tags').tagsinput(action, { id: elementId, text: value }, { preventTrigger: true })
 }
 
+// defined not in searchFilterTags to avoid binding of multiple listeners
 $(document).on('change', "#search-filters-form input", function() {
   pm.manageFilterTags(this)
 }).on('change', "#search-filters-form input", window.pm.debounce(function() {
@@ -46,6 +63,14 @@ $(document).on('beforeItemRemove', '#filter-tags', function(event) {
   if (event.options && event.options.preventTrigger) return
 
   var item = $('#' + event.item.id)
-  item.prop('checked', false)
+
+  if (item.is(':checkbox') || item.is(':radio')) {
+    item.prop('checked', false)
+  } else {
+    // allow to clear by name to remove top nav keyword input
+    var inputName = item.prop('name')
+    $("input[name='" + inputName + "']").val('')
+  }
+
   item.trigger('change')
 })

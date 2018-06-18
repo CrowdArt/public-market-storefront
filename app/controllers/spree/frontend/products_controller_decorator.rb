@@ -1,41 +1,54 @@
-Spree::ProductsController.class_eval do
-  before_action :save_return_to, :load_taxon, only: :show
+module Spree
+  module ProductsControllerDecorator
+    def self.prepended(base)
+      base.before_action :save_return_to, :load_taxon, only: :show
+    end
 
-  def best_selling
-    # params.merge(taxon: @taxon.id) if @taxon
-    @products = build_searcher(params.merge(sort: { popularity: :all_time })).call
-    render action: :index
-  end
+    def best_selling
+      @products = build_searcher(params.merge(sort: { popularity: :all_time })).call
 
-  def index
-    searcher_opts = {}
+      respond_to do |format|
+        format.html { render action: :index }
+        format.js { render 'spree/shared/search/products' }
+      end
+    end
 
-    # NOTE: products should be searchable by root taxon
-    # if params[:taxon].present? && (@taxon = Spree::Taxon.find(params[:taxon]))
-    #   searcher_opts[:taxon_ids] = [@taxon.id]
-    # end
+    def index
+      searcher_opts = {}
 
-    @products = build_searcher(params, searcher_opts).call
-    @taxonomies = Spree::Taxonomy.includes(root: :children)
-  end
+      if params[:taxon].present?
+        @taxon = Spree::Taxon.find(params[:taxon])
+        searcher_opts[:taxon_ids] = [@taxon.id] if @taxon
+      end
 
-  def show
-    @product_properties = @product.product_properties.includes(:property)
+      @products = build_searcher(params, searcher_opts).call
 
-    redirect_if_legacy_path
-  end
+      respond_to do |format|
+        format.html
+        format.js { render 'spree/shared/search/products' }
+      end
+    end
 
-  def autocomplete
-    @products = Spree::Inventory::Searchers::Autocomplete.new(limit: 10, keywords: params[:keywords]).call.results
-    respond_to do |format|
-      format.json
+    def show
+      @product_properties = @product.product_properties.includes(:property)
+
+      redirect_if_legacy_path
+    end
+
+    def autocomplete
+      @products = Spree::Inventory::Searchers::Autocomplete.new(limit: 10, keywords: params[:keywords]).call.results
+      respond_to do |format|
+        format.json
+      end
+    end
+
+    private
+
+    def load_taxon
+      taxon_id = params[:taxon_id]
+      @taxon = taxon_id.present? ? Spree::Taxon.find(taxon_id) : @product.taxons.first
     end
   end
-
-  private
-
-  def load_taxon
-    taxon_id = params[:taxon_id]
-    @taxon = taxon_id.present? ? Spree::Taxon.find(taxon_id) : @product.taxons.first
-  end
 end
+
+Spree::ProductsController.prepend(Spree::ProductsControllerDecorator)

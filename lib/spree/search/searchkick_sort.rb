@@ -1,9 +1,7 @@
 module Spree
   module Search
     module SearchkickSort
-      def self.applicable_sort_options(taxon)
-        return unless taxon.root.permalink == 'books'
-
+      def self.applicable_sort_options
         options = %i[all_time month]
         [
           {

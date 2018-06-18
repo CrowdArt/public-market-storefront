@@ -1,10 +1,5 @@
-/ - if 'spree/products' == params[:controller] && @taxon || @taxonomies.present?
-/   - content_for :sidebar do
-/     div
-/       = render partial: 'spree/shared/taxonomies'
+- content_for :under_breadcrumbs
+  .col-md-12
+    = render partial: 'spree/search/filters'
 
-- if params[:keywords]
-  = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, card_size: 'col-lg-3 col-md-3 col-sm-6 col-xs-6' }
-- else
-  - cache(cache_key_for_products) do
-    = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, card_size: 'col-lg-3 col-md-3 col-sm-6 col-xs-6' }
+= render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, show_results_per_page: true, card_size: 'col-lg-3 col-md-3 col-sm-6 col-xs-6' }

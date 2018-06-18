@@ -1,7 +1,6 @@
 ruby:
   @sidebar_class = 'hidden-sm hidden-xs'
   @content_class = 'col-sm-12 col-sm-8 col-md-9'
-  show_products = @products.present?
 
 - content_for :under_breadcrumbs
   .col-md-12.root-taxon-title
@@ -13,9 +12,8 @@ ruby:
 
         p.taxon-description = @taxon.description
 
-  - if show_products
-    .col-md-12
-      = render partial: 'spree/search/filters'
+  .col-md-12
+    = render partial: 'spree/search/filters'
 
 - content_for :sidebar do
   = render partial: 'spree/shared/taxonomy'
@@ -23,15 +21,7 @@ ruby:
   - if @taxon.root.permalink == 'books'
     = render partial: 'spree/taxons/special'
 
-- if show_products
-  .flex.end.align-center
-    span.text-muted.margin-text-right = t('filters.per-page')
-    .custom-select-wrapper.per-page-selector
-      = select_tag :per_page_selector, options_for_select(['20', '30', '40', '50'], params['per_page']), { class: 'form-control' }
-
-  hr.margin-text-top
-
-  = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, card_size: 'col-lg-3 col-md-3 col-sm-6 col-xs-6' }
+= render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, show_results_per_page: true, card_size: 'col-lg-3 col-md-3 col-sm-6 col-xs-6' }
 
 - if browser.device.mobile?
   - cache([:v1, I18n.locale, @taxon]) do

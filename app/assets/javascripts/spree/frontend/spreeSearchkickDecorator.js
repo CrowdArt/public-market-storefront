@@ -14,7 +14,7 @@ Spree.typeaheadSearch = function() {
 
   // passing in `null` for the `options` arguments will result in the default
   // options being used
-  $('#keywords').typeahead({
+  $('#nav-keyword').typeahead({
     minLength: 2,
     highlight: true,
     menu: $('.keyword-suggestions')
@@ -36,7 +36,7 @@ Spree.typeaheadSearch = function() {
     }
   });
 
-  $('#keywords').on('typeahead:selected', function(e, s) {
+  $('#nav-keyword').on('typeahead:selected', function(e, s) {
     $(this).typeahead("val", s.name); // fill name
   }).on('typeahead:select', function(e, s) {
     window.location = s.link; // redirect directly to product for S1
