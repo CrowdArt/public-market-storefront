@@ -355,7 +355,7 @@ GEM
       excon (~> 0.58)
       formatador (~> 0.2)
       mime-types
-    fog-google (1.4.0)
+    fog-google (1.5.0)
       fog-core
       fog-json
       fog-xml
@@ -486,7 +486,7 @@ GEM
     multipart-post (2.0.0)
     nenv (0.3.0)
     nio4r (2.3.1)
-    nokogiri (1.8.2)
+    nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
