@@ -26,7 +26,7 @@ module Spree
           {
             isbn: isbn,
             author: product.dig('author'),
-            format: product.dig('binding'),
+            format: product.dig('binding').split('; ').uniq.join('; '),
             publisher: product.dig('publisher'),
             published_at: date(product.dig('pubdate')),
             language: product.dig('currlanguage'),

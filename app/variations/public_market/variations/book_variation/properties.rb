@@ -5,9 +5,12 @@ module PublicMarket
         class << self
           def variation_properties(product)
             return if (formats = product.property(:format)).blank?
-            formats.split('; ').map do |f|
-              find_book_format(f) || 'Other'
-            end.uniq
+            format_variation =
+              formats.split('; ').reject { |f| f.casecmp('other').zero? }.find do |format|
+                mapped_format = find_book_format(format)
+                break mapped_format if mapped_format
+              end
+            [format_variation || 'Other']
           end
 
           def find_book_format(format)
@@ -30,6 +33,7 @@ module PublicMarket
                 'perfect',
                 'digest paperback',
                 'uk-a format paperback',
+                'uk- a format paperback',
                 'uk-b format paperback',
                 'uk-trade paper'
               ],

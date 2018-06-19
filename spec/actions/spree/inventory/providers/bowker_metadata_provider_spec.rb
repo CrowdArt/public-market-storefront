@@ -86,6 +86,14 @@ RSpec.describe Spree::Inventory::Providers::BowkerMetadataProvider, type: :actio
       end
     end
 
+    context 'with duplicate bindings' do
+      let(:isbn) { '9780321692405' }
+
+      it 'saves variant' do
+        expect(variant.product.property(:format)).to eq('Mixed Media; Print, Other; Trade Paper; Trade Cloth')
+      end
+    end
+
     context 'with round brackets in subject' do
       let(:isbn) { '9780807823767' }
 
