@@ -9,16 +9,15 @@ module PublicMarket
             where
           end
 
-          def results(products, _product)
-            groups = products.group_by { |p| p['format'] }.map do |k, v|
+          def results(products, product)
+            products.group_by { |p| p['format'] }.map do |k, v|
               {
                 name: BookVariation::Properties.find_book_format(k) || k,
                 price: min_price(v),
-                slug: v.first['slug'],
+                slug: v.min_by { |b| b[:slug] == product.slug ? 0 : 1 }[:slug], # current product slug should be first
                 ids: v.map(&:_id).map(&:to_i)
               }
             end
-            groups.length < 2 ? [] : groups
           end
 
           def min_price(products)
