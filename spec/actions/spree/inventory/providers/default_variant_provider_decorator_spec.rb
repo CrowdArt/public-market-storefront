@@ -27,4 +27,11 @@ RSpec.describe Spree::Inventory::Providers::DefaultVariantProvider, type: :actio
       expect(variant.reload.seller).to eq(item_json[:seller])
     end
   end
+
+  describe '#categorize' do
+    it 'creates filterable taxonomy dy default' do
+      expect(variant.product.taxonomy.filterable).to be true
+      expect(variant.product.taxons).not_to be_empty
+    end
+  end
 end
