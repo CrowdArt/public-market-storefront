@@ -50,7 +50,17 @@ $(document).on('ajax:beforeSend', '#search-filters-form', function() {
   $('#products').removeClass('products-loading')
   $('#per_page_selector').attr('disabled', false)
 }).on('ajax:success', function(xhr, status) {
-  history.pushState({}, '', '//' + location.host + location.pathname + '?' + $('#search-filters-form').serialize())
+  history.pushState(null, null, '//' + location.host + location.pathname + '?' + $('#search-filters-form').serialize())
+})
+
+$(window).on('popstate', function (e) {
+  if ($('#search-filters-form').length > 0) {
+    $('#products').addClass('products-loading')
+
+    // use turbolinks on forward to skip form deserialisation
+    var visitOptions = e.originalEvent.state === null ? { action: 'replace' } : {}
+    Turbolinks.visit(location, visitOptions)
+  }
 })
 
 // disable closing dropdown on label click
@@ -65,7 +75,7 @@ $(document).on('beforeItemRemove', '#filter-tags', function(event) {
   var item = $('#' + event.item.id)
 
   if (item.is(':checkbox') || item.is(':radio')) {
-    item.prop('checked', false)
+    item.attr('checked', false)
   } else {
     // allow to clear by name to remove top nav keyword input
     var inputName = item.prop('name')

@@ -1,4 +1,6 @@
 - content_for :head
+  meta name='turbolinks-cache-control' content='no-cache'
+
   = stylesheet_link_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.css'
 
   = javascript_include_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.js', defer: true
@@ -7,6 +9,7 @@
 .search-filters-container
   .search-filters
     = form_tag url_for, method: :get, remote: true, id: 'search-filters-form' do
+      = hidden_field_tag :taxon, params[:taxon], id: :filter_taxon
       = hidden_field_tag :keywords, params[:keywords]
       = hidden_field_tag :per_page, params[:per_page]
 
