@@ -370,7 +370,7 @@ GEM
     foundation_emails (2.2.1.0)
     friendly_id (5.2.4)
       activerecord (>= 4.0.0)
-    fugit (1.1.1)
+    fugit (1.1.2)
       et-orbi (~> 1.1, >= 1.1.1)
       raabro (~> 1.1)
     fuubar (2.3.1)
