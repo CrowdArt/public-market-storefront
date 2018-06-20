@@ -50,7 +50,7 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
     end
 
     context 'when format is the same' do
-      let!(:other_book) { create :book, name: name, author: author, taxons: taxons, format: 'Trade Cloth' }
+      let!(:other_book) { create :book, price: 1, name: name, author: author, taxons: taxons, format: 'Trade Cloth' }
 
       it { expect(variations.size).to eq 1 }
       it { is_expected.to include(name: 'Hardcover', price: product.price.to_f, slug: product.slug, ids: include(product.id, other_book.id)) }

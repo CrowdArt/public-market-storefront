@@ -16,7 +16,7 @@ module Spree
     end
 
     def cache_key_for_product(product = @product, opts = {})
-      (common_product_cache_keys + [product.cache_key] + opts.to_a).compact.join('/')
+      ([:v1] + common_product_cache_keys + [product.cache_key] + opts.to_a).compact.join('/')
     end
 
     def product_variants(product = @product)
@@ -40,7 +40,7 @@ module Spree
 
     private
 
-    def prepare_buy_box_variants(option_variants) # rubocop:disable Metrics/AbcSize
+    def prepare_buy_box_variants(option_variants)
       option_value = option_variants[0]
       variants = option_variants[1]
       selected_variant = variants.first
