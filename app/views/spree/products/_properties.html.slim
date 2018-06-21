@@ -1,0 +1,15 @@
+- if @product_properties.present?
+  - show_title ||= false
+
+  table#product-properties.table.table-striped.no-border-cells
+    tbody
+      - if show_title
+        tr
+          td.upcase colspan=2
+            strong Properties
+
+      - @product_properties.each do |product_property|
+        tr
+          td
+            strong = product_property.property.presentation
+          td = product_property.value

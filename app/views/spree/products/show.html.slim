@@ -1,6 +1,8 @@
-- @body_id = 'product-details'
+ruby:
+  @body_id = 'product-details'
+  is_mobile = browser.device.mobile?
 
-- cache(cache_key_for_product(@product, admin: spree_current_user&.admin?)) do
+- cache(cache_key_for_product(@product, admin: spree_current_user&.admin?, mobile: is_mobile)) do
   ruby:
     can_supply = @product.can_supply?
     variants, other_seller_variants = product_variants if can_supply
@@ -15,6 +17,9 @@
 
           #thumbnails data-hook=true
             = render partial: 'thumbnails'
+
+      - unless is_mobile
+        = render partial: 'properties', locals: { show_title: true }
 
     .col-xs-12.col-sm-7.col-md-4.col-md-push-4.product-cart-item
       #cart-form.panel.no-border
@@ -52,12 +57,14 @@
         .product-description.card data-hook='product_description' itemprop='description'
           a.pull-right role='button' data-toggle='collapse' data-parent='#main-accordion' href="#details" aria-expanded='true' aria-controls='details'
           h6.upcase Product Details
-          #details.collapse class=(browser.device.mobile? ? '' : 'in') = product_description(@product)
-        .product-properties.card data-hook='product_properties'
-          a.pull-right.collapsed role='button' data-toggle='collapse' data-parent='#main-accordion' href="#properties" aria-expanded='true' aria-controls='properties'
-          h6.upcase Properties
-          #properties.collapse class=(browser.device.mobile? ? '' : 'in')
-            = render partial: 'properties'
+          #details.collapse class=('in' unless is_mobile) = product_description(@product)
+
+        - if is_mobile
+          .card
+            a.pull-right.collapsed role='button' data-toggle='collapse' data-parent='#main-accordion' href="#properties" aria-expanded='true' aria-controls='properties'
+            h6.upcase Properties
+            #properties.collapse
+              = render partial: 'properties'
 
 javascript:
   $('.collapse').collapse({ toggle: false });
