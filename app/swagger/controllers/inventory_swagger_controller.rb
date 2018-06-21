@@ -1,6 +1,52 @@
 module Swagger
   module Schemas
     class InventorySwaggerController < BaseSwaggerController
+      swagger_path '/inventory/{content_format}' do
+        operation :post do
+          key :summary, 'Upload inventory'
+          key :description, 'Uploads inventory within given file with inventory items'
+
+          key :tags, [:inventory]
+
+          key :consumes, ['application/json', 'text/csv']
+
+          security do
+            key :pm_token, []
+          end
+
+          parameter do
+            key :name, :product_type
+            key :description, 'Product type'
+            key :in, :path
+            key :required, true
+            key :type, :string
+            key :enum, Spree::Inventory::UploadFileAction.supported_product_types
+            key :example, :books
+          end
+
+          parameter do
+            key :name, :body
+            key :description, 'Inventory items'
+            key :in, :body
+            key :required, true
+
+            schema do
+              property :items do
+                key :type, :array
+                items do
+                  key :'$ref', :BookInventoryInput
+                end
+              end
+            end
+          end
+
+          extend SwaggerResponses::AuthenticationError
+          response 200 do
+            key :description, 'Returns async job id'
+          end
+        end
+      end
+
       swagger_path '/inventory/{content_format}/{product_type}' do
         operation :post do
           key :summary, 'Upload inventory'
@@ -44,7 +90,7 @@ module Swagger
               property :items do
                 key :type, :array
                 items do
-                  key :'$ref', :InventoryInput
+                  key :'$ref', :MusicInventoryInput
                 end
               end
             end
