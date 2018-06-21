@@ -46,21 +46,16 @@ $(document).on('change', '#per_page_selector', function() {
 $(document).on('ajax:beforeSend', '#search-filters-form', function() {
   $('#products').addClass('products-loading')
   $('#per_page_selector').attr('disabled', true)
-}).on('ajax:complete', function(xhr, status) {
+}).on('ajax:complete', '#search-filters-form', function(xhr, status) {
   $('#products').removeClass('products-loading')
   $('#per_page_selector').attr('disabled', false)
-}).on('ajax:success', function(xhr, status) {
-  history.pushState(null, null, '//' + location.host + location.pathname + '?' + $('#search-filters-form').serialize())
+}).on('ajax:success', '#search-filters-form', function(xhr, status) {
+  history.pushState(history.state, null, '//' + location.host + location.pathname + '?' + $('#search-filters-form').serialize())
 })
 
 $(window).on('popstate', function (e) {
-  if ($('#search-filters-form').length > 0) {
+  if ($('#search-filters-form').length > 0)
     $('#products').addClass('products-loading')
-
-    // use turbolinks on forward to skip form deserialisation
-    var visitOptions = e.originalEvent.state === null ? { action: 'replace' } : {}
-    Turbolinks.visit(location, visitOptions)
-  }
 })
 
 // disable closing dropdown on label click
