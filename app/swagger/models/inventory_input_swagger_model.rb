@@ -37,7 +37,7 @@ module Swagger
       end
 
       swagger_schema :MusicInventoryInput do
-        key :required, %i[sku quantity price format artist title description condition]
+        key :required, %i[sku quantity price format artist title description condition images]
 
         property :sku do
           key :type, :string
@@ -77,6 +77,12 @@ module Swagger
         property :speed do
           key :type, :string
         end
+        property :genres do
+          key :type, :string
+        end
+        property :images do
+          key :type, :array
+        end
 
         key :example, sku: '3-F-2-0034',
                       quantity: 20,
@@ -85,11 +91,13 @@ module Swagger
                       format: 'vinyl',
                       artist: 'Blake Shelton',
                       title: 'Song 1',
-                      description: 'Song description',
+                      description: 'Record description',
                       notes: 'Used but Very Good',
                       label: 'Best Label',
                       label_number: 'PK-12',
-                      speed: '45'
+                      genres: 'Hardcore',
+                      speed: '45',
+                      images: ['https://fakeimg.pl/200', 'https://fakeimg.pl/300', 'https://fakeimg.pl/400']
       end
     end
   end

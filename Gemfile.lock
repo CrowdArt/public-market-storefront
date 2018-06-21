@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_batch_api.git
-  revision: ec85ebe531df58b1c097d276b278180d6314ba6f
+  revision: 4c2d2d81e5cd1502850159f97a63462826cc0d09
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer

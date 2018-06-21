@@ -47,7 +47,7 @@ module Swagger
         end
       end
 
-      swagger_path '/inventory/{content_format}/{product_type}' do
+      swagger_path '/inventory/{content_format}/music' do
         operation :post do
           key :summary, 'Upload inventory'
           key :description, 'Uploads inventory within given file with inventory items'
@@ -76,8 +76,8 @@ module Swagger
             key :in, :path
             key :required, true
             key :type, :string
-            key :enum, Spree::Inventory::UploadFileAction.supported_product_types
-            key :example, :books
+            key :enum, %i[music]
+            key :example, :music
           end
 
           parameter do
