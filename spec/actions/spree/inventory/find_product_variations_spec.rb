@@ -20,6 +20,23 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
   end
 
   describe 'book variations by cover type' do
+    context 'when edition is defined' do
+      let!(:variation) { create :book, name: name, author: author, taxons: taxons, format: 'Trade Paper', edition: 'Revised' }
+
+      include_examples 'includes self variation'
+
+      context 'when edition is same' do
+        let(:product) { create :book, name: name, author: author, taxons: taxons, format: 'Trade Cloth', edition: 'Revised' }
+
+        it do
+          is_expected.to include(
+            { name: 'Paperback', price: be_positive, slug: variation.slug, ids: [variation.id] },
+            { name: 'Hardcover', price: be_positive, slug: product.slug, ids: [product.id] }
+          )
+        end
+      end
+    end
+
     context 'when title and author are the same' do
       let!(:variation) { create :book, name: name, author: author, taxons: taxons, format: 'Trade Paper' }
 

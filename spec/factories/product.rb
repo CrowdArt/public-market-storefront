@@ -7,6 +7,7 @@ FactoryBot.define do
       author FFaker::Book.author
       isbn FFaker::Book.isbn
       format ['Trade Cloth', 'Trade Paper'].sample
+      edition nil
     end
 
     after :create do |product, evaluator|
@@ -24,6 +25,13 @@ FactoryBot.define do
              product: product,
              property: create(:property, name: 'format'),
              value: evaluator.format)
+
+      if evaluator.edition.present?
+        create(:product_property,
+               product: product,
+               property: create(:property, name: 'edition'),
+               value: evaluator.edition)
+      end
     end
   end
 end
