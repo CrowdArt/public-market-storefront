@@ -1,7 +1,7 @@
 module Swagger
   module Schemas
     class InventorySwaggerController < BaseSwaggerController
-      swagger_path '/inventory/{content_format}' do
+      swagger_path '/inventory/{content_format}/{product_type}' do
         operation :post do
           key :summary, 'Upload inventory'
           key :description, 'Uploads inventory within given file with inventory items'
@@ -22,6 +22,16 @@ module Swagger
             key :type, :string
             key :enum, %i[json csv]
             key :example, :json
+          end
+
+          parameter do
+            key :name, :product_type
+            key :description, 'Product type'
+            key :in, :path
+            key :required, true
+            key :type, :string
+            key :enum, Spree::Inventory::UploadFileAction.supported_product_types
+            key :example, :books
           end
 
           parameter do

@@ -1,0 +1,150 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://bms.bowker.com/rest/books/isbn/9780253202505?format=xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic <BOWKER_AUTH>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 21 Jun 2018 15:22:22 GMT
+      Server:
+      - Apache/2.2.3 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '153'
+      Content-Type:
+      - text/xml
+      Set-Cookie:
+      - BIGipServerbms_pool=1152785324.20480.0000; path=/
+    body:
+      encoding: ASCII-8BIT
+      string: '<result found="1" returned="1" page="1" pagesize="10"><item id="1TH9JT6PEz73P"><details>http://bms.bowker.com/rest/books/id/1TH9JT6PEz73P?fields=all</details></item></result>
+
+'
+    http_version: 
+  recorded_at: Thu, 21 Jun 2018 15:22:22 GMT
+- request:
+    method: get
+    uri: http://bms.bowker.com/rest/books/id/1TH9JT6PEz73P?fields=all
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic <BOWKER_AUTH>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 21 Jun 2018 15:22:22 GMT
+      Server:
+      - Apache/2.2.3 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '590'
+      Content-Type:
+      - text/xml
+      Set-Cookie:
+      - BIGipServerbms_pool=1018567596.20480.0000; path=/
+      X-Cache:
+      - MISS from 32a492635bac
+      X-Cache-Lookup:
+      - MISS from 32a492635bac:3128
+      Via:
+      - 1.1 32a492635bac (squid/3.3.8)
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '<result found="1"><item id="1TH9JT6PEz73P"><details>http://bms.bowker.com/rest/books/id/1TH9JT6PEz73P?fields=all</details><retailcurrency>US
+        Dollars (USD, $)</retailcurrency><retailprice>10.95</retailprice><title>French
+        Symbolist Poetry</title><subtitle>An Anthology</subtitle><author>John P. Houston
+        (Editor); Mona T. Houston (Editor)</author><bicsubject>POETRY ANTHOLOGIES
+        (VARIOUS POETS)_FRANCE</bicsubject><isbn>978-0-253-20250-5</isbn><isbn10>0-253-20250-7</isbn10><subject>FRENCH
+        POETRY; POETRY / European / French; French Poetry; POETRY ANTHOLOGIES (VARIOUS
+        POETS)_FRANCE</subject><doi>10.1604/9780253202505</doi><market>USA</market><binding>Trade
+        Paper</binding><copyright>1980-01-01</copyright><pubdate>1980-09-01</pubdate><publisher>Indiana
+        University Press</publisher><status>Out of Print</status><currency>US Dollars
+        (USD, $)</currency><price>10.95</price><pricedate>1999-04-01</pricedate><retailpricedate>1999-04-01</retailpricedate><pagecount>288</pagecount><currlanguage>French;
+        English</currlanguage><imprint>Midland Books</imprint><pub_co_uid>12826</pub_co_uid></item></result>
+
+'
+    http_version: 
+  recorded_at: Thu, 21 Jun 2018 15:22:23 GMT
+- request:
+    method: get
+    uri: https://imageweb.bowker.com/rest/images/ean/9780253202505?size=original
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic <BOWKER_AUTH>
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      Date:
+      - Thu, 21 Jun 2018 15:22:24 GMT
+      Server:
+      - Apache/2.2.3 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '296'
+      Connection:
+      - close
+      Content-Type:
+      - text/html; charset=iso-8859-1
+      Set-Cookie:
+      - BIGipServerimageweb=1337334700.20480.0000; path=/
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <html>
+        <head><title>Authorization Required</title></head>
+        <body>
+        <h1>Authorization Required</h1>
+        Access denied. The image '9780253202505' requires these roles: FreeCoverImage. The current user, abundance, has the following roles: read, bmsusa, BIPImage, basic, ingram, pubimage, basic2, annotation, bmsbip, bmsebk, basic3.
+
+
+        <p>
+        For more information, please see
+        <a href="http://imageweb.bowker.com/help">http://imageweb.bowker.com/help</a>.
+        </body>
+        </html>
+    http_version: 
+  recorded_at: Thu, 21 Jun 2018 15:22:24 GMT
+recorded_with: VCR 4.0.0

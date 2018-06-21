@@ -1,4 +1,4 @@
-RSpec.describe Spree::Inventory::Providers::DefaultVariantProvider, type: :action, vcr: true do
+RSpec.describe Spree::Inventory::Providers::Books::VariantProvider, type: :action, vcr: true do
   subject(:variant) { described_class.call(item_json) }
 
   let(:isbn) { '9780979728303' }

@@ -11,7 +11,6 @@
 # config.setting_name = 'new value'
 Spree.config do |config|
   config.logo = config.admin_interface_logo = 'logo/public_market_logo_white.svg'
-  config.product_metadata_provider = 'Spree::Inventory::Providers::BowkerMetadataProvider'
   config.allow_guest_checkout = false
   config.address_requires_phone = false
   config.products_per_page = 20
