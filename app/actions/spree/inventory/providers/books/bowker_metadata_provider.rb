@@ -2,7 +2,7 @@ module Spree
   module Inventory
     module Providers
       module Books
-        class MetadataProvider < Spree::BaseAction
+        class BowkerMetadataProvider < Spree::BaseAction
           param :isbn
 
           def call

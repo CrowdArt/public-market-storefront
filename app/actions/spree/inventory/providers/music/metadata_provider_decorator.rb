@@ -21,9 +21,9 @@ module Spree
             file
           end
         end
+
+        MetadataProvider.prepend(MetadataProviderDecorator)
       end
     end
   end
 end
-
-Spree::Inventory::Providers::Music::MetadataProvider.prepend(Spree::Inventory::Providers::Music::MetadataProviderDecorator)

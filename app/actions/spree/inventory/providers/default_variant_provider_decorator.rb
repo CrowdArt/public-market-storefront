@@ -21,8 +21,8 @@ module Spree
           parent_taxon.products << product
         end
       end
+
+      DefaultVariantProvider.prepend(DefaultVariantProviderDecorator)
     end
   end
 end
-
-Spree::Inventory::Providers::DefaultVariantProvider.prepend(Spree::Inventory::Providers::DefaultVariantProviderDecorator)

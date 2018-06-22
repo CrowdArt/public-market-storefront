@@ -1,4 +1,4 @@
-RSpec.describe Spree::Inventory::Providers::Books::MetadataProvider, type: :action, vcr: true do
+RSpec.describe Spree::Inventory::Providers::Books::BowkerMetadataProvider, type: :action, vcr: true do
   subject(:properties) { metadata[:properties] }
 
   let(:metadata) { described_class.call(isbn) }
