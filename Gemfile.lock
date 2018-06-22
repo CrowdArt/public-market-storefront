@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_batch_api.git
-  revision: 4c2d2d81e5cd1502850159f97a63462826cc0d09
+  revision: 5f12be7158bafcac811b2a967b0952e4fac5d60a
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -565,7 +565,7 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.2)
     puma (3.11.4)
-    raabro (1.1.5)
+    raabro (1.1.6)
     rabl (0.13.1)
       activesupport (>= 2.3.14)
     rack (2.0.5)
