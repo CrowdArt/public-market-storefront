@@ -31,6 +31,7 @@
       "description": "Record description",
       "notes": "Used but Very Good",
       "label": "Best Label",
+      "label_number": "PK-12",
       "genres": "Folk",
       "speed": "45",
       "images": [
@@ -48,7 +49,6 @@
       "description": "Record description",
       "notes": "Used but Very Good",
       "label": "Best Label",
-      "label_number": "PK-12",
       "genres": "Folk",
       "images": [
         "https://upload.wikimedia.org/wikipedia/commons/d/d5/CD_autolev_crop.jpg"

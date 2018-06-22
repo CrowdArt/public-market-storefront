@@ -1,14 +1,12 @@
 ruby:
-  url = spree.product_path(product, taxon_id: taxon.try(:id))
   card_size ||= 'col-lg-3 col-md-4 col-sm-6 col-xs-6'
   max_mobile ||= max_mobile
   index = local_assigns[:product_counter] || 0
-  is_admin = spree_current_user&.admin?
 
 .product-list-item id="product_#{product.id}" class="#{card_size} #{'hidden-xxs' if max_mobile && index >= max_mobile}" itemscope=true itemtype="https://schema.org/Product"
-  - cache(taxon.present? ? [I18n.locale, current_currency, taxon, product] : cache_key_for_product(product, admin: is_admin)) do
+  - cache(cache_key_for_product(product)) do
     .product-list-item--inner
-      = link_to url, itemprop: 'url', class: 'plain-link'
+      = link_to spree.product_path(product), itemprop: 'url', class: 'plain-link'
         .product-list-item--image itemprop='image' style="background-image:url('#{product_image_or_default(product, :large)}')"
 
         .text-center itemprop='offers' itemscope=true itemtype='https://schema.org/Offer'
