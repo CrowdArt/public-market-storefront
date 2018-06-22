@@ -1,7 +1,7 @@
 module Swagger
   module Schemas
     class InventorySwaggerController < BaseSwaggerController
-      swagger_path '/inventory/{content_format}' do
+      swagger_path '/inventory/{content_format}/{product_type}' do
         operation :post do
           key :summary, 'Upload inventory'
           key :description, 'Uploads inventory within given file with inventory items'
@@ -12,6 +12,16 @@ module Swagger
 
           security do
             key :pm_token, []
+          end
+
+          parameter do
+            key :name, :content_format
+            key :description, 'Upload format (json or csv)'
+            key :in, :path
+            key :required, true
+            key :type, :string
+            key :enum, %i[json csv]
+            key :example, :json
           end
 
           parameter do
