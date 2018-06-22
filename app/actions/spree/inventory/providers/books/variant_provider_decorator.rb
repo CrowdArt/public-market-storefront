@@ -8,6 +8,10 @@ module Spree
           def metadata_provider
             BowkerMetadataProvider
           end
+
+          def taxonomy_name
+            'Books'
+          end
         end
 
         VariantProvider.prepend(VariantProviderDecorator)

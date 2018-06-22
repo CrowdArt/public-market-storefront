@@ -27,7 +27,7 @@ RSpec.describe Spree::Inventory::Providers::Books::VariantProvider, type: :actio
     expect(variant.product.property(:pages)).to eq('368')
     taxons = variant.product.taxons
     expect(taxons.count).to eq(1)
-    expect(taxons.first.pretty_name).to eq('Categories -> Fiction -> Thrillers -> Suspense')
+    expect(taxons.first.pretty_name).to eq('Books -> Fiction -> Thrillers -> Suspense')
   end
 
   context 'with empty subject' do
@@ -37,7 +37,7 @@ RSpec.describe Spree::Inventory::Providers::Books::VariantProvider, type: :actio
       expect(variant).not_to be_nil
       taxons = variant.product.taxons
       expect(taxons.count).to eq(1)
-      expect(taxons.first.pretty_name).to eq('Categories')
+      expect(taxons.first.pretty_name).to eq('Books')
     end
   end
 
@@ -64,7 +64,7 @@ RSpec.describe Spree::Inventory::Providers::Books::VariantProvider, type: :actio
       expect(variant).not_to be_nil
       taxons = variant.product.taxons
       expect(taxons.count).to eq(1)
-      expect(taxons.first.pretty_name).to eq('Categories -> Charlotte (n.c.)')
+      expect(taxons.first.pretty_name).to eq('Books -> Charlotte (n.c.)')
     end
   end
 
