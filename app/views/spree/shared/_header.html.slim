@@ -1,5 +1,5 @@
 ruby:
-  root_taxons = Spree::Taxon.roots
+  root_taxons = Spree::Taxon.joins(:taxonomy).roots.reorder('spree_taxonomies.position')
   enabled_taxons = root_taxons.visible
   disabled_taxons = root_taxons.hidden
   taxon = @taxon&.root || (Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon])
@@ -33,7 +33,7 @@ ruby:
           - cache([:v3, :navbar_top_right, spree_current_user])
             = render partial: 'spree/nav/navbar_top_right'
 
-      - cache([:v4, :navbar_bottom_row, root_taxons, taxon])
+      - cache([:v5, :navbar_bottom_row, root_taxons, taxon])
         / use divider instead of border because rows/cols have paddings
         hr.divider.hidden-xs.hidden-sm
 
