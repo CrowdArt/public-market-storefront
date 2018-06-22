@@ -9,7 +9,7 @@ SitemapGenerator::Sitemap.create do
 
   add(products_path)
 
-  Spree::Product.active.distinct.find_each do |product|
+  Spree::Product.active.find_each do |product|
     add(product_path(product), lastmod: product.updated_at)
   end
 
