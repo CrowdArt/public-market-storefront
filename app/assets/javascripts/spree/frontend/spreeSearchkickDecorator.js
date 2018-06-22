@@ -4,7 +4,7 @@ Spree.typeaheadSearch = function() {
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     limit: 10,
     remote: {
-      url: '/autocomplete/products.json?keywords=%QUERY',
+      url: '/autocomplete/products.json?taxon_id=' + $('#navbar-taxon').val() + '&keywords=%QUERY',
       wildcard: '%QUERY',
       cache: false
     }

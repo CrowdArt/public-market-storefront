@@ -42,4 +42,9 @@ namespace :db do
     system('rake db:setup')
     system('rake spree_sample:indaba_samples')
   end
+
+  desc 'Seed music taxonomy'
+  task seed_music: :environment do
+    require './db/seeds/music_taxonomy.rb'
+  end
 end

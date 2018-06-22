@@ -25,10 +25,8 @@ module Spree
       end
 
       def author
-        product_properties.joins(:property)
-                          .where("spree_properties.name = 'author' OR spree_properties.name = 'manufacturer'")
-                          .select('spree_product_properties.property_id, spree_product_properties.value, spree_properties.name as property_name')
-                          .first
+        return if taxonomy&.variation_module.blank?
+        taxonomy.variation_module::Properties.author(product_properties)
       end
 
       def update_best_price
@@ -94,7 +92,7 @@ module Spree
       # enable searchkick callbacks in RecalculateVendorVariantPrice
       # when price is included in searchkick index
       def search_fields
-        %i[name author isbn]
+        %i[name author artist isbn]
       end
     end
   end

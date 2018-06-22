@@ -18,6 +18,12 @@ module PublicMarket
             book_format.find { |_k, v| v.include?(format.downcase) }&.first
           end
 
+          def author(properties)
+            properties.joins(:property)
+                      .select('spree_product_properties.property_id, spree_product_properties.value, spree_properties.name as property_name')
+                      .find_by(spree_properties: { name: 'author' })
+          end
+
           def book_format # rubocop:disable Metrics/MethodLength
             {
               'Hardcover' => [

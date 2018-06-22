@@ -1,7 +1,8 @@
 module Spree
   module ProductsControllerDecorator
     def self.prepended(base)
-      base.before_action :save_return_to, :load_taxon, only: :show
+      base.before_action :save_return_to, only: :show
+      base.before_action :load_taxon, only: %i[show autocomplete]
     end
 
     def best_selling
@@ -37,7 +38,14 @@ module Spree
     end
 
     def autocomplete
-      @products = Spree::Inventory::Searchers::Autocomplete.new(limit: 10, keywords: params[:keywords]).call.results
+      opts = {
+        limit: 10,
+        keywords: params[:keywords]
+      }
+      opts[:taxon_ids] = @taxon.id if @taxon
+
+      @products = Spree::Inventory::Searchers::Autocomplete.new(opts).call.results
+
       respond_to do |format|
         format.json
       end
@@ -47,7 +55,12 @@ module Spree
 
     def load_taxon
       taxon_id = params[:taxon_id]
-      @taxon = taxon_id.present? ? Spree::Taxon.find(taxon_id) : @product.taxons.first
+      @taxon =
+        if taxon_id.present?
+          Spree::Taxon.find(taxon_id)
+        elsif @product
+          @product.taxons.first
+        end
     end
   end
 end

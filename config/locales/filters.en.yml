@@ -19,5 +19,6 @@ en:
     taxonomy_title:
       root:
         books: Categories
+        music: Genres
       child:
         books: Subcategories

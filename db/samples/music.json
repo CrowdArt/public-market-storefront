@@ -1,0 +1,58 @@
+{
+  "items": [
+    {
+      "sku": "3111-F-2-0034",
+      "quantity": 20,
+      "price": 52.59,
+      "condition": "VG",
+      "format": "vinyl",
+      "artist": "Blake Shelton",
+      "title": "Boys 'Round Here",
+      "description": "Record description",
+      "notes": "Used but Very Good",
+      "label": "Best Label",
+      "label_number": "PK-12",
+      "genres": "Country",
+      "speed": "45",
+      "images": [
+        "https://upload.wikimedia.org/wikipedia/commons/b/b6/12in-Vinyl-LP-Record-Angle.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/6/69/Gloria_G.O._13078b.jpg",
+        "https://fakeimg.pl/400"
+      ]
+    },
+    {
+      "sku": "111-vi",
+      "quantity": 20,
+      "price": 2.59,
+      "condition": "G+",
+      "format": "vinyl",
+      "artist": "Blake Shelton",
+      "title": "Mine Would Be You",
+      "description": "Record description",
+      "notes": "Used but Very Good",
+      "label": "Best Label",
+      "genres": "Folk",
+      "speed": "45",
+      "images": [
+        "https://upload.wikimedia.org/wikipedia/commons/b/b6/12in-Vinyl-LP-Record-Angle.jpg"
+      ]
+    },
+    {
+      "sku": "111",
+      "quantity": 20,
+      "price": 2.59,
+      "condition": "G+",
+      "format": "cd",
+      "artist": "Blake Shelton",
+      "title": "Mine Would Be You",
+      "description": "Record description",
+      "notes": "Used but Very Good",
+      "label": "Best Label",
+      "label_number": "PK-12",
+      "genres": "Folk",
+      "images": [
+        "https://upload.wikimedia.org/wikipedia/commons/d/d5/CD_autolev_crop.jpg"
+      ]
+    }
+  ]
+}
