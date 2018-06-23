@@ -48,3 +48,6 @@ en:
     delete_prompt: Are you sure you want to delete this shipping address?
     use_new_shipping_address: Use a new shipping address
     use_existing_shipping_address: Ship to existing address
+
+  properties:
+    vinyl_speed: RPM
