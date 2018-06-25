@@ -157,7 +157,7 @@ body#product-details
         padding: 6px 10px
         cursor: pointer
 
-.product-list-item
+.product-card
   &--inner
     padding: 20px 30px
     background: #fff
@@ -170,11 +170,15 @@ body#product-details
     background-size: contain
     background-position: center top
     background-repeat: no-repeat
-    padding-bottom: percentage(310/210)
+    padding-bottom: 100%
     margin-bottom: 20px
 
     @media (max-width: $screen-xs)
       margin-bottom: 15px
+
+    @supports (--custom:property)
+      &[style*='--aspect-ratio']
+        padding-bottom: calc(100% / (var(--aspect-ratio)))
 
   &--info
     overflow: hidden

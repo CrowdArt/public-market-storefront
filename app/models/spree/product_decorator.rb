@@ -9,6 +9,7 @@ module Spree
       base.prepend InstanceMethods
 
       base.include Spree::Core::NumberGenerator.new(prefix: 'PM', letters: true, length: 13)
+      base.include PublicMarket::ProductKind
 
       base.before_validation :set_missing_title, if: -> { name.blank? }
 
@@ -17,16 +18,13 @@ module Spree
       base.scope :in_stock, lambda {
         joins(variants: :stock_items).where('spree_stock_items.count_on_hand > ? OR spree_variants.track_inventory = ?', 0, false)
       }
+
+      base.delegate :variation_module, to: :taxonomy, allow_nil: true
     end
 
     module InstanceMethods
       def should_generate_new_friendly_id?
         name_changed? || super
-      end
-
-      def author
-        return if taxonomy&.variation_module.blank?
-        taxonomy.variation_module::Properties.author(product_properties)
       end
 
       def update_best_price
@@ -65,8 +63,7 @@ module Spree
       end
 
       def search_variations
-        return if taxonomy&.variation_module.blank?
-        taxonomy.variation_module::Properties.variation_properties(self)
+        variation_module&.const_get('Properties')&.variation_properties(self)
       end
 
       def estimated_ptrn

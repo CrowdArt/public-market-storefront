@@ -1,28 +1,28 @@
 module PublicMarket
   module Variations
     module Books
-      class Filters
-        class << self
-          def applicable_filters(aggregations)
-            filters = []
+      module Filters
+        module_function
 
-            if (variation_options = book_format_filter(aggregations['variations'])).present?
-              filters << {
-                name: 'Format',
-                type: :variations,
-                options: variation_options
-              }
-            end
+        def applicable_filters(aggregations)
+          filters = []
 
-            filters
+          if (variation_options = book_format_filter(aggregations['variations'])).present?
+            filters << {
+              name: 'Format',
+              type: :variations,
+              options: variation_options
+            }
           end
 
-          def book_format_filter(filter)
-            Books::Properties.book_format.keys.map do |f|
-              bucket = filter['buckets'].find { |b| b['key'] == f }
-              disabled = bucket.blank? || bucket['doc_count'].zero?
-              { label: f, value: f, id: f.parameterize, disabled: disabled }
-            end
+          filters
+        end
+
+        def book_format_filter(filter)
+          Books::Properties.book_format.keys.map do |f|
+            bucket = filter['buckets'].find { |b| b['key'] == f }
+            disabled = bucket.blank? || bucket['doc_count'].zero?
+            { label: f, value: f, id: f.parameterize, disabled: disabled }
           end
         end
       end

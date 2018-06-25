@@ -3,12 +3,12 @@ ruby:
   max_mobile ||= max_mobile
   index = local_assigns[:product_counter] || 0
 
-.product-list-item id="product_#{product.id}" class="#{card_size} #{'hidden-xxs' if max_mobile && index >= max_mobile}" itemscope=true itemtype="https://schema.org/Product"
+.product-card id="product_#{product.id}" class="#{card_size} #{'hidden-xxs' if max_mobile && index >= max_mobile}" itemscope=true itemtype="https://schema.org/Product"
   - cache(cache_key_for_product(product)) do
-    .product-list-item--inner
+    .product-card--inner
       = link_to spree.product_path(product), itemprop: 'url', class: 'plain-link'
-        .product-list-item--image itemprop='image' style="background-image:url('#{product_image_or_default(product, :large)}')"
+        .product-card--image itemprop='image' style="background-image:url('#{product_image_or_default(product, :large)}');--aspect-ratio:#{product.image_aspect_ratio}"
 
         .text-center itemprop='offers' itemscope=true itemtype='https://schema.org/Offer'
-          .product-list-item--info = truncate(product.name, length: 100)
+          .product-card--info = truncate(product.name, length: 100)
           span itemprop='price' From #{display_price(product)}
