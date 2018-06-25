@@ -77,8 +77,11 @@
                 <p>Starting at $<%= min_price.to_f.round(2) %></p>
                 <%= link_to 'SHOP NOW', nested_taxons_path(t.permalink), class: 'btn btn-primary' %>
               </div>
+
               <figure>
-                <%= image_tag "home/#{category.downcase}.png" %>
+                <%= link_to nested_taxons_path(t.permalink) do %>
+                  <%= image_tag "home/#{category.downcase}.png" %>
+                <% end %>
               </figure>
             </div>
           </div>

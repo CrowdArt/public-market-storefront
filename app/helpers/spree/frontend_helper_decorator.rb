@@ -84,7 +84,7 @@ module Spree
     end
 
     def home_top_categories_cache_key(top_categories)
-      [:v1, :home, :top_categories, (Spree::Taxon.where(name: top_categories).maximum(:updated_at) || Time.zone.today).to_s(:number)]
+      [:v2, :home, :top_categories, (Spree::Taxon.where(name: top_categories).maximum(:updated_at) || Time.zone.today).to_s(:number)]
     end
   end
 end
