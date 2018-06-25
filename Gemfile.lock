@@ -355,7 +355,7 @@ GEM
       excon (~> 0.58)
       formatador (~> 0.2)
       mime-types
-    fog-google (1.5.0)
+    fog-google (1.6.0)
       fog-core
       fog-json
       fog-xml
