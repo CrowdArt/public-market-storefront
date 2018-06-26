@@ -15,13 +15,3 @@ end
 
 Capybara.javascript_driver = :selenium_chrome_headless
 Capybara.server = :puma, { Silent: true }
-
-module CapybaraHelpers
-  def native_fill_field(selector, text)
-    text.split('').each { |c| find_field(selector).native.send_keys(c) }
-  end
-end
-
-RSpec.configure do |config|
-  config.include CapybaraHelpers, type: :feature
-end
