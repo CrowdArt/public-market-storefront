@@ -1,4 +1,4 @@
-categories = Spree::Taxonomy.find_or_create_by!(name: 'Categories')
+categories = Spree::Taxonomy.find_or_create_by!(name: 'Books')
 
 CSV.foreach(File.join(__dir__, 'bisac.csv'), headers: false) do |row|
   taxons = row.last.split(' / ')

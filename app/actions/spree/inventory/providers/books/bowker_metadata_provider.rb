@@ -32,7 +32,8 @@ module Spree
               published_at: date(product.dig('pubdate')),
               language: product.dig('currlanguage'),
               pages: product.dig('pagecount'),
-              edition: product.dig('editiondesc')
+              edition: product.dig('editiondesc'),
+              book_subject: product.dig('subject')
             }
           end
 
@@ -54,10 +55,10 @@ module Spree
 
           def taxons(product)
             return [] if (subject = product.dig('subject')).blank?
-            subjects = subject.split('; ')
-            subjects.map { |s| s.split(' / ') }
-                    .max_by(&:length)
-                    .map(&:humanize)
+            # select taxons containing '/' - assume all BISAC have it
+            subject.split('; ')
+                   .select { |s| s.include?('/') }
+                   .map { |s| s.split(' / ') }
           end
 
           def images(product)

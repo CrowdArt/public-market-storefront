@@ -13,23 +13,21 @@ RSpec.describe Spree::Inventory::Providers::Books::BowkerMetadataProvider, type:
     it { expect(metadata[:price]).to be > 0 }
     it { expect(properties[:language]).not_to be_nil }
     it { expect(properties[:pages]).not_to be_nil }
-    it { expect(metadata[:taxons]).to include('Fiction', 'Thrillers', 'Suspense') }
     it { expect(metadata[:images]).not_to be_empty }
+
+    it 'contains correct taxons' do
+      expect(metadata[:taxons]).to include(
+        %w[FICTION Thrillers Suspense],
+        %w[THRILLER SUSPENSE],
+        ['FICTION', 'Family Life', 'Siblings'],
+        %w[FICTION Crime]
+      )
+    end
   end
 
   context 'with unknown isbn' do
     let(:isbn) { '9780747545576' }
 
     it { expect(metadata).to be_nil }
-  end
-
-  describe 'taxons logic' do
-    subject(:taxons) { metadata[:taxons] }
-
-    context 'with 9780439376105' do
-      let(:isbn) { '9780439376105' }
-
-      it { is_expected.to include('Juvenile fiction', 'Action & adventure', 'General') }
-    end
   end
 end

@@ -12,7 +12,7 @@ Devise::ConfirmationsController.class_eval do
           "email": "#{resource.try(:email)}"
         }))
       ]
-      respond_with({}, location: after_resending_confirmation_instructions_path_for(resource_name))
+      respond_with({}, { location: after_resending_confirmation_instructions_path_for(resource_name) })
     else
       respond_with(resource)
     end
