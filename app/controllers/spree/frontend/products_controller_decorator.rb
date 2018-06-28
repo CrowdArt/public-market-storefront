@@ -2,7 +2,7 @@ module Spree
   module ProductsControllerDecorator
     def self.prepended(base)
       base.before_action :save_return_to, only: :show
-      base.before_action :load_taxon, only: :autocomplete
+      base.before_action :load_taxon, only: %i[show autocomplete]
     end
 
     def best_selling
@@ -32,7 +32,6 @@ module Spree
     end
 
     def show
-      @taxon = @product.taxons.first
       redirect_if_legacy_path
     end
 
@@ -54,7 +53,12 @@ module Spree
 
     def load_taxon
       taxon_id = params[:taxon_id]
-      Spree::Taxon.find(taxon_id) if taxon_id.present?
+      @taxon =
+        if taxon_id.present?
+          Spree::Taxon.find_by(id: taxon_id)
+        elsif @product
+          @product.taxons.first
+        end
     end
   end
 
