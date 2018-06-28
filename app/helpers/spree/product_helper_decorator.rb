@@ -41,7 +41,7 @@ module Spree
     def property_value_format(property_name, value)
       case property_name
       when 'book_subject'
-        value.split('; ', 2).first&.humanize
+        value.split('; ', 2).first&.humanize&.capitalize
       when 'author'
         value
       else
