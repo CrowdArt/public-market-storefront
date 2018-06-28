@@ -12,7 +12,7 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
   let(:product) { create :book, name: name, author: author, taxons: taxons, format: 'Trade Cloth' }
 
   shared_examples 'includes self variation' do
-    it { is_expected.to eq [{ name: 'Hardcover', price: product.price.to_f, slug: product.slug, ids: [product.id] }] }
+    it { is_expected.to eq [{ name: 'Hardcover', variation: 'Hardcover', price: product.price.to_f, slug: product.slug, id: product.id }] }
   end
 
   context 'when no variations' do
@@ -20,31 +20,29 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
   end
 
   describe 'book variations by cover type' do
-    context 'when edition is defined' do
-      let!(:variation) { create :book, name: name, author: author, taxons: taxons, format: 'Trade Paper', edition: 'Revised' }
-
-      include_examples 'includes self variation'
-
-      context 'when edition is same' do
-        let(:product) { create :book, name: name, author: author, taxons: taxons, format: 'Trade Cloth', edition: 'Revised' }
-
-        it do
-          is_expected.to include(
-            { name: 'Paperback', price: be_positive, slug: variation.slug, ids: [variation.id] },
-            { name: 'Hardcover', price: be_positive, slug: product.slug, ids: [product.id] }
-          )
-        end
-      end
-    end
-
     context 'when title and author are the same' do
       let!(:variation) { create :book, name: name, author: author, taxons: taxons, format: 'Trade Paper' }
 
       it do
         is_expected.to include(
-          { name: 'Paperback', price: be_positive, slug: variation.slug, ids: [variation.id] },
-          { name: 'Hardcover', price: be_positive, slug: product.slug, ids: [product.id] }
+          { name: 'Paperback', variation: 'Paperback', price: be_positive, slug: variation.slug, id: variation.id },
+          { name: 'Hardcover', variation: 'Hardcover', price: be_positive, slug: product.slug, id: product.id }
         )
+      end
+
+      context 'when previous variation provided' do
+        subject(:variations) do
+          product.class.reindex
+          product.class.searchkick_index.refresh
+          described_class.call(product, variation)
+        end
+
+        it do
+          is_expected.to include(
+            { name: 'Paperback', variation: 'Paperback', price: be_positive, slug: variation.slug, id: variation.id },
+            { name: 'Hardcover', variation: 'Hardcover', price: be_positive, slug: product.slug, id: product.id }
+          )
+        end
       end
     end
 
@@ -67,10 +65,10 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
     end
 
     context 'when format is the same' do
-      let!(:other_book) { create :book, price: 1, name: name, author: author, taxons: taxons, format: 'Trade Cloth' }
+      before { create(:book, price: 1, name: name, author: author, taxons: taxons, format: 'Trade Cloth') }
 
       it { expect(variations.size).to eq 1 }
-      it { is_expected.to include(name: 'Hardcover', price: product.price.to_f, slug: product.slug, ids: include(product.id, other_book.id)) }
+      it { is_expected.to eq([{ name: 'Hardcover', variation: 'Hardcover', price: product.price.to_f, slug: product.slug, id: product.id }]) }
     end
 
     context 'when taxonomy is not a book' do

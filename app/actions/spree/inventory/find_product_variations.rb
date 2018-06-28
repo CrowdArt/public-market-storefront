@@ -2,14 +2,18 @@ module Spree
   module Inventory
     class FindProductVariations < Spree::BaseAction
       param :product
+      param :previous_variation, optional: true
 
-      def call
+      def call # rubocop:disable Metrics/AbcSize
         # TODO: cache
-        where = {}
+        where = {
+          id: { not: [product.id, previous_variation&.id].compact }
+        }
+
         variation = filter_by_taxonomy(where)
         return [] if variation.nil?
 
-        variation.filter(where, product)
+        variation.filter(where, product, previous_variation)
 
         products = Spree::Product.search(
           '*',
@@ -19,7 +23,7 @@ module Spree
           debug: false
         )
 
-        variation.results(products.results, product)
+        variation.results(products.results, product, previous_variation)
       end
 
       private

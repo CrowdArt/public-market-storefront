@@ -63,15 +63,15 @@ module Spree
       end
 
       def search_variations
-        variation_module&.const_get('Properties')&.variation_properties(self)
+        variation_module&.const_get('Properties')&.variation_properties(self) || []
+      end
+
+      def search_variation
+        search_variations.first
       end
 
       def estimated_ptrn
         (price * 0.1).floor
-      end
-
-      def variations
-        Spree::Inventory::FindProductVariations.call(self)
       end
 
       private

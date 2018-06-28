@@ -1,0 +1,8 @@
+
+ruby:
+  checked = variation[:id] == @product.id
+
+a.variation-link href=(checked ? nil : "/products/#{variation[:slug]}?variation=#{@product.id}") class=('checked' if checked)
+  = variation[:name]
+  br
+  = Spree::Money.new(variation[:price])

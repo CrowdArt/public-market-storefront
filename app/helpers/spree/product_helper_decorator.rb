@@ -16,7 +16,7 @@ module Spree
     end
 
     def cache_key_for_product(product = @product, opts = {})
-      ([:v8] + common_product_cache_keys + [product.cache_key] + opts.to_a).compact.join('/')
+      ([:v9] + common_product_cache_keys + [product.cache_key] + opts.to_a).compact.join('/')
     end
 
     def product_variants(product = @product)
@@ -47,6 +47,17 @@ module Spree
       else
         value
       end
+    end
+
+    def product_variations
+      return if @product.search_variation.blank?
+
+      variations = Spree::Inventory::FindProductVariations.call(@product, @previous_variation)
+
+      # always use same variations order
+      @product.variation_module::Properties.available_variations.map do |variation_name|
+        variations.find { |var| var[:variation] == variation_name }
+      end.compact
     end
 
     private

@@ -2,46 +2,52 @@ module PublicMarket
   module Variations
     class BaseVariationFinder
       class << self
-        def filter(where, product)
+        def filter(where, product, _previous_variation = nil)
           where[:name] = product.name
           where
         end
 
-        def results(products, product) # rubocop:disable Metrics/AbcSize
-          map_variations(products).group_by { |p| p['variations'] }.map do |k, v|
-            # if current product is in this variation - select it
-            # else select product with min price
-            variation_product =
-              if product.search_variations.include?(k)
-                v.find { |var| var[:_id].to_i == product.id }
-              else
-                product_with_min_price(v)
-              end
-            {
-              name: variation_name(k, variation_product),
-              price: variation_product[:price],
-              slug: variation_product[:slug],
-              ids: v.map(&:_id).map(&:to_i)
-            }
-          end
+        def results(products, product, previous_variation = nil)
+          # variations from searchkick - does not include product, previous variation and its formats
+          search_result_variations =
+            flatten_variations(products).group_by { |p| p['variations'] }.map do |k, v|
+              map_variation(k, v.min_by { |prod| prod[:price] })
+            end
+
+          # current product + previous product if any
+          search_result_variations.concat(mapped_products(product, previous_variation))
         end
 
-        def product_with_min_price(products)
-          products.min_by { |prod| prod[:price] }
+        def mapped_products(product, previous_variation)
+          variations = [map_variation(product.search_variation, product)]
+          variations << map_variation(previous_variation.search_variation, previous_variation) if previous_variation
+
+          variations
         end
 
-        def map_variations(products)
+        def flatten_variations(products)
           # allow to group by all variations
-          products.flat_map do |p|
-            p['variations'].map do |v|
-              p['variations'] = v
-              p
+          products.flat_map do |product|
+            product['variations'].map do |v|
+              new_prod = product.dup
+              new_prod['variations'] = v
+              new_prod
             end
           end
         end
 
         def variation_name(format, _variation)
-          format.humanize
+          format&.humanize
+        end
+
+        def map_variation(variation, product)
+          {
+            name: variation_name(variation, product),
+            variation: variation,
+            price: product.respond_to?(:price) ? product.price : product[:price],
+            slug: product[:slug],
+            id: (product[:_id] || product[:id]).to_i
+          }
         end
       end
     end

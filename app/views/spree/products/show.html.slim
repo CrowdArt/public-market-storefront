@@ -2,7 +2,7 @@ ruby:
   @body_id = 'product-details'
   is_mobile = browser.device.mobile?
 
-- cache(cache_key_for_product(@product, admin: spree_current_user&.admin?, mobile: is_mobile)) do
+- cache(cache_key_for_product(@product, admin: spree_current_user&.admin?, mobile: is_mobile, previous_variation: @previous_variation)) do
   ruby:
     can_supply = @product.can_supply?
     variants, other_seller_variants = product_variants if can_supply
@@ -44,13 +44,11 @@ ruby:
           span.byline> By
           span.author = author.value
 
-      .row
-        - @product.variations.each do |variation|
-          .col-xs-6.col-sm-4
-            a.variation-link href="/products/#{variation[:slug]}" class=('checked' if variation[:ids].include?(@product.id))
-              = variation[:name]
-              br
-              = Spree::Money.new(variation[:price])
+      - if (variations = product_variations).present?
+        .row
+          - variations.each do |variation|
+            .col-xs-6.col-sm-4
+              = render partial: 'variation', locals: { variation: variation }
 
     .col-xs-12.col-sm-12.product-content-item
       #main-accordion.accordion
