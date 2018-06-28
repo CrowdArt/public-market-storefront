@@ -38,6 +38,17 @@ module Spree
       [variants, other_seller_variants]
     end
 
+    def property_value_format(property_name, value)
+      case property_name
+      when 'book_subject'
+        value.split('; ', 2).first
+      when 'author'
+        value
+      else
+        value
+      end
+    end
+
     private
 
     def prepare_buy_box_variants(option_variants)

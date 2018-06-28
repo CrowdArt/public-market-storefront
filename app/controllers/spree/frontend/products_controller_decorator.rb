@@ -32,7 +32,6 @@ module Spree
     end
 
     def show
-      @product_properties = @product.product_properties.includes(:property)
       @taxon = @product.taxons.first
       redirect_if_legacy_path
     end

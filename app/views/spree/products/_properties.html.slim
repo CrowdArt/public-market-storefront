@@ -1,4 +1,7 @@
-- if @product_properties.present?
+ruby:
+  product_properties = @product.product_properties.includes(:property)
+
+- if product_properties.present?
   - show_title ||= false
 
   table#product-properties.table.table-striped.no-border-cells
@@ -8,9 +11,10 @@
           td.upcase colspan=2
             strong Properties
 
-      - @product_properties.each do |product_property|
+      - product_properties.each do |product_property|
+        - property = product_property.property
         tr
           td
-            strong = product_property.property.presentation
+            strong = property.presentation
 
-          td = product_property.value.humanize
+          td = sanitize property_value_format(property.name, product_property.value)
