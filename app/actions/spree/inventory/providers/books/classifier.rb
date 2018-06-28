@@ -43,14 +43,15 @@ module Spree
             parent_taxon.children.find_by('name ILIKE ?', taxon)
           end
 
-          def assign_to_taxons(matching_taxons)
+          def assign_to_taxons(matching_taxons) # rubocop:disable Metrics/AbcSize
             if matching_taxons.any?
               matching_taxons.each do |taxon|
+                next if product.taxons.include?(taxon)
                 taxon.products << product
               end
             else
               uncategorised_taxon = taxonomy.root.children.find_or_create_by!(name: 'Uncategorised', taxonomy: taxonomy, hidden: true)
-              uncategorised_taxon.products << product
+              uncategorised_taxon.products << product unless product.taxons.include?(uncategorised_taxon)
             end
           end
         end
