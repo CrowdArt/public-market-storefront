@@ -1,5 +1,5 @@
-- cache([:v1, :taxonomy_sidebar, @taxon]) do
-  - if (taxons = @taxon.children.visible.reorder(:name)).any?
+- cache([:v2, :taxonomy_sidebar, @taxon]) do
+  - if (taxons = Spree::Inventory::Searchers::TaxonSearcher.call(@taxon)).any?
     - taxonomy = @taxon.taxonomy
     nav#taxonomy
       h3.upcase.text-black.no-margin-top = t("filters.taxonomy_title.#{@taxon.root? ? :root : :child}.#{taxonomy.name.downcase}", default: Spree.t(:shop_by_taxonomy, taxonomy: taxonomy.name))
