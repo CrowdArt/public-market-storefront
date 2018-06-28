@@ -55,9 +55,7 @@ module Spree
 
           def taxons(product)
             return [] if (subject = product.dig('subject')).blank?
-            # select taxons containing '/' - assume all BISAC have it
             subject.split('; ')
-                   .select { |s| s.include?('/') }
                    .map { |s| s.split(' / ') }
           end
 

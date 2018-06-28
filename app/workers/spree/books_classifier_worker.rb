@@ -18,7 +18,6 @@ module Spree
       product.set_property('book_subject', subject, 'Subject')
 
       taxon_candidates = subject.split('; ')
-                                .select { |s| s.include?('/') }
                                 .map { |s| s.split(' / ') }
 
       Spree::Inventory::Providers::Books::Classifier.call(product, taxonomy, taxon_candidates)
