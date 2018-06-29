@@ -17,6 +17,13 @@ module PublicMarket
       end
     end
 
+    def identifier_property
+      case taxonomy&.name
+      when 'Books'
+        property('isbn')
+      end
+    end
+
     private
 
     def author_property_name

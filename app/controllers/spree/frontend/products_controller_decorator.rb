@@ -3,6 +3,7 @@ module Spree
     def self.prepended(base)
       base.before_action :save_return_to, only: :show
       base.before_action :load_taxon, only: %i[show autocomplete]
+      base.before_action :load_product, only: %i[show similar_variants]
     end
 
     def best_selling
@@ -48,6 +49,12 @@ module Spree
       respond_to do |format|
         format.json
       end
+    end
+
+    def similar_variants
+      @variation = params[:variation]
+      return redirect_to @product unless @product.search_variations.include?(@variation)
+      @variants = Spree::Inventory::FindProductVariations.call(@product, filter_by_variation: @variation).first[:similar_products]
     end
 
     private

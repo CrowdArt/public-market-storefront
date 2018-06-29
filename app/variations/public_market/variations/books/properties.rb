@@ -11,7 +11,7 @@ module PublicMarket
               mapped_format = find_book_format(format)
               break mapped_format if mapped_format
             end
-          [format_variation || 'Other']
+          [format_variation || 'other']
         end
 
         def find_book_format(format)
@@ -20,18 +20,18 @@ module PublicMarket
         end
 
         def available_variations
-          %w[Hardcover Paperback Other]
+          %w[hardcover paperback other]
         end
 
         def book_format # rubocop:disable Metrics/MethodLength
           {
-            'Hardcover' => [
+            'hardcover' => [
               'hardcover',
               'trade cloth',
               'library binding',
               "children's board books"
             ],
-            'Paperback' => [
+            'paperback' => [
               'paperback',
               'trade paper',
               'mass market',
@@ -42,7 +42,7 @@ module PublicMarket
               'uk-b format paperback',
               'uk-trade paper'
             ],
-            'Other' => ['other']
+            'other' => ['other']
           }
         end
       end

@@ -1,0 +1,16 @@
+h3 = @variation.titleize
+
+- @variants.each do |variation|
+  h4 #{variation[:size]} #{variation[:option]} from #{variation[:price]}
+  - variation[:variants].each do |v|
+    .panel.panel-default
+      .panel-heading
+        h4 #{v.product.name}
+      .panel-body
+        p Price: #{v.price}
+        p Vendor: #{v.vendor.name}
+        p #{v.main_option_type.presentation}: #{v.main_option_value}
+        p ISBN: #{v.product.identifier_property}
+
+      .panel-footer
+        = link_to 'Go', v.product, target: '_blank'

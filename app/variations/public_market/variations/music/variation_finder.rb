@@ -3,10 +3,9 @@ module PublicMarket
     module Music
       class VariationFinder < BaseVariationFinder
         class << self
-          def filter(where, product, previous_variation)
+          def filter(where, product)
             where[:name] = product.name
             where[:artist] = product.property('artist')
-            where[:variations][:not] << previous_variation.search_variation if previous_variation
             where
           end
 

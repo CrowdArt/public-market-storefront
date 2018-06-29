@@ -14,8 +14,11 @@ Spree::Core::Engine.add_routes do
 
     get '/payment', to: 'credit_cards#index', as: :user_payment_methods
     get '/payment/edit', to: 'credit_cards#new', as: :new_payment_method
+
     resources :credit_cards, except: %i[index show new]
   end
+
+  get '/products/:id/variation/:variation', to: 'products#similar_variants', as: :similar_variants
 
   post '/orders/rate/:id', to: 'orders#rate', as: :rate_order
 

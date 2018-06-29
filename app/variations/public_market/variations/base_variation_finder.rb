@@ -2,27 +2,24 @@ module PublicMarket
   module Variations
     class BaseVariationFinder
       class << self
-        def filter(where, product, _previous_variation = nil)
+        def filter(where, product)
           where[:name] = product.name
           where
         end
 
-        def results(products, product, previous_variation = nil)
+        def results(products, product, previous_variation = nil) # rubocop:disable Metrics/AbcSize
           # variations from searchkick - does not include product, previous variation and its formats
-          search_result_variations =
-            flatten_variations(products).group_by { |p| p['variations'] }.map do |k, v|
-              map_variation(k, v.min_by { |prod| prod[:price] })
+          flatten_variations(products).group_by { |p| p['variations'] }.map do |k, v|
+            product_variation = v.find do |var|
+              [product.id, previous_variation&.id].include?(var[:_id].to_i)
             end
 
-          # current product + previous product if any
-          search_result_variations.concat(mapped_products(product, previous_variation))
-        end
+            product_variation ||= v.min_by { |prod| prod[:price] }
 
-        def mapped_products(product, previous_variation)
-          variations = [map_variation(product.search_variation, product)]
-          variations << map_variation(previous_variation.search_variation, previous_variation) if previous_variation
+            similar_products = find_similar_variants(v.reject { |var| var[:_id] == product_variation[:_id] }.map(&:_id))
 
-          variations
+            map_variation(k, product_variation, similar_products)
+          end
         end
 
         def flatten_variations(products)
@@ -36,18 +33,35 @@ module PublicMarket
           end
         end
 
-        def variation_name(format, _variation)
-          format&.humanize
-        end
-
-        def map_variation(variation, product)
+        def map_variation(variation, product, similar_products)
           {
             name: variation_name(variation, product),
             variation: variation,
+            similar_products: similar_products,
             price: product.respond_to?(:price) ? product.price : product[:price],
             slug: product[:slug],
             id: (product[:_id] || product[:id]).to_i
           }
+        end
+
+        def find_similar_variants(ids)
+          Spree::Variant.find_best_price_in_best_main_option
+                        .where(spree_products: { id: ids })
+                        .group_by(&:main_option_value)
+                        .map { |k, v| map_similar_variants(k, v) }
+        end
+
+        def map_similar_variants(option_value, variants)
+          {
+            option: option_value,
+            size: variants.size,
+            price: variants.min_by(&:price).price,
+            variants: variants
+          }
+        end
+
+        def variation_name(format, _variation)
+          format&.titleize
         end
       end
     end

@@ -10,6 +10,10 @@ FactoryBot.define do
       edition nil
     end
 
+    trait :with_variant do
+      variants { create_list(:variant, 1) }
+    end
+
     after :create do |product, evaluator|
       create(:product_property,
              product: product,

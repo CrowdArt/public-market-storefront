@@ -27,13 +27,13 @@ module Spree
                         .includes(:option_values, :prices, :vendor)
                         .reorder('spree_option_values.position ASC, spree_prices.amount ASC')
                         .select('spree_prices.amount')
-                        .group_by(&:main_option_type)
+                        .group_by(&:main_option_value)
                         .map(&method(:prepare_buy_box_variants))
 
       @selected = variants.first
       @selected[:selected] = true if @selected.present?
 
-      other_seller_variants = @other_seller_variants.group_by(&:main_option_type) if @other_seller_variants
+      other_seller_variants = @other_seller_variants.group_by(&:main_option_value) if @other_seller_variants
 
       [variants, other_seller_variants]
     end
@@ -50,7 +50,7 @@ module Spree
     end
 
     def product_variations
-      return if @product.search_variation.blank?
+      return if @product.variation_module.blank?
 
       variations = Spree::Inventory::FindProductVariations.call(@product, @previous_variation)
 
