@@ -50,8 +50,8 @@ module Spree
                 taxon.products << product
               end
             else
-              uncategorised_taxon = taxonomy.root.children.find_or_create_by!(name: 'Uncategorised', taxonomy: taxonomy, hidden: true)
-              uncategorised_taxon.products << product unless product.taxons.include?(uncategorised_taxon)
+              uncategorized_taxon = taxonomy.uncategorized_taxon
+              uncategorized_taxon.products << product unless product.taxons.include?(uncategorized_taxon)
             end
           end
         end

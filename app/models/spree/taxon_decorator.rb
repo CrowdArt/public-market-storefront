@@ -1,4 +1,12 @@
-Spree::Taxon.class_eval do
-  scope :visible, -> { where(hidden: false) }
-  scope :hidden, -> { where(hidden: true) }
+module Spree
+  module TaxonDecorator
+    UNCATEGORIZED_NAME = 'Uncategorized'.freeze
+
+    def self.prepended(base)
+      base.scope :visible, -> { where(hidden: false) }
+      base.scope :hidden, -> { where(hidden: true) }
+    end
+  end
+
+  Taxon.prepend(TaxonDecorator)
 end

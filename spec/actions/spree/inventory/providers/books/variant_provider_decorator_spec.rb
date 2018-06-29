@@ -73,7 +73,7 @@ RSpec.describe Spree::Inventory::Providers::Books::VariantProvider, type: :actio
       expect(variant).not_to be_nil
       taxons = variant.product.taxons
       expect(taxons.count).to eq(1)
-      expect(taxons.first.pretty_name).to eq('Books -> Uncategorised')
+      expect(taxons.first.pretty_name).to eq('Books -> Uncategorized')
     end
   end
 
