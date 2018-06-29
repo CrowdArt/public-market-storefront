@@ -69,7 +69,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '3.12.0'
   gem 'simplecov', require: false
   gem 'vcr'
   gem 'webmock'
