@@ -56,7 +56,7 @@ module PublicMarket
             option: option_value,
             size: variants.size,
             price: variants.min_by(&:price).price,
-            variants: variants
+            variants: variants.sort_by(&:price)
           }
         end
 

@@ -8,7 +8,7 @@ a.variation-link href=(checked ? nil : "/products/#{variation[:slug]}?variation=
   = Spree::Money.new(variation[:price])
 
 - variation[:similar_products].each do |v|
-  - link_to_similar = similar_variants_path(@product.slug, variation[:variation])
+  - link_to_similar = "/products/#{variation[:slug]}/variation/#{variation[:variation]}"
   a> href=link_to_similar #{v[:size]} #{v[:option]}
   ' from
   a href=link_to_similar $#{v[:price]}
