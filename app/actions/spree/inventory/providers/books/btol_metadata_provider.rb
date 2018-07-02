@@ -95,7 +95,7 @@ module Spree
 
           def btol_item(isbn) # rubocop:disable Metrics/AbcSize
             Rails.logger.info("Request #{isbn} from B&T")
-            raise 'Please specify B&T API credentials in secrets' if Settings.btol_user.blank?
+            raise 'Please specify B&T API credentials in secrets' if Rails.application.credentials.btol_user.blank?
 
             request = btol_soap_request(isbn)
             ENV['http_proxy'] = 'http://staging.public.market:3000' if Rails.env.development? || Rails.env.api_db?
@@ -104,9 +104,11 @@ module Spree
             result.dig('Envelope', 'Body', 'XmlStringResponse', 'ContentCafe', 'RequestItems', 'RequestItem')
           end
 
+          # rubocop:disable Metrics/LineLength
           def btol_image_url(isbn)
-            "http://images.btol.com/ContentCafe/Jacket.aspx?UserID=#{Settings.btol_user}&Password=#{Settings.btol_password}&Size=L&Value=#{isbn}"
+            "http://images.btol.com/ContentCafe/Jacket.aspx?UserID=#{Rails.application.credentials.btol_user}&Password=#{Rails.application.credentials.btol_password}&Size=L&Value=#{isbn}"
           end
+          # rubocop:enable Metrics/LineLength
 
           def btol_soap_request(isbn)
             %(
@@ -124,7 +126,7 @@ module Spree
           def btol_request(isbn)
             request = %(
 <ContentCafe xmlns="http://ContentCafe2.btol.com">
-<RequestItems UserID="#{Settings.btol_user}" Password="#{Settings.btol_password}">
+<RequestItems UserID="#{Rails.application.credentials.btol_user}" Password="#{Rails.application.credentials.btol_password}">
 <RequestItem>
 <Key Type="ISBN">#{isbn}</Key>
 <Content>AvailableContent</Content>

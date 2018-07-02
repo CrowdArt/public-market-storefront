@@ -26,7 +26,7 @@ module Spree
     private
 
     def fetch_subject(isbn)
-      creds = { username: Settings.bowker_user, password: Settings.bowker_password }
+      creds = { username: Rails.application.credentials.bowker_user, password: Rails.application.credentials.bowker_password }
       url = "https://bms.bowker.com/rest/books/isbn/#{isbn}?format=xml"
       result = HTTParty.get(url, basic_auth: creds).parsed_response
       item = result.dig('result', 'item')

@@ -65,7 +65,7 @@ module Spree
           end
 
           def creds
-            { username: Settings.bowker_user, password: Settings.bowker_password }
+            { username: Rails.application.credentials.bowker_user, password: Rails.application.credentials.bowker_password }
           end
 
           def product_details(isbn)
