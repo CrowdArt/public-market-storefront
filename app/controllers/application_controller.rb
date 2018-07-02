@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def mixpanel_user_id
     return spree_current_user if spree_current_user
-    mp_params = cookies["mp_#{Settings.mixpanel_api_key}_mixpanel"]
+    mp_params = cookies["mp_#{Rails.application.credentials.mixpanel_api_key}_mixpanel"]
     return if mp_params.blank?
     distinct_id = JSON.parse(mp_params)['distinct_id']
     distinct_id.presence
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def auth_staging
     authenticate_or_request_with_http_basic do |name, password|
-      name == Settings.basic_auth_name && password == Settings.basic_auth_password
+      name == Rails.application.credentials.basic_auth_name && password == Rails.application.credentials.basic_auth_password
     end
   end
 

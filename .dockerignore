@@ -27,3 +27,4 @@ public/assets
 public/spree
 public/uploads
 public/sitemap*
+config/master*.key

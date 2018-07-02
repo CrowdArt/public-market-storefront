@@ -5,4 +5,4 @@
     = javascript_include_tag 'fbActions'
 
     javascript:
-      window.pm.initFb("#{Settings.facebook_api_key}")
+      window.pm.initFb("#{Rails.application.credentials.facebook_api_key}")

@@ -11,7 +11,7 @@ RSpec.describe FreshdeskController, type: :controller do
 
       before { sign_in(user) }
 
-      it { is_expected.to redirect_to(/\A#{Settings.freshdesk_url}/) }
+      it { is_expected.to redirect_to(/\A#{Rails.application.credentials.freshdesk_url}/) }
       it { expect(response.location).to include(user.email.to_query(:email)) }
       it { expect(response.location).to include(user.full_name.to_query(:name)) }
     end

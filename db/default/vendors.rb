@@ -1,7 +1,7 @@
 vendor = Spree::Vendor.create!(
-  name: Settings.test_seller_name,
+  name: Rails.application.credentials.test_seller_name,
   state: 'active',
-  users: Spree::User.where(email: Settings.test_seller_user_name)
+  users: Spree::User.where(email: Rails.application.credentials.test_seller_user_name)
 )
 
 method = Spree::ShippingMethod.last

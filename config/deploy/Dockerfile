@@ -1,12 +1,12 @@
 FROM "registry.gitlab.com/publicmarket/public-market-storefront/base:latest"
 
-RUN apt-get update -qq \
-    && apt-get install --no-install-recommends -yqq \
-      cron \
-      vim \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+WORKDIR /app
 
-ADD ./config/deploy/cron-start /bin/cron-start
+COPY Gemfile* /app/
+
+RUN bundle install --deployment --jobs 4 --without development test
 
 COPY . /app
+
+RUN RAILS_ENV=production DEVISE_SECRET_KEY="abc123" SECRET_KEY_BASE="a" bundle exec rake assets:precompile
+RUN RAILS_ENV=production DEFACE_ENABLED="true" DEVISE_SECRET_KEY="abc123" SECRET_KEY_BASE="a" bundle exec rake deface:precompile

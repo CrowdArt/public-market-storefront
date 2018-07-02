@@ -48,7 +48,7 @@ module Storefront
 
     if Rails.env.staging? || Rails.env.production?
       Raven.configure do |config|
-        config.dsn = Settings.sentry_dsn if Settings.sentry_dsn
+        config.dsn = Rails.application.credentials.sentry_dsn if Rails.application.credentials.sentry_dsn
       end
 
       config.middleware.use Rack::Attack
@@ -61,12 +61,12 @@ module Storefront
         storage: :fog,
         url: ':gcs_domain_url',
         path: ':class/:id/:style-:basename.:extension',
-        fog_directory: Settings.google_bucket,
+        fog_directory: Rails.application.credentials.google_bucket,
         fog_credentials: {
           provider: 'Google',
-          google_project: Settings.google_project,
-          google_client_email: Settings.google_client_email,
-          google_json_key_string: Settings.google_json_key_string
+          google_project: Rails.application.credentials.google_project,
+          google_client_email: Rails.application.credentials.google_client_email,
+          google_json_key_string: Rails.application.credentials.google_json_key_string
         }
       }
     end

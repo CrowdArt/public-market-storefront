@@ -11,7 +11,7 @@ module Tracker
     private
 
     def tracker
-      @@tracker ||= Mixpanel::Tracker.new(Settings.mixpanel_api_key) # rubocop:disable Style/ClassVars
+      @@tracker ||= Mixpanel::Tracker.new(Rails.application.credentials.mixpanel_api_key) # rubocop:disable Style/ClassVars
     end
   end
 end

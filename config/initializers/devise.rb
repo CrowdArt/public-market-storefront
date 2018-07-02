@@ -1,6 +1,6 @@
-ENV['OTP_SECRET'] ||= Settings.otp_secret
+ENV['OTP_SECRET'] ||= Rails.application.credentials.otp_secret
 
-Devise.secret_key = Settings.secret_key_base
+Devise.secret_key = Rails.application.credentials.secret_key_base || 'abcd'
 
 Devise.setup do |config|
   config.password_length = 8..50

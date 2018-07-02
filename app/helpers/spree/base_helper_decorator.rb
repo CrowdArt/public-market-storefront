@@ -50,7 +50,7 @@ module Spree
 
     def meta_properties # rubocop:disable Metrics/AbcSize
       opts = {
-        'fb:app_id': Settings.facebook_api_key,
+        'fb:app_id': Rails.application.credentials.facebook_api_key,
         'og:type': @product ? :product : :website
       }
 

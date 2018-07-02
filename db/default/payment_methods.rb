@@ -4,8 +4,8 @@ Spree::Gateway::StripeGateway.create!(
   active: true,
   display_on: 'both',
   preferences: {
-    secret_key: Settings.stripe_secret_key,
-    publishable_key: Settings.stripe_publishable_key,
+    secret_key: Rails.application.credentials.stripe_secret_key,
+    publishable_key: Rails.application.credentials.stripe_publishable_key,
     test_mode: true
   }
 )

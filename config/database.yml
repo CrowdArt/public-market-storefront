@@ -21,15 +21,16 @@ staging:
   <<: *default
   database: storefront_staging
   pool: <%= ENV['WEB_THREADS'] || 20 %>
-  username: postgres
-  password: <%= Settings.db_password %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
   host: <%= ENV['DB_HOST'] %>
 
 production:
   <<: *default
   database: storefront_production
   pool: <%= ENV['WEB_THREADS'] || 20 %>
-  password: <%= Settings.db_password %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
   host: <%= ENV['DB_HOST'] %>
 
 api_db:

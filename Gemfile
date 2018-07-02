@@ -7,6 +7,8 @@ end
 
 gem 'rails', '5.2.0'
 
+gem 'rails-env-credentials', github: 'abundance-labs/rails-env-credentials'
+
 gem 'pg'
 gem 'pg_query' # used by pghero
 gem 'pghero'

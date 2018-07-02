@@ -1,8 +1,8 @@
 module GlobalReputation
   module Api
     class Base < JsonApiClient::Resource
-      self.site = Settings.global_reputation_url || ENV['GLOBAL_REPUTATION_URL']
-      self.connection_options = { headers: { 'X-Api-Key' => Settings.global_reputation_key }}
+      self.site = Rails.application.credentials.global_reputation_url || ENV['GLOBAL_REPUTATION_URL']
+      self.connection_options = { headers: { 'X-Api-Key' => Rails.application.credentials.global_reputation_key }}
     end
 
     class Rating < Base

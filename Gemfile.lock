@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/abundance-labs/rails-env-credentials.git
+  revision: 946957f116a22a0666a96762230d64192a7cd87d
+  specs:
+    rails-env-credentials (0.1.2)
+      rails (>= 5.2.0.rc1)
+
+GIT
   remote: https://github.com/abundance-labs/spree_auth_devise.git
   revision: 5d63f35f91edf11da2bbfd0a33688c3bf63de34f
   specs:
@@ -841,6 +848,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (= 5.2.0)
   rails-controller-testing
+  rails-env-credentials!
   rspec
   rspec-rails
   rubocop

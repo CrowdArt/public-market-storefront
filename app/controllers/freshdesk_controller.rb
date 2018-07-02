@@ -4,7 +4,7 @@ class FreshdeskController < ApplicationController
   def login
     utctime = time_in_utc
     redirect_url = [
-      Settings.freshdesk_url,
+      Rails.application.credentials.freshdesk_url,
       'login/sso?',
       { name: spree_current_user.full_name_or_email,
         email: spree_current_user.email,
@@ -20,9 +20,9 @@ class FreshdeskController < ApplicationController
     digest = OpenSSL::Digest.new('MD5')
     OpenSSL::HMAC.hexdigest(
       digest,
-      Settings.freshdesk_token,
+      Rails.application.credentials.freshdesk_token,
       [spree_current_user.full_name_or_email,
-       Settings.freshdesk_token,
+       Rails.application.credentials.freshdesk_token,
        spree_current_user.email,
        utctime].join
     )

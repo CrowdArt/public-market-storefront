@@ -5,6 +5,8 @@ variables:
 stages:
   - build
   - test
+  - build_app_image
+  - deploy
 
 build:
   stage: build
@@ -20,9 +22,6 @@ build:
     # ci image inherits from base, installs chrome and copies code
     - docker build -f ./config/deploy/dockerfiles/ci/Dockerfile -t $DOCKER_IMAGE/ci:latest .
     - docker push $DOCKER_IMAGE/ci:latest
-    # master image inherits from base and copies code
-    # - docker build -f ./config/deploy/Dockerfile -t $DOCKER_IMAGE:latest .
-    # - docker push $DOCKER_IMAGE:latest
     # cleanup
     - docker system prune -f
 
@@ -62,3 +61,37 @@ rspec:
     paths:
       - coverage/
       - tmp/capybara/
+
+build_app_image:
+  stage: build_app_image
+  tags:
+    - build
+  image: docker:latest
+  cache:
+    key: build-cache
+    paths:
+      - vendor/bundle
+      - public/assets
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+    - ls -la vendor
+    - ls -la public
+  script:
+    - docker build -f ./config/deploy/Dockerfile -t $DOCKER_IMAGE:latest .
+    - docker push $DOCKER_IMAGE:latest
+    - docker system prune -f
+
+deploy to staging:
+  stage: deploy
+  image: dtzar/helm-kubectl:latest
+  script:
+    - env
+    - kubectl cluster-info
+    - kubectl patch sts web -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
+    - kubectl patch sts sidekiq -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
+    - kubectl get pod
+  environment:
+    name: staging
+    url: https://staging-k8s.public.market
+  only:
+    - master

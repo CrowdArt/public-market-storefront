@@ -1,6 +1,6 @@
 = javascript_include_tag 'raven-js/dist/raven.js'
 
 javascript:
-  Raven.config("#{Settings.sentry_public_dsn}", {
+  Raven.config("#{Rails.application.credentials.sentry_public_dsn}", {
     environment: "#{Rails.env}"
   }).install()

@@ -66,10 +66,10 @@ Rails.application.configure do
   config.action_mailer.asset_host = ENV['ASSET_HOST']
   config.action_mailer.default_url_options = { host: ENV['APP_HOST'], protocol: 'https' }
   config.action_mailer.smtp_settings = {
-    address:              Settings.smtp_address,
+    address:              Rails.application.credentials.smtp_address,
     port:                 2525,
-    user_name:            Settings.smtp_user_name,
-    password:             Settings.smtp_password,
+    user_name:            Rails.application.credentials.smtp_user_name,
+    password:             Rails.application.credentials.smtp_password,
     domain:               'public.market',
     authentication:       'plain',
     enable_starttls_auto: true
