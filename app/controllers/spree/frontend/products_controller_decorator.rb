@@ -2,8 +2,8 @@ module Spree
   module ProductsControllerDecorator
     def self.prepended(base)
       base.before_action :save_return_to, only: :show
-      base.before_action :load_taxon, only: %i[show autocomplete]
       base.before_action :load_product, only: %i[show similar_variants]
+      base.before_action :load_taxon, only: %i[show autocomplete]
     end
 
     def best_selling
