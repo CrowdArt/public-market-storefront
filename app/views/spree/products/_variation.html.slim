@@ -7,9 +7,11 @@ a.variation-link href=(checked ? nil : "/products/#{variation[:slug]}?variation=
   br
   = Spree::Money.new(variation[:price])
 
-- variation[:similar_products].each do |v|
-  - link_to_similar = "/products/#{variation[:slug]}/variation/#{variation[:variation]}"
-  a> href=link_to_similar #{v[:size]} #{v[:option]}
-  ' from
-  a href=link_to_similar $#{v[:price]}
-  br
+- if (similar_variants = variation[:similar_variants]).any?
+  .margin-text-top
+    - similar_variants.each do |v|
+      - link_to_similar = "/products/#{variation[:slug]}/variation/#{variation[:variation]}"
+      a> href=link_to_similar #{v[:size]} #{v[:option]}
+      ' from
+      a href=link_to_similar $#{v[:price]}
+      br

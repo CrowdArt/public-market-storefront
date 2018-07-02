@@ -8,7 +8,6 @@ module PublicMarket
         end
 
         def results(products, product, previous_variation = nil) # rubocop:disable Metrics/AbcSize
-          # variations from searchkick - does not include product, previous variation and its formats
           flatten_variations(products).group_by { |p| p['variations'] }.map do |k, v|
             product_variation = v.find do |var|
               [product.id, previous_variation&.id].include?(var[:_id].to_i)
@@ -16,9 +15,9 @@ module PublicMarket
 
             product_variation ||= v.min_by { |prod| prod[:price] }
 
-            similar_products = find_similar_variants(v.reject { |var| var[:_id] == product_variation[:_id] }.map(&:_id))
+            similar_variants = find_similar_variants(v.reject { |var| var[:_id] == product_variation[:_id] }.map(&:_id))
 
-            map_variation(k, product_variation, similar_products)
+            map_variation(k, product_variation, similar_variants)
           end
         end
 
@@ -33,11 +32,11 @@ module PublicMarket
           end
         end
 
-        def map_variation(variation, product, similar_products)
+        def map_variation(variation, product, similar_variants)
           {
             name: variation_name(variation, product),
             variation: variation,
-            similar_products: similar_products,
+            similar_variants: similar_variants,
             price: product.respond_to?(:price) ? product.price : product[:price],
             slug: product[:slug],
             id: (product[:_id] || product[:id]).to_i
@@ -47,6 +46,7 @@ module PublicMarket
         def find_similar_variants(ids)
           Spree::Variant.find_best_price_in_best_main_option
                         .where(spree_products: { id: ids })
+                        .sort_by { |v| v.option_values.first&.position || 0 }
                         .group_by(&:main_option_value)
                         .map { |k, v| map_similar_variants(k, v) }
         end

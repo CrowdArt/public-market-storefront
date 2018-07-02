@@ -12,9 +12,9 @@ Spree::Variant.class_eval do
     in_stock
       .not_discontinued
       .not_deleted
-      .includes(:product, :default_price, :vendor, :option_values, :option_value_variants)
+      .includes(:vendor, option_values: :option_value_variants)
       .joins(:option_values, :product, :default_price)
-      .reorder('spree_products.id, spree_option_values.position ASC, spree_prices.amount ASC')
-      .select('DISTINCT ON (spree_products.id) spree_variants.*')
+      .reorder('spree_variants.product_id, spree_option_values.position ASC, spree_prices.amount ASC')
+      .select('DISTINCT ON (spree_variants.product_id) spree_variants.*')
   end
 end

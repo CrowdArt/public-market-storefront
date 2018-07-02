@@ -17,7 +17,7 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
     it do
       is_expected.to eq(
         [
-          { name: 'Hardcover', variation: 'hardcover', similar_products: [], price: product.price.to_f, slug: product.slug, id: product.id }
+          { name: 'Hardcover', variation: 'hardcover', similar_variants: [], price: product.price.to_f, slug: product.slug, id: product.id }
         ]
       )
     end
@@ -33,8 +33,8 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
 
       it do
         is_expected.to include(
-          { name: 'Paperback', variation: 'paperback', price: be_positive, similar_products: [], slug: variation.slug, id: variation.id },
-          { name: 'Hardcover', variation: 'hardcover', price: be_positive, similar_products: [], slug: product.slug, id: product.id }
+          { name: 'Paperback', variation: 'paperback', price: be_positive, similar_variants: [], slug: variation.slug, id: variation.id },
+          { name: 'Hardcover', variation: 'hardcover', price: be_positive, similar_variants: [], slug: product.slug, id: product.id }
         )
       end
 
@@ -47,8 +47,8 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
 
         it do
           is_expected.to include(
-            { name: 'Paperback', variation: 'paperback', price: be_positive, similar_products: [], slug: variation.slug, id: variation.id },
-            { name: 'Hardcover', variation: 'hardcover', price: be_positive, similar_products: [], slug: product.slug, id: product.id }
+            { name: 'Paperback', variation: 'paperback', price: be_positive, similar_variants: [], slug: variation.slug, id: variation.id },
+            { name: 'Hardcover', variation: 'hardcover', price: be_positive, similar_variants: [], slug: product.slug, id: product.id }
           )
         end
       end
@@ -99,7 +99,7 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
               price: product.price.to_f,
               slug: product.slug,
               id: product.id,
-              similar_products: [
+              similar_variants: [
                 option: variant.main_option_value,
                 price: variant.price,
                 size: 1,
