@@ -25,7 +25,8 @@ build:
     # cleanup
     - docker system prune -f
   except:
-    - /skip-test/
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /skip-test/
 
 rspec:
   image: $DOCKER_IMAGE/ci:latest
@@ -64,7 +65,8 @@ rspec:
       - coverage/
       - tmp/capybara/
   except:
-    - /skip-test/
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /skip-test/
 
 build_app_image:
   stage: build_app_image
