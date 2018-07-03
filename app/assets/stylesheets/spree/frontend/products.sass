@@ -161,16 +161,21 @@ body#product-details
   .product-card--inner
     border-right: none
 
+.product-list
+  margin-left: 0px
+  @media (max-width: $screen-xs-max)
+    margin-left: -10px
+
 .product-card
   &--inner
     border-right: 1px solid rgba(151, 151, 151, 0.35)
-    margin-bottom: 30px
-    margin-right: -10px
-    padding-right: 20px
+    margin-bottom: 40px
+    margin-right: -5px
+    padding-right: 25px
 
     @media (max-width: $screen-xs-max)
-      margin-right: -15px
-      padding-right: 15px
+      margin-right: -10px
+      padding-right: 20px
 
   &:last-child
     @include hide-border
