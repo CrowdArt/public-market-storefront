@@ -219,3 +219,17 @@ input[type="radio"]
 
   &.radio-right label span:after
     margin-left: 0.5em
+
+.rating
+  direction: rtl
+  display: inline-block
+  unicode-bidi: bidi-override
+
+  span:before
+    content: "\2605"
+    color: #9b9b9b
+
+  span.checked, span.checked ~ span
+    &:before
+      color: #f5a623
+

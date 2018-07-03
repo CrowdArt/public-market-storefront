@@ -45,6 +45,14 @@ module PublicMarket
             'other' => ['other']
           }
         end
+
+        def subtitle(product)
+          product.property(:author)
+        end
+
+        def additional_properties(product)
+          [:edition].map { |p| product.property(p) }.compact
+        end
       end
     end
   end

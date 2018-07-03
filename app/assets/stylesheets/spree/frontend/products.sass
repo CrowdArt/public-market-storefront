@@ -157,18 +157,39 @@ body#product-details
         padding: 6px 10px
         cursor: pointer
 
+@mixin hide-border()
+  .product-card--inner
+    border-right: none
+
 .product-card
   &--inner
-    padding: 20px 30px
-    background: #fff
+    border-right: 1px solid rgba(151, 151, 151, 0.35)
     margin-bottom: 30px
+    margin-right: -10px
+    padding-right: 20px
 
     @media (max-width: $screen-xs-max)
-      margin-bottom: 5px
+      margin-right: -15px
+      padding-right: 15px
+
+  &:last-child
+    @include hide-border
+  @media (max-width: $screen-xs-max)
+    &.col-xs-6:nth-child(2n)
+      @include hide-border
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max)
+    &.col-sm-4:nth-child(3n)
+      @include hide-border
+  @media (min-width: $screen-md-min) and (max-width: $screen-md-max)
+    &.col-md-3:nth-child(4n)
+      @include hide-border
+  @media (min-width: $screen-lg-min)
+    &.col-lg-2:nth-child(6n), &.col-lg-3:nth-child(4n)
+      @include hide-border
 
   &--image
     background-size: contain
-    background-position: center top
+    background-position: center center
     background-repeat: no-repeat
     padding-bottom: 100%
     margin-bottom: 20px
@@ -180,9 +201,12 @@ body#product-details
       &[style*='--aspect-ratio']
         padding-bottom: calc(100% / (var(--aspect-ratio)))
 
-  &--info
+  &--title
     overflow: hidden
     display: -webkit-box
+    font-size: 15px
+    font-weight: 500
+    color: $dark-cyan-color
     -webkit-line-clamp: 2
     -webkit-box-orient: vertical
 
@@ -194,6 +218,14 @@ body#product-details
 
     @supports not (-webkit-line-clamp: 2)
       max-height: 2.9em
+
+  &--price
+    font-size: 15px
+    .price
+      color: $brand-black
+      font-weight: bold
+    .ptrn
+      font-weight: bold
 
 #products
   transition: opacity .25s

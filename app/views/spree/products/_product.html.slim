@@ -1,5 +1,5 @@
 ruby:
-  card_size ||= 'col-lg-3 col-md-4 col-sm-6 col-xs-6'
+  card_size ||= product_card_size
   max_mobile ||= max_mobile
   index = local_assigns[:product_counter] || 0
 
@@ -11,6 +11,18 @@ ruby:
       = link_to url, itemprop: 'url', class: 'plain-link'
         .product-card--image itemprop='image' style="background-image:url('#{product_image_or_default(product, :large)}');--aspect-ratio:#{product.image_aspect_ratio}"
 
-        .text-center itemprop='offers' itemscope=true itemtype='https://schema.org/Offer'
-          .product-card--info = truncate(product.name, length: 100)
-          span itemprop='price' From #{display_price(product)}
+        .text-left itemprop='offers' itemscope=true itemtype='https://schema.org/Offer'
+          .product-card--title = truncate(product.name, length: 100)
+          .small = product.subtitle
+          .text-muted.small
+            span.semi-bold = product.search_variation&.humanize
+            - product.additional_properties.each do |prop|
+              span  • #{prop}
+          .product-card--price itemprop='price'
+            span.price> #{display_price(product)}
+            span> +
+            span.ptrn = product.estimated_ptrn
+          small
+            = render 'spree/shared/rating', value: rand(5)
+            a< href=url = rand(50)
+

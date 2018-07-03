@@ -1,0 +1,5 @@
+- precision ||= 5
+
+.rating
+  - precision.times do |i|
+    span class=(i == precision - value ? 'checked' : '')

@@ -49,6 +49,9 @@ h6
   font-weight: 500
   line-height: 1
 
+.semi-bold
+  font-weight: 500
+
 .upcase
   text-transform: uppercase
 
@@ -59,6 +62,23 @@ h6
   font-size: 14px
   font-weight: 500
   color: #AD1357
+
+.ptrn
+  color: #AD1357
+  &:before
+    content: ''
+    background-image: asset-data-url('ptrn.svg')
+    background-position: center left
+    background-repeat: no-repeat
+    background-size: 1em
+    border-radius: 50%
+    display: inline-block
+    height: 1em
+    margin-right: 3px
+    vertical-align: middle
+    width: 1em
+  &:after
+    content: ' PTRN'
 
 @media (max-width: $screen-xs)
   .small-xs

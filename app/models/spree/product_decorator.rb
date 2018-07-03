@@ -63,18 +63,30 @@ module Spree
       end
 
       def search_variations
-        variation_module&.const_get('Properties')&.variation_properties(self) || []
+        variation_module_properties&.variation_properties(self) || []
       end
 
       def search_variation
         search_variations.first
       end
 
+      def subtitle
+        variation_module_properties&.subtitle(self)
+      end
+
+      def additional_properties
+        variation_module_properties&.additional_properties(self) || []
+      end
+
       def estimated_ptrn
-        (price * 0.1).floor
+        (price * 0.1).floor(2)
       end
 
       private
+
+      def variation_module_properties
+        variation_module&.const_get('Properties')
+      end
 
       def reset_boost_factor_if_no_images
         self.boost_factor = 0

@@ -13,7 +13,7 @@ Spree.config do |config|
   config.logo = config.admin_interface_logo = 'logo/public_market_logo_white.svg'
   config.allow_guest_checkout = false
   config.address_requires_phone = false
-  config.products_per_page = 20
+  config.products_per_page = 24
 end
 
 Rails.application.config.after_initialize do |app|

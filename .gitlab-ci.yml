@@ -80,6 +80,8 @@ build_app_image:
     - docker build -f ./config/deploy/Dockerfile -t $DOCKER_IMAGE:latest .
     - docker push $DOCKER_IMAGE:latest
     - docker system prune -f
+  only:
+    - master
 
 deploy to staging:
   stage: deploy

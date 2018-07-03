@@ -9,6 +9,14 @@ module PublicMarket
         def self.available_variations
           %w[vinyl cd]
         end
+
+        def subtitle(product)
+          product.property(:artist)
+        end
+
+        def additional_properties(_product)
+          []
+        end
       end
     end
   end

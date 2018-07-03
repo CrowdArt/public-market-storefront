@@ -56,19 +56,19 @@ RSpec.describe Spree::Product, type: :model do
     context 'when price < 1 $' do
       let(:price) { 0.19 }
 
-      it { is_expected.to eq(0) }
+      it { is_expected.to eq(0.01) }
     end
 
     context 'when price < 10 $' do
       let(:price) { 6.21 }
 
-      it { is_expected.to eq(0) }
+      it { is_expected.to eq(0.62) }
     end
 
     context 'when price > 10 $' do
-      let(:price) { 60.21 }
+      let(:price) { 62.21 }
 
-      it { is_expected.to eq(6) }
+      it { is_expected.to eq(6.22) }
     end
   end
 
