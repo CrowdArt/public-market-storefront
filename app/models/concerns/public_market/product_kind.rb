@@ -31,8 +31,6 @@ module PublicMarket
       end.map { |p| property(p) }.compact
     end
 
-    private
-
     def author_property_name
       case taxonomy&.name
       when 'Music'

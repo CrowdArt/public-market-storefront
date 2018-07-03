@@ -21,6 +21,21 @@ namespace :spree_sample do
                                             })
     Spree::Product.reindex
   end
+
+  desc 'Loads music inventory sample'
+  task music_samples: :environment do
+    require 'sidekiq/testing'
+    Sidekiq::Testing.inline!
+    Spree::Inventory::UploadFileAction.call(
+      'json',
+      './db/samples/music.json',
+      product_type: 'music',
+      upload_options: {
+        vendor: Spree::Vendor.last
+      }
+    )
+    Spree::Product.reindex
+  end
 end
 
 namespace :db do

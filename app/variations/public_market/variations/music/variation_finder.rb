@@ -3,10 +3,8 @@ module PublicMarket
     module Music
       class VariationFinder < BaseVariationFinder
         class << self
-          def filter(where, product)
-            where[:name] = product.name
-            where[:artist] = product.property('artist')
-            where
+          def mlt_fields
+            %i[vinyl_speed music_format music_label music_label_number]
           end
 
           def variation_name(format, variation)

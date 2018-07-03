@@ -37,6 +37,7 @@ Metrics/MethodLength:
 
 Metrics/BlockLength:
   Exclude:
+    - 'Rakefile'
     - !ruby/regexp /_decorator.rb/
     - 'app/swagger/**/*'
     - 'config/**/*'

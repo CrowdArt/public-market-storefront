@@ -55,13 +55,18 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
     end
 
     context 'when author has an mistype' do
-      before { create(:book, :with_variant, name: name, author: author[0...-1], taxons: taxons, format: 'Trade Paper') }
+      let!(:variation) { create(:book, :with_variant, name: name, author: author[0...-1], taxons: taxons, format: 'Trade Paper') }
 
-      include_examples 'includes self variation'
+      it do
+        is_expected.to include(
+          { name: 'Paperback', variation: 'paperback', price: be_positive, similar_variants: [], slug: variation.slug, id: variation.id },
+          { name: 'Hardcover', variation: 'hardcover', price: be_positive, similar_variants: [], slug: product.slug, id: product.id }
+        )
+      end
     end
 
     context 'when only author is the same' do
-      before { create(:book, :with_variant, author: author, taxons: taxons, format: 'Trade Paper') }
+      before { create(:book, :with_variant, name: 'Other book name super exclusive', author: author, taxons: taxons, format: 'Trade Paper') }
 
       include_examples 'includes self variation'
     end

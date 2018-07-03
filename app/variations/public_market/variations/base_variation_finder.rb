@@ -2,9 +2,8 @@ module PublicMarket
   module Variations
     class BaseVariationFinder
       class << self
-        def filter(where, product)
-          where[:name] = product.name
-          where
+        def mlt_fields
+          %i[name]
         end
 
         def results(products, product, previous_variation = nil) # rubocop:disable Metrics/AbcSize

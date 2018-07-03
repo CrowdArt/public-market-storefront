@@ -2,12 +2,8 @@ module PublicMarket
   module Variations
     module Books
       class VariationFinder < BaseVariationFinder
-        class << self
-          def filter(where, product)
-            where[:name] = product.name
-            where[:author] = product.property('author')
-            where
-          end
+        def self.mlt_fields
+          %i[edition publisher language]
         end
       end
     end
