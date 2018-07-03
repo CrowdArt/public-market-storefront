@@ -21,7 +21,8 @@ ruby:
   - if @taxon.root.permalink == 'books'
     = render partial: 'spree/taxons/special'
 
-= render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, show_results_per_page: true, card_size: product_card_size(:small) }
+- unless @products.nil?
+  = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, show_results_per_page: true, card_size: product_card_size(:small) }
 
 - if browser.device.mobile?
   - cache([:v1, I18n.locale, @taxon]) do
