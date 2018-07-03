@@ -40,40 +40,4 @@ RSpec.describe PublicMarket::Variations::Books::Properties do
       end
     end
   end
-
-  describe '#subtitle' do
-    subject { described_class.subtitle(product) }
-
-    let(:product) { create(:product) }
-
-    context 'when product has no author' do
-      it { is_expected.to eq nil }
-    end
-
-    context 'when product has author' do
-      let(:author) { FFaker::Book.author }
-
-      before { product.set_property(:author, author) }
-
-      it { is_expected.to eq(author) }
-    end
-  end
-
-  describe '#additional_properties' do
-    subject { described_class.additional_properties(product) }
-
-    let(:product) { create(:product) }
-
-    context 'when product has no edition' do
-      it { is_expected.to be_empty }
-    end
-
-    context 'when product has edition' do
-      let(:edition) { '1th Edition' }
-
-      before { product.set_property(:edition, edition) }
-
-      it { is_expected.to eq([edition]) }
-    end
-  end
 end

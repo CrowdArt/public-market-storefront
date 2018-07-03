@@ -39,10 +39,10 @@ ruby:
     .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
       h1.product-title itemprop='name' = sanitize(@product.name)
 
-      - if author = @product.author
+      - if subtitle = @product.subtitle
         p.product-author.no-margin-top
           span.byline> By
-          span.author = author.value
+          span.author = subtitle
 
       - if (variations = product_variations).present?
         .row

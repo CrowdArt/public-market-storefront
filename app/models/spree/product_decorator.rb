@@ -70,14 +70,6 @@ module Spree
         search_variations.first
       end
 
-      def subtitle
-        variation_module_properties&.subtitle(self)
-      end
-
-      def additional_properties
-        variation_module_properties&.additional_properties(self) || []
-      end
-
       def estimated_ptrn
         (price * 0.1).floor(2)
       end

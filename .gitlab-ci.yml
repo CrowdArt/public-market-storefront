@@ -24,6 +24,8 @@ build:
     - docker push $DOCKER_IMAGE/ci:latest
     # cleanup
     - docker system prune -f
+  except:
+    - /skip-test/
 
 rspec:
   image: $DOCKER_IMAGE/ci:latest
@@ -61,6 +63,8 @@ rspec:
     paths:
       - coverage/
       - tmp/capybara/
+  except:
+    - /skip-test/
 
 build_app_image:
   stage: build_app_image

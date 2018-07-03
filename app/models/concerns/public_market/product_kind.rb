@@ -2,10 +2,8 @@ module PublicMarket
   module ProductKind
     extend ActiveSupport::Concern
 
-    def author
-      product_properties.joins(:property)
-                        .select('spree_product_properties.property_id, spree_product_properties.value, spree_properties.name as property_name')
-                        .find_by(spree_properties: { name: author_property_name })
+    def subtitle
+      property(author_property_name)
     end
 
     def image_aspect_ratio
@@ -22,6 +20,15 @@ module PublicMarket
       when 'Books'
         property('isbn')
       end
+    end
+
+    def additional_properties
+      case taxonomy&.name
+      when 'Books'
+        [:edition]
+      else
+        []
+      end.map { |p| property(p) }.compact
     end
 
     private
