@@ -8,7 +8,7 @@ Spree::Variant.class_eval do
     option_values&.first&.option_type
   end
 
-  def self.find_best_price_in_best_main_option
+  def self.find_best_price_in_option
     in_stock
       .not_discontinued
       .not_deleted

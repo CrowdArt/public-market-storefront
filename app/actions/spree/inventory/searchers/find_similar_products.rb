@@ -13,7 +13,7 @@ module Spree
 
         def find_similar
           must_query = [
-            mlt_query.presence,
+            # mlt_query.presence,
             required_fields.presence
           ].compact.concat(fields_to_match)
 
@@ -50,6 +50,7 @@ module Spree
         end
 
         # https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-mlt-query.html
+        # DISABLED
         def mlt_query
           return {} if (fields = mlt_fields).blank?
           {

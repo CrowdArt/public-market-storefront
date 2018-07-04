@@ -41,11 +41,11 @@ module Spree
         end
       end
 
-      def find_similar_variants
-        Spree::Variant.find_best_price_in_best_main_option
+      def find_similar_variants # rubocop:disable Metrics/AbcSize
+        Spree::Variant.find_best_price_in_option
                       .where(spree_products: { id: @variations.map(&:_id) })
                       .sort_by { |v| v.option_values.first&.position || 0 }
-                      .group_by(&:main_option_value)
+                      .group_by { |var| product.taxonomy&.variation_module&.const_get('Options')&.condition(var.main_option_value) }
                       .map { |k, v| map_similar_variants(k, v) }
       end
 
@@ -62,7 +62,7 @@ module Spree
 
       def map_similar_variants(option_value, variants)
         {
-          option: option_value,
+          option: option_value.titleize,
           size: variants.size,
           price: variants.min_by(&:price).price,
           variants: (map_variants(variants) if load_variants)

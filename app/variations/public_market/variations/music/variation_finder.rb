@@ -13,7 +13,7 @@ module PublicMarket
               format += " (#{vinyl_speed})" if vinyl_speed
             end
 
-            format&.humanize
+            format&.titleize
           end
         end
       end
