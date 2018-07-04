@@ -66,4 +66,4 @@ section.top-products
   .divider
   .homepage-products[data-hook="homepage_products"]
     - cache(cache_key_for_products) do
-      = render partial: 'spree/shared/products', locals: { products: @products, pagination: link_to("View All Top Products", top_selling_path, class: 'show text-center') }
+      = render partial: 'spree/shared/products', locals: { products: @products, card_size: product_card_size(:tiny), pagination: link_to("View All Top Products", top_selling_path, class: 'show text-center') }

@@ -88,7 +88,7 @@ module Spree
     end
 
     def product_card_size(size = nil)
-      size == :small ? 'col-lg-3 col-md-3 col-sm-4 col-xs-6' : 'col-lg-2 col-md-3 col-sm-4 col-xs-6'
+      size == :tiny ? 'col-lg-2 col-md-3 col-sm-4 col-xs-6' : 'col-lg-3 col-md-3 col-sm-4 col-xs-6'
     end
   end
 end
