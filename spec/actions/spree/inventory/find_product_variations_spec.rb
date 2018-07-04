@@ -37,7 +37,7 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
             id: cheaper_variation.id,
             similar_variants: [
               {
-                option: variation.variants.first.main_option_value,
+                option: variation.variants.first.main_option_name.titleize,
                 size: 1,
                 price: variation.price.to_f,
                 variants: nil
@@ -65,7 +65,7 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
               id: variation.id,
               similar_variants: [
                 {
-                  option: cheaper_variation.variants.first.main_option_value,
+                  option: cheaper_variation.variants.first.main_option_name.titleize,
                   size: 1,
                   price: cheaper_variation.price.to_f,
                   variants: nil
@@ -92,7 +92,7 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
             slug: product.slug,
             id: product.id,
             similar_variants: [
-              option: variant.main_option_value,
+              option: variant.main_option_name.titleize,
               price: variant.price,
               size: 1,
               variants: nil
@@ -119,7 +119,7 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
           slug: product.slug,
           id: product.id,
           similar_variants: [
-            option: variant.main_option_value,
+            option: variant.main_option_name.titleize,
             price: variant.price,
             size: 1,
             variants: [variant]
