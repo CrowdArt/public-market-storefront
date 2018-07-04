@@ -1,5 +1,10 @@
-a:focus
-  outline: none
+a
+  &:focus
+    outline: none
+
+  &.hover-inner:hover
+    .text-muted
+      color: darken($text-muted, 15%)
 
 .muted-link
   color: $text-muted

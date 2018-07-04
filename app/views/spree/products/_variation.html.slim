@@ -11,7 +11,8 @@ a.variation-link href=(checked ? nil : "/products/#{variation[:slug]}?variation=
   .margin-text-top
     - similar_variants.each do |v|
       - link_to_similar = "/products/#{variation[:slug]}/variation/#{variation[:variation]}"
-      a> href=link_to_similar #{v[:size]} #{v[:option]}
-      ' from
-      a href=link_to_similar $#{v[:price]}
+      a.text-medium.hover-inner href=link_to_similar
+        ' #{v[:size]} #{v[:option]}
+        span.text-muted> from
+        | $#{v[:price]}
       br
