@@ -12,41 +12,23 @@ module Spree
         private
 
         def find_similar
-          must_query = [
-            # mlt_query.presence,
-            required_fields.presence
-          ].compact.concat(fields_to_match)
+          where_filters = fields_to_match
+          where_filters.merge!(required_fields)
+          where_filters.merge!(filters)
 
           Spree::Product.search(
-            body: {
-              query: {
-                bool: {
-                  must: must_query,
-                  filter: filters
-                }
-              }
-            },
+            '*',
+            where: where_filters,
+            misspellings: { edit_distance: 2 },
             load: false
           )
         end
 
-        def fields_to_match # rubocop:disable Metrics/MethodLength
-          [
-            {
-              match: {
-                'name.analyzed': {
-                  query: product.name
-                }
-              }
-            },
-            {
-              match: {
-                "#{product.author_property_name}.analyzed" => {
-                  query: product.subtitle
-                }
-              }
-            }
-          ]
+        def fields_to_match
+          {
+            'name' => product.name,
+            product.author_property_name => product.subtitle
+          }
         end
 
         # https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-mlt-query.html
@@ -70,13 +52,13 @@ module Spree
         end
 
         def filters
-          { term: { variations: filter_by_variation }} if filter_by_variation
+          filter_by_variation ? { variations: filter_by_variation } : {}
         end
 
         def required_fields
-          return if product_taxonomy.blank?
+          return {} if product_taxonomy.blank?
           taxonomy_field = "#{product.taxonomy.name.downcase}_ids"
-          { exists: { field: taxonomy_field }}
+          { taxonomy_field => { not: nil }}
         end
 
         def product_taxonomy

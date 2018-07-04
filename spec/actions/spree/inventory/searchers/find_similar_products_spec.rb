@@ -47,14 +47,9 @@ RSpec.describe Spree::Inventory::Searchers::FindSimilarProducts, type: :action, 
     end
 
     context 'when author has an mistype' do
-      let!(:variation) { create(:book, :with_variant, name: name, author: author[0...-1], taxons: taxons, format: 'Trade Paper') }
+      before { create(:book, :with_variant, name: name, author: author[0...-1], taxons: taxons, format: 'Trade Paper') }
 
-      it do
-        is_expected.to include(
-          hash_including('_id': variation.id.to_s),
-          hash_including('_id': product.id.to_s)
-        )
-      end
+      include_examples 'includes only product'
     end
 
     context 'when only author is the same' do

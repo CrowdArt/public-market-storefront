@@ -4,14 +4,11 @@ h3 = @variation.titleize
 
 - @variants.each do |variation|
   h4 #{variation[:size]} #{variation[:option]} from #{variation[:price]}
-  - variation[:variants].each do |v|
-    - variant = v[:variant]
+  - variation[:variants].each do |variant|
     - product = variant.product
     .panel.panel-default
       .panel-heading
         h4 #{product.name}
-        - if spree_current_user&.admin?
-          h5 Similarity score #{v[:score]}
 
       .panel-body
         p Price: $#{variant.price}

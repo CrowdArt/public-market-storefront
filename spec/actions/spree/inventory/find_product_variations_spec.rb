@@ -122,7 +122,7 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
             option: variant.main_option_value,
             price: variant.price,
             size: 1,
-            variants: [{ variant: variant, score: be_positive }]
+            variants: [variant]
           ]
         )
       end

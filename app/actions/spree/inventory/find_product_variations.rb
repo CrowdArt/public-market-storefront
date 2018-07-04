@@ -24,7 +24,7 @@ module Spree
           # select product with min price as variation
           product_variation ||= v.min_by { |prod| prod[:price] }
 
-          @variations = v.reject { |var| var[:_id] == product_variation[:_id] }
+          @variation_ids = v.reject { |var| var[:_id] == product_variation[:_id] }.map(&:_id)
 
           map_variation(k, product_variation)
         end
@@ -43,7 +43,7 @@ module Spree
 
       def find_similar_variants # rubocop:disable Metrics/AbcSize
         Spree::Variant.find_best_price_in_option
-                      .where(spree_products: { id: @variations.map(&:_id) })
+                      .where(spree_products: { id: @variation_ids })
                       .sort_by { |v| v.option_values.first&.position || 0 }
                       .group_by { |var| product.taxonomy&.variation_module&.const_get('Options')&.condition(var.main_option_value) }
                       .map { |k, v| map_similar_variants(k, v) }
@@ -65,18 +65,9 @@ module Spree
           option: option_value.titleize,
           size: variants.size,
           price: variants.min_by(&:price).price,
-          variants: (map_variants(variants) if load_variants)
+          variants: (variants.sort_by(&:price) if load_variants)
         }
       end
-
-      # rubocop:disable Style/MultilineBlockChain
-      def map_variants(variants)
-        variants.map do |var|
-          product_score = @variations.find { |variation| variation['_id'] == var.product_id.to_s }&.fetch('_score')
-          { variant: var, score: product_score }
-        end.sort_by { |v| [v[:variant].price, -v[:score]] } # price ASC, product score DESC
-      end
-      # rubocop:enable Style/MultilineBlockChain
 
       def variation_finder
         product.taxonomy&.variation_module&.const_get('VariationFinder')

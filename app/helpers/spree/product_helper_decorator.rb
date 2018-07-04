@@ -16,7 +16,7 @@ module Spree
     end
 
     def cache_key_for_product(product = @product, opts = {})
-      ([:v13] + common_product_cache_keys + [product.cache_key] + opts.to_a).compact.join('/')
+      ([:v14] + common_product_cache_keys + [product.cache_key] + opts.to_a).compact.join('/')
     end
 
     def product_variants(product = @product)
