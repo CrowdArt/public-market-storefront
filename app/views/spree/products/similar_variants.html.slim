@@ -1,16 +1,24 @@
+= link_to 'Back', @product
+
 h3 = @variation.titleize
 
 - @variants.each do |variation|
   h4 #{variation[:size]} #{variation[:option]} from #{variation[:price]}
   - variation[:variants].each do |v|
+    - variant = v[:variant]
+    - product = variant.product
     .panel.panel-default
       .panel-heading
-        h4 #{v.product.name}
+        h4 #{product.name}
+        - if spree_current_user&.admin?
+          h5 Similarity score #{v[:score]}
+
       .panel-body
-        p Price: $#{v.price}
-        p Vendor: #{v.vendor.name}
-        p #{v.main_option_type.presentation}: #{v.main_option_value}
-        p ISBN: #{v.product.identifier_property}
+        p Price: $#{variant.price}
+        p Vendor: #{variant.vendor.name}
+        p #{variant.main_option_type.presentation}: #{variant.main_option_value}
+        p ISBN: #{product.identifier_property}
+        p Product ID: #{product.id}
 
       .panel-footer
-        = link_to 'Go', v.product, target: '_blank'
+        = link_to 'Go', variant.product, target: '_blank'

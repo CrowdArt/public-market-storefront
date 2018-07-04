@@ -54,7 +54,8 @@ module Spree
     def similar_variants
       @variation = params[:variation]
       return redirect_to @product unless @product.search_variations.include?(@variation)
-      @variants = Spree::Inventory::FindProductVariations.call(@product, filter_by_variation: @variation).first[:similar_variants]
+      @variants = Spree::Inventory::FindProductVariations.call(@product, filter_by_variation: @variation, load_variants: true)
+                                                         .first[:similar_variants]
     end
 
     private

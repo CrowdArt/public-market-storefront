@@ -11,7 +11,7 @@ FactoryBot.define do
     end
 
     trait :with_variant do
-      variants { create_list(:variant, 1) }
+      variants { create_list(:variant, 1, price: price) }
     end
 
     after :create do |product, evaluator|

@@ -13,28 +13,37 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
     create(:book, :with_variant, name: name, author: author, taxons: taxons, format: 'Trade Cloth')
   end
 
-  shared_examples 'includes self variation' do
+  context 'when variations found' do
+    let!(:variation) { create(:book, :with_variant, name: name, price: 10, author: author, taxons: taxons, format: 'Trade Paper') }
+
     it do
-      is_expected.to eq(
-        [
-          { name: 'Hardcover', variation: 'hardcover', similar_variants: [], price: product.price.to_f, slug: product.slug, id: product.id }
-        ]
+      is_expected.to include(
+        { name: 'Paperback', variation: 'paperback', price: be_positive, similar_variants: [], slug: variation.slug, id: variation.id },
+        { name: 'Hardcover', variation: 'hardcover', price: be_positive, similar_variants: [], slug: product.slug, id: product.id }
       )
     end
-  end
 
-  context 'when no variations' do
-    include_examples 'includes self variation'
-  end
-
-  describe 'book variations by cover type' do
-    context 'when title and author are the same' do
-      let!(:variation) { create(:book, :with_variant, name: name, author: author, taxons: taxons, format: 'Trade Paper') }
+    context 'when cheaper variation exists' do
+      let!(:cheaper_variation) { create(:book, :with_variant, name: name, price: 0.1, author: author, taxons: taxons, format: 'Trade Paper') }
 
       it do
         is_expected.to include(
-          { name: 'Paperback', variation: 'paperback', price: be_positive, similar_variants: [], slug: variation.slug, id: variation.id },
-          { name: 'Hardcover', variation: 'hardcover', price: be_positive, similar_variants: [], slug: product.slug, id: product.id }
+          { name: 'Hardcover', variation: 'hardcover', price: be_positive, similar_variants: [], slug: product.slug, id: product.id },
+          {
+            name: 'Paperback',
+            variation: 'paperback',
+            price: be_positive,
+            slug: cheaper_variation.slug,
+            id: cheaper_variation.id,
+            similar_variants: [
+              {
+                option: variation.variants.first.main_option_value,
+                size: 1,
+                price: variation.price.to_f,
+                variants: nil
+              }
+            ]
+          }
         )
       end
 
@@ -47,70 +56,73 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
 
         it do
           is_expected.to include(
-            { name: 'Paperback', variation: 'paperback', price: be_positive, similar_variants: [], slug: variation.slug, id: variation.id },
-            { name: 'Hardcover', variation: 'hardcover', price: be_positive, similar_variants: [], slug: product.slug, id: product.id }
+            { name: 'Hardcover', variation: 'hardcover', price: be_positive, similar_variants: [], slug: product.slug, id: product.id },
+            {
+              name: 'Paperback',
+              variation: 'paperback',
+              price: be_positive,
+              slug: variation.slug,
+              id: variation.id,
+              similar_variants: [
+                {
+                  option: cheaper_variation.variants.first.main_option_value,
+                  size: 1,
+                  price: cheaper_variation.price.to_f,
+                  variants: nil
+                }
+              ]
+            }
           )
         end
       end
     end
+  end
 
-    context 'when author has an mistype' do
-      let!(:variation) { create(:book, :with_variant, name: name, author: author[0...-1], taxons: taxons, format: 'Trade Paper') }
+  describe 'similar variants' do
+    let(:book_with_variant) { create(:book, price: 1, name: name, author: author, taxons: taxons, format: 'Trade Cloth') }
+    let!(:variant) { create(:variant, product: book_with_variant, price: 1) }
 
-      it do
-        is_expected.to include(
-          { name: 'Paperback', variation: 'paperback', price: be_positive, similar_variants: [], slug: variation.slug, id: variation.id },
-          { name: 'Hardcover', variation: 'hardcover', price: be_positive, similar_variants: [], slug: product.slug, id: product.id }
-        )
+    it 'includes similar variants' do
+      is_expected.to eq(
+        [
+          {
+            name: 'Hardcover',
+            variation: 'hardcover',
+            price: product.price.to_f,
+            slug: product.slug,
+            id: product.id,
+            similar_variants: [
+              option: variant.main_option_value,
+              price: variant.price,
+              size: 1,
+              variants: nil
+            ]
+          }
+        ]
+      )
+    end
+
+    context 'when load_variants is set to true' do
+      subject(:variations) do
+        product.class.reindex
+        product.class.searchkick_index.refresh
+        described_class.call(product, load_variants: true)
       end
-    end
-
-    context 'when only author is the same' do
-      before { create(:book, :with_variant, name: 'Other book name super exclusive', author: author, taxons: taxons, format: 'Trade Paper') }
-
-      include_examples 'includes self variation'
-    end
-
-    context 'when only title is the same' do
-      before { create(:book, :with_variant, name: name, taxons: taxons, format: 'Trade Paper') }
-
-      include_examples 'includes self variation'
-    end
-
-    context 'when format is the same' do
-      before { create(:book, price: 1, name: name, author: author, taxons: taxons, format: 'Trade Cloth') }
-
-      include_examples 'includes self variation'
-    end
-
-    context 'when taxonomy is not a book' do
-      let(:taxons) { [create(:taxonomy, name: 'Electronics').root] }
-
-      before { create(:book, :with_variant, name: name, author: author, taxons: taxons, format: 'Trade Paper') }
-
-      it { is_expected.to be_empty }
-    end
-
-    describe 'similar variants' do
-      let(:book_with_variant) { create(:book, price: 1, name: name, author: author, taxons: taxons, format: 'Trade Cloth') }
-      let!(:variant) { create(:variant, product: book_with_variant, price: 1) }
 
       it 'includes similar variants' do
-        is_expected.to eq(
-          [
-            {
-              name: 'Hardcover',
-              variation: 'hardcover',
-              price: product.price.to_f,
-              slug: product.slug,
-              id: product.id,
-              similar_variants: [
-                option: variant.main_option_value,
-                price: variant.price,
-                size: 1,
-                variants: [variant]
-              ]
-            }
+        expect(variations.size).to eq 1
+
+        is_expected.to include(
+          name: 'Hardcover',
+          variation: 'hardcover',
+          price: product.price.to_f,
+          slug: product.slug,
+          id: product.id,
+          similar_variants: [
+            option: variant.main_option_value,
+            price: variant.price,
+            size: 1,
+            variants: [{ variant: variant, score: be_positive }]
           ]
         )
       end
