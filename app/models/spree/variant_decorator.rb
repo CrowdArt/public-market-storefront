@@ -1,7 +1,14 @@
 Spree::Variant.class_eval do
-  # assume that first option value is main
   def main_option_value
-    option_values&.first&.presentation || 'Default'
+    main_option&.presentation || 'Default'
+  end
+
+  def mapped_main_option_value
+    product.taxonomy&.variation_module&.const_get('Options')&.condition(main_option_name)
+  end
+
+  def main_option_name
+    main_option&.name
   end
 
   def main_option_type
@@ -16,5 +23,12 @@ Spree::Variant.class_eval do
       .joins(:option_values, :product, :default_price)
       .reorder('spree_variants.product_id, spree_option_values.position ASC, spree_prices.amount ASC')
       .select('DISTINCT ON (spree_variants.product_id) spree_variants.*')
+  end
+
+  private
+
+  # assume that first option value is main
+  def main_option
+    option_values&.first
   end
 end

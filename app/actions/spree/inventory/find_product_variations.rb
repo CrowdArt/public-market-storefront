@@ -41,11 +41,11 @@ module Spree
         end
       end
 
-      def find_similar_variants # rubocop:disable Metrics/AbcSize
+      def find_similar_variants
         Spree::Variant.find_best_price_in_option
                       .where(spree_products: { id: @variation_ids })
                       .sort_by { |v| v.option_values.first&.position || 0 }
-                      .group_by { |var| product.taxonomy&.variation_module&.const_get('Options')&.condition(var.main_option_value) }
+                      .group_by(&:mapped_main_option_value)
                       .map { |k, v| map_similar_variants(k, v) }
       end
 
