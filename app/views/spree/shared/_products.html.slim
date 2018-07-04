@@ -26,4 +26,7 @@ ruby:
       = render partial: 'spree/products/product', collection: products, locals: { taxon: @taxon, max_mobile: max_mobile, card_size: card_size }
 
     - if products.respond_to?(:total_pages)
-      = paginate products, theme: 'twitter-bootstrap-3'
+      - if local_assigns.has_key?(:pagination)
+        == pagination
+      - else
+        = paginate products, theme: 'twitter-bootstrap-3'
