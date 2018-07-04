@@ -1,0 +1,17 @@
+#!/bin/sh
+
+DOCKER_IMAGE=registry.gitlab.com/publicmarket/public-market-storefront
+
+set -e
+
+docker build -f ./config/deploy/Dockerfile -t $DOCKER_IMAGE:latest .
+
+docker push $DOCKER_IMAGE:latest
+
+echo 'Updating web pods...'
+kubectl patch sts web -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
+
+echo 'Updating sidekiq pods...'
+kubectl patch sts sidekiq -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
+
+kubectl get pod
