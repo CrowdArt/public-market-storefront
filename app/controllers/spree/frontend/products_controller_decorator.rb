@@ -34,7 +34,7 @@ module Spree
     end
 
     def show
-      @previous_variation = Spree::Product.find_by(id: params[:variation])
+      @previous_variation = Spree::Product.find_by(slug: params[:variation])
       redirect_if_legacy_path
     end
 

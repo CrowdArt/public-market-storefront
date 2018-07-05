@@ -46,7 +46,7 @@ module Spree
 
       # can be false
       def taxonomy
-        taxons.first&.taxonomy
+        @taxonomy ||= taxons.first&.taxonomy
       end
 
       # fields merged to searchkick's search_data

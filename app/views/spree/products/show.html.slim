@@ -2,12 +2,12 @@ ruby:
   @body_id = 'product-details'
   is_mobile = browser.device.mobile?
 
-- cache(cache_key_for_product(@product, admin: spree_current_user&.admin?, mobile: is_mobile, previous_variation: @previous_variation)) do
-  ruby:
-    can_supply = @product.can_supply?
-    variants, other_seller_variants = product_variants if can_supply
+.row.product-grid data-hook='product_show' itemscope=true itemtype='https://schema.org/Product'
+  - cache(cache_key_for_product(@product, section: :sidebar_and_cart, mobile: is_mobile)) do
+    ruby:
+      can_supply = @product.can_supply?
+      variants, other_seller_variants = product_variants if can_supply
 
-  .row.product-grid data-hook='product_show' itemscope=true itemtype='https://schema.org/Product'
     .col-sm-5.col-md-4.product-images-item
       div data-hook='product_left_part_wrap'
         #product-images data-hook='product_images'
@@ -36,20 +36,22 @@ ruby:
         - if other_seller_variants.present?
           = render partial: 'other_sellers_cart_form', locals: { variants: other_seller_variants }
 
-    .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
-      h1.product-title itemprop='name' = sanitize(@product.name)
+  / NOT CACHED PART
+  .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
+    h1.product-title itemprop='name' = sanitize(@product.name)
 
-      - if subtitle = @product.subtitle
-        p.product-author.no-margin-top
-          span.byline> By
-          span.author = subtitle
+    - if subtitle = @product.subtitle
+      p.product-author.no-margin-top
+        span.byline> By
+        span.author = subtitle
 
-      - if (variations = product_variations).present?
-        .row
-          - variations.each do |variation|
-            .col-xs-6.col-sm-4
-              = render partial: 'variation', locals: { variation: variation }
+    - if (variations = product_variations).present?
+      .row
+        - variations.each do |variation|
+          .col-xs-6.col-sm-4
+            = render partial: 'variation', locals: { variation: variation }
 
+  - cache(cache_key_for_product(@product, section: :description, mobile: is_mobile)) do
     .col-xs-12.col-sm-12.product-content-item
       #main-accordion.accordion
         .product-description.card data-hook='product_description' itemprop='description'

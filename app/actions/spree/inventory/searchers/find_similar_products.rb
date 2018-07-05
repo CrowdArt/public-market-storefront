@@ -56,17 +56,13 @@ module Spree
         end
 
         def required_fields
-          return {} if product_taxonomy.blank?
+          return {} if product.taxonomy.blank?
           taxonomy_field = "#{product.taxonomy.name.downcase}_ids"
           { taxonomy_field => { not: nil }}
         end
 
-        def product_taxonomy
-          product.taxonomy
-        end
-
         def mlt_fields
-          applicable_mlt_fields = product_taxonomy&.variation_module&.const_get('VariationFinder')&.mlt_fields
+          applicable_mlt_fields = product.taxonomy&.variation_module&.const_get('VariationFinder')&.mlt_fields
           product.properties.where(name: applicable_mlt_fields).pluck(:name)
         end
       end
