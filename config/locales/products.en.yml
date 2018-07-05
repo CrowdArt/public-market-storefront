@@ -2,3 +2,29 @@ en:
   products:
     sold_by: Ships from and sold by
     rewards: "+ %{rewards} PTRN Rewards"
+
+  variations:
+    options:
+      books:
+        new:
+          - new
+        used:
+          - like new
+          - excellent
+          - very good
+          - good
+          - acceptable
+        collectible:
+          - collectible
+
+      music:
+        new:
+          - new
+        'like new':
+          - ss
+          - m-
+          - vg+
+        used:
+          - vg
+          - vg-
+          - g+

@@ -4,7 +4,8 @@ Spree::Variant.class_eval do
   end
 
   def mapped_main_option_value
-    product.taxonomy&.variation_module&.const_get('Options')&.condition(main_option_name)
+    conditions = I18n.t("variations.options.#{product.taxonomy&.name&.downcase}").stringify_keys
+    conditions.find { |_k, v| v.include?(main_option_name.downcase) }&.first || main_option_name
   end
 
   def main_option_name
