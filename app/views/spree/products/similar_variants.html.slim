@@ -1,21 +1,73 @@
-= link_to 'Back', @product
+- @body_class = 'bg-white'
 
-h3 = @variation.titleize
+p = link_to t('similar_variants.return_to_product'), @product
 
-- @variants.each do |variation|
-  h4 #{variation[:size]} #{variation[:option]} from #{variation[:price]}
-  - variation[:variants].each do |variant|
-    - product = variant.product
-    .panel.panel-default
-      .panel-heading
-        h4 #{product.name}
+.row
+  .col-md-2
+    = large_image(@product, itemprop: "image", style: 'max-width:100%')
 
-      .panel-body
-        p Price: $#{variant.price}
-        p Vendor: #{variant.vendor.name}
-        p #{variant.main_option_type.presentation}: #{variant.main_option_value}
-        p ISBN: #{product.identifier_property}
-        p Product ID: #{product.id}
+    strong Condition
 
-      .panel-footer
-        = link_to 'Go', variant.product, target: '_blank'
+    br
+
+    - @variant_groups.each do |variant_group|
+      - option = variant_group[:option]
+      .checkbox.checkbox-blue
+        = check_box_tag option, option
+        label for=option
+          span.flex.align-center = option.titleize
+
+  .col-md-10
+    h1.no-margin-top.text-black #{@product.name} (#{@variation.titleize})
+
+    - if subtitle = @product.subtitle
+      p.product-author.no-margin-top
+        span.byline> By
+        span.author = subtitle
+
+    table.table
+      thead
+        th Price
+        th Condition
+        th Delivery + PTRN Rewards
+        th About seller
+        th
+
+      - @variant_groups.each do |variant_group|
+        - variant_group[:variants].each do |variant|
+          tr data-variation=variant_group[:option]
+            td
+              .text-danger.lead.margin-text-bottom $#{variant.price}
+              strong Free shipping
+
+            td
+              .lead.margin-text-bottom = variant.main_option_value
+              = variant.notes.truncate(30)
+
+            td
+              | Arrives between July 19 - Aug. 3.
+              br
+              strong> FREE ground shipping
+              | (6-8 Business Days)
+              br
+              strong.ptrn 6-7
+
+            td
+              .lead.margin-text-bottom = variant.vendor.name
+
+            td.text-right
+              btn.btn.btn-primary.margin-text-right Add to cart
+              br
+              = link_to 'Go', variant.product, target: '_blank'
+
+javascript:
+  $("input[type='checkbox']").change(function() {
+    if ($("input[type='checkbox']:checked").length == 0) {
+      $("tr[data-variation]").toggle(true)
+      return
+    }
+
+    $("input[type='checkbox']").each(function() {
+      $("tr[data-variation='" + $(this).val() + "']").toggle(this.checked)
+    })
+  })

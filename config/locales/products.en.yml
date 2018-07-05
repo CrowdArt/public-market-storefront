@@ -28,3 +28,6 @@ en:
           - vg
           - vg-
           - g+
+
+  similar_variants:
+    return_to_product: '< Return to Product Information'

@@ -200,8 +200,11 @@ input[type="radio"]
     transform: rotate(215deg)
     width: 5px
 
-  &:not(.checkbox-right) label span:after
-    left: 5px
+  &:not(.checkbox-right) label span
+    &:after
+      left: 5px
+    &:before
+      margin-right: .5em
 
   &.checkbox-right label span:before
     right: 5px
