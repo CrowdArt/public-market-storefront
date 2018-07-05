@@ -80,9 +80,9 @@ module Spree
 
           case sort_option
           when 'all_time'
-            { conversions: :desc }
+            { boost_factor: :desc, conversions: :desc }
           when 'month'
-            { conversions_month: :desc }
+            { boost_factor: :desc, conversions_month: :desc }
           end
         end
 
