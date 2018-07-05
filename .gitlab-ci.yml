@@ -3,13 +3,12 @@ variables:
   DOCKER_IMAGE: registry.gitlab.com/publicmarket/public-market-storefront
 
 stages:
-  - build
-  - test
-  - build_app_image
-  - deploy
+  - phase1
+  - phase2
+  - phase3
 
 build:
-  stage: build
+  stage: phase1
   tags:
     - build
   image: docker:latest
@@ -22,6 +21,9 @@ build:
     # ci image inherits from base, installs chrome and copies code
     - docker build -f ./config/deploy/dockerfiles/ci/Dockerfile -t $DOCKER_IMAGE/ci:latest .
     - docker push $DOCKER_IMAGE/ci:latest
+    # kubectl image contains docker and kubectl for deploying
+    - docker build -f ./config/deploy/dockerfiles/kubectl/Dockerfile -t $DOCKER_IMAGE/kubectl:latest ./config/deploy/dockerfiles/kubectl
+    - docker push $DOCKER_IMAGE/kubectl:latest
     # cleanup
     - docker system prune -f
   except:
@@ -30,7 +32,7 @@ build:
 
 rspec:
   image: $DOCKER_IMAGE/ci:latest
-  stage: test
+  stage: phase2
   services:
     - postgres:10.1-alpine
     - elasticsearch:latest
@@ -68,38 +70,38 @@ rspec:
     variables:
       - $CI_COMMIT_MESSAGE =~ /skip-test/
 
-build_app_image:
-  stage: build_app_image
+deploy to staging:
+  stage: phase2
+  image: $DOCKER_IMAGE/kubectl:latest
   tags:
     - build
-  image: docker:latest
-  cache:
-    key: build-cache
-    paths:
-      - vendor/bundle
-      - public/assets
   before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
-    - ls -la vendor
-    - ls -la public
   script:
+    - env
     - docker build -f ./config/deploy/Dockerfile -t $DOCKER_IMAGE:latest .
     - docker push $DOCKER_IMAGE:latest
     - docker system prune -f
-  only:
-    - master
-
-deploy to staging:
-  stage: deploy
-  image: dtzar/helm-kubectl:latest
-  script:
-    - env
     - kubectl cluster-info
     - kubectl patch sts web -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
     - kubectl patch sts sidekiq -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
     - kubectl get pod
+    # set Pivotal Tracker stories to delivered state
+    - git log --format=%s $CI_BUILD_BEFORE_SHA..$CI_COMMIT_SHA | (grep -io "\[fixes .*\]" || true) | (grep -o "[0-9][0-9]*" || true) | xargs -I % curl -X PUT -H "X-TrackerToken:$PT_TOKEN" -H "Content-Type:application/json" -d '{"current_state":"delivered"}' https://www.pivotaltracker.com/services/v5/projects/$PT_PROJECT_ID/stories/%
   environment:
     name: staging
     url: https://staging-k8s.public.market
   only:
     - master
+    - pipeline
+
+deploy to production:
+  stage: phase3
+  image: $DOCKER_IMAGE/kubectl:latest
+  tags:
+    - build
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+  script:
+    - env
+  when: manual
