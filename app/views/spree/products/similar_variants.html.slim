@@ -3,7 +3,7 @@
 - content_for :head
   = stylesheet_link_tag 'spree/frontend/similar_variants', media: 'screen'
 
-p = link_to t('similar_variants.return_to_product'), @product
+p = link_to(t('similar_variants.return_to_product'), @product)
 
 .row.similar-variants--container
   .col-md-2.col-sm-2.similar-variants--sidebar
@@ -41,36 +41,43 @@ p = link_to t('similar_variants.return_to_product'), @product
       span = t('similar_variants.table_header.seller')
 
     .similar-variants--table-body
-      - @variant_groups.each do |variant_group|
-        - variant_group[:variants].each do |variant|
-           .similar-variants--table-body--row data-variation=variant_group[:option]
-            .similar-variants--table-body--column.similar-variants--table-body--price
-              .lead
-                span.text-danger $#{variant.price}
-                strong.visible-xs-inline.margin-text-left = variant.main_option_value
-              strong Free shipping
+      = form_for :order, url: populate_orders_path, remote: true do |f|
+        = hidden_field_tag :quantity, 1
 
-            .similar-variants--table-body--column.similar-variants--table-body--option.hidden-xs
-              .lead.margin-text-bottom = variant.main_option_value
-              span = variant.notes.truncate(50)
+        - @variant_groups.each do |variant_group|
+          - variant_group[:variants].each do |variant|
+            .hide = radio_button_tag 'variant_id', variant.id, false, id: "variant_id_#{variant.id}"
 
-            .similar-variants--table-body--column.similar-variants--table-body--delivery
-              .hidden-xs Arrives between July 19 - Aug. 3.
+            .similar-variants--table-body--row data-variation=variant_group[:option]
+              .similar-variants--table-body--column.similar-variants--table-body--price
+                .lead
+                  span.text-danger $#{variant.price}
+                  strong.visible-xs-inline.margin-text-left = variant.main_option_value
+                strong Free shipping
 
-              .hidden-xs
-                strong> FREE ground shipping
-                | (6-8 Business Days)
+              .similar-variants--table-body--column.similar-variants--table-body--option.hidden-xs
+                .lead.margin-text-bottom = variant.main_option_value
+                span = variant.notes.truncate(50)
 
-              strong.ptrn 6-7
+              .similar-variants--table-body--column.similar-variants--table-body--delivery
+                .hidden-xs Arrives between #{6.days.from_now.strftime('%b %d')} - #{8.days.from_now.strftime('%b %d')}
 
-            .similar-variants--table-body--column.similar-variants--table-body--seller
-              .lead.no-margin-bottom = variant.vendor.name
+                .hidden-xs
+                  strong> FREE ground shipping
+                  | (6-8 Business Days)
 
-            .similar-variants--table-body--column.similar-variants--table-body--action
-              btn.btn.btn-primary Add to cart
+                strong.ptrn 6-7
 
-            .similar-variants--table-body--note.visible-xs
-              = variant.notes.truncate(50)
+              .similar-variants--table-body--column.similar-variants--table-body--seller
+                .lead.no-margin-bottom = variant.vendor.name
+
+              .similar-variants--table-body--column.similar-variants--table-body--action
+                = f.button class: 'btn btn-primary', value: 'add-to-cart', type: :submit do
+                  label.no-margin for="variant_id_#{variant.id}"
+                    = Spree.t(:add_to_cart)
+
+              .similar-variants--table-body--note.visible-xs
+                = variant.notes.truncate(50)
 
 javascript:
   $("input[type='checkbox']").change(function() {
