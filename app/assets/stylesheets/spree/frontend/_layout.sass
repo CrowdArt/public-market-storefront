@@ -5,6 +5,14 @@
   .hidden-xxs
     display: none !important
 
+
+.visible-grid-xs
+  display: none !important
+
+@media (max-width: $screen-xs-max)
+  .visible-grid-xs
+    display: grid !important
+
 // tablet
 @media (max-width: $screen-sm-max)
   body

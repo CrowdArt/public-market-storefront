@@ -60,6 +60,33 @@
       border: solid 1px $input-border
       padding: 9px 0 9px 25px
 
+      @media (max-width: $screen-xs-max)
+        grid-auto-flow: column
+        grid-template-columns: auto
+        grid-column-gap: 0
+        justify-items: center
+        background: transparent
+        border: none
+        padding-left: 0
+
+      &--item
+        border-bottom: solid 1px $input-border
+        text-align: center
+        width: 100%
+
+        &.active
+          border: solid 1px $input-border
+          border-bottom: none
+
+          label
+            color: $text-color
+
+        label
+          font-weight: normal
+          color: $brand-primary
+          padding: 10px
+          width: 100%
+
     &-body
       &--row
         grid-template-areas: 'price option delivery seller action'

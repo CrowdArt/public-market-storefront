@@ -40,15 +40,26 @@ p = link_to(t('similar_variants.return_to_product'), @product)
       span = t('similar_variants.table_header.delivery_ptrn')
       span = t('similar_variants.table_header.seller')
 
+    .similar-variants--table-header.visible-grid-xs
+      .similar-variants--table-header--item.active
+        .hide = radio_button_tag 'radio_variation', 'all', true, id: "radio_all"
+        label.no-margin for="radio_all" All
+
+      - @variant_groups.each do |variant_group|
+        - option = variant_group[:option]
+        .similar-variants--table-header--item
+          .hide = radio_button_tag 'radio_variation', option, false, id: "radio_#{option}"
+          label.no-margin for="radio_#{option}" = option
+
     .similar-variants--table-body
       = form_for :order, url: populate_orders_path, remote: true do |f|
         = hidden_field_tag :quantity, 1
 
         - @variant_groups.each do |variant_group|
           - variant_group[:variants].each do |variant|
-            .hide = radio_button_tag 'variant_id', variant.id, false, id: "variant_id_#{variant.id}"
-
             .similar-variants--table-body--row data-variation=variant_group[:option]
+              .hide = radio_button_tag 'variant_id', variant.id, false, id: "variant_id_#{variant.id}"
+
               .similar-variants--table-body--column.similar-variants--table-body--price
                 .lead
                   span.text-danger $#{variant.price}
@@ -82,11 +93,25 @@ p = link_to(t('similar_variants.return_to_product'), @product)
 javascript:
   $("input[type='checkbox']").change(function() {
     if ($("input[type='checkbox']:checked").length == 0) {
-      $("tr[data-variation]").toggle(true)
+      $("[data-variation]").toggle(true)
       return
     }
 
     $("input[type='checkbox']").each(function() {
-      $("tr[data-variation='" + $(this).val() + "']").toggle(this.checked)
+      $("[data-variation='" + $(this).val() + "']").toggle(this.checked)
+    })
+  })
+
+  $("input[name='radio_variation']").change(function() {
+    var curVal = $("input[name='radio_variation']:checked").val()
+
+    if (curVal == 'all')
+      $("[data-variation]").toggle(true)
+
+    $("input[name='radio_variation']").each(function() {
+      $(this).parents('.similar-variants--table-header--item').toggleClass('active', this.checked)
+
+      if (curVal !== 'all')
+        $("[data-variation='" + $(this).val() + "']").toggle(this.checked)
     })
   })
