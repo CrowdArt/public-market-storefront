@@ -1,0 +1,98 @@
+@import variables
+@import cosmo/variables
+
+.similar-variants
+  &--container
+    display: grid
+    grid-template-areas: 'sidebar product-info' 'sidebar table'
+    grid-template-columns: 16% auto
+    grid-row-gap: 20px
+
+    @media (max-width: $screen-xs-max)
+      grid-template-columns: 0fr auto
+
+  &--image
+    img
+      max-width: 100%
+
+      @media (max-width: $screen-xs-max)
+        max-width: 100px
+
+      @media (max-width: $screen-xs)
+        max-width: 50px
+
+  &--sidebar
+    grid-area: sidebar
+
+    @supports (display: grid)
+      width: 100%
+
+    @media (max-width: $screen-xs-max)
+      grid-row: 1
+      padding-right: 0
+
+  &--product-info
+    grid-area: product-info
+
+    @media (max-width: $screen-xs)
+      h1
+        font-size: 18px
+
+  &--table
+    grid-area: table
+
+    @media (max-width: $screen-xs-max)
+      grid-column: 1 / span 2
+
+    @supports (display: grid)
+      width: 100%
+
+    &-header, &-body--row
+      display: grid
+      grid-column-gap: 10px
+      grid-row-gap: 3px
+      grid-template-columns: 15% 25% 25% 15% auto
+
+    &-header
+      background: $body-bg
+      border: solid 1px $input-border
+      padding: 9px 0 9px 25px
+
+    &-body
+      &--row
+        grid-template-areas: 'price option delivery seller action'
+        border-bottom: 1px solid $table-border-color
+        padding: 9px 0 22px 25px
+
+        @media (max-width: $screen-xs-max)
+          grid-template-columns: auto
+          grid-template-areas: 'price option action' 'delivery delivery delivery' 'seller seller seller' 'note note note'
+          padding: 15px 0
+
+      &--price
+        grid-area: price
+
+        .lead
+          margin-bottom: 3px
+
+      &--option
+        grid-area: option
+
+      &--note
+        grid-area: note
+
+      &--delivery
+        grid-area: delivery
+
+      &--seller
+        grid-area: seller
+
+      &--action
+        grid-area: action
+        justify-self: end
+
+        .btn
+          white-space: normal
+
+          @media (max-width: $screen-xs-max)
+            padding: 9px 21px

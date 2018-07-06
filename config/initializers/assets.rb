@@ -21,6 +21,7 @@ assets_to_precompile = %w[
   twiActions
   searchFilters
   searchFilterTags
+  spree/frontend/similar_variants
   bootstrap-tagsinput/dist/bootstrap-tagsinput.css
   bootstrap-tagsinput/dist/bootstrap-tagsinput.js
   raven-js/dist/raven.js

@@ -53,3 +53,7 @@ en:
 
   similar_variants:
     return_to_product: '< Return to Product Information'
+    table_header:
+      price: Price
+      delivery_ptrn: Delivery + PTRN Rewards
+      seller: About seller
