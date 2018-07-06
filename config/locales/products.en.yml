@@ -29,5 +29,27 @@ en:
           - vg-
           - g+
 
+    formats:
+      books:
+        hardcover:
+          - hardcover
+          - trade cloth
+          - library binding
+          - "children's board books"
+
+        paperback:
+          - paperback
+          - trade paper
+          - mass market
+          - perfect
+          - digest paperback
+          - uk-a format paperback
+          - uk- a format paperback
+          - uk-b format paperback
+          - uk-trade paper
+
+        other:
+          - other
+
   similar_variants:
     return_to_product: '< Return to Product Information'

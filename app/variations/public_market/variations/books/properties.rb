@@ -16,34 +16,16 @@ module PublicMarket
 
         def find_book_format(format)
           return if format.blank?
-          book_format.find { |_k, v| v.include?(format.downcase) }&.first
+          book_formats.find { |_k, v| v.include?(format.downcase) }&.first
         end
 
+        # ordered list
         def available_variations
           %w[hardcover paperback other]
         end
 
-        def book_format # rubocop:disable Metrics/MethodLength
-          {
-            'hardcover' => [
-              'hardcover',
-              'trade cloth',
-              'library binding',
-              "children's board books"
-            ],
-            'paperback' => [
-              'paperback',
-              'trade paper',
-              'mass market',
-              'perfect',
-              'digest paperback',
-              'uk-a format paperback',
-              'uk- a format paperback',
-              'uk-b format paperback',
-              'uk-trade paper'
-            ],
-            'other' => ['other']
-          }
+        def book_formats
+          I18n.t('variations.formats.books').stringify_keys
         end
       end
     end

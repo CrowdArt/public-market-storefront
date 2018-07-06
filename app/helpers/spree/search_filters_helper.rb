@@ -6,7 +6,7 @@ module Spree
 
         opts[:taxon_ids] = [@taxon.id] if @taxon
 
-        aggs = Spree::Config.searcher_class.new(opts).call.aggs
+        aggs = Spree::Config.searcher_class.call(opts).aggs
         Spree::Search::SearchkickFilters.applicable_filters(aggs, taxon: @taxon)
       end
     end

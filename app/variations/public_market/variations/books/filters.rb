@@ -19,7 +19,7 @@ module PublicMarket
         end
 
         def book_format_filter(filter)
-          Books::Properties.book_format.keys.map do |f|
+          Books::Properties.available_variations.map do |f|
             bucket = filter['buckets'].find { |b| b['key'] == f }
             disabled = bucket.blank? || bucket['doc_count'].zero?
             { label: f, value: f, id: f.parameterize, disabled: disabled }
