@@ -4,6 +4,7 @@ module Spree
       base.before_action :save_return_to, only: :show
       base.before_action :load_product, only: %i[show similar_variants]
       base.before_action :load_taxon, only: %i[show autocomplete]
+      base.include SimilarVariantsHelper
     end
 
     def best_selling
@@ -55,8 +56,8 @@ module Spree
     def similar_variants
       @variation = params[:variation]
       return redirect_to @product unless @product.search_variations.include?(@variation)
-      @variant_groups = Spree::Inventory::FindProductVariations.call(@product, filter_by_variation: @variation, load_variants: true)
-                                                               .first[:similar_variants]
+      @variants = Spree::Inventory::FindProductVariations.call(@product, filter_by_variation: @variation, load_variants: true)
+                                                         .first[:similar_variants]
     end
 
     private

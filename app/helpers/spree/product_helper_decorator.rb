@@ -56,7 +56,7 @@ module Spree
 
       # always use same variations order
       @product.variation_module::Properties.available_variations.map do |variation_name|
-        variations.find { |var| var[:variation] == variation_name }
+        variations.find { |var| var[:variation_name] == variation_name }
       end.compact
     end
 

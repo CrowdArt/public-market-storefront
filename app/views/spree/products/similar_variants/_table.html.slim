@@ -1,0 +1,53 @@
+.similar-variants--table-header.hidden-xs.upcase
+  span = t('similar_variants.table_header.price')
+  span Condition
+  span = t('similar_variants.table_header.delivery_ptrn')
+  span = t('similar_variants.table_header.seller')
+
+.similar-variants--table-header.visible-grid-xs
+  .similar-variants--table-header--item.active
+    .hide = radio_button_tag 'radio_variation', 'all', true, id: "radio_all"
+    label.no-margin for="radio_all" All
+
+  - available_filter_options.each do |option, _child_options|
+    .similar-variants--table-header--item
+      .hide = radio_button_tag 'radio_variation', option.parameterize, false, id: "radio_#{option}"
+      label.no-margin for="radio_#{option}" = option.titleize
+
+.similar-variants--table-body
+  = form_for :order, url: populate_orders_path, remote: true do |f|
+    = hidden_field_tag :quantity, 1
+
+    - @variants.each do |variant|
+      .similar-variants--table-body--row data-variation=variant_data_options(variant)
+        .hide = radio_button_tag 'variant_id', variant.id, false, id: "variant_id_#{variant.id}"
+
+        .similar-variants--table-body--column.similar-variants--table-body--price
+          .lead
+            span.text-danger $#{variant.price}
+            strong.visible-xs-inline.margin-text-left = variant.main_option_value
+          strong Free shipping
+
+        .similar-variants--table-body--column.similar-variants--table-body--option.hidden-xs
+          .lead.margin-text-bottom = variant.main_option_value
+          span = variant.notes.truncate(50)
+
+        .similar-variants--table-body--column.similar-variants--table-body--delivery
+          .hidden-xs Arrives between #{6.days.from_now.strftime('%b %d')} - #{8.days.from_now.strftime('%b %d')}
+
+          .hidden-xs
+            strong> FREE ground shipping
+            | (6-8 Business Days)
+
+          strong.ptrn 6-7
+
+        .similar-variants--table-body--column.similar-variants--table-body--seller
+          .lead.no-margin-bottom = variant.vendor.name
+
+        .similar-variants--table-body--column.similar-variants--table-body--action
+          = f.button class: 'btn btn-primary', value: 'add-to-cart', type: :submit do
+            label.no-margin for="variant_id_#{variant.id}"
+              = Spree.t(:add_to_cart)
+
+        .similar-variants--table-body--note.visible-xs
+          = variant.notes.truncate(50)

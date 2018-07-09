@@ -1,26 +1,18 @@
-- @body_class = 'bg-white'
+ruby:
+  @body_class = 'bg-white'
 
 - content_for :head
   = stylesheet_link_tag 'spree/frontend/similar_variants', media: 'screen'
+  = javascript_include_tag 'similarVariants', async: true
 
 p = link_to(t('similar_variants.return_to_product'), @product)
 
 .row.similar-variants--container
   .col-md-2.col-sm-2.similar-variants--sidebar
     .similar-variants--image
-      = large_image(@product, itemprop: "image")
+      = large_image(@product, itemprop: 'image')
 
-    .hidden-xs
-      strong Condition
-
-      br
-
-      - @variant_groups.each do |variant_group|
-        - option = variant_group[:option]
-        .checkbox.checkbox-blue
-          = check_box_tag option, option
-          label for=option
-            span.flex.align-center = option.titleize
+    = render partial: 'spree/products/similar_variants/sidebar_filters', locals: { available_filter_options: available_filter_options }
 
   .col-md-10.col-sm-10.similar-variants--product-info
     h1.no-margin-top.margin-text-bottom.text-black #{@product.name} (#{@variation.titleize})
@@ -34,84 +26,4 @@ p = link_to(t('similar_variants.return_to_product'), @product)
     span.text-primary< = rand(50)
 
   .col-md-10.col-sm-12.similar-variants--table
-    .similar-variants--table-header.hidden-xs.upcase
-      span = t('similar_variants.table_header.price')
-      span Condition
-      span = t('similar_variants.table_header.delivery_ptrn')
-      span = t('similar_variants.table_header.seller')
-
-    .similar-variants--table-header.visible-grid-xs
-      .similar-variants--table-header--item.active
-        .hide = radio_button_tag 'radio_variation', 'all', true, id: "radio_all"
-        label.no-margin for="radio_all" All
-
-      - @variant_groups.each do |variant_group|
-        - option = variant_group[:option]
-        .similar-variants--table-header--item
-          .hide = radio_button_tag 'radio_variation', option, false, id: "radio_#{option}"
-          label.no-margin for="radio_#{option}" = option
-
-    .similar-variants--table-body
-      = form_for :order, url: populate_orders_path, remote: true do |f|
-        = hidden_field_tag :quantity, 1
-
-        - @variant_groups.each do |variant_group|
-          - variant_group[:variants].each do |variant|
-            .similar-variants--table-body--row data-variation=variant_group[:option]
-              .hide = radio_button_tag 'variant_id', variant.id, false, id: "variant_id_#{variant.id}"
-
-              .similar-variants--table-body--column.similar-variants--table-body--price
-                .lead
-                  span.text-danger $#{variant.price}
-                  strong.visible-xs-inline.margin-text-left = variant.main_option_value
-                strong Free shipping
-
-              .similar-variants--table-body--column.similar-variants--table-body--option.hidden-xs
-                .lead.margin-text-bottom = variant.main_option_value
-                span = variant.notes.truncate(50)
-
-              .similar-variants--table-body--column.similar-variants--table-body--delivery
-                .hidden-xs Arrives between #{6.days.from_now.strftime('%b %d')} - #{8.days.from_now.strftime('%b %d')}
-
-                .hidden-xs
-                  strong> FREE ground shipping
-                  | (6-8 Business Days)
-
-                strong.ptrn 6-7
-
-              .similar-variants--table-body--column.similar-variants--table-body--seller
-                .lead.no-margin-bottom = variant.vendor.name
-
-              .similar-variants--table-body--column.similar-variants--table-body--action
-                = f.button class: 'btn btn-primary', value: 'add-to-cart', type: :submit do
-                  label.no-margin for="variant_id_#{variant.id}"
-                    = Spree.t(:add_to_cart)
-
-              .similar-variants--table-body--note.visible-xs
-                = variant.notes.truncate(50)
-
-javascript:
-  $("input[type='checkbox']").change(function() {
-    if ($("input[type='checkbox']:checked").length == 0) {
-      $("[data-variation]").toggle(true)
-      return
-    }
-
-    $("input[type='checkbox']").each(function() {
-      $("[data-variation='" + $(this).val() + "']").toggle(this.checked)
-    })
-  })
-
-  $("input[name='radio_variation']").change(function() {
-    var curVal = $("input[name='radio_variation']:checked").val()
-
-    if (curVal == 'all')
-      $("[data-variation]").toggle(true)
-
-    $("input[name='radio_variation']").each(function() {
-      $(this).parents('.similar-variants--table-header--item').toggleClass('active', this.checked)
-
-      if (curVal !== 'all')
-        $("[data-variation='" + $(this).val() + "']").toggle(this.checked)
-    })
-  })
+    = render partial: 'spree/products/similar_variants/table', locals: { available_filter_options: available_filter_options }

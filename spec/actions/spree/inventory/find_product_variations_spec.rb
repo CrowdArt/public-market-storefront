@@ -18,8 +18,22 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
 
     it do
       is_expected.to include(
-        { name: 'Paperback', variation: 'paperback', price: be_positive, similar_variants: [], slug: variation.slug, id: variation.id },
-        { name: 'Hardcover', variation: 'hardcover', price: be_positive, similar_variants: [], slug: product.slug, id: product.id }
+        {
+          variation_name_presentation: 'Paperback',
+          variation_name: 'paperback',
+          price: be_positive,
+          similar_variants: [],
+          slug: variation.slug,
+          id: variation.id
+        },
+        {
+          variation_name_presentation: 'Hardcover',
+          variation_name: 'hardcover',
+          price: be_positive,
+          similar_variants: [],
+          slug: product.slug,
+          id: product.id
+        }
       )
     end
 
@@ -28,16 +42,23 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
 
       it do
         is_expected.to include(
-          { name: 'Hardcover', variation: 'hardcover', price: be_positive, similar_variants: [], slug: product.slug, id: product.id },
           {
-            name: 'Paperback',
-            variation: 'paperback',
+            variation_name_presentation: 'Hardcover',
+            variation_name: 'hardcover',
+            price: be_positive,
+            similar_variants: [],
+            slug: product.slug,
+            id: product.id
+          },
+          {
+            variation_name_presentation: 'Paperback',
+            variation_name: 'paperback',
             price: be_positive,
             slug: cheaper_variation.slug,
             id: cheaper_variation.id,
             similar_variants: [
               {
-                option: variation.variants.first.main_option_name.titleize,
+                option_value: variation.variants.first.main_option_name.titleize,
                 size: 1,
                 price: variation.price.to_f,
                 variants: nil
@@ -56,16 +77,23 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
 
         it do
           is_expected.to include(
-            { name: 'Hardcover', variation: 'hardcover', price: be_positive, similar_variants: [], slug: product.slug, id: product.id },
             {
-              name: 'Paperback',
-              variation: 'paperback',
+              variation_name_presentation: 'Hardcover',
+              variation_name: 'hardcover',
+              price: be_positive,
+              similar_variants: [],
+              slug: product.slug,
+              id: product.id
+            },
+            {
+              variation_name_presentation: 'Paperback',
+              variation_name: 'paperback',
               price: be_positive,
               slug: variation.slug,
               id: variation.id,
               similar_variants: [
                 {
-                  option: cheaper_variation.variants.first.main_option_name.titleize,
+                  option_value: cheaper_variation.variants.first.main_option_name.titleize,
                   size: 1,
                   price: cheaper_variation.price.to_f,
                   variants: nil
@@ -86,13 +114,13 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
       is_expected.to eq(
         [
           {
-            name: 'Hardcover',
-            variation: 'hardcover',
+            variation_name_presentation: 'Hardcover',
+            variation_name: 'hardcover',
             price: product.price.to_f,
             slug: product.slug,
             id: product.id,
             similar_variants: [
-              option: variant.main_option_name.titleize,
+              option_value: variant.main_option_name.titleize,
               price: variant.price,
               size: 1,
               variants: nil
@@ -113,17 +141,12 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
         expect(variations.size).to eq 1
 
         is_expected.to include(
-          name: 'Hardcover',
-          variation: 'hardcover',
+          variation_name_presentation: 'Hardcover',
+          variation_name: 'hardcover',
           price: product.price.to_f,
           slug: product.slug,
           id: product.id,
-          similar_variants: [
-            option: variant.main_option_name.titleize,
-            price: variant.price,
-            size: 1,
-            variants: [variant]
-          ]
+          similar_variants: [variant]
         )
       end
     end
