@@ -35,10 +35,10 @@ module Spree
       end
     end
 
-    def build_product_master(product, metadata)
+    def build_product_master(product, metadata) # rubocop:disable Metrics/AbcSize
       product.master.assign_attributes(master_variant_attributes(metadata))
-      return if metadata[:images].blank?
-      product.master.images = []
+      return if metadata[:images].blank? || product.master.images.any?
+
       metadata[:images].each do |img|
         product.master.images.build(
           alt: img[:title],
