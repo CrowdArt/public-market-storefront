@@ -47,3 +47,8 @@ $(document).on('change', "input[name='radio_variation']", function(e) {
     toggleVariations($(this).val(), this.checked)
   })
 })
+
+$(document).on('click', '#clear-variation-filters-btn', function() {
+  $(".similar-variants--table-body--row").show()
+  $("input[name='checkbox_variation'], input[name='radio_variation']").prop('checked', false)
+})

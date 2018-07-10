@@ -6,11 +6,13 @@
     display: grid
     grid-template-areas: 'sidebar product-info' 'sidebar table'
     grid-template-columns: 16% auto
+    grid-template-rows: 100px auto
     grid-row-gap: 20px
     margin-top: 30px
 
     @media (max-width: $screen-xs-max)
       grid-template-columns: 0fr auto
+      grid-template-rows: auto auto
 
   &--image
     img
@@ -41,6 +43,9 @@
     .variation-child--container
       margin-left: 25px
 
+    &--container
+      margin-top: 15px
+
   &--product-info
     grid-area: product-info
 
@@ -61,13 +66,13 @@
       display: grid
       grid-column-gap: 10px
       grid-row-gap: 3px
-      grid-template-columns: 15% 25% 25% 15% auto
+      grid-template-columns: 17% 23% 30% 14% auto
 
     &-header
       align-items: center
       background: $body-bg
       border: solid 1px $input-border
-      padding: 9px 0 9px 25px
+      padding: 9px 0 9px 15px
 
       @media (max-width: $screen-xs-max)
         grid-auto-flow: column
@@ -100,7 +105,7 @@
       &--row
         grid-template-areas: 'price option delivery seller action'
         border-bottom: 1px solid $table-border-color
-        padding: 9px 0 22px 25px
+        padding: 9px 0 22px 15px
 
         @media (max-width: $screen-xs-max)
           grid-template-columns: auto
@@ -122,8 +127,22 @@
       &--delivery
         grid-area: delivery
 
+        ul
+          padding-left: 0
+          margin: 0
+          list-style: none
+
+          @media (min-width: $screen-sm-min)
+            li:before
+              content: "• "
+              color: $input-border
+              margin-right: 7px
+
       &--seller
         grid-area: seller
+
+        .lead
+          margin-bottom: 3px
 
       &--action
         grid-area: action
@@ -131,9 +150,7 @@
 
         .btn
           white-space: normal
-
-          @media (max-width: $screen-xs-max)
-            padding: 9px 21px
+          padding: 9px 21px
 
           label
             cursor: pointer

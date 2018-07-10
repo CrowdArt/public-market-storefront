@@ -28,21 +28,32 @@
             strong.visible-xs-inline.margin-text-left = variant.main_option_value
           strong Free shipping
 
+          - if (additional_props = additional_variation_properties(variant)).present?
+            br
+            - additional_props.each do |k, v|
+              - next if v.blank?
+              strong = k.titleize
+              ': #{v}
+              br
+
         .similar-variants--table-body--column.similar-variants--table-body--option.hidden-xs
           .lead.margin-text-bottom = variant.main_option_value
           span = variant.notes.truncate(50)
 
         .similar-variants--table-body--column.similar-variants--table-body--delivery
-          .hidden-xs Arrives between #{6.days.from_now.strftime('%b %d')} - #{8.days.from_now.strftime('%b %d')}
+          ul
+            li.hidden-xs Arrives between #{6.days.from_now.strftime('%b %d')} - #{8.days.from_now.strftime('%b %d')}
 
-          .hidden-xs
-            strong> FREE ground shipping
-            | (6-8 Business Days)
+            li.hidden-xs
+              strong> FREE ground shipping
+              | (6-8 Business Days)
 
-          strong.ptrn 6-7
+            li
+              strong.ptrn 6-7
 
         .similar-variants--table-body--column.similar-variants--table-body--seller
-          .lead.no-margin-bottom = variant.vendor.name
+          .lead = variant.vendor.name
+          .text-success 87% Positive Ratings
 
         .similar-variants--table-body--column.similar-variants--table-body--action
           = f.button class: 'btn btn-primary', value: 'add-to-cart', type: :submit do

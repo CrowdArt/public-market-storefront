@@ -9,5 +9,15 @@ module Spree
     def variant_data_options(variant)
       [variant.main_option_value.parameterize, variant.mapped_main_option_value(@product.taxonomy&.name&.downcase)].uniq.join(' ')
     end
+
+    def additional_variation_properties(variant)
+      case @product.taxonomy&.name&.downcase
+      when 'books'
+        {
+          'edition' => variant.product.property(:edition),
+          'published_at' => variant.product.property(:published_at)
+        }
+      end
+    end
   end
 end

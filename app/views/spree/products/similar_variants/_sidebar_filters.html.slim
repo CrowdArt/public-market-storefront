@@ -1,16 +1,21 @@
 .similar-variants--filters.hidden-xs
-  strong Condition
-  br
+  h3.upcase.margin-text-bottom Refine by
 
-  - available_filter_options.each_with_index do |(option, child_options), i|
-    .root-variation-checkbox
-      .checkbox.checkbox-blue
-        = check_box_tag 'checkbox_variation', option.parameterize, false, id: "variation_checkbox_#{i}", class: 'variation-root'
-        label for="variation_checkbox_#{i}"
-          span.flex.align-center = option.titleize
+  .btn.btn-link.no-padding#clear-variation-filters-btn Clear All
 
-      - child_options.each_with_index do |option, j|
-        .checkbox.checkbox-blue.variation-child--container
-          = check_box_tag 'checkbox_variation', option.parameterize, false, id: "variation_checkbox_#{i}_#{j}", class: 'variation-child'
-          label for="variation_checkbox_#{i}_#{j}"
+  .similar-variants--filters--container
+    strong Condition
+    br
+
+    - available_filter_options.each_with_index do |(option, child_options), i|
+      .root-variation-checkbox
+        .checkbox.checkbox-blue
+          = check_box_tag 'checkbox_variation', option.parameterize, false, id: "variation_checkbox_#{i}", class: 'variation-root'
+          label for="variation_checkbox_#{i}"
             span.flex.align-center = option.titleize
+
+        - child_options.each_with_index do |option, j|
+          .checkbox.checkbox-blue.variation-child--container
+            = check_box_tag 'checkbox_variation', option.parameterize, false, id: "variation_checkbox_#{i}_#{j}", class: 'variation-child'
+            label for="variation_checkbox_#{i}_#{j}"
+              span.flex.align-center = option.titleize

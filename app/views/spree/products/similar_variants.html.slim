@@ -1,11 +1,14 @@
 ruby:
   @body_class = 'bg-white'
+  @fluid_content_container = true
 
 - content_for :head
   = stylesheet_link_tag 'spree/frontend/similar_variants', media: 'screen'
   = javascript_include_tag 'similarVariants', async: true
 
-p = link_to(t('similar_variants.return_to_product'), @product)
+p.pull-left = link_to(t('similar_variants.return_to_product'), @product)
+p.pull-right.hidden-xs = link_to(t('sell_on_pm'), '#', disabled: true, class: 'no-padding btn btn-link disabled')
+.clearfix
 
 .row.similar-variants--container
   .col-md-2.col-sm-2.similar-variants--sidebar
@@ -18,7 +21,7 @@ p = link_to(t('similar_variants.return_to_product'), @product)
     h1.no-margin-top.margin-text-bottom.text-black #{@product.name} (#{@variation.titleize})
 
     - if subtitle = @product.subtitle
-      p.product-author.margin-text-bottom
+      p.text-muted.margin-text-bottom
         span.byline> By
         span.author = subtitle
 

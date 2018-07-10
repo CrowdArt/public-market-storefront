@@ -1,0 +1,33 @@
+doctype html
+
+html lang=I18n.locale
+
+  head data-hook="inside_head"
+    = render partial: 'spree/shared/head'
+
+  body class=body_class data-hook="body" id="#{@body_id || 'default'}"
+    - if content_for?(:header)
+      = yield :header
+    - else
+      = render partial: 'spree/shared/header'
+
+    = flash_messages
+
+    = yield :content_top if content_for?(:content_top)
+
+    .content-wrap class="#{@fluid_content_container ? 'container-fluid' : 'container'}"
+      .row data-hook=""
+        = spree_breadcrumbs(@taxon)
+        = yield :under_breadcrumbs if content_for?(:under_breadcrumbs)
+        = render partial: 'spree/shared/sidebar' if content_for? :sidebar
+        - content_class = @content_class || (!content_for?(:sidebar) ? "col-sm-12" : "col-sm-8 col-md-9")
+
+        #content class=content_class data-hook=""
+          = yield
+        = yield :templates
+
+    = yield :promos_footer if content_for? :promos_footer
+
+    = render 'spree/shared/footer'
+
+    = yield :bottom_scripts if content_for? :bottom_scripts
