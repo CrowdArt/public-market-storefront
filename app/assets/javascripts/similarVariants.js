@@ -1,3 +1,17 @@
+function checkVariationOptionInUrl() {
+  if (location.hash.length == 0) return
+
+  var val = location.hash.substring(1)
+
+  if ($('.similar-variants--filters').is(':visible')) {
+    $("input[name='checkbox_variation'][value='" + val + "']").prop('checked', true).trigger('change')
+  } else {
+    $("input[name='radio_variation'][value='" + val + "']").prop('checked', true).trigger('change')
+  }
+
+  history.replaceState({}, document.title, location.pathname + location.search)
+}
+
 function isOptionsEmpty() {
   if ($("input[name='checkbox_variation']:checked").length == 0) {
     $(".similar-variants--table-body--row").show()
@@ -52,3 +66,5 @@ $(document).on('click', '#clear-variation-filters-btn', function() {
   $(".similar-variants--table-body--row").show()
   $("input[name='checkbox_variation'], input[name='radio_variation']").prop('checked', false)
 })
+
+checkVariationOptionInUrl()

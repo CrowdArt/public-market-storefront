@@ -4,7 +4,6 @@ ruby:
 
 - content_for :head
   = stylesheet_link_tag 'spree/frontend/similar_variants', media: 'screen'
-  = javascript_include_tag 'similarVariants', async: true
 
 p.pull-left = link_to(t('similar_variants.return_to_product'), @product)
 p.pull-right.hidden-xs = link_to(t('sell_on_pm'), '#', disabled: true, class: 'no-padding btn btn-link disabled')
@@ -30,3 +29,6 @@ p.pull-right.hidden-xs = link_to(t('sell_on_pm'), '#', disabled: true, class: 'n
 
   .col-md-10.col-sm-12.similar-variants--table
     = render partial: 'spree/products/similar_variants/table', locals: { available_filter_options: available_filter_options }
+
+- content_for :bottom_scripts
+  = javascript_include_tag 'similarVariants'
