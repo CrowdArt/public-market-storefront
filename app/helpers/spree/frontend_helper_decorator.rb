@@ -92,5 +92,16 @@ module Spree
     def product_card_size(size = nil)
       size == :tiny ? 'col-lg-2 col-md-3 col-sm-4 col-xs-6' : 'col-lg-3 col-md-3 col-sm-4 col-xs-6'
     end
+
+    def show_more(text, length: 200, link: 'Read more', omission: '...')
+      return text if text.length < length
+
+      content = [content_tag(:span, text[0...length])]
+      content << content_tag(:span, omission)
+      content << content_tag(:span, text[length..text.length], class: 'hide')
+      content << content_tag(:a, link, class: 'show-more')
+
+      safe_join(content)
+    end
   end
 end

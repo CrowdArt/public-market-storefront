@@ -26,6 +26,7 @@
           .lead
             span.text-danger $#{variant.price}
             strong.visible-xs-inline.margin-text-left = variant.main_option_value
+
           strong Free shipping
 
           - if (additional_props = additional_variation_properties(variant)).present?
@@ -38,7 +39,7 @@
 
         .similar-variants--table-body--column.similar-variants--table-body--option.hidden-xs
           .lead.margin-text-bottom = variant.main_option_value
-          span = variant.notes.truncate(50)
+          span = show_more(variant.notes, length: 55)
 
         .similar-variants--table-body--column.similar-variants--table-body--delivery
           ul

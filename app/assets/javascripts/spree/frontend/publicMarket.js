@@ -13,3 +13,13 @@ window.pm.debounce = function(callback, delay) {
     }.bind(this), delay)
   }
 }
+
+$(document).on('click', 'a.show-more', function() {
+  if ($(this).prev().hasClass('hide')) {
+    $(this).text('Show less')
+  } else {
+    $(this).text('Read more')
+  }
+
+  $(this).prev().toggleClass('hide').prev().toggleClass('hide')
+})
