@@ -30,4 +30,12 @@ RSpec.describe Spree::Inventory::Providers::Books::BowkerMetadataProvider, type:
 
     it { expect(metadata).to be_nil }
   end
+
+  context 'with empty binding' do
+    let(:isbn) { '9780159016695' }
+
+    it 'returns empty binding' do
+      expect(metadata[:format]).to be_nil
+    end
+  end
 end
