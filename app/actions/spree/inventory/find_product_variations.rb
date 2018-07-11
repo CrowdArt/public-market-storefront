@@ -24,9 +24,13 @@ module Spree
           # select product with min price as variation
           product_variation ||= v.min_by { |prod| prod[:price] }
 
-          @variation_ids = v.reject { |var| var[:_id] == product_variation[:_id] }.map(&:_id)
+          ids = v.map(&:_id)
+          # don't show current product variant in variation box if it's only one existing
+          ids = [] if ids.one? && ids[0] == product_variation[:_id]
 
-          map_variation(k, product_variation)
+          variants = find_similar_variants(ids)
+
+          map_variation(k, product_variation, variants)
         end
       end
 
@@ -41,9 +45,9 @@ module Spree
         end
       end
 
-      def find_similar_variants # rubocop:disable Metrics/AbcSize
+      def find_similar_variants(ids) # rubocop:disable Metrics/AbcSize
         variants = Spree::Variant.find_best_price_in_option
-                                 .where(product_id: @variation_ids)
+                                 .where(product_id: ids)
                                  .includes(:default_price)
         if load_variants
           variants.includes(:vendor, :product)
@@ -55,11 +59,11 @@ module Spree
         end
       end
 
-      def map_variation(variation, product)
+      def map_variation(variation, product, variants)
         {
           variation_name_presentation: variation_finder.variation_name(variation, product),
           variation_name: variation,
-          similar_variants: find_similar_variants,
+          similar_variants: variants,
           price: product[:price],
           slug: product[:slug],
           id: product[:_id].to_i

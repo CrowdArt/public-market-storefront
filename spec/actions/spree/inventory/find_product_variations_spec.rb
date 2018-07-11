@@ -56,14 +56,20 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
             price: be_positive,
             slug: cheaper_variation.slug,
             id: cheaper_variation.id,
-            similar_variants: [
+            similar_variants: include(
+              {
+                option_value: cheaper_variation.variants.first.main_option_name.titleize,
+                price: cheaper_variation.variants.first.price,
+                size: 1,
+                variants: nil
+              },
               {
                 option_value: variation.variants.first.main_option_name.titleize,
                 size: 1,
                 price: variation.price.to_f,
                 variants: nil
               }
-            ]
+            )
           }
         )
       end
@@ -91,14 +97,20 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
               price: be_positive,
               slug: variation.slug,
               id: variation.id,
-              similar_variants: [
+              similar_variants: include(
                 {
                   option_value: cheaper_variation.variants.first.main_option_name.titleize,
                   size: 1,
                   price: cheaper_variation.price.to_f,
                   variants: nil
+                },
+                {
+                  option_value: variation.variants.first.main_option_name.titleize,
+                  price: variation.variants.first.price,
+                  size: 1,
+                  variants: nil
                 }
-              ]
+              )
             }
           )
         end
@@ -110,7 +122,7 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
     let(:book_with_variant) { create(:book, price: 1, name: name, author: author, taxons: taxons, format: 'Trade Cloth') }
     let!(:variant) { create(:variant, product: book_with_variant, price: 1) }
 
-    it 'includes similar variants' do
+    it 'includes similar variants and current product variant' do
       is_expected.to eq(
         [
           {
@@ -120,10 +132,18 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
             slug: product.slug,
             id: product.id,
             similar_variants: [
-              option_value: variant.main_option_name.titleize,
-              price: variant.price,
-              size: 1,
-              variants: nil
+              {
+                option_value: variant.main_option_name.titleize,
+                price: variant.price,
+                size: 1,
+                variants: nil
+              },
+              {
+                option_value: product.variants.first.main_option_name.titleize,
+                price: product.variants.first.price,
+                size: 1,
+                variants: nil
+              }
             ]
           }
         ]
@@ -146,7 +166,7 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
           price: product.price.to_f,
           slug: product.slug,
           id: product.id,
-          similar_variants: [variant]
+          similar_variants: include(variant, product.variants.first)
         )
       end
     end
