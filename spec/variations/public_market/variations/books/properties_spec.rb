@@ -5,7 +5,7 @@ RSpec.describe PublicMarket::Variations::Books::Properties do
     let(:product) { create(:product) }
 
     context 'when product has no format' do
-      it { is_expected.to eq nil }
+      it { is_expected.to eq ['other'] }
     end
 
     context 'when product has format' do
