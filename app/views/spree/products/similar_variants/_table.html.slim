@@ -23,20 +23,24 @@
       .similar-variants--table-body--row data-variation=variant_data_options(variant)
         .hide = radio_button_tag 'variant_id', variant.id, false, id: "variant_id_#{variant.id}"
 
-        .similar-variants--table-body--column.similar-variants--table-body--price
-          .lead
-            span.text-danger $#{variant.price}
-            strong.visible-xs-inline.margin-text-left = variant.main_option_value
+        .similar-variants--table-body--column.similar-variants--table-body--price.flex.align-center
+          .similar-variants--table-body--image.hidden-xs
+            = small_image(variant.product, itemprop: 'image')
 
-          strong Free shipping
+          div
+            .lead
+              span.text-danger $#{variant.price}
+              strong.visible-xs-inline.margin-text-left = variant.main_option_value
 
-          - if (additional_props = additional_variation_properties(variant)).present?
-            br
-            - additional_props.each do |k, v|
-              - next if v.blank?
-              strong = k.titleize
-              ': #{v}
+            strong Free shipping
+
+            - if (additional_props = additional_variation_properties(variant)).present?
               br
+              - additional_props.each do |k, v|
+                - next if v.blank?
+                strong = k.titleize
+                ': #{v}
+                br
 
         .similar-variants--table-body--column.similar-variants--table-body--option.hidden-xs
           .lead.margin-text-bottom = variant.main_option_value
