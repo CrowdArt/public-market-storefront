@@ -20,6 +20,10 @@ module Spree
           end
           parent_taxon.products << product
         end
+
+        def metadata_provider
+          self.class.parent::MetadataProvider
+        end
       end
 
       DefaultVariantProvider.prepend(DefaultVariantProviderDecorator)

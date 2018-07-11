@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 21 Jun 2018 15:22:29 GMT
+      - Wed, 11 Jul 2018 17:30:21 GMT
       Server:
       - Apache/2.2.3 (CentOS)
       Vary:
@@ -31,14 +31,14 @@ http_interactions:
       Content-Type:
       - text/xml
       Set-Cookie:
-      - BIGipServerbms_pool=1102453676.20480.0000; path=/
+      - BIGipServerbms_pool=1035344812.20480.0000; path=/
     body:
       encoding: ASCII-8BIT
       string: '<result found="1" returned="1" page="1" pagesize="10"><item id="1THaipBqHz73P"><details>http://bms.bowker.com/rest/books/id/1THaipBqHz73P?fields=all</details></item></result>
 
 '
     http_version: 
-  recorded_at: Thu, 21 Jun 2018 15:22:29 GMT
+  recorded_at: Wed, 11 Jul 2018 17:30:21 GMT
 - request:
     method: get
     uri: http://bms.bowker.com/rest/books/id/1THaipBqHz73P?fields=all
@@ -60,7 +60,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 21 Jun 2018 15:22:30 GMT
+      - Wed, 11 Jul 2018 17:30:21 GMT
       Server:
       - Apache/2.2.3 (CentOS)
       Vary:
@@ -70,15 +70,7 @@ http_interactions:
       Content-Type:
       - text/xml
       Set-Cookie:
-      - BIGipServerbms_pool=1085676460.20480.0000; path=/
-      X-Cache:
-      - MISS from 32a492635bac
-      X-Cache-Lookup:
-      - MISS from 32a492635bac:3128
-      Via:
-      - 1.1 32a492635bac (squid/3.3.8)
-      Connection:
-      - keep-alive
+      - BIGipServerbms_pool=1287003052.20480.0000; path=/
     body:
       encoding: ASCII-8BIT
       string: '<result found="1"><item id="1THaipBqHz73P"><details>http://bms.bowker.com/rest/books/id/1THaipBqHz73P?fields=all</details><retailcurrency>US
@@ -114,7 +106,7 @@ http_interactions:
 
 '
     http_version: 
-  recorded_at: Thu, 21 Jun 2018 15:22:30 GMT
+  recorded_at: Wed, 11 Jul 2018 17:30:21 GMT
 - request:
     method: get
     uri: https://imageweb.bowker.com/rest/images/ean/9780321692405?size=original
@@ -136,7 +128,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Thu, 21 Jun 2018 15:22:31 GMT
+      - Wed, 11 Jul 2018 17:30:22 GMT
       Server:
       - Apache/2.2.3 (CentOS)
       Vary:
@@ -148,7 +140,7 @@ http_interactions:
       Content-Type:
       - text/html; charset=iso-8859-1
       Set-Cookie:
-      - BIGipServerimageweb=1437997996.20480.0000; path=/
+      - BIGipServerimageweb=1555438508.20480.0000; path=/
     body:
       encoding: ASCII-8BIT
       string: |-
@@ -165,5 +157,5 @@ http_interactions:
         </body>
         </html>
     http_version: 
-  recorded_at: Thu, 21 Jun 2018 15:22:31 GMT
+  recorded_at: Wed, 11 Jul 2018 17:30:22 GMT
 recorded_with: VCR 4.0.0

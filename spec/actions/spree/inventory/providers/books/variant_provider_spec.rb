@@ -14,17 +14,50 @@ RSpec.describe Spree::Inventory::Providers::Books::VariantProvider, type: :actio
 
   let(:isbn) { '9780307341570' }
 
-  it 'create product and variant' do # rubocop:disable RSpec/MultipleExpectations
-    expect(variant).not_to be_nil
-    expect(variant.sku).to eq(item_json[:sku])
-    expect(variant.option_value('condition')).to eq(item_json[:condition])
-    expect(variant.price).to be > 0
-    expect(variant.total_on_hand).to eq(1)
-    expect(variant.product.name).to eq('Dark Places')
-    expect(variant.product.images.count).to eq(1)
-    expect(variant.product.property(:author)).to eq('Gillian Flynn')
-    expect(variant.product.property(:language)).to eq('English')
-    expect(variant.product.property(:pages)).to eq('368')
+  describe 'validation' do
+    let(:item_json) { { sku: 'sku' } }
+
+    it do
+      expect { variant }.to raise_error(Spree::ImportError).with_message(include(":ean=>[\"is missing\"]")) # rubocop:disable Style/StringLiterals
+    end
+  end
+
+  context 'with unknown isbn' do
+    let(:isbn) { '0000000000000' }
+
+    it { expect { variant }.to raise_error(Spree::ImportError, 'Unknown ISBN found') }
+  end
+
+  context 'with known isbn' do
+    subject(:product) { variant.product }
+
+    it { expect(product).not_to be_nil }
+    it { expect(product).to be_persisted }
+    it { expect(product.width).not_to be_nil }
+    it { expect(product.available_on).not_to be_nil }
+    it { expect(product.description).not_to be_nil }
+    it { expect(product.properties.count).to eq(8) }
+    it { expect(product.properties.first.presentation).to eq('ISBN') }
+    it { expect(product.properties.last.presentation).to eq('Book subject') }
+    it { expect(product.option_types.count).to eq(1) }
+    it { expect(product.variants.count).to eq(1) }
+    it { expect(product.property(:author)).not_to be_nil }
+    it { expect(product.property(:published_at)).not_to be_nil }
+    it { expect(product.properties.where(name: 'empty').first).to be_nil }
+    it { expect(product.taxons.count).to eq(1) }
+    it { expect(product.taxons.first.taxonomy.name).to eq('Books') }
+
+    it { expect(variant).not_to be_nil }
+    it { expect(variant).not_to eq(product.master) }
+    it { expect(variant.sku).to eq(item_json[:sku]) }
+    it { expect(variant.option_value('condition')).to eq(item_json[:condition]) }
+    it { expect(variant.price).to eq(item_json[:price]) }
+    it { expect(variant.cost_price).to eq(item_json[:price]) }
+    it { expect(variant.total_on_hand).to eq(1) }
+
+    context 'with images', vcr: true, images: true do
+      it { expect(product.images.count).to eq(1) }
+    end
   end
 
   describe 'taxonomy' do
@@ -93,7 +126,7 @@ RSpec.describe Spree::Inventory::Providers::Books::VariantProvider, type: :actio
     end
   end
 
-  describe 'product images' do
+  describe 'product images', images: true do
     context 'with empty image' do
       let(:isbn) { '9780253202505' }
 

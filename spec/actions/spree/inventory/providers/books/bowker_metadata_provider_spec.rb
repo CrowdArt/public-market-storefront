@@ -13,7 +13,6 @@ RSpec.describe Spree::Inventory::Providers::Books::BowkerMetadataProvider, type:
     it { expect(metadata[:price]).to be > 0 }
     it { expect(properties[:language]).not_to be_nil }
     it { expect(properties[:pages]).not_to be_nil }
-    it { expect(metadata[:images]).not_to be_empty }
 
     it 'contains correct taxons' do
       expect(metadata[:taxons]).to include(
@@ -22,6 +21,10 @@ RSpec.describe Spree::Inventory::Providers::Books::BowkerMetadataProvider, type:
         ['FICTION', 'Family Life', 'Siblings'],
         %w[FICTION Crime]
       )
+    end
+
+    context 'with images', images: true do
+      it { expect(metadata[:images]).not_to be_empty }
     end
   end
 

@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_batch_api.git
-  revision: e738a13cd593cca99f0cab56ae4b1696a3e72596
+  revision: 6b532a03d959d36ffebbb744dab19ca453593edb
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_multi_vendor.git
-  revision: db711999e2957dab8471326257617a791c4f0d9d
+  revision: c0bdb2dfc82ef01df4f19f5d3ccdeee7a655dd84
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq
