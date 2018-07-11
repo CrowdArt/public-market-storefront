@@ -7,7 +7,7 @@
     strong Condition
     br
 
-    - available_filter_options.each_with_index do |(option, child_options), i|
+    - filters.each_with_index do |(option, child_options), i|
       .root-variation-checkbox
         .checkbox.checkbox-blue
           = check_box_tag 'checkbox_variation', option.parameterize, false, id: "variation_checkbox_#{i}", class: 'variation-root'

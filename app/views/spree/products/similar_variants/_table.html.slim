@@ -9,10 +9,11 @@
     .hide = radio_button_tag 'radio_variation', 'all', true, id: "radio_all"
     label.no-margin for="radio_all" All
 
-  - available_filter_options.each do |option, _child_options|
-    .similar-variants--table-header--item
-      .hide = radio_button_tag 'radio_variation', option.parameterize, false, id: "radio_#{option}"
-      label.no-margin for="radio_#{option}" = option.titleize
+  - if filters
+    - filters.each do |option, _child_options|
+      .similar-variants--table-header--item
+        .hide = radio_button_tag 'radio_variation', option.parameterize, false, id: "radio_#{option}"
+        label.no-margin for="radio_#{option}" = option.titleize
 
 .similar-variants--table-body
   = form_for :order, url: populate_orders_path, remote: true do |f|

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :book, parent: :product do
     name { FFaker::Book.title }
-    taxons { [create(:taxon)] }
+    taxons { [Spree::Taxonomy.first_or_create(name: 'Books').root] }
 
     transient do
       author FFaker::Book.author

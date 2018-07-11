@@ -1,6 +1,7 @@
 ruby:
   @body_class = 'bg-white'
   @fluid_content_container = true
+  filters = available_filter_options(@variants, @product)
 
 - content_for :head
   = stylesheet_link_tag 'spree/frontend/similar_variants', media: 'screen'
@@ -14,7 +15,8 @@ p.pull-right.hidden-xs = link_to(t('sell_on_pm'), '#', disabled: true, class: 'n
     .similar-variants--image
       = large_image(@product, itemprop: 'image')
 
-    = render partial: 'spree/products/similar_variants/sidebar_filters', locals: { available_filter_options: available_filter_options }
+    - if filters
+      = render partial: 'spree/products/similar_variants/sidebar_filters', locals: { filters: filters }
 
   .col-md-10.col-sm-10.similar-variants--product-info
     h1.no-margin-top.margin-text-bottom.text-black #{@product.name} (#{@variation.titleize})
@@ -28,7 +30,7 @@ p.pull-right.hidden-xs = link_to(t('sell_on_pm'), '#', disabled: true, class: 'n
     span.text-primary< = rand(50)
 
   .col-md-10.col-sm-12.similar-variants--table
-    = render partial: 'spree/products/similar_variants/table', locals: { available_filter_options: available_filter_options }
+    = render partial: 'spree/products/similar_variants/table', locals: { filters: filters }
 
 - content_for :bottom_scripts
   = javascript_include_tag 'similarVariants'
