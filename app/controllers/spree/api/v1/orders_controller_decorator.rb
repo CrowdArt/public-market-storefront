@@ -1,39 +1,35 @@
 Spree::Api::V1::OrdersController.class_eval do
-  def fetch # rubocop:disable Metrics/AbcSize
-    authorize! :index, Order
+  before_action :find_order, except: %i[create mine current index update remove_coupon_code fetch update_shipments]
+
+  def fetch
+    authorize! :index, Spree::Order
 
     @from = Time.zone.at(fetch_params[:from_timestamp].to_i)
-    @orders = Order.includes(line_items: :variant, ship_address: %i[country state])
-                    .complete
-                    .accessible_by(current_ability, :index)
-                    .where(payment_state: :paid)
-                    .where('spree_orders.updated_at > ?', @from)
-                    .order('spree_orders.updated_at DESC')
-                    .to_a
+    @orders = current_spree_vendor.blank? ? [] : Spree::Orders::FetchVendorOrdersAction.call(current_spree_vendor, @from)
 
     respond_with(@orders)
   end
 
-  # rubocop:disable Metrics/MethodLength
   def update_shipments
-    authorize! :create, Shipment
+    authorize! :create, Spree::Shipment
 
     @success = 0
     @failures = {}
 
     orders_params.each_with_index do |order, index|
-      begin
-        options = order_update_params(order).merge(user: current_api_user)
-        Spree::Orders::UpdateLineItemAction.new(options).call
-        @success += 1
-      rescue StandardError => e
-        @failures[index] = e.message.gsub('Spree::', '')
-      end
+      options = order_update_params(order).merge(user: current_api_user)
+      Spree::Orders::UpdateLineItemAction.new(options).call
+      @success += 1
+    rescue StandardError => e
+      @failures[index] = e.message.gsub('Spree::', '')
     end
   end
-  # rubocop:enable Metrics/MethodLength
 
   private
+
+  def current_spree_vendor
+    @current_spree_vendor ||= current_api_user.vendors.first
+  end
 
   def fetch_params
     params.permit(:from_timestamp)

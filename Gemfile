@@ -35,6 +35,7 @@ gem 'turbolinks', '~> 5'
 
 gem 'foundation_emails'
 
+gem 'hashids'
 gem 'httparty'
 
 gem 'searchkick'

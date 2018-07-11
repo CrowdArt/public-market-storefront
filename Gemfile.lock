@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_batch_api.git
-  revision: 5f12be7158bafcac811b2a967b0952e4fac5d60a
+  revision: a593860e2ddf2f8a19c6d9169f70ef0f0aa0515d
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -413,6 +413,7 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     hashdiff (0.3.7)
+    hashids (1.0.4)
     hashie (3.5.7)
     highline (1.6.21)
     htmlentities (4.3.4)
@@ -829,6 +830,7 @@ DEPENDENCIES
   fuubar
   guard
   guard-rspec
+  hashids
   httparty
   jbuilder (~> 2.5)
   json_api_client

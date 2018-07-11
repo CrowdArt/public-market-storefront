@@ -1,4 +1,6 @@
 Spree::Order.class_eval do
+  include PublicMarket::Hashed
+
   Spree::Order.state_machine.before_transition to: :confirm, do: :copy_billing_from_card
   Spree::Order.state_machine.before_transition to: :complete, do: :send_user_confirmation
 
