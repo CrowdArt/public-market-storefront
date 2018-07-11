@@ -5,7 +5,7 @@ module PublicMarket
         module_function
 
         def variation_properties(product)
-          return if (formats = product.property(:format)).blank?
+          return ['other'] if (formats = product.property(:format)).blank?
           format_variation =
             formats.split('; ').reject { |f| f.casecmp('other').zero? }.find do |format|
               mapped_format = find_book_format(format)
