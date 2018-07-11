@@ -18,6 +18,13 @@ Spree::Core::Engine.add_routes do
     resources :credit_cards, except: %i[index show new]
   end
 
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      get '/orders/fetch', to: 'batch_orders#fetch'
+      post '/orders/update_shipments', to: 'batch_orders#update_shipments'
+    end
+  end
+
   get '/products/:id/variation/:variation', to: 'products#similar_variants', as: :similar_variants
 
   post '/orders/rate/:id', to: 'orders#rate', as: :rate_order
