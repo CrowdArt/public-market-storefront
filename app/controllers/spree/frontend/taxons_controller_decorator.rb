@@ -9,6 +9,8 @@ module Spree
       @taxon = Spree::Taxon.friendly.find(params[:id])
       return unless @taxon
 
+      @card_size = :medium
+
       return if browser.device.mobile? && !@taxon.depth.positive?
       @products = build_searcher(params, taxon_ids: [@taxon.id]).call
 

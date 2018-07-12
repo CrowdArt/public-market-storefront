@@ -10,7 +10,6 @@ module Spree
     def best_selling
       params[:sort] ||= { popularity: 'all_time' }
       @products = build_searcher(params).call
-      @card_size = :tiny
 
       respond_to do |format|
         format.html { render action: :index }

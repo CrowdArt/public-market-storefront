@@ -1,1 +1,1 @@
-document.getElementById('products').outerHTML = "<%= j(render(partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, show_results_per_page: true, card_size: product_card_size })) %>"
+document.getElementById('products').outerHTML = "<%= j(render(partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, show_results_per_page: true })) %>"

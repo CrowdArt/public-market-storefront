@@ -22,7 +22,7 @@ ruby:
     = render partial: 'spree/taxons/special'
 
 - unless @products.nil?
-  = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, show_results_per_page: true, card_size: product_card_size }
+  = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, show_results_per_page: true }
 
 - if browser.device.mobile?
   - cache([:v1, I18n.locale, @taxon]) do
