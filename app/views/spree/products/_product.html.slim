@@ -13,15 +13,17 @@ ruby:
 
         .text-left itemprop='offers' itemscope=true itemtype='https://schema.org/Offer'
           .product-card--title = truncate(product.name, length: 100)
-          .small = product.subtitle
+          .small.ellipsis = product.subtitle
           .text-muted.small
             span.semi-bold = product.search_variation&.humanize
             - product.additional_properties.each do |prop|
               span  • #{prop}
+
           .product-card--price itemprop='price'
             span.price> #{display_price(product)}
             span> +
             span.ptrn = product.estimated_ptrn
+
           small
             = render 'spree/shared/rating', value: rand(5)
             a< href=url = rand(50)
