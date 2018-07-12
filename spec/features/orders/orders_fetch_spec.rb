@@ -42,7 +42,7 @@ RSpec.describe 'Orders fetch', type: :request do
       context 'when order is outdated' do
         let(:from) { Time.current + 1.day }
 
-        it { pp json;  expect(json[:count]).to eq(0) }
+        it { expect(json[:count]).to eq(0) }
       end
     end
   end
