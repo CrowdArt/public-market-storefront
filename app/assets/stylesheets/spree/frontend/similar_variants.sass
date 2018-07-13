@@ -1,3 +1,5 @@
+// it's compiled separately from application
+
 @import variables
 @import cosmo/variables
 
@@ -13,6 +15,8 @@
     @media (max-width: $screen-xs-max)
       grid-template-columns: 0fr auto
       grid-template-rows: auto auto
+      grid-row-gap: 30px
+      margin-top: 20px
 
   &--image
     img
@@ -49,9 +53,15 @@
   &--product-info
     grid-area: product-info
 
+    h1, &--subtitle
+      margin-bottom: 7px
+
     @media (max-width: $screen-xs)
       h1
         font-size: 18px
+
+      h1, &--subtitle
+        margin-bottom: 3px
 
   &--table
     grid-area: table
@@ -65,8 +75,7 @@
     &-header, &-body--row
       display: grid
       grid-column-gap: 10px
-      grid-row-gap: 3px
-      grid-template-columns: 17% 23% 30% 14% auto
+      grid-template-columns: minmax(150px, 15%) minmax(150px, 24%) minmax(150px, 26%) minmax(130px, 1fr) minmax(130px, auto)
 
     &-header
       align-items: center
@@ -108,21 +117,19 @@
         padding: 9px 0 22px 15px
 
         @media (max-width: $screen-xs-max)
-          grid-template-columns: auto
-          grid-template-areas: 'price option action' 'delivery delivery delivery' 'seller seller seller' 'note note note'
+          grid-template-columns: minmax(0%, auto)
+          grid-template-areas: 'price action' 'delivery delivery' 'seller seller' 'note note'
           padding: 15px 0
 
       &--price
         grid-area: price
 
-        .lead
-          margin-bottom: 3px
-
       &--image
         margin-right: 15px
 
         img
-          max-width: 40px
+          max-width: 45px
+          vertical-align: baseline
 
       &--option
         grid-area: option
@@ -138,6 +145,9 @@
           margin: 0
           list-style: none
 
+          li
+            font-size: 14px
+
           @media (min-width: $screen-sm-min)
             li:before
               content: "• "
@@ -148,7 +158,17 @@
         grid-area: seller
 
         .lead
+          font-weight: bold
           margin-bottom: 3px
+          width: 100%
+
+        @media (max-width: $screen-xs-max)
+          .lead
+            font-weight: normal
+            font-size: 14px
+            margin-right: 10px
+            margin-bottom: 0
+            width: auto
 
       &--action
         grid-area: action
@@ -161,3 +181,6 @@
           label
             cursor: pointer
             padding: 9px 21px
+
+          @media (max-width: $screen-xs-max)
+            font-size: 12px

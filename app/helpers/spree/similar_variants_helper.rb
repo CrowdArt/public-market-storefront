@@ -14,13 +14,14 @@ module Spree
       [variant.main_option_value.parameterize, variant.mapped_main_option_value(@product.taxonomy&.name&.downcase)].uniq.join(' ')
     end
 
-    def additional_variation_properties(variant)
+    def additional_variation_property(variant)
       case @product.taxonomy&.name&.downcase
       when 'books'
-        {
-          'edition' => variant.product.property(:edition),
-          'published_at' => variant.product.property(:published_at)
-        }
+        if (published_at = variant.product.property(:published_at)).present?
+          published_at = published_at[0..3] # use year
+        end
+
+        [published_at, variant.product.property(:edition)].compact.join(': ')
       end
     end
   end

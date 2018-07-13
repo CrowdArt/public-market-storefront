@@ -19,10 +19,10 @@ p.pull-right.hidden-xs = link_to(t('sell_on_pm'), '#', disabled: true, class: 'n
       = render partial: 'spree/products/similar_variants/sidebar_filters', locals: { filters: filters }
 
   .col-md-10.col-sm-10.similar-variants--product-info
-    h1.no-margin-top.margin-text-bottom.text-black #{@product.name} (#{@variation.titleize})
+    h1.no-margin-top.text-black #{@product.name} (#{@variation.titleize})
 
     - if subtitle = @product.subtitle
-      p.text-muted.margin-text-bottom
+      p.text-muted.similar-variants--product-info--subtitle
         span.byline> By
         span.author = subtitle
 

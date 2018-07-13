@@ -1,52 +1,71 @@
-.similar-variants--table-header.hidden-xs.upcase
-  span = t('similar_variants.table_header.price')
-  span Condition
-  span = t('similar_variants.table_header.delivery_ptrn')
-  span = t('similar_variants.table_header.seller')
+/ .similar-variants--table-header.hidden-xs.upcase
+/   span = t('similar_variants.table_header.price')
+/   span
+/     span.margin-text-right Condition
+/     = link_to 'ℹ️ Learn more', '#', class: 'btn btn-link no-padding disabled', disabled: true
+/   span = t('similar_variants.table_header.delivery_ptrn')
+/   span = t('similar_variants.table_header.seller')
 
-.similar-variants--table-header.visible-grid-xs
-  .similar-variants--table-header--item.active
-    .hide = radio_button_tag 'radio_variation', 'all', true, id: "radio_all"
-    label.no-margin for="radio_all" All
+/ .similar-variants--table-header.visible-grid-xs
+/   .similar-variants--table-header--item.active
+/     .hide = radio_button_tag 'radio_variation', 'all', true, id: "radio_all"
+/     label.no-margin for="radio_all" All
 
-  - if filters
-    - filters.each do |option, _child_options|
-      .similar-variants--table-header--item
-        .hide = radio_button_tag 'radio_variation', option.parameterize, false, id: "radio_#{option}"
-        label.no-margin for="radio_#{option}" = option.titleize
+/   - if filters
+/     - filters.each do |option, _child_options|
+/       .similar-variants--table-header--item
+/         .hide = radio_button_tag 'radio_variation', option.parameterize, false, id: "radio_#{option}"
+/         label.no-margin for="radio_#{option}" = option.titleize
 
 .similar-variants--table-body
   = form_for :order, url: populate_orders_path, remote: true do |f|
     = hidden_field_tag :quantity, 1
 
+    .similar-variants--table-header.hidden-xs.upcase
+      span = t('similar_variants.table_header.price')
+      span
+        span.margin-text-right Condition
+        = link_to 'ℹ️ Learn more', '#', class: 'btn btn-link no-padding disabled', disabled: true
+      span = t('similar_variants.table_header.delivery_ptrn')
+      span = t('similar_variants.table_header.seller')
+
+    .similar-variants--table-header.visible-grid-xs
+      .similar-variants--table-header--item.active
+        .hide = radio_button_tag 'radio_variation', 'all', true, id: "radio_all"
+        label.no-margin for="radio_all" All
+
+      - if filters
+        - filters.each do |option, _child_options|
+          .similar-variants--table-header--item
+            .hide = radio_button_tag 'radio_variation', option.parameterize, false, id: "radio_#{option}"
+            label.no-margin for="radio_#{option}" = option.titleize
+
     - @variants.each do |variant|
+      - seller_note = variant.notes
+
       .similar-variants--table-body--row data-variation=variant_data_options(variant)
         .hide = radio_button_tag 'variant_id', variant.id, false, id: "variant_id_#{variant.id}"
 
-        .similar-variants--table-body--column.similar-variants--table-body--price.flex.align-center
+        .similar-variants--table-body--price.flex
           .similar-variants--table-body--image.hidden-xs
             = small_image(variant.product, itemprop: 'image')
 
-          div
-            .lead
-              span.text-danger $#{variant.price}
+          .similar-variants--table-body--price-info.ellipsis
+            div
+              strong.lead.text-danger.text-bold $#{variant.price}
+
               strong.visible-xs-inline.margin-text-left = variant.main_option_value
 
-            strong Free shipping
+            .text-medium.text-bold Free shipping
 
-            - if (additional_props = additional_variation_properties(variant)).present?
-              br
-              - additional_props.each do |k, v|
-                - next if v.blank?
-                strong = k.titleize
-                ': #{v}
-                br
+            - if (additional_props = additional_variation_property(variant)).present?
+              .text-medium.ellipsis = additional_props
 
-        .similar-variants--table-body--column.similar-variants--table-body--option.hidden-xs
-          .lead.margin-text-bottom = variant.main_option_value
-          span = show_more(variant.notes, length: 55)
+        .similar-variants--table-body--option.hidden-xs
+          .lead.no-margin-bottom.text-bold = variant.main_option_value
+          span.text-medium = show_more(seller_note, length: 100)
 
-        .similar-variants--table-body--column.similar-variants--table-body--delivery
+        .similar-variants--table-body--delivery
           ul
             li.hidden-xs Arrives between #{6.days.from_now.strftime('%b %d')} - #{8.days.from_now.strftime('%b %d')}
 
@@ -57,14 +76,16 @@
             li
               strong.ptrn 6-7
 
-        .similar-variants--table-body--column.similar-variants--table-body--seller
-          .lead = variant.vendor.name
-          .text-success 87% Positive Ratings
+        .similar-variants--table-body--seller.flex.align-center.wrap.nowrap-xs.align-content-start.ellipsis
+          .lead.ellipsis = variant.vendor.name
+          .text-success.text-medium 87% Positive Ratings
 
-        .similar-variants--table-body--column.similar-variants--table-body--action
+        .similar-variants--table-body--action
           = f.button class: 'btn btn-primary', value: 'add-to-cart', type: :submit do
             label.no-margin for="variant_id_#{variant.id}"
               = Spree.t(:add_to_cart)
 
-        .similar-variants--table-body--note.visible-xs
-          = variant.notes.truncate(50)
+        - if seller_note
+          .similar-variants--table-body--note.text-medium.visible-xs
+            strong> Seller Note:
+            = show_more(seller_note, length: 25)

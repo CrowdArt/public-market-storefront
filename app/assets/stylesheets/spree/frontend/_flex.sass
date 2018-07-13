@@ -28,6 +28,9 @@
       &.wrap-xs
         flex-wrap: wrap
 
+    &.align-content-start
+      align-content: start
+
     &.align-center
       align-items: center
 
@@ -49,6 +52,10 @@
 
     &.nowrap-md
       @media (min-width: $screen-md-min)
+        flex-wrap: nowrap
+
+    &.nowrap-xs
+      @media (max-width: $screen-xs-max)
         flex-wrap: nowrap
 
 .flex-1

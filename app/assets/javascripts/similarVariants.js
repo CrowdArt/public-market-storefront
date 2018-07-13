@@ -9,7 +9,7 @@ function checkVariationOptionInUrl() {
     $("input[name='radio_variation'][value='" + val + "']").prop('checked', true).trigger('change')
   }
 
-  history.replaceState({}, document.title, location.pathname + location.search)
+  history.replaceState(history.state, document.title, location.pathname + location.search)
 }
 
 function isOptionsEmpty() {
