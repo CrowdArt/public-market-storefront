@@ -13,6 +13,10 @@ module PublicMarket
                               debug_mode: opts[:debug])
     end
 
-    delegate :nlst, to: :net_ftp
+    delegate :nlst, :status, :get, :put, :delete, :rmdir, :close, to: :net_ftp
+
+    def mkdir(dir)
+      net_ftp.mkdir(dir) unless nlst.include?(dir)
+    end
   end
 end

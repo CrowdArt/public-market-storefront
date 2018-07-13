@@ -12,7 +12,8 @@ module Spree
 
       def fetch_vendor_orders
         orders = Order.joins(line_items: :variant)
-                      .includes(line_items: :variant, ship_address: %i[country state])
+                      .includes(:shipments, line_items: %i[variant inventory_units],
+                                            ship_address: %i[country state])
                       .complete
                       .where(spree_variants: { vendor_id: vendor.id })
                       .where(payment_state: :paid)
