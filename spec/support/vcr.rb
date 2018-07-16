@@ -9,7 +9,12 @@ VCR.configure do |c|
     allow_playback_repeats: true
   }
 
-  c.filter_sensitive_data('<BOWKER_AUTH>') { Base64.encode64(Rails.application.credentials.bowker_user + ':' + Rails.application.credentials.bowker_password).strip } if Rails.application.credentials.bowker_user
+  if Rails.application.credentials.bowker_user
+    c.filter_sensitive_data('<BOWKER_AUTH>') {
+      Base64.encode64(Rails.application.credentials.bowker_user + ':' + Rails.application.credentials.bowker_password).strip
+    }
+  end
+
   c.filter_sensitive_data('<STRIPE_SECRET>') { Rails.application.credentials.stripe_secret_key }
   c.filter_sensitive_data('<STRIPE_PUB>') { Rails.application.credentials.stripe_publishable_key }
 end

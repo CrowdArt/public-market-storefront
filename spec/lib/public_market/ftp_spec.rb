@@ -6,7 +6,7 @@ RSpec.describe PublicMarket::FTP, skip: true do
   it { expect(ftp.status).to match('211') }
   it { expect(ftp.close).to be_nil }
 
-  it 'should upload/download/delete files' do
+  it 'uploads/downloads/deletes files' do
     ftp.mkdir('test')
     ftp.put(file, 'test/book_upload.csv')
     ftp.get('test/book_upload.csv') do |line|
