@@ -21,7 +21,7 @@ Spree::Core::Engine.add_routes do
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       get '/orders/fetch', to: 'orders#fetch'
-      post '/orders/update_shipments', to: 'orders#update_shipments'
+      post '/orders/update', to: 'orders#update_items'
     end
   end
 

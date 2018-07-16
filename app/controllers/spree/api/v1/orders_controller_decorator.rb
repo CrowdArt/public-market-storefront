@@ -1,5 +1,5 @@
 Spree::Api::V1::OrdersController.class_eval do
-  before_action :find_order, except: %i[create mine current index update remove_coupon_code fetch update_shipments]
+  before_action :find_order, except: %i[create mine current index update remove_coupon_code fetch update_items]
 
   def fetch
     authorize! :index, Spree::Order
@@ -10,18 +10,15 @@ Spree::Api::V1::OrdersController.class_eval do
     respond_with(@orders)
   end
 
-  def update_shipments
+  def update_items
     authorize! :create, Spree::Shipment
 
-    @success = 0
-    @failures = {}
+    @result = {}
 
-    orders_params.each_with_index do |order, index|
+    update_params.each do |order|
       options = order_update_params(order).merge(user: current_api_user)
-      Spree::Orders::UpdateLineItemAction.new(options).call
-      @success += 1
-    rescue StandardError => e
-      @failures[index] = e.message.gsub('Spree::', '')
+      item = Spree::Orders::UpdateLineItemAction.new(options).call
+      @result.merge!(item)
     end
   end
 
@@ -39,11 +36,11 @@ Spree::Api::V1::OrdersController.class_eval do
     order.permit([permitted_order_attributes]).to_h
   end
 
-  def orders_params
-    params.require(:orders)
+  def update_params
+    params.require(:updates)
   end
 
   def permitted_order_attributes
-    %i[number action]
+    %i[order_number item_number action tracking_number shipped_at]
   end
 end

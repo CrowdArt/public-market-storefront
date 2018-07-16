@@ -79,7 +79,7 @@ module Spree
         end
 
         def shipping_cost(line_item)
-          line_item.inventory_units.first.shipment.display_amount.money.format(symbol: false)
+          line_item.shipment.display_amount.money.format(symbol: false)
         end
 
         def upload_to_ftp(csv_file)

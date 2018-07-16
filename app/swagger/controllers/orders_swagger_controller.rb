@@ -33,10 +33,10 @@ module Swagger
         end
       end
 
-      swagger_path '/orders/update_shipments' do
+      swagger_path '/orders/update' do
         operation :post do
-          key :summary, 'Update shipment status'
-          key :description, 'Update shipment status of given orders'
+          key :summary, 'Update order items status'
+          key :description, 'Update order items status of given orders'
 
           key :tags, [:orders]
 
@@ -46,18 +46,18 @@ module Swagger
 
           parameter do
             key :name, :orders
-            key :description, 'Array of order numbers and actions'
+            key :description, 'Array of updates'
             key :in, :body
             key :required, true
             schema do
               key :type, :object
-              key :'$ref', :ShipmentInput
+              key :'$ref', :OrderUpdateInput
             end
           end
 
           extend SwaggerResponses::AuthenticationError
           response 200 do
-            key :description, 'Returns count of succesfully updated orders'
+            key :description, 'Returns hash of updated items'
           end
         end
       end

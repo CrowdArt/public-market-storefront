@@ -10,4 +10,8 @@ Spree::LineItem.class_eval do
       transition to: :canceled, from: :ordered
     end
   end
+
+  def shipment
+    inventory_units.first.shipment
+  end
 end

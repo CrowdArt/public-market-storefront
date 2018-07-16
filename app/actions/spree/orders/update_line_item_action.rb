@@ -8,41 +8,48 @@ module Spree
       end
 
       def call
-        @order = Order.find_by!(number: options[:number])
+        item = LineItem.find_by_hash_id(item_number)
+        return { item_number => 'Not found' } if item.blank? || item.order.number != order_number
 
-        case options[:action]
-        when 'cancel'
-          cancel_order
-        when 'ready'
-          set_ready
-        when 'ship'
-          ship_order
-        end
+        perform_action(item)
 
-        @order
+        { item_number => item.state }
       end
 
       private
 
-      def cancel_order
-        @order.canceled_by(options[:user])
+      def item_number
+        options[:item_number]
       end
 
-      def set_ready
-        @order.shipments.each do |shipment|
-          break if shipment.ready?
-          shipment.ready!
-        end
-
-        # call manually because it's not called in spree on transition to ready
-        Spree::OrderUpdater.new(@order).update_shipment_state
-        @order.save!
+      def order_number
+        options[:order_number]
       end
 
-      def ship_order
-        @order.shipments.each do |shipment|
-          shipment.ship! unless shipment.shipped?
+      def tracking_number
+        options[:tracking_number]
+      end
+
+      def shipped_at
+        options[:shipped_at].to_i
+      end
+
+      def perform_action(item)
+        case options[:action]
+        when 'cancel'
+          item.cancel!
+        when 'confirm'
+          item.confirm!
+        when 'ship'
+          ship_shipment(item)
         end
+      end
+
+      def ship_shipment(item)
+        item.confirm! unless item.confirmed?
+        item.shipment.ship! unless item.shipment.shipped?
+        item.shipment.update(tracking: tracking_number) if tracking_number.present?
+        item.shipment.update(shipped_at: Time.zone.at(shipped_at)) if shipped_at.positive?
       end
     end
   end

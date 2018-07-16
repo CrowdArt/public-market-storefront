@@ -6,7 +6,7 @@ module Swagger
       key :swagger, '2.0'
 
       info do
-        key :version, '0.0.2'
+        key :version, '0.1'
         key :title, 'Public Market API'
         key :description, 'Public Market API specification'
         key :termsOfService, 'https://publicmarket.io/terms/'
