@@ -20,15 +20,15 @@ module Spree
     def index
       searcher_opts = {}
 
-      if params[:taxon].present?
-        @taxon = Spree::Taxon.find(params[:taxon])
-        searcher_opts[:taxon_ids] = [@taxon.id] if @taxon
+      if (@taxon = Spree::Taxon.find_by(id: params[:taxon])).present?
+        searcher_opts[:taxon_ids] = [@taxon.id]
+        @card_size = :medium
       end
 
       @products = build_searcher(params, searcher_opts).call
 
       respond_to do |format|
-        format.html
+        format.html { render @taxon ? 'spree/taxons/show' : 'spree/products/index' }
         format.js { render 'spree/shared/search/products' }
       end
     end

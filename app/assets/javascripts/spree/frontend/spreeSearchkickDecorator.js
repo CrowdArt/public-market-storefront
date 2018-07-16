@@ -4,9 +4,13 @@ Spree.typeaheadSearch = function() {
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     limit: 10,
     remote: {
-      url: '/autocomplete/products.json?taxon_id=' + $('#navbar-taxon').val() + '&keywords=%QUERY',
+      url: '/autocomplete/products.json?taxon_id=%taxon_id&keywords=%QUERY',
       wildcard: '%QUERY',
-      cache: false
+      cache: false,
+      replace: function (url, uriEncodedQuery) {
+        // dynamically build url with current department
+        return url.replace('%taxon_id', $('#navbar-taxon').val()).replace('%QUERY', uriEncodedQuery)
+      }
     }
   });
 

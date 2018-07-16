@@ -1,6 +1,4 @@
-ruby:
-  # first enabled if All Products wasn't selected
-  taxon ||= enabled_taxons.first if params[:taxon].nil?
+- taxon ||= nil
 
 = form_tag spree.products_path, method: :get, class: "navbar-search-form flex flex-1 #{'filled' if params[:keywords].present?}", id: 'navbar-keyword-form' do
   - cache([:v1, :navbar_taxons_dropdown, root_taxons, taxon])
@@ -33,21 +31,6 @@ ruby:
 
 - content_for :bottom_scripts
   javascript:
-    Spree.typeaheadSearch()
-
-    $(document).on('click', '#taxon-dropdown a', function(e) {
-      var taxonId = $(e.target).data('taxon-id')
-      if (taxonId !== undefined) {
-        $('#taxon-dropdown a').removeClass('checked')
-        $(e.target).addClass('checked')
-        $('#taxon-menu .name').text($(e.target).data('taxon-name'))
-        $('#navbar-taxon').val($(e.target).data('taxon-id'))
-      } else {
-        e.stopPropagation()
-      }
-      e.preventDefault()
-    })
-
     if (!isMobile()) {
       $('#taxon-dropdown li.disabled').popover({
         container: 'body',
@@ -57,18 +40,3 @@ ruby:
         trigger: 'hover'
       })
     }
-
-
-    $(document).on('submit', '#navbar-keyword-form', function() {
-      var filtersForm = $('#search-filters-form')
-      var allowSubmit = filtersForm.length === 0
-      if (!allowSubmit) {
-        var topNavKeywordValue = $(this).find('input[name="keywords"]').val()
-        $('#keywords').val(topNavKeywordValue).trigger('change')
-      }
-      return allowSubmit
-    })
-
-    $('#navbar-keyword-form #nav-keyword').on('change, keyup', function() {
-      $(this).parents('form').toggleClass('filled', $(this).val().trim() !== '')
-    })

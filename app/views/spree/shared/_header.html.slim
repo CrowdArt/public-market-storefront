@@ -38,17 +38,3 @@ ruby:
         hr.divider.hidden-xs.hidden-sm
 
         = render partial: 'spree/nav/navbar_bottom_row', locals: { taxon: taxon, taxons: root_taxons }
-
-- content_for :bottom_scripts
-  javascript:
-    Spree.fetch_cart()
-
-    // close navbar on turbolinks visit
-    $(document).on('turbolinks:before-visit', function() {
-      $('#mobile-nav-toggle').prop('checked', false)
-    })
-
-    // load subcategories on mobile menu open
-    $('#mobile-nav-toggle').one('change', function() {
-      Spree.loadMobileSubcategories()
-    })
