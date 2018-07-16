@@ -7,12 +7,13 @@ RSpec.describe Spree::Inventory::Providers::Books::VariantProvider, type: :actio
       sku: 'SKU',
       quantity: '1',
       price: '9.61',
-      condition: 'Acceptable',
+      condition: condition,
       notes: 'A book with obvious wear.'
     }
   end
 
   let(:isbn) { '9780307341570' }
+  let(:condition) { 'Acceptable' }
 
   describe 'validation' do
     let(:item_json) { { sku: 'sku' } }
@@ -47,16 +48,27 @@ RSpec.describe Spree::Inventory::Providers::Books::VariantProvider, type: :actio
     it { expect(product.taxons.count).to eq(1) }
     it { expect(product.taxons.first.taxonomy.name).to eq('Books') }
 
-    it { expect(variant).not_to be_nil }
-    it { expect(variant).not_to eq(product.master) }
-    it { expect(variant.sku).to eq(item_json[:sku]) }
-    it { expect(variant.option_value('condition')).to eq(item_json[:condition]) }
-    it { expect(variant.price).to eq(item_json[:price]) }
-    it { expect(variant.cost_price).to eq(item_json[:price]) }
-    it { expect(variant.total_on_hand).to eq(1) }
-
     context 'with images', vcr: true, images: true do
       it { expect(product.images.count).to eq(1) }
+    end
+
+    describe 'variant' do
+      it { expect(variant).not_to be_nil }
+      it { expect(variant).not_to eq(product.master) }
+      it { expect(variant.sku).to eq(item_json[:sku]) }
+      it { expect(variant.price).to eq(item_json[:price]) }
+      it { expect(variant.cost_price).to eq(item_json[:price]) }
+      it { expect(variant.total_on_hand).to eq(1) }
+
+      describe 'condition' do
+        it { expect(variant.option_value('condition')).to eq('Used - Acceptable') }
+
+        context 'when New' do
+          let(:condition) { 'New' }
+
+          it { expect(variant.option_value('condition')).to eq('New') }
+        end
+      end
     end
   end
 

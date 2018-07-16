@@ -3,19 +3,29 @@ en:
     sold_by: Ships from and sold by
     rewards: "+ %{rewards} PTRN Rewards"
 
+    mapped_conditions:
+      'Like New': 'Used - Like New'
+      'Excellent': 'Used - Excellent'
+      'Very Good': 'Used - Very Good'
+      'Good': 'Used - Good'
+      'Acceptable': 'Used - Acceptable'
+
   variations:
     options:
       books:
         new:
           - new
         used:
-          - like new
-          - excellent
-          - very good
-          - good
-          - acceptable
+          - 'used - like new'
+          - 'used - excellent'
+          - 'used - very good'
+          - 'used - good'
+          - 'used - acceptable'
         collectible:
-          - collectible
+          - 'collectible - like new'
+          - 'collectible - very good'
+          - 'collectible - good'
+          - 'collectible - acceptable'
 
       music:
         new:

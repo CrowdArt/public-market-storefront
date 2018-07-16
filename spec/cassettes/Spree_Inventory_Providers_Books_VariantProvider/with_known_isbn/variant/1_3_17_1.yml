@@ -1,0 +1,106 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://bms.bowker.com/rest/books/isbn/9780307341570?format=xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic <BOWKER_AUTH>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Jul 2018 16:32:07 GMT
+      Server:
+      - Apache/2.2.3 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '153'
+      Content-Type:
+      - text/xml
+      Set-Cookie:
+      - BIGipServerbms_pool=1236671404.20480.0000; path=/
+    body:
+      encoding: ASCII-8BIT
+      string: '<result found="1" returned="1" page="1" pagesize="10"><item id="1THadp2Kmz73P"><details>http://bms.bowker.com/rest/books/id/1THadp2Kmz73P?fields=all</details></item></result>
+
+'
+    http_version: 
+  recorded_at: Fri, 13 Jul 2018 16:32:07 GMT
+- request:
+    method: get
+    uri: http://bms.bowker.com/rest/books/id/1THadp2Kmz73P?fields=all
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic <BOWKER_AUTH>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Jul 2018 16:32:07 GMT
+      Server:
+      - Apache/2.2.3 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '1311'
+      Content-Type:
+      - text/xml
+      Set-Cookie:
+      - BIGipServerbms_pool=1035344812.20480.0000; path=/
+    body:
+      encoding: ASCII-8BIT
+      string: '<result found="1"><item id="1THadp2Kmz73P"><details>http://bms.bowker.com/rest/books/id/1THadp2Kmz73P?fields=all</details><retailcurrency>US
+        Dollars (USD, $)</retailcurrency><retailprice>16</retailprice><title>Dark
+        Places</title><author>Gillian Flynn</author><bicsubject>THRILLER / SUSPENSE;
+        FICTION &amp; RELATED ITEMS; CRIME &amp; MYSTERY</bicsubject><isbn>978-0-307-34157-0</isbn><isbn10>0-307-34157-7</isbn10><subject>FICTION_SUSPENSE;
+        FICTION / Thrillers / Suspense; Mystery fiction; THRILLER / SUSPENSE; BROTHERS
+        AND SISTERS_FICTION; Brothers and Sisters_Fiction; FICTION / Family Life /
+        Siblings; FICTION &amp; RELATED ITEMS; KANSAS CITY (MO.)_FICTION; Kansas City
+        (Mo.)_Fiction; CRIME_FICTION; FICTION / Crime; Crime_Fiction; CRIME &amp;
+        MYSTERY</subject><market>USA</market><audience>Trade</audience><binding>Trade
+        Paper</binding><pubdate>2010-05-04</pubdate><publisher>Crown/Archetype</publisher><status>Active
+        Record</status><currency>US Dollars (USD, $)</currency><price>16</price><pricedate>2018-05-22</pricedate><retailpricedate>2018-05-22</retailpricedate><pagecount>368</pagecount><size><length>8</length><width>5.13</width><height>.8</height><units>Inches</units></size><weight>.59
+        Pounds</weight><annotation>&lt;b&gt;From the #1 &lt;i&gt;New York Times&lt;/i&gt;
+        bestselling author of &lt;i&gt;Gone Girl&lt;/i&gt;, and the basis for the
+        major motion picture starring Charlize Theron&lt;i&gt;&lt;br /&gt;&lt;/i&gt;&lt;/b&gt;&lt;br
+        /&gt; Libby Day was seven when her mother and two sisters were murdered in
+        "The Satan Sacrifice of Kinnakee, Kansas." She survived--and famously testified
+        that her fifteen-year-old brother, Ben, was the killer. Twenty-five years
+        later, the Kill Club--a&amp;nbsp;secret society obsessed with notorious crimes--locates
+        Libby and pumps her for details. They hope to discover proof that may free
+        Ben.&lt;br /&gt; &lt;br /&gt; Libby&amp;nbsp;hopes to turn a profit&amp;nbsp;off
+        her tragic history: She''ll reconnect with the players from that night and
+        report her findings to the club--for a fee. As Libby''s search takes her from
+        shabby Missouri strip clubs to abandoned Oklahoma tourist towns, the unimaginable
+        truth emerges, and Libby finds herself right back where she started--on the
+        run from a killer.</annotation><currlanguage>English</currlanguage><imprint>Broadway
+        Books</imprint><pub_co_uid>1767245</pub_co_uid><cartonquantity>24</cartonquantity><deweyedition>22</deweyedition><deweynum>813/.6</deweynum></item></result>
+
+'
+    http_version: 
+  recorded_at: Fri, 13 Jul 2018 16:32:07 GMT
+recorded_with: VCR 4.0.0

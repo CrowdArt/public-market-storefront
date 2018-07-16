@@ -11,16 +11,26 @@ module Spree
           ISBN_PROPERTY = 'isbn'.freeze
           VALIDATION_SCHEMA =
             ::Dry::Validation.Schema do
+              configure do
+                option :permitted_conditions
+              end
+
               required(:ean).filled(:str?)
               required(:sku).filled(:str?)
               required(:quantity).filled(:int?)
               required(:price).filled(:decimal?)
-              required(:condition).value(included_in?: PERMITTED_CONDITIONS)
+              required(:condition).value(included_in?: permitted_conditions)
               optional(:notes).str?
               optional(:seller).str?
             end
 
           protected
+
+          def validation_options
+            {
+              permitted_conditions: self.class::PERMITTED_CONDITIONS
+            }
+          end
 
           def metadata_provider
             BowkerMetadataProvider
@@ -59,6 +69,10 @@ module Spree
             }
           end
 
+          def variant_options(item)
+            [{ name: condition_option_name, value: mapped_condition(item[:condition]) }]
+          end
+
           def condition_option_name
             'condition'
           end
@@ -78,10 +92,17 @@ module Spree
             option_type_attrs = {
               name: condition_option_name,
               presentation: 'Condition',
-              option_values_attributes: PERMITTED_CONDITIONS.map { |c| { name: c, presentation: c } }
+              option_values_attributes: PERMITTED_CONDITIONS.map do |c|
+                mapped_condition = mapped_condition(c)
+                { name: mapped_condition, presentation: mapped_condition }
+              end
             }
 
             OptionType.where(name: option_type_attrs[:name]).first_or_create(option_type_attrs)
+          end
+
+          def mapped_condition(condition)
+            I18n.t("products.mapped_conditions.#{condition}", default: condition)
           end
         end
       end

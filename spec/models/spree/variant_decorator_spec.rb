@@ -64,7 +64,7 @@ RSpec.describe Spree::Variant, type: :model do
       it { is_expected.to eq 'new' }
 
       context 'when used - new' do
-        let(:option_values) { build_stubbed_list(:option_value, 1, name: 'Like New', presentation: 'Used - New') }
+        let(:option_values) { build_stubbed_list(:option_value, 1, name: 'Used - Like New', presentation: 'Used - Like New') }
 
         it { is_expected.to eq 'used' }
       end
