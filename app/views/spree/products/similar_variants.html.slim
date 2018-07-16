@@ -3,9 +3,6 @@ ruby:
   @fluid_content_container = true
   filters = available_filter_options(@variants, @product)
 
-- content_for :head
-  = stylesheet_link_tag 'spree/frontend/similar_variants', media: 'screen'
-
 p.pull-left = link_to(t('similar_variants.return_to_product'), @product)
 p.pull-right.hidden-xs = link_to(t('sell_on_pm'), '#', disabled: true, class: 'no-padding btn btn-link disabled')
 .clearfix

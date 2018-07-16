@@ -2,10 +2,6 @@ ruby:
   @body_id = 'product-details'
   is_mobile = browser.device.mobile?
 
-- content_for :head
-  / prefetch similar variant style
-  link rel='prefetch stylesheet' title='Similar variants styles' href=asset_url('spree/frontend/similar_variants.css')
-
 .row.product-grid data-hook='product_show' itemscope=true itemtype='https://schema.org/Product'
   - cache(cache_key_for_product(@product, section: :sidebar_and_cart, mobile: is_mobile)) do
     ruby:
