@@ -52,6 +52,7 @@ gem 'spree_social', github: 'abundance-labs/spree_social'
 
 gem 'delayed_paperclip'
 gem 'fog-google'
+gem 'google-cloud-storage', '~> 1.8', require: false
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 
