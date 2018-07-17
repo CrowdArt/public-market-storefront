@@ -856,6 +856,7 @@ DEPENDENCIES
   selenium-webdriver (= 3.12.0)
   sentry-raven
   sidekiq
+  sidekiq-scheduler
   simple_form
   simplecov
   slim

@@ -53,6 +53,7 @@ gem 'spree_social', github: 'abundance-labs/spree_social'
 gem 'delayed_paperclip'
 gem 'fog-google'
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
 
 gem 'json_api_client'
 

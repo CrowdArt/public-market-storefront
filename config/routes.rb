@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   end
 
   require 'sidekiq/web'
+  require 'sidekiq-scheduler/web'
   authenticate :spree_user, ->(u) { u.admin? } do
     mount Sidekiq::Web, at: 'sidekiq'
     mount PgHero::Engine, at: 'pghero'

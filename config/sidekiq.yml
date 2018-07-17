@@ -7,3 +7,11 @@
   - upload
   - searchkick
   - recalculation
+  - orders
+:schedule:
+  upload_order_report:
+    cron: '0 0 * * * *' # Runs every hour
+    class: UploadOrderReport
+    queue: orders
+    args: ['Second Seller', 'test_ftp']
+    description: 'Upload order report'
