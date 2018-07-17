@@ -2,7 +2,7 @@ module Spree
   module GCS
     class UploadFile < GCS::BaseAction
       param :file_path
-      param :original_filename
+      param :original_filename, optional: true
 
       def call
         upload

@@ -5,7 +5,12 @@ module Spree
         private
 
         def save_content
-          GCS::UploadFile.call(upload_params['attachment'].tempfile.path, upload_params['attachment'].original_filename)
+          file = File.open("tmp/#{SecureRandom.urlsafe_base64}", 'w')
+          file.write(request.body.read)
+          file.close
+          file_path = file.path
+
+          GCS::UploadFile.call(file_path)
         end
       end
 
