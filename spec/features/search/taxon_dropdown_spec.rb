@@ -3,32 +3,24 @@ RSpec.describe 'taxon dropdown', type: :feature, js: true do
 
   let!(:taxon) { create(:taxonomy) }
 
-  describe 'shows first category by default' do
+  describe 'shows All Products by default' do
     before { visit '/' }
 
-    it { is_expected.to have_text(taxon.name) }
-
-    describe 'on search' do
-      before do
-        find('.btn-search').click
-      end
-
-      it { is_expected.to have_text(taxon.name) }
-    end
+    it { is_expected.to have_css('#taxon-menu', text: 'All Products') }
   end
 
-  describe 'select all products' do
+  describe 'selects taxon' do
     before do
       visit '/'
       find('#taxon-menu').click
-      find('a', text: 'All Products').click
+      find('#taxon-dropdown a', text: taxon.name).click
       find('.btn-search').click
     end
 
-    it { is_expected.to have_text('All Products') }
+    it { is_expected.to have_css('#taxon-menu', text: taxon.name) }
 
     it 'has checked class' do
-      expect(page).to have_css("li a.checked[data-taxon-name='All Products']", visible: false)
+      expect(page).to have_css("li a.checked[data-taxon-name='#{taxon.name}']", visible: false)
     end
   end
 end
