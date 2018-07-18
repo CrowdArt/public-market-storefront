@@ -10,7 +10,12 @@ module Spree
     private
 
     def load_file(filepath)
-      GCS::DownloadFile.call(filepath, "tmp/#{filepath}")
+      if Rails.env.production? || Rails.env.staging?
+        # filepath = file name in bucket with uploads in GCS
+        GCS::DownloadFile.call(filepath, "tmp/#{filepath}")
+      else
+        filepath
+      end
     end
   end
 

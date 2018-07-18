@@ -4,7 +4,14 @@ module Spree
       private
 
       def save_content
-        @file_path = GCS::UploadFile.call(upload_params['attachment'].tempfile.path, upload_params['attachment'].original_filename)
+        if Rails.env.development?
+          super # save local tmp folder
+        else
+          @file_path = GCS::UploadFile.call(
+            @attachment.tempfile.path,
+            @attachment.original_filename
+          )
+        end
       end
     end
 

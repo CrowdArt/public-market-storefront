@@ -5,10 +5,10 @@ module Spree
         private
 
         def save_content
-          file = File.open("tmp/#{SecureRandom.urlsafe_base64}", 'w')
-          file.write(request.body.read)
-          file.close
-          file_path = file.path
+          file_path = super
+
+          # use file in local tmp folder
+          return file_path if Rails.env.development?
 
           GCS::UploadFile.call(file_path)
         end
