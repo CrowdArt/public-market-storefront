@@ -15,3 +15,9 @@
     queue: orders
     args: ['Second Seller', 'test_ftp']
     description: 'Upload order report'
+  process_order_updates:
+    cron: '*/10 * * * *' # Runs at every 10th minute
+    class: ProcessOrderUpdates
+    queue: orders
+    args: ['Second Seller', 'test_ftp']
+    description: 'Process order updates'

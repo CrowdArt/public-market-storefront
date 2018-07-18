@@ -18,7 +18,7 @@ module Swagger
 
             property :action do
               key :type, :string
-              key :enum, %i[confirm cancel ship]
+              key :enum, %i[confirm cancel]
             end
 
             property :tracking_number do

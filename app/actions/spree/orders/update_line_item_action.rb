@@ -9,7 +9,7 @@ module Spree
 
       def call
         item = LineItem.find_by_hash_id(item_number)
-        return { item_number => 'Not found' } if item.blank? || item.order.number != order_number
+        return { item_number => 'Not found' } if item.blank? || !check_order(item)
 
         perform_action(item)
 
@@ -17,6 +17,10 @@ module Spree
       end
 
       private
+
+      def check_order(item)
+        options[:order_number] == item.order.number || options[:order_id] == item.order.hash_id
+      end
 
       def item_number
         options[:item_number]
@@ -37,19 +41,23 @@ module Spree
       def perform_action(item)
         case options[:action]
         when 'cancel'
-          item.cancel!
+          cancel_item(item)
         when 'confirm'
-          item.confirm!
-        when 'ship'
-          ship_shipment(item)
+          confirm_item(item)
         end
       end
 
-      def ship_shipment(item)
-        item.confirm! unless item.confirmed?
-        item.shipment.ship! unless item.shipment.shipped?
+      def cancel_item(item)
+        item.cancel!
+      end
+
+      def confirm_item(item)
+        item.confirm!
         item.shipment.update(tracking: tracking_number) if tracking_number.present?
-        item.shipment.update(shipped_at: Time.zone.at(shipped_at)) if shipped_at.positive?
+        return unless shipped_at.positive?
+
+        item.shipment.ship! unless item.shipment.shipped?
+        item.shipment.update(shipped_at: Time.zone.at(shipped_at))
       end
     end
   end

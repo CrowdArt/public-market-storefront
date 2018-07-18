@@ -9,9 +9,7 @@ RSpec.describe PublicMarket::FTP, skip: true do
   it 'uploads/downloads/deletes files' do
     ftp.mkdir('test')
     ftp.put(file, 'test/book_upload.csv')
-    ftp.get('test/book_upload.csv') do |line|
-      expect(line).to be_truthy
-    end
+    ftp.get('test/book_upload.csv', Tempfile.new)
     ftp.delete('test/book_upload.csv')
     expect(ftp.nlst('test')).to eq([])
     ftp.rmdir('test')

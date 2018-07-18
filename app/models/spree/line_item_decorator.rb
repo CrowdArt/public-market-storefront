@@ -12,6 +12,6 @@ Spree::LineItem.class_eval do
   end
 
   def shipment
-    inventory_units.first.shipment
+    @shipment ||= inventory_units.first.shipment
   end
 end

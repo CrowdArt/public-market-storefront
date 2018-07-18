@@ -39,7 +39,7 @@ RSpec.describe 'Update line items', type: :request do
     end
 
     context 'when order is shipped' do
-      let(:updates) { [{ order_number: order.number, item_number: item.hash_id, action: :ship, tracking_number: '12313', shipped_at: shipped_at }] }
+      let(:updates) { [{ order_number: order.number, item_number: item.hash_id, action: :confirm, tracking_number: '12313', shipped_at: shipped_at }] }
       let(:shipped_at) { 2.months.ago.to_i }
 
       it { is_expected.to have_http_status(:ok) }
