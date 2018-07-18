@@ -12,8 +12,18 @@ function checkVariationOptionInUrl() {
   history.replaceState(history.state, document.title, location.pathname + location.search)
 }
 
+function toggleLoading() {
+  $('#content').addClass('content-loading')
+
+  setTimeout(function() {
+    $('#content').removeClass('content-loading')
+  }, 250)
+}
+
 function isOptionsEmpty() {
   if ($("input[name='checkbox_variation']:checked").length == 0) {
+    toggleLoading()
+
     $(".similar-variants--table-body--row").show()
     return true
   }
@@ -41,6 +51,8 @@ $(document).on('change', "input[name='checkbox_variation']", function(e) {
     return
   }
 
+  toggleLoading()
+
   $("input[name='checkbox_variation']").each(function() {
     toggleVariations($(this).val(), this.checked)
   })
@@ -53,6 +65,8 @@ $(document).on('change', "input[name='radio_variation']", function(e) {
     $(".similar-variants--table-body--row").show()
   }
 
+  toggleLoading()
+
   $("input[name='radio_variation']").each(function() {
     $(this).parents('.similar-variants--table-header--item').toggleClass('active', this.checked)
 
@@ -63,6 +77,11 @@ $(document).on('change', "input[name='radio_variation']", function(e) {
 })
 
 $(document).on('click', '#clear-variation-filters-btn', function() {
+  if ($("input[name='checkbox_variation']:checked").length == 0)
+    return
+
+  toggleLoading()
+
   $(".similar-variants--table-body--row").show()
   $("input[name='checkbox_variation'], input[name='radio_variation']").prop('checked', false)
 })

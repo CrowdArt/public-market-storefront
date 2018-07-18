@@ -27,3 +27,11 @@
 
 .bg-white
   background-color: #fff
+
+#content
+  transition: opacity .25s
+  will-change: opacity
+
+  &.content-loading
+    opacity: .6
+    pointer-events: none
