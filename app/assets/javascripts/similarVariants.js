@@ -38,14 +38,15 @@ $(document).on('change', "input[name='checkbox_variation']", function(e) {
   if (isOptionsEmpty()) return
 
   var childs = $(this).parents('.root-variation-checkbox').find('.variation-child')
+  var checkedChilds = childs.filter(':checked')
 
   if ($(this).hasClass('variation-root')) {
     // change all childs on parent check
     childs.prop('checked', this.checked)
 
     if (!this.checked && isOptionsEmpty()) return
-  } else if (childs.length == 1) {
-    // change with parent if only one child
+  } else if (childs.length == 1 || checkedChilds.length == 0 || checkedChilds.length == childs.length) {
+    // change with parent if only one child or last child unchecked or all childs checked
     var parent = $(this).parents('.root-variation-checkbox').find('.variation-root')
     parent.prop('checked', this.checked).trigger('change')
     return

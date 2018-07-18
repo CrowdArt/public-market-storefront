@@ -12,58 +12,66 @@ module Spree
         private
 
         def find_similar
-          where_filters = fields_to_match
-          where_filters.merge!(required_fields)
-          where_filters.merge!(filters)
-
           Spree::Product.search(
-            '*',
-            where: where_filters,
-            misspellings: { edit_distance: 2 },
+            body: {
+              query: {
+                bool: {
+                  filter: filters,
+                  should: should_fields
+                }
+              },
+              timeout: '11s',
+              size: 10_000, # defaults to 10 in ES
+              explain: true
+            },
             load: false
           )
         end
 
-        def fields_to_match
-          {
-            'name' => product.name,
-            product.author_property_name => product.subtitle
-          }
-        end
-
-        # https://www.elastic.co/guide/en/elasticsearch/reference/6.2/query-dsl-mlt-query.html
-        # DISABLED
-        def mlt_query
-          return {} if (fields = mlt_fields).blank?
-          {
-            more_like_this: {
-              fields: fields,
-              like: [
-                {
-                  '_index': Spree::Product.search_index.name,
-                  '_id': product.id
-                }
-              ],
-              min_doc_freq: 1,
-              min_term_freq: 1,
-              include: true
-            }
-          }
-        end
-
         def filters
-          filter_by_variation ? { variations: filter_by_variation } : {}
+          f = [
+            { term: { 'name' => product.name }},
+            { term: { product.author_property_name => product.subtitle }}
+          ]
+
+          f << { term: { variations: filter_by_variation }} if filter_by_variation
+
+          f << { exists: { field: required_field }} if required_field.present?
+
+          f
         end
 
-        def required_fields
+        def should_fields # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+          f = []
+
+          variation_finder.similar_fields.each do |field|
+            next if (property = product.property(field)).blank?
+            f << { match: { field => property }}
+          end
+
+          variation_finder.date_fields.each do |field|
+            next if (property = product.property(field)).blank?
+            f << {
+              range: {
+                field => {
+                  gte: property.to_date.beginning_of_year,
+                  lte: property.to_date.end_of_year,
+                  boost: 10 # date take precedence
+                }
+              }
+            }
+          end
+
+          f
+        end
+
+        def required_field
           return {} if product.taxonomy.blank?
-          taxonomy_field = "#{product.taxonomy.name.downcase}_ids"
-          { taxonomy_field => { not: nil }}
+          "#{product.taxonomy.name.downcase}_ids"
         end
 
-        def mlt_fields
-          applicable_mlt_fields = product.taxonomy&.variation_module&.const_get('VariationFinder')&.mlt_fields
-          product.properties.where(name: applicable_mlt_fields).pluck(:name)
+        def variation_finder
+          product.taxonomy&.variation_module&.const_get('VariationFinder')
         end
       end
     end

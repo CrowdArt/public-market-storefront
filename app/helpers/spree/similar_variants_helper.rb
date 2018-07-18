@@ -2,7 +2,8 @@ module Spree
   module SimilarVariantsHelper
     def available_filter_options(variants, product) # rubocop:disable Metrics/AbcSize
       # child options with parent name are rejected
-      opts = variants.group_by { |v| v.mapped_main_option_value(product.taxonomy&.name&.downcase) }
+      opts = variants.sort_by { |v| v.main_option&.position || 0 }
+                     .group_by { |v| v.mapped_main_option_value(product.taxonomy&.name&.downcase) }
                      .map { |k, v| [k, v.reject { |var| k.casecmp(var.main_option_value).zero? }.map(&:main_option_value).uniq] }
 
       # don't show filters if only 1 parent and 0-1 child options available

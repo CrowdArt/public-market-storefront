@@ -3,7 +3,7 @@ module PublicMarket
     module Music
       class VariationFinder < BaseVariationFinder
         class << self
-          def mlt_fields
+          def similar_fields
             %i[vinyl_speed music_format music_label music_label_number]
           end
 
