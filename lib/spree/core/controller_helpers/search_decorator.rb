@@ -2,7 +2,7 @@ module Spree
   module Core
     module ControllerHelpers
       module Search
-        ALLOWED_PER_PAGE = %w[20 30 40 50].freeze
+        ALLOWED_PER_PAGE = %w[12 24 36 48 60].freeze
 
         def build_searcher(request_params, opts = {})
           request_params[:per_page] =
