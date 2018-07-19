@@ -20,17 +20,17 @@
           .box.col-md-12
             = image_tag 'icons/how-zero-fees.svg', class: 'icon'
             h3 = t('how_it_works.zero_fees')
-            p = t('how_it_works.zero_fees_text')
+            p == t('how_it_works.zero_fees_text')
         .col-md-4.col-xs-12
           .box.col-md-12
             = image_tag 'icons/how-buyer-rewards.svg', class: 'icon'
             h3 = t('how_it_works.buyer_rewards')
-            p = t('how_it_works.buyer_rewards_text')
+            p == t('how_it_works.buyer_rewards_text')
         .col-md-4.col-xs-12
           .box.col-md-12
             = image_tag 'icons/how-token-market.svg', class: 'icon'
             h3 = t('how_it_works.token_market')
-            p = t('how_it_works.token_market_text')
+            p == t('how_it_works.token_market_text')
 
   - top_categories = %w[Music Books]
   - cache(home_top_categories_cache_key(top_categories)) do
