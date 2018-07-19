@@ -1,0 +1,13 @@
+.tt-suggestion {
+  padding: 3px 20px;
+  line-height: 24px;
+}
+
+.tt-suggestion.tt-cursor {
+  color: #fff;
+  background-color: #42424e
+}
+
+.twitter-typeahead {
+  width: 100%;
+}

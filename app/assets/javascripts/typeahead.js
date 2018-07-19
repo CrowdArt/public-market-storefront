@@ -1,3 +1,6 @@
+//= require corejs-typeahead/dist/bloodhound.js
+//= require corejs-typeahead/dist/typeahead.jquery.js
+
 Spree.typeaheadSearch = function() {
   var products = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -16,8 +19,6 @@ Spree.typeaheadSearch = function() {
 
   products.initialize();
 
-  // passing in `null` for the `options` arguments will result in the default
-  // options being used
   $('#nav-keyword').typeahead({
     minLength: 2,
     highlight: true,
@@ -39,12 +40,14 @@ Spree.typeaheadSearch = function() {
       }
     }
   });
-
-  $('#nav-keyword').on('typeahead:selected', function(e, s) {
-    $(this).typeahead("val", s.name); // fill name
-  }).on('typeahead:select', function(e, s) {
-    window.location = s.link; // redirect directly to product for S1
-  }).on('typeahead:cursorchange', function(e, s, d) {
-    $(this).val($(this).typeahead('val')); // disable suggestion fill
-  });
 }
+
+$(document).on('turbolinks:load', Spree.typeaheadSearch)
+
+$('#nav-keyword').on('typeahead:selected', function(e, s) {
+  $(this).typeahead('val', s.name); // fill name
+}).on('typeahead:select', function(e, s) {
+  window.location = s.link; // redirect directly to product for S1
+}).on('typeahead:cursorchange', function(e, s, d) {
+  $(this).val($(this).typeahead('val')); // disable suggestion fill
+});

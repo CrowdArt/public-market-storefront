@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "bootstrap-tagsinput": "^0.7.1",
+    "corejs-typeahead": "^1.2.1",
     "raven-js": "^3.25.2"
   }
 }

@@ -1,6 +1,5 @@
 $(document).on('turbolinks:load', function() {
   Spree.fetch_cart()
-  Spree.typeaheadSearch()
 })
 
 // load subcategories on mobile menu open
@@ -32,7 +31,8 @@ $(document).on('submit', '#navbar-keyword-form', function() {
   var allowSubmit = filtersForm.length === 0 || ($('#filter_taxon').val() !== $('#navbar-taxon').val())
 
   if (!allowSubmit) {
-    var topNavKeywordValue = $(this).find('input[name="keywords"]').val()
+    var topNavKeywordValue = $(this).find("input[name='keywords']").val()
+    // trigger filters form change
     $('#keywords').val(topNavKeywordValue).trigger('change')
   }
 

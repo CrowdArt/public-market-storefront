@@ -19,6 +19,7 @@ module Spree
                       .where(payment_state: :paid)
                       .order('spree_orders.updated_at DESC')
                       .distinct
+
         orders = orders.where('spree_orders.updated_at > ?', from_timestamp) if from_timestamp
         orders.to_a
       end

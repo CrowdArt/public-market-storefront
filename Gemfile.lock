@@ -45,7 +45,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_searchkick.git
-  revision: a13b8e2a4c19e971a7832b347bf850142b8576d0
+  revision: 404f2a685710e863c0dc944f834b0f56688d830c
   specs:
     spree_searchkick (3.1.0)
       searchkick

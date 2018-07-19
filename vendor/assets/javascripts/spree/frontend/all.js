@@ -12,6 +12,5 @@
 //= require spree/frontend
 
 //= require spree/frontend/spree_auth
-//= require spree/frontend/spree_searchkick
 
 //= require spree/frontend/publicMarket

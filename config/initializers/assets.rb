@@ -22,6 +22,7 @@ assets_to_precompile = %w[
   searchFilters
   searchFilterTags
   similarVariants
+  typeahead
   bootstrap-tagsinput/dist/bootstrap-tagsinput.css
   bootstrap-tagsinput/dist/bootstrap-tagsinput.js
   raven-js/dist/raven.js
