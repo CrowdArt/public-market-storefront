@@ -1,6 +1,6 @@
 ruby:
   @body_id = 'product-details'
-  is_mobile = browser.device.mobile?
+  is_mobile = mobile?
 
 .row.product-grid data-hook='product_show' itemscope=true itemtype='https://schema.org/Product'
   - cache(cache_key_for_product(@product, section: :sidebar_and_cart, mobile: is_mobile)) do

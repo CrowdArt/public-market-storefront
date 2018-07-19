@@ -4,15 +4,17 @@ function checkVariationOptionInUrl() {
   var val = location.hash.substring(1)
 
   if ($('.similar-variants--filters').is(':visible')) {
-    $("input[name='checkbox_variation'][value='" + val + "']").prop('checked', true).trigger('change')
+    $("input[name='checkbox_variation'][value='" + val + "']").prop('checked', true).trigger('change', { skipLoading: true })
   } else {
-    $("input[name='radio_variation'][value='" + val + "']").prop('checked', true).trigger('change')
+    $("input[name='radio_variation'][value='" + val + "']").prop('checked', true).trigger('change', { skipLoading: true })
   }
 
   history.replaceState(history.state, document.title, location.pathname + location.search)
 }
 
-function toggleLoading() {
+function toggleLoading(data) {
+  if (data && data.skipLoading) return
+
   $('#content').addClass('content-loading')
 
   setTimeout(function() {
@@ -24,7 +26,7 @@ function isOptionsEmpty() {
   if ($("input[name='checkbox_variation']:checked").length == 0) {
     toggleLoading()
 
-    $(".similar-variants--table-body--row").show()
+    $('.similar-variants--table-body--row').show()
     return true
   }
 }
@@ -33,7 +35,7 @@ function toggleVariations(variation, checked) {
   $("[data-variation~='" + variation + "'").toggle(checked)
 }
 
-$(document).on('change', "input[name='checkbox_variation']", function(e) {
+$(document).on('change', "input[name='checkbox_variation']", function(e, data) {
   // check all if nothing selected
   if (isOptionsEmpty()) return
 
@@ -52,21 +54,21 @@ $(document).on('change', "input[name='checkbox_variation']", function(e) {
     return
   }
 
-  toggleLoading()
+  toggleLoading(data)
 
   $("input[name='checkbox_variation']").each(function() {
     toggleVariations($(this).val(), this.checked)
   })
 })
 
-$(document).on('change', "input[name='radio_variation']", function(e) {
+$(document).on('change', "input[name='radio_variation']", function(e, data) {
   var curVal = $("input[name='radio_variation']:checked").val()
 
   if (curVal == 'all') {
     $(".similar-variants--table-body--row").show()
   }
 
-  toggleLoading()
+  toggleLoading(data)
 
   $("input[name='radio_variation']").each(function() {
     $(this).parents('.similar-variants--table-header--item').toggleClass('active', this.checked)

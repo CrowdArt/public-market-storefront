@@ -59,15 +59,13 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
             similar_variants: include(
               {
                 option_value: cheaper_variation.variants.first.main_option_name.titleize,
-                price: cheaper_variation.variants.first.price,
                 size: 1,
-                variants: nil
+                price: cheaper_variation.variants.first.price
               },
               {
                 option_value: variation.variants.first.main_option_name.titleize,
                 size: 1,
-                price: variation.price.to_f,
-                variants: nil
+                price: variation.price.to_f
               }
             )
           }
@@ -101,14 +99,12 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
                 {
                   option_value: cheaper_variation.variants.first.main_option_name.titleize,
                   size: 1,
-                  price: cheaper_variation.price.to_f,
-                  variants: nil
+                  price: cheaper_variation.price.to_f
                 },
                 {
                   option_value: variation.variants.first.main_option_name.titleize,
                   price: variation.variants.first.price,
-                  size: 1,
-                  variants: nil
+                  size: 1
                 }
               )
             }
@@ -135,14 +131,12 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
               {
                 option_value: variant.main_option_name.titleize,
                 price: variant.price,
-                size: 1,
-                variants: nil
+                size: 1
               },
               {
                 option_value: product.variants.first.main_option_name.titleize,
                 price: product.variants.first.price,
-                size: 1,
-                variants: nil
+                size: 1
               }
             ]
           }

@@ -103,5 +103,9 @@ module Spree
 
       safe_join(content)
     end
+
+    def mobile?
+      browser.device.mobile?
+    end
   end
 end

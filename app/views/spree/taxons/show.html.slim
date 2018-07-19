@@ -24,6 +24,6 @@ ruby:
 - unless @products.nil?
   = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, show_results_per_page: true }
 
-- if browser.device.mobile?
+- if mobile?
   - cache([:v1, I18n.locale, @taxon]) do
     = render partial: 'taxon', collection: taxons_preview(@taxon)

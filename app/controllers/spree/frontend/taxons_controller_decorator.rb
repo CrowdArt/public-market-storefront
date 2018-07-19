@@ -1,6 +1,7 @@
 module Spree
   module TaxonsControllerDecorator
     def self.prepended(base)
+      base.include FrontendHelper
       base.include SearchFiltersHelper
       base.skip_before_action :set_current_order, only: :mobile_menu_childs
     end
@@ -11,7 +12,7 @@ module Spree
 
       @card_size = :medium
 
-      return if browser.device.mobile? && !@taxon.depth.positive?
+      return if mobile? && !@taxon.depth.positive?
       @products = build_searcher(params, taxon_ids: [@taxon.id]).call
 
       respond_to do |format|

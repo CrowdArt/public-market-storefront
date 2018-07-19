@@ -23,11 +23,6 @@ p.pull-right.hidden-xs = link_to(t('sell_on_pm'), '#', disabled: true, class: 'n
         span.byline> By
         span.author = subtitle
 
-    .text-medium Edition: #{@product.property(:edition)}
-    .text-medium Format: #{@product.property(:format)}
-    .text-medium Published At: #{@product.property(:published_at)}
-    .text-medium Publisher: #{@product.property(:publisher)}
-
     = render 'spree/shared/rating', value: rand(5)
     span.text-primary< = rand(50)
 

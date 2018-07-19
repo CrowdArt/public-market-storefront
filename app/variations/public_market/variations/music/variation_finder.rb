@@ -3,10 +3,6 @@ module PublicMarket
     module Music
       class VariationFinder < BaseVariationFinder
         class << self
-          def similar_fields
-            %i[vinyl_speed music_format music_label music_label_number]
-          end
-
           def variation_name(format, variation)
             if format == 'vinyl'
               vinyl_speed = variation.respond_to?(:property) ? variation.property(:vinyl_speed) : variation[:vinyl_speed]

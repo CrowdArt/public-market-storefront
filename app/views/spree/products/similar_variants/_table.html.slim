@@ -24,28 +24,28 @@
     - @variants.each do |variant|
       - seller_note = variant.notes
       - product = variant.product
+      - additional_props = additional_variation_property(variant)
 
       .similar-variants--table-body--row data-variation=variant_data_options(variant)
         .hide = radio_button_tag 'variant_id', variant.id, false, id: "variant_id_#{variant.id}"
 
-        .similar-variants--table-body--price.flex
-          .similar-variants--table-body--image.hidden-xs
-            = link_to product, target: '_blank'
+        .similar-variants--table-body--price.flex.wrap-sm
+          .similar-variants--table-body--image
+            = link_to product, target: ('_blank' unless mobile?)
               = small_image(product, itemprop: 'image')
 
           .similar-variants--table-body--price-info.ellipsis
-            div
-              strong.lead.text-danger.text-bold $#{variant.price}
+            .lead.text-danger.text-bold $#{variant.price}
 
-              strong.visible-xs-inline.margin-text-left = variant.main_option_value
+            strong.visible-xs-inline = variant.main_option_value
 
             .text-medium.text-bold Free shipping
 
-            - if (additional_props = additional_variation_property(variant)).present?
-              .text-medium.ellipsis = additional_props
+            - if additional_props.present?
+              .text-medium.ellipsis.hidden-xs = additional_props
 
-            .text-medium.ellipsis = product.property(:format)
-            .text-medium.ellipsis = product.property(:publisher)
+          - if additional_props.present?
+            .similar-variants--table-body--additional-props.text-medium.ellipsis.visible-xs = additional_props
 
         .similar-variants--table-body--option.hidden-xs
           .lead.no-margin-bottom.text-bold = variant.main_option_value
