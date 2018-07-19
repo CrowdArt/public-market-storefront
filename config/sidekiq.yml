@@ -8,7 +8,13 @@
   - searchkick
   - recalculation
   - orders
+  - payments
 :schedule:
+  capture_payments:
+    cron: '*/30 * * * *' # Runs at every 30th minute
+    class: CapturePayments
+    queue: payments
+    description: 'Capture pending payments'
   upload_order_report:
     cron: '0 0 * * * *' # Runs every hour
     class: UploadOrderReport

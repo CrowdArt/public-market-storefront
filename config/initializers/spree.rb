@@ -14,6 +14,7 @@ Spree.config do |config|
   config.allow_guest_checkout = false
   config.address_requires_phone = false
   config.products_per_page = 24
+  config.auto_capture_on_dispatch = false
 end
 
 Rails.application.config.after_initialize do |app|

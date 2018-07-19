@@ -20,7 +20,7 @@ Spree::Order.class_eval do
   end
 
   def vendors
-    Spree::Vendor.joins(variants: :line_items).where(spree_line_items: { order_id: id }).uniq
+    Spree::Vendor.joins(variants: :line_items).where(spree_line_items: { order_id: id }).distinct
   end
 
   def rateable?
@@ -36,6 +36,17 @@ Spree::Order.class_eval do
   end
 
   private
+
+  def after_cancel
+    shipments.each(&:cancel!)
+    payments.where(state: %i[pending completed]).find_each(&:cancel!)
+
+    # Free up authorized store credits
+    payments.store_credits.pending.each(&:void!)
+
+    send_cancel_email
+    update_with_updater!
+  end
 
   def copy_billing_from_card
     card = valid_credit_cards.first

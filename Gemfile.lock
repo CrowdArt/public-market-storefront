@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_multi_vendor.git
-  revision: d7ceccafc2f41cba205b5b61df79271a573c5665
+  revision: f528e620b84f50b8f7ea0cad4602605892808854
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq
@@ -763,7 +763,7 @@ GEM
       activerecord (>= 4.1, < 6.0)
       state_machines-activemodel (>= 0.5.0)
     stringex (2.8.4)
-    stripe (3.17.0)
+    stripe (3.17.1)
       faraday (~> 0.10)
     swagger-blocks (2.0.2)
     temple (0.8.0)

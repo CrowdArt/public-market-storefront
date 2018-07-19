@@ -7,29 +7,32 @@ RSpec.describe Spree::Payment, type: :model, vcr: true do
            order: order)
   end
 
-  describe 'transfers' do
-    context 'with one vendor' do
-      subject(:transfer) { payment.payment_transfers.first }
+  context 'when all vendors have accounts' do
+    before { payment.order.process_payments! }
 
+    context 'when capture is undone' do
       let(:order) { create :order_with_vendor_items, vendor_accounts: true }
 
-      it 'creates one transfer' do
-        expect(payment.payment_transfers.count).to eq(1)
-      end
+      it { expect(payment.payment_transfers).to be_empty }
+      it { expect(payment.reload.state).to eq('pending') }
+    end
 
-      it 'create transfer with payment amount minus fee' do
-        expect(payment.payment_method_fee).to eq(0.59)
-        expect(transfer.amount).to eq(payment.amount - payment.payment_method_fee)
-        expect(transfer.fee).to eq(payment.payment_method_fee)
-      end
+    context 'when captured' do
+      before { payment.reload.capture! }
 
-      context 'when paid' do
-        before { payment.order.process_payments! }
+      context 'with one vendor' do
+        subject(:transfer) { payment.payment_transfers.first }
+
+        let(:order) { create :order_with_vendor_items, vendor_accounts: true }
 
         it 'make charge and transfers' do
+          expect(payment.payment_transfers.count).to eq(1)
           expect(payment.reload.state).to eq('completed')
-          expect(payment.reload.response_code).to be_truthy
+          expect(payment.payment_method_fee).to eq(0.59)
+
           expect(transfer.response_code).to be_truthy
+          expect(transfer.amount).to eq(payment.amount - payment.payment_method_fee)
+          expect(transfer.fee).to eq(payment.payment_method_fee)
         end
 
         describe 'refund' do
@@ -64,46 +67,34 @@ RSpec.describe Spree::Payment, type: :model, vcr: true do
           end
         end
       end
-    end
 
-    context 'with multiple items from one vendor' do
-      let(:vendor) { create(:vendor) }
-      let(:order) { create :order_with_vendor_items, line_items_count: 3, vendor_accounts: true, vendor: vendor }
+      context 'with multiple items from one vendor' do
+        let(:vendor) { create(:vendor) }
+        let(:order) { create :order_with_vendor_items, line_items_count: 3, vendor_accounts: true, vendor: vendor }
 
-      before { Spree::Variant.update_all(vendor_id: payment.order.vendors.last.id) }
+        before { Spree::Variant.update_all(vendor_id: payment.order.vendors.last.id) }
 
-      it 'creates one transfer' do
-        expect(payment.payment_transfers.count).to eq(1)
-      end
-    end
-
-    context 'with multiple vendors' do
-      let(:order) { create :order_with_vendor_items, line_item_prices: [70, 30], vendor_accounts: true }
-
-      it 'creates multiple transfers' do
-        expect(payment.payment_transfers.count).to eq(2)
+        it 'creates one transfer' do
+          expect(payment.payment_transfers.count).to eq(1)
+        end
       end
 
-      it 'split total amount minus fee' do
-        expect(payment.amount).to eq(100)
-        expect(payment.payment_method_fee).to eq(3.2)
-        expect(payment.payment_transfers.map(&:fee)).to all(be_positive)
-        expect(payment.payment_transfers.map(&:amount_plus_fee)).to match_array([70.0, 30.0])
-      end
-
-      context 'when paid' do
-        before { payment.order.process_payments! }
+      context 'with multiple vendors' do
+        let(:order) { create :order_with_vendor_items, line_item_prices: [70, 30], vendor_accounts: true }
 
         it 'make charge and transfers' do
-          expect(payment.reload.state).to eq('completed')
-          expect(payment.reload.response_code).to be_truthy
+          expect(payment.payment_transfers.count).to eq(2)
           expect(payment.payment_transfers.map(&:response_code)).to all(be_truthy)
+          expect(payment.amount).to eq(100)
+          expect(payment.payment_method_fee).to eq(3.2)
+          expect(payment.payment_transfers.map(&:fee)).to match_array([0.96, 2.24])
+          expect(payment.payment_transfers.map(&:amount_plus_fee)).to match_array([70.0, 30.0])
         end
 
         describe 'refund' do
           subject(:refund) { create(:refund, payment: payment.reload, payment_transfer: transfer, amount: amount, transaction_id: nil) }
 
-          let(:transfer) { payment.payment_transfers.find_by(response_code: 'tr_1CZirRI93ruT9p2PH1QbvZnc') }
+          let(:transfer) { payment.payment_transfers.where(amount: 29.04).first }
 
           context 'when refund partially' do
             let(:amount) { transfer.amount - 1 }
@@ -117,18 +108,67 @@ RSpec.describe Spree::Payment, type: :model, vcr: true do
           end
         end
       end
+    end
 
-      context 'when one vendor does not have an account' do
-        before do
-          payment.order.vendors.last.update(gateway_account_profile_id: nil)
-          payment.order.process_payments!
+    context 'when items are cancelled' do
+      subject(:transfer) { payment.payment_transfers.first }
+
+      let(:line_item) { order.line_items.first }
+
+      before { line_item.cancel! }
+
+      context 'when one vendor' do
+        let(:vendor) { create(:vendor) }
+        let(:order) { create :order_with_vendor_items, line_items_count: 2, vendor_accounts: true, vendor: vendor }
+
+        before { payment.reload.capture! }
+
+        it 'do not charge canceled item' do
+          expect(order.reload.total).to eq(order.line_items.last.total)
+          expect(payment.reload.amount).to eq(order.line_items.last.total)
         end
 
         it 'make charge and transfers' do
-          expect(payment.reload.state).to eq('checkout')
-          expect(payment.payment_transfers.map(&:response_code)).to all(be_falsy)
+          expect(payment.payment_transfers.count).to eq(1)
+          expect(payment.reload.state).to eq('completed')
+          expect(payment.payment_method_fee).to eq(0.59)
+          expect(transfer.amount).to eq(9.41)
+          expect(transfer.fee).to eq(0.59)
         end
       end
+
+      context 'with multiple vendors' do
+        let(:order) { create :order_with_vendor_items, line_item_prices: [70, 30], vendor_accounts: true }
+
+        before { payment.reload.capture! }
+
+        it 'do not charge canceled item' do
+          expect(order.reload.total).to eq(30)
+          expect(payment.reload.amount).to eq(30)
+          expect(payment.payment_method_fee).to eq(1.17)
+        end
+
+        it 'make charge and transfers' do
+          expect(payment.payment_transfers.count).to eq(1)
+          expect(payment.reload.state).to eq('completed')
+          expect(transfer.amount).to eq(28.83)
+          expect(transfer.fee).to eq(payment.payment_method_fee)
+        end
+      end
+    end
+  end
+
+  context 'when one vendor does not have an account' do
+    let(:order) { create :order_with_vendor_items, vendor_accounts: true }
+
+    before do
+      payment.order.vendors.last.update(gateway_account_profile_id: nil)
+      payment.order.process_payments!
+    end
+
+    it 'make charge and transfers' do
+      expect(payment.reload.state).to eq('checkout')
+      expect(payment.payment_transfers.map(&:response_code)).to all(be_falsy)
     end
   end
 end
