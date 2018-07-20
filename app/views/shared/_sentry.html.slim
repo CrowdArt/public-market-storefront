@@ -1,4 +1,4 @@
-= javascript_include_tag 'raven-js/dist/raven.js', data: { 'turbolinks-track' => ('reload' unless Rails.env.development?) }
+= javascript_include_tag 'raven-js/dist/raven.js'
 
 javascript:
   Raven.config("#{Rails.application.credentials.sentry_public_dsn}", {

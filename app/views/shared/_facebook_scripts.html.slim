@@ -2,7 +2,7 @@
   - @fb_sharing_loaded = true
 
   - content_for :bottom_scripts
-    = javascript_include_tag 'fbActions', data: { 'turbolinks-track' => ('reload' unless Rails.env.development?) }
+    = javascript_include_tag 'fbActions'
 
     javascript:
       window.pm.initFb("#{Rails.application.credentials.facebook_api_key}")
