@@ -35,6 +35,12 @@ Spree::Order.class_eval do
     line_items.map(&:variant).map(&:product).map(&:estimated_ptrn).sum
   end
 
+  def paid?
+    payment_state == 'paid' ||
+      payment_state == 'credit_owed' ||
+      (payment_state == 'balance_due' && payments.pending.any?(&:response_code))
+  end
+
   private
 
   def after_cancel
