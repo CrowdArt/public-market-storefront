@@ -3,7 +3,8 @@ child(@orders => :orders) do
   object @order
 
   node(:order_identifier, &:number)
-  node(:created_at, &:created_at)
+  node(:id, &:hash_id)
+  node(:created_at, &:completed_at)
 
   child shipping_address: :shipping_address do
     extends 'spree/api/v1/addresses/show_small'

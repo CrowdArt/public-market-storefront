@@ -35,7 +35,7 @@ module Swagger
           {
             order_number: 'RS2104212',
             item_number: '434011',
-            action: 'ship',
+            action: 'confirm',
             tracking_number: '10042300020233232',
             shipped_at: '1531757362'
           }

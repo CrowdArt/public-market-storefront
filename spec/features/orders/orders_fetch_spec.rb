@@ -33,10 +33,23 @@ RSpec.describe 'Orders fetch', type: :request do
         it { expect(json).to include(count: 0) }
       end
 
-      context 'when order is paid' do
-        let!(:order) { create(:vendor_order_ready_to_ship, vendor: vendor) }
+      context 'when order is ready' do
+        let(:order) { create(:completed_vendor_order, line_items_count: 2) }
+        let(:line_item) { order.line_items.first }
+        let(:other_line_item) { order.line_items.second }
+        let(:vendor) { line_item.variant.vendor }
 
         it { expect(json).to include(orders: [hash_including(order_identifier: order.number)]) }
+        it { expect(json.to_s).to match(line_item.variant.sku) }
+        it { expect(json.to_s).not_to match(other_line_item.variant.sku) }
+        it { expect(json.to_s).to match(order.hash_id) }
+        it { expect(json.to_s).to match(line_item.hash_id) }
+      end
+
+      context 'when order is paid' do
+        before { create(:vendor_order_ready_to_ship, vendor: vendor) }
+
+        it { expect(json).to include(count: 0) }
       end
 
       context 'when order is outdated' do

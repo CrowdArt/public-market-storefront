@@ -16,12 +16,17 @@ module Spree
                                             ship_address: %i[country state])
                       .complete
                       .where(spree_variants: { vendor_id: vendor.id })
-                      .where(payment_state: :paid)
+                      .where(payment_state: :balance_due)
+                      .where(shipment_state: %i[pending ready])
                       .order('spree_orders.updated_at DESC')
                       .distinct
 
         orders = orders.where('spree_orders.updated_at > ?', from_timestamp) if from_timestamp
-        orders.to_a
+        vendor_view(orders)
+      end
+
+      def vendor_view(orders)
+        orders.map { |o| VendorView.new(o, vendor) }
       end
     end
   end

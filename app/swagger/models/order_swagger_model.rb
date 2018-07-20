@@ -37,6 +37,9 @@ module Swagger
       end
 
       swagger_schema :Line_item do
+        property :id do
+          key :type, :string
+        end
         property :sku do
           key :type, :string
         end
@@ -59,6 +62,10 @@ module Swagger
         end
 
         property :order_identifier do
+          key :type, :string
+        end
+
+        property :id do
           key :type, :string
         end
 
@@ -93,10 +100,12 @@ module Swagger
                 },
                 line_items: [
                   {
+                    id: "32323",
                     sku: 'PIDC790519MCMPDYY8',
                     quantity: 1
                   }
                 ],
+                id: "12323",
                 order_identifier: 'PM2104212',
                 created_at: '2018-02-16T11:15:00.093Z'
               }

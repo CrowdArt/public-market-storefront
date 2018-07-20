@@ -94,7 +94,7 @@ RSpec.describe Spree::Payment, type: :model, vcr: true do
         describe 'refund' do
           subject(:refund) { create(:refund, payment: payment.reload, payment_transfer: transfer, amount: amount, transaction_id: nil) }
 
-          let(:transfer) { payment.payment_transfers.where(amount: 29.04).first }
+          let(:transfer) { payment.payment_transfers.where(response_code: 'tr_1CpMVkI93ruT9p2PdlYehZqb').first }
 
           context 'when refund partially' do
             let(:amount) { transfer.amount - 1 }
