@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 13 Jul 2018 15:49:01 GMT
+      - Fri, 20 Jul 2018 17:00:13 GMT
       Server:
       - Apache/2.2.3 (CentOS)
       Vary:
@@ -31,14 +31,14 @@ http_interactions:
       Content-Type:
       - text/xml
       Set-Cookie:
-      - BIGipServerbms_pool=1169562540.20480.0000; path=/
+      - BIGipServerbms_pool=1136008108.20480.0000; path=/
     body:
       encoding: ASCII-8BIT
       string: '<result found="1" returned="1" page="1" pagesize="10"><item id="1THadp2Kmz73P"><details>http://bms.bowker.com/rest/books/id/1THadp2Kmz73P?fields=all</details></item></result>
 
 '
     http_version: 
-  recorded_at: Fri, 13 Jul 2018 15:49:01 GMT
+  recorded_at: Fri, 20 Jul 2018 17:00:13 GMT
 - request:
     method: get
     uri: http://bms.bowker.com/rest/books/id/1THadp2Kmz73P?fields=all
@@ -60,17 +60,17 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 13 Jul 2018 15:49:01 GMT
+      - Fri, 20 Jul 2018 17:00:13 GMT
       Server:
       - Apache/2.2.3 (CentOS)
       Vary:
       - Accept-Encoding
       Content-Length:
-      - '1311'
+      - '1309'
       Content-Type:
       - text/xml
       Set-Cookie:
-      - BIGipServerbms_pool=1102453676.20480.0000; path=/
+      - BIGipServerbms_pool=1219894188.20480.0000; path=/
     body:
       encoding: ASCII-8BIT
       string: '<result found="1"><item id="1THadp2Kmz73P"><details>http://bms.bowker.com/rest/books/id/1THadp2Kmz73P?fields=all</details><retailcurrency>US
@@ -78,10 +78,9 @@ http_interactions:
         Places</title><author>Gillian Flynn</author><bicsubject>THRILLER / SUSPENSE;
         FICTION &amp; RELATED ITEMS; CRIME &amp; MYSTERY</bicsubject><isbn>978-0-307-34157-0</isbn><isbn10>0-307-34157-7</isbn10><subject>FICTION_SUSPENSE;
         FICTION / Thrillers / Suspense; Mystery fiction; THRILLER / SUSPENSE; BROTHERS
-        AND SISTERS_FICTION; Brothers and Sisters_Fiction; FICTION / Family Life /
-        Siblings; FICTION &amp; RELATED ITEMS; KANSAS CITY (MO.)_FICTION; Kansas City
-        (Mo.)_Fiction; CRIME_FICTION; FICTION / Crime; Crime_Fiction; CRIME &amp;
-        MYSTERY</subject><market>USA</market><audience>Trade</audience><binding>Trade
+        AND SISTERS_FICTION; FICTION / Family Life / Siblings; Brothers and Sisters_Fiction;
+        FICTION &amp; RELATED ITEMS; KANSAS CITY (MO.)_FICTION; Kansas City (Mo.)_Fiction;
+        CRIME_FICTION; FICTION / Crime; Crime_Fiction; CRIME &amp; MYSTERY</subject><market>USA</market><audience>Trade</audience><binding>Trade
         Paper</binding><pubdate>2010-05-04</pubdate><publisher>Crown/Archetype</publisher><status>Active
         Record</status><currency>US Dollars (USD, $)</currency><price>16</price><pricedate>2018-05-22</pricedate><retailpricedate>2018-05-22</retailpricedate><pagecount>368</pagecount><size><length>8</length><width>5.13</width><height>.8</height><units>Inches</units></size><weight>.59
         Pounds</weight><annotation>&lt;b&gt;From the #1 &lt;i&gt;New York Times&lt;/i&gt;
@@ -102,5 +101,5 @@ http_interactions:
 
 '
     http_version: 
-  recorded_at: Fri, 13 Jul 2018 15:49:01 GMT
+  recorded_at: Fri, 20 Jul 2018 17:00:13 GMT
 recorded_with: VCR 4.0.0

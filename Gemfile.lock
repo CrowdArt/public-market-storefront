@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_batch_api.git
-  revision: b316d5af2d318c0f42004ac078470455fa3bb767
+  revision: c17442b6b7c663f54d5df71aed6cc7fd8f7c859d
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -376,8 +376,8 @@ GEM
     foundation_emails (2.2.1.0)
     friendly_id (5.2.4)
       activerecord (>= 4.0.0)
-    fugit (1.1.3)
-      et-orbi (~> 1.1, >= 1.1.1)
+    fugit (1.1.4)
+      et-orbi (~> 1.1, >= 1.1.3)
       raabro (~> 1.1)
     fuubar (2.3.1)
       rspec-core (~> 3.0)
@@ -678,8 +678,8 @@ GEM
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
-    rufus-scheduler (3.5.0)
-      fugit (~> 1.1, >= 1.1.1)
+    rufus-scheduler (3.5.1)
+      fugit (~> 1.1, >= 1.1.4)
     safe_yaml (1.0.4)
     sass (3.5.7)
       sass-listen (~> 4.0.0)

@@ -27,3 +27,9 @@
     queue: orders
     args: ['Second Seller', 'test_ftp']
     description: 'Process order updates'
+  fetch_bwb_inventory:
+    cron: '0 0 * * * *' # Runs every hour
+    class: PublicMarket::Workers::FTP::FetchInventoryFiles
+    queue: upload
+    args: ['Second Seller', 'test_ftp']
+    description: 'Fetch bwb inventory'

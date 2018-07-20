@@ -8,7 +8,7 @@ module Spree
           def call
             details = product_details(isbn)
             product = details&.dig('result', 'item')
-            return if product.blank?
+            return {} if product.blank?
 
             {
               title: product.dig('title'),

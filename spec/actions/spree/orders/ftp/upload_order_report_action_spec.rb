@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Spree::Orders::Ftp::UploadOrderReportAction, type: :action do
   subject(:result) { File.open(action.call).read }
 

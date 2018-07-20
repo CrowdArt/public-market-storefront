@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Spree::Orders::Ftp::ProcessOrderUpdatesAction, type: :action do
   subject(:call) { action.call }
 
@@ -40,7 +38,11 @@ RSpec.describe Spree::Orders::Ftp::ProcessOrderUpdatesAction, type: :action do
 
     context 'when ship' do
       let(:columns) { %i[ABEPOID ABEPOITEMID STATUS DATESHIPPED TRACKINGNUMBER] }
-      let(:updates) { [{ ABEPOID: order.hash_id, ABEPOITEMID: line_item.hash_id, STATUS: 'Confirm', DATESHIPPED: '2018-02-03 20:18:42', TRACKINGNUMBER: '123' }] }
+      let(:updates) do
+        [
+          { ABEPOID: order.hash_id, ABEPOITEMID: line_item.hash_id, STATUS: 'Confirm', DATESHIPPED: '2018-02-03 20:18:42', TRACKINGNUMBER: '123' }
+        ]
+      end
 
       before { call }
 

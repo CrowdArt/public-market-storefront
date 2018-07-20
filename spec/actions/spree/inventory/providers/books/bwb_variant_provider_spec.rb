@@ -3,19 +3,33 @@ RSpec.describe Spree::Inventory::Providers::Books::BwbVariantProvider, type: :ac
 
   let(:item_json) do
     {
-      ean: isbn,
-      sku: 'SKU',
+      isbn: isbn,
+      bookid: 'SKU',
       quantity: '1',
       price: '9.61',
       condition: 'Collectible - Acceptable',
-      notes: 'A book with obvious wear.'
+      title: 'Book Title',
+      author: 'Book Author',
+      description: 'Great book',
+      publisher: 'Great Publisher'
     }
   end
 
   let(:isbn) { '9780307341570' }
 
+  describe 'variant' do
+    it { expect(variant.product).not_to be_nil }
+    it { expect(variant.product).to be_persisted }
+    it { expect(variant).not_to be_nil }
+    it { expect(variant.sku).to eq(item_json[:bookid]) }
+
+    describe 'condition' do
+      it { expect(variant.option_value('condition')).to eq('Collectible - Acceptable') }
+    end
+  end
+
   describe 'validation' do
-    let(:item_json) { { sku: 'sku' } }
+    let(:item_json) { { bookid: 'sku' } }
 
     it do
       # rubocop:disable Style/StringLiterals
@@ -24,18 +38,24 @@ RSpec.describe Spree::Inventory::Providers::Books::BwbVariantProvider, type: :ac
     end
   end
 
-  context 'with known isbn' do
+  describe 'metadata' do
     subject(:product) { variant.product }
 
-    it { expect(product).not_to be_nil }
-    it { expect(product).to be_persisted }
+    context 'with known isbn' do
+      it { expect(product.name).not_to eq(item_json[:title]) }
+      it { expect(product.description).not_to eq(item_json[:description]) }
+      it { expect(product.property(:author)).not_to eq(item_json[:author]) }
+      it { expect(product.property(:publisher)).not_to eq(item_json[:publisher]) }
+    end
 
-    describe 'variant' do
-      it { expect(variant).not_to be_nil }
+    context 'with unknown isbn' do
+      let(:isbn) { '9780747545576' }
 
-      describe 'condition' do
-        it { expect(variant.option_value('condition')).to eq('Collectible - Acceptable') }
-      end
+      it { expect(product.name).to eq(item_json[:title]) }
+      it { expect(product.description).to eq(item_json[:description]) }
+      it { expect(product.property(:author)).to eq(item_json[:author]) }
+      it { expect(product.property(:isbn)).to eq(item_json[:isbn]) }
+      it { expect(product.property(:publisher)).to eq(item_json[:publisher]) }
     end
   end
 end

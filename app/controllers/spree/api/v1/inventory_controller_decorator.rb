@@ -5,12 +5,7 @@ module Spree
         private
 
         def save_content
-          file_path = super
-
-          # use file in local tmp folder
-          return file_path if Rails.env.development?
-
-          GCS::UploadFile.call(file_path)
+          GCS::UploadFile.call(super)
         end
       end
 

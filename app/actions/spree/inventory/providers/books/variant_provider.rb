@@ -38,7 +38,7 @@ module Spree
 
           def categorize(product, taxon_candidates)
             taxonomy = Spree::Taxonomy.create_with(filterable: true).find_or_create_by!(name: taxonomy_name)
-            Books::Classifier.call(product, taxonomy, taxon_candidates)
+            Books::Classifier.call(product, taxonomy, taxon_candidates || [])
           end
 
           def product_identifier(hash)
@@ -78,14 +78,18 @@ module Spree
           end
 
           def master_variant_attributes(metadata)
-            dims = metadata[:dimensions]
-            {
-              is_master: true,
-              weight: dims[:weight],
-              height: dims[:height],
-              width: dims[:width],
-              depth: dims[:depth]
-            }
+            attrs = { is_master: true }
+
+            if (dims = metadata[:dimensions]).present?
+              attrs.merge!(
+                weight: dims[:weight],
+                height: dims[:height],
+                width: dims[:width],
+                depth: dims[:depth]
+              )
+            end
+
+            attrs
           end
 
           def condition_option_type

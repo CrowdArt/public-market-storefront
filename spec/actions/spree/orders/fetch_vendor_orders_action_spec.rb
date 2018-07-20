@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Spree::Orders::FetchVendorOrdersAction, type: :action do
   subject(:orders) { described_class.new(vendor, from).call }
 

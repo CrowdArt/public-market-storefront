@@ -31,7 +31,7 @@ RSpec.describe Spree::Inventory::Providers::Books::BowkerMetadataProvider, type:
   context 'with unknown isbn' do
     let(:isbn) { '9780747545576' }
 
-    it { expect(metadata).to be_nil }
+    it { expect(metadata).to be_blank }
   end
 
   context 'with empty binding' do
