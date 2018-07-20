@@ -1,5 +1,5 @@
 - content_for :head
-  = stylesheet_link_tag 'error_pages', media: 'screen'
+  = stylesheet_link_tag 'error_pages', media: 'screen', data: { 'turbolinks-track' => ('reload' unless Rails.env.development?) }
 
 .text-center.error-page-container
   = image_tag 'error-page.svg'

@@ -30,4 +30,4 @@ p.pull-right.hidden-xs = link_to(t('sell_on_pm'), '#', disabled: true, class: 'n
     = render partial: 'spree/products/similar_variants/table', locals: { filters: filters }
 
 - content_for :bottom_scripts
-  = javascript_include_tag 'similarVariants'
+  = javascript_include_tag 'similarVariants', data: { 'turbolinks-track' => ('reload' unless Rails.env.development?) }

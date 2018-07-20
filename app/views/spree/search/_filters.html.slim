@@ -1,10 +1,11 @@
 - content_for :head
   meta name='turbolinks-cache-control' content='no-cache'
 
-  = stylesheet_link_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.css'
+  = stylesheet_link_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.css', data: { 'turbolinks-track' => ('reload' unless Rails.env.development?) }
 
-  = javascript_include_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.js', defer: true
-  = javascript_include_tag 'searchFilters', defer: true
+  / loaded in head once
+  = javascript_include_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.js', defer: true, data: { 'turbolinks-track' => ('reload' unless Rails.env.development?) }
+  = javascript_include_tag 'searchFilters', defer: true, data: { 'turbolinks-track' => ('reload' unless Rails.env.development?) }
 
 .search-filters-container
   .search-filters
@@ -24,4 +25,5 @@
   .search-filters--tags.tags-without-input
     input#filter-tags
 
-= javascript_include_tag 'searchFilterTags', defer: true
+/ placed in body to trigger on each page load
+= javascript_include_tag 'searchFilterTags', defer: true, data: { 'turbolinks-track' => ('reload' unless Rails.env.development?) }
