@@ -58,4 +58,10 @@ RSpec.describe AbilityDecorator, type: :ability do
       include_examples 'manage abilities', :credit_card
     end
   end
+
+  context 'when is vendor' do
+    let(:user) { build_stubbed(:user, vendors: build_stubbed_list(:vendor, 1)) }
+
+    it { is_expected.not_to be_able_to(:create, Spree::ShippingMethod) }
+  end
 end
