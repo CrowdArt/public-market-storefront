@@ -14,7 +14,7 @@ module Spree
         if (variation_options = variation_filter(variation_module)).present?
           filters << {
             name: 'Format',
-            type: :variations,
+            type: :filter_variations,
             options: variation_options
           }
         end
@@ -23,7 +23,7 @@ module Spree
       end
 
       def variation_filter(variation_module)
-        variation_module::Properties.available_variations.map do |f|
+        variation_module::Properties.filterable_variations.map do |f|
           { label: f, value: f, id: f.parameterize }
         end
       end

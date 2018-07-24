@@ -14,7 +14,7 @@ RSpec.describe PublicMarket::Variations::Books::Properties do
       end
 
       context 'when product has single format' do
-        let(:format) { 'Trade Paper' }
+        let(:format) { 'Perfect' }
 
         context 'when it is known format' do
           it { is_expected.to eq ['paperback'] }
@@ -30,12 +30,12 @@ RSpec.describe PublicMarket::Variations::Books::Properties do
       context 'when product has multiple formats' do
         let(:format) { 'Trade Paper; Trade Cloth; Mixed Audio' }
 
-        it { is_expected.to eq %w[paperback] }
+        it { is_expected.to eq %w[trade-paperback] }
 
         context 'when other is first' do
           let(:format) { 'Mixed Audio; Trade Paper; Trade Cloth' }
 
-          it { is_expected.to eq %w[paperback] }
+          it { is_expected.to eq %w[trade-paperback] }
         end
       end
     end

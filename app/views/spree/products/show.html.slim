@@ -46,9 +46,9 @@ ruby:
         span.author = subtitle
 
     - if (variations = product_variations).present?
-      .row
+      .row.flex
         - variations.each do |variation|
-          .col-xs-6.col-sm-4
+          .col-xs-6.col-sm-4.margin-text-bottom
             = render partial: 'variation', locals: { variation: variation }
 
   - cache(cache_key_for_product(@product, section: :description, mobile: is_mobile)) do

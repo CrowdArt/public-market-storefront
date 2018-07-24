@@ -1,0 +1,172 @@
+en:
+  variations:
+    options:
+      books:
+        new:
+          - new
+        used:
+          - 'used - like new'
+          - 'used - excellent'
+          - 'used - very good'
+          - 'used - good'
+          - 'used - acceptable'
+        collectible:
+          - 'collectible - like new'
+          - 'collectible - very good'
+          - 'collectible - good'
+          - 'collectible - acceptable'
+
+      music:
+        new:
+          - new
+        'like new':
+          - ss
+          - m-
+          - vg+
+        used:
+          - vg
+          - vg-
+          - g+
+
+    titleized-format:
+      audio-cd: Audio CD
+      audio-dvd: Audio DVD
+      cd: CD
+      cd-interactive: CD-Interactive
+      cd-rom: CD-ROM
+      dvd-rom: DVD-ROM
+      vhs-cassette: VHS Cassette
+
+    formats:
+      books:
+        audio-cassette:
+          - 'cassette/spoken word'
+          - audio cassette
+          - cassette
+
+        audio-cd:
+          - "cd extra, audio"
+          - "cd/spoken word"
+          - cd mp3
+          - mp3-cd
+
+        audio-dvd:
+          - "dvd, audio"
+
+        board-book:
+          - "children's board books"
+
+        calendar:
+          - calendar
+
+        cards:
+          - cards
+          - "cards,flash cards"
+
+        cd:
+          - compact disc
+          - compact disk
+
+        cd-interactive:
+          - 'cd-i (cd-interactive)'
+
+        cd-rom:
+          - 'cd-rom'
+          - 'cd-rom, windows'
+
+        digital:
+          - digital download
+          - digital download and online
+          - digital online
+          - digital, other
+          - downloadable audio
+          - 'e-book'
+
+        dvd:
+          - digital video disk
+          - dvd
+
+        dvd-rom:
+          - 'dvd-rom'
+
+        floppy-disk:
+          - '1.44m 3.5 disk, dos'
+          - 3.5 diskette
+          - diskette
+
+        hardcover:
+          - hardcover
+          - picture book
+          - pictures or photographs
+          - pop up
+          - prebound
+          - trade cloth
+
+        laminated:
+          - laminated
+
+        leather-bound:
+          - bonded leather
+          - leather
+
+        library-bound:
+          - library
+          - library binding
+
+        mass-market:
+          - mass market
+
+        other:
+          - other
+
+        paperback:
+          - 'coloring/connect the dot book'
+          - paperback
+          - perfect
+          - sticker book
+          - us-tall rack paperback
+
+        poster:
+          - poster
+
+        ringbound:
+          - ringbound
+
+        slipcase:
+          - box or slipcased
+
+        spiral:
+          - spiral
+
+        stationery:
+          - stationery
+
+        trade-paperback:
+          - trade paper
+          - uk- a format paperback
+          - uk-a format paperback
+          - uk-b format paperback
+          - uk-trade paper
+
+        vhs-cassette:
+          - vhs
+          - 'video, vhs format'
+
+        wallchart:
+          - wallchart
+
+    filterable_formats:
+      books:
+        hardcover:
+          - hardcover
+          - board-book
+          - leather-bound
+          - library-bound
+
+        paperback:
+          - mass-market
+          - paperback
+          - trade-paperback
+
+        other:
+          - other

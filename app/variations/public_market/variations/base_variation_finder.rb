@@ -3,7 +3,8 @@ module PublicMarket
     class BaseVariationFinder
       class << self
         def variation_name(format, _variation)
-          format&.titleize
+          return if format.blank?
+          I18n.t("variations.titleized-format.#{format}", default: format.titleize)
         end
       end
     end

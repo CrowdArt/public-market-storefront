@@ -1,33 +1,35 @@
 ruby:
   @body_class = 'bg-white'
   @fluid_content_container = true
-  filters = available_filter_options(@variants, @product)
 
-p.pull-left = link_to(t('similar_variants.return_to_product'), @product)
-p.pull-right.hidden-xs = link_to(t('sell_on_pm'), '#', disabled: true, class: 'no-padding btn btn-link disabled')
-.clearfix
+- cache(similar_variants_cache_key) do
+  - filters = available_filter_options(@variants, @product)
 
-.row.similar-variants--container
-  .col-md-2.col-sm-2.similar-variants--sidebar
-    .similar-variants--image
-      = large_image(@product, itemprop: 'image')
+  p.pull-left = link_to(t('similar_variants.return_to_product'), @product)
+  p.pull-right.hidden-xs = link_to(t('sell_on_pm'), '#', disabled: true, class: 'no-padding btn btn-link disabled')
+  .clearfix
 
-    - if filters
-      = render partial: 'spree/products/similar_variants/sidebar_filters', locals: { filters: filters }
+  .row.similar-variants--container
+    .col-md-2.col-sm-2.similar-variants--sidebar
+      .similar-variants--image
+        = large_image(@product, itemprop: 'image')
 
-  .col-md-10.col-sm-10.similar-variants--product-info
-    h1.no-margin-top.text-black #{@product.name} (#{@variation.titleize})
+      - if filters
+        = render partial: 'spree/products/similar_variants/sidebar_filters', locals: { filters: filters }
 
-    - if subtitle = @product.subtitle
-      p.text-muted.similar-variants--product-info--subtitle
-        span.byline> By
-        span.author = subtitle
+    .col-md-10.col-sm-10.similar-variants--product-info
+      h1.no-margin-top.text-black #{@product.name} (#{@variation.titleize})
 
-    = render 'spree/shared/rating', value: rand(5)
-    span.text-primary< = rand(50)
+      - if subtitle = @product.subtitle
+        p.text-muted.similar-variants--product-info--subtitle
+          span.byline> By
+          span.author = subtitle
 
-  .col-md-10.col-sm-12.similar-variants--table
-    = render partial: 'spree/products/similar_variants/table', locals: { filters: filters }
+      = render 'spree/shared/rating', value: rand(5)
+      span.text-primary< = rand(50)
+
+    .col-md-10.col-sm-12.similar-variants--table
+      = render partial: 'spree/products/similar_variants/table', locals: { filters: filters }
 
 - content_for :bottom_scripts
   = javascript_include_tag 'similarVariants'

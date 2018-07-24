@@ -14,7 +14,7 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
   end
 
   context 'when variations found' do
-    let!(:variation) { create(:book, :with_variant, name: name, price: 10, author: author, taxons: taxons, format: 'Trade Paper') }
+    let!(:variation) { create(:book, :with_variant, name: name, price: 10, author: author, taxons: taxons, format: 'Paperback') }
 
     it do
       is_expected.to include(
@@ -38,7 +38,7 @@ RSpec.describe Spree::Inventory::FindProductVariations, type: :action, search: t
     end
 
     context 'when cheaper variation exists' do
-      let!(:cheaper_variation) { create(:book, :with_variant, name: name, price: 0.1, author: author, taxons: taxons, format: 'Trade Paper') }
+      let!(:cheaper_variation) { create(:book, :with_variant, name: name, price: 0.1, author: author, taxons: taxons, format: 'Paperback') }
 
       it do
         is_expected.to include(

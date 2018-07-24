@@ -39,7 +39,7 @@ RSpec.describe Spree::Inventory::Searchers::FindSimilarProducts, type: :action, 
         subject(:variations) do
           product.class.reindex
           product.class.searchkick_index.refresh
-          described_class.call(product, filter_by_variation: product.search_variation)
+          described_class.call(product, filter_by_variation: product.variation)
         end
 
         include_examples 'includes only product'

@@ -8,6 +8,14 @@ module PublicMarket
           [product.property(:music_format)]
         end
 
+        def filter_properties(product)
+          variation_properties(product)
+        end
+
+        def filterable_variations
+          available_variations
+        end
+
         def available_variations
           %w[vinyl cd]
         end

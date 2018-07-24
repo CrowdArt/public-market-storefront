@@ -55,7 +55,7 @@ module Spree
           aggregations
         end
 
-        ALLOWED_WHERE_PARAMS = %w[format variations].freeze
+        ALLOWED_WHERE_PARAMS = %w[format filter_variations].freeze
         def add_search_filters(query)
           return query unless filter
 

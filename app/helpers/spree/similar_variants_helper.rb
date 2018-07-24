@@ -1,5 +1,9 @@
 module Spree
   module SimilarVariantsHelper
+    def similar_variants_cache_key
+      [:v1, :similar_variants, @product, @variation, @variants, browser.device.mobile?]
+    end
+
     def available_filter_options(variants, product) # rubocop:disable Metrics/AbcSize
       # child options with parent name are rejected
       opts = variants.sort_by { |v| v.main_option&.position || 0 }
