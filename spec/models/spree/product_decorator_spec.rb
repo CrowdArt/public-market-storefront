@@ -9,7 +9,11 @@ RSpec.describe Spree::Product, type: :model do
     end
 
     context 'when in stock' do
-      let(:product) { create(:product_in_stock) }
+      let(:product) { create(:product) }
+
+      before do
+        create(:variant, is_master: false, product: product)
+      end
 
       it { is_expected.to be true }
     end
@@ -21,16 +25,23 @@ RSpec.describe Spree::Product, type: :model do
     end
 
     describe 'triggers reindex on update', search: true do
-      let!(:product) { create(:product) }
+      let(:product) { create(:product) }
+      let!(:variant) { create(:variant, is_master: false, product: product) }
 
       before do
-        product.master.stock_items.each { |si| si.update(backorderable: false) }
+        variant.stock_items.each do |si|
+          si.update(backorderable: false)
+          si.adjust_count_on_hand(-1)
+        end
         Spree::Product.searchkick_index.refresh
       end
 
       it 'adds product to index on update' do
         expect {
-          product.master.stock_items.first.adjust_count_on_hand(10)
+          variant.stock_items.each do |si|
+            si.adjust_count_on_hand(10)
+          end
+
           Spree::Product.searchkick_index.refresh
         }.to change { Spree::Product.search.count }.from(0).to(1)
       end

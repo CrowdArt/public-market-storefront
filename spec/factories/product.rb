@@ -1,3 +1,12 @@
+FactoryBot.modify do
+  factory :product_in_stock do
+    after :create do |product|
+      variant = create(:variant, product: product)
+      variant.stock_items.each { |si| si.adjust_count_on_hand(10) }
+    end
+  end
+end
+
 FactoryBot.define do
   factory :book, parent: :product do
     name { FFaker::Book.title }
