@@ -39,6 +39,48 @@ en:
 
     formats:
       books:
+        # HARDCOVER FORMATS
+        hardcover:
+          - hardcover
+          - picture book
+          - pictures or photographs
+          - pop up
+          - prebound
+          - trade cloth
+
+        board-book:
+          - "children's board books"
+
+        leather-bound:
+          - bonded leather
+          - leather
+
+        library-bound:
+          - library
+          - library binding
+
+        # PAPERBACK FORMATS
+        paperback:
+          - 'coloring/connect the dot book'
+          - paperback
+          - perfect
+          - sticker book
+          - us-tall rack paperback
+
+        mass-market:
+          - mass market
+
+        trade-paperback:
+          - trade paper
+          - uk- a format paperback
+          - uk-a format paperback
+          - uk-b format paperback
+          - uk-trade paper
+
+        # OTHER FORMATS
+        other:
+          - other
+
         audio-cassette:
           - 'cassette/spoken word'
           - audio cassette
@@ -52,9 +94,6 @@ en:
 
         audio-dvd:
           - "dvd, audio"
-
-        board-book:
-          - "children's board books"
 
         calendar:
           - calendar
@@ -94,37 +133,8 @@ en:
           - 3.5 diskette
           - diskette
 
-        hardcover:
-          - hardcover
-          - picture book
-          - pictures or photographs
-          - pop up
-          - prebound
-          - trade cloth
-
         laminated:
           - laminated
-
-        leather-bound:
-          - bonded leather
-          - leather
-
-        library-bound:
-          - library
-          - library binding
-
-        mass-market:
-          - mass market
-
-        other:
-          - other
-
-        paperback:
-          - 'coloring/connect the dot book'
-          - paperback
-          - perfect
-          - sticker book
-          - us-tall rack paperback
 
         poster:
           - poster
@@ -140,13 +150,6 @@ en:
 
         stationery:
           - stationery
-
-        trade-paperback:
-          - trade paper
-          - uk- a format paperback
-          - uk-a format paperback
-          - uk-b format paperback
-          - uk-trade paper
 
         vhs-cassette:
           - vhs
