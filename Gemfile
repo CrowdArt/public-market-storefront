@@ -74,7 +74,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'selenium-webdriver', '3.12.0'
+  gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'vcr'
   gem 'webmock'
