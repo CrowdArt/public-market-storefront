@@ -70,7 +70,7 @@ module Storefront
           google_json_key_string: Rails.application.credentials.google_json_key_string
         },
         fog_file: {
-          cache_control: 'max-age=86400'
+          cache_control: 'max-age=315576000'
         }
       }
     end
