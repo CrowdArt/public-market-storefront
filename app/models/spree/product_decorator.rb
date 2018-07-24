@@ -60,7 +60,8 @@ module Spree
       end
 
       def should_index?
-        name != MISSING_TITLE && can_supply?
+        # use variants query instead of can_supply?
+        name != MISSING_TITLE && variants.active.in_stock.any?
       end
 
       # variations visible on product page/product card
