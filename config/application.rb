@@ -62,11 +62,15 @@ module Storefront
         url: ':gcs_domain_url',
         path: ':class/:id/:style-:basename.:extension',
         fog_directory: Rails.application.credentials.google_bucket,
+        fog_host: Rails.application.credentials.google_host,
         fog_credentials: {
           provider: 'Google',
           google_project: Rails.application.credentials.google_project,
           google_client_email: Rails.application.credentials.google_client_email,
           google_json_key_string: Rails.application.credentials.google_json_key_string
+        },
+        fog_file: {
+          cache_control: 'max-age=86400'
         }
       }
     end
