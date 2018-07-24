@@ -27,7 +27,7 @@ module Spree
             orders.each do |order|
               vendor_view = VendorView.new(order, vendor)
               vendor_view.line_items.each do |line_item|
-                csv << order_line_item_row(order, line_item)
+                line_item.quantity.times { csv << order_line_item_row(order, line_item) }
               end
             end
           end
@@ -46,7 +46,7 @@ module Spree
             Shipping: shipping_cost(line_item),
             Title: line_item.variant.name,
             BuyerEmailAddress: order.email,
-            ShippingSpeed: 'Ships within: 1-12 days'
+            ShippingSpeed: 'Ships within: 5-8 days'
           }.merge(shipping_fields(order.ship_address))
         end
 
