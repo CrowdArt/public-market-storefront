@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_batch_api.git
-  revision: c17442b6b7c663f54d5df71aed6cc7fd8f7c859d
+  revision: d202c4576ca9e1de4597df46b1393bd149ac6e22
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_multi_vendor.git
-  revision: fd7d2faf96dfaff8cf7d94db16c19ce00af62450
+  revision: 7820b6000e0ca69f1e40784a597280fbf12f1549
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq
@@ -894,4 +894,4 @@ DEPENDENCIES
   zonebie
 
 BUNDLED WITH
-   1.16.2
+   1.16.3

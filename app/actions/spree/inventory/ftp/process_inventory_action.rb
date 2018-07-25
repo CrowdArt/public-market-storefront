@@ -7,17 +7,14 @@ module Spree
 
         def call
           options = {
+            format: 'csv_tab',
             provider: 'bwb',
             product_type: 'books',
-            upload_options: { vendor_id: vendor.id }
+            vendor_id: vendor.id
           }
 
           each_ftp_file do |file|
-            Inventory::UploadFileAction.call(
-              'csv_tab',
-              GCS::UploadFile.call(file),
-              options
-            )
+            Inventory::UploadFileAction.call(options.merge(file_path: file))
           end
         end
 

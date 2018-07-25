@@ -15,10 +15,7 @@ namespace :spree_sample do
   task indaba_samples: :environment do
     require 'sidekiq/testing'
     Sidekiq::Testing.inline!
-    Spree::Inventory::UploadFileAction.call('csv',
-                                            './db/samples/inventory.csv', upload_options: {
-                                              vendor: Spree::Vendor.last
-                                            })
+    Spree::Inventory::UploadFileAction.call(format: 'csv', file_path: './db/samples/inventory.csv', vendor: Spree::Vendor.last)
     Spree::Product.reindex
   end
 
@@ -26,14 +23,7 @@ namespace :spree_sample do
   task music_samples: :environment do
     require 'sidekiq/testing'
     Sidekiq::Testing.inline!
-    Spree::Inventory::UploadFileAction.call(
-      'json',
-      './db/samples/music.json',
-      product_type: 'music',
-      upload_options: {
-        vendor: Spree::Vendor.last
-      }
-    )
+    Spree::Inventory::UploadFileAction.call(format: 'json', file_path: './db/samples/music.json', product_type: 'music', vendor: Spree::Vendor.last)
     Spree::Product.reindex
   end
 end

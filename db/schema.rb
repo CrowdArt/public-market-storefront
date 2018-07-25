@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_09_135458) do
+ActiveRecord::Schema.define(version: 2018_07_25_141018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1072,6 +1072,7 @@ ActiveRecord::Schema.define(version: 2018_07_09_135458) do
     t.bigint "vendor_id"
     t.integer "total", default: 0
     t.integer "processed", default: 0
+    t.json "metadata", default: {}, null: false
     t.index ["vendor_id"], name: "index_spree_uploads_on_vendor_id"
   end
 

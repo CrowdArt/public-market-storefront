@@ -30,7 +30,7 @@ module Swagger
             key :in, :path
             key :required, true
             key :type, :string
-            key :enum, Spree::Inventory::UploadFileAction.supported_product_types
+            key :enum, Spree::Upload::SUPPORTED_PRODUCT_TYPES
             key :example, :books
           end
 

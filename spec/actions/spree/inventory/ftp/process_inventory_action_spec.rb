@@ -11,7 +11,6 @@ RSpec.describe Spree::Inventory::Ftp::ProcessInventoryAction, type: :action do
         block.call(file)
       end
 
-      allow(Spree::GCS::UploadFile).to receive(:call).and_return('filepath')
       allow(Spree::Inventory::UploadFileAction).to receive(:call)
 
       call
@@ -19,11 +18,11 @@ RSpec.describe Spree::Inventory::Ftp::ProcessInventoryAction, type: :action do
 
     it 'calls UploadFileAction' do
       expect(Spree::Inventory::UploadFileAction).to have_received(:call).with(
-        'csv_tab',
-        'filepath',
+        format: 'csv_tab',
+        file_path: file,
         provider: 'bwb',
         product_type: 'books',
-        upload_options: { vendor_id: vendor.id }
+        vendor_id: vendor.id
       )
     end
   end
