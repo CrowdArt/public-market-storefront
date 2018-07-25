@@ -55,4 +55,7 @@ en:
     vendors_transfer_negative: Payment could not be processed, seller %{vendor} can't process payment, please contact support.
     transfer_id: Transfer ID
     transfer_amount: Transfer Amount
+    split_shipment: Split Shipment
+    confirm_shipment: Confirm Shipment
+    cancel_shipment: Cancel Shipment
 
