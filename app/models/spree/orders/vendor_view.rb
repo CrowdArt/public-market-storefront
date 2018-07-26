@@ -24,7 +24,7 @@ module Spree
                     :adjustment_total, :total
 
       def line_items
-        order.line_items.where.not(state: :canceled).joins(:variant).where(spree_variants: { vendor_id: @vendor })
+        order.line_items.joins(:variant).where(spree_variants: { vendor_id: @vendor })
       end
 
       def line_item_adjustments

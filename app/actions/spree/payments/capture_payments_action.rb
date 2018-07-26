@@ -8,18 +8,18 @@ module Spree
       private
 
       def capture_payment(payment)
-        items = payment.order.line_items.to_a
-        force_cancel(items) if payment.created_at < 5.days.ago
+        units = payment.order.inventory_units.to_a
+        force_cancel(units) if payment.created_at < 5.days.ago
 
-        payment.capture! if can_capture?(items)
+        payment.capture! if can_capture?(units)
       end
 
-      def can_capture?(items)
-        items.none?(&:ordered?) && items.any?(&:confirmed?)
+      def can_capture?(units)
+        units.none?(&:ordered?) && units.any?(&:shipped?)
       end
 
-      def force_cancel(items)
-        items.select(&:ordered?).each(&:cancel!)
+      def force_cancel(units)
+        units.select(&:ordered?).each(&:cancel!)
       end
     end
   end

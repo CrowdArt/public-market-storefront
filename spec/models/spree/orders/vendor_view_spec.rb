@@ -1,6 +1,7 @@
 RSpec.describe Spree::Orders::VendorView, type: :model do
   let(:order) { create :vendor_order_ready_to_ship, line_items_count: 2 }
   let(:line_item) { order.line_items.first }
+  let(:inventory_unit) { line_item.inventory_units.first }
   let(:vendor) { line_item.variant.vendor }
   let(:vendor_view) { described_class.new(order, vendor) }
 
@@ -10,12 +11,6 @@ RSpec.describe Spree::Orders::VendorView, type: :model do
     it { expect(order.line_items.count).to eq(2) }
     it { expect(line_items.count).to eq(1) }
     it { expect(line_items.first.variant.vendor).to eq(vendor) }
-
-    context 'when item is canceled' do
-      before { line_item.cancel }
-
-      it { expect(line_items.count).to eq(0) }
-    end
   end
 
   describe 'delegation' do
@@ -36,9 +31,9 @@ RSpec.describe Spree::Orders::VendorView, type: :model do
     it { expect(total.to_html).to match(line_item.price.to_s) }
 
     context 'when item is canceled' do
-      before { line_item.cancel }
+      before { inventory_unit.cancel! }
 
-      it { expect(total.to_html).to match('0') }
+      it { expect(total.cents).to eq(0) }
     end
   end
 

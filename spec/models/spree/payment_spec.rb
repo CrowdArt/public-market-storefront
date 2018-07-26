@@ -110,12 +110,12 @@ RSpec.describe Spree::Payment, type: :model, vcr: true do
       end
     end
 
-    context 'when items are cancelled' do
+    context 'when units are cancelled' do
       subject(:transfer) { payment.payment_transfers.first }
 
-      let(:line_item) { order.line_items.first }
+      let(:unit) { order.inventory_units.first }
 
-      before { line_item.cancel! }
+      before { unit.cancel! }
 
       context 'when one vendor' do
         let(:vendor) { create(:vendor) }

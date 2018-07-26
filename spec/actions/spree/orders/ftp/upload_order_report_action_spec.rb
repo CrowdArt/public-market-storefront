@@ -10,8 +10,17 @@ RSpec.describe Spree::Orders::Ftp::UploadOrderReportAction, type: :action do
   it { expect(result).to match("\t") }
 
   context 'when line item has quantity more than one' do
-    before { line_item.update_column(:quantity, 3) }
+    before do
+      line_item.variant.stock_items.first.set_count_on_hand(3)
+      line_item.update!(quantity: 3)
+    end
 
     it { expect(result.scan(line_item.variant.sku).size).to eq(3) }
+
+    it 'includes all units' do
+      order.inventory_units.each do |unit|
+        expect(result).to match(unit.hash_id)
+      end
+    end
   end
 end

@@ -27,24 +27,26 @@ module Spree
             orders.each do |order|
               vendor_view = VendorView.new(order, vendor)
               vendor_view.line_items.each do |line_item|
-                line_item.quantity.times { csv << order_line_item_row(order, line_item) }
+                line_item.inventory_units.each do |unit|
+                  csv << order_unit_row(order, unit)
+                end
               end
             end
           end
           file
         end
 
-        def order_line_item_row(order, line_item)
+        def order_unit_row(order, unit)
           {
             OrderDate: completed_at(order),
             AbePoid: order.hash_id,
-            AbeItemId: line_item.hash_id,
-            VendorItemId: line_item.variant.sku,
-            Isbn: isbn(line_item),
-            Author: author(line_item),
-            Price: price(line_item),
-            Shipping: shipping_cost(line_item),
-            Title: line_item.variant.name,
+            AbeItemId: unit.hash_id,
+            VendorItemId: unit.variant.sku,
+            Isbn: isbn(unit),
+            Author: author(unit),
+            Price: price(unit),
+            Shipping: shipping_cost(unit),
+            Title: unit.variant.name,
             BuyerEmailAddress: order.email,
             ShippingSpeed: 'Ships within: 5-8 days'
           }.merge(shipping_fields(order.ship_address))
@@ -66,20 +68,20 @@ module Spree
           order.completed_at.strftime('%F %T')
         end
 
-        def isbn(line_item)
-          line_item.variant.product.property('isbn')
+        def isbn(unit)
+          unit.variant.product.property('isbn')
         end
 
-        def author(line_item)
-          line_item.variant.product.property('author')
+        def author(unit)
+          unit.variant.product.property('author')
         end
 
-        def price(line_item)
-          line_item.display_price.money.format(symbol: false)
+        def price(unit)
+          unit.line_item.display_price.money.format(symbol: false)
         end
 
-        def shipping_cost(line_item)
-          line_item.shipment.display_amount.money.format(symbol: false)
+        def shipping_cost(unit)
+          unit.shipment.display_amount.money.format(symbol: false)
         end
 
         def upload_to_ftp(csv_file)

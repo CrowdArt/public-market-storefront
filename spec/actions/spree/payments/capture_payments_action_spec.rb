@@ -22,8 +22,8 @@ RSpec.describe Spree::Payments::CapturePaymentsAction, type: :action, vcr: true 
       it { expect { call }.not_to change { payment.reload.state }.from('pending') }
     end
 
-    context 'when all items are confirmed' do
-      before { order.line_items.each(&:confirm!) }
+    context 'when all units are confirmed' do
+      before { order.inventory_units.each(&:ship!) }
 
       it { expect { call }.to change { payment.reload.state }.from('pending').to('completed') }
     end
@@ -32,19 +32,19 @@ RSpec.describe Spree::Payments::CapturePaymentsAction, type: :action, vcr: true 
   context 'when 5 days past' do
     before { payment.update(created_at: 6.days.ago) }
 
-    context 'when all items are ordered' do
+    context 'when all units are on hand' do
       it { expect { call }.to change { payment.reload.state }.from('pending').to('void') }
       it { expect { call }.to change { payment.order.reload.state }.from('complete').to('canceled') }
     end
 
-    context 'when some items are confirmed' do
-      before { order.line_items.first.confirm! }
+    context 'when some units are shiped' do
+      before { order.inventory_units.first.ship! }
 
       it { expect { call }.to change { payment.reload.state }.from('pending').to('completed') }
     end
 
-    context 'when all items are confirmed' do
-      before { order.line_items.each(&:confirm!) }
+    context 'when all units are confirmed' do
+      before { order.inventory_units.each(&:ship!) }
 
       it { expect { call }.to change { payment.reload.state }.from('pending').to('completed') }
     end

@@ -100,9 +100,9 @@ module Swagger
                 },
                 line_items: [
                   {
-                    id: "32323",
                     sku: 'PIDC790519MCMPDYY8',
-                    quantity: 1
+                    quantity: 1,
+                    ids: ["32323"]
                   }
                 ],
                 id: "12323",

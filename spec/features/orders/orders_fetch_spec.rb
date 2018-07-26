@@ -35,15 +35,15 @@ RSpec.describe 'Orders fetch', type: :request do
 
       context 'when order is ready' do
         let(:order) { create(:completed_vendor_order, line_items_count: 2) }
-        let(:line_item) { order.line_items.first }
-        let(:other_line_item) { order.line_items.second }
-        let(:vendor) { line_item.variant.vendor }
+        let(:unit) { order.inventory_units.first }
+        let(:other_unit) { order.inventory_units.second }
+        let(:vendor) { unit.variant.vendor }
 
         it { expect(json).to include(orders: [hash_including(order_identifier: order.number)]) }
-        it { expect(json.to_s).to match(line_item.variant.sku) }
-        it { expect(json.to_s).not_to match(other_line_item.variant.sku) }
+        it { expect(json.to_s).to match(unit.variant.sku) }
+        it { expect(json.to_s).not_to match(other_unit.variant.sku) }
         it { expect(json.to_s).to match(order.hash_id) }
-        it { expect(json.to_s).to match(line_item.hash_id) }
+        it { expect(json.to_s).to match(unit.hash_id) }
       end
 
       context 'when order is paid' do

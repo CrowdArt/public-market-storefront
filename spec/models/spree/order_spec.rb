@@ -19,14 +19,14 @@ RSpec.describe Spree::Order, type: :model do
   describe 'cancel' do
     let(:order) { create(:vendor_order_ready_to_ship, line_items_count: 3) }
 
-    context 'when all line items are canceled' do
-      before { order.line_items.each(&:cancel!) }
+    context 'when all line units are canceled' do
+      before { order.inventory_units.each(&:cancel!) }
 
       it { expect(order.reload.state).to eq('canceled') }
     end
 
-    context 'when one line item is canceled' do
-      before { order.line_items.first.cancel! }
+    context 'when one line unit is canceled' do
+      before { order.inventory_units.first.cancel! }
 
       it { expect(order.reload.state).to eq('complete') }
     end
