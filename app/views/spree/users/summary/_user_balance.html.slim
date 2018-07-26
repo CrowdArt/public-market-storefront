@@ -10,6 +10,6 @@ section.account-summary--user-balance.flex.wrap-xs.between.start-xs
     = link_to t('users.view-orders'), spree.account_path(tab: :orders), class: 'text-medium'
 
   div
-    .text-medium.text-muted.upcase = t('orders.all')
+    .text-medium.text-muted.upcase = t('orders.completed')
     h4.text-black.margin-text-vertical-eq = @user.orders.complete.where(shipment_state: :shipped).count
     = link_to t('users.view-order-history'), spree.account_path(tab: :orders), class: 'text-medium'
