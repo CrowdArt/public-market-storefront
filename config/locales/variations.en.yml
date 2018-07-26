@@ -69,7 +69,7 @@ en:
           - us-tall rack paperback
 
         mass-market:
-          - mass market
+          - mass market paperback
 
         trade-paperback:
           - trade paper
@@ -174,7 +174,7 @@ en:
           - library-bound
 
         paperback:
-          - mass-market
+          - mass-market-paperback
           - paperback
           - trade-paperback
 
