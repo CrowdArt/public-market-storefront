@@ -1,9 +1,20 @@
-- links = %i[orders payment shipping]
-
-ul#account-menu.nav.nav-pills.nav-stacked
+- account_menu = capture do
   li.no-margin class=('active' if @account_tab == :summary)
     a.plain-link href='/account' = t('menus.account.summary')
 
+  - links = %i[orders payment shipping]
   - links.each do |link|
     li.no-margin class=('active' if @account_tab == link)
       a.plain-link href="/account/#{link}" = t("menus.account.#{link}")
+
+ul.hidden-xs.nav.nav-pills.nav-stacked#account-menu
+  = account_menu
+
+.visible-xs.dropdown.user-account-menu-dropdown
+  button.btn-block.btn-outlined data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' type='button'
+    .flex.between.align-center
+      = t("menus.account.#{@account_tab}")
+      span.caret
+
+  ul.dropdown-menu
+    = account_menu

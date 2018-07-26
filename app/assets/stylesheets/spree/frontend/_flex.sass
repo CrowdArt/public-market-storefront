@@ -48,8 +48,16 @@
     &.start
       justify-content: flex-start
 
+    &.start-xs
+      @media (max-width: $screen-xs-max)
+        justify-content: flex-start
+
     &.center
       justify-content: center
+
+    &.center-xs
+      @media (max-width: $screen-xs-max)
+        justify-content: center
 
     &.end
       justify-content: flex-end

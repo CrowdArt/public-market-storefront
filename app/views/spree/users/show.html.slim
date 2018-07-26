@@ -1,6 +1,2 @@
-.row
-  .col-md-2.col-md-offset-2
-    = render 'account_menu'
-
-  .col-md-6
-    = render "account_#{@account_tab}"
+= render layout: 'spree/users/account_template'
+  = render partial: "account_#{@account_tab}"
