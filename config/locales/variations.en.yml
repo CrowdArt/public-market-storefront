@@ -37,6 +37,7 @@ en:
       dvd-rom: DVD-ROM
       vhs-cassette: VHS Cassette
       vinyl-lp: Vinyl (LP)
+      mass-market: Mass Market Paperback
 
     formats:
       books:
@@ -69,7 +70,7 @@ en:
           - us-tall rack paperback
 
         mass-market:
-          - mass market paperback
+          - mass market
 
         trade-paperback:
           - trade paper
@@ -174,7 +175,7 @@ en:
           - library-bound
 
         paperback:
-          - mass-market-paperback
+          - mass-market
           - paperback
           - trade-paperback
 
