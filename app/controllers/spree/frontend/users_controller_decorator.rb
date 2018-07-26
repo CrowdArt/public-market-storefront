@@ -6,8 +6,6 @@ Spree::UsersController.class_eval do
   def show
     @account_tab = account_tab
 
-    set_back_mobile_link('/account') if @account_tab != :summary
-
     case @account_tab
     when :orders
       show_orders
@@ -34,10 +32,6 @@ Spree::UsersController.class_eval do
     else
       render :edit
     end
-  end
-
-  def edit
-    set_back_mobile_link('/account')
   end
 
   private
