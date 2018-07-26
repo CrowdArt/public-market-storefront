@@ -1,0 +1,16 @@
+section.account-summary--payment-info
+  .text-medium.text-muted.upcase.margin-text-bottom = t('users.account-page.default-payment-method')
+
+  - if (card = @user.credit_cards.first).present?
+    .margin-text-bottom
+      - card_icon = "credit_cards/icons/#{card.cc_type}.svg"
+      - if asset_exists?(card_icon)
+        = image_tag(card_icon, style: 'width:35px;margin-right:10px')
+
+      = payment_method_dropdown_item(card)
+
+    = link_to t('users.account-page.manage-payment', count: @user.credit_cards.count), spree.user_payment_methods_path
+  - else
+    p = Spree.t('no_credit_cards')
+
+    = link_to t('payment_methods.cards.add_new'), spree.new_payment_method_path, data: { turbolinks: false }

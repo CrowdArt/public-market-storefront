@@ -1,0 +1,15 @@
+en:
+  users:
+    account-page:
+      welcome: 'Welcome, %{username}!'
+      default-shipping-address: Default Shipping Address
+      default-payment-method: Default Payment Method
+      default-wallet: Default Wallet
+      manage-addresses: Manage Addresses (%{count})
+      manage-payment: Manage Payment Methods (%{count})
+      manage-wallet: Manage Wallet Addresses (%{count})
+
+    view-tokens: View Tokens
+    view-orders: View Orders
+    view-order-history: View Order History
+

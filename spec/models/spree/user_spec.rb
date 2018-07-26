@@ -75,7 +75,7 @@ RSpec.describe Spree::User, type: :model do
     context 'when first name is empty' do
       before { user.update(first_name: '') }
 
-      it { is_expected.to eq('buyer@') }
+      it { is_expected.to eq('buyer') }
     end
   end
 

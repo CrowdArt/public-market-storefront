@@ -1,0 +1,11 @@
+section.account-summary--user-info.flex
+  .initials-avatar
+    span = @user.full_name_or_email.split(' ').map(&:first).join
+
+  .margin-text-left
+    - if @user.full_name.present?
+      .text-black = @user.full_name_or_email
+
+    .text-muted = @user.email
+
+    = link_to 'Edit', spree.edit_account_path, class: 'text-medium'

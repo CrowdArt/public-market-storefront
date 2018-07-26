@@ -23,7 +23,7 @@ Spree::User.class_eval do
   end
 
   def username
-    first_name.presence || email.split('@').first + '@'
+    first_name.presence || email.split('@').first
   end
 
   # storefront changes:

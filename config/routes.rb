@@ -4,7 +4,7 @@ end
 
 Spree::Core::Engine.add_routes do
   scope :account do
-    get '/:tab', to: 'users#show', tab: /orders/
+    get '/(:tab)', to: 'users#show', tab: /orders/, as: :account
 
     get '/shipping', to: 'addresses#index', as: :user_addresses
     get '/shipping/edit', to: 'addresses#new', as: :new_address

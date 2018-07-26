@@ -21,11 +21,7 @@
 
   - if (address = card.address)
     address.no-margin-bottom
-      = address.address1
-      br
-      | #{address.city}, #{address.state} #{address.zipcode}
-      br
-      = address.country
+      = render partial: 'spree/addresses/address_inner', locals: { address: address }
 
 - content_for(:panel_footer, flush: true)
   = link_to edit_credit_card_path(card), data: { turbolinks: false }, class: 'pull-left'

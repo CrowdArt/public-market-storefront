@@ -7,11 +7,7 @@
     strong = address.full_name
 
   address.no-margin-bottom
-    = address.address1
-    br
-    | #{address.city}, #{address.state} #{address.zipcode}
-    br
-    = address.country
+    = render partial: 'spree/addresses/address_inner', locals: { address: address }
 
     .text-muted = address.phone
 

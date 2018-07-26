@@ -1,18 +1,6 @@
-.account-summary.well data-hook='account_summary'
-  dl#user-info
-    dt = Spree.t(:profile)
-    dd
-      ' #{@user.full_name_or_email}
-      | (#{link_to Spree.t(:edit_email_password), spree.edit_account_path})
+.account-summary.panel.panel-default.no-border
+  .panel-body
+    h3.upcase.no-margin = t('users.account-page.welcome', username: @user.username)
 
-    p
-      - if @user.confirmed?
-        span.label.label-success.vertical-middle = t('devise.verified_email')
-      - else
-        span.label.label-danger.vertical-middle> = t('devise.unconfirmed_email')
-        span.vertical-middle
-          | (#{link_to(t('devise.send_confirmation_email'), spree_user_confirmation_path, method: :post)})
-
-    dt= Spree.t(:credit_balance, scope: [:store_credits])
-    dd
-      = Spree::Money.new(spree_current_user.total_available_store_credit, currency: Spree::Config[:currency])
+    - sections = %i[user_info user_balance address payment_info wallet]
+    = render partial: 'spree/users/summary/template', collection: sections, as: :partial, spacer_template: 'spree/shared/hr_spacer'

@@ -2,7 +2,7 @@ en:
   menus:
     account:
       title: Account
-      general: General
+      summary: My Account
       orders: Order History
       payment: Payment Methods
       shipping: Shipping Address

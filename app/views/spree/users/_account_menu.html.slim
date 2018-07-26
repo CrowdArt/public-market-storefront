@@ -1,7 +1,9 @@
-nav.panel.panel-default#account-menu
-  div.panel-heading = t('menus.account.title')
-  .list-group
-    a.list-group-item class=('active' if @account_tab == :summary) href='/account' = t('menus.account.general')
-    a.list-group-item class=('active' if @account_tab == :orders) href='/account/orders' = t('menus.account.orders')
-    a.list-group-item class=('active' if @account_tab == :payment) href='/account/payment' = t('menus.account.payment')
-    a.list-group-item class=('active' if @account_tab == :shipping) href='/account/shipping' = t('menus.account.shipping')
+- links = %i[orders payment shipping]
+
+ul#account-menu.nav.nav-pills.nav-stacked
+  li.no-margin class=('active' if @account_tab == :summary)
+    a.plain-link href='/account' = t('menus.account.summary')
+
+  - links.each do |link|
+    li.no-margin class=('active' if @account_tab == link)
+      a.plain-link href="/account/#{link}" = t("menus.account.#{link}")

@@ -24,6 +24,10 @@
   margin-left: 7px
   margin-right: 7px
 
+.margin-text-vertical-eq
+  margin-top: 7px
+  margin-bottom: 7px
+
 .no-padding
   padding: 0
 
@@ -162,3 +166,20 @@
 
         &:hover
           box-shadow: none
+
+$avatar-size: 44px
+
+.initials-avatar
+  background: $dark-cyan-color
+  color: #fff
+  border-radius: 50%
+  text-transform: uppercase
+  text-align: center
+  height: $avatar-size
+  width: $avatar-size
+
+  span
+    font-size: calc(#{$avatar-size} / 2)
+    line-height: 1
+    position: relative
+    top: calc(#{$avatar-size} / 4)

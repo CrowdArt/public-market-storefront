@@ -1,0 +1,15 @@
+section.account-summary--user-balance.flex.between
+  div
+    .text-medium.text-muted.upcase = t('orders.ptrn_rewards')
+    h4.ptrn.ptrn-no-text.margin-text-vertical-eq 0
+    = link_to t('users.view-tokens'), '#', class: 'btn btn-link no-padding disabled text-medium'
+
+  div
+    .text-medium.text-muted.upcase = t('orders.pending')
+    h4.text-black.margin-text-vertical-eq = @user.orders.complete.where(shipment_state: %i[pending ready]).count
+    = link_to t('users.view-orders'), spree.account_path(tab: :orders), class: 'text-medium'
+
+  div
+    .text-medium.text-muted.upcase = t('orders.all')
+    h4.text-black.margin-text-vertical-eq = @user.orders.complete.where(shipment_state: :shipped).count
+    = link_to t('users.view-order-history'), spree.account_path(tab: :orders), class: 'text-medium'

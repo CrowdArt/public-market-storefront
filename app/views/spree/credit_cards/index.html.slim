@@ -1,14 +1,16 @@
-h1 = t('credit_cards')
+.row
+  .col-md-2.col-md-offset-1
+      = render 'spree/users/account_menu'
 
-- content_for :sidebar
-  = render 'spree/users/account_menu'
+  .col-md-7
+    h1 = t('credit_cards')
 
-- if @cards.any?
-  #existing_cards
-    .row.condensed.flex.eq-height-columns
-      = render layout: 'spree/shared/panel_card', partial: 'spree/shared/credit_card', collection: @cards, as: :card, locals: { wrapper_class: 'credit-card col-lg-4 col-md-4 col-sm-6 col-xs-12' }
+    - if @cards.any?
+      #existing_cards
+        .row.condensed.flex.eq-height-columns
+          = render layout: 'spree/shared/panel_card', partial: 'spree/shared/credit_card', collection: @cards, as: :card, locals: { wrapper_class: 'credit-card col-lg-4 col-md-4 col-sm-6 col-xs-12' }
 
-- else
-  p = Spree.t('no_credit_cards')
+    - else
+      p = Spree.t('no_credit_cards')
 
-= link_to t('payment_methods.cards.add_new'), spree.new_payment_method_path, class: 'btn btn-primary', data: { turbolinks: false }
+    = link_to t('payment_methods.cards.add_new'), spree.new_payment_method_path, class: 'btn btn-primary', data: { turbolinks: false }
