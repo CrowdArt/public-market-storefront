@@ -36,6 +36,7 @@ en:
       cd-rom: CD-ROM
       dvd-rom: DVD-ROM
       vhs-cassette: VHS Cassette
+      vinyl-lp: Vinyl (LP)
 
     formats:
       books:
@@ -154,6 +155,12 @@ en:
         vhs-cassette:
           - vhs
           - 'video, vhs format'
+
+        vinyl-lp:
+          - lp record
+
+        vinyl-bound:
+          - vinyl bound
 
         wallchart:
           - wallchart
