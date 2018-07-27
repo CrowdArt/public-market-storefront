@@ -45,6 +45,6 @@ Spree.typeaheadSearch = function() {
 
 $(document).on('turbolinks:load', Spree.typeaheadSearch)
 
-$('#nav-keyword').on('typeahead:select', function(e, s) {
+$(document).on('typeahead:select', '#nav-keyword', function(e, s) {
   window.location = s.link; // redirect directly to product for S1
 })
