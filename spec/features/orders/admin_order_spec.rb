@@ -1,6 +1,7 @@
 RSpec.describe 'admin order', type: :feature, js: true do
   let!(:stripe) { create(:stripe_card_payment_method) }
-  let(:order) { create(:vendor_order_ready_to_ship, line_items_count: 2) }
+  let(:order) { create(:vendor_order_ready_to_ship, line_items_count: 2, line_items_quantity: quantity) }
+  let(:quantity) { 1 }
   let(:line_item) { order.line_items.first }
   let(:other_line_item) { order.line_items.last }
   let(:variant) { line_item.variant }
@@ -36,6 +37,32 @@ RSpec.describe 'admin order', type: :feature, js: true do
         click_link 'Ship'
 
         expect(page).not_to have_link('Ship')
+      end
+
+      it 'show confirm/cancel/split buttons' do
+        expect(page).to have_link('Confirm Shipment')
+        expect(page).to have_link('Cancel Shipment')
+        expect(page).to have_link('Split Shipment')
+      end
+
+      it 'can confirm' do
+        click_link 'Confirm Shipment'
+        click_on(class: 'save-item')
+        wait_for_ajax
+
+        expect(page).not_to have_link('Confirm Shipment')
+        expect(page).not_to have_link('Cancel Shipment')
+        expect(page).to have_text(line_item.price)
+      end
+
+      it 'can cancel' do
+        click_link 'Cancel Shipment'
+        click_on(class: 'save-item')
+        wait_for_ajax
+
+        expect(page).not_to have_link('Confirm Shipment')
+        expect(page).not_to have_link('Cancel Shipment')
+        expect(page).to have_text('0.00')
       end
     end
 

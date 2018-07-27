@@ -1,11 +1,13 @@
 Spree::InventoryUnit.class_eval do
   include PublicMarket::Hashed
 
-  state_machine do
-    event :cancel do
-      transition to: :canceled, from: :on_hand
+  unless state_machine.events[:cancel]
+    state_machine do
+      event :cancel do
+        transition to: :canceled, from: :on_hand
+      end
+      after_transition to: :canceled, do: :after_cancel
     end
-    after_transition to: :canceled, do: :after_cancel
   end
 
   def ordered?
@@ -20,7 +22,9 @@ Spree::InventoryUnit.class_eval do
 
   def after_cancel
     line_item.decrement!(:quantity) # rubocop:disable Rails/SkipsModelValidations
+    order.update_with_updater!
     return unless order.inventory_units.all?(&:canceled?)
     order.cancel! if order.allow_cancel?
+    true
   end
 end

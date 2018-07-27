@@ -22,6 +22,8 @@ Spree::Core::Engine.add_routes do
     namespace :v1 do
       get '/orders/fetch', to: 'orders#fetch'
       post '/orders/update', to: 'orders#update_items'
+      put '/shipments/:id/cancel_item', to: 'shipments#cancel_item'
+      put '/shipments/:id/confirm_item', to: 'shipments#confirm_item'
     end
   end
 

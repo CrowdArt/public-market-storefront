@@ -58,4 +58,5 @@ en:
     split_shipment: Split Shipment
     confirm_shipment: Confirm Shipment
     cancel_shipment: Cancel Shipment
+    no_enough_units: No %{quantity} units to %{action}
 
