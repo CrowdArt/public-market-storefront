@@ -82,6 +82,14 @@
       h4
         font-size: 24px
 
+    & > div:not(:last-child)
+      @media (min-width: $screen-sm-min)
+        margin-right: 25px
+
+      @media (min-width: $screen-md-min)
+        margin-right: 50px
+
+    @media (max-width: $screen-xs)
       & > div
         width: 50%
 
