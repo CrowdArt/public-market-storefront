@@ -1,18 +1,17 @@
+- checked = variation[:id] == @product.id
 
-ruby:
-  checked = variation[:id] == @product.id
+.variation-block
+  a.variation-block--link href=("/products/#{variation[:slug]}?variation=#{@product.slug}" unless checked) class=('checked' if checked)
+    = variation[:variation_name_presentation]
+    br
+    = Spree::Money.new(variation[:price])
 
-a.variation-link href=(checked ? nil : "/products/#{variation[:slug]}?variation=#{@product.slug}") class=('checked' if checked)
-  = variation[:variation_name_presentation]
-  br
-  = Spree::Money.new(variation[:price])
-
-- if (similar_variants = variation[:similar_variants]).any?
-  .margin-text-top
-    - similar_variants.each do |v|
-      - link_to_similar = "/products/#{variation[:slug]}/variation/#{variation[:variation_name]}##{v[:option_value].parameterize}"
-      a.text-medium.hover-inner href=link_to_similar
-        ' #{v[:size]} #{v[:option_value]}
-        span.text-muted> from
-        | $#{v[:price]}
-      br
+  - if (similar_variants = variation[:similar_variants]).any?
+    .variation-block--similar-list
+      - similar_variants.each do |v|
+        - link_to_similar = "/products/#{variation[:slug]}/variation/#{variation[:variation_name]}##{v[:option_value].parameterize}"
+        a.hover-inner href=link_to_similar
+          ' #{v[:size]} #{v[:option_value]}
+          span.text-muted> from
+          | $#{v[:price]}
+        br
