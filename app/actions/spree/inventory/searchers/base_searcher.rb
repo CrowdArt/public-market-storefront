@@ -15,13 +15,14 @@ module Spree
           raise 'Not Implemented'
         end
 
-        def search_products # rubocop:disable Metrics/MethodLength
+        def search_products # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
           prepare_params
 
           Spree::Product.search(
             keywords,
             includes: includes,
             fields: fields,
+            operator: operator,
             boost_by: boost_by,
             match: word_match,
             misspellings: misspellings,
@@ -47,6 +48,7 @@ module Spree
         end
 
         def fields
+          # these fields array should be change to depend from product kind
           Spree::Product.search_fields
         end
 
@@ -75,6 +77,10 @@ module Spree
         end
 
         def misspellings
+          nil
+        end
+
+        def operator
           nil
         end
       end

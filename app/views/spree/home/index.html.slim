@@ -42,7 +42,7 @@
       .row
         - top_categories.each do |category|
           - next if (t = Spree::Taxon.visible.find_by(name: category)).blank?
-          - min_price = Spree::Inventory::Searchers::MinPrice.new(taxon_ids: [t.id]).call.aggs['minimum_price']['value']
+          - min_price = Spree::Inventory::Searchers::MinPrice.call(taxon_ids: [t.id]).aggs['minimum_price']['value']
           .col-md-6.col-sm-12
             .box.col-md-12
               .content

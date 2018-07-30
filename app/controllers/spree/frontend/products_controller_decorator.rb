@@ -45,7 +45,7 @@ module Spree
       }
       opts[:taxon_ids] = @taxon.id if @taxon
 
-      @products = Spree::Inventory::Searchers::Autocomplete.new(opts).call.results
+      @products = Spree::Inventory::Searchers::Autocomplete.call(opts).results
 
       respond_to do |format|
         format.json

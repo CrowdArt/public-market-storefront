@@ -8,6 +8,10 @@ module Spree
       end
       base.prepend InstanceMethods
 
+      base.class_variable_set :@@searchkick_options, base.searchkick_options.merge(
+        word_start: base.autocomplete_fields
+      )
+
       base.include Spree::Core::NumberGenerator.new(prefix: 'PM', letters: true, length: 13)
       base.include PublicMarket::ProductKind
 
@@ -101,7 +105,11 @@ module Spree
       # enable searchkick callbacks in RecalculateVendorVariantPrice
       # when price is included in searchkick index
       def search_fields
-        %i[name author artist isbn]
+        autocomplete_fields.map { |f| { f => :word_start } } + %i[isbn]
+      end
+
+      def autocomplete_fields
+        %i[name author artist]
       end
     end
   end

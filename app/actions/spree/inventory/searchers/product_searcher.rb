@@ -19,6 +19,10 @@ module Spree
 
         private
 
+        def operator
+          'or'
+        end
+
         def where
           where_query = {
             active: true,
