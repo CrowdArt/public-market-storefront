@@ -90,10 +90,9 @@ deploy to staging:
     - git log --format=%s $CI_BUILD_BEFORE_SHA..$CI_COMMIT_SHA | (grep -io "\[fixes .*\]" || true) | (grep -o "[0-9][0-9]*" || true) | xargs -I % curl -X PUT -H "X-TrackerToken:$PT_TOKEN" -H "Content-Type:application/json" -d '{"current_state":"delivered"}' https://www.pivotaltracker.com/services/v5/projects/$PT_PROJECT_ID/stories/%
   environment:
     name: staging
-    url: https://staging-k8s.public.market
+    url: https://staging.public.market
   only:
     - master
-    - pipeline
 
 deploy to production:
   stage: phase3
@@ -103,5 +102,13 @@ deploy to production:
   before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
   script:
-    - env
+    - kubectl cluster-info
+    - kubectl patch sts web -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
+    - kubectl patch sts sidekiq -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
+    - kubectl get pod
   when: manual
+  environment:
+    name: production
+    url: https://production.public.market
+  only:
+    - master

@@ -1,4 +1,4 @@
-category = Spree::ShippingCategory.create!(name: 'Default')
+category = Spree::ShippingCategory.find_or_create_by(name: 'Default')
 
 Spree::ShippingMethod.create!(
   name: 'Free Shipping (5 - 8 days)',

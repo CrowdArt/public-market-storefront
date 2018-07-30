@@ -23,6 +23,8 @@ RSpec.describe 'admin order', type: :feature, js: true do
     before { visit spree.edit_admin_order_path(order) }
 
     describe 'shipments' do
+      before { order.shipments.first.shipping_method.update(tracking_url: 'https://go.com/:tracking') }
+
       it 'shows only vendor items' do
         expect(page).to have_text(variant.product.name)
         expect(page).not_to have_text(other_line_item.variant.product.name)
@@ -33,10 +35,23 @@ RSpec.describe 'admin order', type: :feature, js: true do
         expect(page).not_to have_text(order.total)
       end
 
-      it 'can ship' do
-        click_link 'Ship'
+      it 'canot ship without tracking code' do
+        dismiss_confirm do
+          click_link 'Mark as Shipped'
+        end
 
-        expect(page).not_to have_link('Ship')
+        expect(page).to have_link('Mark as Shipped')
+      end
+
+      it 'can ship' do
+        click_on(class: 'edit-tracking')
+        fill_in('tracking', with: 'fake_tracking')
+        click_on(class: 'save-tracking')
+
+        expect(page).to have_text('fake_tracking')
+        click_link 'Mark as Shipped'
+
+        expect(page).not_to have_link('Mark as Shipped')
       end
 
       it 'show confirm/cancel/split buttons' do
