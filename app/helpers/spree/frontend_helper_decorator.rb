@@ -39,7 +39,8 @@ module Spree
     end
 
     def inline_svg(path)
-      raw(Rails.application.assets.find_asset(path + '.svg').to_s) # rubocop:disable Rails/OutputSafety
+      source = Rails.application.assets_manifest.find_sources(path + '.svg').first
+      raw(source) # rubocop:disable Rails/OutputSafety
     end
 
     def vendor_reputation_text(vendor)
