@@ -5,8 +5,8 @@ section.account-summary--address
     address.text-black.margin-text-bottom
       = render partial: 'spree/addresses/address_inner', locals: { address: address }
 
-    = link_to t('users.account-page.manage-addresses', count: @user.addresses.count), spree.user_addresses_path
+    = link_to t('users.account-page.manage-addresses', count: @user.addresses.count), spree.user_addresses_path, class: 'text-medium'
   - else
     p = t('addresses.no_addresses')
 
-    = link_to t('addresses.add_new'), spree.new_address_path, data: { turbolinks: false }
+    = link_to t('addresses.add_new'), spree.new_address_path, data: { turbolinks: false }, class: 'text-medium'

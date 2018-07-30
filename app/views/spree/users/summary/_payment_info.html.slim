@@ -9,8 +9,8 @@ section.account-summary--payment-info
 
       = payment_method_dropdown_item(card)
 
-    = link_to t('users.account-page.manage-payment', count: @user.credit_cards.count), spree.user_payment_methods_path
+    = link_to t('users.account-page.manage-payment', count: @user.credit_cards.count), spree.user_payment_methods_path, class: 'text-medium'
   - else
     p = Spree.t('no_credit_cards')
 
-    = link_to t('payment_methods.cards.add_new'), spree.new_payment_method_path, data: { turbolinks: false }
+    = link_to t('payment_methods.cards.add_new'), spree.new_payment_method_path, data: { turbolinks: false }, class: 'text-medium'
