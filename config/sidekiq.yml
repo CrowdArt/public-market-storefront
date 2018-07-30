@@ -19,17 +19,17 @@
     cron: '0 0 * * * *' # Runs every hour
     class: UploadOrderReport
     queue: orders
-    args: ['Second Seller', 'test_ftp']
+    args: ['Second Seller', 'bwb_ftp']
     description: 'Upload order report'
   process_order_updates:
     cron: '*/10 * * * *' # Runs at every 10th minute
     class: ProcessOrderUpdates
     queue: orders
-    args: ['Second Seller', 'test_ftp']
+    args: ['Second Seller', 'bwb_ftp']
     description: 'Process order updates'
   fetch_bwb_inventory:
     cron: '0 0 * * * *' # Runs every hour
     class: PublicMarket::Workers::FTP::FetchInventoryFiles
     queue: upload
-    args: ['Second Seller', 'test_ftp']
+    args: ['Second Seller', 'bwb_ftp']
     description: 'Fetch bwb inventory'
