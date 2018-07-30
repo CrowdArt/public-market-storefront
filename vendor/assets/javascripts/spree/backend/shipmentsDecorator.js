@@ -37,6 +37,15 @@ $(document).ready(function () {
     // adjustShipmentItems(shipment_number, variant_id, quantity);
     return false;
   });
+
+  $('[data-hook=admin_shipment_form] a.ship').on('mousedown', function (e) {
+    var tracking = $(this).parents('[data-hook=admin_shipment_form]').find('.tracking-value a').text();
+    if (!tracking && !confirm('Are you sure to Mark as Shipped without Tracking Number?')) {
+      e.stopImmediatePropagation();
+      return false;
+    }
+    return true;
+  })
 })
 
 toggleItemEdit = function () {

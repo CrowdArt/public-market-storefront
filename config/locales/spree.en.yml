@@ -59,4 +59,5 @@ en:
     confirm_shipment: Confirm Shipment
     cancel_shipment: Cancel Shipment
     no_enough_units: No %{quantity} units to %{action}
+    ship: Mark as Shipped
 
