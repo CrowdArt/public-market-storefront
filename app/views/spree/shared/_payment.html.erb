@@ -2,9 +2,10 @@
 
 <% if source.is_a?(Spree::CreditCard) %>
   <span class="cc-type">
-    <% if (card_icon = "credit_cards/icons/#{source.cc_type}.svg") && asset_exists?(card_icon) %>
-      <%= image_tag(card_icon) %>
+    <% if (card_type = source.cc_type).present? %>
+      <%= image_tag("credit_cards/icons/#{card_type}.svg") %>
     <% end %>
+
     <% if source.last_digits %>
       <%= Spree.t(:ending_in) %> <%= source.last_digits %>
     <% end %>

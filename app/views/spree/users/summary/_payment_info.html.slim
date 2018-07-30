@@ -3,9 +3,8 @@ section.account-summary--payment-info
 
   - if (card = @user.credit_cards.first).present?
     .margin-text-bottom
-      - card_icon = "credit_cards/icons/#{card.cc_type}.svg"
-      - if asset_exists?(card_icon)
-        = image_tag(card_icon, style: 'width:35px;margin-right:10px')
+      - if (card_type = card.cc_type).present?
+        = image_tag("credit_cards/icons/#{card_type}.svg", style: 'width:35px;margin-right:10px')
 
       = payment_method_dropdown_item(card)
 
