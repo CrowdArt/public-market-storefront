@@ -17,5 +17,5 @@ jquery@>=1.11:
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
 
 raven-js@^3.25.2:
-  version "3.26.3"
-  resolved "https://registry.yarnpkg.com/raven-js/-/raven-js-3.26.3.tgz#0efb49969b5b11ab965f7b0d6da4ca102b763cb0"
+  version "3.26.4"
+  resolved "https://registry.yarnpkg.com/raven-js/-/raven-js-3.26.4.tgz#32aae3a63a9314467a453c94c89a364ea43707be"
