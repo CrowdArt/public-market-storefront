@@ -2,17 +2,13 @@ module Spree
   module ProductDecorator
     MISSING_TITLE = '[Missing title]'.freeze
 
-    def self.included(base) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    def self.included(base) # rubocop:disable Metrics/AbcSize
       class << base
         prepend ClassMethods
       end
       base.prepend InstanceMethods
 
       base.belongs_to :best_variant, class_name: 'Spree::Variant'
-
-      base.class_variable_set :@@searchkick_options, base.searchkick_options.merge(
-        word_start: base.autocomplete_fields
-      )
 
       base.include Spree::Core::NumberGenerator.new(prefix: 'PM', letters: true, length: 13)
       base.include PublicMarket::ProductKind
