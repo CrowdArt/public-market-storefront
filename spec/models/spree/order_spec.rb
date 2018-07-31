@@ -31,4 +31,21 @@ RSpec.describe Spree::Order, type: :model do
       it { expect(order.reload.state).to eq('complete') }
     end
   end
+
+  describe 'finalize line items' do
+    let(:order) { create(:order_with_vendor_items) }
+    let(:line_item) { order.line_items.first }
+
+    it { expect(line_item.rewards).to be_nil }
+
+    context 'when complete' do
+      before do
+        allow_any_instance_of(Spree::Payment).to receive(:process!).and_return(true)
+        create(:payment, amount: order.total, order: order)
+        order.reload.transition_to_complete!
+      end
+
+      it { expect(line_item.rewards).to be_truthy }
+    end
+  end
 end

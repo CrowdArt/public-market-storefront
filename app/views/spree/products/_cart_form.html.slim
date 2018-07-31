@@ -30,7 +30,7 @@
           span itemprop="price"
             = Spree.t('product_not_available_in_this_currency')
 
-      .est-token-rewards = t('products.rewards', rewards: @product.estimated_ptrn)
+      .est-token-rewards = t('products.rewards', rewards: @product.rewards_amount)
 
       .variants.form-group
         - if variants.present?

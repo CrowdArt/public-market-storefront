@@ -3,6 +3,7 @@ Spree::Order.class_eval do
 
   Spree::Order.state_machine.before_transition to: :confirm, do: :copy_billing_from_card
   Spree::Order.state_machine.before_transition to: :complete, do: :send_user_confirmation
+  Spree::Order.state_machine.before_transition to: :complete, do: :finalize_line_items!
 
   def user_firstname
     user.first_name.presence || billing_address.first_name
@@ -32,7 +33,7 @@ Spree::Order.class_eval do
   end
 
   def ptrn_rewards
-    line_items.map(&:variant).map(&:product).map(&:estimated_ptrn).sum
+    line_items.map(&:rewards_amount).sum
   end
 
   def paid?
@@ -62,5 +63,9 @@ Spree::Order.class_eval do
 
   def send_user_confirmation
     user.send_confirmation_instructions unless user.confirmed?
+  end
+
+  def finalize_line_items!
+    line_items.each { |li| li.update(rewards: li.variant.final_rewards) }
   end
 end

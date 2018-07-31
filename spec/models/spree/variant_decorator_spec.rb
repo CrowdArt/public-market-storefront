@@ -39,11 +39,13 @@ RSpec.describe Spree::Variant, type: :model do
         let!(:new_variant) { create(:variant, vendor: new_vendor, product: variant.product, price: 5, count_on_hand: 8) }
 
         it { is_expected.to eq(6) }
+        it { expect(variant.product.best_variant).to eq(new_variant) }
 
         context 'when sold out' do
           before { new_variant.stock_items.each(&:reduce_count_on_hand_to_zero) }
 
           it { is_expected.to eq(12) }
+          it { expect(variant.product.best_variant).to eq(variant) }
         end
       end
     end

@@ -24,7 +24,7 @@ ruby:
           .product-card--price itemprop='price'
             span.price> #{display_price(product)}
             span> +
-            span.ptrn = product.estimated_ptrn
+            span.ptrn = product.rewards_amount
 
           small
             = render 'spree/shared/rating', value: rand(5)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_25_141018) do
+ActiveRecord::Schema.define(version: 2018_07_31_130927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -225,6 +225,7 @@ ActiveRecord::Schema.define(version: 2018_07_25_141018) do
     t.decimal "pre_tax_amount", precision: 12, scale: 4, default: "0.0", null: false
     t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.integer "rewards"
     t.index ["order_id"], name: "index_spree_line_items_on_order_id"
     t.index ["tax_category_id"], name: "index_spree_line_items_on_tax_category_id"
     t.index ["variant_id"], name: "index_spree_line_items_on_variant_id"
@@ -482,6 +483,7 @@ ActiveRecord::Schema.define(version: 2018_07_25_141018) do
     t.datetime "discontinue_on"
     t.string "number"
     t.integer "boost_factor", default: 1
+    t.integer "best_variant_id"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
     t.index ["discontinue_on"], name: "index_spree_products_on_discontinue_on"
@@ -1151,6 +1153,7 @@ ActiveRecord::Schema.define(version: 2018_07_25_141018) do
     t.integer "vendor_id"
     t.text "notes"
     t.text "seller"
+    t.integer "rewards"
     t.index ["deleted_at"], name: "index_spree_variants_on_deleted_at"
     t.index ["discontinue_on"], name: "index_spree_variants_on_discontinue_on"
     t.index ["is_master"], name: "index_spree_variants_on_is_master"
@@ -1179,6 +1182,7 @@ ActiveRecord::Schema.define(version: 2018_07_25_141018) do
     t.text "note"
     t.string "reputation_uid"
     t.string "gateway_account_profile_id"
+    t.integer "rewards"
     t.index ["deleted_at"], name: "index_spree_vendors_on_deleted_at"
     t.index ["name"], name: "index_spree_vendors_on_name", unique: true
     t.index ["state"], name: "index_spree_vendors_on_state"

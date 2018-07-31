@@ -17,6 +17,10 @@ Spree.config do |config|
   config.auto_capture_on_dispatch = false
 end
 
+Spree::AppConfiguration.class_eval do
+  preference :rewards, :integer, default: 5
+end
+
 Rails.application.config.after_initialize do |app|
   app.config.spree.stock_splitters << Spree::Stock::Splitter::VendorSplitter
 end

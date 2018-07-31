@@ -25,3 +25,5 @@ en:
           phone: Phone number
       spree/address:
         address2: Address 2 (Optional)
+      spree/vendor:
+        rewards: Global Vendor PTRN Rewards

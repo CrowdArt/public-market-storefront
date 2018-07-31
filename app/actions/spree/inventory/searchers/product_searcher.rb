@@ -7,7 +7,7 @@ module Spree
         option :sort, optional: true
         option :taxon_ids, optional: true
         option :enable_aggs, optional: true, default: proc { false }
-        option :includes, optional: true, default: proc { [:tax_category, master: %i[prices images]] }
+        option :includes, optional: true, default: proc { [:tax_category, :best_variant, master: %i[default_price prices images]] }
 
         def call
           search_products

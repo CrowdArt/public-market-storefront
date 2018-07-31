@@ -60,4 +60,8 @@ en:
     cancel_shipment: Cancel Shipment
     no_enough_units: No %{quantity} units to %{action}
     ship: Mark as Shipped
+    global_rewards: Global Rewards
+    select_rewards: Select Global PTRN Rewards Percentage
+    default_rewards: Default Global Rewards (%{rewards}%)
+    vendor_rewards: Default %{vendor_name} Rewards (%{rewards}%)
 

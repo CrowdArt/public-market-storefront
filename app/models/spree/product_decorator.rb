@@ -2,11 +2,13 @@ module Spree
   module ProductDecorator
     MISSING_TITLE = '[Missing title]'.freeze
 
-    def self.included(base) # rubocop:disable Metrics/AbcSize
+    def self.included(base) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       class << base
         prepend ClassMethods
       end
       base.prepend InstanceMethods
+
+      base.belongs_to :best_variant, class_name: 'Spree::Variant'
 
       base.class_variable_set :@@searchkick_options, base.searchkick_options.merge(
         word_start: base.autocomplete_fields
@@ -31,21 +33,20 @@ module Spree
         name_changed? || super
       end
 
-      def update_best_price
+      def update_best_variant
         # get minimum price of best condition variant
-        min_price = variants.in_stock
-                            .joins(:prices)
-                            .joins(%(
-                              LEFT JOIN "spree_option_value_variants" ON "spree_option_value_variants"."variant_id" = "spree_variants"."id"
-                              LEFT JOIN "spree_option_values" ON "spree_option_values"."id" = "spree_option_value_variants"."option_value_id"
-                              LEFT JOIN "spree_option_types" ON "spree_option_types"."id" = "spree_option_values"."option_type_id"
-                                and "spree_option_types"."name" = 'condition'))
-                            .reorder('spree_option_values.position asc, spree_prices.amount asc')
-                            .limit(1)
-                            .pluck('spree_prices.amount')
-                            .first
+        best_variant = variants.in_stock
+                               .joins(:prices)
+                               .joins(%(
+                                 LEFT JOIN "spree_option_value_variants" ON "spree_option_value_variants"."variant_id" = "spree_variants"."id"
+                                 LEFT JOIN "spree_option_values" ON "spree_option_values"."id" = "spree_option_value_variants"."option_value_id"
+                                 LEFT JOIN "spree_option_types" ON "spree_option_types"."id" = "spree_option_values"."option_type_id"
+                                   and "spree_option_types"."name" = 'condition'))
+                               .reorder('spree_option_values.position asc, spree_prices.amount asc')
+                               .limit(1)
+                               .first
 
-        update(price: min_price) if min_price
+        update(price: best_variant.price, best_variant: best_variant) if best_variant
       end
 
       # can be false
@@ -82,8 +83,12 @@ module Spree
         variation_module_properties&.filter_properties(self) || []
       end
 
-      def estimated_ptrn
-        (price * 0.1).floor(2)
+      def rewards
+        best_variant&.final_rewards || Spree::Config.rewards
+      end
+
+      def rewards_amount
+        (price * rewards / 100.0).floor(3)
       end
 
       private

@@ -16,6 +16,10 @@ Spree::Variant.class_eval do
     main_option&.option_type
   end
 
+  def final_rewards
+    rewards || vendor&.rewards || Spree::Config.rewards
+  end
+
   # assume that first option value is main
   def main_option
     @main_option ||= option_values&.first
