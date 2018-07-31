@@ -38,7 +38,9 @@ gem 'foundation_emails'
 gem 'hashids'
 gem 'httparty'
 
+gem 'oj'
 gem 'searchkick'
+gem 'typhoeus'
 
 gem 'spree', github: 'spree/spree'
 gem 'spree_auth_devise', github: 'abundance-labs/spree_auth_devise'
