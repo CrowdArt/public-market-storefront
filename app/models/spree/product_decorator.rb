@@ -105,7 +105,7 @@ module Spree
       # enable searchkick callbacks in RecalculateVendorVariantPrice
       # when price is included in searchkick index
       def search_fields
-        autocomplete_fields.map { |f| { f => :word_start } } + %i[isbn]
+        autocomplete_fields + %i[isbn]
       end
 
       def autocomplete_fields
