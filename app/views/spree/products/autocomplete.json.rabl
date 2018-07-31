@@ -1,6 +1,7 @@
 collection @products
 
 attributes :name
+attributes :subtitle
 
 node(:price) { |product| product.price_in(current_currency).money }
 
