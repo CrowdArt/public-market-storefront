@@ -45,5 +45,7 @@ Spree::PermittedAttributes.source_attributes.push(
   address_attributes: Spree::PermittedAttributes.address_attributes
 )
 
+Spree::PermittedAttributes.vendor_attributes.push(:rewards)
+
 FrontendConfig = Spree::FrontendConfiguration.new
 FrontendConfig.coupon_codes_enabled = false

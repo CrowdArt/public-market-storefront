@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_multi_vendor.git
-  revision: 54dd1203312c991c60c6f55e28bc07e663c392a4
+  revision: 99377f64c9421ee4077e0d316c64ad7e60707112
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq
@@ -204,7 +204,7 @@ GEM
     ast (2.4.0)
     attr_encrypted (3.1.0)
       encryptor (~> 3.0.0)
-    autoprefixer-rails (9.0.0)
+    autoprefixer-rails (9.0.2)
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)

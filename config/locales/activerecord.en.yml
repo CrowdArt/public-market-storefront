@@ -27,3 +27,5 @@ en:
         address2: Address 2 (Optional)
       spree/vendor:
         rewards: Global Vendor PTRN Rewards
+      spree/variant:
+        rewards: Total Variant Rewards
