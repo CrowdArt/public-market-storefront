@@ -23,6 +23,19 @@ module Spree
           'or'
         end
 
+        def prepare_body(body)
+          return if keywords == '*'
+
+          keyword_query = %i[query bool must dis_max]
+
+          # function score is used with boosting enabled
+          if (function_score = body.dig(:query, :function_score, *keyword_query)).present?
+            function_score[:tie_breaker] = 1
+          elsif (body_keyword_query = body.dig(*keyword_query)).present?
+            body_keyword_query[:tie_breaker] = 1
+          end
+        end
+
         def where
           where_query = {
             active: true,

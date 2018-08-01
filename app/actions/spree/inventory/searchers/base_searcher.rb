@@ -32,7 +32,8 @@ module Spree
             per_page: per_page,
             smart_aggs: smart_aggs,
             where: where,
-            limit: limit
+            limit: limit,
+            &method(:prepare_body)
           )
         end
 
@@ -45,6 +46,10 @@ module Spree
           self.per_page = Spree::Config[:products_per_page] unless per_page.positive?
 
           self.page = [PublicMarket::MAX_PAGES, [page.to_i, 1].max].min
+        end
+
+        def prepare_body(body)
+          body
         end
 
         def fields
