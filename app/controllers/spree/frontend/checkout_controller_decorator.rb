@@ -68,6 +68,8 @@ Spree::CheckoutController.class_eval do
       params[:save_user_address] = '1'
     end
 
+    use_billing_address if params[:order_use_billing_address] == 'yes'
+
     params[:order].delete(:ship_address_id)
   end
 
@@ -124,5 +126,13 @@ Spree::CheckoutController.class_eval do
     permitted_attributes.payment_attributes + [
       source_attributes: permitted_source_attributes
     ]
+  end
+
+  def use_billing_address # rubocop:disable Metrics/AbcSize
+    payment_method_id = params.dig(:order, :payments_attributes).first[:payment_method_id]
+    billing_address = params[:payment_source][payment_method_id][:address_attributes].except(:phone_without_code)
+    billing_address = billing_address.permit(permitted_address_attributes)
+
+    params[:order][:ship_address_attributes].merge!(billing_address)
   end
 end

@@ -22,6 +22,18 @@ h4.upcase.text-color = Spree.t(:shipping_address)
       = label_tag "order_ship_address_id_#{address.id}"
         span = address.full_address
 
+- elsif @payment_sources.blank?
+  .address-options
+    .radio
+      label for='order_use_billing_address_yes'
+        = radio_button_tag 'order_use_billing_address', 'yes', true
+        span = t('addresses.same_as_billing')
+
+    .radio
+      label for='order_use_billing_address_no'
+        = radio_button_tag 'order_use_billing_address', 'no'
+        span = t('addresses.use_new_shipping_address')
+
 = hidden_field_tag 'order[ship_address_attributes][id]', @order.ship_address_id
 
 .address-fields-form--new-address style=('display:none' if @addresses.present?)
