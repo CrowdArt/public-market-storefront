@@ -55,8 +55,7 @@ module Spree
         {
           conversions_month: orders.complete.where('completed_at > ?', 1.month.ago).count,
           slug: slug,
-          variations: variations,
-          filter_variations: filterable_variations
+          variations: variations
         }
       end
 
@@ -71,12 +70,7 @@ module Spree
       end
 
       def variation
-        variations.first
-      end
-
-      # variations availabe in search filters
-      def filterable_variations
-        variation_module_properties&.filter_properties(self) || []
+        variation_module_properties&.variation(self)
       end
 
       def rewards

@@ -15,8 +15,8 @@ ruby:
           .product-card--title = truncate(product.name, length: 100)
           .small.ellipsis = product.subtitle
           .text-muted.small
-            - if (variation = product.variation).present?
-              span.semi-bold = I18n.t("variations.titleized-format.#{variation}", default: variation.titleize)
+            - if (product_variation = product.variation).present?
+              span.semi-bold = variation_name(product_variation)
 
             - product.additional_properties.each do |prop|
               span  • #{prop}

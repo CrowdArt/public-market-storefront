@@ -14,7 +14,7 @@ module Spree
         if (variation_options = variation_filter(variation_module)).present?
           filters << {
             name: 'Format',
-            type: :filter_variations,
+            type: :variations,
             options: variation_options
           }
         end

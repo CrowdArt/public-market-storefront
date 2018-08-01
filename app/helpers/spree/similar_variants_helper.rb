@@ -29,5 +29,9 @@ module Spree
         [published_at, variant.product.property(:edition)].compact.join(': ')
       end
     end
+
+    def variation_name(product_variation)
+      t("variations.titleized-format.#{product_variation}", default: product_variation.titleize)
+    end
   end
 end

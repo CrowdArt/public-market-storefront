@@ -18,7 +18,7 @@ module Spree
         flatten_variation_properties(products).group_by { |p| p['variations'] }.map do |k, v|
           # always select current product of previous product as variation
           product_variation = v.find do |var|
-            [product.id, previous_variation&.id].include?(var[:_id].to_i)
+            selectable_variations.include?(var[:_id].to_i)
           end
 
           # select product with min price as variation
@@ -32,6 +32,10 @@ module Spree
 
           map_variation(k, product_variation, variants)
         end
+      end
+
+      def selectable_variations
+        @selectable_variations ||= [product.id, previous_variation&.id]
       end
 
       def flatten_variation_properties(products)

@@ -2,7 +2,7 @@
   display: grid
   grid-column-gap: 10px
   grid-row-gap: 10px
-  grid-template-columns: repeat(auto-fill, minmax(120px, auto))
+  grid-template-columns: repeat(auto-fill, minmax(120px, 140px))
 
   .variation-block
 
@@ -20,7 +20,7 @@
       &.checked
         border-color: $brand-primary
         background-color: rgba($brand-primary, 0.05)
-        font-weight: 700
+        font-weight: 500
 
       &:hover
         border-color: $brand-primary
@@ -30,8 +30,15 @@
       line-height: 1.20
       margin-top: 6px
 
-      .tex-muted
+      .text-muted
         color: #9b9b9b
+
+      .caret
+        color: #e1e1e1
+        margin-left: 3px
+
+      &--more
+        margin-bottom: 5px
 
 .similar-variants
   &--container

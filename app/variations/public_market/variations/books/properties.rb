@@ -4,16 +4,20 @@ module PublicMarket
       module Properties
         module_function
 
+        # filter format
         def variation_properties(product)
           return ['other'] if (formats = product.property(:format)).blank?
 
-          find_matching_format(formats.split('; '), book_formats)
+          child_formats = find_matching_format(formats.split('; '), book_formats)
+
+          find_matching_format(child_formats, filterable_book_formats)
         end
 
-        def filter_properties(product)
-          return ['other'] if (formats = variation_properties(product)).blank?
+        # Unique PM book format
+        def variation(product)
+          return 'other' if (formats = product.property(:format)).blank?
 
-          find_matching_format(formats, filterable_book_formats)
+          find_matching_format(formats.split('; '), book_formats).first || 'other'
         end
 
         def find_matching_format(initial_formats, formats)
