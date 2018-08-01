@@ -12,6 +12,11 @@ module PublicMarket
           variation_properties(product)
         end
 
+        # Unique PM book format
+        def variation(product)
+          variation_properties(product).first
+        end
+
         def filterable_variations
           available_variations
         end
