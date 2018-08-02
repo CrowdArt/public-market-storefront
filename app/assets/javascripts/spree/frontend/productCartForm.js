@@ -50,6 +50,10 @@ $(document).on('turbolinks:load', function() {
     var singleItemLeft = max === 1;
     $el.prop('disabled', singleItemLeft);
     $('#product-hidden-quantity').attr('disabled', !singleItemLeft);
+
+    var lowStock = max < 5
+    $('.buy-box--quntity-left--value').text(max)
+    $('.buy-box--quntity-left').toggleClass('hide', !lowStock)
   }
 
   var radios = $("#product-variants input[type='radio']");

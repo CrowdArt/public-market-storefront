@@ -22,13 +22,7 @@ ruby:
         = render partial: 'properties', locals: { show_title: true }
 
     .col-xs-12.col-sm-7.col-md-4.col-md-push-4.product-cart-item
-      #cart-form.panel.no-border
-        .panel-body
-          - if can_supply
-            = render partial: 'cart_form', locals: { variants: variants }
-          - else
-            .text-center
-              h4 Out of stock
+      = render partial: 'buy_box', locals: { variants: variants, can_supply: can_supply }
 
       - if can_supply
         p.text-center = render 'spree/shared/payment_methods'
