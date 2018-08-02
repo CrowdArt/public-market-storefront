@@ -1,11 +1,10 @@
-RSpec.describe 'rate order', type: :feature, js: true, vcr: true do
+RSpec.xdescribe 'rate order', type: :feature, js: true, vcr: true do
   subject(:order_page) { page }
 
-  let!(:order) { create :shipped_order }
-  let(:vendor) { create :vendor }
+  let!(:order) { create :shipped_vendor_order }
+  let(:vendor) { order.vendors.first }
 
   before do
-    order.line_items.first.variant.update(vendor: vendor)
     login_as(order.user, scope: :spree_user)
     visit spree.order_path(order)
   end
