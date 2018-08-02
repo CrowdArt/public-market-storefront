@@ -64,4 +64,5 @@ en:
     select_rewards: Select Global PTRN Rewards Percentage
     default_rewards: Default Global Rewards (%{rewards}%)
     vendor_rewards: Default %{vendor_name} Rewards (%{rewards}%)
+    payment_description: "Public Market, Order #%{order_id}"
 
