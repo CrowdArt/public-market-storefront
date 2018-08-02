@@ -1,3 +1,5 @@
+= hidden_field_tag :checkout, '', id: 'order-form-checkout-input'
+
 = render partial: 'spree/shared/error_messages', locals: { target: @order }
 
 = render partial: 'spree/orders/line_items', locals: { line_items: order_form.object.line_items, order_form: order_form }

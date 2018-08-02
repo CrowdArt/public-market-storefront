@@ -1,0 +1,16 @@
+ruby:
+  variant = line_item.variant
+  out_of_stock ||= false
+
+.short-line-item
+  = link_to variant.product
+    = image_tag product_image_or_default(variant.product, :small), class: 'img-responsive'
+
+  div
+    .margin-text-bottom = link_to line_item.name, product_path(variant.product), class: 'plain-link'
+
+    div
+      small.text-muted class=('strike' if out_of_stock) = variant.options_text
+
+      - if out_of_stock
+        small.text-danger.margin-text-left = Spree.t(:out_of_stock)

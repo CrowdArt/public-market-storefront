@@ -1,0 +1,17 @@
+.modal
+  &.modal-vertical-center.in
+    display: flex !important
+    align-items: center
+
+  &.modal-wide-paddings
+    @media (min-width: $screen-xs)
+      .modal-body
+        padding: 20px 30px
+
+      .modal-header
+        padding: 15px 30px
+
+  .close
+    color: $brand-black
+    font-weight: normal
+    opacity: 1

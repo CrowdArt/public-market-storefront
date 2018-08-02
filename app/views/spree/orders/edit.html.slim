@@ -1,4 +1,9 @@
 - @body_id = 'cart'
+- out_of_stock_items = @order.insufficient_stock_lines
+
+- if out_of_stock_items.any?
+  - content_for :content_top
+    = render partial: 'spree/orders/out_of_stock_modal', locals: { items: out_of_stock_items }
 
 .cart_container data-hook="cart_container"
   h3.upcase.text-center-xs = Spree.t(:shopping_cart)
@@ -25,7 +30,7 @@
 
             .form-group
               #checkout-div
-                button.btn.btn-lg.btn-block.btn-primary#checkout-link name='checkout' = t('orders.checkout')
+                button.btn.btn-lg.btn-block.btn-primary#checkout-link type='submit' = t('orders.checkout')
               br
               .text-center = image_tag 'icons/stripe.svg', style: 'width:120px'
 br

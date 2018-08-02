@@ -32,7 +32,7 @@ ruby:
         .row.condensed.flex.align-center
           .col-xs-6.col-sm-8
             - if item_form
-              = item_form.number_field :quantity, min: 0, class: "form-control line_item_quantity", size: 5
+              = item_form.number_field :quantity, min: 0, class: "form-control line_item_quantity #{'out-of-stock-input' if out_of_stock}", size: 5
             - else
               = line_item.quantity
 

@@ -71,7 +71,7 @@
   content: '\e257'
   font-family: 'Glyphicons Halflings'
 
-.check-left, .info-icon-left
+.check-left, .info-icon-left, .cross-icon-left
   &:before
     content: ''
     display: inline-block
@@ -90,6 +90,10 @@
   &.text-info
     &:before
       @include info-icon-bg($brand-info)
+
+.cross-icon-left:before
+  @include cross-icon-bg
+  vertical-align: text-top
 
 .visible-scroll
   &::-webkit-scrollbar

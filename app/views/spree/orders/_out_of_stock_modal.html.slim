@@ -1,0 +1,18 @@
+.modal.modal-wide-paddings.modal-vertical-center.fade.out-of-stock-modal#out-of-stock-modal tabindex='-1' role='dialog' data-backdrop='static' data-keyboard='false'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type='button' class='close' data-dismiss='modal' aria-label='Close'
+          span aria-hidden='true' &times;
+
+        h5.upcase.modal-title.text-black = Spree.t(:out_of_stock)
+
+      .modal-body
+        .cross-icon-left.text-danger.text-medium.out-of-stock-modal--hint
+          = t('orders.unavailable_items')
+
+        .out-of-stock-modal--line-items
+          - items.each do |item|
+            = render partial: 'spree/orders/short_line_item', locals: { line_item: item, out_of_stock: true }
+
+        button.btn.btn-primary.btn-block#remove-out-of-stock data-dismiss='modal' aria-label='Close' = t('orders.remove_continue')
