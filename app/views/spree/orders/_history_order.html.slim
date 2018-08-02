@@ -1,0 +1,35 @@
+= render layout: 'spree/users/account_template'
+  .order-page
+    nav#breadcrumbs
+      ol.breadcrumb
+        li
+          a href='/account/orders' Order History
+        li Order # #{@order.number}
+
+    h3.upcase.no-margin.text-center-xs Order # #{@order.number}
+    br
+
+    .text-medium = render 'spree/orders/order', order: @order
+
+    .row.condensed
+      - if @order.has_step?("address")
+        .col-xs-12.col-sm-6
+          .panel.panel-default
+            .panel-body
+              h5.upcase.no-margin-top = Spree.t(:billing_address)
+              = render 'spree/shared/address', address: @order.bill_address
+
+      - if @order.has_step?("delivery")
+        .col-xs-12.col-sm-6
+          .panel.panel-default
+            .panel-body
+              h5.upcase.no-margin-top = Spree.t(:shipping_address)
+              = render 'spree/shared/address', address: @order.ship_address
+
+      - if @order.has_step?("payment")
+        .col-xs-12
+          .panel.panel-default
+            .panel-body
+              h5.upcase.no-margin-top = Spree.t(:payment_information)
+              .payment-info
+                = render collection: @order.payments.valid, partial: 'spree/shared/payment'

@@ -1,0 +1,22 @@
+- unless spree_current_user.confirmed?
+  - content_for :bottom_scripts
+    - message = { info: render(partial: 'spree/users/confirm_alert') }
+    javascript:
+      #{render(partial: 'spree/shared/flash_messages.js', formats: %i[js], locals: { messages: message, open_delay: 1000, additional_class: 'slide-down' })}
+
+.panel.no-border
+  .panel-body.successull-order-completion
+    = render partial: 'spree/orders/successful_order', locals: { order: @order }
+
+.panel.no-border
+  .panel-body.cart_container
+    = render partial: 'spree/ratings/form'
+
+    h3.text-black.text-center-xs = Spree.t(:order_summary)
+
+    = render partial: 'spree/orders/line_items', locals: { line_items: @order.line_items }
+
+    .container-fluid
+      .row
+        .col-md-4.col-md-offset-8.col-sm-5.col-sm-offset-7
+          = render partial: 'spree/shared/order_total', locals: { order: @order }

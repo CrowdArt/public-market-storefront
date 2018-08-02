@@ -61,6 +61,7 @@ Spree::OrdersController.class_eval do
     @order = Spree::Order.includes(line_items: [variant: %i[option_values images product]],
                                    bill_address: :state, ship_address: :state)
                          .find_by!(number: params[:id])
+    @account_tab = :orders
 
     return unless @order.rating_uid
     @rating = Rails.cache.fetch(@order.rating_uid) do

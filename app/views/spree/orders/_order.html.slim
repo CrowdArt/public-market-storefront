@@ -1,0 +1,46 @@
+- order.shipments.each do |shipment|
+  .panel.panel-default
+    .panel-heading
+      .row.consensed
+        .col-xs-12.col-sm-4
+          .text-uppercase = t('users.orders-history.tracking')
+          - if shipment.tracking_url
+            = link_to(shipment.tracking, shipment.tracking_url)
+          - elsif shipment.tracking.present?
+            = shipment.tracking
+          - else
+            | N/A
+        .col-xs-6.col-sm-4
+          .text-uppercase = t('users.orders-history.placed')
+          = l(order.completed_at.to_date)
+        .col-xs-6.col-sm-4
+          .text-uppercase = t('users.orders-history.order')
+          = link_to order.number, order_url(order)
+    .panel-body
+      p.text-bold
+        span.pull-right = l (shipment.shipped_at || shipment.updated_at).to_date
+        span #{Spree.t(:status)}: #{Spree.t("shipment_states.#{shipment.state}").titleize}
+
+      = render partial: 'spree/orders/line_item_history', collection: order.line_items, as: :line_item
+      br
+
+      p.text-muted
+        span style='margin-right: 15px'
+          = t('users.orders-history.sold-by')
+          '
+          = shipment.vendor.name
+        span = vendor_reputation_text(shipment.vendor)
+        br
+        span
+          = t('users.orders-history.your-rating')
+          '  (Unrated)
+
+      .row
+        .col-xs-12.col-sm-6
+          a.btn.btn-block.btn-primary = t('users.orders-history.rate-merchant')
+        .col-xs-12.col-sm-6
+          a.btn.btn-block.btn-default = t('users.orders-history.contact-merchant')
+      br
+      .text-center.text-muted
+        span> = t('users.orders-history.need-help')
+        = link_to t('users.orders-history.request-support'), main_app.freshdesk_url
