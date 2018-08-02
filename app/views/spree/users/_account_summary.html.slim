@@ -1,6 +1,5 @@
-.account-summary.panel.panel-default.no-border
-  .panel-body
-    h3.upcase.no-margin.text-center-xs = t('users.account-page.welcome', username: @user.username)
+.account-summary
+  h3.upcase.no-margin.text-center-xs = t('users.account-page.welcome', username: @user.username)
 
-    - sections = %i[user_info user_balance address payment_info wallet]
-    = render partial: 'spree/users/summary/template', collection: sections, as: :partial, spacer_template: 'spree/shared/hr_spacer'
+  - sections = %i[user_info user_balance address payment_info wallet]
+  = render partial: 'spree/users/summary/template', collection: sections, as: :partial, spacer_template: 'spree/shared/hr_spacer'

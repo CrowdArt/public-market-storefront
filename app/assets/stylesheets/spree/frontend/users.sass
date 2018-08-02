@@ -40,27 +40,19 @@
     margin-top: -1px
     width: 100%
 
-.account-pages--content .panel
-  @media (min-width: $screen-sm)
-    max-width: 570px
+.account-pages--content
+  & > div
+    background: white
+    padding: 45px 50px
+    @media (max-width: $screen-xs-max)
+      padding: 0
 
 .account-summary
-  box-shadow: none
-
-  @media (max-width: $screen-xs-max)
-    margin: 0
-
   section
     margin: 25px 0
 
     &:last-child
       margin-bottom: 0
-
-  .panel-body
-    padding: 45px 50px
-
-    @media (max-width: $screen-xs-max)
-      padding: 0
 
   &--user-info
     @media (max-width: $screen-xs-max)

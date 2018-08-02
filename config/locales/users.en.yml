@@ -8,6 +8,17 @@ en:
       manage-addresses: Manage Addresses (%{count})
       manage-payment: Manage Payment Methods (%{count})
       manage-wallet: Manage Wallet Addresses (%{count})
+    orders-history:
+      title: Order History
+      tracking: "Tracking #:"
+      placed: "Placed on:"
+      order: "Order #:"
+      sold-by: "Sold By:"
+      your-rating: "Your Rating:"
+      rate-merchant: Rate Merchant
+      contact-merchant: Contact Merchant
+      need-help: Need help with this shipment?
+      request-support: Request Support
 
     view-tokens: View Tokens
     view-orders: View Orders

@@ -11,4 +11,8 @@ Spree::Shipment.class_eval do
       )
     end
   end
+
+  def vendor
+    @vendor ||= stock_location.vendor
+  end
 end
