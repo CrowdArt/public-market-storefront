@@ -1,23 +1,28 @@
 ruby:
   variant = line_item.variant
   item_form ||= nil
-  out_of_stock = line_item.insufficient_stock?
+  out_of_stock = item_form && line_item.insufficient_stock?
 
 .row.line-item
+  - if out_of_stock
+    .col-xs-12.cart_container--out-of-stock-hint
+      .text-info.info-icon-left.text-medium.semi-bold
+        = t('orders.out_of_stock')
+
   .col-xs-4.col-sm-1
     - if variant.images.length == 0
       = link_to small_image(variant.product, class: 'img-responsive'), variant.product
     - else
       = link_to image_tag(variant.images.first.attachment.url(:small), class: 'img-responsive'), variant.product
+
   .col-xs-8.col-sm-11
     .row
       .col-xs-12.col-sm-6.col-md-7
         p= link_to line_item.name, product_path(variant.product), class: 'plain-link'
-        small.text-muted= variant.options_text
+        small.text-muted class=('strike' if out_of_stock) = variant.options_text
 
         - if out_of_stock
-          small.out-of-stock
-            = Spree.t(:out_of_stock)
+          small.text-danger.margin-text-left = Spree.t(:out_of_stock)
 
       .col-xs-12.col-sm-2
         span.small-xs= line_item.single_money.to_html
