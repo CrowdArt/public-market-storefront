@@ -56,10 +56,7 @@
         = select_tag :quantity, options_for_select(1..50), class: 'form-control buy-box--quntity-select'
         = hidden_field_tag :quantity, 1, disabled: true, id: 'product-hidden-quantity'
 
-        span.text-danger.hide.buy-box--quntity-left.margin-text-left
-          span> Only
-          span.buy-box--quntity-left--value> 1
-          span left!
+        = render partial: 'spree/orders/low_stock_quantity'
 
     - if @product.can_supply?
       .col-xs-12

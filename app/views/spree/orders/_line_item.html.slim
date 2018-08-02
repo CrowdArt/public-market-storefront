@@ -1,5 +1,7 @@
-- variant = line_item.variant
-- item_form ||= nil
+ruby:
+  variant = line_item.variant
+  item_form ||= nil
+  out_of_stock = line_item.insufficient_stock?
 
 .row.line-item
   .col-xs-4.col-sm-1
@@ -12,12 +14,15 @@
       .col-xs-12.col-sm-6.col-md-7
         p= link_to line_item.name, product_path(variant.product), class: 'plain-link'
         small.text-muted= variant.options_text
-        - if line_item.insufficient_stock?
+
+        - if out_of_stock
           small.out-of-stock
             = Spree.t(:out_of_stock)
+
       .col-xs-12.col-sm-2
         span.small-xs= line_item.single_money.to_html
         .text-rewards= t('products.rewards', rewards: line_item.rewards_amount)
+
       .col-xs-12.col-sm-2
         .row.condensed.flex.align-center
           .col-xs-6.col-sm-8
@@ -27,8 +32,12 @@
               = line_item.quantity
 
           - if item_form
-            .col-xs-6.col-sm-12
+            .col-xs-3.col-sm-12
               a.delete href='#' id="delete_#{dom_id(line_item)}" style='font-size:12px' = t('orders.remove_item')
+
+            - unless out_of_stock
+              .col-xs-12
+                = render partial: 'spree/orders/low_stock_quantity', locals: { show: true, value: [quantity_left(variant), 1].max }
 
       .col-xs-12.hidden-xs.col-sm-2.col-md-1
         = line_item.display_amount.to_html unless line_item.quantity.nil?
