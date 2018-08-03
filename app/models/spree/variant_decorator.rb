@@ -20,6 +20,10 @@ Spree::Variant.class_eval do
     rewards || vendor&.rewards || Spree::Config.rewards
   end
 
+  def rewards_amount
+    PublicMarket::RewardsCalculator.call(price, final_rewards)
+  end
+
   # assume that first option value is main
   def main_option
     @main_option ||= option_values&.first

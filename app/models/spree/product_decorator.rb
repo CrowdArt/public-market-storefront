@@ -78,7 +78,7 @@ module Spree
       end
 
       def rewards_amount
-        (price * rewards / 100.0).floor(3)
+        PublicMarket::RewardsCalculator.call(price, rewards)
       end
 
       private

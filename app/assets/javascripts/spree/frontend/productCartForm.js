@@ -37,6 +37,10 @@ $(document).on('turbolinks:load', function() {
     $('#vendor-rep').text(variant.data('vendor-rep'));
   }
 
+  function setRewards(variant) {
+    $('.est-token-rewards span').text(variant.data('rewards'));
+  }
+
   Spree.changeQuantitySelectorOptions = function(count) {
     var $el = $("#cart-form #quantity");
     $el.empty(); // remove old options
@@ -64,12 +68,14 @@ $(document).on('turbolinks:load', function() {
     setVariantOptionText(selectedRadio);
     setAveragePrice(selectedRadio);
     setVendorInfo(selectedRadio);
+    setRewards(selectedRadio);
     Spree.changeQuantitySelectorOptions(selectedRadio.data("quantity"));
 
     radios.click(function (event) {
       setVariantOptionText($(this));
       setAveragePrice($(this));
       setVendorInfo($(this));
+      setRewards($(this));
       Spree.changeQuantitySelectorOptions($(this).data("quantity"));
     });
   }

@@ -30,7 +30,7 @@
           span itemprop="price"
             = Spree.t('product_not_available_in_this_currency')
 
-      .est-token-rewards = t('products.rewards', rewards: @product.rewards_amount)
+      .est-token-rewards == t('products.rewards', rewards: @product.rewards_amount)
 
       .variants.form-group
         - if variants.present?
@@ -40,7 +40,15 @@
               quantity_available = [quantity_left(variant), 1].max
 
             - unless index.nil?
-              .hide = radio_button_tag 'variant_id', variant.id, hash[:selected], 'data-quantity': quantity_available, 'data-avg-price': hash[:median_price], 'data-price': variant.price_in(current_currency).money, 'data-in-stock': variant.can_supply?, 'data-vendor': variant.vendor&.name, 'data-vendor-path': (vendor_path(variant.vendor) if variant.vendor), 'data-vendor-rep': vendor_reputation_text(variant.vendor)
+              .hide = radio_button_tag('variant_id', variant.id, hash[:selected],
+                                       'data-quantity': quantity_available,
+                                       'data-avg-price': hash[:median_price],
+                                       'data-price': variant.price_in(current_currency).money,
+                                       'data-rewards': variant.rewards_amount,
+                                       'data-in-stock': variant.can_supply?,
+                                       'data-vendor': variant.vendor&.name,
+                                       'data-vendor-path': (vendor_path(variant.vendor) if variant.vendor),
+                                       'data-vendor-rep': vendor_reputation_text(variant.vendor))
 
             = label_tag "variant_id_#{variant.id}"
               small.text-muted.hide-in-dropdown style='display:block' Condition

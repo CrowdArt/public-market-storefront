@@ -26,7 +26,7 @@ ruby:
 
       .col-xs-12.col-sm-2
         span.small-xs= line_item.single_money.to_html
-        .text-rewards= t('products.rewards', rewards: line_item.rewards_amount)
+        .text-rewards== t('products.rewards', rewards: line_item.rewards_amount)
 
       .col-xs-12.col-sm-2
         .row.condensed.flex.align-center
