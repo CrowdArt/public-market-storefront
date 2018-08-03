@@ -38,14 +38,6 @@ module Spree
       [variants, other_seller_variants]
     end
 
-    def card_variation(product)
-      product.taxonomy&.variation_module&.const_get('VariationFinder')&.card_variation_name(product)
-    end
-
-    def titleized_variation_name(product_variation)
-      t("variations.titleized-format.#{product_variation}", default: product_variation.titleize)
-    end
-
     def property_value_format(property_name, value)
       case property_name
       when 'book_subject'
