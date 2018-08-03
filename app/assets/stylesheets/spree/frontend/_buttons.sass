@@ -8,6 +8,10 @@ button, .btn
     outline: none
     box-shadow: none
 
+  &.btn-sm
+    padding: 8px 9px
+    text-transform: none
+
 button[data-toggle="dropdown"]
   font-size: $font-size-base
   text-transform: none
@@ -33,6 +37,18 @@ button[data-toggle="dropdown"]
   &:focus, &:active, &:focus:active
     background: darken($btn-default-bg, 15%)
     border-color: darken($btn-default-bg, 15%)
+
+.btn-white
+  background-color: white
+  border-color: #dfdfdf
+  color: #4A4F55
+  letter-spacing: initial
+  &:hover
+    background: darken(white, 3%)
+    color: #4A4F55
+  &:focus, &:active, &:focus:active
+    background: darken(white, 5%)
+    color: #4A4F55
 
 .btn-outlined
   background-color: transparent

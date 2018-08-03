@@ -46,6 +46,7 @@ Spree::UsersController.class_eval do
 
   def show_orders
     @orders = @user.orders
+                   .includes(:shipments, line_items: [variant: [:images, { product: :master }, :option_values]])
                    .complete
                    .order('completed_at desc')
                    .page(params[:page])
