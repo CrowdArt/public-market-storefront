@@ -17,6 +17,8 @@ Spree.config do |config|
   config.auto_capture_on_dispatch = false
 end
 
+Spree::Core::Engine.routes.default_url_options = Rails.application.config.action_mailer.default_url_options
+
 Spree::AppConfiguration.class_eval do
   preference :rewards, :integer, default: 5
 end

@@ -16,6 +16,7 @@ module Spree
       base.before_validation :set_missing_title, if: -> { name.blank? }
 
       base.before_create :reset_boost_factor_if_no_images, if: -> { master.images.blank? }
+      base.after_create_commit :notify_missing_title, if: -> { name == MISSING_TITLE }
 
       base.scope :in_stock, lambda {
         joins(variants: :stock_items).where('spree_stock_items.count_on_hand > ? OR spree_variants.track_inventory = ?', 0, false)
@@ -93,6 +94,12 @@ module Spree
 
       def set_missing_title
         self.name = MISSING_TITLE
+      end
+
+      def notify_missing_title
+        PublicMarket::Workers::Slack::DataReconcilationWorker.perform_async(product_id: id, message_type: 'missing-title')
+      rescue => e # rubocop:disable Style/RescueStandardError
+        Rails.env.production? || Rails.env.staging? ? Raven.capture_exception(e) : raise(e)
       end
     end
 

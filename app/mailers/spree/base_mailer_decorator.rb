@@ -38,12 +38,12 @@ Spree::BaseMailer.class_eval do
   end
 
   def unsubscribe_category(categories)
-    category = categories.detect { |c| Settings["sendgrid-unsubscribe-#{c}"].presence } || :required
-    Settings["sendgrid-unsubscribe-#{category}"]
+    category = categories.detect { |c| Rails.application.credentials[:"sendgrid-unsubscribe-#{c}"].presence } || :required
+    Rails.application.credentials[:"sendgrid-unsubscribe-#{category}"]
   end
 
   def unsubscribe_preferences
-    I18n.t('emails.unsubscribe_preferences').map { |g| Settings["sendgrid-unsubscribe-#{g}"].presence }.compact
+    I18n.t('emails.unsubscribe_preferences').map { |g| Rails.application.credentials[:"sendgrid-unsubscribe-#{g}"].presence }.compact
   end
 
   def line_items_as_text(items)

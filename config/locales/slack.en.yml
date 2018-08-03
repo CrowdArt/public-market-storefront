@@ -1,0 +1,5 @@
+en:
+  slack:
+    data-reconcilation:
+      missing-title: "A recent \"%{taxonomy}\" product was created with \"Missing Title\". <a href='%{url}'>Click here to manually add/fix the data.</a>"
+      uncategorized: "Product in taxonomy \"%{taxonomy}\" with title \"%{product_title}\" is currently \"Uncategorized\". <a href='%{url}'>Click here to manually add/fix the data.</a>"

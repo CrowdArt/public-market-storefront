@@ -18,7 +18,6 @@ gem 'puma', '~> 3.7'
 # memcached
 gem 'dalli'
 
-gem 'config'
 gem 'enumerize'
 gem 'phony_rails'
 
@@ -63,6 +62,8 @@ gem 'json_api_client'
 gem 'mixpanel-ruby'
 
 gem 'swagger-blocks'
+
+gem 'slack-notifier'
 
 group :test do
   gem 'capybara'

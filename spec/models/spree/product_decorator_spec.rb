@@ -83,6 +83,21 @@ RSpec.describe Spree::Product, type: :model do
 
       it { is_expected.to be_valid }
       it { expect(product.name).to eq Spree::Product::MISSING_TITLE }
+
+      describe 'data reconcilation worker' do
+        before do
+          allow(PublicMarket::Workers::Slack::DataReconcilationWorker).to receive(:perform_async)
+
+          product
+        end
+
+        it 'is called' do
+          expect(PublicMarket::Workers::Slack::DataReconcilationWorker).to have_received(:perform_async).with(
+            product_id: product.id,
+            message_type: 'missing-title'
+          )
+        end
+      end
     end
   end
 
