@@ -33,3 +33,7 @@
               h5.upcase.no-margin-top = Spree.t(:payment_information)
               .payment-info
                 = render collection: @order.payments.valid, partial: 'spree/shared/payment'
+    br
+    .text-center.text-muted
+      span> = t('users.orders-history.need-help')
+      = link_to t('users.orders-history.request-support'), main_app.freshdesk_url, target: '_blank'

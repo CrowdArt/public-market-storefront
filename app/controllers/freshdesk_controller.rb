@@ -9,7 +9,9 @@ class FreshdeskController < ApplicationController
       { name: spree_current_user.full_name_or_email,
         email: spree_current_user.email,
         timestamp: utctime,
-        hash: gen_hash_from_params_hash(utctime) }.to_query
+        hash: gen_hash_from_params_hash(utctime),
+        redirect_to: '/support/tickets/new'
+      }.to_query
     ].join
     redirect_to(redirect_url)
   end

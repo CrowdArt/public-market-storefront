@@ -42,7 +42,3 @@
           = mail_to t('orders.contact_email'), t('users.orders-history.contact-merchant'),
                     subject: t('orders.contact_subject', shipment_id: shipment.tracking || shipment.number, order_number: order.number),
                     class: 'btn btn-sm btn-block btn-white'
-      br
-      .text-center.text-muted
-        span> = t('users.orders-history.need-help')
-        = link_to t('users.orders-history.request-support'), main_app.freshdesk_url
