@@ -20,7 +20,7 @@ module Spree
     end
 
     def product_variants(product = @product)
-      variants = product.variants_including_master
+      variants = product.variants
                         .spree_base_scopes
                         .in_stock
                         .active(current_currency)
