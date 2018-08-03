@@ -39,7 +39,9 @@
         .col-xs-12.col-sm-5.col-sm-offset-1
           a.btn.btn-sm.btn-block.btn-white = t('users.orders-history.rate-merchant')
         .col-xs-12.col-sm-5
-          a.btn.btn-sm.btn-block.btn-white = t('users.orders-history.contact-merchant')
+          = mail_to t('orders.contact_email'), t('users.orders-history.contact-merchant'),
+                    subject: t('orders.contact_subject', shipment_id: shipment.tracking || shipment.number, order_number: order.number),
+                    class: 'btn btn-sm btn-block btn-white'
       br
       .text-center.text-muted
         span> = t('users.orders-history.need-help')
