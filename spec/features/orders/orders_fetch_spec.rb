@@ -39,11 +39,14 @@ RSpec.describe 'Orders fetch', type: :request do
         let(:other_unit) { order.inventory_units.second }
         let(:vendor) { unit.variant.vendor }
 
-        it { expect(json).to include(orders: [hash_including(order_identifier: order.number)]) }
-        it { expect(json.to_s).to match(unit.variant.sku) }
+        it { expect(json).to include(orders: [hash_including(order_number: order.number)]) }
+        it { expect(json.dig(:orders, 0, :line_items, 0, :sku)).to match(unit.variant.sku) }
+        it { expect(json.dig(:orders, 0, :line_items, 0, :name)).to match(unit.variant.name) }
+        it { expect(json.dig(:orders, 0, :line_items, 0, :price)).to eq(unit.line_item.price.to_s) }
         it { expect(json.to_s).not_to match(other_unit.variant.sku) }
-        it { expect(json.to_s).to match(order.hash_id) }
-        it { expect(json.to_s).to match(unit.hash_id) }
+        it { expect(json.dig(:orders, 0, :id)).to match(order.hash_id) }
+        it { expect(json.dig(:orders, 0, :total)).to eq(unit.line_item.price.to_s) }
+        it { expect(json.dig(:orders, 0, :shipping_cost)).to eq('0.0') }
       end
 
       context 'when order is paid' do

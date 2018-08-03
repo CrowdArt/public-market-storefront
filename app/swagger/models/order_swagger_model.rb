@@ -43,6 +43,12 @@ module Swagger
         property :sku do
           key :type, :string
         end
+        property :name do
+          key :type, :string
+        end
+        property :price do
+          key :type, :float
+        end
         property :quantity do
           key :type, :integer
         end
@@ -61,7 +67,7 @@ module Swagger
           end
         end
 
-        property :order_identifier do
+        property :order_number do
           key :type, :string
         end
 
@@ -71,6 +77,14 @@ module Swagger
 
         property :created_at do
           key :type, :datetime
+        end
+
+        property :total do
+          key :type, :float
+        end
+
+        property :shipping_cost do
+          key :type, :float
         end
       end
 
@@ -101,13 +115,17 @@ module Swagger
                 line_items: [
                   {
                     sku: 'PIDC790519MCMPDYY8',
+                    name: 'Listing Name',
+                    price: '2.99',
                     quantity: 1,
-                    ids: ["32323"]
+                    ids: ['32323']
                   }
                 ],
-                id: "12323",
-                order_identifier: 'PM2104212',
-                created_at: '2018-02-16T11:15:00.093Z'
+                id: '12323',
+                order_number: 'PM2104212',
+                created_at: '2018-02-16T11:15:00.093Z',
+                total: '2.99',
+                shipping_cost: '0.0'
               }
             ],
             count: 1

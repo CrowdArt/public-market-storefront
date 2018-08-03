@@ -41,6 +41,6 @@ Spree::Api::V1::OrdersController.class_eval do
   end
 
   def permitted_order_attributes
-    %i[order_number item_number action tracking_number shipped_at]
+    %i[order_number item_number sku action tracking_number shipped_at]
   end
 end

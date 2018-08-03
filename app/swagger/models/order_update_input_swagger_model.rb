@@ -16,6 +16,10 @@ module Swagger
               key :type, :string
             end
 
+            property :sku do
+              key :type, :string
+            end
+
             property :action do
               key :type, :string
               key :enum, %i[confirm cancel]
@@ -38,6 +42,11 @@ module Swagger
             action: 'confirm',
             tracking_number: '10042300020233232',
             shipped_at: '1531757362'
+          },
+          {
+            order_number: 'RS2104213',
+            sku: 'AR-3480R',
+            action: 'cancel'
           }
         ]
       end

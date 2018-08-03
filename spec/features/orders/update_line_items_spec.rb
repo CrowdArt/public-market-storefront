@@ -57,5 +57,16 @@ RSpec.describe 'Update line items', type: :request do
         it { is_expected.to have_http_status(:ok) }
       end
     end
+
+    context 'when sku is passed' do
+      let(:order) { create(:vendor_order_ready_to_ship, line_items_quantity: 2) }
+      let(:updates) { [{ order_number: order.number, sku: unit.variant.sku, action: :confirm }] }
+      let(:other_unit) { order.inventory_units.where.not(id: unit.id).first }
+
+      it { is_expected.to have_http_status(:ok) }
+      it { expect(json).to include(result: { unit.variant.sku.to_sym => 'shipped' }) }
+      it { expect { update }.to change { unit.reload.state }.from('on_hand').to('shipped') }
+      it { expect { update }.to change { other_unit.reload.state }.from('on_hand').to('shipped') }
+    end
   end
 end
