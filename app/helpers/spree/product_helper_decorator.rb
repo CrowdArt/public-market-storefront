@@ -16,7 +16,7 @@ module Spree
     end
 
     def cache_key_for_product(product = @product, opts = {})
-      ([:v18, product.cache_key, product.rewards] + common_product_cache_keys + opts.to_a).compact.join('/')
+      ([:v19, product.cache_key, product.rewards] + common_product_cache_keys + opts.to_a).compact.join('/')
     end
 
     def product_variants(product = @product)
@@ -38,12 +38,22 @@ module Spree
       [variants, other_seller_variants]
     end
 
+    def card_variation(product)
+      product.taxonomy&.variation_module&.const_get('VariationFinder')&.card_variation_name(product)
+    end
+
+    def titleized_variation_name(product_variation)
+      t("variations.titleized-format.#{product_variation}", default: product_variation.titleize)
+    end
+
     def property_value_format(property_name, value)
       case property_name
       when 'book_subject'
         value.split('; ', 2).first&.titleize
       when 'author'
         value
+      when 'music_format'
+        titleized_variation_name(value)
       else
         value
       end

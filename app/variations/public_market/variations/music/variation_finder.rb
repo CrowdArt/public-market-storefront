@@ -3,13 +3,15 @@ module PublicMarket
     module Music
       class VariationFinder < BaseVariationFinder
         class << self
-          def variation_name(format, variation)
-            if format == 'vinyl'
-              vinyl_speed = variation.respond_to?(:property) ? variation.property(:vinyl_speed) : variation[:vinyl_speed]
-              format += " (#{vinyl_speed})" if vinyl_speed
+          def variation_name(variation, product)
+            return if variation.blank?
+
+            if variation == 'vinyl'
+              vinyl_speed = product.respond_to?(:property) ? product.property(:vinyl_speed) : product[:vinyl_speed]
+              variation += " (#{vinyl_speed})" if vinyl_speed
             end
 
-            format&.titleize
+            I18n.t("variations.titleized-format.#{variation}", default: variation.titleize)
           end
         end
       end

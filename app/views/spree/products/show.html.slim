@@ -36,7 +36,7 @@ ruby:
       ' #{sanitize(@product.name)}
 
       - if (product_variation = @product.variation)
-        ' (#{variation_name(product_variation)})
+        ' (#{titleized_variation_name(product_variation)})
 
     - if subtitle = @product.subtitle
       p.product-author.no-margin-top

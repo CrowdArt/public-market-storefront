@@ -6,6 +6,10 @@ module PublicMarket
           return if format.blank?
           I18n.t("variations.titleized-format.#{format}", default: format.titleize)
         end
+
+        def card_variation_name(product)
+          variation_name(product.variation, product)
+        end
       end
     end
   end
