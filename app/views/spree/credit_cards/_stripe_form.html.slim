@@ -32,6 +32,11 @@ ruby:
 
 #stripe-card-inputs hidden=true
 
+.checkbox.checkbox-blue
+  = form.check_box :default, class: 'form-control'
+  label for='credit_card_default'
+    span.flex.align-center = Spree.t(:default_payment_method)
+
 br
 
 .billing-adddress-form id="#{form.object_name}-address-fields-form"

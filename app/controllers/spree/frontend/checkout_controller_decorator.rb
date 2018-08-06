@@ -106,7 +106,7 @@ Spree::CheckoutController.class_eval do
     #   end
     # end
 
-    @payment_sources = try_spree_current_user.credit_cards.order(:id) if try_spree_current_user&.respond_to?(:credit_cards)
+    @payment_sources = try_spree_current_user.credit_cards.order(default: :desc) if try_spree_current_user&.respond_to?(:credit_cards)
     stripe_payment_method = Spree::PaymentMethod.available.find_by(type: 'Spree::Gateway::StripeGateway')
     @credit_card = Spree::CreditCard.new(payment_method: stripe_payment_method, address: Spree::Address.build_default)
   end

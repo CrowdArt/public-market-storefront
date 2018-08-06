@@ -65,4 +65,5 @@ en:
     default_rewards: Default Global Rewards (%{rewards}%)
     vendor_rewards: Default %{vendor_name} Rewards (%{rewards}%)
     payment_description: "Public Market, Order #%{order_id}"
+    default_payment_method: Make this my default payment method
 

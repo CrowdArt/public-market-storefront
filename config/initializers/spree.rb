@@ -44,6 +44,7 @@ Spree::PermittedAttributes.source_attributes.push(
   :funding,
   :card_name,
   :use_shipping,
+  :default,
   address_attributes: Spree::PermittedAttributes.address_attributes
 )
 

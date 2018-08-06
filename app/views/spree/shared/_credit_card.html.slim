@@ -23,6 +23,9 @@
     address.no-margin-bottom
       = render partial: 'spree/addresses/address_inner', locals: { address: address }
 
+  - if card.default?
+    span.label.label-success--inverse.upcase Default
+
 - content_for(:panel_footer, flush: true)
   = link_to edit_credit_card_path(card), data: { turbolinks: false }, class: 'pull-left'
     i.glyphicon.glyphicon-pencil>

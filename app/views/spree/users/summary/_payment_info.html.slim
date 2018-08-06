@@ -1,7 +1,7 @@
 section.account-summary--payment-info
   .text-medium.text-muted.upcase.margin-text-bottom = t('users.account-page.default-payment-method')
 
-  - if (card = @user.credit_cards.first).present?
+  - if (card = @user.credit_cards.find_by(default: true)).present?
     .margin-text-bottom
       - card_icon = "credit_cards/icons/#{card.cc_type}.svg"
       - if asset_exists?(card_icon)
