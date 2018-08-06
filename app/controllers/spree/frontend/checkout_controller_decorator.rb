@@ -88,7 +88,7 @@ Spree::CheckoutController.class_eval do
   def before_address
     return unless spree_user_signed_in?
 
-    @addresses = spree_current_user.addresses.order(:id)
+    @addresses = spree_current_user.addresses.order(default: :desc)
     @new_address =
       if @addresses.present? || @order.ship_address.blank?
         Spree::Address.build_default

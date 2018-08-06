@@ -7,7 +7,7 @@ module Spree
     before_action :set_account_tab, only: %i[index edit new]
 
     def index
-      @addresses = @user.addresses
+      @addresses = @user.addresses.order(default: :desc)
     end
 
     def create
@@ -53,7 +53,7 @@ module Spree
     end
 
     def address_params
-      params.require(:address).permit(Spree::PermittedAttributes.address_attributes)
+      params.require(:address).permit(Spree::PermittedAttributes.address_attributes + [:default])
     end
 
     def load_user

@@ -10,6 +10,11 @@
         = form_for @address, html: { id: 'checkout_form_address' } do |f|
           = render partial: 'spree/addresses/fields', locals: { form: f, address_type: 's' }
 
+          .checkbox.checkbox-blue
+            = f.check_box :default, class: 'form-control'
+            = f.label :default
+              span.flex.align-center = Spree.t(:default_shipping_address)
+
           = f.submit Spree.t(:save_my_address), class: 'btn btn-primary'
 
 - content_for :bottom_scripts

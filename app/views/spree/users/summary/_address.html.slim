@@ -1,7 +1,7 @@
 section.account-summary--address
   .text-medium.text-muted.upcase.margin-text-bottom = t('users.account-page.default-shipping-address')
 
-  - if (address = @user.addresses.first).present?
+  - if (address = @user.addresses.order(default: :desc).first).present?
     address.text-black.margin-text-bottom
       = render partial: 'spree/addresses/address_inner', locals: { address: address }
 

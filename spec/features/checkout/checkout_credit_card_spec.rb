@@ -49,7 +49,7 @@ RSpec.describe 'Credit card in checkout flow', type: :feature, js: true, vcr: tr
     context 'with multiple credit cards' do
       include Spree::PaymentHelper
 
-      let!(:credit_card) { create(:credit_card, name: 'First', user: user, payment_method: stripe_card_payment_method) }
+      let!(:credit_card) { create(:credit_card, default: true, name: 'First', user: user, payment_method: stripe_card_payment_method) }
       let!(:different_credit_card) { create(:credit_card, name: 'Second', user: user, payment_method: stripe_card_payment_method) }
 
       before do

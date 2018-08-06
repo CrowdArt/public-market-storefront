@@ -44,7 +44,7 @@ RSpec.describe 'Shipping address in checkout flow', type: :feature, js: true, vc
     end
 
     context 'with multiple user addresses' do
-      let!(:address) { create(:address, user: user) }
+      let!(:address) { create(:address, default: true, user: user) }
       let!(:different_address) { create(:address, address1: 'Another street name', user: user) }
 
       before do

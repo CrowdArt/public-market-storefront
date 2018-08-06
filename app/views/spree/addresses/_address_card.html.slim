@@ -11,6 +11,9 @@
 
     .text-muted = address.phone
 
+    - if address.default?
+      span.label.label-success--inverse.upcase Default
+
 - content_for(:panel_footer, flush: true)
   = link_to edit_address_path(address), data: { turbolinks: false }, class: 'pull-left'
     i.glyphicon.glyphicon-pencil>
