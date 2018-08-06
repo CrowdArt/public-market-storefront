@@ -8,7 +8,7 @@ RSpec.describe 'Credit card deletion', type: :feature, js: true, vcr: true do
   end
 
   it 'deletes card' do
-    click_link 'Remove'
+    click_link 'Delete'
     page.driver.browser.switch_to.alert.accept
     expect(page).to have_text('Card was deleted')
     expect(user.credit_cards.count).to eq 0

@@ -1,36 +1,27 @@
-- content_for(:panel_head, flush: true) do
-  - if card.card_name.present?
-    .credit-card__name.text-uppercase.ellipsis = card.card_name
-
-  - card_icon = "credit_cards/icons/#{card.cc_type}.svg"
-  - if asset_exists?(card_icon)
-    .pull-right
-      = image_tag(card_icon, style: 'width:35px')
-
 - content_for(:panel_body, flush: true) do
-  p
-    strong = card.name.titleize
+  .flex.align-center.wrap.margin-text-bottom.credit-card--head
+    - card_icon = "credit_cards/icons/#{card.cc_type}.svg"
+    - if asset_exists?(card_icon)
 
-  - if spree_current_user.admin?
-    i.pull-right = card.funding.humanize
+        = image_tag(card_icon, style: 'width:35px', class: 'margin-text-right')
 
-  p
-    strong = card.display_number
+    strong = [card.card_name || card.cc_type&.humanize, card.display_number(short: true)].join(' ')
 
-  p.text-muted #{card.month.to_s.rjust(2, '0')} / #{card.year}
+  p.text-muted Expires #{card.month.to_s.rjust(2, '0')} / #{card.year}
+
+  span = card.name.titleize
 
   - if (address = card.address)
-    address.no-margin-bottom
+    address.no-margin-bottom.flex-grow-1.ellipsis
       = render partial: 'spree/addresses/address_inner', locals: { address: address }
 
   - if card.default?
-    span.label.label-success--inverse.upcase Default
+    div
+      span.label.label-success--inverse.upcase Default
 
-- content_for(:panel_footer, flush: true)
-  = link_to edit_credit_card_path(card), data: { turbolinks: false }, class: 'pull-left'
-    i.glyphicon.glyphicon-pencil>
-    | Update
+  br
 
-  = link_to credit_card_path(card), method: :delete, data: { confirm: t('payment_methods.cards.delete_prompt') }, class: 'pull-right'
-    i.glyphicon.glyphicon-trash>
-    | Remove
+  .flex.card-links
+    = link_to 'Edit', edit_credit_card_path(card), data: { turbolinks: false }
+
+    = link_to 'Delete', credit_card_path(card), method: :delete, data: { confirm: t('payment_methods.cards.delete_prompt') }

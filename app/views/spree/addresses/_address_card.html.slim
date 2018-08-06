@@ -1,24 +1,18 @@
-
-- content_for(:panel_head, flush: true)
-  .text-uppercase.ellipsis = address.full_name
-
 - content_for(:panel_body, flush: true)
-  p
-    strong = address.full_name
+  address.no-margin-bottom.ellipsis.flex-grow-1
+    .ellipsis = address.full_name
 
-  address.no-margin-bottom
     = render partial: 'spree/addresses/address_inner', locals: { address: address }
 
     .text-muted = address.phone
 
-    - if address.default?
+  - if address.default?
+    div
       span.label.label-success--inverse.upcase Default
 
-- content_for(:panel_footer, flush: true)
-  = link_to edit_address_path(address), data: { turbolinks: false }, class: 'pull-left'
-    i.glyphicon.glyphicon-pencil>
-    | Update
+  br
 
-  = link_to address_path(address), method: :delete, data: { confirm: t('addresses.delete_prompt') }, class: 'pull-right'
-    i.glyphicon.glyphicon-trash>
-    | Remove
+  .flex.card-links
+    = link_to 'Edit', edit_address_path(address), data: { turbolinks: false }
+
+    = link_to 'Delete', address_path(address), method: :delete, data: { confirm: t('addresses.delete_prompt') }

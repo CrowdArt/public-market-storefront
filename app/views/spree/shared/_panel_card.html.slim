@@ -4,11 +4,5 @@ ruby:
 
 div class=wrapper_class
   .panel.panel-default.flex.column
-    .panel-heading.condensed
-      = content_for(:panel_head)
-
-    .panel-body.condensed.flex-grow-1
+    .panel-body.flex.column.between.flex-grow-1
       = content_for(:panel_body)
-
-    .panel-footer.condensed
-      = content_for(:panel_footer)

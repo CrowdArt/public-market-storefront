@@ -15,6 +15,9 @@
 .form-group id="#{address_type}address1"
   = form.text_field :address1, class: 'form-control input-lg', placeholder: Spree.t(:address1), required: true
 
+.form-group id="#{address_type}address1"
+  = form.text_field :address2, class: 'form-control input-lg', placeholder: Spree.t(:address2)
+
 .form-group.custom-select-wrapper id="#{address_type}country"
   / = address_fields.select :country_id, options_for_select(available_countries.map { |c| [c.name, c.id, { 'data-country-code' => c.iso }]}, @credit_card.address.country_id), {}, { disabled: true, class: 'form-control' }
   = form.select :country_id, options_for_select([[country.name, country.id, { 'data-country-code' => country.iso }]], country.id), {}, { disabled: true, class: 'form-control input-lg' }
@@ -33,6 +36,6 @@
     = form.label :zipcode, t('forms.address.zip_postal_code')
 
 .form-group.with-error-hint.address-phone-input id="#{address_type}phone"
-  = phone_field_tag "#{form.object_name}[phone_without_code]", '', class: 'form-control input-lg'
+  = phone_field_tag "#{form.object_name}[phone_without_code]", form.object.phone, class: 'form-control input-lg'
   = form.hidden_field :phone, class: 'form-control input-lg'
   span.text-small.text-danger

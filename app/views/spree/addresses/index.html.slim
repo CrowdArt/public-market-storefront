@@ -1,11 +1,14 @@
 = render layout: 'spree/users/account_template'
-  h1 = t('account.shipping')
+  .row.condensed.flex.eq-height-columns
+    .col-xs-12
+      h3.upcase.no-margin = t('account.shipping')
+      br
 
-  - if @addresses.any?
-    .row.condensed.flex.eq-height-columns
-      = render layout: 'spree/shared/panel_card', partial: 'spree/addresses/address_card', collection: @addresses, as: :address, locals: { wrapper_class: 'address-card col-lg-4 col-md-4 col-sm-6 col-xs-12' }
+    - if @addresses.any?
+      = render layout: 'spree/shared/panel_card', partial: 'spree/addresses/address_card', collection: @addresses, as: :address, locals: { wrapper_class: 'address-card col-sm-6 col-xs-12' }
+    - else
+      .col-xs-12
+        p = t('addresses.no_addresses')
 
-  - else
-    p = t('addresses.no_addresses')
-
-  = link_to t('addresses.add_new'), spree.new_address_path, class: 'btn btn-primary', data: { turbolinks: false }
+    .col-sm-7.col-xs-12
+      = link_to t('addresses.add_new'), spree.new_address_path, class: 'btn btn-primary', data: { turbolinks: false }

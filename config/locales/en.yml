@@ -28,7 +28,7 @@ en:
   account:
     summary: My account
     payment: Payment Methods
-    shipping: Shipping Address
+    shipping: Shipping Addresses
     orders: My orders
     confirm_alert: "You haven’t verified your email address. To redeem your PTRN tokens, confirm your email via the email we just sent to <strong>%{email}</strong>"
 
@@ -42,7 +42,7 @@ en:
 
   addresses:
     no_addresses: No addresses provided yet
-    add_new: Add a new address
+    add_new: Add a New Shipping Address
     updated: Updated successfully
     successfully_created: Address has been successfully created
     successfully_removed: Address has been successfully removed

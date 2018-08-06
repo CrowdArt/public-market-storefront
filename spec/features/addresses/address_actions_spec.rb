@@ -80,7 +80,7 @@ RSpec.describe 'address actions', type: :feature do
     end
 
     it 'removes shipping address' do
-      click_link 'Remove'
+      click_link 'Delete'
       page.driver.browser.switch_to.alert.accept
       expect(page).to have_text(I18n.t('addresses.no_addresses'))
     end
