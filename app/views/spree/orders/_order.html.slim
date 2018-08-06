@@ -1,8 +1,8 @@
 - order.shipments.each do |shipment|
   .panel.panel-default
     .panel-heading
-      .row.consensed
-        .col-xs-12.col-sm-4
+      .row.consensed.col-margin-bottom
+        div class=(@order ? 'col-lg-3 col-xs-6' : 'col-sm-4 col-xs-12')
           .text-uppercase = t('users.orders-history.tracking')
           - if shipment.tracking_url
             = link_to(shipment.tracking, shipment.tracking_url)
@@ -10,12 +10,22 @@
             = shipment.tracking
           - else
             | N/A
-        .col-xs-6.col-sm-4
+        .col-xs-6 class=(@order ? 'col-lg-3' : 'col-sm-4')
           .text-uppercase = t('users.orders-history.placed')
           = l(order.completed_at.to_date)
-        .col-xs-6.col-sm-4
-          .text-uppercase = t('users.orders-history.order')
-          = link_to order.number, order_url(order)
+        - if @order
+          .col-xs-6.col-lg-3
+            .text-uppercase = t('users.orders-history.total')
+            = order.display_total.to_html
+          .col-xs-6.col-lg-3
+            .nowrap
+              span.text-uppercase> = t('users.orders-history.rewards')
+              = link_to 'ℹ️', '#', class: 'btn btn-link no-padding disabled', disabled: true
+            .semi-bold.ptrn = order.ptrn_rewards
+        - else
+          .col-xs-6.col-sm-4
+            .text-uppercase = t('users.orders-history.order')
+            = link_to order.number, order_url(order)
     .panel-body
       p.text-bold
         span.pull-right = l (shipment.shipped_at || shipment.updated_at).to_date
@@ -24,7 +34,7 @@
       = render partial: 'spree/orders/line_item_history', collection: order.line_items, as: :line_item
       br
 
-      p.text-muted
+      .text-muted
         span style='margin-right: 15px'
           = t('users.orders-history.sold-by')
           '
@@ -34,6 +44,7 @@
         span
           = t('users.orders-history.your-rating')
           '  (Unrated)
+      br
 
       .row
         .col-xs-12.col-sm-5.col-sm-offset-1

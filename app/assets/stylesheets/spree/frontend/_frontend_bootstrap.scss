@@ -14,6 +14,12 @@
   }
 }
 
+.col-margin-bottom {
+  .col-xs-12, .col-xs-6, .col-sm-12, .col-sm-6 {
+    margin-bottom: $grid-gutter-width / 4
+  }
+}
+
 .label {
   padding: .2em .6em;
 }

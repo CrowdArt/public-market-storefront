@@ -14,10 +14,12 @@ en:
       placed: "Placed on:"
       order: "Order #:"
       sold-by: "Sold By:"
+      total: "Total:"
+      rewards: "Rewards:"
       your-rating: "Your Rating:"
       rate-merchant: Rate Merchant
       contact-merchant: Contact Merchant
-      need-help: Need help with this shipment?
+      need-help: Need help with this order?
       request-support: Request Support
 
     view-tokens: View Tokens
