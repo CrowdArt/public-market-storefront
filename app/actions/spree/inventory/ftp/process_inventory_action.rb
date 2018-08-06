@@ -13,8 +13,8 @@ module Spree
             vendor_id: vendor.id
           }
 
-          each_ftp_file do |file|
-            Inventory::UploadFileAction.call(options.merge(file_path: file))
+          each_ftp_file do |original_name, file|
+            Inventory::UploadFileAction.call(options.merge(file_path: file, original_name: original_name))
           end
         end
 
@@ -23,9 +23,9 @@ module Spree
         def each_ftp_file
           ftp = PublicMarket::FTP.new(ftp_key, debug: true)
           ftp.nlst.grep(/.txt/).sort.each do |file|
-            ftp_file = Tempfile.new(['inventory', SecureRandom.urlsafe_base64].join('-'))
-            ftp.get(file, ftp_file)
-            yield(ftp_file)
+            tmp_file = Tempfile.new(['inventory', SecureRandom.urlsafe_base64].join('-'))
+            ftp.get(file, tmp_file)
+            yield(file, tmp_file)
             ftp.delete(file)
           end
         ensure
