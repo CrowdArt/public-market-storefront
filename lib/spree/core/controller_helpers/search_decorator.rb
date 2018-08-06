@@ -4,7 +4,7 @@ module Spree
       module Search
         ALLOWED_PER_PAGE = %w[12 24 36 48 60].freeze
 
-        def build_searcher(request_params, opts = {})
+        def build_searcher(request_params, opts: {}, searcher_class: Spree::Config.searcher_class)
           request_params[:per_page] =
             if ALLOWED_PER_PAGE.include?(request_params[:per_page])
               request_params[:per_page]
@@ -17,7 +17,7 @@ module Spree
           )
           search_params[:current_user] = try_spree_current_user
 
-          Spree::Config.searcher_class.new(**search_params)
+          searcher_class.new(**search_params)
         end
       end
     end

@@ -13,7 +13,7 @@ module Spree
       @card_size = :medium
 
       return if mobile? && !@taxon.depth.positive?
-      @products = build_searcher(params, taxon_ids: [@taxon.id]).call
+      @products = build_searcher(params, opts: { taxon_ids: [@taxon.id] }).call
 
       respond_to do |format|
         format.html

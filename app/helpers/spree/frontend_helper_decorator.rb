@@ -86,10 +86,6 @@ module Spree
       end
     end
 
-    def home_top_categories_cache_key(top_categories)
-      [:v2, :home, :top_categories, (Spree::Taxon.where(name: top_categories).maximum(:updated_at) || Time.zone.today).to_s(:number)]
-    end
-
     def product_card_size(size = nil)
       size == :medium ? 'col-lg-3 col-md-3 col-sm-4 col-xs-6' : 'col-lg-2 col-md-3 col-sm-4 col-xs-6'
     end

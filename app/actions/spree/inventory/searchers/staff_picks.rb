@@ -6,23 +6,24 @@ module Spree
 
         private
 
-        def fields
-          %i[boost_factor]
-        end
-
-        def where
-          {
-            active: true,
-            price: { not: nil }
-          }
+        def add_search_filters(query)
+          super.merge(
+            boost_factor: {
+              gt: 1
+            }
+          )
         end
 
         def order
-          {
-            boost_factor: {
-              order: :desc, unmapped_type: :integer
+          if sort.present?
+            super
+          else
+            {
+              boost_factor: {
+                order: :desc, unmapped_type: :integer
+              }
             }
-          }
+          end
         end
       end
     end

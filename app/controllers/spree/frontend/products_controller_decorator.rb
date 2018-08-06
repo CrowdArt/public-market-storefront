@@ -3,13 +3,26 @@ module Spree
     def self.prepended(base)
       base.before_action :save_return_to, only: :show
       base.before_action :load_product, only: %i[show similar_variants]
-      base.before_action :load_taxon, only: %i[show autocomplete]
+      base.before_action :load_taxon_from_taxon_id, only: %i[show autocomplete]
       base.include SimilarVariantsHelper
     end
 
     def best_selling
       params[:sort] ||= { popularity: 'all_time' }
-      @products = build_searcher(params).call
+
+      searcher_opts = {}
+      searcher_opts[:taxon_ids] = [@taxon.id] if @taxon.present?
+
+      @products = build_searcher(params, opts: searcher_opts).call
+
+      respond_to do |format|
+        format.html { render action: :index }
+        format.js { render 'spree/shared/search/products' }
+      end
+    end
+
+    def staff_picks
+      @products = build_searcher(params, searcher_class: Spree::Inventory::Searchers::StaffPicks).call
 
       respond_to do |format|
         format.html { render action: :index }
@@ -25,7 +38,7 @@ module Spree
         @card_size = :medium
       end
 
-      @products = build_searcher(params, searcher_opts).call
+      @products = build_searcher(params, opts: searcher_opts).call
 
       respond_to do |format|
         format.html { render @taxon ? 'spree/taxons/show' : 'spree/products/index' }
@@ -61,7 +74,7 @@ module Spree
 
     private
 
-    def load_taxon
+    def load_taxon_from_taxon_id
       taxon_id = params[:taxon_id]
       @taxon =
         if taxon_id.present?

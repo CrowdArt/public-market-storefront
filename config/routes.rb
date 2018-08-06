@@ -33,8 +33,9 @@ Spree::Core::Engine.add_routes do
 
   get '/taxons/mobile_menu_childs', to: 'taxons#mobile_menu_childs'
 
-  get '/top_selling', to: 'products#best_selling'
-  get '/top_selling/t/*id/', to: 'products#best_selling', as: :top_selling_taxon
+  get '/top-selling', to: 'products#best_selling'
+  get '/top-selling/t/*id/', to: 'products#best_selling', as: :top_selling_taxon
+  get '/staff-picks', to: 'products#staff_picks'
 
   resources :addresses, except: %i[index show new]
 end

@@ -2,20 +2,13 @@ module Spree
   module Inventory
     module Searchers
       class MinPrice < ProductSearcher
-        private
+        option :load, optional: true, default: proc { false }
+        option :limit, optional: true, default: proc { 60 } # #159509912
+        option :sort, optional: true, default: proc { { popularity: 'all_time' } }
+        option :select, optional: true, default: proc { %i[price] }
 
-        def aggs
-          {
-            minimum_price: {
-              min: {
-                field: :price
-              }
-            }
-          }
-        end
-
-        def boost_by
-          {}
+        def call
+          search_products.min_by { |a| a[:price] }[:price]
         end
       end
     end

@@ -3,7 +3,7 @@
 </div>
 <div class="content">
   <h3><%= t('home.staff_picks_header') %></h3>
-  <%= link_to t('home.staff_picks_btn_text'), products_path, {class: "btn btn-primary"} %>
+  <%= link_to t('home.staff_picks_btn_text'), staff_picks_path, {class: "btn btn-primary"} %>
 </div>
 <ul class="staff-picks-items">
   <% staff_picks.each do |p| %>

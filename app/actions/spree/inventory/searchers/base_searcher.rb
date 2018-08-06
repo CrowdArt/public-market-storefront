@@ -10,6 +10,9 @@ module Spree
         option :smart_aggs, optional: true, default: proc { true }
         option :limit, optional: true, default: proc { nil }
         option :includes, optional: true, default: proc { nil }
+        option :load, optional: true, default: proc { true }
+        option :explain, optional: true, default: proc { false }
+        option :select, optional: true
 
         def call
           raise 'Not Implemented'
@@ -21,6 +24,7 @@ module Spree
           Spree::Product.search(
             keywords,
             includes: includes,
+            select: select,
             fields: fields,
             operator: operator,
             boost_by: boost_by,
@@ -33,6 +37,8 @@ module Spree
             smart_aggs: smart_aggs,
             where: where,
             limit: limit,
+            load: load,
+            explain: explain,
             &method(:prepare_body)
           )
         end
