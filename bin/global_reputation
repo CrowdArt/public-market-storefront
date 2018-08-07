@@ -9,4 +9,4 @@ docker run --rm \
   -e='DATABASE_URL=postgresql://postgres:postgres@docker.for.mac.host.internal:5432/global_reputation' \
   -p 3001:3000 \
   registry.gitlab.com/publicmarket/global-reputation \
-  bash -c "rake db:migrate 2>/dev/null || rake db:setup && rails s"
+  bash -c "bundle exec rake db:migrate 2>/dev/null || bundle exec rake db:setup && bundle exec rails s"
