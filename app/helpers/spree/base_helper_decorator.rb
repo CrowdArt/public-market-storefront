@@ -16,6 +16,13 @@ module Spree
       current_order ? current_order.quantity_left(variant) : variant.total_on_hand
     end
 
+    def saved_as_default?(object)
+      object.saved_changes
+            .keys
+            .reject { |key| %w[updated_at].include?(key) }
+            .all? { |key| key == 'default' }
+    end
+
     private
 
     def meta_image

@@ -13,6 +13,8 @@
   br
 
   .flex.card-links
+    = link_to 'Set as Default', address_path(address, address: { default: true }), method: :put
+
     = link_to 'Edit', edit_address_path(address), data: { turbolinks: false }
 
     = link_to 'Delete', address_path(address), method: :delete, data: { confirm: t('addresses.delete_prompt') }

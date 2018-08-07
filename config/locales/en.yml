@@ -38,6 +38,7 @@ en:
       deleted: Card was deleted
       updated: Card was successfully updated
       delete_prompt: Are you sure you want to delete this bank card?
+      set_as_default: Default payment method was succesfully changed
     stripe_agreement: "By submitting this form, you confirm that you have read the <a href='https://stripe.com/us/connect/legal' target='_blank'>Stripe Connected Account Agreement</a> and agree to the terms & conditions."
 
   addresses:
@@ -50,6 +51,7 @@ en:
     use_new_shipping_address: Use a new shipping address
     use_existing_shipping_address: Ship to existing address
     same_as_billing: Same as billing address
+    set_as_default: Default shipping address was succesfully changed
 
   properties:
     vinyl_speed: RPM

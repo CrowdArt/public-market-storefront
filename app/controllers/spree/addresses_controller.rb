@@ -29,7 +29,12 @@ module Spree
 
     def update
       if @address.update(address_params)
-        flash[:notice] = t('addresses.updated')
+        flash[:notice] =
+          if helpers.saved_as_default?(@address)
+            t('addresses.set_as_default')
+          else
+            t('addresses.updated')
+          end
         redirect_to user_addresses_path
       else
         render action: :edit

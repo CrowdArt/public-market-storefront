@@ -35,7 +35,13 @@ module Spree
 
     def update
       if @credit_card.update(card_edit_params)
-        flash[:notice] = t('payment_methods.cards.updated')
+        flash[:notice] =
+          if helpers.saved_as_default?(@credit_card)
+            t('payment_methods.cards.set_as_default')
+          else
+            t('payment_methods.cards.updated')
+          end
+
         redirect_to user_payment_methods_path
       else
         respond_card_with_error

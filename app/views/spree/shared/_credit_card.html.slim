@@ -22,6 +22,8 @@
   br
 
   .flex.card-links
+    = link_to 'Set as Default', credit_card_path(card, credit_card: { default: true }), method: :put
+
     = link_to 'Edit', edit_credit_card_path(card), data: { turbolinks: false }
 
     = link_to 'Delete', credit_card_path(card), method: :delete, data: { confirm: t('payment_methods.cards.delete_prompt') }
