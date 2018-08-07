@@ -2,7 +2,7 @@
   .panel.panel-default
     .panel-heading
       .row.consensed.col-margin-bottom
-        div class=(@order ? 'col-lg-3 col-xs-6' : 'col-sm-4 col-xs-12')
+        div class=(@order ? 'col-xs-6 col-sm-6 col-lg-3' : 'col-sm-4 col-xs-12')
           .text-uppercase = t('users.orders-history.tracking')
           - if shipment.tracking_url
             = link_to(shipment.tracking, shipment.tracking_url)
@@ -10,14 +10,14 @@
             = shipment.tracking
           - else
             | N/A
-        .col-xs-6 class=(@order ? 'col-lg-3' : 'col-sm-4')
+        .col-xs-6 class=(@order ? 'col-sm-6 col-lg-3' : 'col-sm-4')
           .text-uppercase = t('users.orders-history.placed')
           = l(order.completed_at.to_date)
         - if @order
-          .col-xs-6.col-lg-3
+          .col-xs-6.col-sm-6.col-lg-3
             .text-uppercase = t('users.orders-history.total')
             = order.display_total.to_html
-          .col-xs-6.col-lg-3
+          .col-xs-6.col-sm-6.col-lg-3
             .nowrap
               span.text-uppercase> = t('users.orders-history.rewards')
               = link_to 'ℹ️', '#', class: 'btn btn-link no-padding disabled', disabled: true

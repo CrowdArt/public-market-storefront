@@ -4,9 +4,8 @@
   span.cc-type.margin-text-right
     - if (card_icon = "credit_cards/icons/#{source.cc_type}.svg") && asset_exists?(card_icon)
       = image_tag(card_icon)
-  strong
-    = payment_method_dropdown_item(source)
-    .pull-right() (#{payment.display_amount})
+  strong = payment_method_dropdown_item(source)
+  .pull-right #{payment.display_amount}
 
 - else
   = content_tag(:span, payment.payment_method.name)
