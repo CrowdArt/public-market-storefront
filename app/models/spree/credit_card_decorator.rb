@@ -38,9 +38,18 @@ Spree::CreditCard.class_eval do
     self[:month] = self[:month].to_i if self[:month]
   end
 
-  def display_number(short: false)
+  def display_number(show_prefix: false)
     return '' unless last_digits
-    prefix = short ? 'x' : 'XXXX-XXXX-XXXX'
+    prefix =
+      case show_prefix
+      when false
+        nil
+      when :short
+        'x'
+      else
+        'XXXX-XXXX-XXXX'
+      end
+
     "#{prefix}-#{last_digits}"
   end
 

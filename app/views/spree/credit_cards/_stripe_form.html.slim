@@ -22,7 +22,7 @@ ruby:
 .form-group.flex.wrap
   - if edit_card_info
     - formatted_expiry = "#{form.object.month.to_s.rjust(2, '0')} / #{form.object.year}"
-    = text_field_tag :card_number, [form.object.display_number, ' ', formatted_expiry].join(''), disabled: true, class: 'form-control flex-1 input-lg', id: 'credit-card-info'
+    = text_field_tag :card_number, [form.object.display_number(show_prefix: true), ' ', formatted_expiry].join(''), disabled: true, class: 'form-control flex-1 input-lg', id: 'credit-card-info'
 
   #new-stripe-card-wrapper.large.flex-grow-1 class=('hide' if edit_card_info)
   - if edit_card_info
