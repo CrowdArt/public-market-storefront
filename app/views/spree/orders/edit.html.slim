@@ -1,38 +1,11 @@
 - @body_id = 'cart'
-- out_of_stock_items = @order.insufficient_stock_lines
-
-- if out_of_stock_items.any?
-  - content_for :content_top
-    = render partial: 'spree/orders/out_of_stock_modal', locals: { items: out_of_stock_items }
 
 .cart_container data-hook="cart_container"
   h3.upcase.text-center-xs = Spree.t(:shopping_cart)
   br
 
-  - if @order.line_items.empty?
-    div data-hook="empty_cart"
-      .alert.alert-info= Spree.t(:your_cart_is_empty)
-      p= link_to Spree.t(:continue_shopping), products_path, class: 'btn btn-default'
+  = render partial: 'form'
 
-  - else
-    = form_for @order, url: update_cart_path, html: { id: 'update-cart' } do |order_form|
-      = render partial: 'form', locals: { order_form: order_form }
-
-      .container-fluid
-        .row
-          .hidden-xs.col-sm-7.col-md-9
-            = link_to products_path, class: 'continue' do
-              = image_tag 'icons/back.svg', style: 'margin-right: 10px'
-              = Spree.t(:continue_shopping)
-
-          .col-xs-12.col-sm-5.col-md-3
-            = render partial: 'spree/shared/order_total', locals: { order: @order }
-
-            .form-group
-              #checkout-div
-                button.btn.btn-lg.btn-block.btn-primary#checkout-link type='submit' = t('orders.checkout')
-              br
-              .text-center = image_tag 'icons/stripe.svg', style: 'width:120px'
 br
 - [{ icon: 'buyer-rewards.svg', locale_key: 'buyer_rewards' },
   { icon: 'free-shipping.svg', locale_key: 'free_shipping' },

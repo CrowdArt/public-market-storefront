@@ -1,0 +1,3 @@
+document.getElementById('update-cart').outerHTML = "<%= j(render(partial: 'spree/orders/form')) %>"
+
+<%= render partial: 'spree/shared/flash_messages', locals: { sticky: true, additional_class: 'slide-down' } %>
