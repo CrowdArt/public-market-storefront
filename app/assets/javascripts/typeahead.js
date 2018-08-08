@@ -53,7 +53,7 @@ $(document).on('turbolinks:load', Spree.typeaheadSearch)
 
 $(document).on('typeahead:select', '#nav-keyword', function(e, s) {
   if (typeof mixpanel !== "undefined") {
-    var taxonomy = $('#taxon-menu .name').text()
+    var taxonomy = $('#taxon-menu .name').text();
     var keyword = $('#nav-keyword').typeahead('val');
 
     mixpanel.track("product search selection", {

@@ -43,7 +43,7 @@
 
     $( "#navbar-keyword-form" ).submit(function(event) {
       if (typeof mixpanel !== "undefined") {
-        var taxonomy = $('#taxon-menu .name').text()
+        var taxonomy = $('#taxon-menu .name').text();
         var keywords = $('#nav-keyword').typeahead('val');
         mixpanel.track("product search", {
           "taxonomy": taxonomy,
