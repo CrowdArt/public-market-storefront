@@ -1,14 +1,6 @@
 - content_for :header
   = render partial: 'spree/checkout/nav/header'
 
-- content_for :bottom_scripts
-  javascript:
-    $('#checkout-form').on('ajax:beforeSend', function() {
-      $(this).addClass('checkout-loading')
-    }).on('ajax:error', function() {
-      $(this).removeClass('checkout-loading')
-    })
-
 .row
   .col-lg-offset-1.col-lg-6.col-md-7.col-sm-12.checkout-form
     .panel.no-border

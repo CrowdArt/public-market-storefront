@@ -26,16 +26,8 @@ $(document).on('click', '#remove-out-of-stock', function() {
   return false
 })
 
-$(document).on('change', '#update-cart select, input', function() {
+$(document).on('change', '#update-cart select, #update-cart input', function() {
   $('#update-cart').submit()
-})
-
-$(document).on('ajax:beforeSend', '#update-cart', function() {
-  $('#content').addClass('content-loading')
-}).on('ajax:send', '#update-cart', function(event, jqXHR) {
-  jqXHR.always = function() {
-    $('#content').removeClass('content-loading')
-  }
 })
 
 Spree.fetch_cart = function() {

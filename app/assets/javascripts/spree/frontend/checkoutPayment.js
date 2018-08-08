@@ -14,3 +14,10 @@ window.pm.initCreditCardFormToggle = function() {
 
   toggleCreditCardForms()
 }
+
+
+$(document).on('ajax:beforeSend', '#checkout-form', function() {
+  $(this).addClass('checkout-loading')
+}).on('ajax:error', '#checkout-form', function() {
+  $(this).removeClass('checkout-loading')
+})

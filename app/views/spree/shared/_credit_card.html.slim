@@ -24,7 +24,8 @@
   br
 
   .flex.card-links
-    = link_to 'Set as Default', credit_card_path(card, credit_card: { default: true }), method: :put
+    - unless card.default?
+      = link_to 'Set as Default', credit_card_path(card, credit_card: { default: true }), remote: true, method: :put, class: 'trigger-content-load-overlay'
 
     = link_to 'Edit', edit_credit_card_path(card), data: { turbolinks: false }
 

@@ -23,3 +23,11 @@ $(document).on('click', 'a.show-more', function() {
 
   $(this).prev().toggleClass('hide').prev().toggleClass('hide')
 })
+
+$(document).on('ajax:beforeSend', '.trigger-content-load-overlay', function() {
+  $('#content').addClass('content-loading')
+}).on('ajax:send', '.trigger-content-load-overlay', function(event, jqXHR) {
+  jqXHR.always = function() {
+    $('#content').removeClass('content-loading')
+  }
+})
