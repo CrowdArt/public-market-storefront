@@ -1,6 +1,7 @@
 ruby:
   variant = line_item.variant
-  variant_quantity_left = [variant.total_on_hand, 1].max
+  available_qty = variant.total_on_hand
+  variant_quantity_max = [available_qty, line_item.quantity].max
   item_form ||= nil
   out_of_stock = item_form && line_item.insufficient_stock?
 
@@ -33,7 +34,8 @@ ruby:
         .row.condensed.flex.align-center
           .col-xs-6.col-sm-8
             - if item_form
-              = item_form.select :quantity, options_for_select(1..variant_quantity_left, item_form.object.quantity), {}, class: "form-control line_item_quantity #{'out-of-stock-input' if out_of_stock}"
+              - disabled_selector = available_qty == 0 || variant_quantity_max == 1
+              = item_form.select :quantity, options_for_select(1..variant_quantity_max, item_form.object.quantity), {}, disabled: disabled_selector, class: "form-control line_item_quantity #{'out-of-stock-input' if out_of_stock}"
               = item_form.hidden_field :quantity, value: 0, id: "order_line_items_attributes_#{line_item.id}_hidden_quantity", class: 'hidden-line-item-quantity', disabled: true
             - else
               = line_item.quantity
@@ -42,9 +44,8 @@ ruby:
             .col-xs-3.col-sm-12
               a.delete href='#' id="delete_#{dom_id(line_item)}" style='font-size:12px' = t('orders.remove_item')
 
-            - unless out_of_stock
-              .col-xs-12
-                = render partial: 'spree/orders/low_stock_quantity', locals: { show: true, value: variant_quantity_left }
+            .col-xs-12
+              = render partial: 'spree/orders/low_stock_quantity', locals: { show: true, value: available_qty }
 
       .col-xs-12.hidden-xs.col-sm-2.col-md-1
         = line_item.display_amount.to_html unless line_item.quantity.nil?

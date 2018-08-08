@@ -16,6 +16,6 @@ en:
     completed: Completed Orders
     out_of_stock: Sorry, it looks like this item is no longer available please remove it from your cart or move to wish list.
     unavailable_items: Sorry, it looks like these items are no longer available. Please move them to a wish list or remove them to continue.
-    remove_continue: Remove & Continue
+    remove_continue: 'Remove (%{count}) from Cart & Continue'
     contact_email: darin@publicmarket.io
     contact_subject: Help with shipment %{shipment_id} | Order %{order_number}

@@ -2,8 +2,10 @@ ruby:
   value ||= 1
   show ||= false
 
-- if value < 5
-  span.text-danger.buy-box--quntity-left class=('hide' unless show)
+span.text-danger.buy-box--quntity-left class=('hide' unless show)
+  - if value == 0
+    span Out of stock!
+  - elsif value < 5
     span> Only
     span.buy-box--quntity-left--value> = value
     span left!

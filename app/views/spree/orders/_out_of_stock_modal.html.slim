@@ -1,4 +1,4 @@
-.modal.modal-wide-paddings.modal-vertical-center.fade.out-of-stock-modal#out-of-stock-modal tabindex='-1' role='dialog' data-backdrop='static' data-keyboard='false'
+.modal.modal-wide-paddings.modal-vertical-center.fade.out-of-stock-modal#out-of-stock-modal tabindex='-1' role='dialog'
   .modal-dialog
     .modal-content
       .modal-header
@@ -15,4 +15,4 @@
           - items.each do |item|
             = render partial: 'spree/orders/short_line_item', locals: { line_item: item, out_of_stock: true }
 
-        button.btn.btn-primary.btn-block#remove-out-of-stock data-dismiss='modal' aria-label='Close' = t('orders.remove_continue')
+        button.btn.btn-primary.btn-block#remove-out-of-stock data-dismiss='modal' aria-label='Close' = t('orders.remove_continue', count: items.sum(&:quantity))
