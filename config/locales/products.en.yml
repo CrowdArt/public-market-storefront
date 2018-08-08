@@ -1,7 +1,8 @@
 en:
   products:
     sold_by: Ships from and sold by
-    rewards: "+ <span>%{rewards}</span> PTRN Rewards"
+    rewards: "+ Earn %{rewards} PTRN Tokens"
+    total_rewards: "+ %{rewards} PTRN"
 
     mapped_conditions:
       'Like New': 'Used - Like New'

@@ -19,18 +19,18 @@ ruby:
 
   .col-xs-8.col-sm-11
     .row
-      .col-xs-12.col-sm-6.col-md-7
+      .col-xs-12.col-sm-6
         p= link_to line_item.name, product_path(variant.product), class: 'plain-link'
         small.text-muted class=('strike' if out_of_stock) = variant.options_text
 
         - if out_of_stock
           small.text-danger.margin-text-left = Spree.t(:out_of_stock)
 
-      .col-xs-12.col-sm-2
+      .col-xs-12.col-sm-3
         span.small-xs= line_item.single_money.to_html
-        .text-rewards== t('products.rewards', rewards: line_item.single_rewards_amount)
+        .text-rewards = t('products.rewards', rewards: line_item.single_rewards_amount)
 
-      .col-xs-12.col-sm-2
+      .col-xs-12.col-sm-1
         .row.condensed.flex.align-center
           .col-xs-6.col-sm-8
             - if item_form
@@ -47,6 +47,8 @@ ruby:
             .col-xs-12
               = render partial: 'spree/orders/low_stock_quantity', locals: { show: true, value: available_qty }
 
-      .col-xs-12.hidden-xs.col-sm-2.col-md-1
-        = line_item.display_amount.to_html unless line_item.quantity.nil?
+      .col-xs-12.hidden-xs.col-sm-2.text-right
+        strong = line_item.display_amount.to_html unless line_item.quantity.nil?
+        br
+        strong.text-rewards = t('products.total_rewards', rewards: line_item.rewards_amount)
 hr
