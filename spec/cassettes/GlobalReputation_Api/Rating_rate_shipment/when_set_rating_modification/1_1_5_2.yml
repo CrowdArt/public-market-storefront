@@ -5,7 +5,7 @@ http_interactions:
     uri: http://global-reputation:3001/api/v1/ratings
     body:
       encoding: UTF-8
-      string: '{"data":{"type":"ratings","attributes":{"sender":null,"receiver":null,"value":1}}}'
+      string: '{"data":{"type":"ratings","attributes":{"sender":null,"receiver":null,"value":1,"review":null}}}'
     headers:
       X-Api-Key:
       - fe98dddcab33ec21d31b038dd3
@@ -25,24 +25,24 @@ http_interactions:
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"83b96fd465ee6b440ca368c639160293"
+      - W/"30e5a45578cee7aede9d8ef60bfefbda"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - fc501010-7e54-438d-9770-a2407e9303ac
+      - f6208468-4d2d-45b3-a600-55c8645ef541
       X-Runtime:
-      - '0.034128'
+      - '0.025757'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"VF0CWLKLAE0F7M","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-03-30
-        12:26:20 UTC","sender":"UAF94LU2TVZXH6","receiver":"RFN2QD1KBM077B"}}}'
+      string: '{"data":{"id":"VJIY55G8TN8T5H","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-08-08
+        08:00:21 UTC","review":null,"sender":"UJ1L4PYU34FNCZ","receiver":"RGTUN5MT8FOFAY"}}}'
     http_version: 
-  recorded_at: Fri, 30 Mar 2018 12:25:58 GMT
+  recorded_at: Wed, 08 Aug 2018 08:00:21 GMT
 - request:
     method: get
-    uri: http://global-reputation:3001/api/v1/ratings/VF0CWLKLAE0F7M
+    uri: http://global-reputation:3001/api/v1/ratings/VJIY55G8TN8T5H
     body:
       encoding: US-ASCII
       string: ''
@@ -65,27 +65,28 @@ http_interactions:
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"83b96fd465ee6b440ca368c639160293"
+      - W/"30e5a45578cee7aede9d8ef60bfefbda"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 794015e1-ac73-46b2-8146-8ec57bcca919
+      - 95ff2317-154e-46f5-973f-ccc972990380
       X-Runtime:
-      - '0.006748'
+      - '0.005510'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"VF0CWLKLAE0F7M","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-03-30
-        12:26:20 UTC","sender":"UAF94LU2TVZXH6","receiver":"RFN2QD1KBM077B"}}}'
+      string: '{"data":{"id":"VJIY55G8TN8T5H","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-08-08
+        08:00:21 UTC","review":null,"sender":"UJ1L4PYU34FNCZ","receiver":"RGTUN5MT8FOFAY"}}}'
     http_version: 
-  recorded_at: Fri, 30 Mar 2018 12:25:58 GMT
+  recorded_at: Wed, 08 Aug 2018 08:00:21 GMT
 - request:
     method: patch
-    uri: http://global-reputation:3001/api/v1/ratings/VF0CWLKLAE0F7M
+    uri: http://global-reputation:3001/api/v1/ratings/VJIY55G8TN8T5H
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"VF0CWLKLAE0F7M","type":"rating","attributes":{"value":-1}}}'
+      string: '{"data":{"id":"VJIY55G8TN8T5H","type":"rating","attributes":{"value":-1,"review":"new
+        review"}}}'
     headers:
       X-Api-Key:
       - fe98dddcab33ec21d31b038dd3
@@ -105,19 +106,19 @@ http_interactions:
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"e218222c22c85b84dd5c5b6e6f7f2dbc"
+      - W/"02923e6e42adfca6a83bf9c03efcba8d"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 10190828-8a8a-495b-b76d-24dbd626350e
+      - 246730f7-79c6-4953-a6d5-0b9bc837ab9f
       X-Runtime:
-      - '0.015296'
+      - '0.020935'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"VF0CWLKLAE0F7M","type":"rating","attributes":{"value":1,"modification":-1,"created_at":"2018-03-30
-        12:26:20 UTC","sender":"UAF94LU2TVZXH6","receiver":"RFN2QD1KBM077B"}}}'
+      string: '{"data":{"id":"VJIY55G8TN8T5H","type":"rating","attributes":{"value":1,"modification":-1,"created_at":"2018-08-08
+        08:00:21 UTC","review":"new review","sender":"UJ1L4PYU34FNCZ","receiver":"RGTUN5MT8FOFAY"}}}'
     http_version: 
-  recorded_at: Fri, 30 Mar 2018 12:25:58 GMT
+  recorded_at: Wed, 08 Aug 2018 08:00:21 GMT
 recorded_with: VCR 4.0.0

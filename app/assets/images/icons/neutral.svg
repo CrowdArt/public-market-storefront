@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" viewBox="0 0 66 66">
+    <g fill="#F90" fill-rule="evenodd">
+        <circle cx="33" cy="33" r="33" fill-opacity=".1"/>
+        <path fill-rule="nonzero" d="M33 66C14.775 66 0 51.225 0 33S14.775 0 33 0s33 14.775 33 33-14.775 33-33 33zm0-2c17.12 0 31-13.88 31-31C64 15.88 50.12 2 33 2 15.88 2 2 15.88 2 33c0 17.12 13.88 31 31 31z"/>
+        <rect width="34" height="2" x="16" y="45" rx="1"/>
+    </g>
+</svg>

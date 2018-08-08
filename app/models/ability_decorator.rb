@@ -11,7 +11,7 @@ class AbilityDecorator
   private
 
   def persisted_abilities(user)
-    can :rate, Spree::Order, user_id: user.id
+    can :edit, Spree::Order, user_id: user.id
 
     can :create, Spree::Address
     can :manage, Spree::Address, user_id: user.id

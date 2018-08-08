@@ -5,7 +5,7 @@ RSpec.describe Spree::Order, type: :model do
     let(:user) { create :user }
     let(:order) { create :order, user: user }
 
-    it { expect(ability.can?(:rate, order)).to be_truthy } # rubocop:disable RSpec/PredicateMatcher
+    it { expect(ability.can?(:edit, order)).to be_truthy } # rubocop:disable RSpec/PredicateMatcher
   end
 
   describe 'hash_id' do

@@ -5,7 +5,7 @@ http_interactions:
     uri: http://global-reputation:3001/api/v1/ratings
     body:
       encoding: UTF-8
-      string: '{"data":{"type":"ratings","attributes":{"sender":null,"receiver":null,"value":1}}}'
+      string: '{"data":{"type":"ratings","attributes":{"sender":null,"receiver":null,"value":1,"review":null}}}'
     headers:
       X-Api-Key:
       - fe98dddcab33ec21d31b038dd3
@@ -25,27 +25,27 @@ http_interactions:
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"7a10765918a9811bfec923427e880467"
+      - W/"f5ad68579fda932fe06678918fd5634e"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - d5833303-6a5f-42ca-8326-8a4b6a23fcb0
+      - 94c49fc9-feff-4da5-a969-52d4116c4724
       X-Runtime:
-      - '0.036301'
+      - '0.026665'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"V1PH0BT1ONHT68","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-03-30
-        12:26:19 UTC","sender":"UH552LXW5B0VW8","receiver":"RE07OMDGSCH36O"}}}'
+      string: '{"data":{"id":"V8X6BF3H7W6M2X","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-08-08
+        08:00:24 UTC","review":null,"sender":"U98Y3PZ4T79C3G","receiver":"RSWA3G0LKD608Q"}}}'
     http_version: 
-  recorded_at: Fri, 30 Mar 2018 12:25:56 GMT
+  recorded_at: Wed, 08 Aug 2018 08:00:24 GMT
 - request:
     method: post
     uri: http://global-reputation:3001/api/v1/ratings
     body:
       encoding: UTF-8
-      string: '{"data":{"type":"ratings","attributes":{"sender":"UH552LXW5B0VW8","receiver":"RE07OMDGSCH36O","value":1}}}'
+      string: '{"data":{"type":"ratings","attributes":{"sender":"U98Y3PZ4T79C3G","receiver":"RSWA3G0LKD608Q","value":1,"review":"review"}}}'
     headers:
       X-Api-Key:
       - fe98dddcab33ec21d31b038dd3
@@ -65,19 +65,19 @@ http_interactions:
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"8a595da52ddb8ea8a69a304aa7f23f16"
+      - W/"72b3f6b939cfa18ce698f8080cb4567d"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 5b82ec2b-3e83-4614-85bf-eab4da88e70c
+      - 11c1e793-c671-4ee4-a5e4-15625fab3909
       X-Runtime:
-      - '0.010570'
+      - '0.029159'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"VLFQA78IJMCT63","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-03-30
-        12:26:19 UTC","sender":"UH552LXW5B0VW8","receiver":"RE07OMDGSCH36O"}}}'
+      string: '{"data":{"id":"VPMXIF3U80J559","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-08-08
+        08:00:24 UTC","review":"review","sender":"U98Y3PZ4T79C3G","receiver":"RSWA3G0LKD608Q"}}}'
     http_version: 
-  recorded_at: Fri, 30 Mar 2018 12:25:57 GMT
+  recorded_at: Wed, 08 Aug 2018 08:00:24 GMT
 recorded_with: VCR 4.0.0

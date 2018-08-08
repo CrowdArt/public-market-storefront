@@ -20,13 +20,13 @@ RSpec.describe AbilityDecorator, type: :ability do
       context 'with own order' do
         let(:order) { build_stubbed(:order, user: user) }
 
-        it { is_expected.to be_able_to(:rate, order) }
+        it { is_expected.to be_able_to(:edit, order) }
       end
 
       context "with other's order" do
         let(:order) { build_stubbed(:order) }
 
-        it { is_expected.not_to be_able_to(:rate, order) }
+        it { is_expected.not_to be_able_to(:edit, order) }
       end
     end
 

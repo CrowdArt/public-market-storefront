@@ -27,9 +27,12 @@ Spree::Core::Engine.add_routes do
     end
   end
 
-  get '/products/:id/variation/:variation', to: 'products#similar_variants', as: :similar_variants
+  scope :orders do
+    get '/:id/rate/:shipment_id', to: 'orders#rate_shipment', as: :rate_shipment
+    post '/:id/rate/:shipment_id', to: 'orders#update_shipment_rate', as: :update_shipment_rate
+  end
 
-  post '/orders/rate/:id', to: 'orders#rate', as: :rate_order
+  get '/products/:id/variation/:variation', to: 'products#similar_variants', as: :similar_variants
 
   get '/taxons/mobile_menu_childs', to: 'taxons#mobile_menu_childs'
 

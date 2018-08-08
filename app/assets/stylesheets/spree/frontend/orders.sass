@@ -1,13 +1,57 @@
-#rating-form
-  input
-    display: none
-    &:checked + .emoji
-      filter: none
+.rating-positive
+  color: #00C759
+.rating-negative
+  color: #FF6161
+.rating-neutral
+  color: #F90
 
-  .emoji
-    cursor: pointer
-    font-size: 40px
-    line-height: 50px
-    filter: grayscale(100)
-    &:hover
-      font-size: 44px
+#rating-form
+  .inputs
+    label
+      color: #dfdfdf
+      font-weight: normal
+      flex-grow: 1
+      cursor: pointer
+      transition: all 0.3s ease
+
+    .icon
+      position: relative
+      display: inline-block
+      &:after
+        background-image: asset-data-url('icons/rating-check.svg')
+        background-repeat: no-repeat
+        content: ''
+        height: 25px
+        position: absolute
+        right: -5px
+        transition: opacity 0.15s ease
+        opacity: 0
+        top: 0
+        width: 25px
+
+    input
+      display: none
+      &:not(:checked) + .icon
+        color: #dfdfdf !important
+        svg
+          g
+            fill: #dfdfdf
+          circle
+            fill-opacity: 0
+
+      &:checked + .icon:after
+        opacity: 1
+
+  .finish-form
+    display: none
+
+  &.checked
+    .finish-form
+      display: block
+    label
+      cursor: default
+    label:not(.checked)
+      flex-grow: 0.00001
+      opacity: 0
+      .icon
+        width: 0px

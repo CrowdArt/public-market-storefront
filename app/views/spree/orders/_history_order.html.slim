@@ -1,10 +1,6 @@
 = render layout: 'spree/users/account_template'
   .order-page
-    nav#breadcrumbs
-      ol.breadcrumb
-        li
-          a href='/account/orders' Order History
-        li Order # #{@order.number}
+    = render 'breadcrumbs', order: @order
 
     h3.upcase.no-margin.text-center-xs Order # #{@order.number}
     br

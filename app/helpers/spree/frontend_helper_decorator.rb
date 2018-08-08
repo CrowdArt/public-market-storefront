@@ -53,6 +53,12 @@ module Spree
       end
     end
 
+    def rating_html(shipment)
+      rating = cached_rating(shipment)
+
+      rating.present? ? t("orders.rating#{rating.display_value}") : t('orders.rating-none')
+    end
+
     def cached_reputation(vendor)
       uid = vendor&.reputation_uid
       return unless uid
@@ -60,6 +66,18 @@ module Spree
       Rails.cache.fetch(GlobalReputation::Api::Reputation.cache_key(uid), expires_in: 1.hour) do
         GlobalReputation::Api::Reputation.find(uid).first
       end
+    end
+
+    def cached_rating(shipment)
+      return unless shipment.rating_uid
+
+      Rails.cache.fetch(shipment.rating_uid) do
+        GlobalReputation::Api::Rating.find(shipment.rating_uid).first
+      end
+    end
+
+    def can_rate?(shipment)
+      cached_rating(shipment)&.modification.blank?
     end
 
     def flash_messages(opts = {}) # rubocop:disable Metrics/AbcSize

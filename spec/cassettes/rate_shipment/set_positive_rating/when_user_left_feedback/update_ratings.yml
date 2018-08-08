@@ -1,0 +1,123 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://global-reputation:3001/api/v1/ratings
+    body:
+      encoding: UTF-8
+      string: '{"data":{"type":"ratings","attributes":{"sender":null,"receiver":null,"value":"1","review":"some
+        review"}}}'
+    headers:
+      X-Api-Key:
+      - fe98dddcab33ec21d31b038dd3
+      User-Agent:
+      - Faraday v0.12.2
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Etag:
+      - W/"c863cbd0c1c38bdb7020cd785c93193f"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - ae259763-9e8e-4e48-9c70-5f2d1f1f00d4
+      X-Runtime:
+      - '0.026406'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"data":{"id":"VGZJ4QAT96W3Z0","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-08-08
+        11:49:09 UTC","review":"some review","sender":"USGF7EW1W3L84B","receiver":"R8ENG4CRJJWOC9"}}}'
+    http_version: 
+  recorded_at: Wed, 08 Aug 2018 11:49:09 GMT
+- request:
+    method: get
+    uri: http://global-reputation:3001/api/v1/reputations/R8ENG4CRJJWOC9
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Api-Key:
+      - fe98dddcab33ec21d31b038dd3
+      User-Agent:
+      - Faraday v0.12.2
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Etag:
+      - W/"76687e29417103d2738ae14bc0b759d0"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 69825d66-5118-4e65-ba22-86103b8144e5
+      X-Runtime:
+      - '0.012084'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"data":{"id":"R8ENG4CRJJWOC9","type":"reputation","attributes":{"ratings":1,"score":1.0}}}'
+    http_version: 
+  recorded_at: Wed, 08 Aug 2018 11:49:09 GMT
+- request:
+    method: get
+    uri: http://global-reputation:3001/api/v1/ratings/VGZJ4QAT96W3Z0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Api-Key:
+      - fe98dddcab33ec21d31b038dd3
+      User-Agent:
+      - Faraday v0.12.2
+      Content-Type:
+      - application/vnd.api+json
+      Accept:
+      - application/vnd.api+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/vnd.api+json; charset=utf-8
+      Etag:
+      - W/"c863cbd0c1c38bdb7020cd785c93193f"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 493072d2-1fdc-4239-8c19-a11fa86c710a
+      X-Runtime:
+      - '0.007194'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"data":{"id":"VGZJ4QAT96W3Z0","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-08-08
+        11:49:09 UTC","review":"some review","sender":"USGF7EW1W3L84B","receiver":"R8ENG4CRJJWOC9"}}}'
+    http_version: 
+  recorded_at: Wed, 08 Aug 2018 11:49:09 GMT
+recorded_with: VCR 4.0.0

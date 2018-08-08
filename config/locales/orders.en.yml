@@ -19,3 +19,21 @@ en:
     remove_continue: 'Remove (%{count}) from Cart & Continue'
     contact_email: darin@publicmarket.io
     contact_subject: Help with shipment %{shipment_id} | Order %{order_number}
+    rate: Rate Your Experience
+    how_was_experience: How was your experience with %{merchant_name}?
+    positive: Positive
+    neutral: Neutral
+    negative: Negative
+    positive_hint: <strong>Great!</strong> Express your gratitude & leave a positive review for the merchant.
+    neutral_hint: <strong>Just average?</strong> Care to leave the merchant feedback on how to improve?
+    negative_hint: <strong>Bummer!</strong> Why not write a review informing other buyers?
+    send_feedback: Send Feedback
+    change_rating: Change Rating
+    leave_review: LEAVE REVIEW (OPTIONAL)
+    your_purchase: Your Purchase
+    merchant: "Merchant: "
+    rating-none: <span class='rating-unrated'>Unrated</span>
+    rating1: <span class='rating-positive'>Positive</span>
+    rating-1: <span class='rating-negative'>Negative</span>
+    rating0: <span class='rating-neutral'>Neutral</span>
+

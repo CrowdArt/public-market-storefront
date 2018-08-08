@@ -1,0 +1,15 @@
+= render layout: 'spree/users/account_template'
+  .rate-page
+    = render 'breadcrumbs', order: @order, current: t('orders.rate')
+
+    h3.upcase.no-margin.text-center-xs = t('orders.rate')
+    br
+
+    = render 'spree/ratings/form', shipment: @shipment
+
+    h3.upcase = t('orders.your_purchase')
+
+    span = t('orders.merchant')
+    strong = @shipment.vendor.name
+
+    = render partial: 'spree/orders/line_item_history', collection: @shipment.line_items, as: :line_item

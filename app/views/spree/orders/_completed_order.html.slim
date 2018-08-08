@@ -10,8 +10,6 @@
 
 .panel.no-border
   .panel-body.cart_container
-    = render partial: 'spree/ratings/form'
-
     h3.text-black.text-center-xs = Spree.t(:order_summary)
 
     = render partial: 'spree/orders/line_items', locals: { line_items: @order.line_items }

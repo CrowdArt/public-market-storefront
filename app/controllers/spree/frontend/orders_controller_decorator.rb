@@ -2,7 +2,8 @@ Spree::OrdersController.class_eval do
   include Spree::BaseHelper
   include ActionView::Helpers::TextHelper
 
-  skip_before_action :check_authorization, only: [:rate]
+  before_action :load_order, only: %i[show rate_shipment update_shipment_rate]
+  before_action :load_shipment, only: %i[rate_shipment update_shipment_rate]
 
   # Storefront changes:
   # - respond to js when add to cart clicked
@@ -47,26 +48,19 @@ Spree::OrdersController.class_eval do
     end
   end
 
-  def rate
-    order = Spree::Order.find_by!(number: params[:id])
-    authorize! :rate, order
+  def rate_shipment
+    @account_tab = :orders
+  end
 
-    GlobalReputation::Api::Rating.rate_order(spree_current_user, order, params[:rating])
-    Rails.cache.delete(order.rating_uid)
+  def update_shipment_rate
+    GlobalReputation::Api::Rating.rate_shipment(spree_current_user, @shipment, params[:rating], params[:review].presence)
+    Rails.cache.delete(@shipment.rating_uid)
 
-    redirect_to(order)
+    redirect_to(@shipment.order)
   end
 
   def show
-    @order = Spree::Order.includes(line_items: [variant: %i[option_values images product]],
-                                   bill_address: :state, ship_address: :state)
-                         .find_by!(number: params[:id])
     @account_tab = :orders
-
-    return unless @order.rating_uid
-    @rating = Rails.cache.fetch(@order.rating_uid) do
-      GlobalReputation::Api::Rating.find(@order.rating_uid).first
-    end
   end
 
   def update # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
@@ -91,6 +85,16 @@ Spree::OrdersController.class_eval do
   end
 
   private
+
+  def load_order
+    @order = Spree::Order.includes(line_items: [variant: %i[option_values images product]],
+                                   bill_address: :state, ship_address: :state)
+                         .find_by!(number: params[:id])
+  end
+
+  def load_shipment
+    @shipment = @order.shipments.find_by!(number: params[:shipment_id])
+  end
 
   def customize_populate_error(err)
     record = err.record
