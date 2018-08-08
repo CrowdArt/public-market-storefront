@@ -11,7 +11,7 @@ RSpec.describe 'Credit card in checkout flow', type: :feature, js: true, vcr: tr
 
   include_context 'with filled product cart'
 
-  xcontext 'when there is no pre-existing credit card' do
+  context 'when there is no pre-existing credit card' do
     before do
       click_button 'Proceed to Checkout'
     end
@@ -19,16 +19,10 @@ RSpec.describe 'Credit card in checkout flow', type: :feature, js: true, vcr: tr
     include_context 'with filled stripe credit card in checkout'
 
     it 'completes checkout process' do
-      screenshot_and_open_image
-
       expect(page).to have_text 'PAYMENT METHODS'
       expect(page).not_to have_text 'Use an existing card on file'
 
       click_button('Submit your order')
-
-      screenshot_and_open_image
-
-      wait_for_stripe # Wait for Stripe API to return + form to submit
 
       expect(page).to have_text 'Your order has been processed successfully'
     end
