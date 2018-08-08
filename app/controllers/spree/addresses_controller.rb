@@ -37,6 +37,7 @@ module Spree
           end
         redirect_to user_addresses_path
       else
+        flash[:error] = @address.errors.full_messages.join(', ')
         render action: :edit
       end
     end

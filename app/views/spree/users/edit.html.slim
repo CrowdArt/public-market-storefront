@@ -6,7 +6,7 @@
     .panel-body
       = render partial: 'spree/shared/error_messages', locals: { target: @user }
 
-      = form_for @user, url: spree.user_path(@user), method: :put, html: { id: "edit_user_info_#{@user.id}" } do |f|
+      = form_for @user, url: spree.user_path(@user), method: :put, html: { id: "edit_user_info_#{@user.id}", class: 'leave-check' } do |f|
         = render partial: 'user_basic_info_form', locals: { f: f }
         p
           = f.submit t('forms.users.edit.update_info'), class: 'btn btn-primary'
@@ -17,8 +17,3 @@
         = render partial: 'spree/shared/user_form', locals: { f: f }
         p
           = f.submit t('forms.users.edit.update_password'), class: 'btn btn-primary'
-
-javascript:
-  $(function() {
-    pm.initFormLeaveCheck("#edit_user_info_#{@user.id}")
-  })

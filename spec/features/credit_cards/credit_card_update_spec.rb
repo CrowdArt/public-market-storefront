@@ -19,7 +19,7 @@ RSpec.describe 'Credit card update', type: :feature, js: true, vcr: true do
   include_context 'with filled stripe card in edit form'
 
   it 'updates existing card' do
-    click_button('Save and Continue')
+    click_button('Save Payment Method')
 
     wait_for_stripe # Wait for Stripe API to return + form to submit
 

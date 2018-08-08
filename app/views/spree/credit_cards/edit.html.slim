@@ -1,21 +1,2 @@
 = render layout: 'spree/users/account_template'
-  .panel.panel-default.no-border
-    .panel-body
-      .flex.between.align-center
-        h4.upcase.text-color = t('forms.credit_cards.edit-credit-card')
-        .credit-card-brands--small = render 'spree/shared/payment_methods'
-
-      = form_for @credit_card, remote: true, html: { id: 'credit-card-edit-form' } do |f|
-        = f.hidden_field :id
-
-        = render partial: 'stripe_form', locals: { form: f, form_id: '#credit-card-edit-form', show_card_name: true, edit_card_info: true, allow_use_shipping_for_billing: true}
-
-        = submit_tag Spree.t(:save_and_continue), class: 'btn btn-block btn-primary', data: { 'disable-with': 'Saving...' }
-        br
-        = render partial: 'stripe_agreement'
-
-- content_for :bottom_scripts
-  javascript:
-    $(function() {
-      pm.initFormLeaveCheck('.edit_credit_card')
-    })
+  = render partial: 'spree/credit_cards/form', locals: { form_title: 'edit-credit-card' }

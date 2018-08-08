@@ -10,11 +10,11 @@ en:
     credit_cards:
       address:
         use_shipping: "Use my shipping address: %{address}"
-        use_existing_address: Use an existing address
-        use_custom_billing_address: Use custom billing address
+        use_existing_address: Choose from an existing address
+        use_custom_billing_address: Input a new billing address
       number: Credit Card Number
-      new-credit-card: New Credit Card
-      edit-credit-card: Edit Credit Card
+      new-credit-card: New Payment Method
+      edit-credit-card: Update Payment Method
 
     address:
       zip_postal_code: Zip / Postal Code

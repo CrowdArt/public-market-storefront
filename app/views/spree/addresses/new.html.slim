@@ -1,4 +1,2 @@
-- content_for :sidebar
-  = render 'spree/users/account_menu'
-
-= render partial: 'form', locals: { form_title: :new_shipping_address }
+= render layout: 'spree/users/account_template'
+  = render partial: 'form', locals: { form_title: :new_shipping_address }

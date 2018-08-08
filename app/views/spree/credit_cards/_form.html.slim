@@ -1,0 +1,24 @@
+- edit_card = form_title == 'edit-credit-card'
+
+.user-account-form
+  = link_to '&times;'.html_safe, spree.user_payment_methods_path, class: 'hidden-xs user-account-form--close plain-link'
+
+  = render partial: 'spree/users/form_breadcrumbs', locals: { prev_link: link_to('Payment Methods', spree.user_payment_methods_path), current: t(form_title, scope: 'forms.credit_cards') }
+
+  .flex.between.align-center
+    h3.upcase.no-margin.text-color = t(form_title, scope: 'forms.credit_cards')
+
+    .credit-card-brands--small = render 'spree/shared/payment_methods'
+
+  br
+
+  - form_opts = edit_card ? {} : {  url: credit_cards_path, method: :post }
+  = form_for @credit_card, form_opts.merge(remote: true, html: { id: 'credit-card-edit-form', class: 'leave-check' }) do |f|
+    - if edit_card
+      = f.hidden_field :id
+
+    = render partial: 'stripe_form', locals: { form: f, form_id: '#credit-card-edit-form', show_card_nickname: true, edit_card_info: edit_card,  allow_use_shipping_for_billing: true }
+
+    = submit_tag Spree.t(:save_payment_method), class: 'btn btn-block btn-primary', data: { 'disable-with': 'Saving...' }
+    br
+    = render partial: 'stripe_agreement'

@@ -1,24 +1,18 @@
-.row.condensed
-  .col-md-12
-    = render 'spree/shared/error_messages', target: @address
+.user-account-form
+  = link_to '&times;'.html_safe, spree.user_addresses_path, class: 'user-account-form--close plain-link'
 
-  .col-md-8
-    .panel.panel-default.no-border
-      .panel-body
-        h4.upcase.text-color.no-margin-top = t(form_title, scope: :address_book)
+  = render partial: 'spree/users/form_breadcrumbs', locals: { prev_link: link_to('Shipping Addresses', spree.user_addresses_path), current: t(form_title, scope: :address_book) }
 
-        = form_for @address, html: { id: 'checkout_form_address' } do |f|
-          = render partial: 'spree/addresses/fields', locals: { form: f, address_type: 's' }
+  h3.upcase.no-margin.text-color = t(form_title, scope: :address_book)
 
-          .checkbox.checkbox-blue
-            = f.check_box :default, class: 'form-control'
-            = f.label :default
-              span.flex.align-center = Spree.t(:default_shipping_address)
+  br
 
-          = f.submit Spree.t(:save_my_address), class: 'btn btn-primary'
+  = form_for @address, html: { id: 'checkout_form_address', class: 'leave-check' } do |f|
+    = render partial: 'spree/addresses/fields', locals: { form: f, address_type: 's' }
 
-- content_for :bottom_scripts
-  javascript:
-    $(function() {
-      pm.initFormLeaveCheck('#checkout_form_address')
-    })
+    .checkbox.checkbox-blue.user-account-form--default-checkbox
+      = f.check_box :default, class: 'form-control'
+      = f.label :default
+        span.flex.align-center = Spree.t(:default_shipping_address)
+
+    = f.submit Spree.t(:save_my_address), class: 'btn btn-block btn-primary'

@@ -27,7 +27,7 @@ RSpec.describe 'Credit card add', type: :feature, js: true, vcr: true do
         fill_in 'credit_card_address_attributes_city', with: 'Wellington'
         fill_in 'credit_card_address_attributes_zipcode', with: '94001'
 
-        click_button 'Save and Continue'
+        click_button 'Save Payment Method'
 
         wait_for_stripe # Wait for Stripe API to return + form to submit
       end
@@ -44,7 +44,7 @@ RSpec.describe 'Credit card add', type: :feature, js: true, vcr: true do
         fill_in 'credit_card_address_attributes_city', with: 'Wellington'
         fill_in 'credit_card_address_attributes_zipcode', with: '94001'
 
-        click_button 'Save and Continue'
+        click_button 'Save Payment Method'
       end
 
       it 'does not add new card' do
@@ -65,7 +65,7 @@ RSpec.describe 'Credit card add', type: :feature, js: true, vcr: true do
     it 'adds new card' do
       wait_for_stripe # Wait for Stripe API to return + form to submit
 
-      click_button 'Save and Continue'
+      click_button 'Save Payment Method'
 
       expect(page).to have_text('ADD NEW PAYMENT METHOD')
       expect(user.credit_cards.count).to eq(1)
