@@ -8,7 +8,7 @@ module Spree
         option :select, optional: true, default: proc { %i[price] }
 
         def call
-          search_products.min_by { |a| a[:price] }[:price]
+          search_products.min_by { |a| a[:price] }&.dig(:price)
         end
       end
     end
