@@ -26,4 +26,4 @@ ruby:
 
 - if mobile?
   - cache([:v1, I18n.locale, @taxon]) do
-    = render partial: 'taxon', collection: taxons_preview(@taxon)
+    = render partial: 'spree/taxons/taxon', collection: taxons_preview(@taxon)
