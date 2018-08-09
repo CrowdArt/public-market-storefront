@@ -13,7 +13,7 @@ module Spree
     end
 
     def quantity_left(variant)
-      current_order ? current_order.quantity_left(variant) : variant.total_on_hand
+      variant.total_on_hand
     end
 
     def saved_as_default?(object)
@@ -21,6 +21,16 @@ module Spree
             .keys
             .reject { |key| %w[updated_at].include?(key) }
             .all? { |key| key == 'default' }
+    end
+
+    def stock_status(requested, available)
+      if available.zero?
+        :out_of_stock
+      elsif available < requested
+        :partial
+      else
+        :available
+      end
     end
 
     private

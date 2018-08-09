@@ -14,8 +14,6 @@ en:
     sharing_text: "Just placed an order on Public Market. Can’t wait to get my crypto “cashback” rewards! #PTRN Tokens"
     pending: Pending Orders
     completed: Completed Orders
-    out_of_stock: Sorry, it looks like this item is no longer available please remove it from your cart or move to wish list.
-    unavailable_items: Sorry, it looks like these items are no longer available. Please move them to a wish list or remove them to continue.
     remove_continue: 'Remove (%{count}) from Cart & Continue'
     contact_email: darin@publicmarket.io
     contact_subject: Help with shipment %{shipment_id} | Order %{order_number}
@@ -44,3 +42,12 @@ en:
     update_rating: Update Rating
     updated_once: Seller rating can only be updated once!
     proceed: Proceed
+    out_of_stock:
+      out_of_stock: Sorry, it looks like the merchant no longer has this item in stock. Please remove it from your cart to continue.
+      partial: Sorry, it looks like the merchant only has %{available}/%{requested} quantities of this item in stock. Please remove at least (%{count}) QTY from your cart to continue.
+      modal:
+        find-different: Find a different merchant
+        hint:
+          single: We’re sorry, the merchant you selected no longer has this item in stock. Click the product detail link below to go back and see if additional quantities are available from another merchant — or remove this item from your cart to proceed to checkout.
+          multiple: We’re sorry, the merchants you selected no longer have these items in stock. Click the product detail links below to go back and see if additional quantities are available from another merchant — or remove these items from your cart to proceed to checkout.
+

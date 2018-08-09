@@ -1,9 +1,11 @@
-p
+.flex.wrap.between.margin-text-bottom
   span.upcase = t('orders.ptrn_tokens')
-  strong.pull-right.text-rewards = t('products.total_rewards', rewards: order.ptrn_rewards)
-p
+  strong.text-rewards = t('products.total_rewards', rewards: order.ptrn_rewards)
+
+.flex.wrap.between.margin-text-bottom
   span.upcase = t('orders.shipping')
-  span.pull-right FREE
-p
+  span FREE
+
+.flex.wrap.between.margin-text-bottom
   strong.upcase = Spree.t(:total)
-  strong.pull-right = order.display_total
+  strong = order.display_total

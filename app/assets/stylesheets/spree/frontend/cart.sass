@@ -14,6 +14,9 @@
   .line-item
     margin-top: 15px
 
+    .line_item_quantity
+      max-width: 80px
+
     @media (max-width: $screen-xs)
       img
         width: 100%
@@ -21,9 +24,6 @@
     @media (max-width: $screen-md-max)
       input
         padding: 8px
-
-    .buy-box--quntity-left
-      font-size: 12px
 
   .row-header
     background: #f4f4f4
@@ -50,3 +50,6 @@
 
   &--line-items
     margin: 35px 0
+
+    & > div:not(:last-child)
+      margin-bottom: 20px

@@ -9,10 +9,10 @@
 
       .modal-body
         .cross-icon-left.text-danger.text-medium.out-of-stock-modal--hint
-          = t('orders.unavailable_items')
+          = t(items.many? ? :multiple : :single, scope: 'orders.out_of_stock.modal.hint')
 
         .out-of-stock-modal--line-items
           - items.each do |item|
-            = render partial: 'spree/orders/short_line_item', locals: { line_item: item, out_of_stock: true }
+            = render partial: 'spree/orders/short_line_item', locals: { line_item: item }
 
-        button.btn.btn-primary.btn-block#remove-out-of-stock data-dismiss='modal' aria-label='Close' = t('orders.remove_continue', count: items.sum(&:quantity))
+        button.btn.btn-default.btn-block#remove-out-of-stock data-dismiss='modal' aria-label='Close' = t('orders.remove_continue', count: items.sum(&:quantity))

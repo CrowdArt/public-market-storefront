@@ -1,11 +1,22 @@
 ruby:
   value ||= 1
+  qty_left ||= 1
   show ||= false
+  hide_available ||= false
+  stock_state ||= stock_status(value, qty_left)
 
-span.text-danger.buy-box--quntity-left class=('hide' unless show)
-  - if value == 0
-    span Out of stock!
-  - elsif value < 5
-    span> Only
-    span.buy-box--quntity-left--value> = value
-    span left!
+- if qty_left < 10 && (stock_state != :available || !hide_available)
+  span.text-small.buy-box--quntity-left class=('hide' unless show) class=(stock_state == :available ? 'text-info' : 'text-danger')
+    - if stock_state != :out_of_stock
+      span> Only
+
+    span.buy-box--quntity-left--value>
+      = qty_left
+      - if stock_state == :partial
+        | /#{value}
+
+    span
+      - if stock_state == :available
+        | left — order soon!
+      - else
+        | left in stock

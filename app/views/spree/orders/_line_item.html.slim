@@ -1,15 +1,16 @@
 ruby:
   variant = line_item.variant
-  available_qty = variant.total_on_hand
+  available_qty = quantity_left(variant)
   variant_quantity_max = [available_qty, line_item.quantity].max
   item_form ||= nil
-  out_of_stock = item_form && line_item.insufficient_stock?
+  stock_state = stock_status(line_item.quantity, available_qty)
+  out_of_stock = item_form && available_qty < line_item.quantity
 
 .row.line-item
   - if out_of_stock
     .col-xs-12.cart_container--out-of-stock-hint
       .text-info.info-icon-left.text-medium.semi-bold
-        = t('orders.out_of_stock')
+        = t(stock_state, scope: 'orders.out_of_stock', requested: line_item.quantity, available: available_qty, count: line_item.quantity - available_qty)
 
   .col-xs-4.col-sm-1
     - if variant.images.length == 0
@@ -19,18 +20,16 @@ ruby:
 
   .col-xs-8.col-sm-11
     .row
-      .col-xs-12.col-sm-6
-        p= link_to line_item.name, product_path(variant.product), class: 'plain-link'
-        small.text-muted class=('strike' if out_of_stock) = variant.options_text
-
+      .col-xs-12.col-sm-5
+        p = link_to line_item.name, product_path(variant.product), class: 'plain-link'
         - if out_of_stock
-          small.text-danger.margin-text-left = Spree.t(:out_of_stock)
+          = render partial: 'line_item_option', locals: { line_item: line_item, out_of_stock: out_of_stock }
 
       .col-xs-12.col-sm-3
         span.small-xs= line_item.single_money.to_html
         .text-rewards = t('products.rewards', rewards: line_item.single_rewards_amount)
 
-      .col-xs-12.col-sm-1
+      .col-xs-12.col-sm-2
         .row.condensed.flex.align-center
           .col-xs-6.col-sm-8
             - if item_form
@@ -45,7 +44,7 @@ ruby:
               a.delete href='#' id="delete_#{dom_id(line_item)}" style='font-size:12px' = t('orders.remove_item')
 
             .col-xs-12
-              = render partial: 'spree/orders/low_stock_quantity', locals: { show: true, value: available_qty }
+              = render partial: 'spree/orders/low_stock_quantity', locals: { show: true, value: line_item.quantity, qty_left: available_qty }
 
       .col-xs-12.hidden-xs.col-sm-2.text-right.semi-bold
         = line_item.display_amount.to_html unless line_item.quantity.nil?

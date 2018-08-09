@@ -1,16 +1,14 @@
 ruby:
-  variant = line_item.variant
-  out_of_stock ||= false
+  product = line_item.variant.product
 
 .short-line-item
-  = link_to variant.product
-    = image_tag product_image_or_default(variant.product, :small), class: 'img-responsive'
+  = link_to product
+    = image_tag product_image_or_default(product, :small), class: 'img-responsive'
 
   div
-    .margin-text-bottom = link_to line_item.name, product_path(variant.product), class: 'plain-link'
+    .margin-text-bottom = link_to line_item.name, product, class: 'plain-link'
 
-    div
-      small.text-muted class=('strike' if out_of_stock) = variant.options_text
+    .margin-text-bottom
+      = render partial: 'line_item_option', locals: { line_item: line_item }
 
-      - if out_of_stock
-        small.text-danger.margin-text-left = Spree.t(:out_of_stock)
+    = link_to t('orders.out_of_stock.modal.find-different'), product, class: 'btn btn-white btn-sm', data: { turbolinks: false }

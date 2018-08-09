@@ -1,0 +1,10 @@
+ruby:
+  variant = line_item.variant
+  available_qty ||= quantity_left(variant)
+  out_of_stock ||= available_qty < line_item.quantity
+
+small.text-muted class=('strike' if out_of_stock) = variant.options_text
+
+- if available_qty < line_item.quantity
+  span.margin-text-left
+    = render partial: 'spree/orders/low_stock_quantity', locals: { show: true, value: line_item.quantity, qty_left: available_qty, hide_available: true }
