@@ -47,8 +47,7 @@ ruby:
             .col-xs-12
               = render partial: 'spree/orders/low_stock_quantity', locals: { show: true, value: available_qty }
 
-      .col-xs-12.hidden-xs.col-sm-2.text-right
-        strong = line_item.display_amount.to_html unless line_item.quantity.nil?
-        br
-        strong.text-rewards = t('products.total_rewards', rewards: line_item.rewards_amount)
+      .col-xs-12.hidden-xs.col-sm-2.text-right.semi-bold
+        = line_item.display_amount.to_html unless line_item.quantity.nil?
+        .text-rewards = t('products.total_rewards', rewards: line_item.rewards_amount)
 hr
