@@ -7,7 +7,7 @@ module Spree
     before_action :set_account_tab, only: %i[index edit new]
 
     def index
-      @addresses = @user.addresses.order(default: :desc)
+      @addresses = @user.addresses.order(default: :desc, id: :desc)
     end
 
     def create

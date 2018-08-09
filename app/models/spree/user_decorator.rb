@@ -46,6 +46,14 @@ Spree::User.class_eval do
     !deleted?
   end
 
+  def default_ship_address
+    addresses.order(default: :desc, id: :desc).first
+  end
+
+  def default_payment_method
+    credit_cards.order(default: :desc, id: :desc).first
+  end
+
   private
 
   def send_welcome_email_with_delay

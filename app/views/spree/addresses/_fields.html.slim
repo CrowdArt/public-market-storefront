@@ -6,11 +6,12 @@
   javascript:
     window.pm.initPhoneInput("##{address_type}phone")
 
-.form-group id="#{address_type}firstname"
-  = form.text_field :firstname, class: 'form-control input-lg', placeholder: Spree.t(:first_name), required: true
+.flex
+  .form-group.flex-grow-1.margin-text-right
+    = form.text_field :firstname, class: 'form-control input-lg', placeholder: Spree.t(:first_name), required: true
 
-.form-group id="#{address_type}lastname"
-  = form.text_field :lastname, class: 'form-control input-lg', placeholder: Spree.t(:last_name), required: true
+  .form-group.flex-grow-1.margin-text-left
+    = form.text_field :lastname, class: 'form-control input-lg', placeholder: Spree.t(:last_name), required: true
 
 .form-group id="#{address_type}address1"
   = form.text_field :address1, class: 'form-control input-lg', placeholder: Spree.t(:address1), required: true
@@ -28,7 +29,7 @@
   = form.label :city, Spree.t(:city)
 
 .flex.wrap-xs
-  .form-group.custom-select-wrapper.no-margin-text-right-xs.checkout-form--state-input.flex-grow-1 id="#{address_type}state"
+  .form-group.custom-select-wrapper.no-margin-text-right-xs.checkout-form--state-input.full-width-xs.flex-grow-1 id="#{address_type}state"
     = form.select :state_id, options_for_select(country.states.map { |s| [s.name, s.id, { 'data-state-code' => s.abbr }]}, form.object.state_id), {}, { class: 'form-control input-lg' }
 
   .input-with-hint.form-group.flex-grow-1 id="#{address_type}zipcode"

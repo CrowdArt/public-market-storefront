@@ -9,7 +9,7 @@ module Spree
     before_action :load_stripe_payment_method, only: %i[new create]
 
     def index
-      @cards = @user.credit_cards.order(default: :desc)
+      @cards = @user.credit_cards.order(default: :desc, id: :desc)
     end
 
     def new
