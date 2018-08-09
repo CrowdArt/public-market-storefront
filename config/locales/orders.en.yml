@@ -24,16 +24,23 @@ en:
     positive: Positive
     neutral: Neutral
     negative: Negative
+    current_rating: Current Rating
     positive_hint: <strong>Great!</strong> Express your gratitude & leave a positive review for the merchant.
     neutral_hint: <strong>Just average?</strong> Care to leave the merchant feedback on how to improve?
     negative_hint: <strong>Bummer!</strong> Why not write a review informing other buyers?
-    send_feedback: Send Feedback
-    change_rating: Change Rating
-    leave_review: LEAVE REVIEW (OPTIONAL)
+    submit_review: Submit Review
+    update_review: Update Review
+    no_thanks: No Thanks
+    cancel: Cancel
+    send_feedback: SEND FEEDBACK (OPTIONAL)
     your_purchase: Your Purchase
     merchant: "Merchant: "
     rating-none: <span class='rating-unrated'>Unrated</span>
     rating1: <span class='rating-positive'>Positive</span>
     rating-1: <span class='rating-negative'>Negative</span>
     rating0: <span class='rating-neutral'>Neutral</span>
-
+    updated_successfully: Updated Successfully
+    submitted_successfully: Submitted Successfully
+    update_rating: Update Rating
+    updated_once: Seller rating can only be updated once!
+    proceed: Proceed

@@ -10,6 +10,18 @@ module GlobalReputation
         modification || value
       end
 
+      def positive?
+        display_value&.positive?
+      end
+
+      def neutral?
+        display_value&.zero?
+      end
+
+      def negative?
+        display_value&.negative?
+      end
+
       class << self
         def rate_shipment(user, shipment, value, review = nil)
           vendor = shipment.vendor
@@ -28,12 +40,11 @@ module GlobalReputation
         # rubocop:disable Rails/SkipsModelValidations, Rails/ActiveRecordAliases
         def update_rating(shipment, user, vendor, value, review)
           if shipment.rating_uid
-            Rails.logger.info("Updating rating for #{shipment.rating_uid} with #{value}")
+            Rails.cache.delete(shipment.rating_uid)
             find(shipment.rating_uid).first.tap do |r|
               r.update_attributes(value: value, review: review)
             end
           else
-            Rails.logger.info("Creating rating for #{vendor.name} with #{value}")
             create_rating(shipment, user, vendor, value, review)
           end
         end
@@ -43,9 +54,11 @@ module GlobalReputation
                  receiver: vendor.reputation_uid,
                  value: value,
                  review: review).tap do |r|
-            user.update_attribute(:reputation_uid, r.sender)
-            vendor.update_attribute(:reputation_uid, r.receiver)
-            shipment.update_attribute(:rating_uid, r.id)
+            if r.errors.blank?
+              user.update_attribute(:reputation_uid, r.sender)
+              vendor.update_attribute(:reputation_uid, r.receiver)
+              shipment.update_attribute(:rating_uid, r.id)
+            end
           end
         end
         # rubocop:enable Rails/SkipsModelValidations, Rails/ActiveRecordAliases

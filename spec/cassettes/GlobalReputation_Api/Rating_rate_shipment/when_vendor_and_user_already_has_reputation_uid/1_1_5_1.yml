@@ -5,7 +5,7 @@ http_interactions:
     uri: http://global-reputation:3001/api/v1/ratings
     body:
       encoding: UTF-8
-      string: '{"data":{"type":"ratings","attributes":{"sender":null,"receiver":null,"value":1,"review":null}}}'
+      string: '{"data":{"type":"ratings","attributes":{"sender":null,"receiver":null,"value":1,"review":"review"}}}'
     headers:
       X-Api-Key:
       - fe98dddcab33ec21d31b038dd3
@@ -25,27 +25,27 @@ http_interactions:
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"1625c4f6253b6270fdcad9d3c70b2e50"
+      - W/"6957d8ae3b36d2818b11f2b87afed85c"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - de39d3a9-bc8d-4c2d-baf3-1987bb117cf3
+      - f96a2b4b-963c-459d-99a5-5c241837aed5
       X-Runtime:
-      - '0.024966'
+      - '0.020707'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"V04B6VGR7V1WPT","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-08-08
-        08:00:23 UTC","review":null,"sender":"U43OSYD1Y0GLUB","receiver":"RBWEL74KMYGK2I"}}}'
+      string: '{"data":{"id":"VQX3NQ8VS16TZZ","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-08-09
+        08:12:43 UTC","review":"review","sender":"UCZCH3Q4B8KU01","receiver":"RL1UH742X4YY2H"}}}'
     http_version: 
-  recorded_at: Wed, 08 Aug 2018 08:00:23 GMT
+  recorded_at: Thu, 09 Aug 2018 08:12:43 GMT
 - request:
     method: post
     uri: http://global-reputation:3001/api/v1/ratings
     body:
       encoding: UTF-8
-      string: '{"data":{"type":"ratings","attributes":{"sender":"U43OSYD1Y0GLUB","receiver":"RBWEL74KMYGK2I","value":1,"review":"review"}}}'
+      string: '{"data":{"type":"ratings","attributes":{"sender":"UCZCH3Q4B8KU01","receiver":"RL1UH742X4YY2H","value":1,"review":"review"}}}'
     headers:
       X-Api-Key:
       - fe98dddcab33ec21d31b038dd3
@@ -65,19 +65,19 @@ http_interactions:
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"2bc0e16c5458d9408297bad6d9442a96"
+      - W/"fd8625aef521c7b81607d1be529ef094"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - b1441957-46b2-46b6-a538-9120f17e29a0
+      - 0ee5bc98-3099-4cd3-9fd4-1001b1b23440
       X-Runtime:
-      - '0.016205'
+      - '0.018955'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"V8AKDQY9H7S3IG","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-08-08
-        08:00:23 UTC","review":"review","sender":"U43OSYD1Y0GLUB","receiver":"RBWEL74KMYGK2I"}}}'
+      string: '{"data":{"id":"V7AR0GE1QOCLVX","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-08-09
+        08:12:43 UTC","review":"review","sender":"UCZCH3Q4B8KU01","receiver":"RL1UH742X4YY2H"}}}'
     http_version: 
-  recorded_at: Wed, 08 Aug 2018 08:00:23 GMT
+  recorded_at: Thu, 09 Aug 2018 08:12:43 GMT
 recorded_with: VCR 4.0.0

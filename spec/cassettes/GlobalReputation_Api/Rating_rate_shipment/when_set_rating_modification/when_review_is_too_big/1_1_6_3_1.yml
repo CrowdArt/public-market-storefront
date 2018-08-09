@@ -5,7 +5,7 @@ http_interactions:
     uri: http://global-reputation:3001/api/v1/ratings
     body:
       encoding: UTF-8
-      string: '{"data":{"type":"ratings","attributes":{"sender":null,"receiver":null,"value":"1"}}}'
+      string: '{"data":{"type":"ratings","attributes":{"sender":null,"receiver":null,"value":1,"review":"review"}}}'
     headers:
       X-Api-Key:
       - fe98dddcab33ec21d31b038dd3
@@ -25,24 +25,24 @@ http_interactions:
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"3c5a68d4ff79079d943c954e8c799213"
+      - W/"84e0cdf89494f671d6ada4e6b2ea40c2"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - '069b8049-5607-4f86-90a5-f47dba84dd7b'
+      - 28c9966c-9e70-4ae6-9efc-c3693e647b98
       X-Runtime:
-      - '0.016930'
+      - '0.024445'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"VHBOSN6HB4D6KU","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-04-03
-        12:28:26 UTC","sender":"UKDQKF861U29BW","receiver":"REWQO5L3QJEFYB"}}}'
+      string: '{"data":{"id":"V5WGDQQMVXAN7N","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-08-09
+        08:12:41 UTC","review":"review","sender":"U55C4RYXEGV64F","receiver":"R4CH30WKZBX4MX"}}}'
     http_version: 
-  recorded_at: Tue, 03 Apr 2018 12:28:07 GMT
+  recorded_at: Thu, 09 Aug 2018 08:12:41 GMT
 - request:
     method: get
-    uri: http://global-reputation:3001/api/v1/ratings/VHBOSN6HB4D6KU
+    uri: http://global-reputation:3001/api/v1/ratings/V5WGDQQMVXAN7N
     body:
       encoding: US-ASCII
       string: ''
@@ -65,27 +65,27 @@ http_interactions:
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"3c5a68d4ff79079d943c954e8c799213"
+      - W/"84e0cdf89494f671d6ada4e6b2ea40c2"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 9d86cf2d-9043-415d-8288-91ae4610523a
+      - 3693f841-fba7-4d71-99c2-b7f2bbc2ca37
       X-Runtime:
-      - '0.005515'
+      - '0.006266'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"VHBOSN6HB4D6KU","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-04-03
-        12:28:26 UTC","sender":"UKDQKF861U29BW","receiver":"REWQO5L3QJEFYB"}}}'
+      string: '{"data":{"id":"V5WGDQQMVXAN7N","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-08-09
+        08:12:41 UTC","review":"review","sender":"U55C4RYXEGV64F","receiver":"R4CH30WKZBX4MX"}}}'
     http_version: 
-  recorded_at: Tue, 03 Apr 2018 12:28:07 GMT
+  recorded_at: Thu, 09 Aug 2018 08:12:41 GMT
 - request:
-    method: get
-    uri: http://global-reputation:3001/api/v1/reputations/REWQO5L3QJEFYB
+    method: patch
+    uri: http://global-reputation:3001/api/v1/ratings/V5WGDQQMVXAN7N
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"data":{"id":"V5WGDQQMVXAN7N","type":"rating","attributes":{"value":-1,"review":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}}}'
     headers:
       X-Api-Key:
       - fe98dddcab33ec21d31b038dd3
@@ -99,24 +99,23 @@ http_interactions:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
     status:
-      code: 200
-      message: OK
+      code: 422
+      message: Unprocessable Entity
     headers:
       Content-Type:
       - application/vnd.api+json; charset=utf-8
-      Etag:
-      - W/"13b9b61a08e0b5c8ad603632862b301a"
       Cache-Control:
-      - max-age=0, private, must-revalidate
+      - no-cache
       X-Request-Id:
-      - 877e0adb-2cfd-4438-9ec9-0db8262d688f
+      - 5c25b8e6-987c-490d-9781-8f02c900bc10
       X-Runtime:
-      - '0.010790'
+      - '0.015304'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"REWQO5L3QJEFYB","type":"reputation","attributes":{"ratings":1,"score":1.0}}}'
+      string: '{"errors":[{"status":422,"source":{"pointer":"/data/attributes/review"},"detail":"is
+        too long (maximum is 400 characters)"}]}'
     http_version: 
-  recorded_at: Tue, 03 Apr 2018 12:28:07 GMT
+  recorded_at: Thu, 09 Aug 2018 08:12:41 GMT
 recorded_with: VCR 4.0.0

@@ -53,10 +53,13 @@ Spree::OrdersController.class_eval do
   end
 
   def update_shipment_rate
-    GlobalReputation::Api::Rating.rate_shipment(spree_current_user, @shipment, params[:rating], params[:review].presence)
-    Rails.cache.delete(@shipment.rating_uid)
-
-    redirect_to(@shipment.order)
+    rating = GlobalReputation::Api::Rating.rate_shipment(spree_current_user, @shipment, params[:rating], params[:review].presence)
+    if rating.errors.blank?
+      flash[:success] = t(rating.modification ? 'orders.updated_successfully' : 'orders.submitted_successfully')
+      redirect_to(@shipment.order)
+    else
+      render :rate_shipment
+    end
   end
 
   def show

@@ -1,47 +1,70 @@
-= form_for @order, url: update_shipment_rate_path(@order, @shipment), method: :post, html: { class: 'text-center row', id: 'rating-form' } do
+- rating = cached_rating(@shipment)
+
+= form_for @order, url: update_shipment_rate_path(@order, @shipment),
+                   method: :post,
+                   html: { class: "text-center row #{rating ? 'checked' : ''}", id: 'rating-form' } do
   .col-xs-12.col-sm-offset-1.col-sm-10.col-lg-offset-2.col-lg-8
-    .lead.text-purple = t('orders.how_was_experience', merchant_name: @shipment.vendor.name)
+    .lead.text-info = t('orders.how_was_experience', merchant_name: @shipment.vendor.name)
 
     .flex.center.inputs
       label#positive
-        input type='radio' name='rating' value='1' data={ hint: t('orders.positive_hint') }
+        - if rating&.positive?
+          .margin-text-bottom = t('orders.current_rating')
+        input type='radio' name='rating' value='1' checked=rating&.positive? data={ hint: t('orders.positive_hint') }
         .icon.rating-positive
           = inline_svg('icons/positive')
           br
           = t('orders.positive')
       label#neutral
-        input type='radio' name='rating' value='0' data={ hint: t('orders.neutral_hint') }
+        - if rating&.neutral?
+          .margin-text-bottom = t('orders.current_rating')
+        input type='radio' name='rating' value='0'checked=rating&.neutral? data={ hint: t('orders.neutral_hint') }
         .icon.rating-neutral
           = inline_svg('icons/neutral')
-          br
-          = t('orders.neutral')
+          div = t('orders.neutral')
       label#negative
-        input type='radio' name='rating' value='-1' data={ hint: t('orders.negative_hint') }
+        - if rating&.negative?
+          .margin-text-bottom = t('orders.current_rating')
+        input type='radio' name='rating' value='-1' checked=rating&.negative? data={ hint: t('orders.negative_hint') }
         .icon.rating-negative
           = inline_svg('icons/negative')
           br
           = t('orders.negative')
 
     br
-    .hint.text-purple
+    .hint.text-info
 
   .finish-form.col-xs-12
     .text-left
-      h4.upcase = t('orders.leave_review')
-      textarea.form-control name='review' rows=5 = cached_rating(@shipment)&.review
+      h5.upcase = t('orders.send_feedback')
+      textarea.form-control name='review' maxlength=400 rows=5 = rating&.review
+      .character-counter
+        span.current>
+        ' /
+        span.max<
     br
-    button.btn.btn-block.btn-default.margin-text-bottom = t('orders.send_feedback')
-    a#change-rating href='#' = t('orders.change_rating')
+    button.btn.btn-block.btn-default disabled=rating.present? = t(rating ? 'orders.update_review' : 'orders.submit_review')
+    button.btn.btn-link#no-thanks disabled=rating.present? = t('orders.no_thanks')
 
 javascript:
+  Spree.enableCharacterCounters(function() {
+    $('#rating-form button').prop('disabled', false)
+  });
+
   $('#rating-form').on('click', 'input', function(e) {
     $('#rating-form .hint').html($(e.target).data('hint')).closest('form').addClass('checked')
-    $('#rating-form label').removeClass('checked')
-    $(e.target).closest('label').addClass('checked')
+    $('#rating-form button').prop('disabled', false)
   })
 
-  $('#rating-form').on('click', '#change-rating', function(e) {
-    $('#rating-form, #rating-form label').removeClass('checked')
-    $('#rating-form input').prop('checked', false)
-    e.preventDefault()
+  $('#rating-form').on('keydown keyup', 'textarea', function(e) {
+    $('#rating-form button').prop('disabled', false)
+  })
+
+  $('#rating-form').on('click', '#no-thanks', function(e) {
+    if (confirm('Are you sure? Your rating will be submitted without a review.')) {
+      $('#rating-form .finish-form').remove();
+      $('#rating-form').submit();
+    } else {
+      e.preventDefault();
+    }
   })

@@ -5,7 +5,7 @@ http_interactions:
     uri: http://global-reputation:3001/api/v1/ratings
     body:
       encoding: UTF-8
-      string: '{"data":{"type":"ratings","attributes":{"sender":null,"receiver":null,"value":"1"}}}'
+      string: '{"data":{"type":"ratings","attributes":{"sender":null,"receiver":null,"value":1,"review":"review"}}}'
     headers:
       X-Api-Key:
       - fe98dddcab33ec21d31b038dd3
@@ -25,27 +25,27 @@ http_interactions:
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"29ddee70d38d21061d6971551493c5b1"
+      - W/"1875dfb68aa9c45820b366c99d728220"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 05d6c0cb-231b-49fd-bf23-a285d2f5171d
+      - f109cce4-1d40-4cfa-a522-2449bb40c7ea
       X-Runtime:
-      - '0.036029'
+      - '0.015969'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"VH8QP8O9G3FA1Q","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-04-03
-        12:27:16 UTC","sender":"U69SO1L6AF5GPY","receiver":"RGVFDH6684UBCA"}}}'
+      string: '{"data":{"id":"VO0MNBROTB4L5R","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-08-09
+        08:12:42 UTC","review":"review","sender":"UW6VA0KX6M79GF","receiver":"RFE2ZBH3E7F4QW"}}}'
     http_version: 
-  recorded_at: Tue, 03 Apr 2018 12:26:58 GMT
+  recorded_at: Thu, 09 Aug 2018 08:12:42 GMT
 - request:
-    method: get
-    uri: http://global-reputation:3001/api/v1/ratings/VH8QP8O9G3FA1Q
+    method: post
+    uri: http://global-reputation:3001/api/v1/ratings
     body:
-      encoding: US-ASCII
-      string: ''
+      encoding: UTF-8
+      string: '{"data":{"type":"ratings","attributes":{"sender":"UW6VA0KX6M79GF","receiver":"RFE2ZBH3E7F4QW","value":1,"review":"review"}}}'
     headers:
       X-Api-Key:
       - fe98dddcab33ec21d31b038dd3
@@ -59,25 +59,25 @@ http_interactions:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
     status:
-      code: 200
-      message: OK
+      code: 201
+      message: Created
     headers:
       Content-Type:
       - application/vnd.api+json; charset=utf-8
       Etag:
-      - W/"29ddee70d38d21061d6971551493c5b1"
+      - W/"c530be4db6c57afcb58f6f14e7abc23b"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - ceeafeca-1c8f-4eea-b17a-c73aee73f689
+      - b828ff5d-42f6-4be8-b412-d17d66638354
       X-Runtime:
-      - '0.005276'
+      - '0.011012'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"data":{"id":"VH8QP8O9G3FA1Q","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-04-03
-        12:27:16 UTC","sender":"U69SO1L6AF5GPY","receiver":"RGVFDH6684UBCA"}}}'
+      string: '{"data":{"id":"VF9DZX4I54FGNH","type":"rating","attributes":{"value":1,"modification":null,"created_at":"2018-08-09
+        08:12:43 UTC","review":"review","sender":"UW6VA0KX6M79GF","receiver":"RFE2ZBH3E7F4QW"}}}'
     http_version: 
-  recorded_at: Tue, 03 Apr 2018 12:26:58 GMT
+  recorded_at: Thu, 09 Aug 2018 08:12:43 GMT
 recorded_with: VCR 4.0.0

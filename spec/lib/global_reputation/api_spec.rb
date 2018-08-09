@@ -1,6 +1,6 @@
 RSpec.describe GlobalReputation::Api, vcr: true do
   describe 'Rating#rate_shipment' do
-    before { GlobalReputation::Api::Rating.rate_shipment(user, shipment, value) }
+    before { GlobalReputation::Api::Rating.rate_shipment(user, shipment, value, review) }
 
     let(:user) { create :user }
     let(:order) { create :order_with_vendor_items, user: user }
@@ -12,6 +12,12 @@ RSpec.describe GlobalReputation::Api, vcr: true do
     it { expect(shipment.rating_uid).to be_truthy }
     it { expect(user.reputation_uid).to be_truthy }
     it { expect(vendor.reload.reputation_uid).to be_truthy }
+
+    context 'when review is too big' do
+      let(:review) { (0..500).map { 'a' }.join }
+
+      it { expect(shipment.rating_uid).to be_falsy }
+    end
 
     context 'when vendor and user already has reputation uid' do
       subject(:rating) { GlobalReputation::Api::Rating.rate_shipment(user, other_shipment, value, review) }
@@ -32,6 +38,12 @@ RSpec.describe GlobalReputation::Api, vcr: true do
 
       it { is_expected.to have_attributes(id: shipment.rating_uid, value: value, modification: new_value, review: new_review) }
       it { expect(rating.display_value).to eq(-1) }
+
+      context 'when review is too big' do
+        let(:new_review) { (0..500).map { 'a' }.join }
+
+        it { expect(rating.errors).to be_truthy }
+      end
     end
   end
 end

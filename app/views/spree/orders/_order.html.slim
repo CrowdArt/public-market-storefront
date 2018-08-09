@@ -1,3 +1,7 @@
+- unless @update_modal_rendered
+  = render 'spree/ratings/update_rating_modal'
+  - @update_modal_rendered = true
+
 - order.shipments.each do |shipment|
   .panel.panel-default
     .panel-heading
@@ -49,11 +53,10 @@
       .row
         - if (can_rate = can_rate?(shipment))
           .col-xs-12.col-sm-5.col-sm-offset-1
-            a.btn.btn-sm.btn-block.btn-white href=rate_shipment_path(order, shipment)
-              - if cached_rating(shipment)
-                = t('users.orders-history.update-rating')
-              - else
-                = t('users.orders-history.rate-merchant')
+            - if cached_rating(shipment)
+                button.btn.btn-sm.btn-block.btn-white data-toggle='modal' data-target='#update-rating-modal' data-url=rate_shipment_path(order, shipment) = t('users.orders-history.update-rating')
+            - else
+                a.btn.btn-sm.btn-block.btn-white href=rate_shipment_path(order, shipment) = t('users.orders-history.rate-merchant')
         .col-xs-12 class=(can_rate ? 'col-sm-5' : 'col-sm-6 col-sm-offset-3')
           = mail_to t('orders.contact_email'), t('users.orders-history.contact-merchant'),
                     subject: t('orders.contact_subject', shipment_id: shipment.tracking || shipment.number, order_number: order.number),

@@ -1,0 +1,25 @@
+.modal.modal-wide-paddings.modal-vertical-center.fade.update-rating-modal#update-rating-modal tabindex='-1' role='dialog'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type='button' class='close' data-dismiss='modal' aria-label='Close'
+          span aria-hidden='true' &times;
+
+        h5.upcase.modal-title.text-black = t('orders.update_rating')
+
+      .modal-body.text-center
+        .text-info.info-icon-left.text-medium.update-rating-modal--hint
+          = t('orders.updated_once')
+        br
+
+        .row
+          .col-xs-6
+            button.btn.btn-white.btn-block data-dismiss='modal' aria-label='Close' = t('orders.cancel')
+          .col-xs-6
+            a.btn.btn-primary.btn-block.proceed-btn data-turbolinks='false' = t('orders.proceed')
+
+javascript:
+  $('#update-rating-modal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    $(this).find('.modal-body .proceed-btn').prop('href', button.data('url'))
+  })

@@ -7,16 +7,19 @@
 
 #rating-form
   .inputs
+    align-items: flex-end
+
     label
       color: #dfdfdf
       font-weight: normal
       flex-grow: 1
+      min-width: 80px
       cursor: pointer
-      transition: all 0.3s ease
 
     .icon
       position: relative
       display: inline-block
+      transition: all 0.3s ease
       &:after
         background-image: asset-data-url('icons/rating-check.svg')
         background-repeat: no-repeat
@@ -33,6 +36,7 @@
       display: none
       &:not(:checked) + .icon
         color: #dfdfdf !important
+        transform: scale(0.9, 0.9)
         svg
           g
             fill: #dfdfdf
@@ -43,15 +47,14 @@
         opacity: 1
 
   .finish-form
-    display: none
+    visibility: hidden
+    height: 0
+    opacity: 0
+    transition: all 0.4s ease
+    margin-top: 15px
 
   &.checked
     .finish-form
-      display: block
-    label
-      cursor: default
-    label:not(.checked)
-      flex-grow: 0.00001
-      opacity: 0
-      .icon
-        width: 0px
+      visibility: visible
+      height: initial
+      opacity: 1
