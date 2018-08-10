@@ -333,10 +333,9 @@ GEM
       elasticsearch-transport (= 6.1.0)
     elasticsearch-api (6.1.0)
       multi_json
-    elasticsearch-extensions (0.0.29)
+    elasticsearch-extensions (0.0.30)
       ansi
       elasticsearch
-      ruby-prof
     elasticsearch-transport (6.1.0)
       faraday
       multi_json
@@ -677,7 +676,6 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     rubocop-rspec (1.27.0)
       rubocop (>= 0.56.0)
-    ruby-prof (0.17.0)
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
