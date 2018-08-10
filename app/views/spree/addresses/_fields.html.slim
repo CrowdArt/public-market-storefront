@@ -10,7 +10,7 @@ ruby:
 
 - if show_nickname
   .form-group.input-with-hint id="#{address_type}title"
-    = form.text_field :title, class: 'form-control input-lg'
+    = form.text_field :title, class: 'form-control input-lg', maxlength: Spree::Address::MAX_NICKNAME_LENGTH
     = form.label :title
 
 .flex

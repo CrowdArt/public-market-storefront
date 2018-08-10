@@ -18,6 +18,8 @@ en:
 
     address:
       zip_postal_code: Zip / Postal Code
+      new_shipping_address: New shipping address
+      edit_shipping_address: Update shipping address
 
     checkout:
       submit_your_order: Submit your order

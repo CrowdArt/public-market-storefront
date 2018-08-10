@@ -12,7 +12,7 @@ ruby:
 
 - if show_card_nickname
   .form-group.input-with-hint
-    = form.text_field :card_name, class: 'form-control input-lg', autocomplete: 'nope'
+    = form.text_field :card_name, class: 'form-control input-lg', autocomplete: 'nope', maxlength: Spree::CreditCard::MAX_NICKNAME_LENGTH
     = form.label :card_name
 
 .form-group.input-with-hint
