@@ -2,17 +2,15 @@ Spree::Order.class_eval do
   include PublicMarket::Hashed
 
   Spree::Order.state_machine.before_transition to: :confirm, do: :copy_billing_from_card
-  Spree::Order.state_machine.before_transition to: :complete, do: :send_user_confirmation
   Spree::Order.state_machine.before_transition to: :complete, do: :finalize_line_items!
+  Spree::Order.state_machine.after_transition to: :complete, do: :send_user_confirmation
 
   def user_firstname
     user.first_name.presence || billing_address.first_name
   end
 
   def transition_to_complete!
-    ApplicationRecord.transaction do
-      while state != 'complete' && self.next; end
-    end
+    while state != 'complete' && self.next; end
   end
 
   def persist_user_address!
