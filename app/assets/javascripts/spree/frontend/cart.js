@@ -15,7 +15,7 @@ function removeLineItems(items) {
   $('#update-cart').submit()
 }
 
-$(document).on('click', 'form#update-cart a.delete', function() {
+$(document).on('click', '#update-cart a.delete', function() {
   removeLineItems($(this).parents('.line-item').find('.line_item_quantity'))
   return false
 })

@@ -62,7 +62,6 @@
         = f.label :quantity, 'QTY'
         br
         = select_tag :quantity, options_for_select(1..50), class: 'form-control buy-box--quntity-select'
-        = hidden_field_tag :quantity, 1, disabled: true, id: 'product-hidden-quantity'
 
         = render partial: 'spree/orders/low_stock_quantity'
 

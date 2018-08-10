@@ -51,11 +51,7 @@ $(document).on('turbolinks:load', function() {
          .attr("value", i).text(i));
     }
 
-    var singleItemLeft = max === 1;
-    $el.prop('disabled', singleItemLeft);
-    $('#product-hidden-quantity').attr('disabled', !singleItemLeft);
-
-    var lowStock = max < 5
+    var lowStock = max < 10
     $('.buy-box--quntity-left--value').text(max)
     $('.buy-box--quntity-left').toggleClass('hide', !lowStock)
   }

@@ -1,7 +1,7 @@
 ruby:
   variant = line_item.variant
   available_qty = quantity_left(variant)
-  variant_quantity_max = [available_qty, line_item.quantity].max
+  variant_quantity_max = [[available_qty, 50].min, line_item.quantity].max
   item_form ||= nil
   stock_state = stock_status(line_item.quantity, available_qty)
   out_of_stock = item_form && available_qty < line_item.quantity
@@ -22,8 +22,7 @@ ruby:
     .row
       .col-xs-12.col-sm-5
         p = link_to line_item.name, product_path(variant.product), class: 'plain-link'
-        - if out_of_stock
-          = render partial: 'line_item_option', locals: { line_item: line_item, out_of_stock: out_of_stock }
+        = render partial: 'line_item_option', locals: { line_item: line_item, out_of_stock: out_of_stock }
 
       .col-xs-12.col-sm-3
         span.small-xs= line_item.single_money.to_html
@@ -33,8 +32,7 @@ ruby:
         .row.condensed.flex.align-center
           .col-xs-6.col-sm-8
             - if item_form
-              - disabled_selector = available_qty == 0 || variant_quantity_max == 1
-              = item_form.select :quantity, options_for_select(1..variant_quantity_max, item_form.object.quantity), {}, disabled: disabled_selector, class: "form-control line_item_quantity #{'out-of-stock-input' if out_of_stock}"
+              = item_form.select :quantity, options_for_select(1..variant_quantity_max, item_form.object.quantity), {}, class: "form-control line_item_quantity #{'out-of-stock-input' if out_of_stock}"
               = item_form.hidden_field :quantity, value: 0, id: "order_line_items_attributes_#{line_item.id}_hidden_quantity", class: 'hidden-line-item-quantity', disabled: true
             - else
               = line_item.quantity
