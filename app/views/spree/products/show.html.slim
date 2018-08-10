@@ -1,13 +1,11 @@
 ruby:
   @body_id = 'product-details'
   is_mobile = mobile?
+  can_supply = @product.can_supply?
+  variants, other_seller_variants = product_variants if can_supply
 
 .row.product-grid data-hook='product_show' itemscope=true itemtype='https://schema.org/Product'
-  - cache(cache_key_for_product(@product, section: :sidebar_and_cart, mobile: is_mobile)) do
-    ruby:
-      can_supply = @product.can_supply?
-      variants, other_seller_variants = product_variants if can_supply
-
+  - cache(cache_key_for_product(@product, section: :product_sidebar, mobile: is_mobile)) do
     .col-sm-5.col-md-4.product-images-item
       div data-hook='product_left_part_wrap'
         #product-images data-hook='product_images'
@@ -21,14 +19,14 @@ ruby:
       - unless is_mobile
         = render partial: 'properties', locals: { show_title: true }
 
-    .col-xs-12.col-sm-7.col-md-4.col-md-push-4.product-cart-item
-      = render partial: 'buy_box', locals: { variants: variants, can_supply: can_supply }
+  .col-xs-12.col-sm-7.col-md-4.col-md-push-4.product-cart-item
+    = render partial: 'buy_box', locals: { variants: variants, can_supply: can_supply }
 
-      - if can_supply
-        p.text-center = render 'spree/shared/payment_methods'
+    - if can_supply
+      p.text-center = render 'spree/shared/payment_methods'
 
-        - if other_seller_variants.present?
-          = render partial: 'other_sellers_cart_form', locals: { variants: other_seller_variants }
+      - if other_seller_variants.present?
+        = render partial: 'other_sellers_cart_form', locals: { variants: other_seller_variants }
 
   / NOT CACHED PART
   .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
