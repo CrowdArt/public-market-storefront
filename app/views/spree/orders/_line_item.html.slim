@@ -22,7 +22,9 @@ ruby:
     .row
       .col-xs-12.col-sm-5
         p = link_to line_item.name, product_path(variant.product), class: 'plain-link'
-        = render partial: 'line_item_option', locals: { line_item: line_item, out_of_stock: out_of_stock }
+
+        - if item_form
+          = render partial: 'line_item_option', locals: { line_item: line_item, out_of_stock: out_of_stock }
 
       .col-xs-12.col-sm-3
         span.small-xs= line_item.single_money.to_html
