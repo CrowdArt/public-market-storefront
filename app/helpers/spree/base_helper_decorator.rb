@@ -13,7 +13,7 @@ module Spree
     end
 
     def quantity_left(variant)
-      variant.total_on_hand
+      current_order ? current_order.quantity_left(variant) : variant.total_on_hand
     end
 
     def saved_as_default?(object)

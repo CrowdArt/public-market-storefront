@@ -1,6 +1,6 @@
 ruby:
   variant = line_item.variant
-  available_qty ||= quantity_left(variant)
+  available_qty ||= variant.total_on_hand
   out_of_stock ||= available_qty < line_item.quantity
 
 small.text-muted class=('strike' if out_of_stock) #{line_item.quantity} #{variant.options_text}

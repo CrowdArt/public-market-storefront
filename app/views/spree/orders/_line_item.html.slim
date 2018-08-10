@@ -1,6 +1,6 @@
 ruby:
   variant = line_item.variant
-  available_qty = quantity_left(variant)
+  available_qty = variant.total_on_hand
   variant_quantity_max = [[available_qty, 50].min, line_item.quantity].max
   item_form ||= nil
   stock_state = stock_status(line_item.quantity, available_qty)
