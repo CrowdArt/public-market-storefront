@@ -59,7 +59,8 @@ module Spree
     end
 
     def address_params
-      params.require(:address).permit(Spree::PermittedAttributes.address_attributes + [:default])
+      # more permitted attrs added here because it's not global
+      params.require(:address).permit(Spree::PermittedAttributes.address_attributes + %i[default title])
     end
 
     def load_user

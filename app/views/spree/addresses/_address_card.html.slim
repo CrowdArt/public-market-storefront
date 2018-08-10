@@ -1,5 +1,8 @@
 - content_for(:panel_body, flush: true)
   address.no-margin-bottom.ellipsis.flex-grow-1
+    - if address.title
+      strong.ellipsis = address.title
+
     .ellipsis = address.full_name
 
     = render partial: 'spree/addresses/address_inner', locals: { address: address }
