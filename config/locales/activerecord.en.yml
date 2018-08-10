@@ -13,7 +13,7 @@ en:
     attributes:
       spree/credit_card:
         card_name: Nickname (Optional)
-        name: Name on card
+        name: Name on Card
         address:
           firstname: First Name
           lastname: Last Name
@@ -25,7 +25,8 @@ en:
           phone: Phone number
       spree/address:
         title: Nickname (Optional)
-        address2: Address 2 (Optional)
+        address1: Street Address
+        address2: Unit/Apt/Suite Number (Optional)
       spree/vendor:
         rewards: Global Vendor PTRN Rewards
       spree/variant:

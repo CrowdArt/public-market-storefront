@@ -1,4 +1,6 @@
-- country = form.object.country
+ruby:
+  country = form.object.country
+  show_nickname ||= false
 
 = render partial: 'spree/shared/phone_input_scripts'
 
@@ -6,18 +8,27 @@
   javascript:
     window.pm.initPhoneInput("##{address_type}phone")
 
+- if show_nickname
+  .form-group.input-with-hint id="#{address_type}title"
+    = form.text_field :title, class: 'form-control input-lg'
+    = form.label :title
+
 .flex
-  .form-group.flex-grow-1.margin-text-right
-    = form.text_field :firstname, class: 'form-control input-lg', placeholder: Spree.t(:first_name), required: true
+  .form-group.flex-grow-1.margin-text-right.input-with-hint
+    = form.text_field :firstname, class: 'form-control input-lg', required: true
+    = form.label :firstname
 
-  .form-group.flex-grow-1.margin-text-left
-    = form.text_field :lastname, class: 'form-control input-lg', placeholder: Spree.t(:last_name), required: true
+  .form-group.flex-grow-1.margin-text-left.input-with-hint
+    = form.text_field :lastname, class: 'form-control input-lg', required: true
+    = form.label :lastname
 
-.form-group id="#{address_type}address1"
-  = form.text_field :address1, class: 'form-control input-lg', placeholder: Spree.t(:address1), required: true
+.form-group.input-with-hint id="#{address_type}address1"
+  = form.text_field :address1, class: 'form-control input-lg', required: true
+  = form.label :address1
 
-.form-group id="#{address_type}address2"
-  = form.text_field :address2, class: 'form-control input-lg', placeholder: Spree.t(:address2)
+.form-group.input-with-hint id="#{address_type}address2"
+  = form.text_field :address2, class: 'form-control input-lg'
+  = form.label :address2
 
 .form-group.custom-select-wrapper id="#{address_type}country"
   / = address_fields.select :country_id, options_for_select(available_countries.map { |c| [c.name, c.id, { 'data-country-code' => c.iso }]}, @credit_card.address.country_id), {}, { disabled: true, class: 'form-control' }
@@ -26,13 +37,13 @@
 
 .form-group.input-with-hint id="#{address_type}city"
   = form.text_field :city, class: 'form-control input-lg', required: true
-  = form.label :city, Spree.t(:city)
+  = form.label :city
 
 .flex.wrap-xs
   .form-group.custom-select-wrapper.no-margin-text-right-xs.checkout-form--state-input.full-width-xs.flex-grow-1 id="#{address_type}state"
     = form.select :state_id, options_for_select(country.states.map { |s| [s.name, s.id, { 'data-state-code' => s.abbr }]}, form.object.state_id), {}, { class: 'form-control input-lg' }
 
-  .input-with-hint.form-group.flex-grow-1 id="#{address_type}zipcode"
+  .form-group.input-with-hint.flex-grow-1 id="#{address_type}zipcode"
     = form.phone_field :zipcode, class: 'form-control input-lg', inputmode: 'numeric', autocomplete: 'postal-code', required: true
     = form.label :zipcode, t('forms.address.zip_postal_code')
 

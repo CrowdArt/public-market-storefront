@@ -6,7 +6,7 @@
   br
 
   = form_for @address, html: { id: 'checkout_form_address', class: 'leave-check' } do |f|
-    = render partial: 'spree/addresses/fields', locals: { form: f, address_type: 's' }
+    = render partial: 'spree/addresses/fields', locals: { form: f, address_type: 's', show_nickname: true }
 
     .checkbox.checkbox-blue.user-account-form--default-checkbox
       = f.check_box :default, class: 'form-control'
