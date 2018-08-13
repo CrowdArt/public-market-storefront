@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_multi_vendor.git
-  revision: 99377f64c9421ee4077e0d316c64ad7e60707112
+  revision: bd7cd7eefa3eed3d195193d781e8b403fb0d285b
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq
@@ -171,7 +171,7 @@ GEM
     activejob (5.2.0)
       activesupport (= 5.2.0)
       globalid (>= 0.3.6)
-    activemerchant (1.80.0)
+    activemerchant (1.81.0)
       activesupport (>= 4.2, < 6.x)
       builder (>= 2.1.2, < 4.0.0)
       i18n (>= 0.6.9)
@@ -204,7 +204,7 @@ GEM
     ast (2.4.0)
     attr_encrypted (3.1.0)
       encryptor (~> 3.0.0)
-    autoprefixer-rails (9.0.2)
+    autoprefixer-rails (9.1.1)
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)
@@ -485,18 +485,18 @@ GEM
       mimemagic (~> 0.3.2)
     memoist (0.16.0)
     method_source (0.9.0)
-    mime-types (3.1)
+    mime-types (3.2.2)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0521)
+    mime-types-data (3.2018.0812)
     mimemagic (0.3.2)
     mini_magick (4.8.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     mixpanel-ruby (2.2.0)
-    monetize (1.8.0)
-      money (~> 6.11.2)
-    money (6.11.3)
+    monetize (1.9.0)
+      money (~> 6.12)
+    money (6.12.0)
       i18n (>= 0.6.4, < 1.1)
     multi_json (1.13.1)
     multi_xml (0.6.0)
@@ -632,7 +632,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    redis (4.0.1)
+    redis (4.0.2)
     ref (2.0.0)
     representable (3.0.4)
       declarative (< 0.1.0)
@@ -705,7 +705,7 @@ GEM
     sentry-raven (2.7.4)
       faraday (>= 0.7.6, < 1.0)
     shellany (0.0.1)
-    sidekiq (5.2.0)
+    sidekiq (5.2.1)
       connection_pool (~> 2.2, >= 2.2.2)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
@@ -764,7 +764,7 @@ GEM
       activerecord (>= 4.1, < 6.0)
       state_machines-activemodel (>= 0.5.0)
     stringex (2.8.4)
-    stripe (3.19.0)
+    stripe (3.21.0)
       faraday (~> 0.10)
     swagger-blocks (2.0.2)
     temple (0.8.0)
