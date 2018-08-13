@@ -7,8 +7,7 @@ section.account-summary--payment-info
       - if asset_exists?(card_icon)
         = image_tag(card_icon, style: 'width:35px;margin-right:10px')
 
-      strong> = card.card_name.presence || card.cc_type&.humanize&.upcase
-      = card.display_number
+      strong.ellipsis = card_name_type(card)
 
     = link_to t('users.account-page.manage-payment', count: @user.credit_cards.count), spree.user_payment_methods_path, class: 'text-medium'
   - else
