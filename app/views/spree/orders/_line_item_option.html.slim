@@ -3,7 +3,7 @@ ruby:
   available_qty ||= variant.total_on_hand
   out_of_stock ||= available_qty < line_item.quantity
 
-small.text-muted class=('strike' if out_of_stock) #{line_item.quantity} #{variant.options_text}
+small.text-muted class=('strike' if out_of_stock) (#{line_item.quantity}) #{variant.options_text}
 
 - if available_qty < line_item.quantity
   span.margin-text-left
