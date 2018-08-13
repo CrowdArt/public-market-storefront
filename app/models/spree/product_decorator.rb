@@ -23,6 +23,7 @@ module Spree
       }
 
       base.delegate :variation_module, to: :taxonomy, allow_nil: true
+      base.skip_callback :touch, :after, :touch_taxons if base._touch_callbacks.any?
     end
 
     module InstanceMethods
