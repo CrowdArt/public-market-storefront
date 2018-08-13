@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_multi_vendor.git
-  revision: bd7cd7eefa3eed3d195193d781e8b403fb0d285b
+  revision: 4eef78c29ad7fc0f35dc403e5986c4591a54286d
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq
