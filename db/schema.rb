@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_14_150350) do
+ActiveRecord::Schema.define(version: 2018_08_14_200300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -449,6 +449,12 @@ ActiveRecord::Schema.define(version: 2018_08_14_150350) do
     t.string "name"
     t.string "slug"
     t.boolean "promoted", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["slug"], name: "index_spree_product_collections_on_slug", unique: true
   end
 

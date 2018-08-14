@@ -20,6 +20,7 @@ module Spree
                          .joins(:products)
                          .promoted
                          .order('RANDOM()')
+                         .uniq
                          .take(4)
     end
   end

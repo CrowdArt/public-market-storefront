@@ -5,6 +5,7 @@ end
 Spree::Core::Engine.add_routes do
   namespace :admin, path: Spree.admin_path do
     resources :product_collections, except: :show
+    resources :product_collection_products, only: :destroy
   end
 
   scope :account do

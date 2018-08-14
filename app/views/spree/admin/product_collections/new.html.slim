@@ -5,7 +5,7 @@
   ' &nbsp;/
   = Spree.t(:new_product_collection)
 
-= form_for [:admin, @product_collection] do |f|
+= form_for [:admin, @product_collection], html: { multipart: true } do |f|
   fieldset
     = render partial: 'form', locals: { f: f }
 

@@ -5,6 +5,16 @@ module Spree
         respond_with(@collection)
       end
 
+      def edit
+        @product_collection_products =
+          @object.product_collections_products
+                 .joins(:product)
+                 .page(params[:page])
+                 .per(Spree::Config[:admin_properties_per_page])
+
+        super
+      end
+
       def destroy
         if @object.destroy
           flash[:success] = flash_message_for(@object, :successfully_removed)

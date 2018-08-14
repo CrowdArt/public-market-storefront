@@ -62,6 +62,10 @@ module Spree
       end.compact
     end
 
+    def home_top_collections_cache_key
+      [:v1, :home, :top_collections, (ProductCollection.maximum(:updated_at) || Time.zone.today).to_s(:number)]
+    end
+
     private
 
     def prepare_buy_box_variants(option_variants)

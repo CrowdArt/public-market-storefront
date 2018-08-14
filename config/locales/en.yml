@@ -19,11 +19,9 @@ en:
     top_selling_header: Top Selling Books
     staff_picks_header: Enjoy this Month's Staff Picks
     staff_picks_btn_text: Explore
-    top_categories_header: Top Categories
+    top_collections_header: Top Collections
+    bottom_collections_header: Featured Collections
     top_products_header: Top Selling Products
-    top_categories:
-      books: Top Selling Books
-      music: Vinyl Records
 
   account:
     summary: My account

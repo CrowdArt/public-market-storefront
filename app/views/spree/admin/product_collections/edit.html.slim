@@ -5,7 +5,29 @@
 
 = render partial: 'spree/admin/shared/error_messages', locals: { target: @product_collection }
 
-= form_for [:admin, @product_collection] do |f|
+= form_for [:admin, @product_collection], html: { multipart: true } do |f|
   fieldset
     = render partial: 'form', locals: { f: f }
     = render partial: 'spree/admin/shared/edit_resource_links'
+
+- if @product_collection_products.present?
+  hr
+
+  h3 Products
+
+  table.table
+    thead
+      tr
+        th
+          = Spree.t(:name)
+        th.actions
+
+    tbody
+      - @product_collection_products.each do |product_collection_product|
+        tr id=spree_dom_id(product_collection_product)
+          td
+            = product_collection_product.product.name
+          td.actions.actions-2.text-right
+            = link_to_delete(product_collection_product, url: admin_product_collection_product_path(product_collection_product), no_text: true) if can?(:delete, product_collection_product)
+
+  = paginate @product_collection_products
