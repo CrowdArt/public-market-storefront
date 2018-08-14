@@ -1,0 +1,45 @@
+- content_for :page_title do
+  = plural_resource_name(Spree::ProductCollection)
+
+- if can? :create, Spree::ProductCollection
+  - content_for :page_actions do
+    = button_link_to Spree.t(:new_product_collection), new_object_url, class: "btn-success", icon: 'add', id: 'admin_new_product_collection_link'
+
+- if @collection.any?
+  - content_for :table_filter do
+    = search_form_for [:admin, @search] do |f|
+      - locals = { f: f }
+      .row
+        .col-xs-12.col-md-6
+          .form-group
+            = f.label :name_cont, Spree.t(:name)
+            = f.text_field :name_cont, class: "form-control js-quick-search-target js-filterable"
+
+      .form-actions
+        = button Spree.t(:search), 'search'
+
+  table.table
+    thead
+      tr
+        th
+          = Spree.t(:name)
+        th
+          = Spree.t(:slug)
+        th.actions
+    tbody
+      - @collection.each do |product_collection|
+        tr id=spree_dom_id(product_collection)
+          td
+            = product_collection.name
+          td
+            = product_collection.slug
+          td.actions.actions-2.text-right
+            = link_to_edit(product_collection, no_text: true) if can?(:edit, product_collection)
+            = link_to_delete(product_collection, no_text: true) if can?(:delete, product_collection)
+- else
+  .alert.alert-info.no-objects-found
+    = Spree.t(:no_resource_found, resource: plural_resource_name(Spree::ProductCollection))
+    ' ,
+    = link_to Spree.t(:add_one), new_object_url if can?(:create, Spree::ProductCollection)
+
+= paginate @collection

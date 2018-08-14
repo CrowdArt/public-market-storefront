@@ -1,0 +1,13 @@
+= render partial: 'spree/admin/shared/error_messages', locals: { target: @product_collection }
+
+- content_for :page_title do
+  = link_to Spree.t(:product_collections), admin_product_collections_url
+  ' &nbsp;/
+  = Spree.t(:new_product_collection)
+
+= form_for [:admin, @product_collection] do |f|
+  fieldset
+    = render partial: 'form', locals: { f: f }
+
+    .form-actions
+      = render partial: 'spree/admin/shared/new_resource_links'

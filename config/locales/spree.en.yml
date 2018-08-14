@@ -70,3 +70,4 @@ en:
     default_payment_method: Make this my default payment method
     default_shipping_address: Make this my default shipping address
     save_payment_method: Save Payment Method
+    product_collection: Product Collection

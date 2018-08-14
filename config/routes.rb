@@ -3,6 +3,10 @@ Spree::Core::Engine.routes.draw do
 end
 
 Spree::Core::Engine.add_routes do
+  namespace :admin, path: Spree.admin_path do
+    resources :product_collections
+  end
+
   scope :account do
     get '/(:tab)', to: 'users#show', tab: /orders/, as: :account
 
