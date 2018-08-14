@@ -1,0 +1,5 @@
+li class=("previous #{"disabled" if current_page.first?}")
+  - if current_page.first?
+    a href="javascript:;"
+  - else
+    = link_to_unless current_page.first?, '', url, rel: 'prev', remote: remote

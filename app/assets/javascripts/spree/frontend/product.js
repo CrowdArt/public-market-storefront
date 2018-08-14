@@ -1,8 +1,9 @@
 // additional to spree/frontend/product.js
 Spree.ready(function ($) {
-  $.fancybox.defaults.hash = false;
-  $.fancybox.defaults.buttons = ['zoom', 'close'];
-
+  if ($.fancybox) {
+    $.fancybox.defaults.hash = false;
+    $.fancybox.defaults.buttons = ['zoom', 'close'];
+  }
 
   function setVariantOptionText(variant) {
     $('#variant-option').text(variant.closest('.dropdown-item').find('.variant-description').text());
