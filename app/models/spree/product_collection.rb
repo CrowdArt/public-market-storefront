@@ -5,6 +5,8 @@ module Spree
     has_many :product_collections_products, class_name: 'Spree::ProductCollectionProduct', dependent: :destroy
     has_many :products, through: :product_collections_products, class_name: 'Spree::Product', source: :product
 
+    scope :promoted, -> { where(promoted: true) }
+
     before_destroy :staff_picks?
 
     extend FriendlyId

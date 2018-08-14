@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_14_105053) do
+ActiveRecord::Schema.define(version: 2018_08_14_150350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -448,6 +448,7 @@ ActiveRecord::Schema.define(version: 2018_08_14_105053) do
   create_table "spree_product_collections", force: :cascade do |t|
     t.string "name"
     t.string "slug"
+    t.boolean "promoted", default: false
     t.index ["slug"], name: "index_spree_product_collections_on_slug", unique: true
   end
 

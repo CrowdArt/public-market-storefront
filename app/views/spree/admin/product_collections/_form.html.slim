@@ -10,4 +10,9 @@
     = f.field_container :slug, class: ['form-group'] do
       = f.label :slug, Spree.t(:slug)
       = f.text_field :slug, class: 'form-control'
-      = f.error_message_on :name
+      = f.error_message_on :slug
+
+    .checkbox
+      = f.label :promoted do
+        = f.check_box :promoted
+        = Spree.t(:promoted)

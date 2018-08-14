@@ -35,6 +35,7 @@
             = product_collection.slug
           td.actions.actions-2.text-right
             = link_to_edit(product_collection, no_text: true) if can?(:edit, product_collection)
+            | &nbsp;
             = link_to_delete(product_collection, no_text: true) if can?(:delete, product_collection)
 - else
   .alert.alert-info.no-objects-found

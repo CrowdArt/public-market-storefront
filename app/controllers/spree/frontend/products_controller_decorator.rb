@@ -7,20 +7,6 @@ module Spree
       base.include SimilarVariantsHelper
     end
 
-    def best_selling
-      params[:sort] ||= { popularity: 'all_time' }
-
-      searcher_opts = {}
-      searcher_opts[:taxon_ids] = [@taxon.id] if @taxon.present?
-
-      @products = build_searcher(params, opts: searcher_opts).call
-
-      respond_to do |format|
-        format.html { render action: :index }
-        format.js { render 'spree/shared/search/products' }
-      end
-    end
-
     def index
       searcher_opts = {}
 
@@ -40,6 +26,20 @@ module Spree
     def show
       @previous_variation = Spree::Product.find_by(slug: params[:variation])
       redirect_if_legacy_path
+    end
+
+    def best_selling
+      params[:sort] ||= { popularity: 'all_time' }
+
+      searcher_opts = {}
+      searcher_opts[:taxon_ids] = [@taxon.id] if @taxon.present?
+
+      @products = build_searcher(params, opts: searcher_opts).call
+
+      respond_to do |format|
+        format.html { render action: :index }
+        format.js { render 'spree/shared/search/products' }
+      end
     end
 
     def autocomplete
