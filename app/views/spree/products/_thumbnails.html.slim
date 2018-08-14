@@ -1,0 +1,17 @@
+- content_for :head do
+  = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css'
+  = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js'
+
+- if (@product.images + @product.variant_images).uniq.size > 1
+  ul#product-thumbnails.list-inline data-hook=""
+    - @product.images.drop(1).each do |i|
+      / li class=("tmb-all tmb-#{i.viewable.id}")
+      li
+        a data-fancybox='gallery' data-turbolinks='false' href=i.url(:large)
+          = image_tag(main_app.url_for(i.url(:mini)), class: "thumbnail")
+        / = link_to(image_tag(main_app.url_for(i.url(:mini)), class: "thumbnail"), main_app.url_for(i.url(:product)))
+    / - if @product.has_variants?
+      - @product.variant_images.each do |i|
+        - next if @product.images.include?(i)
+        li class=("vtmb tmb-#{i.viewable.id}")
+          = link_to(image_tag(main_app.url_for(i.url(:mini)), class: "thumbnail"), main_app.url_for(i.url(:product)))

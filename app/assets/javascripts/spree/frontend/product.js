@@ -1,6 +1,9 @@
 // additional to spree/frontend/product.js
+Spree.ready(function ($) {
+  $.fancybox.defaults.hash = false;
+  $.fancybox.defaults.buttons = ['zoom', 'close'];
 
-$(document).on('turbolinks:load', function() {
+
   function setVariantOptionText(variant) {
     $('#variant-option').text(variant.closest('.dropdown-item').find('.variant-description').text());
   }
@@ -41,14 +44,22 @@ $(document).on('turbolinks:load', function() {
     $('.est-token-rewards span').text(variant.data('rewards'));
   }
 
-  Spree.changeQuantitySelectorOptions = function(count) {
+  function setVariantPrice(variant) {
+    var variantPrice = variant.data("price");
+
+    if (variantPrice) {
+      return ($(".price.selling")).text(variantPrice);
+    }
+  }
+
+  Spree.changeQuantitySelectorOptions = function (count) {
     var $el = $("#cart-form #quantity");
     $el.empty(); // remove old options
 
     var max = count > 50 ? 50 : count;
     for (var i = 1; i <= max; i++) {
       $el.append($("<option></option>")
-         .attr("value", i).text(i));
+        .attr("value", i).text(i));
     }
 
     var lowStock = max < 10
@@ -56,23 +67,26 @@ $(document).on('turbolinks:load', function() {
     $('.buy-box--quntity-left').toggleClass('hide', !lowStock)
   }
 
+  Spree.variantSelected = function(variant) {
+    setVariantOptionText(variant);
+    setAveragePrice(variant);
+    setVendorInfo(variant);
+    setRewards(variant);
+    setVariantPrice(variant);
+    Spree.changeQuantitySelectorOptions(variant.data("quantity"));
+  }
+})
+
+$(document).on('turbolinks:load', function() {
   var radios = $("#product-variants input[type='radio']");
 
   if (radios.length > 0) {
     var selectedRadio = $("#product-variants input[type='radio'][checked='checked']");
 
-    setVariantOptionText(selectedRadio);
-    setAveragePrice(selectedRadio);
-    setVendorInfo(selectedRadio);
-    setRewards(selectedRadio);
-    Spree.changeQuantitySelectorOptions(selectedRadio.data("quantity"));
+    Spree.variantSelected(selectedRadio);
 
     radios.click(function (event) {
-      setVariantOptionText($(this));
-      setAveragePrice($(this));
-      setVendorInfo($(this));
-      setRewards($(this));
-      Spree.changeQuantitySelectorOptions($(this).data("quantity"));
+      Spree.variantSelected($(this));
     });
   }
 });
