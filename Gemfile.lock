@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_multi_vendor.git
-  revision: 4eef78c29ad7fc0f35dc403e5986c4591a54286d
+  revision: 71e435f9c0daa8d7820f33f8aee054847321dd1e
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq
@@ -171,7 +171,7 @@ GEM
     activejob (5.2.0)
       activesupport (= 5.2.0)
       globalid (>= 0.3.6)
-    activemerchant (1.81.0)
+    activemerchant (1.82.0)
       activesupport (>= 4.2, < 6.x)
       builder (>= 2.1.2, < 4.0.0)
       i18n (>= 0.6.9)
@@ -490,7 +490,7 @@ GEM
     mime-types-data (3.2018.0812)
     mimemagic (0.3.2)
     mini_magick (4.8.0)
-    mini_mime (1.0.0)
+    mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     mixpanel-ruby (2.2.0)
