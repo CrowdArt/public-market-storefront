@@ -5,7 +5,7 @@ module Spree
     has_many :product_collections_products, class_name: 'Spree::ProductCollectionProduct', dependent: :destroy
     has_many :products, through: :product_collections_products, class_name: 'Spree::Product', source: :product
 
-    has_attached_file :image, styles: { thumb: '180x300>' }, default_url: '/images/noimage/:style.png'
+    has_attached_file :image, styles: { thumb: '180x300>' }, default_url: 'home/books.png'
     validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\z}
 
     scope :promoted, -> { where(promoted: true) }
