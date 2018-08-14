@@ -4,7 +4,7 @@ end
 
 Spree::Core::Engine.add_routes do
   namespace :admin, path: Spree.admin_path do
-    resources :product_collections
+    resources :product_collections, except: :show
   end
 
   scope :account do
@@ -36,13 +36,15 @@ Spree::Core::Engine.add_routes do
     post '/:id/rate/:shipment_id', to: 'orders#update_shipment_rate', as: :update_shipment_rate
   end
 
-  get '/products/:id/variation/:variation', to: 'products#similar_variants', as: :similar_variants
+  scope :products do
+    get '/:id/variation/:variation', to: 'products#similar_variants', as: :similar_variants
+    get '/c/:id', to: 'product_collections#show', as: :product_collections
+  end
 
   get '/taxons/mobile_menu_childs', to: 'taxons#mobile_menu_childs'
 
   get '/top-selling', to: 'products#best_selling'
   get '/top-selling/t/*id/', to: 'products#best_selling', as: :top_selling_taxon
-  get '/staff-picks', to: 'products#staff_picks'
 
   resources :addresses, except: %i[index show new]
 end

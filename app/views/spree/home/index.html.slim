@@ -55,7 +55,7 @@
                 = link_to category[:url] do
                   = image_tag "home/#{category_name.downcase}.png"
 
-- unless @staff_picks.empty?
+- if @staff_picks.present?
   section.staff-picks
     div[data-hook="homepage_staff_picks"]
       = render partial: 'spree/shared/staff_picks', locals: { staff_picks: @staff_picks }

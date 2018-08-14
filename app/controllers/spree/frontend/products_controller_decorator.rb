@@ -21,15 +21,6 @@ module Spree
       end
     end
 
-    def staff_picks
-      @products = build_searcher(params, searcher_class: Spree::Inventory::Searchers::StaffPicks).call
-
-      respond_to do |format|
-        format.html { render action: :index }
-        format.js { render 'spree/shared/search/products' }
-      end
-    end
-
     def index
       searcher_opts = {}
 

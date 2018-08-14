@@ -59,7 +59,8 @@ module Spree
         {
           conversions_month: orders.complete.where('completed_at > ?', 1.month.ago).count,
           slug: slug,
-          variations: variations
+          variations: variations,
+          collections: product_collection_ids
         }
       end
 

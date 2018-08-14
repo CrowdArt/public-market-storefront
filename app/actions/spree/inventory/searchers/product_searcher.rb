@@ -72,11 +72,11 @@ module Spree
           aggregations
         end
 
-        ALLOWED_WHERE_PARAMS = %w[format variations].freeze
+        ALLOWED_WHERE_PARAMS = %i[format variations collections].freeze
         def add_search_filters(query)
           return query unless filter
 
-          filter.select { |param, _val| ALLOWED_WHERE_PARAMS.include?(param) }.each do |name, scope_attribute|
+          filter.symbolize_keys.select { |param, _val| ALLOWED_WHERE_PARAMS.include?(param) }.each do |name, scope_attribute|
             query.merge!(Hash[name, scope_attribute])
           end
 
