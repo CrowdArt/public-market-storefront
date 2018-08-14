@@ -40,6 +40,11 @@ module Spree
 
           protected
 
+          def process_item(hash)
+            hash[:notes] = hash[:description]
+            super(hash)
+          end
+
           def mapped_condition(condition)
             condition
           end
@@ -52,7 +57,6 @@ module Spree
           def bwb_meta
             {
               title: item_json[:title],
-              description: item_json[:description],
               price: item_json[:price],
               properties: {
                 isbn: item_json[:isbn],

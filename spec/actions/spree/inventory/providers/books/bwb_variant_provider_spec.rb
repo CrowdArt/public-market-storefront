@@ -22,6 +22,7 @@ RSpec.describe Spree::Inventory::Providers::Books::BwbVariantProvider, type: :ac
     it { expect(variant.product).to be_persisted }
     it { expect(variant).not_to be_nil }
     it { expect(variant.sku).to eq(item_json[:bookid]) }
+    it { expect(variant.notes).to eq(item_json[:description]) }
 
     describe 'condition' do
       it { expect(variant.option_value('condition')).to eq('Collectible - Acceptable') }
@@ -52,7 +53,7 @@ RSpec.describe Spree::Inventory::Providers::Books::BwbVariantProvider, type: :ac
       let(:isbn) { '9780747545576' }
 
       it { expect(product.name).to eq(item_json[:title]) }
-      it { expect(product.description).to eq(item_json[:description]) }
+      it { expect(product.description).not_to eq(item_json[:description]) }
       it { expect(product.property(:author)).to eq(item_json[:author]) }
       it { expect(product.property(:isbn)).to eq(item_json[:isbn]) }
       it { expect(product.property(:publisher)).to eq(item_json[:publisher]) }
