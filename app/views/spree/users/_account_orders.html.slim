@@ -6,4 +6,4 @@
   - else
     .alert.alert-info= Spree.t(:you_have_no_orders_yet)
 
-  .text-right = paginate @orders
+  .text-right = paginate @orders, show_first_page: true, show_last_page: true
