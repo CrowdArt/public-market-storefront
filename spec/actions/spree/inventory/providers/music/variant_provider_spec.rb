@@ -16,6 +16,7 @@ RSpec.describe Spree::Inventory::Providers::Music::VariantProvider, type: :actio
 
   describe 'creation' do
     let(:sku) { '08-F-002387' }
+    let(:genre) { 'Hardcore' }
     let(:item_json) do
       {
         sku: sku,
@@ -27,7 +28,7 @@ RSpec.describe Spree::Inventory::Providers::Music::VariantProvider, type: :actio
         title: 'Goodwill Central Texas',
         artist: 'Jake Donaldson',
         description: 'Wow vinyl',
-        genres: 'Hardcore',
+        genres: genre,
         label: 'Epic',
         label_number: 'PK-32',
         speed: '12'
@@ -61,7 +62,7 @@ RSpec.describe Spree::Inventory::Providers::Music::VariantProvider, type: :actio
       it { expect(product.property(:artist)).not_to be_nil }
       it { expect(product.taxons.count).to eq(1) }
       it { expect(product.taxons.first.taxonomy.name).to eq('Music') }
-      it { expect(product.taxons.first.name).to eq('Hardcore') }
+      it { expect(product.taxons.first.name).to eq('Uncategorized') }
 
       it { expect(variant).not_to be_nil }
       it { expect(variant).not_to eq(product.master) }
@@ -82,6 +83,20 @@ RSpec.describe Spree::Inventory::Providers::Music::VariantProvider, type: :actio
         let(:options) { { taxonomy: 'Music' } }
 
         it { expect(product.taxons.first.taxonomy.name).to eq('Music') }
+      end
+
+      describe 'taxonomy' do
+        let(:taxonomy) { create(:taxonomy, name: 'Music') }
+
+        context 'when taxon is absent' do
+          it { expect(product.taxons.first.name).to eq('Uncategorized') }
+        end
+
+        context 'when taxon exists' do
+          before { create(:taxon, name: genre, taxonomy: taxonomy) }
+
+          it { expect(product.taxons.first.name).to eq(genre) }
+        end
       end
     end
 

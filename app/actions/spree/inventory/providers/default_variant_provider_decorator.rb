@@ -10,19 +10,16 @@ module Spree
         end
 
         def categorize(product, taxons)
-          # created with filterable by default
-          taxonomy = Spree::Taxonomy.create_with(filterable: true)
-                                    .find_or_create_by!(name: taxonomy_name)
-
-          parent_taxon = taxonomy.root
-          taxons.each do |taxon|
-            parent_taxon = parent_taxon.children.find_or_create_by!(name: taxon, taxonomy: taxonomy)
-          end
-          parent_taxon.products << product
+          taxonomy = Spree::Taxonomy.create_with(filterable: true).find_or_create_by!(name: taxonomy_name)
+          classifier.call(product, taxonomy, taxons || [])
         end
 
         def metadata_provider
           self.class.parent::MetadataProvider
+        end
+
+        def classifier
+          DefaultClassifier
         end
       end
 

@@ -2,15 +2,7 @@ module Spree
   module Inventory
     module Providers
       module Books
-        class Classifier < Spree::BaseAction
-          param :product
-          param :taxonomy
-          param :taxon_candidates
-
-          def call
-            categorise
-          end
-
+        class Classifier < DefaultClassifier
           private
 
           def categorise
@@ -36,11 +28,6 @@ module Spree
             end
 
             parent_taxon if parent_taxon != taxonomy.root # disallow saving to taxonomy root
-          end
-
-          def find_taxon(parent_taxon, taxon)
-            # match using ILIKE to make match case-insensitive
-            parent_taxon.children.find_by('name ILIKE ?', taxon)
           end
 
           def assign_to_taxons(matching_taxons) # rubocop:disable Metrics/AbcSize
