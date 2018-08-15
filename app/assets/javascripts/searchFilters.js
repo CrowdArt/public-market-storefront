@@ -3,13 +3,13 @@ window.pm = window.pm || {}
 // tags toggle
 window.pm.manageFilterTags = function(el) {
   var action = null
-  var elementId = $(el).attr('id')
+  var elementId = $(el).data('tag-id')
   var value = $(el).val().trim()
 
   // tags value equals text in filter if checkbox/radio
   if ($(el).is(':checkbox') || $(el).is(':radio')) {
     action = el.checked ? 'add' : 'remove'
-    value = $("label[for='" + elementId + "']").text()
+    value = $(el).siblings('label').text()
   } else if ($(el).prop('name') === 'keywords') {
     // remove old keyword tag
     $('#filter-tags').tagsinput('remove', { id: elementId }, { preventTrigger: true })
@@ -43,14 +43,22 @@ $(document).on('change', '#per_page_selector', function() {
   $('#search-filters-form #per_page').val($(this).val()).trigger('change')
 })
 
-$(document).on('ajax:beforeSend', '#search-filters-form', function() {
+$(document).on('ajax:beforeSend', '#search-filters-form, #mobile-search-filters-form', function() {
   $('#products').addClass('products-loading')
   $('#per_page_selector').attr('disabled', true)
-}).on('ajax:complete', '#search-filters-form', function(xhr, status) {
+}).on('ajax:complete', '#search-filters-form, #mobile-search-filters-form', function(xhr, status) {
   $('#products').removeClass('products-loading')
   $('#per_page_selector').attr('disabled', false)
-}).on('ajax:success', '#search-filters-form', function(xhr, status) {
-  history.pushState(history.state, null, '//' + location.host + location.pathname + '?' + $('#search-filters-form').serialize())
+}).on('ajax:success', '#search-filters-form, #mobile-search-filters-form', function(xhr, status) {
+  history.pushState(history.state, null, '//' + location.host + location.pathname + '?' + $(this).serialize())
+})
+
+$(document).on('submit', '#mobile-search-filters-form', function() {
+  $(this).find('input').each(function() {
+    pm.manageFilterTags(this)
+  })
+
+  $('#mobile-filters-toggle').prop('checked', false)
 })
 
 $(window).on('popstate', function (e) {

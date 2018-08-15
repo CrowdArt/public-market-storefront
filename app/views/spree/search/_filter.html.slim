@@ -26,9 +26,9 @@ ruby:
         li.dropdown-item
           div class=(type == :filter ? 'checkbox checkbox-blue checkbox-right' : 'radio radio-blue radio-right')
             - if type == :filter
-              = check_box_tag input_name, item[:value], params_option&.include?(item[:value]), id: filter_input_id
+              = check_box_tag input_name, item[:value], params_option&.include?(item[:value]), id: filter_input_id, data: { 'tag-id': filter_input_id }
             - else
-              = radio_button_tag input_name, item[:value], params_option == item[:value].to_s, id: filter_input_id
+              = radio_button_tag input_name, item[:value], params_option == item[:value].to_s, id: filter_input_id, data: { 'tag-id': filter_input_id }
 
             = label_tag filter_input_id, style: 'width:100%'
               span.flex.between.align-center = item[:label].humanize

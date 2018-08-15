@@ -2,7 +2,7 @@
   cursor: pointer
   padding: 0 7.5px
 
-#mobile-nav-toggle:checked
+#mobile-nav-toggle:checked, #mobile-filters-toggle:checked
   & ~ .mobile-menu
     transform: translateX(0)
 
@@ -51,6 +51,17 @@
 
       &.menu-arrow-left:before
         margin-right: 10px
+
+  &.mobile-menu-white
+    background-color: white
+
+    li
+      a, label
+        &:not(.link-to__sign-in):not(.link-muted)
+          color: $text-color
+
+    .divider
+      border-top: 1px solid #eaeaea
 
   .enabled-category, .disabled-category
     display: flex

@@ -5,8 +5,10 @@
   background-color: $filters-bg
   margin-bottom: 12px
 
-  @media (max-width: $screen-xs-max)
-    padding: 25px 30px
+  .mobile-filters-toggle label
+    font-weight: normal
+    padding: 15px
+    width: 100%
 
   .search-filter
     max-width: 350px
@@ -43,3 +45,40 @@
 
 .per-page-selector
   width: 75px
+
+#mobile-search-filters-form
+  height: 100%
+
+.mobile-search-filters
+  overflow-y: hidden
+
+  li
+    label
+      text-transform: none
+      padding: 12px 40px
+      padding-right: 20px
+
+  .close
+    opacity: 1
+    font-size: 24px
+
+    label
+      font-weight: normal
+
+  &--head
+    padding: 12px 20px
+
+  &--inner
+    overflow-y: scroll
+
+  .collapse-toggle
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+  .collapse
+    &--head
+      background: $pagination-hover-bg
+      padding: 6px 30px
+
+

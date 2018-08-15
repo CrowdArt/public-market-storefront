@@ -1,0 +1,39 @@
+ruby:
+  idx ||= 0
+  type ||= :filter # filter or sort
+
+a.plain-link.collapse-toggle role='button' data-toggle='collapse' href="#collapse-#{type}" aria-expanded=(idx.zero? ? 'true' : 'false') aria-controls="#collapse-#{type}"
+  .text-bold.text-black.upcase.flex-1 = t("filters.by.#{type}")
+  strong -
+
+.divider role='separator'
+
+.collapse id="collapse-#{type}" aria-expanded=(idx.zero? ? 'true' : 'false') class=('in' if idx.zero?)
+  - filters.each do |filter|
+    ruby:
+      filter_type = filter[:type] # format, variation, price etc
+      filter_name = filter[:name].humanize # label
+      items = filter[:options]
+      params_option = params.dig(type, filter_type.downcase)
+      input_name = "#{type}[#{filter_type.downcase}]"
+      input_name += '[]' if type == :filter # array of params
+
+    .collapse--head
+      .text-muted = filter_name
+
+    ul
+      - items.each do |item|
+        - filter_input_id = "#{type}_#{filter_type.downcase}_#{item[:id]}"
+
+        li
+          div class=(type == :filter ? 'checkbox checkbox-blue checkbox-right' : 'radio radio-blue radio-right')
+            - if type == :filter
+              = check_box_tag input_name, item[:value], params_option&.include?(item[:value]), id: 'mobile_' + filter_input_id, data: { 'tag-id': filter_input_id }
+            - else
+              = radio_button_tag input_name, item[:value], params_option == item[:value].to_s, id: 'mobile_' + filter_input_id,  data: { 'tag-id': filter_input_id }
+
+            = label_tag 'mobile_' + filter_input_id
+              span.flex.between.align-center = item[:label].humanize
+
+        li.divider
+

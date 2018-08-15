@@ -7,6 +7,8 @@
   = javascript_include_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.js', defer: true
   = javascript_include_tag 'searchFilters', defer: true
 
+= render partial: 'spree/shared/mobile_search_filters'
+
 .search-filters-container
   .search-filters
     = form_tag url_for, method: :get, remote: true, id: 'search-filters-form' do
@@ -18,9 +20,10 @@
         - [{ type: :filter, collection: search_filters }, { type: :sort, collection: search_sorting_options }].each do |v|
           = render partial: 'spree/search/filter', collection: v[:collection], as: :filter, locals: { type: v[:type] }
 
-      .visible-xs.text-center
-        span.text-white.upcase.vertical-middle Filter
-        .pull-right.text-white >
+      .visible-xs.text-center.mobile-filters-toggle
+        label.no-margin for='mobile-filters-toggle'
+          span.text-white.vertical-middle Filter & Sorting Options
+          .pull-right.text-white >
 
   .search-filters--tags.tags-without-input
     input#filter-tags
