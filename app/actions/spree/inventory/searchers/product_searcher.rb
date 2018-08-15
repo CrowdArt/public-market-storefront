@@ -93,7 +93,7 @@ module Spree
         end
 
         def add_popularity_sort
-          return if (sort_option = sort['popularity']).blank?
+          return if (sort_option = sort.symbolize_keys[:popularity]).blank?
 
           case sort_option
           when 'all_time'
