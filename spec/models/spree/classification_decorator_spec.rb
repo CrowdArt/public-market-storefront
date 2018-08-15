@@ -4,7 +4,7 @@ RSpec.describe Spree::Classification, type: :model do
 
     let(:uncategorized_taxon) { create(:taxon, name: Spree::Taxon::UNCATEGORIZED_NAME) }
 
-    describe 'data reconcilation worker' do
+    xdescribe 'data reconcilation worker' do
       before do
         allow(PublicMarket::Workers::Slack::DataReconcilationWorker).to receive(:perform_async)
 
