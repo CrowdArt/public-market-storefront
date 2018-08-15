@@ -1,5 +1,6 @@
 RSpec.describe Spree::ShipmentMailer, type: :mailer do
-  let(:shipment) { create(:shipment, order: create(:order_with_vendor_items)) }
+  let(:order) { create(:order_with_vendor_items) }
+  let(:shipment) { order.shipments.first }
 
   describe '#shipped_email' do
     let(:mail) { described_class.shipped_email(shipment) }
