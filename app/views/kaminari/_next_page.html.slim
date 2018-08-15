@@ -1,5 +1,8 @@
+- pagination_class ||= ''
+- content = pagination_class.blank? ? t('views.pagination.next') : ''
+
 li class=("next #{"disabled" if current_page.last?}")
   - if current_page.last?
-    a href="javascript:;"
+    a href="javascript:;" == content
   - else
-    = link_to_unless current_page.last?, '', url, rel: 'next', remote: remote
+    = link_to_unless current_page.last?, content, url, rel: 'next', remote: remote
