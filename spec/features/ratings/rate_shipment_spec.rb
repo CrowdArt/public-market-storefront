@@ -10,7 +10,7 @@ RSpec.describe 'rate shipment', type: :feature, js: true, vcr: true do
     visit spree.rate_shipment_path(order, shipment)
   end
 
-  it { is_expected.to have_text("How was your experience with #{vendor.name}?") }
+  it { is_expected.to have_text("How was your experience with #{vendor.presentation_or_name}?") }
 
   describe 'set positive rating' do
     before { find('#positive').click }
