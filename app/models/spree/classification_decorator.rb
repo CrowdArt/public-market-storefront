@@ -1,7 +1,7 @@
 module Spree
   module ClassificationDecorator
     def self.prepended(base)
-      base.after_create_commit :notify_uncategorized, if: -> { taxon.name == Spree::Taxon::UNCATEGORIZED_NAME }
+      # base.after_create_commit :notify_uncategorized, if: -> { taxon.name == Spree::Taxon::UNCATEGORIZED_NAME }
     end
 
     def notify_uncategorized
