@@ -51,7 +51,7 @@ module Spree
 
           def find_metadata(identifier)
             # bowker meta take precedence
-            bwb_meta.deep_merge(metadata_provider.call(identifier))
+            bwb_meta.deep_merge(metadata_provider.call(identifier).compact)
           end
 
           def bwb_meta
