@@ -33,7 +33,7 @@
     .panel-body
       p.text-bold
         span.pull-right = l (shipment.shipped_at || shipment.updated_at).to_date
-        span #{Spree.t(:status)}: #{Spree.t("shipment_states.#{shipment.state}").titleize}
+        span #{Spree.t(:shipment_status)}: #{Spree.t("shipment_states.#{shipment.state}").titleize}
 
       = render partial: 'spree/orders/line_item_history', collection: shipment.line_items, as: :line_item
       br
@@ -50,14 +50,14 @@
           strong< == rating_html(shipment)
       br
 
-      .row
+      .flex.center.gapped.items-12-xs.items-3-sm.wrap-xs
+        - unless @order
+          a.btn.btn-sm.btn-block.btn-white href=order_url(order) = t('users.orders-history.view-order')
         - if (can_rate = can_rate?(shipment))
-          .col-xs-12.col-sm-5.col-sm-offset-1
-            - if cached_rating(shipment)
-                button.btn.btn-sm.btn-block.btn-white data-toggle='modal' data-target='#update-rating-modal' data-url=rate_shipment_path(order, shipment) = t('users.orders-history.update-rating')
-            - else
-                a.btn.btn-sm.btn-block.btn-white href=rate_shipment_path(order, shipment) = t('users.orders-history.rate-merchant')
-        .col-xs-12 class=(can_rate ? 'col-sm-5' : 'col-sm-6 col-sm-offset-3')
-          = mail_to t('orders.contact_email'), t('users.orders-history.contact-merchant'),
-                    subject: t('orders.contact_subject', shipment_id: shipment.tracking || shipment.number, order_number: order.number),
-                    class: 'btn btn-sm btn-block btn-white'
+          - if cached_rating(shipment)
+              button.btn.btn-sm.btn-block.btn-white data-toggle='modal' data-target='#update-rating-modal' data-url=rate_shipment_path(order, shipment) = t('users.orders-history.update-rating')
+          - else
+              a.btn.btn-sm.btn-block.btn-white href=rate_shipment_path(order, shipment) = t('users.orders-history.rate-merchant')
+        = mail_to t('orders.contact_email'), t('users.orders-history.contact-merchant'),
+                  subject: t('orders.contact_subject', shipment_id: shipment.tracking || shipment.number, order_number: order.number),
+                  class: 'btn btn-sm btn-block btn-white'
