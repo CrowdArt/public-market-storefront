@@ -1,0 +1,20 @@
+.modal.modal-wide-paddings.modal-vertical-center.fade#delete-account-modal tabindex='-1' role='dialog'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type='button' class='close' data-dismiss='modal' aria-label='Close'
+          span aria-hidden='true' &times;
+
+        h5.upcase.modal-title.text-black = t('users.delete-account')
+
+      .modal-body.text-center
+        br
+        .text-danger.text-medium = t('users.delete-account-prompt')
+        br
+        br
+
+        .row
+          .col-xs-6
+            button.btn.btn-white.btn-block data-dismiss='modal' aria-label='Close' = Spree.t('cancel')
+          .col-xs-6
+            = link_to t('users.confirm-deletion'), account_path, method: :delete, class: 'btn btn-danger', data: { turbolinks: false }

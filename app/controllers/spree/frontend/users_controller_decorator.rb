@@ -34,6 +34,12 @@ Spree::UsersController.class_eval do
     end
   end
 
+  def destroy
+    spree_current_user.destroy
+    flash[:danger] = t('users.account-deleted')
+    redirect_to :root
+  end
+
   private
 
   def load_user

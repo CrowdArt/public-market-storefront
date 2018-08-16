@@ -83,4 +83,8 @@ Spree::User.class_eval do
   def send_email_change
     Spree::UserMailer.email_change(id).deliver_later
   end
+
+  def check_completed_orders
+    true # allow to delete users with orders
+  end
 end

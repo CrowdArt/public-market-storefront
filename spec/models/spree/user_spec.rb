@@ -135,6 +135,15 @@ RSpec.describe Spree::User, type: :model do
         user.destroy!
       }.not_to change { ActionMailer::Base.deliveries.size }
     end
+
+    context 'when user has orders' do
+      let!(:order) { create(:vendor_order_ready_to_ship, user: user) }
+
+      before { user.destroy! }
+
+      it { expect(user).to be_deleted }
+      it { expect(order.user).to be_nil }
+    end
   end
 
   describe '#email_change' do
