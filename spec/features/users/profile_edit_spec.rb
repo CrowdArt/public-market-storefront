@@ -26,7 +26,7 @@ RSpec.describe 'profile edit', type: :feature do
     end
 
     context 'with correct info' do
-      before { click_button 'Update profile' }
+      before { click_button 'Save' }
 
       it { is_expected.to have_text 'Account updated' }
       it { is_expected.to have_text 'User first name' }
@@ -35,7 +35,7 @@ RSpec.describe 'profile edit', type: :feature do
     context 'with incorrect info' do
       before do
         fill_in 'user_first_name', with: ''
-        click_button 'Update profile'
+        click_button 'Save'
       end
 
       it { is_expected.to have_text "First name can't be blank" }

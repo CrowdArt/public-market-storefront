@@ -10,7 +10,7 @@ RSpec.describe 'update email address', type: :feature do
 
     fill_in 'user_email', with: 'newemail@spree.com'
 
-    click_button 'Update profile'
+    click_button 'Save'
   end
 
   it { is_expected.to have_text 'A message with a confirmation link has been sent to your email address.' }

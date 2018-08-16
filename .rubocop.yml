@@ -28,6 +28,8 @@ Style/BracesAroundHashParameters:
 
 Metrics/LineLength:
   Max: 150
+  Exclude:
+    - 'config/initializers/simple_form.rb'
 
 Metrics/ClassLength:
   Max: 150
