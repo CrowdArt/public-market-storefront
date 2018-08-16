@@ -31,9 +31,10 @@ $(document).on('submit', '#navbar-keyword-form', function() {
   var allowSubmit = filtersForm.length === 0 || ($('#filter_taxon').val() !== $('#navbar-taxon').val())
 
   if (!allowSubmit) {
-    var topNavKeywordValue = $(this).find("input[name='keywords']").val()
+    var navKeywordInput = $(this).find("input[name='keywords']")
+    var topNavKeywordValue = navKeywordInput.val()
     // trigger filters form change
-    $('#keywords').val(topNavKeywordValue).trigger('change')
+    $("input[name='keywords']").not('#' + navKeywordInput.prop('id')).val(topNavKeywordValue).trigger('change')
   }
 
   return allowSubmit

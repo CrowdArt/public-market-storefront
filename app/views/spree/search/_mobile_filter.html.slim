@@ -1,14 +1,16 @@
 ruby:
   idx ||= 0
   type ||= :filter # filter or sort
+  root_param = params.dig(type)
+  expanded = root_param.present? || idx.zero?
 
-a.plain-link.collapse-toggle role='button' data-toggle='collapse' href="#collapse-#{type}" aria-expanded=(idx.zero? ? 'true' : 'false') aria-controls="#collapse-#{type}"
+a.plain-link.collapse-toggle role='button' data-toggle='collapse' href="#collapse-#{type}" aria-expanded=(expanded ? 'true' : 'false') aria-controls="#collapse-#{type}" class=('collapsed' unless expanded)
   .text-bold.text-black.upcase.flex-1 = t("filters.by.#{type}")
-  strong -
+  .plus-minus
 
 .divider role='separator'
 
-.collapse id="collapse-#{type}" aria-expanded=(idx.zero? ? 'true' : 'false') class=('in' if idx.zero?)
+.collapse id="collapse-#{type}" aria-expanded=(expanded ? 'true' : 'false') class=('in' if expanded)
   - filters.each do |filter|
     ruby:
       filter_type = filter[:type] # format, variation, price etc

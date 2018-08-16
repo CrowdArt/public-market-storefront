@@ -2,13 +2,18 @@ input#mobile-filters-toggle hidden=true type='checkbox'
 
 nav.mobile-menu.mobile-menu-white.mobile-search-filters role='navigation' aria-expanded='false' aria-label='Main menu'
   = form_tag url_for, method: :get, remote: true, id: 'mobile-search-filters-form', class: 'flex column between' do
-    = hidden_field_tag :taxon, @taxon&.id, id: :filter_taxon
-    = hidden_field_tag :keywords, params[:keywords]
-    = hidden_field_tag :per_page, params[:per_page]
+    = hidden_field_tag :taxon, @taxon&.id, id: :mobile_filter_taxon
+    = hidden_field_tag :keywords, params[:keywords], id: :mobile_filter_keyword, data: { 'tag-id': :filter_keyword }
+    = hidden_field_tag :per_page, params[:per_page], id: :mobile_filter_per_page
 
     .mobile-search-filters--inner
       .text-bold.upcase.text-black.mobile-search-filters--head.flex.between.align-center
-        | Selections
+        div
+          | Selections
+          span.mobile-filters-selections-counter.hide
+
+        button.btn.btn-link.no-padding.hide#clear-mobile-filters type='button'
+          span.upcase Clear All
 
         button.btn.btn-link.close.text-black type='button'
           label.no-margin for='mobile-filters-toggle' &times;
@@ -20,6 +25,8 @@ nav.mobile-menu.mobile-menu-white.mobile-search-filters role='navigation' aria-e
           li
             = render partial: 'spree/search/mobile_filter', locals: { filters: v[:collection], idx: idx, type: v[:type] }
 
-    button.btn.btn-block.btn-primary type='submit' Apply
+    button.btn.btn-block.btn-primary type='submit'
+      | Apply
+      span.hide.mobile-filters-selections-counter
 
 label.backdrop for='mobile-filters-toggle' tabindex='-1' aria-hidden='true' hidden=true

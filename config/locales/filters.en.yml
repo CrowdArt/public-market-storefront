@@ -9,7 +9,7 @@ en:
       filter: Filter by
       sort: Sort by
 
-    per-page: 'Results per page:'
+    per-page: "Results <br class='visible-xs'>per page:"
 
     sort-options:
       popular:

@@ -13,17 +13,18 @@
   .search-filters
     = form_tag url_for, method: :get, remote: true, id: 'search-filters-form' do
       = hidden_field_tag :taxon, @taxon&.id, id: :filter_taxon
-      = hidden_field_tag :keywords, params[:keywords]
-      = hidden_field_tag :per_page, params[:per_page]
+      = hidden_field_tag :keywords, params[:keywords], id: :filter_keyword, data: { 'tag-id': :filter_keyword }
+      = hidden_field_tag :per_page, params[:per_page], id: :filter_per_page
 
       .flex.hidden-xs
         - [{ type: :filter, collection: search_filters }, { type: :sort, collection: search_sorting_options }].each do |v|
           = render partial: 'spree/search/filter', collection: v[:collection], as: :filter, locals: { type: v[:type] }
 
       .visible-xs.text-center.mobile-filters-toggle
-        label.no-margin for='mobile-filters-toggle'
-          span.text-white.vertical-middle Filter & Sorting Options
-          .pull-right.text-white >
+        label.no-margin.text-center for='mobile-filters-toggle'
+          span.text-white Filter & Sorting Options
+          .caret-circle style='position:absolute;margin-right:32px'
+            span.caret.caret-right
 
   .search-filters--tags.tags-without-input
     input#filter-tags

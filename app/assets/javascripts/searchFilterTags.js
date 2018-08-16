@@ -10,3 +10,5 @@ $('#filter-tags').tagsinput({
 $("#search-filters-form input:checked, #search-filters-form input[name='keywords']").each(function(){
   pm.manageFilterTags(this)
 })
+
+pm.setSelectionsCount()
