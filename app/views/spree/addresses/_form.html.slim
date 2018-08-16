@@ -1,4 +1,6 @@
 .user-account-form
+  = render partial: 'spree/shared/account_breadcrumbs', locals: { items: [link_to('Shipping Addresses', spree.user_addresses_path), t(form_title, scope: :address_book)] }
+
   h3.upcase.no-margin.text-color = t(form_title, scope: 'forms.address')
 
   br

@@ -1,6 +1,6 @@
 = render layout: 'spree/users/account_template'
   .rate-page
-    = render 'breadcrumbs', order: @order, current: t('orders.rate')
+    = render partial: 'spree/shared/account_breadcrumbs', locals: { items: [link_to('Order History', '/account/orders'), link_to("Order # #{@order.number}", @order), t('orders.rate')] }
 
     h3.upcase.no-margin.text-center-xs = t('orders.rate')
     br

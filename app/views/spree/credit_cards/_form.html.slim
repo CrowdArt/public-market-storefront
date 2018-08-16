@@ -1,6 +1,8 @@
 - edit_card = form_title == 'edit-credit-card'
 
 .user-account-form
+  = render partial: 'spree/shared/account_breadcrumbs', locals: { items: [link_to('Payment Methods', spree.user_payment_methods_path), t(form_title, scope: 'forms.credit_cards')] }
+
   h3.upcase.no-margin.text-color = t(form_title, scope: 'forms.credit_cards')
 
   br

@@ -1,6 +1,6 @@
 = render layout: 'spree/users/account_template'
   .order-page
-    = render 'breadcrumbs', order: @order
+    = render partial: 'spree/shared/account_breadcrumbs', locals: { items: [link_to('Order History', '/account/orders'), "Order # #{@order.number}"] }
 
     h3.upcase.no-margin.text-center-xs Order # #{@order.number}
     br
