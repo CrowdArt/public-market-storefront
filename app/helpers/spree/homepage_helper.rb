@@ -19,7 +19,7 @@ module Spree
       ProductCollection.where.not(name: ProductCollection::STAFF_PICKS_NAME)
                        .joins(:products)
                        .promoted
-                       .order('RANDOM()')
+                       .order(Arel.sql('random()'))
                        .uniq
                        .take(4)
     end
