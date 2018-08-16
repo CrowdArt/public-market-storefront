@@ -74,11 +74,7 @@ module Spree
 
         ALLOWED_WHERE_PARAMS = %i[format variations collections].freeze
         def add_search_filters(query)
-          p 'FILTER', filter
-
           return query unless filter
-
-          p 'FILTER', filter
 
           filter.symbolize_keys.select { |param, _val| ALLOWED_WHERE_PARAMS.include?(param) }.each do |name, scope_attribute|
             query.merge!(Hash[name, scope_attribute])
@@ -89,11 +85,10 @@ module Spree
           query
         end
 
-        ALLOWED_SORT_PARAMS = %i[conversions].freeze
         def order
           return if sort.blank?
 
-          [add_popularity_sort].compact
+          [add_popularity_sort, add_price_sort].compact
         end
 
         def add_popularity_sort
@@ -105,6 +100,12 @@ module Spree
           when 'month'
             { boost_factor: :desc, conversions_month: :desc }
           end
+        end
+
+        ALLOWED_PRICE_ORDER = %w[asc desc].freeze
+        def add_price_sort
+          return if (sort_option = sort.symbolize_keys[:price]).blank? || !ALLOWED_PRICE_ORDER.include?(sort_option)
+          { boost_factor: :desc, price: sort_option }
         end
 
         def add_price_filter(query) # rubocop:disable Metrics/AbcSize

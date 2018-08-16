@@ -15,6 +15,9 @@ en:
       popular:
         all_time: All Time Popular
         month: Popular this month
+      price:
+        asc: Low - High
+        desc: High - Low
 
     taxonomy_title:
       root:
