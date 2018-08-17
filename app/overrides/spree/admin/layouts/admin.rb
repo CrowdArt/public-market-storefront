@@ -7,7 +7,7 @@ Deface::Override.new(
             <%= favicon_link_tag 'favicon-dashboard.png' %>
           <% end %>
           <% content_for :title do %>
-            <%= "#{Spree.t('dashboard')} – " %>
+            <%= "Dashboard – " %>
             <%= Spree.t(controller.controller_name, default: controller.controller_name.titleize) %>
           <% end %>
   HTML
