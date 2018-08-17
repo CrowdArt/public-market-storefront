@@ -1,6 +1,9 @@
 .form-control
   box-shadow: none
 
+  &:focus
+    box-shadow: none
+
   &.input-lg
     font-size: $font-size-base
     line-height: $line-height-base
@@ -83,7 +86,7 @@ input[type="radio"]
       color: transparent
 
     & + label
-      color: rgba(69, 74, 80, .65)
+      color: $text-muted
       font-weight: normal
       margin: 0
       pointer-events: none
@@ -94,6 +97,10 @@ input[type="radio"]
     &:focus, &[value]
       & + label
         transform: translate(-12%, -0.7em) scale(.75, .75)
+
+    &:focus
+      & + label
+        color: $brand-primary
 
     &.input-lg
       padding-bottom: 6px

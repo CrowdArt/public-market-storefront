@@ -72,28 +72,35 @@
   font-family: 'Glyphicons Halflings'
 
 .check-left, .info-icon-left, .cross-icon-left
+  display: flex
+  align-items: center
+  line-height: 1
+
   &:before
     content: ''
-    display: inline-block
     margin-right: 10px
     height: 16px
     width: 16px
 
-.check-left:before
-  @include check-icon-bg(#fff)
-  vertical-align: bottom
+  &.condensed:before
+    margin-right: 5px
+
+.check-left
+  &:before
+    @include check-icon-bg(#fff)
+  &.text-success
+    &:before
+      @include check-icon-bg($brand-success)
 
 .info-icon-left
   &:before
     @include info-icon-bg
-    vertical-align: text-top
   &.text-info
     &:before
       @include info-icon-bg($brand-info)
 
 .cross-icon-left:before
   @include cross-icon-bg
-  vertical-align: text-top
 
 .visible-scroll
   &::-webkit-scrollbar

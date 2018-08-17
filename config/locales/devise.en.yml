@@ -12,4 +12,4 @@ en:
       signed_up_but_unconfirmed: Verification email sent to %{email}. Open it to verify your account.
     unconfirmed_email: Unverified
     verified_email: Verified
-    send_confirmation_email: Send Verification Email
+    send_confirmation_email: Verify Email

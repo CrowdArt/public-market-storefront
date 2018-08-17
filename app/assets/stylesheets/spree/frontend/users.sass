@@ -109,3 +109,20 @@
 
   &--default-checkbox
     margin: 20px 0 30px
+
+.user-edit-form
+  .user_email
+    & > div
+      position: relative
+
+    input
+      padding-right: 100px
+
+      &:focus ~ .user_email--verify-wrapper a
+        color: $text-muted
+
+    &--verify-wrapper
+      position: absolute
+      top: 0
+      bottom: 0
+      right: 20px
