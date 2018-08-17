@@ -8,7 +8,7 @@ section.top-categories
     - collections.each do |collection|
       - min_price = Spree::Inventory::Searchers::MinPrice.call(filter: { collections: [collection.id] })
       .col-md-6.col-sm-12
-        .box.col-md-12
+        .box.flex.column-xs.center-xs.between.align-center
           .content
             h3 = collection[:name]
             p
