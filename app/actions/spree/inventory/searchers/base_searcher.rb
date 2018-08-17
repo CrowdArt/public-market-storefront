@@ -22,7 +22,7 @@ module Spree
           prepare_params
 
           Spree::Product.search(
-            keywords,
+            keywords.presence || '*',
             includes: includes,
             select: select,
             fields: fields,
@@ -46,8 +46,6 @@ module Spree
         private
 
         def prepare_params
-          self.keywords = '*' if keywords.blank?
-
           self.per_page = per_page.to_i
           self.per_page = Spree::Config[:products_per_page] unless per_page.positive?
 

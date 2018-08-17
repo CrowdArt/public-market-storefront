@@ -24,7 +24,7 @@ module Spree
         end
 
         def prepare_body(body)
-          return if keywords == '*'
+          return if keywords.blank?
 
           keyword_query = %i[query bool must dis_max]
 
@@ -42,6 +42,7 @@ module Spree
             or: []
           }
           where_query[:taxon_ids] = taxon_ids if taxon_ids
+          where_query[:boost_factor] = { gt: 0 } if keywords.blank? && sort.present?
           where_query.merge(add_search_filters(where_query))
         end
 
@@ -105,7 +106,7 @@ module Spree
         ALLOWED_PRICE_ORDER = %w[asc desc].freeze
         def add_price_sort
           return if (sort_option = sort.symbolize_keys[:price]).blank? || !ALLOWED_PRICE_ORDER.include?(sort_option)
-          { boost_factor: :desc, price: sort_option }
+          { price: sort_option }
         end
 
         def add_price_filter(query) # rubocop:disable Metrics/AbcSize
@@ -145,6 +146,7 @@ module Spree
         end
 
         def boost_by
+          return {} if keywords.present?
           {
             boost_factor: { factor: 1, missing: 1, modifier: 'none' },
             conversions: { factor: 1, missing: 1, modifier: 'none' }
