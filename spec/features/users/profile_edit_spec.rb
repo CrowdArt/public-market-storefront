@@ -2,21 +2,11 @@ RSpec.describe 'profile edit', type: :feature do
   subject { page }
 
   let(:user) { create(:user, email: 'user@spree.com', password: 'secretpassword') }
-  let!(:old_password) { user.encrypted_password }
 
   before do
     login_as(user, scope: :spree_user)
 
     visit spree.edit_account_path
-  end
-
-  it 'updates password' do
-    fill_in 'user_password', with: 'password'
-    fill_in 'user_password_confirmation', with: 'password'
-    click_button 'Update password'
-
-    expect(page).to have_text 'Account updated'
-    expect(user.reload.encrypted_password).not_to eq old_password
   end
 
   describe 'basic info' do

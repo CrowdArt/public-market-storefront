@@ -111,7 +111,10 @@
     margin: 20px 0 30px
 
 .user-edit-form
-  .user_email
+  input[type='submit']
+    margin-top: 40px
+
+  .user_email, .user_password
     & > div
       position: relative
 
@@ -121,8 +124,12 @@
       &:focus ~ .user_email--verify-wrapper a
         color: $text-muted
 
-    &--verify-wrapper
+    &--addition-wrapper
       position: absolute
       top: 0
       bottom: 0
       right: 20px
+
+  .user_password_mask input[disabled]
+    background: transparent
+    opacity: .4

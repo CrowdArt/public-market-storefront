@@ -32,3 +32,4 @@ en:
     delete-account-prompt: Are you sure you want to delete your account?
     confirm-deletion: Yes, Delete My Account
     account-deleted: Your account has been deleted.
+    password-hint: Strong passwords use upper and lowercase letters, as well as numbers and special characters.

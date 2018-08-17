@@ -6,7 +6,7 @@
     = f.label :email
 
     - if @user.errors.blank?
-      .user_email--verify-wrapper.flex.align-center
+      .user_email--addition-wrapper.flex.align-center
         - if verified
           .text-small.text-success.check-left.condensed = t('devise.verified_email')
         - else
@@ -18,3 +18,12 @@
 .flex
   = f.input :first_name, input_html: { value: f.object.first_name.presence }, wrapper_html: { class: 'flex-grow-1 margin-text-right' }
   = f.input :last_name, input_html: { value: f.object.last_name.presence }, wrapper_html: { class: 'flex-grow-1 margin-text-left' }
+
+
+= f.input :password_mask, label: false
+  div
+    = f.input_field :password_mask, type: :text, value: '**************', disabled: true, class: "form-control input-lg"
+    = f.label :password
+
+    .user_password--addition-wrapper.flex.align-center
+      = link_to(t('devise.send_reset_password_email'), spree.reset_password_path, method: :post)

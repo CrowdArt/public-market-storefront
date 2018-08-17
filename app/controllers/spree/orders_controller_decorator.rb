@@ -52,7 +52,7 @@ Spree::OrdersController.class_eval do
     @account_tab = :orders
   end
 
-  def update_shipment_rate
+  def update_shipment_rate # rubocop:disable Metrics/AbcSize
     rating = GlobalReputation::Api::Rating.rate_shipment(spree_current_user, @shipment, params[:rating], params[:review].presence)
     if rating.errors.blank?
       flash[:success] = t(rating.modification ? 'orders.updated_successfully' : 'orders.submitted_successfully')

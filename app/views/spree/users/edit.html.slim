@@ -11,13 +11,6 @@
 
       = f.submit 'Save', class: 'btn btn-block btn-primary'
 
-    hr
-
-    = form_for @user, url: update_user_password_path, method: :put, html: { id: 'edit_user_password' } do |f|
-      = render partial: 'spree/shared/user_form', locals: { f: f }
-      p
-        = f.submit t('forms.users.edit.update_password'), class: 'btn btn-primary'
-
     = render 'delete_account_modal'
     .text-right
       button.btn.btn-link data-toggle='modal' data-target='#delete-account-modal' style='color:#abb0b6'

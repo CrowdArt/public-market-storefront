@@ -1,4 +1,4 @@
-Devise::ConfirmationsController.class_eval do
+Spree::UserConfirmationsController.class_eval do
   def create # rubocop:disable Metrics/AbcSize
     current_user_params = spree_user_signed_in? ? { email: spree_current_user.email } : resource_params
 
@@ -47,5 +47,10 @@ Devise::ConfirmationsController.class_eval do
   def devise_i18n_options(options)
     email = resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email
     options.merge(email: email)
+  end
+
+  def after_confirmation_path_for(resource_name, resource)
+    sign_in(resource)
+    signed_in?(resource_name) ? signed_in_root_path(resource) : spree.login_path
   end
 end

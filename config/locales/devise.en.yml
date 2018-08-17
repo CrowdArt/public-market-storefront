@@ -10,6 +10,10 @@ en:
       invalid: Invalid email or password.
     user_registrations:
       signed_up_but_unconfirmed: Verification email sent to %{email}. Open it to verify your account.
+    user_passwords:
+      spree_user:
+        updated_not_active: Your password has been changed successfully.
     unconfirmed_email: Unverified
     verified_email: Verified
     send_confirmation_email: Verify Email
+    send_reset_password_email: Reset Password
