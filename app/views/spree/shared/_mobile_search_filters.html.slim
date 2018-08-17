@@ -4,12 +4,12 @@ nav.mobile-menu.mobile-menu-white.mobile-search-filters role='navigation' aria-e
   = form_tag url_for, method: :get, remote: true, id: 'mobile-search-filters-form', class: 'flex column between' do
     = hidden_field_tag :taxon, @taxon&.id, id: :mobile_filter_taxon
     = hidden_field_tag :keywords, params[:keywords], id: :mobile_filter_keyword, data: { 'tag-id': :filter_keyword }
-    = hidden_field_tag :per_page, params[:per_page], id: :mobile_filter_per_page
+    / = hidden_field_tag :per_page, params[:per_page], id: :mobile_filter_per_page
 
     .mobile-search-filters--inner
       .text-bold.upcase.text-black.mobile-search-filters--head.flex.between.align-center
         div
-          | Selections
+          span.mobile-filters-selections--head-hint Selections
           span.mobile-filters-selections-counter.hide
 
         button.btn.btn-link.no-padding.hide#clear-mobile-filters type='button'
@@ -26,7 +26,9 @@ nav.mobile-menu.mobile-menu-white.mobile-search-filters role='navigation' aria-e
             = render partial: 'spree/search/mobile_filter', locals: { filters: v[:collection], idx: idx, type: v[:type] }
 
     button.btn.btn-block.btn-primary type='submit'
-      | Apply
-      span.hide.mobile-filters-selections-counter
+      ' Apply
+      span.hide.mobile-filters-btn-all
+        ' All
+        span.hide.mobile-filters-selections-counter
 
 label.backdrop for='mobile-filters-toggle' tabindex='-1' aria-hidden='true' hidden=true

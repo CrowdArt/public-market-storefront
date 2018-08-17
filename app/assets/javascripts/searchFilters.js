@@ -33,8 +33,12 @@ window.pm.manageFilterTags = function(el) {
 
 window.pm.setSelectionsCount = function() {
   var filtersCount = $("#mobile-search-filters-form input:checked").length
+  var hideSelections = filtersCount == 0
+  var filtersHeadText = hideSelections ? 'FILTERS & SORTING' : 'SELECTIONS'
+
+  $('.mobile-filters-selections--head-hint').text(filtersHeadText)
   $('.mobile-filters-selections-counter').text(" (" + filtersCount + ")")
-  $('.mobile-filters-selections-counter, #clear-mobile-filters').toggleClass('hide', filtersCount == 0)
+  $('.mobile-filters-selections-counter, .mobile-filters-btn-all, #clear-mobile-filters').toggleClass('hide', hideSelections)
 }
 
 function syncOtherForm(el) {

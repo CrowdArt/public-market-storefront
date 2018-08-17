@@ -11,6 +11,7 @@ module Spree
           @buckets = result.dig('categories', 'buckets')
 
           taxon.children
+               .visible
                .map(&method(:find_bucket))
                .compact
                .sort_by(&method(:sort_taxons))

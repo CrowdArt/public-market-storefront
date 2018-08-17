@@ -50,9 +50,6 @@ module Spree
           return unless enable_aggs
 
           aggregations = {
-            price_range: {
-              range: price_ranges_agg
-            },
             variations: {
               terms: {
                 field: :variations
@@ -81,8 +78,6 @@ module Spree
             query.merge!(Hash[name, scope_attribute])
           end
 
-          query.merge!(add_price_filter(query))
-
           query
         end
 
@@ -107,42 +102,6 @@ module Spree
         def add_price_sort
           return if (sort_option = sort.symbolize_keys[:price]).blank? || !ALLOWED_PRICE_ORDER.include?(sort_option)
           { price: sort_option }
-        end
-
-        def add_price_filter(query) # rubocop:disable Metrics/AbcSize
-          return {} if (price_ranges = filter['price']).blank?
-
-          price_filters = []
-
-          price_ranges.each do |price_range|
-            matched_filter = fixed_price_ranges.find { |r| r[:key].to_s == price_range }
-            next unless matched_filter
-            price_filters << {
-              price: {
-                gt: matched_filter[:from],
-                lt: matched_filter[:to]
-              }.compact
-            }
-          end
-
-          query[:or] << price_filters
-          query
-        end
-
-        def price_ranges_agg
-          {
-            field: :price,
-            ranges: fixed_price_ranges
-          }
-        end
-
-        def fixed_price_ranges
-          [
-            { key: :to_5, to: 5 },
-            { key: :from_5_to_10, from: 5, to: 10 },
-            { key: :from_10_to_20, from: 10, to: 20 },
-            { key: :from_20, from: 20 }
-          ]
         end
 
         def boost_by

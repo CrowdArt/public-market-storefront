@@ -1,6 +1,7 @@
 ruby:
   @sidebar_class = 'hidden-sm hidden-xs'
   @content_class = 'col-sm-12 col-sm-8 col-md-9'
+  hide_products = mobile? && @taxon.root?
 
 - content_for :under_breadcrumbs
   .col-md-12.root-taxon-title
@@ -12,8 +13,9 @@ ruby:
 
         p.taxon-description = @taxon.description
 
-  .col-md-12
-    = render partial: 'spree/search/filters'
+  - unless hide_products
+    .col-md-12
+      = render partial: 'spree/search/filters'
 
 - content_for :sidebar do
   = render partial: 'spree/shared/taxonomy'
@@ -21,9 +23,9 @@ ruby:
   - if @taxon.root.permalink == 'books'
     = render partial: 'spree/taxons/special'
 
-- unless @products.nil?
-  = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, show_results_per_page: true }
-
-- if mobile?
+- if hide_products
   - cache([:v1, I18n.locale, @taxon]) do
     = render partial: 'spree/taxons/taxon', collection: taxons_preview(@taxon)
+
+- else
+  = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon, show_results_per_page: true }

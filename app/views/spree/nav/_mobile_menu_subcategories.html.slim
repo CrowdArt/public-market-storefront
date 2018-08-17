@@ -1,12 +1,17 @@
-- cache([:v1, :mobile_menu_subcategory, taxon.children])
+- cache([:v2, :mobile_menu_subcategory, taxon.children])
   input.subtaxon-toggle id="subtaxons-#{taxon.id}" hidden=true type='checkbox'
   .subcategories
     ul
       li
         label.enabled-category.flex.start.menu-arrow-left for="subtaxons-#{taxon.id}" #{taxon.name}
 
-      - taxon.children.reorder('name').each do |st|
-        li
-          = link_to st.name, spree.products_path(taxon: st.id)
+      li
+        = link_to ['All', taxon.name].join(' '), spree.products_path(taxon: taxon.id)
+
+      li.divider role='separator'
+
+      - if (taxons = Spree::Inventory::Searchers::TaxonSearcher.call(taxon)).any?
+      - taxons.each do |st|
+        li = link_to st.name, spree.products_path(taxon: st.id)
 
         li.divider role='separator'

@@ -5,6 +5,10 @@
 #mobile-nav-toggle:checked, #mobile-filters-toggle:checked
   & ~ .mobile-menu
     transform: translateX(0)
+    box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, .5)
+
+    &.mobile-menu-white
+      box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, .08)
 
   & ~ .backdrop
     display: block

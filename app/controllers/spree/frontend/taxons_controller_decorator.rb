@@ -6,13 +6,13 @@ module Spree
       base.skip_before_action :set_current_order, only: :mobile_menu_childs
     end
 
-    def show # rubocop:disable Metrics/AbcSize
+    def show
       @taxon = Spree::Taxon.friendly.find(params[:id])
       return unless @taxon
 
       @card_size = :medium
 
-      return if mobile? && !@taxon.depth.positive?
+      return if mobile? && @taxon.root?
       @products = build_searcher(params, opts: { taxon_ids: [@taxon.id] }).call
 
       respond_to do |format|

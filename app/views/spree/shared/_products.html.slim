@@ -15,8 +15,8 @@ ruby:
   - else
 
     - if show_results_per_page
-      .flex.end.align-center
-        span.text-muted.margin-text-right.small-xs == t('filters.per-page')
+      .flex.end.align-center.hidden-xs
+        span.text-muted.margin-text-right == t('filters.per-page')
         .custom-select-wrapper.per-page-selector
           = select_tag :per_page_selector, options_for_select(Spree::Core::ControllerHelpers::Search::ALLOWED_PER_PAGE, params['per_page']), { class: 'form-control' }
 

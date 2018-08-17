@@ -8,28 +8,12 @@ module Spree
 
         es_filters.concat(TaxonFilters.applicable_filters(taxon)) if taxon
 
-        es_filters << price_filters
-
         es_filters.uniq
       end
 
       def process_filter(type, filter = nil)
         filter_method = "#{type}_filter"
         send("#{type}_filter", filter) if respond_to?(filter_method, include_private: true)
-      end
-
-      def price_filters
-        {
-          name: 'Price',
-          type: :price,
-          options: price_filter
-        }
-      end
-
-      def price_filter
-        I18n.t('filters.price_ranges').map do |k, v|
-          { label: v.to_s, value: k.to_s, id: k }
-        end
       end
     end
 
