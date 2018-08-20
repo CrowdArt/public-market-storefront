@@ -25,8 +25,9 @@ ruby:
     .product-list.row.flex.eq-height-columns
       = render partial: 'spree/products/product', collection: products, locals: { taxon: @taxon, max_mobile: max_mobile, card_size: card_size }
 
-    - if products.respond_to?(:total_pages)
-      - if local_assigns.has_key?(:pagination)
-        == pagination
-      - else
-        = paginate products, pagination_class: 'infinite'
+    .flex.center-xs
+      - if products.respond_to?(:total_pages)
+        - if local_assigns.has_key?(:pagination)
+          == pagination
+        - else
+          = paginate products, pagination_class: 'infinite', window: mobile? ? 2 : 4

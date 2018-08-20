@@ -4,10 +4,11 @@ module Spree
       base.before_action :save_return_to, only: :show
       base.before_action :load_product, only: %i[show similar_variants]
       base.before_action :load_taxon_from_taxon_id, only: %i[show autocomplete]
+      base.include FrontendHelper
       base.include SimilarVariantsHelper
     end
 
-    def index
+    def index # rubocop:disable Metrics/AbcSize
       searcher_opts = {}
 
       if (@taxon = Spree::Taxon.find_by(id: params[:taxon])).present?
@@ -17,8 +18,10 @@ module Spree
 
       @products = build_searcher(params, opts: searcher_opts).call
 
+      show_taxons = @taxon && mobile? && @taxon.root? && params[:keywords].blank?
+
       respond_to do |format|
-        format.html { render @taxon ? 'spree/taxons/show' : 'spree/products/index' }
+        format.html { render show_taxons ? 'spree/taxons/show' : 'spree/products/index' }
         format.js { render 'spree/shared/search/products' }
       end
     end

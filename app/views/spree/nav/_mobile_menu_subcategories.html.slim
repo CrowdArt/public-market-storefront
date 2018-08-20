@@ -12,6 +12,6 @@
 
       - if (taxons = Spree::Inventory::Searchers::TaxonSearcher.call(taxon)).any?
       - taxons.each do |st|
-        li = link_to st.name, spree.products_path(taxon: st.id)
+        li = link_to st.name, spree.nested_taxons_path(st.permalink)
 
         li.divider role='separator'

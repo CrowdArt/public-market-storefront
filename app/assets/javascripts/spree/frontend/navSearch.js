@@ -7,6 +7,10 @@ $(document).one('change', '#mobile-nav-toggle', function() {
   Spree.loadMobileSubcategories()
 })
 
+$(document).on('change', '#mobile-nav-toggle, #mobile-filters-toggle', function() {
+  $('body').toggleClass('mobile-menu-open', this.checked)
+})
+
 // close navbar on turbolinks visit
 $(document).on('turbolinks:before-visit', function() {
   $('#mobile-nav-toggle').prop('checked', false)
