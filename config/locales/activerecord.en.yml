@@ -27,7 +27,7 @@ en:
           address2: Unit/Apt/Suite Number (Optional)
           city: City
           state: State
-          zipcode: ZIP Code
+          zipcode: ZIP / Postal Code
           phone: Phone Number
       spree/address:
         title: Nickname (Optional)
