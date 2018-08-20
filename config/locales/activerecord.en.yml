@@ -5,16 +5,16 @@ en:
         spree/user:
           attributes:
             password:
-              blank: Password can't be blank
-              too_short: "Sorry, your password needs to be longer. Please choose a password with at least 8 characters."
+              blank: "Password can't be blank - please input your password." 
+              too_short: "Too short – your password must be at least 8 characters long."
             password_confirmation:
-              confirmation: "Sorry, your passwords didn't match. Please try again."
+              confirmation: "Mismatch – your passwords didn't match. Please try again."
             email:
-              taken: "Email address belongs to another account. <a href='mailto:support@publicmarket.io'>Request Support</a>"
-              blank: "Email address can't be blank"
-              invalid: "Please enter a valid email address"
+              taken: "Already taken – that email address belongs to another account. <a href='mailto:support@publicmarket.io'>Request Support</a>"
+              blank: "Email can't be blank – plese input your email address."
+              invalid: "Invalid – please check and make sure you entered a valid email address."
         spree/product_collection:
-          staff_picks: 'Cannot delete staff picks product collection'
+          staff_picks: "Forbidden – you cannot delete the 'Staff Picks' product collection."
 
     attributes:
       spree/credit_card:
@@ -24,11 +24,11 @@ en:
           firstname: First Name
           lastname: Last Name
           address1: Street Address
-          address2: Secondary Address
+          address2: Unit/Apt/Suite Number (Optional)
           city: City
           state: State
-          zipcode: Zipcode
-          phone: Phone number
+          zipcode: ZIP Code
+          phone: Phone Number
       spree/address:
         title: Nickname (Optional)
         address1: Street Address
@@ -38,7 +38,7 @@ en:
       spree/variant:
         rewards: Total Variant Rewards
       spree/user:
-        login: Username
+        login: Username 
 
     models:
       spree/product_collection:
