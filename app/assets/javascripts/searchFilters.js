@@ -62,13 +62,7 @@ $(document).on('change', '#per_page_selector', function() {
   $("input[name='per_page']").val($(this).val()).trigger('change')
 })
 
-$(document).on('ajax:beforeSend', '#search-filters-form, #mobile-search-filters-form', function() {
-  $('#products').addClass('products-loading')
-  $('#per_page_selector').attr('disabled', true)
-}).on('ajax:complete', '#search-filters-form, #mobile-search-filters-form', function(xhr, status) {
-  $('#products').removeClass('products-loading')
-  $('#per_page_selector').attr('disabled', false)
-}).on('ajax:success', '#search-filters-form, #mobile-search-filters-form', function(xhr, status) {
+$(document).on('ajax:success', '#search-filters-form, #mobile-search-filters-form', function(xhr, status) {
   history.pushState(history.state, null, '//' + location.host + location.pathname + '?' + $(this).serialize())
 })
 
@@ -78,7 +72,7 @@ $(document).on('submit', '#mobile-search-filters-form', function() {
     syncOtherForm(this)
   })
 
-  $('#mobile-filters-toggle').prop('checked', false)
+  $('#mobile-filters-toggle').prop('checked', false).trigger('change')
 })
 
 $(document).on('click', '#clear-mobile-filters', function() {
@@ -92,7 +86,7 @@ $(document).on('change', '#mobile-search-filters-form input', function() {
 
 $(window).on('popstate', function (e) {
   if ($('#search-filters-form').length > 0)
-    $('#products').addClass('products-loading')
+    $('.site-content-wrap').addClass('content-loading')
 })
 
 // disable closing dropdown on label click

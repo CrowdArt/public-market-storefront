@@ -18,7 +18,8 @@ module Spree
 
       @products = build_searcher(params, opts: searcher_opts).call
 
-      show_taxons = @taxon && mobile? && @taxon.root? && params[:keywords].blank?
+      # show taxon previews on mobile if no filter/sort applied
+      show_taxons = @taxon && (!mobile? || show_taxon_previews?)
 
       respond_to do |format|
         format.html { render show_taxons ? 'spree/taxons/show' : 'spree/products/index' }

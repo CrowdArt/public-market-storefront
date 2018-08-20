@@ -7,11 +7,12 @@
   = javascript_include_tag 'bootstrap-tagsinput/dist/bootstrap-tagsinput.js', defer: true
   = javascript_include_tag 'searchFilters', defer: true
 
-= render partial: 'spree/shared/mobile_search_filters'
+- content_for :content_top
+  = render partial: 'spree/shared/mobile_search_filters'
 
 .search-filters-container
   .search-filters
-    = form_tag url_for, method: :get, remote: true, id: 'search-filters-form' do
+    = form_tag url_for, method: :get, remote: true, id: 'search-filters-form', class: 'trigger-content-load-overlay' do
       = hidden_field_tag :taxon, @taxon&.id, id: :filter_taxon
       = hidden_field_tag :keywords, params[:keywords], id: :filter_keyword, data: { 'tag-id': :filter_keyword }
       = hidden_field_tag :per_page, params[:per_page], id: :filter_per_page

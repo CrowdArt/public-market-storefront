@@ -123,6 +123,10 @@ module Spree
       browser.device.mobile?
     end
 
+    def show_taxon_previews?
+      @show_taxon_previews ||= mobile? && @taxon.root? && %w[keywords filter sort].all? { |par| params[par].blank? }
+    end
+
     def card_variation(product)
       product.taxonomy&.variation_module&.const_get('VariationFinder')&.card_variation_name(product)
     end

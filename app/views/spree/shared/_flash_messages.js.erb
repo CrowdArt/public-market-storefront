@@ -9,7 +9,7 @@ $(".alert-top").remove();
 <% messages.each do |type, message| %>
   <% flash.discard(type) %>
 
-  $(".content-wrap").before("<%= j render partial: 'spree/shared/flash_message', locals: { type: type, message: message, alert_class: [alert_class, additional_class].compact.join(' ') } %>");
+  $('.site-content-wrap').before("<%= j render partial: 'spree/shared/flash_message', locals: { type: type, message: message, alert_class: [alert_class, additional_class].compact.join(' ') } %>");
 
   <% if sticky %>
     window.pm.initStickyAlert()

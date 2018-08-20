@@ -1,7 +1,7 @@
 ruby:
   @sidebar_class = 'hidden-sm hidden-xs'
   @content_class = 'col-sm-12 col-sm-8 col-md-9'
-  hide_products = mobile? && @taxon.root?
+  hide_products = show_taxon_previews?
 
 - content_for :under_breadcrumbs
   .col-md-12.root-taxon-title

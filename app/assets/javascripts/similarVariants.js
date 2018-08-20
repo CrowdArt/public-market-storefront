@@ -15,10 +15,10 @@ function checkVariationOptionInUrl() {
 function toggleLoading(data) {
   if (data && data.skipLoading) return
 
-  $('#content').addClass('content-loading')
+  $('.site-content-wrap').addClass('content-loading')
 
   setTimeout(function() {
-    $('#content').removeClass('content-loading')
+    $('.site-content-wrap').removeClass('content-loading')
   }, 250)
 }
 

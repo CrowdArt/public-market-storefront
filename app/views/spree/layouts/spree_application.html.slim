@@ -15,7 +15,7 @@ html lang=I18n.locale
 
     = yield :content_top if content_for?(:content_top)
 
-    .content-wrap class="#{@fluid_content_container ? 'container-fluid' : 'container'}"
+    .site-content-wrap class="#{@fluid_content_container ? 'container-fluid' : 'container'}"
       .row data-hook=""
         = spree_breadcrumbs(@taxon)
         = yield :under_breadcrumbs if content_for?(:under_breadcrumbs)

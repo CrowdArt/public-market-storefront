@@ -25,9 +25,9 @@ $(document).on('click', 'a.show-more', function() {
 })
 
 $(document).on('ajax:beforeSend', '.trigger-content-load-overlay', function() {
-  $('#content').addClass('content-loading')
+  $('.site-content-wrap').addClass('content-loading')
 }).on('ajax:send', '.trigger-content-load-overlay', function(event, jqXHR) {
   jqXHR.always = function() {
-    $('#content').removeClass('content-loading')
+    $('.site-content-wrap').removeClass('content-loading')
   }
 })
