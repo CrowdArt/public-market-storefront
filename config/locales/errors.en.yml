@@ -6,5 +6,5 @@ en:
         subtitle: Sorry, page not found
       internal_server_error:
         title: 500 ERROR
-        subtitle: Oops! You broke our site
+        subtitle: Oops! Something broke. 
       button: Back to Home
