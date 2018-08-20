@@ -21,7 +21,8 @@ nav.mobile-menu.mobile-menu-white.mobile-search-filters role='navigation' aria-e
       .divider
 
       ul
-        - [{ type: :filter, collection: search_filters }, { type: :sort, collection: search_sorting_options }].each_with_index do |v, idx|
+        - filter_sections = [{ type: :filter, collection: search_filters }, { type: :sort, collection: search_sorting_options }].reject { |v| v[:collection].blank? }
+        - filter_sections.each_with_index do |v, idx|
           li
             = render partial: 'spree/search/mobile_filter', locals: { filters: v[:collection], idx: idx, type: v[:type] }
 
