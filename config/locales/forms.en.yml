@@ -17,7 +17,7 @@ en:
       edit-credit-card: Update Payment Method
 
     address:
-      zip_postal_code: Zip / Postal Code
+      zip_postal_code: ZIP / Postal Code
       new_shipping_address: New shipping address
       edit_shipping_address: Update shipping address
 
