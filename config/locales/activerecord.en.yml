@@ -37,6 +37,8 @@ en:
         rewards: Global Vendor PTRN Rewards
       spree/variant:
         rewards: Total Variant Rewards
+      spree/user:
+        login: Username
 
     models:
       spree/product_collection:

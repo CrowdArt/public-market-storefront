@@ -58,7 +58,7 @@ Spree::UserSessionsController.class_eval do
 
   def set_user_with_errors
     @user = Spree::User.new
-    @user.errors[:email] << t('devise.failure.invalid')
+    @user.errors[:username] << t('devise.failure.invalid')
     @user.errors[:password] << t('devise.failure.invalid')
   end
 end

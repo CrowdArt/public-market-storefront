@@ -9,8 +9,8 @@
     .divider-with-text
       span.upcase.or-divider or
 
-    = simple_form_for resource, as: :spree_user, url: spree.registration_path, wrapper: :vertical_without_label do |f|
-      = f.input :email, placeholder: Spree.t(:email), required: true
+    = simple_form_for resource, as: :spree_user, url: spree.registration_path, wrapper: :vertical_small_error do |f|
+      = f.input :email, placeholder: Spree.t(:email), required: true, error: f.object.errors[:email].first&.html_safe
 
       = f.input :password, placeholder: Spree.t(:password), required: true, wrapper: :vertical_small_error
 

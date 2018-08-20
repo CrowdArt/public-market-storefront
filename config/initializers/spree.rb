@@ -37,7 +37,7 @@ Spree::Auth::Config[:confirmable] = true
 Spree.user_class = 'Spree::User'
 Spree.admin_path = '/dashboard'
 
-Spree::PermittedAttributes.user_attributes.push(:first_name, :last_name)
+Spree::PermittedAttributes.user_attributes.push(:first_name, :last_name, :login)
 Spree::PermittedAttributes.taxon_attributes.push(:hidden)
 
 Spree::PermittedAttributes.source_attributes.push(

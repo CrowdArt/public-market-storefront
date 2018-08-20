@@ -1,10 +1,21 @@
 Spree::User.class_eval do
+  MAX_LOGIN_LENGTH = 50
+
+  extend FriendlyId
+
+  friendly_id :login, use: :slugged, slug_column: :login
+
   has_many :addresses, class_name: 'Spree::Address', dependent: :destroy, inverse_of: :user
 
   NAME_REGEX = /\A[\p{L}\p{Zs}\x27-]{1,32}\z/
 
+  validates :login, uniqueness: true, length: { minimum: 3, maximum: MAX_LOGIN_LENGTH, allow_blank: true }
+
   validates :first_name, :last_name, presence: true, on: %i[edit]
+  validates :login, presence: true, on: %i[edit]
   validates :first_name, :last_name, format: NAME_REGEX, allow_blank: true
+
+  after_validation :set_formatted_slug, if: -> { login_changed? && errors[:login].blank? }
 
   accepts_nested_attributes_for :credit_cards, allow_destroy: true
 
@@ -14,6 +25,28 @@ Spree::User.class_eval do
 
   after_commit :send_email_change, on: :update, if: :reconfirmation_required?
 
+  # used in login form
+  attr_writer :username
+
+  def username
+    @username || login || email
+  end
+
+  # override to do nothing
+  def unset_slug_if_invalid; end
+
+  # format slug after validation
+  def set_formatted_slug(normalized_slug = nil)
+    candidates = FriendlyId::Candidates.new(self, normalized_slug || send(friendly_id_config.base))
+    slug = slug_generator.generate(candidates) || resolve_friendly_id_conflict(candidates)
+    send("#{friendly_id_config.slug_column}=", slug)
+  end
+
+  # generate manually
+  def should_generate_new_friendly_id?
+    false
+  end
+
   def full_name
     [first_name, last_name].join(' ').strip
   end
@@ -22,8 +55,12 @@ Spree::User.class_eval do
     full_name.presence || email
   end
 
-  def username
-    first_name.presence || email.split('@').first
+  def email_first_part
+    email.split('@').first
+  end
+
+  def pretty_username
+    first_name.presence || email_first_part
   end
 
   # storefront changes:
@@ -54,7 +91,16 @@ Spree::User.class_eval do
     credit_cards.order(default: :desc, id: :desc).first
   end
 
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    login = conditions.delete(:username)
+    where(conditions).find_by(['lower(login) = :value OR lower(email) = :value', { value: login.strip.downcase }])
+  end
+
   private
+
+  # override to do nothing
+  def set_login; end
 
   def send_welcome_email_with_delay
     DelayedWelcomeEmail.perform_in(1.hour, id)

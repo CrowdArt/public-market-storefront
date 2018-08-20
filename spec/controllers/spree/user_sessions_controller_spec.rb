@@ -9,7 +9,7 @@ RSpec.describe Spree::UserSessionsController, type: :controller do
 
   describe '#create' do
     subject(:post_create) do
-      post :create, params: { spree_user: { email: user.email, password: 'secretpassword' }}
+      post :create, params: { spree_user: { username: user.email, password: 'secretpassword' }}
     end
 
     it 'signs in' do

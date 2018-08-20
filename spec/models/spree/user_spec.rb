@@ -65,8 +65,8 @@ RSpec.describe Spree::User, type: :model do
     it { expect(user.first_name).not_to be_nil }
   end
 
-  describe 'username' do
-    subject { user.username }
+  describe '#pretty_username' do
+    subject { user.pretty_username }
 
     let(:user) { create(:user, email: 'buyer@publicmarket.io') }
 

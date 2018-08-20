@@ -1,5 +1,5 @@
 .account-summary
-  h3.upcase.no-margin.text-center-xs = t('users.account-page.welcome', username: @user.username)
+  h3.upcase.no-margin.text-center-xs = t('users.account-page.welcome', username: @user.pretty_username)
 
   - sections = %i[user_info user_balance address payment_info wallet]
   = render partial: 'spree/users/summary/template', collection: sections, as: :partial, spacer_template: 'spree/shared/hr_spacer'
