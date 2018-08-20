@@ -103,8 +103,8 @@ Rails.application.configure do
 
   config.deface.enabled = ENV['DEFACE_ENABLED'] == 'true'
 
-  config.google_cloud.use_error_reporting = true
-  config.google_cloud.use_debugger = true
+  # config.google_cloud.use_error_reporting = true
+  # config.google_cloud.use_debugger = true
   config.google_cloud.use_logging = true
   config.google_cloud.use_trace = true
 end
