@@ -42,7 +42,6 @@ module Spree
             or: []
           }
           where_query[:taxon_ids] = taxon_ids if taxon_ids
-          where_query[:boost_factor] = { gt: 0 } if keywords.blank? && sort.present?
           where_query.merge(add_search_filters(where_query))
         end
 
@@ -92,20 +91,30 @@ module Spree
 
           case sort_option
           when 'all_time'
-            { boost_factor: :desc, conversions: :desc }
+            boost_factor_sort.merge(conversions: :desc)
           when 'month'
-            { boost_factor: :desc, conversions_month: :desc }
+            boost_factor_sort.merge(conversions_month: :desc)
           end
         end
 
         ALLOWED_PRICE_ORDER = %w[asc desc].freeze
         def add_price_sort
-          return if (sort_option = sort.symbolize_keys[:price]).blank? || !ALLOWED_PRICE_ORDER.include?(sort_option)
-          { price: sort_option }
+          sort_option = sort.symbolize_keys[:price]
+          return if sort_option.blank? || !ALLOWED_PRICE_ORDER.include?(sort_option)
+          boost_factor_sort.merge(price: sort_option)
+        end
+
+        def boost_factor_sort
+          { _script:
+            { type: 'number',
+              script: {
+                lang: 'painless',
+                source: "doc['boost_factor'].value > 0 ? 1 : 0"
+              },
+              order: 'desc' }}
         end
 
         def boost_by
-          return {} if keywords.present?
           {
             boost_factor: { factor: 1, missing: 1, modifier: 'none' },
             conversions: { factor: 1, missing: 1, modifier: 'none' }
