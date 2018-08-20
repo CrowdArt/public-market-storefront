@@ -105,7 +105,6 @@ end
 group :production, :staging do
   gem 'rack-attack'
   gem 'sentry-raven'
-  gem 'stackdriver'
   gem 'therubyracer'
   gem 'uglifier'
 end
