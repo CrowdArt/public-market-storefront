@@ -67,7 +67,10 @@ module Storefront
           provider: 'Google',
           google_project: Rails.application.credentials.google_project,
           google_client_email: Rails.application.credentials.google_client_email,
-          google_json_key_string: Rails.application.credentials.google_json_key_string
+          google_json_key_string: Rails.application.credentials.google_json_key_string,
+          open_timeout_sec: 120,
+          read_timeout_sec: 120,
+          send_timeout_sec: 120
         },
         fog_file: {
           cache_control: 'max-age=315576000'
