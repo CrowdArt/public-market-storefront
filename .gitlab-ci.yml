@@ -79,8 +79,8 @@ deploy to staging:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
   script:
     - env
-    - docker build -f ./config/deploy/Dockerfile -t $DOCKER_IMAGE:latest .
-    - docker push $DOCKER_IMAGE:latest
+    - docker build -f ./config/deploy/Dockerfile -t $DOCKER_IMAGE/staging:latest .
+    - docker push $DOCKER_IMAGE/staging:latest
     - docker system prune -f
     - kubectl cluster-info
     - kubectl patch sts web -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
@@ -102,6 +102,9 @@ deploy to production:
   before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
   script:
+    - docker build -f ./config/deploy/Dockerfile -t $DOCKER_IMAGE/production:latest .
+    - docker push $DOCKER_IMAGE/production:latest
+    - docker system prune -f
     - kubectl cluster-info
     - kubectl patch sts web -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
     - kubectl patch sts sidekiq -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
