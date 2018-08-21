@@ -1,7 +1,7 @@
 en:
   products:
     sold_by: Ships from and sold by
-    rewards: "+ Earn %{rewards} PTRN Tokens"
+    rewards: "+ Earn <span>%{rewards}</span> PTRN Tokens"
     total_rewards: "+ %{rewards} PTRN"
 
     mapped_conditions:
