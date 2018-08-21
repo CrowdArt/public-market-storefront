@@ -20,9 +20,3 @@
             ul.nav.navbar-nav.condensed.navbar-top-right.flex
               = render partial: 'spree/shared/link_to_account'
 
-- content_for :bottom_scripts
-  javascript:
-    // close navbar on turbolinks visit
-    $(document).on('turbolinks:before-visit', function() {
-      $('#mobile-nav-toggle').prop('checked', false)
-    })

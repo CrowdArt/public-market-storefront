@@ -24,7 +24,8 @@ module Spree
 
       def variation_filter(variation_module)
         variation_module::Properties.filterable_variations.map do |f|
-          { label: f, value: f, id: f.parameterize }
+          var_label = I18n.t("variations.titleized-format.#{f}", default: f.titleize)
+          { label: var_label, value: f, id: f.parameterize }
         end
       end
     end

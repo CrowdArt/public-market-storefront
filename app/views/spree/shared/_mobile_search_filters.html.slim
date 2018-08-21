@@ -1,4 +1,4 @@
-input#mobile-filters-toggle hidden=true type='checkbox'
+input#mobile-filters-toggle.mobile-menu-toggle hidden=true type='checkbox'
 
 nav.mobile-menu.mobile-menu-white.mobile-search-filters role='navigation' aria-expanded='false' aria-label='Main menu'
   = form_tag url_for, method: :get, remote: true, id: 'mobile-search-filters-form', class: 'flex column between trigger-content-load-overlay' do
