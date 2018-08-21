@@ -41,7 +41,7 @@ RSpec.describe 'Checkout', type: :feature, js: true do
         expect(page).to have_text ActionView::Base.full_sanitizer.sanitize(I18n.t('account.confirm_alert', email: user.email))
 
         expect(ActionMailer::Base.deliveries.count).to eq 1
-        expect(ActionMailer::Base.deliveries.first.subject).to include('Verify your email & activate your account')
+        expect(ActionMailer::Base.deliveries.first.subject).to include I18n.t('emails.confirmation.subject')
       end
     end
   end

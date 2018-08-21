@@ -23,11 +23,11 @@ RSpec.describe Spree::UserMailer, type: :mailer do
     let(:mail) { described_class.reset_password_instructions(user, 'token') }
 
     it 'contains correct subject' do
-      expect(mail.subject).to include('Recover your account')
+      expect(mail.subject).to include I18n.t('emails.reset_password_instructions.subject')
     end
 
     it 'contains correct body' do
-      expect(mail.body).to include('Forgot your password?')
+      expect(mail.body).to include('Reset your password')
     end
 
     it 'sends an email' do
@@ -46,11 +46,11 @@ RSpec.describe Spree::UserMailer, type: :mailer do
     end
 
     it 'contains correct subject' do
-      expect(mail.subject).to include('Verify your email & activate your account')
+      expect(mail.subject).to include I18n.t('emails.confirmation.subject')
     end
 
     it 'contains correct body' do
-      expect(mail.body).to include('Just one step away from joining Public Market')
+      expect(mail.body).to include('Just one step away from verifying your Public Market account')
     end
 
     it 'sends an email' do
