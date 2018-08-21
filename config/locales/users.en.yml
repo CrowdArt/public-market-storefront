@@ -33,3 +33,5 @@ en:
     confirm-deletion: Yes, Delete My Account
     account-deleted: Your account has been deleted.
     password-hint: Strong passwords use upper and lowercase letters, as well as numbers and special characters.
+    new_password: New Password
+    confirm_new_password: Confirm New Password

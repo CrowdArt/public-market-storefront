@@ -4,9 +4,10 @@ RSpec.xdescribe 'Password reset', type: :feature do
   let(:user) { create(:user, password: 'secretpassword') }
   let!(:old_password) { user.encrypted_password }
 
+  let(:token) { ActionMailer::Base.deliveries.last.html_part.body.match(/reset_password_token=[^"]+/)[0] }
+
   shared_examples 'resets password' do
     it do
-      token = ActionMailer::Base.deliveries.last.html_part.body.match(/reset_password_token=\w*/)[0]
       visit '/user/spree_user/password/edit?' + token
 
       fill_in 'spree_user_password', with: 'password'
@@ -38,7 +39,7 @@ RSpec.xdescribe 'Password reset', type: :feature do
       visit '/password/recover'
 
       fill_in 'spree_user_email', with: user.email
-      click_button 'Reset my password'
+      click_button Spree.t('reset_password')
     end
 
     include_examples 'resets password'

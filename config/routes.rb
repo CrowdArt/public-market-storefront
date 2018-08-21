@@ -14,7 +14,6 @@ Spree::Core::Engine.add_routes do
     get '/shipping', to: 'addresses#index', as: :user_addresses
     get '/shipping/edit', to: 'addresses#new', as: :new_address
 
-    put '/password', to: 'users#update_password', as: :update_user_password
     get '/password', to: redirect('/account/edit') # fix 404 on page refresh after password change fail
 
     get '/payment', to: 'credit_cards#index', as: :user_payment_methods

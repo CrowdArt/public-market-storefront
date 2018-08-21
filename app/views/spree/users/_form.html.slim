@@ -1,6 +1,6 @@
 - verified = @user.confirmed?
 
-= f.input :email, label: false, input_html: { value: f.object.email.presence }, error: f.object.errors[:email].first&.html_safe
+= f.input :email, label: false, error: f.object.errors[:email].first&.html_safe
   div
     = f.input_field :email, value: f.object.email.presence, class: "form-control input-lg"
     = f.label :email

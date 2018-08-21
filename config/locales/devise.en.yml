@@ -12,8 +12,11 @@ en:
       signed_up_but_unconfirmed: Verification email sent to %{email}. Open it to verify your account.
     user_passwords:
       spree_user:
-        updated_not_active: Your password has been changed successfully.
+        updated_not_active: Your password has been changed successfully. For security reasons, you’ve been logged out – please log back in.
+        send_instructions:  'A reset link was emailed to %{email} – open it to create a new password.'
     unconfirmed_email: Unverified
     verified_email: Verified
     send_confirmation_email: Verify Email
     send_reset_password_email: Reset Password
+    password_hint: Passwords must be at least %{count} characters long.
+    password_reset_email_hint: Please check your spam folder if you can’t find your password reset email.

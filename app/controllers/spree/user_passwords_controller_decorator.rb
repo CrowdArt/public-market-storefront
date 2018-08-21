@@ -1,11 +1,14 @@
 Spree::UserPasswordsController.class_eval do
   skip_before_action :require_no_authentication, only: %i[create edit update]
+  before_action :set_account_tab, only: :edit
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     current_user_params = spree_user_signed_in? ? { email: spree_current_user.email } : resource_params
     self.resource = resource_class.send_reset_password_instructions(current_user_params)
 
-    if successfully_sent?(resource)
+    if resource.errors.empty?
+      flash[:info] = I18n.t('devise.user_passwords.spree_user.send_instructions', email: resource.email)
+
       respond_with({}, { location: after_sending_reset_password_instructions_path_for(resource_name) })
     else
       respond_with(resource)
@@ -28,6 +31,7 @@ Spree::UserPasswordsController.class_eval do
       else
         set_flash_message!(:notice, :updated_not_active)
       end
+      session[:email] = resource.email
       respond_with resource, location: after_resetting_password_path_for(resource)
     else
       set_minimum_password_length
@@ -37,7 +41,11 @@ Spree::UserPasswordsController.class_eval do
 
   protected
 
+  def set_account_tab
+    @account_tab = :summary
+  end
+
   def after_sending_reset_password_instructions_path_for(resource_name)
-    spree_user_signed_in? ? edit_account_path : new_session_path(resource_name)
+    spree_user_signed_in? ? account_path : new_session_path(resource_name)
   end
 end

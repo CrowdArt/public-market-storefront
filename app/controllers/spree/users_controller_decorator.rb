@@ -23,16 +23,6 @@ Spree::UsersController.class_eval do
     end
   end
 
-  def update_password
-    @user.assign_attributes(user_password_params)
-    if @user.save
-      sign_in_user
-      redirect_to spree.account_url, notice: Spree.t(:account_updated)
-    else
-      render :edit
-    end
-  end
-
   def destroy
     spree_current_user.destroy
     flash[:danger] = t('users.account-deleted')

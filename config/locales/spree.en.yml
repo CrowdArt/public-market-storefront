@@ -75,4 +75,6 @@ en:
     shipment_status: Shipment Status
     editing_user: Edit Account
     change_your_password: Create New Password
+    reset_you_password: Reset Password
+    reset_password: Send Reset Link
     email_login: Username / Email

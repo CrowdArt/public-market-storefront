@@ -13,7 +13,7 @@ ul.hidden-xs.nav.nav-pills.nav-stacked#account-menu
 .visible-xs.dropdown.user-account-menu-dropdown
   button.btn-block.btn-outlined data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' type='button'
     .flex.between.align-center
-      = t("menus.account.#{@account_tab}")
+      = t("menus.account.#{@account_tab || :summary}")
       span.caret
 
   ul.dropdown-menu
