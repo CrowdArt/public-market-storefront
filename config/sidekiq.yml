@@ -1,14 +1,15 @@
 ---
 :concurrency: 10
 :queues:
+  - payments
+  - orders
+  - files
   - default
   - paperclip
   - mailers
   - upload
   - searchkick
   - recalculation
-  - orders
-  - payments
 :schedule:
   capture_payments:
     cron: '*/30 * * * *' # Runs at every 30th minute
@@ -30,6 +31,6 @@
   fetch_bwb_inventory:
     cron: '0 0 * * * *' # Runs every hour
     class: PublicMarket::Workers::FTP::FetchInventoryFiles
-    queue: upload
+    queue: files
     args: ['bwb', 'bwb_ftp']
     description: 'Fetch bwb inventory'
