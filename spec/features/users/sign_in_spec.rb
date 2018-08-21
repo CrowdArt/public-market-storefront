@@ -6,7 +6,7 @@ RSpec.describe 'Sign In', type: :feature do
   before do
     visit spree.login_path
 
-    fill_in 'Email/Login', with: username
+    fill_in 'Username / Email', with: username
     fill_in 'Password', with: password
 
     click_button 'Log In'

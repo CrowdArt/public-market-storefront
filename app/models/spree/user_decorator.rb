@@ -1,21 +1,20 @@
 Spree::User.class_eval do
-  MAX_LOGIN_LENGTH = 50
+  MAX_LOGIN_LENGTH = 20
 
   extend FriendlyId
 
-  friendly_id :login, use: :slugged, slug_column: :login
+  friendly_id :slug_candidates, use: :slugged, slug_column: :login
 
   has_many :addresses, class_name: 'Spree::Address', dependent: :destroy, inverse_of: :user
 
   NAME_REGEX = /\A[\p{L}\p{Zs}\x27-]{1,32}\z/
 
-  validates :login, uniqueness: true, length: { minimum: 3, maximum: MAX_LOGIN_LENGTH, allow_blank: true }
+  validates :login, uniqueness: true
+  validates :login, length: { minimum: 4, maximum: MAX_LOGIN_LENGTH, allow_blank: true }, on: %i[edit]
 
   validates :first_name, :last_name, presence: true, on: %i[edit]
   validates :login, presence: true, on: %i[edit]
   validates :first_name, :last_name, format: NAME_REGEX, allow_blank: true
-
-  after_validation :set_formatted_slug, if: -> { login_changed? && errors[:login].blank? }
 
   accepts_nested_attributes_for :credit_cards, allow_destroy: true
 
@@ -35,16 +34,27 @@ Spree::User.class_eval do
   # override to do nothing
   def unset_slug_if_invalid; end
 
-  # format slug after validation
-  def set_formatted_slug(normalized_slug = nil)
-    candidates = FriendlyId::Candidates.new(self, normalized_slug || send(friendly_id_config.base))
-    slug = slug_generator.generate(candidates) || resolve_friendly_id_conflict(candidates)
-    send("#{friendly_id_config.slug_column}=", slug)
+  def set_slug(normalized_slug = nil) # rubocop:disable Metrics/AbcSize
+    if send(friendly_id_config.slug_column).present? && send("#{friendly_id_config.slug_column}_changed?")
+      # normalize slug before validation if present
+      slug = send(friendly_id_config.slug_column)
+      normalized_slug = normalize_friendly_id(slug)
+      send("#{friendly_id_config.slug_column}=", normalized_slug)
+    elsif should_generate_new_friendly_id?
+      candidates = FriendlyId::Candidates.new(self, normalized_slug || send(friendly_id_config.base))
+      slug = slug_generator.generate(candidates) || resolve_friendly_id_conflict(candidates)
+      send "#{friendly_id_config.slug_column}=", slug
+    end
   end
 
-  # generate manually
-  def should_generate_new_friendly_id?
-    false
+  def slug_candidates
+    %i[email_first_part sequence_slug]
+  end
+
+  def sequence_slug
+    slug = email_first_part.to_param
+    sequence = self.class.where("login like '#{slug}-%'").count + 1
+    "#{slug}-#{sequence}"
   end
 
   def full_name
@@ -59,8 +69,8 @@ Spree::User.class_eval do
     email.split('@').first
   end
 
-  def pretty_username
-    first_name.presence || email_first_part
+  def display_name
+    login.presence || full_name.presence || email_first_part
   end
 
   # storefront changes:

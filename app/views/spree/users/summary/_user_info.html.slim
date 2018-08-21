@@ -1,10 +1,10 @@
 section.account-summary--user-info.flex.wrap-xs.center-xs.text-center-xs
   .initials-avatar
-    span = @user.full_name_or_email.split(' ').map(&:first).join
+    span = @user.display_name.split(' ').map(&:first).join
 
   .account-summary--user-info--name
     - if @user.full_name.present?
-      .text-black = @user.full_name_or_email
+      .text-black = @user.full_name
 
     .text-muted = @user.email
 

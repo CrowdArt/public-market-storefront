@@ -1,7 +1,5 @@
 - verified = @user.confirmed?
 
-= f.input :login, input_html: { value: f.object.login.presence }, required: false
-
 = f.input :email, label: false, input_html: { value: f.object.email.presence }, error: f.object.errors[:email].first&.html_safe
   div
     = f.input_field :email, value: f.object.email.presence, class: "form-control input-lg"
@@ -21,6 +19,7 @@
   = f.input :first_name, input_html: { value: f.object.first_name.presence }, wrapper_html: { class: 'flex-grow-1 margin-text-right' }
   = f.input :last_name, input_html: { value: f.object.last_name.presence }, wrapper_html: { class: 'flex-grow-1 margin-text-left' }
 
+= f.input :login, input_html: { value: f.object.login.presence }, required: false, error: f.object.errors[:login].first
 
 = f.input :password_mask, label: false
   div

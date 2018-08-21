@@ -1,11 +1,10 @@
 Spree::UsersController.class_eval do
   before_action :load_user, only: %i[show update_password]
+  before_action :set_account_tab, only: %i[show edit]
 
   ORDERS_PER_USER_PAGE = 10
 
   def show
-    @account_tab = account_tab
-
     case @account_tab
     when :orders
       show_orders
@@ -70,8 +69,8 @@ Spree::UsersController.class_eval do
     end
   end
 
-  def account_tab
+  def set_account_tab
     tab = [params[:tab].to_s.to_sym] & %i[summary orders]
-    tab.first || :summary
+    @account_tab = tab.first || :summary
   end
 end

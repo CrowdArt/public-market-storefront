@@ -9,7 +9,7 @@ en:
     my_orders: Order history
     credit_cards: Credit Cards
     remove_card: remove
-    no_credit_cards: You haven't added a credit/debit card yet. 
+    no_credit_cards: You haven't added a credit/debit card yet.
     product_number: Public Market Identification Number
     shop_by_books: Categories
     added_to_cart: Added to Cart
@@ -75,4 +75,4 @@ en:
     shipment_status: Shipment Status
     editing_user: Edit Account
     change_your_password: Create New Password
-    email_login: Email/Login
+    email_login: Username / Email

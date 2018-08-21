@@ -4,6 +4,7 @@ Spree::OrdersController.class_eval do
 
   before_action :load_order, only: %i[show rate_shipment update_shipment_rate]
   before_action :load_shipment, only: %i[rate_shipment update_shipment_rate]
+  before_action :set_account_tab, only: %i[rate_shipment show]
 
   # Storefront changes:
   # - respond to js when add to cart clicked
@@ -48,9 +49,7 @@ Spree::OrdersController.class_eval do
     end
   end
 
-  def rate_shipment
-    @account_tab = :orders
-  end
+  def rate_shipment; end
 
   def update_shipment_rate # rubocop:disable Metrics/AbcSize
     rating = GlobalReputation::Api::Rating.rate_shipment(spree_current_user, @shipment, params[:rating], params[:review].presence)
@@ -62,9 +61,7 @@ Spree::OrdersController.class_eval do
     end
   end
 
-  def show
-    @account_tab = :orders
-  end
+  def show; end
 
   def update # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     if @order.contents.update_cart(order_params)
@@ -93,6 +90,10 @@ Spree::OrdersController.class_eval do
     @order = Spree::Order.includes(line_items: [variant: %i[option_values images product]],
                                    bill_address: :state, ship_address: :state)
                          .find_by!(number: params[:id])
+  end
+
+  def set_account_tab
+    @account_tab = :orders
   end
 
   def load_shipment

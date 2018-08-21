@@ -3,7 +3,7 @@
 li.link-to-account.hidden-xxs class=('visible-xs visible-sm' if spree_user_signed_in?)
   = link_to spree_user_signed_in? ? spree.account_path : spree.login_path, class: 'ellipsis'
     = image_tag 'icons/user.svg'
-    span.margin-text-left.hidden-xs.vertical-middle = spree_current_user&.full_name_or_email || Spree.t(:login)
+    span.margin-text-left.hidden-xs.vertical-middle = spree_current_user&.display_name || Spree.t(:login)
 
 / DESKTOP DROPDOWN MENU
 - if spree_user_signed_in?

@@ -65,17 +65,17 @@ RSpec.describe Spree::User, type: :model do
     it { expect(user.first_name).not_to be_nil }
   end
 
-  describe '#pretty_username' do
-    subject { user.pretty_username }
+  describe '#display_name' do
+    subject { user.display_name }
 
     let(:user) { create(:user, email: 'buyer@publicmarket.io') }
 
-    it { is_expected.to be(user.first_name) }
+    it { is_expected.to eq('buyer') }
 
     context 'when first name is empty' do
-      before { user.update(first_name: '') }
+      before { user.update_columns(login: nil) }
 
-      it { is_expected.to eq('buyer') }
+      it { is_expected.to eq(user.full_name) }
     end
   end
 
@@ -126,7 +126,8 @@ RSpec.describe Spree::User, type: :model do
     let!(:user) { create(:user) }
 
     it 'changes email' do
-      user.destroy!
+      u = user.destroy!
+      p u.errors
       expect(Spree::User.with_deleted.last.email).to start_with('deleted_')
     end
 
