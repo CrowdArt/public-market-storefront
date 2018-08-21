@@ -1,6 +1,10 @@
 #!/bin/sh
 
-DOCKER_IMAGE=registry.gitlab.com/publicmarket/public-market-storefront
+environment=$1
+
+DOCKER_IMAGE=registry.gitlab.com/publicmarket/public-market-storefront/${environment}
+
+echo "Building ${DOCKER_IMAGE}..."
 
 set -e
 
