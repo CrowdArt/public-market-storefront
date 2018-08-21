@@ -62,13 +62,13 @@ en:
     confirmation:
       categories:
         - account
-      subject: Verify your email & activate your account
-      preview: Just one step away from joining Public Market… click below to verify your email address and activate...
+      subject: Verify your email address to protect your account
+      preview: Just one step away from verifying your account ー open the link to verify your email address.
       body: |
         <h3>Hi there!</h3>
 
         <p>
-          Just one step away from joining Public Market ー click below to verify your email address and activate your account.
+          Just one step away from verifying your Public Market account ー click below to confirm your email address and verify your account.
         </p>
 
         <table class="button">
@@ -76,7 +76,7 @@ en:
             <td>
               <table>
                 <tr>
-                  <td><a href="%{confirmation_url}" class="btn">Activate Account</a></td>
+                  <td><a href="%{confirmation_url}" class="btn">Verify Email Address</a></td>
                 </tr>
               </table>
             </td>
