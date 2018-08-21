@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/abundance-labs/spree_batch_api.git
-  revision: d202c4576ca9e1de4597df46b1393bd149ac6e22
+  revision: a137390082e26626efcfdc71a5ec3dc491b1e389
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -309,7 +309,7 @@ GEM
       concurrent-ruby (~> 1.0)
     dry-equalizer (0.2.1)
     dry-inflector (0.1.2)
-    dry-initializer (2.4.0)
+    dry-initializer (2.5.0)
     dry-logic (0.4.2)
       dry-container (~> 0.2, >= 0.2.6)
       dry-core (~> 0.2)
@@ -579,7 +579,7 @@ GEM
       method_source (~> 0.9.0)
     pry-rails (0.3.6)
       pry (>= 0.10.4)
-    public_suffix (3.0.2)
+    public_suffix (3.0.3)
     puma (3.12.0)
     raabro (1.1.6)
     rabl (0.13.1)
@@ -679,8 +679,8 @@ GEM
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
-    rufus-scheduler (3.5.1)
-      fugit (~> 1.1, >= 1.1.4)
+    rufus-scheduler (3.5.2)
+      fugit (~> 1.1, >= 1.1.5)
     safe_yaml (1.0.4)
     sass (3.5.7)
       sass-listen (~> 4.0.0)

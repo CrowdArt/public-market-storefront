@@ -13,7 +13,7 @@ RSpec.describe 'update email address', type: :feature do
     click_button 'Save'
   end
 
-  it { is_expected.to have_text 'A message with a confirmation link has been sent to your email address.' }
+  it { is_expected.to have_text 'An email with a confirmation link has been sent to your email address.' }
 
   it 'does not update original email untill confirmed' do
     expect(user.reload.email).to eq('user@spree.com')
