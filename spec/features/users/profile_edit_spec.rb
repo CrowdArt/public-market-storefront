@@ -18,17 +18,18 @@ RSpec.describe 'profile edit', type: :feature do
     context 'with correct info' do
       before { click_button 'Save' }
 
-      it { is_expected.to have_text 'Account updated' }
+      it { is_expected.to have_text Spree.t(:account_updated) }
       it { is_expected.to have_text 'User first name' }
     end
 
     context 'with incorrect info' do
       before do
-        fill_in 'user_first_name', with: ''
+        create(:user, login: 'notuniquelogin')
+        fill_in 'user_login', with: 'notuniquelogin'
         click_button 'Save'
       end
 
-      it { is_expected.to have_text "First name can't be blank" }
+      it { is_expected.to have_text 'Already taken – please choose a unique username.' }
     end
   end
 end

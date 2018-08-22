@@ -9,6 +9,7 @@ en:
       manage-payment: Manage Payment Methods (%{count})
       manage-wallet: Manage Wallet Addresses (%{count})
       change-email-verification: Changing your email address will require re-verification.
+      username-hint: You may log in using your username or email address.
     orders-history:
       title: Order History
       tracking: "Tracking #:"

@@ -1,5 +1,5 @@
 Spree::User.class_eval do
-  MAX_LOGIN_LENGTH = 20
+  MAX_LOGIN_LENGTH = 25
 
   extend FriendlyId
 
@@ -9,11 +9,9 @@ Spree::User.class_eval do
 
   NAME_REGEX = /\A[\p{L}\p{Zs}\x27-]{1,32}\z/
 
-  validates :login, uniqueness: true
+  validates :login, uniqueness: true, allow_nil: true
   validates :login, length: { minimum: 4, maximum: MAX_LOGIN_LENGTH, allow_blank: true }, on: %i[edit]
 
-  validates :first_name, :last_name, presence: true, on: %i[edit]
-  validates :login, presence: true, on: %i[edit]
   validates :first_name, :last_name, format: NAME_REGEX, allow_blank: true
 
   accepts_nested_attributes_for :credit_cards, allow_destroy: true
@@ -47,6 +45,10 @@ Spree::User.class_eval do
     end
   end
 
+  def should_generate_new_friendly_id?
+    false
+  end
+
   def slug_candidates
     %i[email_first_part sequence_slug]
   end
@@ -70,7 +72,7 @@ Spree::User.class_eval do
   end
 
   def display_name
-    login.presence || full_name.presence || email_first_part
+    first_name.presence || login.presence || email_first_part
   end
 
   # storefront changes:
@@ -130,7 +132,7 @@ Spree::User.class_eval do
   def scramble_email_and_password
     skip_reconfirmation!
     self.email = 'deleted_' + SecureRandom.uuid.first(5) + email
-    self.login = email
+    self.login = 'deleted_' + login if login.present?
     self.password = SecureRandom.hex(8)
     self.password_confirmation = password
     save

@@ -1,5 +1,9 @@
 - verified = @user.confirmed?
 
+.flex
+  = f.input :first_name, input_html: { value: f.object.first_name.presence }, wrapper_html: { class: 'flex-grow-1 margin-text-right' }
+  = f.input :last_name, input_html: { value: f.object.last_name.presence }, wrapper_html: { class: 'flex-grow-1 margin-text-left' }
+
 = f.input :email, label: false, error: f.object.errors[:email].first&.html_safe
   div
     = f.input_field :email, value: f.object.email.presence, class: "form-control input-lg"
@@ -15,11 +19,13 @@
   - if @user.errors.blank?
     span.text-small.feedback-hint = t('users.account-page.change-email-verification')
 
-.flex
-  = f.input :first_name, input_html: { value: f.object.first_name.presence }, wrapper_html: { class: 'flex-grow-1 margin-text-right' }
-  = f.input :last_name, input_html: { value: f.object.last_name.presence }, wrapper_html: { class: 'flex-grow-1 margin-text-left' }
+= f.input :login, label: false, required: false, error: f.object.errors[:login].first
+  div
+    = f.input_field :login, value: f.object.login.presence, class: "form-control input-lg"
+    = f.label :login
 
-= f.input :login, input_html: { value: f.object.login.presence }, required: false, error: f.object.errors[:login].first
+  - if @user.errors.blank?
+    span.text-small.feedback-hint = t('users.account-page.username-hint')
 
 = f.input :password_mask, label: false
   div

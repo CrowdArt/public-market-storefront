@@ -1,6 +1,6 @@
 section.account-summary--user-info.flex.wrap-xs.center-xs.text-center-xs
   .initials-avatar
-    span = @user.display_name.split(' ').map(&:first).join
+    span = @user.full_name.split(' ').map(&:first).join
 
   .account-summary--user-info--name
     - if @user.full_name.present?

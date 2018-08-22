@@ -1,5 +1,4 @@
 Spree::UsersController.class_eval do
-  before_action :load_user, only: %i[show update_password]
   before_action :set_account_tab, only: %i[show edit]
 
   ORDERS_PER_USER_PAGE = 10
@@ -14,7 +13,10 @@ Spree::UsersController.class_eval do
   # Storefront changes:
   # - save(context: :edit)
   def update
+    # reload user to not mess with spree_current_user
+    @user = Spree::User.friendly.find(params[:id])
     @user.assign_attributes(user_params)
+
     if @user.save(context: :edit)
       notification_msg = @user.saved_change_to_unconfirmed_email? ? :account_email_updated : :account_updated
       redirect_to spree.account_url, notice: Spree.t(notification_msg)
@@ -30,10 +32,6 @@ Spree::UsersController.class_eval do
   end
 
   private
-
-  def load_user
-    @user = spree_current_user
-  end
 
   def user_password_params
     params.require(:user).permit(:password, :password_confirmation)

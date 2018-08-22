@@ -44,7 +44,7 @@ en:
       spree/variant:
         rewards: Total Variant Rewards
       spree/user:
-        login: Username
+        login: Username (Optional)
 
     models:
       spree/product_collection:

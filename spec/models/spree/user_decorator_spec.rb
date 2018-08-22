@@ -70,12 +70,18 @@ RSpec.describe Spree::User, type: :model do
 
     let(:user) { create(:user, email: 'buyer@publicmarket.io') }
 
-    it { is_expected.to eq('buyer') }
+    it { is_expected.to eq(user.first_name) }
 
     context 'when first name is empty' do
-      before { user.update_columns(login: nil) }
+      before { user.update_columns(first_name: nil) }
 
-      it { is_expected.to eq(user.full_name) }
+      it { is_expected.to eq('buyer') }
+
+      context 'when login is present' do
+        before { user.update_columns(login: 'mysuperlogin') }
+
+        it { is_expected.to eq('mysuperlogin') }
+      end
     end
   end
 
@@ -126,8 +132,7 @@ RSpec.describe Spree::User, type: :model do
     let!(:user) { create(:user) }
 
     it 'changes email' do
-      u = user.destroy!
-      p u.errors
+      user.destroy!
       expect(Spree::User.with_deleted.last.email).to start_with('deleted_')
     end
 

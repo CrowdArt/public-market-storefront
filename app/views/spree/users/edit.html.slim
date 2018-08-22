@@ -6,7 +6,7 @@
 
     br
 
-    = simple_form_for @user, url: spree.user_path(@user), method: :put, wrapper: :vertical_hint_label, html: { id: "edit_user_info_#{@user.id}", class: 'user-edit-form leave-check' } do |f|
+    = simple_form_for @user, url: spree.user_path(id: @user.id), method: :put, wrapper: :vertical_hint_label, html: { id: "edit_user_info_#{@user.id}", class: 'user-edit-form leave-check' } do |f|
       = render partial: 'spree/users/form', locals: { f: f }
 
       = f.submit 'Save', class: 'btn btn-block btn-primary'

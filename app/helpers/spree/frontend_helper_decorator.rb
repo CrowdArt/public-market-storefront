@@ -90,7 +90,7 @@ module Spree
       flash.each do |msg_type, text|
         unless ignore_types.include?(msg_type)
           alert_class = "alert alert-dismissible alert-top alert-#{msg_type}"
-          concat(content_tag(:div, content_tag(:div, close_button + text, class: 'container text-center-md'), class: alert_class))
+          concat(content_tag(:div, content_tag(:div, close_button + text, class: 'container'), class: alert_class))
         end
       end
       nil

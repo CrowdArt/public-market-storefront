@@ -78,3 +78,4 @@ en:
     reset_you_password: Reset Password
     reset_password: Send Reset Link
     email_login: Username / Email
+    account_updated: Your account information has been updated successfully.
