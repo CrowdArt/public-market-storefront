@@ -22,8 +22,8 @@ ruby:
             /   span  • #{prop}
 
           .product-card--price itemprop='price'
-            span.price> #{display_price(product)}
-            .text-rewards == t('products.earn_rewards', rewards: product.rewards_amount)
+            .semi-bold.price> #{display_price(product)}
+            .text-rewards == t('products.earn_rewards_card', rewards: product.rewards_amount)
 
           small
             = render 'spree/shared/rating', value: rand(5)

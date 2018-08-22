@@ -2,6 +2,7 @@ en:
   products:
     sold_by: Ships from and sold by
     earn_rewards: "Earn <span>%{rewards}</span> PTRN Rewards"
+    earn_rewards_card: "Earn %{rewards} PTRN"
     rewards: "%{rewards} PTRN Rewards"
     total_rewards: "%{rewards} PTRN"
 
