@@ -1,35 +1,36 @@
-input#mobile-filters-toggle.mobile-menu-toggle hidden=true type='checkbox'
+.visible-xs.visible-sm
+  input#mobile-filters-toggle.mobile-menu-toggle hidden=true type='checkbox'
 
-nav.mobile-menu.mobile-menu-white.mobile-search-filters role='navigation' aria-expanded='false' aria-label='Main menu'
-  = form_tag url_for, method: :get, remote: true, id: 'mobile-search-filters-form', class: 'flex column between trigger-content-load-overlay' do
-    = hidden_field_tag :taxon, @taxon&.id, id: :mobile_filter_taxon
-    = hidden_field_tag :keywords, params[:keywords], id: :mobile_filter_keyword, data: { 'tag-id': :filter_keyword }
-    / = hidden_field_tag :per_page, params[:per_page], id: :mobile_filter_per_page
+  nav.mobile-menu.mobile-menu-white.mobile-search-filters role='navigation' aria-expanded='false' aria-label='Main menu'
+    = form_tag url_for, method: :get, remote: true, id: 'mobile-search-filters-form', class: 'flex column between trigger-content-load-overlay' do
+      = hidden_field_tag :taxon, @taxon&.id, id: :mobile_filter_taxon
+      = hidden_field_tag :keywords, params[:keywords], id: :mobile_filter_keyword, data: { 'tag-id': :filter_keyword }
+      / = hidden_field_tag :per_page, params[:per_page], id: :mobile_filter_per_page
 
-    .mobile-search-filters--inner
-      .text-bold.upcase.text-black.mobile-search-filters--head.flex.between.align-center
-        div
-          span.mobile-filters-selections--head-hint Selections
-          span.mobile-filters-selections-counter.hide
+      .mobile-search-filters--inner
+        .text-bold.upcase.text-black.mobile-search-filters--head.flex.between.align-center
+          div
+            span.mobile-filters-selections--head-hint Selections
+            span.mobile-filters-selections-counter.hide
 
-        button.btn.btn-link.no-padding.hide#clear-mobile-filters type='button'
-          span.upcase Clear All
+          button.btn.btn-link.no-padding.hide#clear-mobile-filters type='button'
+            span.upcase Clear All
 
-        button.btn.btn-link.close.text-black type='button'
-          label.no-margin for='mobile-filters-toggle' &times;
+          button.btn.btn-link.close.text-black type='button'
+            label.no-margin for='mobile-filters-toggle' &times;
 
-      .divider
+        .divider
 
-      ul
-        - filter_sections = [{ type: :filter, collection: search_filters }, { type: :sort, collection: search_sorting_options }].reject { |v| v[:collection].blank? }
-        - filter_sections.each_with_index do |v, idx|
-          li
-            = render partial: 'spree/search/mobile_filter', locals: { filters: v[:collection], idx: idx, type: v[:type] }
+        ul
+          - filter_sections = [{ type: :filter, collection: search_filters }, { type: :sort, collection: search_sorting_options }].reject { |v| v[:collection].blank? }
+          - filter_sections.each_with_index do |v, idx|
+            li
+              = render partial: 'spree/search/mobile_filter', locals: { filters: v[:collection], idx: idx, type: v[:type] }
 
-    button.btn.btn-block.btn-primary type='submit'
-      ' Apply
-      span.hide.mobile-filters-btn-all
-        ' All
-        span.hide.mobile-filters-selections-counter
+      button.btn.btn-block.btn-primary type='submit'
+        ' Apply
+        span.hide.mobile-filters-btn-all
+          ' All
+          span.hide.mobile-filters-selections-counter
 
-label.backdrop for='mobile-filters-toggle' tabindex='-1' aria-hidden='true' hidden=true
+  label.backdrop for='mobile-filters-toggle' tabindex='-1' aria-hidden='true' hidden=true

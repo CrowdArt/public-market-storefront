@@ -1,6 +1,5 @@
 window.pm = window.pm || {}
 
-
 var formsWithLeaveCheck = '.leave-check'
 $(document).on('change, keyup', 'input, textarea, select', formsWithLeaveCheck, function() {
   $(this).parents('form').addClass('form-dirty')
