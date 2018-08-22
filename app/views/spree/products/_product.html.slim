@@ -18,13 +18,12 @@ ruby:
             - if (product_variation = card_variation(product)).present?
               span.semi-bold = product_variation
 
-            - product.additional_properties.each do |prop|
-              span  • #{prop}
+            / - product.additional_properties.each do |prop|
+            /   span  • #{prop}
 
           .product-card--price itemprop='price'
             span.price> #{display_price(product)}
-            span> +
-            span.ptrn = product.rewards_amount
+            .text-rewards == t('products.earn_rewards', rewards: product.rewards_amount)
 
           small
             = render 'spree/shared/rating', value: rand(5)

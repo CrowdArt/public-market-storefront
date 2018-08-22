@@ -1,11 +1,20 @@
-.flex.wrap.between.margin-text-bottom
-  span.upcase = t('orders.ptrn_tokens')
-  strong.text-rewards = t('products.total_rewards', rewards: order.ptrn_rewards)
+- subtotal = Spree::Money.new(order.display_item_total, currency: order.currency)
+- shipping_total = Spree::Money.new(order.shipments.to_a.sum(&:cost), currency: order.currency)
 
-.flex.wrap.between.margin-text-bottom
-  span.upcase = t('orders.shipping')
-  span FREE
+.flex.wrap.between.margin-text-bottom.text-enlarge.text-bold.align-center.text-rewards
+  small.upcase = t('orders.rewards')
+  strong.text-high == t('products.total_rewards', rewards: order.ptrn_rewards)
 
-.flex.wrap.between.margin-text-bottom
-  strong.upcase = Spree.t(:total)
-  strong = order.display_total
+.flex.wrap.between.margin-text-bottom.text-enlarge.align-center
+  small.upcase = t('orders.subtotal')
+  span.text-high data-currency=Money::Currency.find(order.currency).symbol thousands-separator=subtotal.thousands_separator decimal-mark=subtotal.decimal_mark
+    == subtotal
+
+.flex.wrap.between.margin-text-bottom.text-enlarge.align-center
+  small.upcase = t('orders.shipping')
+  span.text-high data-currency=Money::Currency.find(order.currency).symbol thousands-separator=shipping_total.thousands_separator decimal-mark=shipping_total.decimal_mark
+    == shipping_total
+
+.flex.wrap.between.margin-text-bottom.text-enlarge.text-bold.align-center
+  small.upcase = Spree.t(:total)
+  span.text-high data-currency=Money::Currency.find(order.currency).symbol = order.display_total

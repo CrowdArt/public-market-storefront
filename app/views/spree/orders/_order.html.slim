@@ -20,12 +20,12 @@
         - if @order
           .col-xs-6.col-sm-6.col-lg-3
             .text-uppercase = t('users.orders-history.total')
-            = order.display_total.to_html
+            .semi-bold = order.display_total.to_html
           .col-xs-6.col-sm-6.col-lg-3
             .nowrap
               span.text-uppercase> = t('users.orders-history.rewards')
-              = link_to 'ℹ️', '#', class: 'btn btn-link no-padding disabled', disabled: true
-            .semi-bold.ptrn = order.ptrn_rewards
+              = link_to 'ℹ️', '#', class: 'btn btn-link no-padding disabled', style: 'font-size:12px', disabled: true
+            .semi-bold.text-rewards = t('products.total_rewards', rewards: order.ptrn_rewards)
         - else
           .col-xs-6.col-sm-4
             .text-uppercase = t('users.orders-history.order')

@@ -4,29 +4,10 @@
   h4.no-margin.upcase.text-color = Spree.t(title)
   = link_to Spree.t(:view_cart), cart_path, data: { confirm: t('forms.leaving') }
 
-- rewards = @order.ptrn_rewards
-p.text-cryptoberry #{rewards} PTRN #{'Reward'.pluralize(rewards)}
-
 / - order.all_adjustments.nonzero.tax.eligible.group_by(&:label).each do |label, adjustments|
 /   p.flex.between.upcase
 /     span = label
 /     span == Spree::Money.new(adjustments.sum(&:amount), currency: order.currency)
 
-p.flex.between.upcase
-  span = Spree.t(:subtotal)
+= render 'spree/shared/order_total', order: order
 
-  - subtotal = Spree::Money.new(order.display_item_total, currency: order.currency)
-  span data-currency=Money::Currency.find(order.currency).symbol thousands-separator=subtotal.thousands_separator decimal-mark=subtotal.decimal_mark
-    == subtotal
-
-p.flex.between.upcase
-  span = Spree.t(:shipping)
-
-  - shipping_total = Spree::Money.new(order.shipments.to_a.sum(&:cost), currency: order.currency)
-  span data-currency=Money::Currency.find(order.currency).symbol thousands-separator=shipping_total.thousands_separator decimal-mark=shipping_total.decimal_mark
-    == shipping_total
-
-.flex.between.upcase
-  strong = Spree.t(:total)
-  strong#summary-order-total data-currency=Money::Currency.find(order.currency).symbol
-    = order.display_total.to_html
