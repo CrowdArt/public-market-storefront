@@ -37,8 +37,8 @@ module Swagger
       end
 
       swagger_schema :Line_item do
-        property :id do
-          key :type, :string
+        property :ids do
+          key :type, :array
         end
         property :sku do
           key :type, :string
