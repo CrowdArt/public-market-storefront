@@ -1,10 +1,15 @@
+require 'google/apis'
+
 Rails.application.configure do
   config.use_paperclip = true
-end
 
-Paperclip.options[:content_type_mappings] = {
-  aspx: %w[image/jpeg]
-}
+  Google::Apis.logger.level = Logger::INFO unless Rails.env.development?
+
+  Paperclip.options[:log] = false
+  Paperclip.options[:content_type_mappings] = {
+    aspx: %w[image/jpeg]
+  }
+end
 
 if Rails.env.development?
   path_prefix = `whoami`.chomp
