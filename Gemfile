@@ -7,7 +7,7 @@ end
 
 gem 'rails', '5.2.0'
 
-gem 'rails-env-credentials', github: 'abundance-labs/rails-env-credentials'
+gem 'rails-env-credentials', github: 'public-market/rails-env-credentials'
 
 gem 'pg'
 gem 'pg_query' # used by pghero
@@ -42,14 +42,14 @@ gem 'searchkick'
 gem 'typhoeus'
 
 gem 'spree', github: 'spree/spree'
-gem 'spree_auth_devise', github: 'abundance-labs/spree_auth_devise'
-gem 'spree_batch_api', github: 'abundance-labs/spree_batch_api'
+gem 'spree_auth_devise', github: 'public-market/spree_auth_devise'
+gem 'spree_batch_api', github: 'public-market/spree_batch_api'
 gem 'spree_gateway', github: 'spree/spree_gateway', tag: 'v3.3.3'
-gem 'spree_multi_vendor', github: 'abundance-labs/spree_multi_vendor'
+gem 'spree_multi_vendor', github: 'public-market/spree_multi_vendor'
 gem 'spree_pages'
-gem 'spree_searchkick', github: 'abundance-labs/spree_searchkick'
+gem 'spree_searchkick', github: 'public-market/spree_searchkick'
 gem 'spree_sitemap', github: 'spree-contrib/spree_sitemap'
-gem 'spree_social', github: 'abundance-labs/spree_social'
+gem 'spree_social', github: 'public-market/spree_social'
 
 gem 'delayed_paperclip'
 gem 'fog-google'
@@ -74,6 +74,7 @@ group :test do
   gem 'factory_bot'
   gem 'ffaker'
   gem 'fuubar', require: false
+  gem 'parallel_tests'
   gem 'rails-controller-testing'
   gem 'rspec'
   gem 'rspec-rails'
@@ -90,6 +91,7 @@ group :development do
   gem 'guard', require: false
   gem 'guard-rspec', require: false
   gem 'listen', require: false
+  gem 'parallel_tests'
   gem 'pry-rails'
   gem 'rack-mini-profiler', require: false
   gem 'spring', require: false

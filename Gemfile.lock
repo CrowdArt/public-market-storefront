@@ -1,12 +1,12 @@
 GIT
-  remote: https://github.com/abundance-labs/rails-env-credentials.git
+  remote: https://github.com/public-market/rails-env-credentials.git
   revision: 946957f116a22a0666a96762230d64192a7cd87d
   specs:
     rails-env-credentials (0.1.2)
       rails (>= 5.2.0.rc1)
 
 GIT
-  remote: https://github.com/abundance-labs/spree_auth_devise.git
+  remote: https://github.com/public-market/spree_auth_devise.git
   revision: 5d63f35f91edf11da2bbfd0a33688c3bf63de34f
   specs:
     spree_auth_devise (3.3.3)
@@ -19,8 +19,8 @@ GIT
       spree_extension
 
 GIT
-  remote: https://github.com/abundance-labs/spree_batch_api.git
-  revision: a137390082e26626efcfdc71a5ec3dc491b1e389
+  remote: https://github.com/public-market/spree_batch_api.git
+  revision: 9a1ec8c51512e32889e30f200ac9884d52def50a
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -32,8 +32,8 @@ GIT
       spree_extension
 
 GIT
-  remote: https://github.com/abundance-labs/spree_multi_vendor.git
-  revision: f5e7bd5ef44b85c0470b51168bd8b1d4fb58b18f
+  remote: https://github.com/public-market/spree_multi_vendor.git
+  revision: 97b9464ef62bdfe855835cd0b10fe410867c1139
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq
@@ -44,7 +44,7 @@ GIT
       stripe
 
 GIT
-  remote: https://github.com/abundance-labs/spree_searchkick.git
+  remote: https://github.com/public-market/spree_searchkick.git
   revision: 404f2a685710e863c0dc944f834b0f56688d830c
   specs:
     spree_searchkick (3.1.0)
@@ -52,7 +52,7 @@ GIT
       spree_core (>= 3.1.0, < 4.0)
 
 GIT
-  remote: https://github.com/abundance-labs/spree_social.git
+  remote: https://github.com/public-market/spree_social.git
   revision: c8ca41a547d6e0488da81e87222ddffd16a9a39b
   specs:
     spree_social (3.3.1)
@@ -546,6 +546,8 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     parallel (1.12.1)
+    parallel_tests (2.22.0)
+      parallel
     paranoia (2.4.1)
       activerecord (>= 4.0, < 5.3)
     parser (2.5.1.2)
@@ -759,7 +761,7 @@ GEM
       activerecord (>= 4.1, < 6.0)
       state_machines-activemodel (>= 0.5.0)
     stringex (2.8.4)
-    stripe (3.21.0)
+    stripe (3.23.0)
       faraday (~> 0.10)
     swagger-blocks (2.0.2)
     temple (0.8.0)
@@ -845,6 +847,7 @@ DEPENDENCIES
   listen
   mixpanel-ruby
   oj
+  parallel_tests
   pg
   pg_query
   pghero

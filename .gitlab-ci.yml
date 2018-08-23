@@ -58,7 +58,7 @@ rspec:
     - yarn
     - bundle exec rake db:schema:load
   script:
-    - bundle exec rspec --format progress
+    - bundle exec rake parallel:spec
     - ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $?
   artifacts:
     when: always

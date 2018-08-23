@@ -1,5 +1,9 @@
 rspec_options = {
-  cmd: 'bundle exec rspec --format documentation',
+  cmd: 'bundle exec rspec -f documentation',
+  run_all: {
+    cmd: "bundle exec parallel_rspec -n 4 -o '",
+    cmd_additional_args: "'"
+  },
   failed_mode: :focus
 }
 
