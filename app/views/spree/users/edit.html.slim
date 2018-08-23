@@ -10,7 +10,7 @@
 
     = render 'delete_account_modal'
 
-    .text-right
-      button.btn.btn-link data-toggle='modal' data-target='#delete-account-modal' style='color:#abb0b6'
-        = image_tag 'icons/trash.svg', style: 'vertical-align:top;margin-right:5px'
+    .text-right.user-delete-btn-wrapper
+      button.btn.btn-link data-toggle='modal' data-target='#delete-account-modal'
+        = image_tag 'icons/trash.svg'
         small = t('users.delete-account')

@@ -1,0 +1,19 @@
+h3.upcase.no-margin.text-black class=('text-center' unless spree_user_signed_in?) = Spree.t(:change_your_password)
+
+br
+
+= simple_form_for resource, as: resource_name, url: spree.update_password_path, method: :put, wrapper: :vertical_hint_label do |f|
+  = f.input :password, label: false, error: f.object.errors[:password].first&.html_safe
+    div
+      = f.input_field :password, value: f.object.password.presence, class: "form-control input-lg"
+      = f.label :password, t('users.new_password')
+    - if resource.errors.blank?
+      span.text-small.feedback-hint = t('devise.password_hint', count: Devise.password_length.first)
+
+  = f.input :password_confirmation, label: t('users.confirm_new_password'), input_html: { value: f.object.password_confirmation.presence }, error: f.object.errors[:password_confirmation].first&.html_safe
+  = f.hidden_field :reset_password_token
+  = f.submit 'Save', class: 'btn btn-primary btn-block'
+
+br
+
+p.text-center style='max-width:360px;margin:auto' = t('users.password-hint')

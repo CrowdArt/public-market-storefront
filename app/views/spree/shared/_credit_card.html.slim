@@ -1,12 +1,10 @@
 - content_for(:panel_body, flush: true) do
-  .flex.align-center.wrap.margin-text-bottom.credit-card--head
+  .flex.align-center.margin-text-bottom.credit-card--head
     - card_icon = "credit_cards/icons/#{card.cc_type}.svg"
     - if asset_exists?(card_icon)
-
         = image_tag(card_icon, style: 'width:35px', class: 'margin-text-right')
 
-    .credit-card--head--card-name.flex
-      strong.ellipsis> = card_name_type(card)
+    strong.ellipsis> = card_name_type(card)
 
   p.text-muted Expires #{card.month.to_s.rjust(2, '0')} / #{card.year}
 

@@ -11,12 +11,15 @@
       &:before, &:after
         content: initial
 
-      &.eq-height-columns > [class*='col-']
-        display: flex
-        flex-direction: column
+      &.eq-height-columns
+        align-content: start
 
-        & > div
-          height: 100%
+        & > [class*='col-']
+          display: flex
+          flex-direction: column
+
+          & > div
+            height: 100%
 
     &.column
       flex-direction: column

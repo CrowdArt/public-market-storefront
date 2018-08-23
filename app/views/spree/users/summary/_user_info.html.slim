@@ -8,4 +8,4 @@ section.account-summary--user-info.flex.wrap-xs.center-xs.text-center-xs
 
     .text-muted = @user.email
 
-    = link_to 'Edit', spree.edit_account_path, class: 'text-medium'
+    = link_to Spree.t(:editing_user), spree.edit_account_path, class: 'text-medium'

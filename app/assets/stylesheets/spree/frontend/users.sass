@@ -44,6 +44,13 @@
   & > div
     background: white
     padding: 45px 50px
+
+    @media (min-width: $screen-sm-min)
+      min-height: 746px
+
+    @media (min-width: $screen-lg)
+      min-height: 777px
+
     @media (max-width: $screen-xs-max)
       padding: 0
 
@@ -137,3 +144,13 @@
   .user_password_mask input[disabled]
     background: transparent
     opacity: .4
+
+.user-delete-btn-wrapper
+  padding-top: 76px
+
+  button
+    color: #abb0b6
+
+  img
+    vertical-align: top
+    margin-right: 5px
