@@ -52,8 +52,8 @@ en:
     secure_checkout: Secure Checkout
     you_earned: 'You earned:'
     order_processed_successfully: Your order has been processed successfully!
-    learn_about_ptrn: Learn about Patron and how it works
-    share_order_hint: Share the good news with friends and earn additonal Patron tokens redeemable for products on Public Market.
+    learn_about_ptrn: Learn about Patron Reward Credits and how it works
+    share_order_hint: Share the good news with friends and show your support for Public Market.
     specials: Specials
     vendors_transfers_failed: Payment could not be processed, seller can't receive transfer, please contact support.
     vendors_transfer_negative: Payment could not be processed, seller %{vendor} can't process payment, please contact support.
