@@ -27,7 +27,7 @@ ruby:
   = form.label :address1
 
 .form-group.input-with-hint id="#{address_type}address2"
-  = form.text_field :address2, class: 'form-control input-lg'
+  = form.text_field :address2, value: form.object.address2.presence, class: 'form-control input-lg'
   = form.label :address2
 
 .form-group.custom-select-wrapper id="#{address_type}country"

@@ -1,4 +1,4 @@
-= simple_form_for @user || Spree::User.new, as: :spree_user, url: spree.create_new_session_path, wrapper: :vertical_small_error do |f|
+= simple_form_for @user || Spree::User.new, as: :spree_user, url: spree.create_new_session_path, wrapper: :vertical_hint_label do |f|
   = f.input :username, placeholder: Spree.t(:email_login), required: false, autofocus: true, input_html: { value: f.object.email.presence || session.delete(:email) }
   = f.input :password, placeholder: Spree.t(:password)
 
