@@ -56,10 +56,9 @@ rspec:
     # setup rails test env
     - bundle check || bundle install --deployment --jobs 4 --without development staging production
     - yarn
-    - bundle exec rake parallel:create
-    - bundle exec rake parallel:prepare
+    - bundle exec rake db:schema:load
   script:
-    - bundle exec rake parallel:spec
+    - bundle exec rspec --format progress
     - ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $?
   artifacts:
     when: always
