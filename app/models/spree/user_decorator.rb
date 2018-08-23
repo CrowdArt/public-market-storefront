@@ -1,4 +1,5 @@
 Spree::User.class_eval do
+  MIN_LOGIN_LENGTH = 4
   MAX_LOGIN_LENGTH = 25
 
   extend FriendlyId
@@ -8,9 +9,12 @@ Spree::User.class_eval do
   has_many :addresses, class_name: 'Spree::Address', dependent: :destroy, inverse_of: :user
 
   NAME_REGEX = /\A[\p{L}\p{Zs}\x27-]{1,32}\z/
+  LOGIN_REGEX = /\A[a-z](?:-?[a-z0-9]){#{MIN_LOGIN_LENGTH},#{MAX_LOGIN_LENGTH}}\z/
 
-  validates :login, uniqueness: true, allow_nil: true
-  validates :login, length: { minimum: 4, maximum: MAX_LOGIN_LENGTH, allow_blank: true }, on: %i[edit]
+  validates :login, length: { minimum: MIN_LOGIN_LENGTH, maximum: MAX_LOGIN_LENGTH },
+                    format: LOGIN_REGEX,
+                    uniqueness: true,
+                    allow_blank: true
 
   validates :first_name, :last_name, format: NAME_REGEX, allow_blank: true
 
@@ -73,6 +77,14 @@ Spree::User.class_eval do
 
   def display_name
     first_name.presence || login.presence || email_first_part
+  end
+
+  def name_initials
+    if first_name.present?
+      first_name.first + last_name&.first.to_s
+    else
+      display_name.first
+    end
   end
 
   # storefront changes:

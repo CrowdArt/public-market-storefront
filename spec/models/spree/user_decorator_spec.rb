@@ -39,6 +39,58 @@ RSpec.describe Spree::User, type: :model do
     end
   end
 
+  describe 'validates login' do
+    subject do
+      build_stubbed(:user, login: login)
+    end
+
+    let(:login) { 'validname' }
+
+    it { is_expected.to be_valid }
+
+    context 'with space' do
+      let(:login) { 'valid name' }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'with unicode letters' do
+      let(:login) { 'üsername' }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'with digits' do
+      let(:login) { 'user1' }
+
+      it { is_expected.to be_valid }
+
+      context 'when in first place' do
+        let(:login) { '1user1' }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
+
+    context 'with dashes' do
+      let(:login) { 'valid-user' }
+
+      it { is_expected.to be_valid }
+
+      context 'when multiple in row' do
+        let(:login) { 'valid--user' }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
+
+    context 'with chars' do
+      let(:login) { 'valid-use__r' }
+
+      it { is_expected.not_to be_valid }
+    end
+  end
+
   describe 'validates password length' do
     subject do
       build_stubbed(:user, password: password)
@@ -81,6 +133,26 @@ RSpec.describe Spree::User, type: :model do
         before { user.update_columns(login: 'mysuperlogin') }
 
         it { is_expected.to eq('mysuperlogin') }
+      end
+    end
+  end
+
+  describe '#name_initials' do
+    subject { user.name_initials }
+
+    let(:user) { create(:user, login: 'superbuyer') }
+
+    it { is_expected.to eq(user.first_name.first + user.last_name.first) }
+
+    context 'when first name is empty' do
+      before { user.update_columns(first_name: nil) }
+
+      it { is_expected.to eq(user.login.first) }
+
+      context 'when login is empty' do
+        before { user.update_columns(login: nil) }
+
+        it { is_expected.to eq(user.email.first) }
       end
     end
   end

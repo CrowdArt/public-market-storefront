@@ -15,9 +15,10 @@ en:
               invalid: "Invalid – please check and make sure you entered a valid email address."
             login:
               taken: "Already taken – please choose a unique username."
-              too_short: "Too short – usernames must be at least %{count} characters long."
-              too_long: "Too long – usernames can't exceed %{count} characters in length."
+              too_short: "Too short – usernames must be at least 4 characters long."
+              too_long: "Too long – usernames can't exceed 25 characters in length."
               blank: "Username can't be blank - please input your username."
+              invalid: "Invalid – please check and make sure you entered a valid username."
 
         spree/product_collection:
           staff_picks: "Forbidden – you cannot delete the 'Staff Picks' product collection."
