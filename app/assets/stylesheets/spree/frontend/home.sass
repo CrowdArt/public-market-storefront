@@ -191,19 +191,16 @@ body#home-page
     background-size: cover
     margin-bottom: 50px
     padding-top: 50px
-    height: 525px
-    overflow: visible
     @media (max-width: $screen-md-max)
       background-position-x: center
-      height: 472px
     .offer
       position: absolute
       z-index: 200
       top: 0
       left: 0
-      background: #ffd261
-      padding: 6px 20px 6px 40px
+      padding: 6px 70px 6px 40px
       min-width: 350px
+      overflow: hidden
       &:after
         content: " "
         position: absolute
@@ -211,11 +208,12 @@ body#home-page
         width: 100%
         height: 100%
         top: 0
-        left: 0
+        right: 70px
         z-index: -1
         background: #ffd261
         transform-origin: bottom left
-        transform: skew(-45deg, 0deg)
+        transform: skew(-45deg)
+
       h4
         color: #454a50
         font-size: 18px
@@ -223,77 +221,98 @@ body#home-page
         letter-spacing: 0.5px
         text-transform: uppercase
       @media (max-width: $screen-sm-max)
-        padding: 6px 10px 6px 20px
+        padding: 6px 70px 6px 10px
         min-width: inherit
         h4
           font-size: 16px
+          letter-spacing: 0
     .content
-      margin: 100px 0 88px 120px
-      text-align: left
-      width: 232px
+      padding-top: 7%
+      padding-bottom: 9%
       h3
-        font-family: $font-family-roboto-slab
-        font-size: 37px
-        font-weight: 300
-        line-height: 48px
+        // font-family: $font-family-roboto-slab
+        font-size: 28px
+        // font-weight: 300
+        // line-height: 48px
         color: #ffffff
         margin-bottom: 28px
-      .btn
-        padding: 16px 55px
+    .btn
+      padding: 16px 55px
+
     .staff-picks-items
       position: absolute
-      top: 108px
-      right: 532px
-      list-style-type: none
-      li
-        position: absolute
-        top: 128px
-        left: 0
-        box-shadow: 12px 7px 18px -7px rgba(0, 0, 0, 0.5)
-        transform: perspective(600px) rotateY(-25deg)
-        z-index: 1002
-        transition: transform .5s
-        &:hover
-          transform: perspective(600px) rotateY(-15deg)
-        img
-          width: 234px
-        &:nth-child(2)
-          top: 42px
-          left: 76px
-          transform: perspective(600px) rotateY(-30deg)
-          z-index: 1001
-          &:hover
-            transform: perspective(600px) rotateY(-20deg)
-          img
-            width: 278px
-        &:nth-child(3)
-          top: -30px
-          left: 164px
-          transform: perspective(600px) rotateY(-20deg)
-          z-index: 1000
-          &:hover
-            transform: perspective(600px) rotateY(-10deg)
-          img
-            width: 302px
-      @media (max-width: $screen-md-max)
-        top: 134px
-        right: 412px
+      display: inline-block
+      bottom: -100px
+      right: 90px
+      padding-top: 115px
+      overflow: hidden
+
+      ul
+        list-style-type: none
+        white-space: nowrap
+        padding: 0
+        max-width: 490px
         li
-          top: 128px
-          left: 0
+          position: relative
+          display: inline-block
+          box-shadow: 12px 7px 18px -7px rgba(0, 0, 0, 0.5)
+          transform: perspective(600px) rotateY(-25deg)
+          z-index: 2
+          transition: transform .5s
+          &:hover
+            transform: perspective(600px) rotateY(-15deg)
           img
-            width: 160px
+            width: 230px
           &:nth-child(2)
-            top: 75px
-            left: 62px
+            top: -50px
+            left: -170px
+            transform: perspective(600px) rotateY(-30deg)
+            z-index: 1
+            &:hover
+              transform: perspective(600px) rotateY(-20deg)
             img
-              width: 188px
+              width: 260px
           &:nth-child(3)
-            top: 28px
-            left: 124px
+            top: -90px
+            left: -350px
+            transform: perspective(600px) rotateY(-20deg)
+            z-index: 0
+            &:hover
+              transform: perspective(600px) rotateY(-10deg)
             img
-              width: 208px
-      @media (max-width: $screen-sm-max)
-        right: 332px
+              width: 270px
+      @media (max-width: $screen-md-max)
+        bottom: -85px
+        ul
+          max-width: 300px
+          li
+            img
+              width: 180px
+            &:nth-child(2)
+              top: -35px
+              left: -145px
+              img
+                width: 210px
+            &:nth-child(3)
+              top: -60px
+              left: -310px
+              img
+                width: 230px
       @media (max-width: $screen-xs-max)
-        display: none
+        position: static
+        margin-top: -90px
+        ul
+          max-width: 250px
+          li
+            img
+              width: 120px
+            &:nth-child(2)
+              top: -30px
+              left: -90px
+              img
+                width: 150px
+            &:nth-child(3)
+              top: -60px
+              left: -200px
+              img
+                width: 170px

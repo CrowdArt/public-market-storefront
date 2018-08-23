@@ -17,7 +17,8 @@ en:
 
   home:
     top_selling_header: Top Selling Books
-    staff_picks_header: Enjoy this Month's Staff Picks
+    staff_picks_title: LIMITED-TIME OFFER – 5% MORE PTRN REWARDS
+    staff_picks_header: Enjoy this Month's <br> Staff Picks
     staff_picks_btn_text: Explore
     top_collections_header: Top Categories
     bottom_collections_header: Featured Collections

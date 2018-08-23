@@ -39,9 +39,7 @@
     = render partial: 'spree/home/promoted_collection', locals: { header: t('home.top_collections_header'), collections: product_collections.shift(2) }
 
   - if (staff_picks = fetch_staff_picks).present?
-    section.staff-picks
-      div[data-hook="homepage_staff_picks"]
-        = render partial: 'spree/shared/staff_picks', locals: { staff_picks: staff_picks }
+    = render partial: 'spree/shared/staff_picks', locals: { staff_picks: staff_picks }
 
   - if product_collections.present?
     = render partial: 'spree/home/promoted_collection', locals: { header: t('home.bottom_collections_header'), collections: product_collections }

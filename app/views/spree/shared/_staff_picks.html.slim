@@ -1,0 +1,16 @@
+section.staff-picks data-hook='homepage_staff_picks'
+  .offer
+    h4 == t('home.staff_picks_title')
+  .row.flex
+    .col-xs-12.col-sm-5.col-sm-offset-1.col-lg-3.col-lg-offset-1.content.text-center-xs
+      h3 == t('home.staff_picks_header')
+      = link_to t('home.staff_picks_btn_text'), product_collections_path('staff-picks'), { class: 'btn btn-primary hidden-xs' }
+    .col-xs-12.col-sm-6.col-lg-6.col-lg-offset-2.text-center-xs
+      .staff-picks-items
+        ul
+          - staff_picks.each do |p|
+            li
+              = link_to spree.product_path(p), itemprop: 'url' do
+                = large_image(p, itemprop: 'image')
+    .col-xs-12.col-xs-12.text-center.visible-xs style='margin-bottom: 30px'
+      = link_to t('home.staff_picks_btn_text'), product_collections_path('staff-picks'), { class: 'btn btn-primary' }
