@@ -6,13 +6,11 @@
 
     br
 
-    = simple_form_for @user, url: spree.user_path(id: @user.id), method: :put, wrapper: :vertical_hint_label, html: { id: "edit_user_info_#{@user.id}", class: 'user-edit-form leave-check' } do |f|
-      = render partial: 'spree/users/form', locals: { f: f }
-
-      = f.submit 'Save', class: 'btn btn-block btn-primary'
+    = render partial: 'spree/users/form'
 
     = render 'delete_account_modal'
-    .text-right style='margin-top: 115px'
+
+    .text-right
       button.btn.btn-link data-toggle='modal' data-target='#delete-account-modal' style='color:#abb0b6'
         = image_tag 'icons/trash.svg', style: 'vertical-align:top;margin-right:5px'
         small = t('users.delete-account')

@@ -48,6 +48,18 @@ RSpec.describe Spree::User, type: :model do
 
     it { is_expected.to be_valid }
 
+    context 'when too short' do
+      let(:login) { 'val' }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when too long' do
+      let(:login) { 'valvalvalvalvalvalvalvalvalvalvalvalval' }
+
+      it { is_expected.not_to be_valid }
+    end
+
     context 'with space' do
       let(:login) { 'valid name' }
 
@@ -227,12 +239,13 @@ RSpec.describe Spree::User, type: :model do
   describe '#email_change' do
     subject(:change_email) { user.update(email: 'new@super.email') }
 
-    let!(:user) { create(:user) }
+    let(:old_email) { 'user@old.email' }
+    let!(:user) { create(:user, email: old_email) }
 
     it 'is sent' do
       expect {
         change_email
-      }.to have_enqueued_job(ActionMailer::DeliveryJob).with('Spree::UserMailer', 'email_change', 'deliver_now', user.id)
+      }.to have_enqueued_job(ActionMailer::DeliveryJob).with('Spree::UserMailer', 'email_change', 'deliver_now', user.id, old_email)
     end
   end
 end

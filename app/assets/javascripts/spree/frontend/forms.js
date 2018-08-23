@@ -1,7 +1,7 @@
 window.pm = window.pm || {}
 
 var formsWithLeaveCheck = '.leave-check'
-$(document).on('change, keyup', 'input, textarea, select', formsWithLeaveCheck, function() {
+$(document).on('change, input', 'input, textarea, select', formsWithLeaveCheck, function() {
   $(this).parents('form').addClass('form-dirty')
   $('body').attr('data-turbolinks', false)
 }).on('submit', formsWithLeaveCheck, function() {

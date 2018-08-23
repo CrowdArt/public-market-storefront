@@ -17,7 +17,9 @@ en:
     confirm: Review Order Details
     use_as_shipping: Use as my shipping address
     use_shipping_address: Use shipping address
-    account_email_updated: An email with a confirmation link has been sent to your email address.
+    account_updated: Your account information has been updated successfully.
+    account_email_updated: You have successfully changed your email address
+    account_email_username_updated: You have successfully changed your email address and username
     order_mailer:
       total: Total
       subtotal: Subtotal
@@ -78,4 +80,3 @@ en:
     reset_you_password: Reset Password
     reset_password: Send Reset Link
     email_login: Username / Email
-    account_updated: Your account information has been updated successfully.

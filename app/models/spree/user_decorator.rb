@@ -1,20 +1,21 @@
 Spree::User.class_eval do
+  include Spree::NormalizeBlankValues
+
   MIN_LOGIN_LENGTH = 4
   MAX_LOGIN_LENGTH = 25
 
   extend FriendlyId
-
   friendly_id :slug_candidates, use: :slugged, slug_column: :login
 
   has_many :addresses, class_name: 'Spree::Address', dependent: :destroy, inverse_of: :user
 
   NAME_REGEX = /\A[\p{L}\p{Zs}\x27-]{1,32}\z/
-  LOGIN_REGEX = /\A[a-z](?:-?[a-z0-9]){#{MIN_LOGIN_LENGTH},#{MAX_LOGIN_LENGTH}}\z/
+  LOGIN_REGEX = /\A[a-z](?:-?[a-z0-9])*\z/
 
   validates :login, length: { minimum: MIN_LOGIN_LENGTH, maximum: MAX_LOGIN_LENGTH },
                     format: LOGIN_REGEX,
                     uniqueness: true,
-                    allow_blank: true
+                    allow_nil: true
 
   validates :first_name, :last_name, format: NAME_REGEX, allow_blank: true
 
@@ -23,8 +24,6 @@ Spree::User.class_eval do
   before_save :fill_names, if: :ship_address_id_changed?
 
   after_create :send_welcome_email_with_delay
-
-  after_commit :send_email_change, on: :update, if: :reconfirmation_required?
 
   # used in login form
   attr_writer :username
@@ -121,6 +120,18 @@ Spree::User.class_eval do
     where(conditions).find_by(['lower(login) = :value OR lower(email) = :value', { value: login.strip.downcase }])
   end
 
+  protected
+
+  # https://github.com/plataformatec/devise/blob/88724e10adaf9ffd1d8dbfbaadda2b9d40de756a/lib/devise/models/confirmable.rb#L254
+  def postpone_email_change_until_confirmation_and_regenerate_confirmation_token
+    @reconfirmation_required = true
+    self.unconfirmed_email = email
+    self.confirmed_at = nil
+    self.confirmation_token = nil
+    Spree::UserMailer.email_change(id, email_was).deliver_later
+    generate_confirmation_token
+  end
+
   private
 
   # override to do nothing
@@ -148,10 +159,6 @@ Spree::User.class_eval do
     self.password = SecureRandom.hex(8)
     self.password_confirmation = password
     save
-  end
-
-  def send_email_change
-    Spree::UserMailer.email_change(id).deliver_later
   end
 
   def check_completed_orders

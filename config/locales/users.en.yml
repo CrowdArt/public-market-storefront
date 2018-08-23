@@ -36,3 +36,7 @@ en:
     password-hint: Strong passwords use upper and lowercase letters, as well as numbers and special characters.
     new_password: New Password
     confirm_new_password: Confirm New Password
+    reconfirm-email:
+      head: Verified email address
+      text: Are you sure you want to change the email address associated with your account? You will need to re-verify email if you proceed.
+      button:  Yes, Change Email

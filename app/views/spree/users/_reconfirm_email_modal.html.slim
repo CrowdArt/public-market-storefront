@@ -1,0 +1,20 @@
+.modal.modal-wide-paddings.modal-vertical-center.fade#reconfirm-email-modal tabindex='-1' role='dialog'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type='button' class='close' data-dismiss='modal' aria-label='Close'
+          span aria-hidden='true' &times;
+
+        h5.upcase.modal-title.text-black= t('users.reconfirm-email.head')
+
+      .modal-body.text-center
+        br
+        .text-warning.text-medium = t('users.reconfirm-email.text')
+        br
+        br
+
+        .row
+          .col-xs-12.col-md-6
+            button.btn.btn-white.btn-block data-dismiss='modal' aria-label='Close' type='button' = Spree.t('cancel')
+          .col-xs-12.col-md-6
+            button.btn.btn-warning.btn-block#reconfirm-email-btn data-dismiss='modal' type='button' = t('users.reconfirm-email.button')

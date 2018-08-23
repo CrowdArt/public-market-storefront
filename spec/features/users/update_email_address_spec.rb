@@ -9,27 +9,40 @@ RSpec.describe 'update email address', type: :feature do
     visit spree.edit_account_path
 
     fill_in 'user_email', with: 'newemail@spree.com'
-
-    click_button 'Save'
   end
 
-  it { is_expected.to have_text 'An email with a confirmation link has been sent to your email address.' }
+  it 'updates original email' do
+    click_button 'Save'
 
-  it 'does not update original email untill confirmed' do
-    expect(user.reload.email).to eq('user@spree.com')
-    expect(user.unconfirmed_email).to eq('newemail@spree.com')
+    expect(user.reload.email).to eq('newemail@spree.com')
+    expect(user.confirmed?).to be false
+  end
+
+  context 'when confirmed', js: true do
+    let(:user) { create(:user, confirmed_at: Time.current, email: 'user@spree.com') }
+
+    it 'updates original email' do
+      click_button 'Save'
+      click_button 'Yes, Change Email'
+
+      is_expected.to have_text Spree.t(:account_email_updated)
+      expect(user.reload.email).to eq('newemail@spree.com')
+      expect(user.confirmed?).to be false
+    end
   end
 
   describe 'visit confirmation link' do
     before do
+      click_button 'Save'
+
       visit spree.spree_user_confirmation_url(confirmation_token: user.reload.confirmation_token)
     end
 
     it 'updates original email' do
       expect(user.reload.email).to eq('newemail@spree.com')
-      expect(user.unconfirmed_email).to be_nil
+      expect(user.confirmed?).to be true
     end
 
-    it { is_expected.to have_text "You've successfully updated your email address." }
+    it { is_expected.to have_text I18n.t('devise.confirmations.confirmed') }
   end
 end

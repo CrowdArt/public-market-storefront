@@ -22,10 +22,8 @@ Spree::UserConfirmationsController.class_eval do
     self.resource = resource_class.confirm_by_token(params[:confirmation_token])
     yield resource if block_given?
 
-    notification_msg = resource.saved_change_to_unconfirmed_email? ? :reconfirmed : :confirmed
-
     if resource.errors.empty?
-      set_flash_message!(:notice, notification_msg)
+      set_flash_message!(:notice, :confirmed)
       session[:mixpanel_actions] = [
         %(mixpanel.track("email confirmed", {
           "user_id": "#{resource.id}",

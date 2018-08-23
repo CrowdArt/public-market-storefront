@@ -79,10 +79,10 @@ RSpec.describe Spree::UserMailer, type: :mailer do
 
   describe '#email_change' do
     let(:user) { create(:user) }
-    let(:mail) { described_class.email_change(user.id) }
+    let(:mail) { described_class.email_change(user.id, 'old@email.ru') }
 
     it 'is sent to correct email' do
-      expect(mail.to).to eq [user.email]
+      expect(mail.to).to eq ['old@email.ru']
     end
 
     it 'contains correct subject' do

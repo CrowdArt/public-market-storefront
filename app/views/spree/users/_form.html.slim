@@ -1,36 +1,43 @@
 - verified = @user.confirmed?
+= simple_form_for @user, url: spree.user_path(id: @user.id), remote: true, method: :put, wrapper: :vertical_hint_label, html: { id: 'edit_user_info', class: 'user-edit-form leave-check' } do |f|
+  - if verified
+    = render 'reconfirm_email_modal'
 
-.flex
-  = f.input :first_name, input_html: { value: f.object.first_name.presence }, wrapper_html: { class: 'flex-grow-1 margin-text-right' }
-  = f.input :last_name, input_html: { value: f.object.last_name.presence }, wrapper_html: { class: 'flex-grow-1 margin-text-left' }
+  .flex
+    = f.input :first_name, input_html: { value: f.object.first_name.presence }, wrapper_html: { class: 'flex-grow-1 margin-text-right' }
+    = f.input :last_name, input_html: { value: f.object.last_name.presence }, wrapper_html: { class: 'flex-grow-1 margin-text-left' }
 
-= f.input :email, label: false, error: f.object.errors[:email].first&.html_safe
-  div
-    = f.input_field :email, value: f.object.email.presence, class: "form-control input-lg"
-    = f.label :email
+  = f.input :email, label: false, error: f.object.errors[:email].first&.html_safe
+    - correct_email = @user.errors[:email].blank?
+
+    div
+      = f.input_field :email, value: f.object.email.presence, class: "form-control input-lg", data: { 'old-email': f.object.email }
+      = f.label :email
+
+      - if correct_email
+        .user_email--addition-wrapper.flex.align-center
+          - if verified
+            .text-small.text-success.check-left.condensed = t('devise.verified_email')
+          - else
+            = link_to(t('devise.send_confirmation_email'), spree_user_confirmation_path, method: :post)
+
+    - if verified && correct_email
+      span.text-small.feedback-hint = t('users.account-page.change-email-verification')
+
+  = f.input :login, label: false, required: false, error: f.object.errors[:login].first
+    div
+      = f.input_field :login, value: f.object.login.presence, class: "form-control input-lg"
+      = f.label :login
 
     - if @user.errors.blank?
-      .user_email--addition-wrapper.flex.align-center
-        - if verified
-          .text-small.text-success.check-left.condensed = t('devise.verified_email')
-        - else
-          = link_to(t('devise.send_confirmation_email'), spree_user_confirmation_path, method: :post)
+      span.text-small.feedback-hint = t('users.account-page.username-hint')
 
-  - if @user.errors.blank?
-    span.text-small.feedback-hint = t('users.account-page.change-email-verification')
+  = f.input :password_mask, label: false
+    div
+      = f.input_field :password_mask, type: :text, value: '**************', disabled: true, class: "form-control input-lg"
+      = f.label :password
 
-= f.input :login, label: false, required: false, error: f.object.errors[:login].first
-  div
-    = f.input_field :login, value: f.object.login.presence, class: "form-control input-lg"
-    = f.label :login
+      .user_password--addition-wrapper.flex.align-center
+        = link_to(t('devise.send_reset_password_email'), spree.reset_password_path, method: :post)
 
-  - if @user.errors.blank?
-    span.text-small.feedback-hint = t('users.account-page.username-hint')
-
-= f.input :password_mask, label: false
-  div
-    = f.input_field :password_mask, type: :text, value: '**************', disabled: true, class: "form-control input-lg"
-    = f.label :password
-
-    .user_password--addition-wrapper.flex.align-center
-      = link_to(t('devise.send_reset_password_email'), spree.reset_password_path, method: :post)
+  = f.submit 'Save', class: 'btn btn-block btn-primary'

@@ -1,0 +1,10 @@
+<%= render partial: 'spree/shared/flash_messages' %>
+
+$('.user-edit-form').html("<%= j(render(partial: 'spree/users/form')) %>")
+
+<% if @user.valid? %>
+  <% @user.saved_changes.keys.reject { |key| %w[updated_at].include?(key) }.each do |k, v| %>
+    var input = $("input[name='user[" + "<%= k %>" + "]']")
+    input.parents('.form-group').addClass('form-group-valid')
+  <% end %>
+<% end %>

@@ -78,7 +78,7 @@ SimpleForm.setup do |config|
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
 
-  config.wrappers :vertical_hint_label, tag: 'div', class: 'form-group input-with-hint', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
+  config.wrappers :vertical_hint_label, tag: 'div', class: 'form-group input-with-hint', error_class: 'form-group-invalid' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
