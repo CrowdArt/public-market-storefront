@@ -29,7 +29,7 @@ en:
     payment: Payment Methods
     shipping: Shipping Addresses
     orders: My orders
-    confirm_alert: "You haven’t verified your email address. To redeem your PTRN tokens, confirm your email via the email we just sent to <strong>%{email}</strong>"
+    confirm_alert: "You haven’t verified your email address. To redeem your PTRN Credits, confirm your email via the email we just sent to <strong>%{email}</strong>"
 
   payment_methods:
     cards:
