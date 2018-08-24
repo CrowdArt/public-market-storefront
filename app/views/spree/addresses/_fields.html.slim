@@ -10,7 +10,7 @@ ruby:
 
 - if show_nickname
   .form-group.input-with-hint id="#{address_type}title"
-    = form.text_field :title, class: 'form-control input-lg', maxlength: Spree::Address::MAX_NICKNAME_LENGTH
+    = form.text_field :title, value: form.object.title.presence, class: 'form-control input-lg', maxlength: Spree::Address::MAX_NICKNAME_LENGTH
     = form.label :title
 
 .flex
@@ -48,6 +48,6 @@ ruby:
     = form.label :zipcode, t('forms.address.zip_postal_code')
 
 .form-group.with-error-hint.address-phone-input id="#{address_type}phone"
-  = phone_field_tag "#{form.object_name}[phone_without_code]", form.object.phone, class: 'form-control input-lg'
+  = phone_field_tag "#{form.object_name}[phone_without_code]", form.object.phone.presence, class: 'form-control input-lg'
   = form.hidden_field :phone, class: 'form-control input-lg'
   span.text-small.text-danger
