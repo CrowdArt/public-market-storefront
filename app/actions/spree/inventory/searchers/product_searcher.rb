@@ -39,7 +39,8 @@ module Spree
         def where
           where_query = {
             active: true,
-            or: []
+            or: [],
+            price: { gt: 0.3 }
           }
           where_query[:taxon_ids] = taxon_ids if taxon_ids
           where_query.merge(add_search_filters(where_query))
