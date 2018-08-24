@@ -13,10 +13,10 @@ FactoryBot.define do
     taxons { [Spree::Taxonomy.first_or_create(name: 'Books').root] }
 
     transient do
-      author FFaker::Book.author
-      isbn FFaker::Book.isbn
-      format ['Trade Cloth', 'Trade Paper'].sample
-      edition nil
+      author { FFaker::Book.author }
+      isbn { FFaker::Book.isbn }
+      format { ['Trade Cloth', 'Trade Paper'].sample }
+      edition { nil }
     end
 
     trait :with_variant do
