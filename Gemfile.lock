@@ -396,7 +396,7 @@ GEM
       google-cloud-env (~> 1.0)
     google-cloud-env (1.0.2)
       faraday (~> 0.11)
-    google-cloud-storage (1.13.0)
+    google-cloud-storage (1.13.1)
       digest-crc (~> 0.4)
       google-api-client (~> 0.23)
       google-cloud-core (~> 1.2)
