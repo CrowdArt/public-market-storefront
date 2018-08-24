@@ -23,7 +23,7 @@ RSpec.describe Spree::User, type: :model do
     context 'with numbers in name' do
       let(:first_name) { 'Richard 5th' }
 
-      it { is_expected.not_to be_valid }
+      it { is_expected.to be_valid }
     end
 
     context 'with <script> in name' do
@@ -80,7 +80,7 @@ RSpec.describe Spree::User, type: :model do
       context 'when in first place' do
         let(:login) { '1user1' }
 
-        it { is_expected.not_to be_valid }
+        it { is_expected.to be_valid }
       end
     end
 

@@ -9,8 +9,8 @@ Spree::User.class_eval do
 
   has_many :addresses, class_name: 'Spree::Address', dependent: :destroy, inverse_of: :user
 
-  NAME_REGEX = /\A[\p{L}\p{Zs}\x27-]{1,32}\z/
-  LOGIN_REGEX = /\A[a-z](?:-?[a-z0-9])*\z/
+  NAME_REGEX = /\A([\p{L}\p{N}\p{Zs}]+[\x27-]*[\p{L}\p{N}\p{Zs}]+){1,32}\z/
+  LOGIN_REGEX = /\A[a-z0-9](?:-?[a-z0-9])*\z/
 
   validates :login, length: { minimum: MIN_LOGIN_LENGTH, maximum: MAX_LOGIN_LENGTH },
                     format: LOGIN_REGEX,
