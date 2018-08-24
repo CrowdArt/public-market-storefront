@@ -74,7 +74,6 @@ group :test do
   gem 'factory_bot'
   gem 'ffaker'
   gem 'fuubar', require: false
-  gem 'parallel_tests'
   gem 'rails-controller-testing'
   gem 'rspec'
   gem 'rspec-rails'
@@ -91,7 +90,6 @@ group :development do
   gem 'guard', require: false
   gem 'guard-rspec', require: false
   gem 'listen', require: false
-  gem 'parallel_tests'
   gem 'pry-rails'
   gem 'rack-mini-profiler', require: false
   gem 'spring', require: false
@@ -100,6 +98,7 @@ group :development do
 end
 
 group :test, :development do
+  gem 'parallel_tests'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
 end
