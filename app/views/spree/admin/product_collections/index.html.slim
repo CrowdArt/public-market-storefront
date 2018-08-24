@@ -25,6 +25,8 @@
           = Spree.t(:name)
         th
           = Spree.t(:slug)
+        th
+          = Spree.t(:taxonomy)
         th.actions
     tbody
       - @collection.each do |product_collection|
@@ -33,6 +35,8 @@
             = product_collection.name
           td
             = product_collection.slug
+          td
+            = product_collection.taxonomy&.name
           td.actions.actions-2.text-right
             = link_to_edit(product_collection, no_text: true) if can?(:edit, product_collection)
             | &nbsp;

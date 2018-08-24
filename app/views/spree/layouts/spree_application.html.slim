@@ -17,7 +17,8 @@ html lang=I18n.locale
 
     .site-content-wrap class="#{@fluid_content_container ? 'container-fluid' : 'container'}"
       .row data-hook=""
-        = spree_breadcrumbs(@taxon)
+        - unless @hide_taxon_breadcrumbs
+          = spree_breadcrumbs(@taxon)
         = yield :under_breadcrumbs if content_for?(:under_breadcrumbs)
         = render partial: 'spree/shared/sidebar' if content_for? :sidebar
         - content_class = @content_class || (!content_for?(:sidebar) ? "col-sm-12" : "col-sm-8 col-md-9")

@@ -9,6 +9,8 @@ module Spree
       params[:filter] ||= {}
       params[:filter][:collections] = [@collection.id]
 
+      @hide_taxon_breadcrumbs = true
+      @taxon = @collection.taxonomy&.root
       @products = build_searcher(params).call
 
       respond_to do |format|

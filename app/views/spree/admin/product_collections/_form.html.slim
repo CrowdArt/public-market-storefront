@@ -20,3 +20,7 @@
       = f.label :promoted do
         = f.check_box :promoted
         = Spree.t(:promoted)
+
+    = f.field_container :taxonomy, class: ['form-group'] do
+      = f.label :taxonomy, Spree.t(:taxonomy)
+      = f.select :taxonomy_id, Spree::Taxonomy.all.pluck(:name, :id), { include_blank: true }, class: 'select2'
