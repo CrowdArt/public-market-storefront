@@ -60,7 +60,7 @@
               strong> FREE ground shipping
               | (6-8 Business Days)
 
-            li.semi-bold == t('products.earn_rewards', rewards: variant.rewards_amount)
+            li.semi-bold.text-rewards == t('products.earn_rewards', rewards: variant.rewards_amount)
 
         .similar-variants--table-body--seller.flex.align-center.wrap.nowrap-xs.align-content-start.ellipsis
           .lead.ellipsis = variant.vendor.presentation_or_name
