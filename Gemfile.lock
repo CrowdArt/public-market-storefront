@@ -221,7 +221,7 @@ GEM
     byebug (10.0.2)
     camertron-eprun (1.1.1)
     cancancan (2.2.0)
-    canonical-rails (0.2.3)
+    canonical-rails (0.2.4)
       rails (>= 4.1, < 5.3)
     capybara (3.5.1)
       addressable
