@@ -30,7 +30,7 @@ ruby:
   = form.text_field :address2, value: form.object.address2.presence, class: 'form-control input-lg'
   = form.label :address2
 
-.form-group.custom-select-wrapper id="#{address_type}country"
+.form-group.select id="#{address_type}country"
   / = address_fields.select :country_id, options_for_select(available_countries.map { |c| [c.name, c.id, { 'data-country-code' => c.iso }]}, @credit_card.address.country_id), {}, { disabled: true, class: 'form-control' }
   = form.select :country_id, options_for_select([[country.name, country.id, { 'data-country-code' => country.iso }]], country.id), {}, { disabled: true, class: 'form-control input-lg' }
   = form.hidden_field :country_id
@@ -40,7 +40,7 @@ ruby:
   = form.label :city
 
 .flex.wrap-xs
-  .form-group.custom-select-wrapper.no-margin-text-right-xs.checkout-form--state-input.full-width-xs.flex-grow-1 id="#{address_type}state"
+  .form-group.select.no-margin-text-right-xs.checkout-form--state-input.full-width-xs.flex-grow-1 id="#{address_type}state"
     = form.select :state_id, options_for_select(country.states.map { |s| [s.name, s.id, { 'data-state-code' => s.abbr }]}, form.object.state_id), {}, { class: 'form-control input-lg' }
 
   .form-group.input-with-hint.flex-grow-1 id="#{address_type}zipcode"

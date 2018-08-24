@@ -61,7 +61,7 @@
       = f.field_container :quantity, class: ['form-group'] do
         = f.label :quantity, 'QTY'
         br
-        = select_tag :quantity, options_for_select(1..50), class: 'form-control buy-box--quntity-select'
+        .select.inline = select_tag :quantity, options_for_select(1..50), class: 'form-control buy-box--quntity-select'
 
         = render partial: 'spree/orders/low_stock_quantity'
 

@@ -34,7 +34,7 @@ ruby:
         .row.condensed.flex.align-center
           .col-xs-6.col-sm-8
             - if item_form
-              = item_form.select :quantity, options_for_select(1..variant_quantity_max, item_form.object.quantity), {}, class: "form-control line_item_quantity #{'out-of-stock-input' if out_of_stock}"
+              .select = item_form.select :quantity, options_for_select(1..variant_quantity_max, item_form.object.quantity), {}, class: "form-control line_item_quantity #{'out-of-stock-input' if out_of_stock}"
               = item_form.hidden_field :quantity, value: 0, id: "order_line_items_attributes_#{line_item.id}_hidden_quantity", class: 'hidden-line-item-quantity', disabled: true
             - else
               = line_item.quantity
