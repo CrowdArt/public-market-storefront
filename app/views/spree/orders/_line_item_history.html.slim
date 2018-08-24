@@ -13,7 +13,6 @@
       .col-xs-12.col-sm-2.no-margin-bottom QTY: #{line_item.quantity}
       .col-xs-12.col-sm-10.no-margin-bottom
         span>= line_item.single_money.to_html
-        span.text-rewards
-          ' +
-          = t('products.rewards', rewards: line_item.rewards_amount)
+      .col-xs-12.text-rewards
+        == t(shipped ? 'products.earned_rewards' : 'products.earn_rewards', rewards: line_item.rewards_amount)
       .col-xs-12 = variant.options_text

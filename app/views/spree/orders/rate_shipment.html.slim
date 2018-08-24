@@ -12,4 +12,4 @@
     span = t('orders.merchant')
     strong = @shipment.vendor.presentation_or_name
 
-    = render partial: 'spree/orders/line_item_history', collection: @shipment.line_items, as: :line_item
+    = render partial: 'spree/orders/line_item_history', collection: @shipment.line_items, as: :line_item, locals: { shipped: @shipment.shipped? }

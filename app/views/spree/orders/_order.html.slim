@@ -35,7 +35,7 @@
         span.pull-right = l (shipment.shipped_at || shipment.updated_at).to_date
         span #{Spree.t(:shipment_status)}: #{Spree.t("shipment_states.#{shipment.state}").titleize}
 
-      = render partial: 'spree/orders/line_item_history', collection: shipment.line_items, as: :line_item
+      = render partial: 'spree/orders/line_item_history', collection: shipment.line_items, as: :line_item, locals: { shipped: shipment.shipped? }
       br
 
       .text-muted
