@@ -13,7 +13,7 @@ RSpec.describe Spree::UserConfirmationsController, type: :controller do
         get :show, params: { confirmation_token: user.confirmation_token }
       }.to change(warden, :user).from(nil).to(user)
 
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(edit_account_path)
     end
   end
 
@@ -23,7 +23,7 @@ RSpec.describe Spree::UserConfirmationsController, type: :controller do
     it 'shows notice message' do
       post :create
 
-      expect(flash[:notice]).to eq(I18n.t('devise.confirmations.send_instructions', email: user.email))
+      expect(flash[:info]).to eq(I18n.t('devise.confirmations.send_instructions', email: user.email))
     end
   end
 end

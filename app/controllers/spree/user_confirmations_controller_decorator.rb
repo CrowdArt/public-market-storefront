@@ -5,7 +5,9 @@ Spree::UserConfirmationsController.class_eval do
     self.resource = resource_class.send_confirmation_instructions(current_user_params)
     yield resource if block_given?
 
-    if successfully_sent?(resource)
+    if resource.errors.empty?
+      flash[:info] = I18n.t('devise.confirmations.send_instructions', email: resource.email)
+
       session[:mixpanel_actions] = [
         %(mixpanel.track("email confirmation sent", {
           "user_id": "#{resource.id}",
@@ -30,6 +32,7 @@ Spree::UserConfirmationsController.class_eval do
           "email": "#{resource.try(:email)}"
         }))
       ]
+      session[:hightlight_email] = true
       respond_with_navigational(resource) { redirect_to after_confirmation_path_for(resource_name, resource) }
     else
       respond_with_navigational(resource.errors, status: :unprocessable_entity) { render :new }
@@ -49,6 +52,6 @@ Spree::UserConfirmationsController.class_eval do
 
   def after_confirmation_path_for(resource_name, resource)
     sign_in(resource)
-    signed_in?(resource_name) ? signed_in_root_path(resource) : spree.login_path
+    signed_in?(resource_name) ? edit_account_path : spree.login_path
   end
 end

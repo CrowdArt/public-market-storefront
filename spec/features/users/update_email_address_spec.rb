@@ -25,7 +25,7 @@ RSpec.describe 'update email address', type: :feature do
       click_button 'Save'
       click_button 'Yes, Change Email'
 
-      is_expected.to have_text Spree.t(:account_email_updated)
+      is_expected.to have_text Spree.t(:account_updated)
       expect(user.reload.email).to eq('newemail@spree.com')
       expect(user.confirmed?).to be false
     end

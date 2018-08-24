@@ -14,10 +14,10 @@ $(window).on('beforeunload', function() {
     return 'You have unsaved changes, are you sure you want to discard them?'
 })
 
-$(document).on('keyup', '.form-group-invalid input, .form-group-invalid textarea', function() {
-  $(this).parents('.form-group-invalid')
-         .removeClass('form-group-invalid')
-         .find('.invalid-feedback')
+$(document).on('keyup', '.form-group-valid input, .form-group-invalid input, .form-group-invalid textarea', function() {
+  $(this).parents('.form-group')
+         .removeClass('form-group-invalid, form-group-valid')
+         .find('.invalid-feedback, .valid-feedback')
          .remove()
 })
 

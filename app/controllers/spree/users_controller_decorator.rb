@@ -12,20 +12,13 @@ Spree::UsersController.class_eval do
 
   # Storefront changes:
   # - save(context: :edit)
-  def update # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+  def update # rubocop:disable Metrics/AbcSize
     # reload user to not mess with spree_current_user
     @user = Spree::User.friendly.find(params[:id])
     @user.assign_attributes(user_params)
 
     if @user.save(context: :edit)
-      notification_msg =
-        if @user.saved_change_to_unconfirmed_email?
-          @user.saved_change_to_login? ? :account_email_username_updated : :account_email_updated
-        else
-          :account_updated
-        end
-
-      flash[:notice] = Spree.t(notification_msg)
+      flash[:notice] = Spree.t(:account_updated)
 
       respond_to do |format|
         format.html { redirect_to spree.edit_account_path }
