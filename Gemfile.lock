@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_batch_api.git
-  revision: 9a1ec8c51512e32889e30f200ac9884d52def50a
+  revision: 63b8a4290bac2d26d72962b0baeb75fc610c8baa
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_multi_vendor.git
-  revision: 97b9464ef62bdfe855835cd0b10fe410867c1139
+  revision: ccb36e768d849f0d38c1a0e8a6a6ebd0c3ed43fc
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq
@@ -204,7 +204,7 @@ GEM
     ast (2.4.0)
     attr_encrypted (3.1.0)
       encryptor (~> 3.0.0)
-    autoprefixer-rails (9.1.1)
+    autoprefixer-rails (9.1.3)
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)

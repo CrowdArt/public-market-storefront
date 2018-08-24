@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_24_130255) do
+ActiveRecord::Schema.define(version: 2018_08_24_132621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -487,6 +487,15 @@ ActiveRecord::Schema.define(version: 2018_08_24_130255) do
     t.index ["position"], name: "index_spree_product_properties_on_position"
     t.index ["product_id"], name: "index_product_properties_on_product_id"
     t.index ["property_id"], name: "index_spree_product_properties_on_property_id"
+  end
+
+  create_table "spree_product_uploads", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "upload_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_spree_product_uploads_on_product_id"
+    t.index ["upload_id"], name: "index_spree_product_uploads_on_upload_id"
   end
 
   create_table "spree_products", id: :serial, force: :cascade do |t|
