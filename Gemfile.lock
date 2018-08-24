@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_multi_vendor.git
-  revision: ccb36e768d849f0d38c1a0e8a6a6ebd0c3ed43fc
+  revision: ebad3a6f517e093aa3082f1db79a59a2503139fa
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq
