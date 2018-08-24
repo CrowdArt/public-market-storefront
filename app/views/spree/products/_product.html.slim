@@ -25,7 +25,7 @@ ruby:
             .semi-bold.price> #{display_price(product)}
             .text-rewards == t('products.earn_rewards_card', rewards: product.rewards_amount)
 
-          small
+          / small
             = render 'spree/shared/rating', value: rand(5)
             a< href=url = rand(50)
 
