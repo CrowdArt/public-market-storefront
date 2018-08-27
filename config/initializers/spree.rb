@@ -20,7 +20,7 @@ end
 Spree::Core::Engine.routes.default_url_options = Rails.application.config.action_mailer.default_url_options
 
 Spree::AppConfiguration.class_eval do
-  preference :rewards, :integer, default: 5
+  preference :rewards, :integer, default: 15
 end
 
 Rails.application.config.after_initialize do |app|

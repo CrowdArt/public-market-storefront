@@ -31,7 +31,7 @@ Spree::Order.class_eval do
   end
 
   def ptrn_rewards
-    line_items.map(&:rewards_amount).sum
+    PublicMarket::RewardsValue.new(line_items.map(&:rewards_amount).sum)
   end
 
   def paid?

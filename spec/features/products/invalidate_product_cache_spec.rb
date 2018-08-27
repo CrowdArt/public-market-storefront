@@ -4,7 +4,7 @@ RSpec.describe 'Invalidate product cache', type: :feature, search: true, caching
   before { Spree::Product.searchkick_index.refresh }
 
   describe 'product cards' do
-    let(:rewards_amount) { (variant.price * rewards / 100.0).floor(3) }
+    let(:rewards_amount) { PublicMarket::RewardsCalculator.call(variant.price, rewards) }
     let(:rewards) { Spree::Config.rewards }
 
     subject do

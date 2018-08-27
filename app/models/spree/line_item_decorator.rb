@@ -1,9 +1,13 @@
 Spree::LineItem.class_eval do
   def rewards_amount
-    quantity * single_rewards_amount
+    single_rewards_amount * quantity
+  end
+
+  def final_rewards
+    rewards || variant.final_rewards
   end
 
   def single_rewards_amount
-    (price * (rewards || variant.final_rewards) / 100.0).floor(3)
+    PublicMarket::RewardsCalculator.call(price, final_rewards)
   end
 end
