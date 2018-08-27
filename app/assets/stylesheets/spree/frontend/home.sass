@@ -230,10 +230,7 @@ body#home-page
       padding-top: 7%
       padding-bottom: 9%
       h3
-        // font-family: $font-family-roboto-slab
         font-size: 28px
-        // font-weight: 300
-        // line-height: 48px
         color: #ffffff
         margin-bottom: 28px
     .btn
@@ -255,13 +252,13 @@ body#home-page
         li
           position: relative
           display: inline-block
-          box-shadow: 12px 7px 18px -7px rgba(0, 0, 0, 0.5)
           transform: perspective(600px) rotateY(-25deg)
           z-index: 2
           transition: transform .5s
           &:hover
             transform: perspective(600px) rotateY(-15deg)
           img
+            filter: drop-shadow(4px 8px 5.5px rgba(0,0,0,0.5))
             width: 230px
           &:nth-child(2)
             top: -50px
