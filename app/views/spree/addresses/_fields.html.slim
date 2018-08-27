@@ -30,7 +30,7 @@ ruby:
   = form.text_field :address2, value: form.object.address2.presence, class: 'form-control input-lg'
   = form.label :address2
 
-.form-group.select id="#{address_type}country"
+.form-group.select.disabled id="#{address_type}country"
   / = address_fields.select :country_id, options_for_select(available_countries.map { |c| [c.name, c.id, { 'data-country-code' => c.iso }]}, @credit_card.address.country_id), {}, { disabled: true, class: 'form-control' }
   = form.select :country_id, options_for_select([[country.name, country.id, { 'data-country-code' => country.iso }]], country.id), {}, { disabled: true, class: 'form-control input-lg' }
   = form.hidden_field :country_id

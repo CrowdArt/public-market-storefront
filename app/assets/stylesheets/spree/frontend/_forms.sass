@@ -9,6 +9,9 @@
     line-height: $line-height-base
     padding: 16px 20px
 
+  &[disabled]
+    border-color: #dfdfdf66
+
 .form-group-valid
   input
     border-color: $brand-success
@@ -32,7 +35,7 @@
     @include with-caret-after(20px, 5px, 6px)
 
   label
-    font-weight: normal
+    font-weight: 500
     cursor: pointer
     margin: 0
     display: inline
@@ -129,6 +132,9 @@ input[type="radio"]
 
     &::-ms-expand
       display: none
+
+  &.disabled:after
+    border-color: rgba(69, 74, 80, 0.4)
 
   &:after
     content: ''
