@@ -73,7 +73,6 @@ group :test do
   gem 'elasticsearch-extensions'
   gem 'factory_bot'
   gem 'ffaker'
-  gem 'fuubar', require: false
   gem 'rails-controller-testing'
   gem 'rspec'
   gem 'rspec-rails'

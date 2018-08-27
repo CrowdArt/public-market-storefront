@@ -5,6 +5,12 @@ require_relative 'config/application'
 
 Rails.application.load_tasks
 
+Rake::Task[:default].clear
+
+task default: :environment do
+  Rake::Task['parallel:spec'].invoke('4')
+end
+
 namespace :spree_sample do
   desc 'Loads sample storefront data'
   task book_samples: :environment do
