@@ -6,7 +6,8 @@ window.pm.initPhoneInput = function(wrapperId) {
 
   phoneInput.intlTelInput({
     utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.15/js/utils.js',
-    preferredCountries: ['us', 'ca']
+    preferredCountries: [],
+    onlyCountries: ['us']
   }).done(function() {
     var phoneValueInput = $(wrapperId + ' input[type=hidden]')
     var errorHint = $(wrapperId + ' > span')
