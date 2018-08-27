@@ -10,7 +10,7 @@ Spree::OrdersController.class_eval do
   # - respond to js when add to cart clicked
 
   # Adds a new item to the order (creating a new order if none already exists)
-  def populate # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+  def populate # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
     order    = current_order(create_order_if_necessary: true)
     @variant = Spree::Variant.find(params[:variant_id])
     quantity = params[:quantity].to_i
@@ -23,16 +23,14 @@ Spree::OrdersController.class_eval do
         order.update_line_item_prices!
         order.create_tax_charge!
         order.update_with_updater!
+
+        Tracker.track(mixpanel_user_id, 'item added to cart', order_id: order.id, product_id: @variant.id, product_name: @variant.product.name)
       rescue ActiveRecord::RecordInvalid => e
         error = customize_populate_error(e)
       end
     else
       error = Spree.t(:please_enter_reasonable_quantity)
     end
-
-    product_name = @variant.product.name
-
-    Tracker.track(mixpanel_user_id, 'item added to cart', order_id: order.id, product_id: @variant.id, product_name: product_name) if error.blank?
 
     respond_with(order) do |format|
       if params[:button] == 'add-to-cart'
@@ -100,14 +98,17 @@ Spree::OrdersController.class_eval do
     @shipment = @order.shipments.find_by!(number: params[:shipment_id])
   end
 
-  def customize_populate_error(err)
+  def customize_populate_error(err) # rubocop:disable Metrics/AbcSize
     record = err.record
     errors = record.errors
+    variant = record.variant
 
     # quantity validation message is ovveriden only in controller
-    # to show custom message only in controller
-    if errors.include?(:quantity)
-      variant = record.variant
+    # if user tries to add to card
+    if !errors.include?(:quantity)
+      errors.full_messages.join(', ')
+    # show success message if user tries to add one more item out of stock #159668221
+    elsif quantity_left(variant) != -1
       display_name = truncate(variant.name.to_s, length: 25)
 
       if (variant_options = variant.options_text).present?
@@ -115,8 +116,6 @@ Spree::OrdersController.class_eval do
       end
 
       Spree.t(:variant_quantity_not_available, title: display_name, available_items: variant.total_on_hand)
-    else
-      errors.full_messages.join(', ')
     end
   end
 end

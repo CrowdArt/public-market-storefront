@@ -17,9 +17,8 @@ RSpec.describe 'populate order', type: :feature, js: true do
     context 'when already in cart' do
       before { click_button 'Add To Cart' }
 
-      it 'shows alert' do
-        expect(page).to have_text "We're sorry, You've requested more of"
-        expect(page).not_to have_text Spree.t(:added_to_cart)
+      it 'shows success' do
+        expect(page).to have_text Spree.t(:added_to_cart)
       end
     end
   end
