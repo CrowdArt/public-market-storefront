@@ -4,14 +4,44 @@ RSpec.describe Spree::User, type: :model do
       build_stubbed(:user, first_name: first_name)
     end
 
-    let(:first_name) { 'valid name' }
+    let(:first_name) { 'validname' }
 
     it { is_expected.to be_valid }
 
-    context 'with dash in name' do
-      let(:first_name) { 'Sklodovskaya-Curie' }
+    context 'when is too long' do
+      let(:first_name) { 'Sklodovsckaya-Curie Sklodovsckaya-Curie' }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'with space in name' do
+      let(:first_name) { 'valid name' }
 
       it { is_expected.to be_valid }
+    end
+
+    context 'with quote in name' do
+      let(:first_name) { "valid' name" }
+
+      it { is_expected.to be_valid }
+
+      context 'when double ' do
+        let(:first_name) { 'Sklodovsckaya" Curie' }
+
+        it { is_expected.not_to be_valid }
+      end
+    end
+
+    context 'with dash in name' do
+      let(:first_name) { 'Sklodovsckaya-Curie' }
+
+      it { is_expected.to be_valid }
+
+      context 'when multiple in row' do
+        let(:first_name) { 'Sklodovsckaya---Curie' }
+
+        it { is_expected.not_to be_valid }
+      end
     end
 
     context 'with unicode letters in name' do
@@ -78,9 +108,9 @@ RSpec.describe Spree::User, type: :model do
       it { is_expected.to be_valid }
 
       context 'when in first place' do
-        let(:login) { '1user1' }
+        let(:login) { '1user' }
 
-        it { is_expected.to be_valid }
+        it { is_expected.not_to be_valid }
       end
     end
 
