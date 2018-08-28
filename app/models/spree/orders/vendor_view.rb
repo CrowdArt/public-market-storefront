@@ -16,7 +16,7 @@ module Spree
                :number, :errors, :considered_risky?, :special_instructions,
                :adjustments, :bill_address, :ship_address, :user, :model_name,
                :to_key, :cart?, :user_id, :outstanding_balance?, :outstanding_balance,
-               :display_outstanding_balance, :email, :shipping_address, :hash_id,
+               :display_outstanding_balance, :email, :shipping_address, :hash_id, :channel,
                to: :order
 
       extend Spree::DisplayMoney
