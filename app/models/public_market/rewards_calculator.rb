@@ -20,11 +20,8 @@ module PublicMarket
   end
 
   class RewardsCalculator
-    EXCHANGE_RATE = 0.06
-
     def self.call(price, rewards)
-      rewards_in_usd = price * rewards / 100.0
-      RewardsValue.new(rewards_in_usd / EXCHANGE_RATE)
+      RewardsValue.new(price * rewards / 100.0)
     end
   end
 end
