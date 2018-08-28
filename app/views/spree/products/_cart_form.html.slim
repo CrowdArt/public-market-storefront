@@ -67,11 +67,9 @@
 
     - if @product.can_supply?
       .col-xs-12
-        = button_tag class: 'btn btn-default btn-block', id: 'add-to-cart-button', value: 'add-to-cart', type: :submit, data: { disable_with: 'Processing' } do
-          = Spree.t(:add_to_cart)
+        = button_tag Spree.t(:add_to_cart), class: 'btn btn-default btn-block', id: 'add-to-cart-button', value: 'add-to-cart', type: :submit, data: { disable_with: Spree.t(:add_to_cart) }
 
-        = button_tag class: 'btn btn-primary btn-block', id: 'buy-now-button', type: :submit, data: { disable_with: 'Processing' } do
-          = Spree.t(:buy_now)
+        = button_tag Spree.t(:buy_now), class: 'btn btn-primary btn-block', id: 'buy-now-button', type: :submit, data: { disable_with: Spree.t(:buy_now) }
 
     .col-xs-12.text-center
       small
