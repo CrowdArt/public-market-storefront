@@ -39,6 +39,7 @@ en:
       vinyl-lp: Vinyl (LP)
       mass-market: Mass Market Paperback
 
+    # PM format - providers formats mapping
     formats:
       books:
         # HARDCOVER FORMATS
@@ -166,6 +167,7 @@ en:
         wallchart:
           - wallchart
 
+    # filterable formats - PM format mapping
     filterable_formats:
       books:
         hardcover:
@@ -181,3 +183,9 @@ en:
 
         other:
           - other
+
+    # PM variation should be used on cards
+    card_variations:
+      books:
+        trade-paperback: paperback
+        mass-market: paperback

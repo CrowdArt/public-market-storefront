@@ -8,7 +8,8 @@ module PublicMarket
         end
 
         def card_variation_name(product)
-          variation_name(product.variation, product)
+          name = I18n.t("variations.card_variations.#{product.taxonomy.name}.#{product.variation}", default: product.variation)
+          variation_name(name, product)
         end
       end
     end
