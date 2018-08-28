@@ -1,5 +1,5 @@
 RSpec.describe Spree::Inventory::Providers::Books::VariantProvider, type: :action, vcr: true do
-  subject(:variant) { described_class.call(item_json) }
+  subject(:variant) { described_class.call(item_json, options: options) }
 
   let(:item_json) do
     {
@@ -14,6 +14,19 @@ RSpec.describe Spree::Inventory::Providers::Books::VariantProvider, type: :actio
 
   let(:isbn) { '9780307341570' }
   let(:condition) { 'Acceptable' }
+  let(:options) { {} }
+
+  describe '#find_product', search: true do
+    let!(:product) { create(:book, :with_variant, isbn: isbn) }
+    let(:options) { { vendor_id: product.variants.first.vendor.id } }
+
+    before do
+      product.reload.reindex
+      Spree::Product.searchkick_index.refresh
+    end
+
+    it { expect(variant.product).to eq(product) }
+  end
 
   describe 'validation' do
     let(:item_json) { { sku: 'sku' } }

@@ -66,8 +66,8 @@ module Spree
             }
           end
 
-          def fetch_variant(product, item)
-            Variant.unscoped.where(sku: item[:bookid], product: product, vendor_id: options[:vendor_id]).first_or_initialize
+          def variant_sku(hash)
+            hash[:bookid]
           end
 
           def product_identifier(hash)

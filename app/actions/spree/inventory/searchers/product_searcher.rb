@@ -39,6 +39,7 @@ module Spree
         def where
           where_query = {
             active: true,
+            in_stock: { gt: 0 },
             or: [],
             price: { gt: 0.3 }
           }

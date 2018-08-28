@@ -5,10 +5,10 @@
   - orders
   - files
   - default
+  - searchkick
   - paperclip
   - mailers
   - upload
-  - searchkick
   - recalculation
 :schedule:
   capture_payments:

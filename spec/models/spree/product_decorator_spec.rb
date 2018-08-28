@@ -5,7 +5,7 @@ RSpec.describe Spree::Product, type: :model do
     context 'when not in stock' do
       let(:product) { build_stubbed(:product) }
 
-      it { is_expected.to be false }
+      it { is_expected.to be true }
     end
 
     context 'when in stock' do
@@ -34,16 +34,6 @@ RSpec.describe Spree::Product, type: :model do
           si.adjust_count_on_hand(-1)
         end
         Spree::Product.searchkick_index.refresh
-      end
-
-      it 'adds product to index on update' do
-        expect {
-          variant.stock_items.each do |si|
-            si.adjust_count_on_hand(10)
-          end
-
-          Spree::Product.searchkick_index.refresh
-        }.to change { Spree::Product.search.count }.from(0).to(1)
       end
 
       context 'with empty name' do

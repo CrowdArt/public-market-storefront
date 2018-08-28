@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://bms.bowker.com/rest/books/isbn/0000000000000?format=xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Basic <BOWKER_AUTH>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 28 Aug 2018 12:15:52 GMT
+      Server:
+      - Apache/2.2.3 (CentOS)
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '65'
+      Content-Type:
+      - text/xml
+      Set-Cookie:
+      - BIGipServerbms_pool=1253448620.20480.0000; path=/
+    body:
+      encoding: ASCII-8BIT
+      string: '<result found="0" returned="0" page="1" pagesize="10"/>
+
+'
+    http_version: 
+  recorded_at: Tue, 28 Aug 2018 12:15:52 GMT
+recorded_with: VCR 4.0.0

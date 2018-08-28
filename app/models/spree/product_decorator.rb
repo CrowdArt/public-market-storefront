@@ -60,13 +60,13 @@ module Spree
           conversions_month: orders.complete.where('completed_at > ?', 1.month.ago).count,
           slug: slug,
           variations: variations,
-          collections: product_collection_ids
+          collections: product_collection_ids,
+          in_stock: variants.active.in_stock.count
         }
       end
 
       def should_index?
-        # use variants query instead of can_supply?
-        name != MISSING_TITLE && variants.active.in_stock.any?
+        name != MISSING_TITLE
       end
 
       # variations visible on product page/product card

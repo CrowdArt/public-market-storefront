@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_batch_api.git
-  revision: 3f51b4be5efb6968c194c938305cbe780f4407c6
+  revision: 66859c36870869465b02a3e081cae089902552c0
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_multi_vendor.git
-  revision: ebad3a6f517e093aa3082f1db79a59a2503139fa
+  revision: 5ec8b175b6efafb2a6ac5ca28a044a74f31f8900
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq
@@ -343,7 +343,7 @@ GEM
     enumerize (2.2.2)
       activesupport (>= 3.2)
     erubi (1.7.1)
-    et-orbi (1.1.4)
+    et-orbi (1.1.5)
       tzinfo
     ethon (0.11.0)
       ffi (>= 1.3.0)
@@ -758,7 +758,7 @@ GEM
       activerecord (>= 4.1, < 6.0)
       state_machines-activemodel (>= 0.5.0)
     stringex (2.8.4)
-    stripe (3.23.0)
+    stripe (3.24.0)
       faraday (~> 0.10)
     swagger-blocks (2.0.2)
     temple (0.8.0)

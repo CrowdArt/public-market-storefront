@@ -26,6 +26,7 @@ module Spree
         def fields_to_match
           {
             'name' => product.name,
+            'in_stock' => { gt: 0 },
             product.author_property_name => product.subtitle
           }
         end
