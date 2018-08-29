@@ -4,8 +4,6 @@ module Spree
   module Inventory
     module Providers
       module Books
-        TAXONOMY = 'Books'.freeze
-
         class BwbVariantProvider < VariantProvider
           PERMITTED_CONDITIONS = [
             'New',
