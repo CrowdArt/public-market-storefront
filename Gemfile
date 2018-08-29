@@ -51,6 +51,8 @@ gem 'spree_searchkick', github: 'public-market/spree_searchkick'
 gem 'spree_sitemap', github: 'spree-contrib/spree_sitemap'
 gem 'spree_social', github: 'public-market/spree_social'
 
+gem 'monetize', '~> 1.8.0' # https://github.com/spree/spree/pull/8951
+
 gem 'delayed_paperclip'
 gem 'fog-google'
 gem 'google-cloud-storage', '~> 1.8', require: false
