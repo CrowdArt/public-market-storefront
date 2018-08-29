@@ -19,7 +19,7 @@ Spree::OrdersController.class_eval do
     # 2,147,483,647 is crazy. See issue #2695.
     if quantity.between?(1, 2_147_483_647)
       begin
-        order.contents.add(@variant, quantity, options)
+        Spree::Cart::AddItem.call(order: order, variant: @variant, quantity: quantity, options: options).value
         order.update_line_item_prices!
         order.create_tax_charge!
         order.update_with_updater!
@@ -62,7 +62,7 @@ Spree::OrdersController.class_eval do
   def show; end
 
   def update # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-    if @order.contents.update_cart(order_params)
+    if Spree::Cart::Update.call(order: @order, params: order_params).success?
       respond_with(@order) do |format|
         if params.key?(:checkout)
           @order.next if @order.cart?
