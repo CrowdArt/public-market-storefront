@@ -3,7 +3,7 @@ ruby:
   @fluid_content_container = true
 
 - cache(similar_variants_cache_key) do
-  - filters = available_filter_options(@variants, @product)
+  - filters = available_filter_options(@variants)
 
   p.pull-left = link_to(t('similar_variants.return_to_product'), @product)
   p.pull-right.hidden-xs = link_to(t('sell_on_pm'), '#', disabled: true, class: 'no-padding btn btn-link disabled')

@@ -28,7 +28,7 @@ module Spree
           # don't show current product variant in variation box if it's only one existing and variation exists
           ids = [] if !k.nil? && ids.one? && ids[0] == product_variation[:_id]
 
-          variants = find_similar_variants(ids)
+          variants = find_similar_variants(ids, blank_variation: k.nil?)
 
           map_variation(k, product_variation, variants)
         end
@@ -56,18 +56,19 @@ module Spree
         end
       end
 
-      def find_similar_variants(ids) # rubocop:disable Metrics/AbcSize
+      def find_similar_variants(ids, blank_variation: false)
         return [] if ids.blank?
 
-        variants = Spree::Variant.find_best_price_in_option
-                                 .where(product_id: ids)
-                                 .includes(:default_price)
+        variants = Spree::Variant.where(is_master: false, product_id: ids).includes(:default_price)
+        # find best variant for products if variation present
+        variants = variants.find_best_price_in_option unless blank_variation
+
         if load_variants
           variants.includes(:vendor, :product)
                   .sort_by(&:price)
         else
           variants.sort_by { |v| v.main_option&.position || 0 }
-                  .group_by { |v| v.mapped_main_option_value(product.taxonomy&.name&.downcase) }
+                  .group_by(&:mapped_main_option_value)
                   .map { |k, v| map_similar_variants(k, v) }
         end
       end

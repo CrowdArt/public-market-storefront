@@ -2,7 +2,7 @@ RSpec.describe Spree::SimilarVariantsHelper, type: :helper do
   # include Spree::BaseHelper
 
   describe '#available_filter_options' do
-    subject { available_filter_options(variants, product) }
+    subject(:filters) { available_filter_options(variants) }
 
     let(:product) { build_stubbed(:book) }
 
@@ -12,7 +12,7 @@ RSpec.describe Spree::SimilarVariantsHelper, type: :helper do
 
     context 'when multiple different options' do
       it 'shows options to filter' do
-        is_expected.to eq(
+        expect(filters).to eq(
           variant_1.mapped_main_option_value => [variant_1.main_option_value],
           variant_2.mapped_main_option_value => [variant_2.main_option_value]
         )

@@ -54,32 +54,32 @@ RSpec.describe Spree::Variant, type: :model do
   describe '#mapped_main_option_value' do
     subject { variant.mapped_main_option_value }
 
-    let(:product) { build_stubbed(:product, taxons: taxons) }
-    let(:taxons) { [] }
-    let(:variant) { build_stubbed(:variant, product: product, option_values: option_values) }
+    let(:variant) { build_stubbed(:variant, option_values: option_values) }
     let(:option_values) { [] }
 
     context 'when books' do
-      let(:taxons) { [create(:taxonomy, name: 'Books').root] }
-      let(:option_values) { build_stubbed_list(:option_value, 1, name: 'New', presentation: 'New') }
+      let(:option_type) { build_stubbed(:option_type, name: 'condition') }
+      let(:option_values) { build_stubbed_list(:option_value, 1, name: 'New', presentation: 'New', option_type: option_type) }
 
       it { is_expected.to eq 'new' }
 
       context 'when used - new' do
-        let(:option_values) { build_stubbed_list(:option_value, 1, name: 'Used - Like New', presentation: 'Used - Like New') }
+        let(:option_values) do
+          build_stubbed_list(:option_value, 1, name: 'Used - Like New', presentation: 'Used - Like New', option_type: option_type)
+        end
 
         it { is_expected.to eq 'used' }
       end
     end
 
     context 'when music' do
-      let(:taxons) { [create(:taxonomy, name: 'Music').root] }
-      let(:option_values) { build_stubbed_list(:option_value, 1, name: 'New', presentation: 'New') }
+      let(:option_type) { build_stubbed(:option_type, name: 'vinyl_condition') }
+      let(:option_values) { build_stubbed_list(:option_value, 1, name: 'New', presentation: 'New', option_type: option_type) }
 
       it { is_expected.to eq 'new' }
 
       context 'when used - ss' do
-        let(:option_values) { build_stubbed_list(:option_value, 1, name: 'ss', presentation: 'Used - Like New') }
+        let(:option_values) { build_stubbed_list(:option_value, 1, name: 'ss', presentation: 'Used - Like New', option_type: option_type) }
 
         it { is_expected.to eq 'like new' }
       end

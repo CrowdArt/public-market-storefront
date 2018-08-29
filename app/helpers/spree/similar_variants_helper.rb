@@ -4,10 +4,10 @@ module Spree
       [:v1, :similar_variants, @product, @variation, @variants, browser.device.mobile?]
     end
 
-    def available_filter_options(variants, product) # rubocop:disable Metrics/AbcSize
+    def available_filter_options(variants) # rubocop:disable Metrics/AbcSize
       # child options with parent name are rejected
       opts = variants.sort_by { |v| v.main_option&.position || 0 }
-                     .group_by { |v| v.mapped_main_option_value(product.taxonomy&.name&.downcase) }
+                     .group_by(&:mapped_main_option_value)
                      .map { |k, v| [k, v.reject { |var| k.casecmp(var.main_option_value).zero? }.map(&:main_option_value).uniq] }
 
       # don't show filters if only 1 parent and 0-1 child options available
@@ -16,7 +16,7 @@ module Spree
     end
 
     def variant_data_options(variant)
-      [variant.main_option_value.parameterize, variant.mapped_main_option_value(@product.taxonomy&.name&.downcase)].uniq.join(' ')
+      [variant.main_option_value.parameterize, variant.mapped_main_option_value].uniq.join(' ')
     end
 
     def additional_variation_property(variant)

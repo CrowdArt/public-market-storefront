@@ -1,7 +1,7 @@
 en:
   variations:
     options:
-      books:
+      condition:
         new:
           - new
         used:
@@ -16,7 +16,7 @@ en:
           - 'collectible - good'
           - 'collectible - acceptable'
 
-      music:
+      vinyl_condition:
         new:
           - new
         'like new':
