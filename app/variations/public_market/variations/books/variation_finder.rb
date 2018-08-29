@@ -1,7 +1,7 @@
 module PublicMarket
   module Variations
     module Books
-      class VariationFinder < BaseVariationFinder
+      class VariationFinder < Variations::VariationFinder
         class << self
           def variation_name(root_variation, product)
             return if root_variation.blank?
@@ -19,7 +19,7 @@ module PublicMarket
 
           def card_variation_name(product)
             name = I18n.t("variations.card_variations.books.#{product.variation}", default: product.variation)
-            BaseVariationFinder.variation_name(name, product)
+            Variations::VariationFinder.variation_name(name, product)
           end
         end
       end

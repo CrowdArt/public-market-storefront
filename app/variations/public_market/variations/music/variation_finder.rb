@@ -1,7 +1,7 @@
 module PublicMarket
   module Variations
     module Music
-      class VariationFinder < BaseVariationFinder
+      class VariationFinder < Variations::VariationFinder
         class << self
           def variation_name(variation, product)
             return if variation.blank?

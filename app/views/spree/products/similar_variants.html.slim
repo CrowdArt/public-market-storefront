@@ -18,7 +18,10 @@ ruby:
         = render partial: 'spree/products/similar_variants/sidebar_filters', locals: { filters: filters }
 
     .col-md-10.col-sm-10.similar-variants--product-info
-      h1.no-margin-top.text-black #{@product.name} (#{@variation.titleize})
+      h1.no-margin-top.text-black
+        ' #{@product.name}
+        - if @variation
+          | (#{@variation.titleize})
 
       - if subtitle = @product.subtitle
         p.text-muted.similar-variants--product-info--subtitle

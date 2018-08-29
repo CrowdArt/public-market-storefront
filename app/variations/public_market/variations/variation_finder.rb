@@ -1,6 +1,6 @@
 module PublicMarket
   module Variations
-    class BaseVariationFinder
+    class VariationFinder
       class << self
         def variation_name(format, _variation)
           return if format.blank?

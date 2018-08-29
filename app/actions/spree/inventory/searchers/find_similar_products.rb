@@ -24,11 +24,12 @@ module Spree
         end
 
         def fields_to_match
-          {
+          fields = {
             'name' => product.name,
-            'in_stock' => { gt: 0 },
-            product.author_property_name => product.subtitle
+            'in_stock' => { gt: 0 }
           }
+          fields[product.author_property_name] = product.subtitle if product.subtitle
+          fields
         end
 
         def required_fields

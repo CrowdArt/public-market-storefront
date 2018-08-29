@@ -25,8 +25,8 @@ module Spree
           product_variation ||= v.min_by { |prod| prod[:price] }
 
           ids = v.map(&:_id)
-          # don't show current product variant in variation box if it's only one existing
-          ids = [] if ids.one? && ids[0] == product_variation[:_id]
+          # don't show current product variant in variation box if it's only one existing and variation exists
+          ids = [] if !k.nil? && ids.one? && ids[0] == product_variation[:_id]
 
           variants = find_similar_variants(ids)
 
@@ -41,10 +41,17 @@ module Spree
       def flatten_variation_properties(products)
         # allow to group by all variations
         products.flat_map do |product|
-          product['variations'].map do |v|
+          if product['variations'].present?
+            product['variations'].map do |v|
+              new_prod = product.dup
+              new_prod['variations'] = v
+              new_prod
+            end
+          else
+            # keep nil in array to show blank variation
             new_prod = product.dup
-            new_prod['variations'] = v
-            new_prod
+            new_prod['variations'] = nil
+            [new_prod]
           end
         end
       end

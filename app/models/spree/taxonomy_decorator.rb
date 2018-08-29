@@ -3,7 +3,7 @@ module Spree
     def variation_module
       "PublicMarket::Variations::#{name.parameterize(separator: '_').camelize}".constantize
     rescue NameError
-      nil
+      PublicMarket::Variations
     end
 
     def uncategorized_taxon
