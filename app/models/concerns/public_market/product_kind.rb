@@ -1,14 +1,34 @@
 module PublicMarket
+  # TODO: refactor this to use modules, like variations
   module ProductKind
     extend ActiveSupport::Concern
 
     def subtitle
-      property(author_property_name)
+      @subtitle ||= property(author_property_name)&.titleize
+    end
+
+    def product_kind
+      @product_kind ||=
+        case taxonomy&.name
+        when 'Music'
+          property(:music_format)&.downcase
+        else
+          taxonomy&.name&.downcase
+        end
+    end
+
+    def description
+      case product_kind
+      when 'vinyl'
+        ''
+      else
+        description
+      end
     end
 
     def image_aspect_ratio
-      case taxonomy&.name
-      when 'Books'
+      case product_kind
+      when 'books'
         21 / 31.to_f
       else
         1
@@ -16,15 +36,15 @@ module PublicMarket
     end
 
     def identifier_property
-      case taxonomy&.name
-      when 'Books'
+      case product_kind
+      when 'books'
         property('isbn')
       end
     end
 
     def additional_properties
-      case taxonomy&.name
-      when 'Books'
+      case product_kind
+      when 'books'
         [:edition]
       else
         []

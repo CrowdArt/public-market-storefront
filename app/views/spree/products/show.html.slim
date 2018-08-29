@@ -63,6 +63,9 @@ ruby:
             #properties.collapse
               = render partial: 'properties'
 
+      - if lookup_context.exists?(@product.product_kind, ['spree/products/additional_notes'], true, [], formats: [:html])
+        = render partial: "spree/products/additional_notes/#{@product.product_kind}", locals: { is_mobile: is_mobile }
+
 javascript:
   $('.collapse').collapse({ toggle: false });
 

@@ -1,0 +1,5 @@
+#additonal-note-accordion.accordion
+  .product-description.card itemprop='description'
+    a.pull-right role='button' data-toggle='collapse' data-parent='#additonal-note-accordion' href="#additonal-note-details" aria-expanded='true' aria-controls='additonal-note-details'
+    h6.upcase Condition Notes
+    #additonal-note-details.collapse.in = additional_product_note(@product)

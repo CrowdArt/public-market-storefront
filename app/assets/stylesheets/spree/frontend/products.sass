@@ -33,6 +33,7 @@ body#product-details
     .product-content-item
       grid-area: content
       width: 100%
+      padding-top: 25px
 
   .product-title
     margin-bottom: 5px
@@ -42,34 +43,31 @@ body#product-details
     font-size: 16px
     color: #8A8E91
 
-  .accordion
-    padding-top: 5px
-    padding-top: 25px
-    .card
-      border-top: 1px solid #eaeaea
-      padding-bottom: 25px
+  .accordion .card
+    border-top: 1px solid #eaeaea
+    padding-bottom: 25px
 
-      a[data-toggle='collapse']
-        text-decoration: none
-        color: $text-color
-        font-size: 26px
-        transform: rotate(45deg)
-        transition: transform 0.2s
-        &:after
-          content: '﹢'
-        &.collapsed
-          transform: rotate(0deg)
-      h4
-        font-size: 14px
-        font-weight: bold
-        letter-spacing: 0.4px
-        color: #454a50
-        text-transform: uppercase
-      p
-        font-size: 16px
-        line-height: 1.56
-        text-align: left
-        color: #6A6E73
+    a[data-toggle='collapse']
+      text-decoration: none
+      color: $text-color
+      font-size: 26px
+      transform: rotate(45deg)
+      transition: transform 0.2s
+      &:after
+        content: '﹢'
+      &.collapsed
+        transform: rotate(0deg)
+    h4
+      font-size: 14px
+      font-weight: bold
+      letter-spacing: 0.4px
+      color: #454a50
+      text-transform: uppercase
+    p
+      font-size: 16px
+      line-height: 1.56
+      text-align: left
+      color: #6A6E73
 
   a[data-fancybox]
     cursor: zoom-in

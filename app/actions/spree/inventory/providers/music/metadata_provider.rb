@@ -24,7 +24,8 @@ module Spree
               music_format: item_json.dig('format'),
               music_label: item_json.dig('label'),
               music_label_number: item_json.dig('label_number'),
-              vinyl_speed: item_json.dig('speed')
+              vinyl_speed: item_json.dig('speed'),
+              music_genres: item_json.dig('genres')
             }
           end
 

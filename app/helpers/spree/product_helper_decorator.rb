@@ -1,9 +1,20 @@
 module Spree
   module ProductsHelper
-    def product_description(product)
+    def product_description(product) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       description =
-        if Spree::Config[:show_raw_product_description]
-          product.description
+        case product.product_kind
+        when 'vinyl'
+          opts = {
+            genre: product.taxons.first.name,
+            record_format: product.property(:music_format)&.titleize,
+            rpm: product.property(:vinyl_speed)&.upcase,
+            artist: product.subtitle,
+            product_title: product.name,
+            record_label: product.property(:music_label),
+            catalog_number: product.property(:music_label_number)
+          }
+
+          t('products.description.vinyl', opts)
         else
           product.description.to_s.gsub(/(.*?)\r?\n\r?\n/m, '<p>\1</p>')
         end
@@ -15,8 +26,13 @@ module Spree
       raw(sanitized_description) # rubocop:disable Rails/OutputSafety
     end
 
+    def additional_product_note(product)
+      variant = product.variants.find_by(is_master: false)
+      t(product.product_kind, scope: 'products.additional_note', option_value: variant.main_option_value, note: product.description || variant.notes)
+    end
+
     def cache_key_for_product(product = @product, opts = {})
-      ([:v21, product.cache_key, product.rewards] + common_product_cache_keys + opts.to_a).compact.join('/')
+      ([:v22, product.cache_key, product.rewards] + common_product_cache_keys + opts.to_a).compact.join('/')
     end
 
     def product_variants(product = @product)

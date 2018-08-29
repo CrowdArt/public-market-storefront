@@ -30,6 +30,11 @@ module Spree
 
           protected
 
+          def process_item(hash)
+            hash[:notes] = hash[:description]
+            super(hash)
+          end
+
           def find_metadata(_identifier)
             MetadataProvider.call(item_json.stringify_keys)
           end
