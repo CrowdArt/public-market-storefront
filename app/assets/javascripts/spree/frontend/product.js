@@ -1,5 +1,5 @@
 // additional to spree/frontend/product.js
-Spree.ready(function ($) {
+function initializeProductPage() {
   if ($.fancybox) {
     $.fancybox.defaults.hash = false;
     $.fancybox.defaults.buttons = ['zoom', 'close'];
@@ -76,10 +76,26 @@ Spree.ready(function ($) {
     setVariantPrice(variant);
     Spree.changeQuantitySelectorOptions(variant.data("quantity"));
   }
-})
+
+  $(document).on('mouseenter', '#product-thumbnails li', function (event) {
+    if ($(event.currentTarget).hasClass('thumb-selected')) return
+
+    var imgLink = $(event.currentTarget).find('a').attr('href')
+
+    $('#product-thumbnails li.thumb-selected').removeClass('thumb-selected')
+    $(event.currentTarget).addClass('thumb-selected')
+
+    $('#main-image a').attr('href', imgLink)
+    $('#main-image img').fadeTo(150, 0.30, function() {
+      $(this).attr('src', imgLink)
+    }).fadeTo(150, 1)
+  })
+}
 
 $(document).on('turbolinks:load', function() {
   var radios = $("#product-variants input[type='radio']");
+
+  initializeProductPage()
 
   if (radios.length > 0) {
     var selectedRadio = $("#product-variants input[type='radio'][checked='checked']");
