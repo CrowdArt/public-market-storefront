@@ -58,6 +58,7 @@ gem 'fog-google'
 gem 'google-cloud-storage', '~> 1.8', require: false
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
+gem 'sidekiq-statistic', github: 'davydovanton/sidekiq-statistic'
 
 gem 'json_api_client'
 
