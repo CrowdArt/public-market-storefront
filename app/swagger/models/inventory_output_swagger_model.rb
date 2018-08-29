@@ -15,6 +15,10 @@ module Swagger
             property :quantity do
               key :type, :integer
             end
+
+            property :updated_at do
+              key :type, :datetime
+            end
           end
         end
 
@@ -27,8 +31,8 @@ module Swagger
         end
 
         key :example, items: [
-          { sku: 'DC3439-201-01N', quantity: 1 },
-          { sku: 'DC1200-002-02S', quantity: 0 }
+          { sku: 'DC3439-201-01N', quantity: 1, updated_at: '2018-08-13T11:25:25.234Z' },
+          { sku: 'DC1200-002-02S', quantity: 0, updated_at: '2018-08-13T11:25:56.085Z' }
         ], total_count: 2, total_pages: 1
       end
     end

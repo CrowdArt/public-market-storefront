@@ -22,6 +22,7 @@ RSpec.describe 'Inventory fetch', type: :request do
 
     it { expect(json.dig(:items, 0, :sku)).to eq(variant.sku) }
     it { expect(json.dig(:items, 0, :quantity)).to eq(1) }
+    it { expect(json.dig(:items, 0, :updated_at)).to be_truthy }
     it { expect(json.dig(:total_count)).to eq(1) }
   end
 end

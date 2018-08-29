@@ -37,6 +37,7 @@ module Swagger
         key :type, :apiKey
         key :name, 'X-PM-Token'
         key :in, :header
+        key :description, Rails.application.credentials.test_seller_user_api_key if Rails.env.development?
       end
     end
 
