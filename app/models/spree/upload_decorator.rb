@@ -1,7 +1,15 @@
 module Spree
   module UploadDecorator
-    def self.prepended(_base)
-      Spree::Upload.const_set('SUPPORTED_PRODUCT_TYPES', %w[books music])
+    def self.prepended(base)
+      class << base
+        prepend ClassMethods
+      end
+    end
+
+    module ClassMethods
+      def supported_product_types
+        %w[books music]
+      end
     end
   end
 
