@@ -45,10 +45,10 @@ module Spree
           end
 
           def find_product(isbn)
-            # Product.search(where: { isbn: isbn }).first
-            Product.joins(:properties)
-                   .find_by(spree_properties: { name: ISBN_PROPERTY },
-                            spree_product_properties: { value: isbn })
+            Product.search(where: { isbn: isbn }).first
+            # Product.joins(:properties)
+            #        .find_by(spree_properties: { name: ISBN_PROPERTY },
+            #                 spree_product_properties: { value: isbn })
           end
 
           def product_option_types_attrs
