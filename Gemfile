@@ -71,7 +71,7 @@ group :test do
   gem 'chromedriver-helper'
   gem 'database_cleaner'
   gem 'elasticsearch-extensions'
-  gem 'factory_bot'
+  gem 'factory_bot', '~> 4.10.0' # https://github.com/spree/spree/pull/8955
   gem 'ffaker'
   gem 'rails-controller-testing'
   gem 'rspec'
