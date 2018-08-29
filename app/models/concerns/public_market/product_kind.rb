@@ -17,15 +17,6 @@ module PublicMarket
         end
     end
 
-    def description
-      case product_kind
-      when 'vinyl'
-        ''
-      else
-        description
-      end
-    end
-
     def image_aspect_ratio
       case product_kind
       when 'books'
