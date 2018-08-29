@@ -21,6 +21,7 @@ ruby:
       - unless is_mobile
         = render partial: 'properties', locals: { show_title: true }
 
+  / NOT CACHED PART
   .col-xs-12.col-sm-7.col-md-4.col-md-push-4.product-cart-item
     = render partial: 'buy_box', locals: { variants: variants, can_supply: can_supply }
 
@@ -30,7 +31,6 @@ ruby:
       - if other_seller_variants.present?
         = render partial: 'other_sellers_cart_form', locals: { variants: other_seller_variants }
 
-  / NOT CACHED PART
   .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
     h1.product-title itemprop='name'
       ' #{sanitize(@product.name)}
@@ -63,7 +63,7 @@ ruby:
             #properties.collapse
               = render partial: 'properties'
 
-      - if lookup_context.exists?(@product.product_kind, ['spree/products/additional_notes'], true, [], formats: [:html])
+      - if @product.product_kind && lookup_context.exists?(@product.product_kind, ['spree/products/additional_notes'], true, [], formats: [:html])
         = render partial: "spree/products/additional_notes/#{@product.product_kind}", locals: { is_mobile: is_mobile }
 
 javascript:
