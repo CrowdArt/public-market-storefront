@@ -1,28 +1,26 @@
-
-
 ![Public Market Banner](.github/public_market_foundation_banner.jpg)
 
 # Public Market Storefront
 
 [![Build status](https://gitlab.com/publicmarket/public-market-storefront/badges/master/pipeline.svg)](https://gitlab.com/publicmarket/public-market-storefront/commits/master)
-[![Maintainability](https://api.codeclimate.com/v1/badges/8dd78c5be9a44e9ead13/maintainability)](https://codeclimate.com/github/abundance-labs/public-market-storefront/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/8dd78c5be9a44e9ead13/test_coverage)](https://codeclimate.com/github/abundance-labs/public-market-storefront/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b2ef691ccfaf6b3eba56/maintainability)](https://codeclimate.com/github/public-market/public-market-storefront/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/b2ef691ccfaf6b3eba56/test_coverage)](https://codeclimate.com/github/public-market/public-market-storefront/test_coverage)
 
-**Public Market** is restoring the Commercial Commons by building 
-an open, transparent, and competitive architecture 
+**Public Market** is restoring the Commercial Commons by building
+an open, transparent, and competitive architecture
 for marketplace eCommerce.
 
 **eCommerce Is Broken**
 
-In less than two decades, a handful of private eCommerce platforms 
-have grown to account for over half of online retail sales. 
-The exorbitant fees and commissions they charge force sellers 
+In less than two decades, a handful of private eCommerce platforms
+have grown to account for over half of online retail sales.
+The exorbitant fees and commissions they charge force sellers
 to drive up prices, ultimately hurting consumers.
 
 **A Decentralized Alternative**
 
-We’re leveraging blockchain technology to replace these closed, private, 
-rent-extracting intermediaries with an open architecture and 
+We’re leveraging blockchain technology to replace these closed, private,
+rent-extracting intermediaries with an open architecture and
 protocol for eCommerce. The Public Market protocol radically lowers costs for both buyers and sellers while requiring no tradeoffs with regards to convenience or risk.
 
 ---
