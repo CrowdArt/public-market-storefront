@@ -10,6 +10,6 @@
     h3.upcase = t('orders.your_purchase')
 
     span = t('orders.merchant')
-    strong = @shipment.vendor.presentation_or_name
+    strong = @shipment.vendor.name
 
     = render partial: 'spree/orders/line_item_history', collection: @shipment.line_items, as: :line_item, locals: { shipped: @shipment.shipped? }

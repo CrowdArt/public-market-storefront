@@ -6,9 +6,9 @@ module PublicMarket
       class FetchInventoryFiles
         include Sidekiq::Worker
 
-        def perform(vendor_name, ftp_key)
-          vendor = Spree::Vendor.find_by(name: vendor_name)
-          puts "Process #{vendor_name} inventory files from #{ftp_key} FTP"
+        def perform(vendor_slug, ftp_key)
+          vendor = Spree::Vendor.find_by(slug: vendor_slug)
+          puts "Process #{vendor_slug} inventory files from #{ftp_key} FTP"
           puts Spree::Inventory::Ftp::ProcessInventoryAction.call(vendor, ftp_key.to_sym) if vendor.present?
         end
       end

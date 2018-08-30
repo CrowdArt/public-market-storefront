@@ -1,5 +1,5 @@
 - if shipment.tracking
-  p.text-right.text-muted style='font-size:14px;margin:0' == t('emails.order_shipped.track_package', vendor_name: shipment.stock_location.vendor.presentation_or_name)
+  p.text-right.text-muted style='font-size:14px;margin:0' == t('emails.order_shipped.track_package', vendor_name: shipment.stock_location.vendor.name)
   p.text-right.text-bold style='font-size:14px'
     = Spree.t(:tracking_number)
     ' :

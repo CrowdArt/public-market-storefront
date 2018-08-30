@@ -65,7 +65,7 @@ Spree::Payment.class_eval do
     fee = payment_method_fee * vendor_amount / amount
     transfer_amount = vendor_amount - fee
 
-    raise Spree::Core::GatewayError, Spree.t(:vendors_transfer_negative, vendor: vendor.presentation_or_name) unless transfer_amount.positive?
+    raise Spree::Core::GatewayError, Spree.t(:vendors_transfer_negative, vendor: vendor.name) unless transfer_amount.positive?
     payment_transfers.create(vendor: vendor, amount: transfer_amount, fee: fee)
   end
 end

@@ -41,7 +41,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_multi_vendor.git
-  revision: 5ec8b175b6efafb2a6ac5ca28a044a74f31f8900
+  revision: 669b81db0d1e668cf822662ac1d2af2b81a62ec4
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq
@@ -203,7 +203,7 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (6.0.0)
       activerecord (~> 5.0)
-    acts_as_list (0.9.15)
+    acts_as_list (0.9.16)
       activerecord (>= 3.0)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
@@ -769,7 +769,7 @@ GEM
       activerecord (>= 4.1, < 6.0)
       state_machines-activemodel (>= 0.5.0)
     stringex (2.8.4)
-    stripe (3.24.0)
+    stripe (3.25.0)
       faraday (~> 0.10)
     swagger-blocks (2.0.2)
     temple (0.8.0)
