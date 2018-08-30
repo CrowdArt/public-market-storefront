@@ -73,6 +73,18 @@ ruby:
       - if product_kind_views_exists?(@product, :additional_notes)
         = render partial: "spree/products/additional_notes/#{@product.product_kind_name}", locals: { is_mobile: is_mobile }
 
+- cache(cache_key_for_product(@product, section: :similar_items), expires_in: 1.hour)
+  - if (similar_items = @product.products_by_subtitle).present?
+    .product-similar-items
+      h2.upcase.text-black = t(@product.product_kind_name, scope: 'products.similar_by_subtitle', subtitle: @product.subtitle)
+      hr
+      .product-similar-items--inner
+        .left.hidden-xxs
+        .right.hidden-xxs
+
+        .product-similar-items--scroller.flex
+          = render partial: 'spree/products/product', collection: similar_items, locals: { card_size: 'product-similar-items--item' }
+
 javascript:
   $('.collapse').collapse({ toggle: false });
 

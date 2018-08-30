@@ -92,6 +92,11 @@ function initializeProductPage() {
   })
 }
 
+// TODO: implement generic scroller
+var similarItemsScrolling = false
+var similarItemsScroller = '.product-similar-items--scroller'
+var similarItemsControls = '.product-similar-items .left, .product-similar-items .right'
+
 $(document).on('turbolinks:load', function() {
   var radios = $("#product-variants input[type='radio']");
 
@@ -106,4 +111,33 @@ $(document).on('turbolinks:load', function() {
       Spree.variantSelected($(this));
     });
   }
-});
+
+  if ($('.similarItemsScroller').length > 0) {
+    if ($(similarItemsScroller)[0].offsetWidth < $(similarItemsScroller)[0].scrollWidth) {
+      $(similarItemsControls).fadeIn({ start: function() {
+        $(this).css({ 'display': 'flex' })
+      }})
+    }
+  }
+})
+
+$(document).on('mousedown', similarItemsControls, function (evt) {
+  similarItemsScrolling = true
+  startScrolling($(similarItemsScroller), $(similarItemsScroller).width() / 6, evt.target)
+}).on('mouseup', function () {
+  similarItemsScrolling = false
+})
+
+function startScrolling(obj, spd, btn) {
+  var step = $(btn).hasClass('left') ? '-=' + spd + 'px' : '+=' + spd + 'px'
+
+  if (!similarItemsScrolling) {
+    obj.stop()
+  } else {
+    obj.animate({
+      'scrollLeft': step
+    }, 'fast', function () {
+      if (similarItemsScrolling) startScrolling(obj, spd, btn)
+    })
+  }
+}

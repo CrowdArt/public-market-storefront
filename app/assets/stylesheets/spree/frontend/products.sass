@@ -232,3 +232,57 @@ body#product-details
   font-size: 18px
   font-family: $font-family-roboto-condensed
   color: #7c8084
+
+.product-similar-items
+  &--inner
+    position: relative
+
+    .left, .right
+      position: absolute
+      top: 0
+      bottom: 0
+      cursor: pointer
+      margin: auto
+      background: #e2e2e2
+      display: none
+      align-items: center
+      justify-content: center
+      width: 40px
+      height: 40px
+
+      &:before
+        font-size: 20px
+        color: $brand-black
+
+    .left
+      left: -15px
+      &:before
+        content: '<'
+
+    .right
+      right: -15px
+      &:before
+        content: '>'
+
+    @media (min-width: $screen-xs)
+      padding: 0 40px
+
+    @media (min-width: 1500px)
+      padding: 0
+
+      .left
+        left: -55px
+      .right
+        right: -55px
+
+  &--scroller
+    overflow-x: scroll
+    white-space: nowrap
+
+  &--item
+    min-width: 210px
+
+    &:not(:first-child)
+      padding-left: 15px
+    &:not(:last-child)
+      padding-right: 15px

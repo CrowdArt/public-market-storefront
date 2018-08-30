@@ -13,6 +13,9 @@ en:
     additional_note:
       vinyl: "Record is %{option_value} condition. %{note}"
 
+    similar_by_subtitle:
+      music: 'Other Albums by %{subtitle}'
+
     mapped_conditions:
       'Like New': 'Used - Like New'
       'Excellent': 'Used - Excellent'

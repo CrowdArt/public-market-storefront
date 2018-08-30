@@ -9,11 +9,12 @@ module Spree
         @child_kind = property(:music_format)&.downcase
       end
 
-      def product_description # rubocop:disable Metrics/AbcSize
+      def product_description # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
         case child_kind
         when 'vinyl'
+          taxon_name = product.taxons.first.name
           opts = {
-            genre: product.taxons.first.name,
+            genre: (taxon_name if taxon_name != Taxon::UNCATEGORIZED_NAME),
             record_format: property(:music_format)&.titleize,
             rpm: property(:vinyl_speed)&.upcase,
             artist: subtitle,
@@ -26,6 +27,16 @@ module Spree
         else
           super
         end
+      end
+
+      def products_by_subtitle
+        Inventory::Searchers::ProductSearcher.call(
+          taxon_ids: product.taxon_ids,
+          filter: {
+            :id => { not: product.id },
+            author_property_name => subtitle
+          }
+        )
       end
     end
   end

@@ -35,6 +35,10 @@ module Spree
       def product_date
         nil
       end
+
+      def products_by_subtitle
+        nil
+      end
     end
   end
 end
