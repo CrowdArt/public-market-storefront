@@ -1,4 +1,4 @@
-RSpec.describe DelayedWelcomeEmail, type: :worker do
+RSpec.describe DelayedWelcomeEmail, type: :worker, enqueue: true do
   subject(:worker) { described_class.new }
 
   let(:user) { create(:user, confirmed_at: nil) }

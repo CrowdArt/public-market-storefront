@@ -29,7 +29,7 @@ RSpec.describe 'Checkout', type: :feature, js: true do
 
     it { expect(page).to have_button 'Submit your order' }
 
-    context 'with unconfirmed email' do
+    context 'with unconfirmed email', enqueue: true do
       let!(:user) { create(:user, confirmed_at: nil) }
 
       before do

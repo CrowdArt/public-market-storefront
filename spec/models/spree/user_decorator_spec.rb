@@ -199,7 +199,7 @@ RSpec.describe Spree::User, type: :model do
     end
   end
 
-  describe 'welcome email' do
+  describe 'welcome email', enqueue: true do
     let(:user) { create(:user, confirmed_at: nil) }
 
     context 'when after create' do
@@ -266,7 +266,7 @@ RSpec.describe Spree::User, type: :model do
     end
   end
 
-  describe '#email_change' do
+  describe '#email_change', enqueue: true do
     subject(:change_email) { user.update(email: 'new@super.email') }
 
     let(:old_email) { 'user@old.email' }
