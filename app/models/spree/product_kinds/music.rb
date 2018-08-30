@@ -31,6 +31,7 @@ module Spree
 
       def products_by_subtitle
         Inventory::Searchers::ProductSearcher.call(
+          limit: 10,
           taxon_ids: product.taxons.map(&:self_and_ancestors).flatten.uniq.map(&:id),
           filter: {
             :id => { not: product.id },
