@@ -32,7 +32,7 @@ ruby:
         = render partial: 'other_sellers_cart_form', locals: { variants: other_seller_variants }
 
   .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
-    - cache(cache_key_for_product(@product, section: :product_title)) do
+    - cache(cache_key_for_product(@product, section: :product_title, v: 1)) do
       ruby:
         prod_subtitle = product_subtitle(@product)
         subtitle = @product.subtitle_presentation
