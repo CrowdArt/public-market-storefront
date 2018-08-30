@@ -38,6 +38,7 @@ en:
       vhs-cassette: VHS Cassette
       vinyl-lp: Vinyl (LP)
       mass-market: Mass Market Paperback
+      trade-paperback: Trade Paperback
 
     # PM format - providers formats mapping
     formats:
