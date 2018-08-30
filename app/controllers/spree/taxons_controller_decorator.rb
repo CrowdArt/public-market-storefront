@@ -3,6 +3,7 @@ module Spree
     def self.prepended(base)
       base.include FrontendHelper
       base.include SearchFiltersHelper
+      base.after_action :add_vary_header, only: :show
       base.skip_before_action :set_current_order, only: :mobile_menu_childs
     end
 

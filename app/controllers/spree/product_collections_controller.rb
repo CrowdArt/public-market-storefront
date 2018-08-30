@@ -5,7 +5,9 @@ module Spree
 
     before_action :load_product_collection, only: [:show]
 
-    def show
+    after_action :add_vary_header, only: :show
+
+    def show # rubocop:disable Metrics/AbcSize
       params[:filter] ||= {}
       params[:filter][:collections] = [@collection.id]
 

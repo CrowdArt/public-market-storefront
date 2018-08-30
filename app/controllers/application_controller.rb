@@ -23,4 +23,9 @@ class ApplicationController < ActionController::Base
   def save_return_to
     session[:spree_user_return_to] = request.referer
   end
+
+  # prevents a bug where clicking the back button of the browser displays the JS response
+  def add_vary_header
+    response.headers['Vary'] = 'Accept' if request.xhr?
+  end
 end

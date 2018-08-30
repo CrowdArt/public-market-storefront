@@ -4,6 +4,7 @@ module Spree
       base.before_action :save_return_to, only: :show
       base.before_action :load_product, only: %i[show similar_variants]
       base.before_action :load_taxon_from_taxon_id, only: %i[show autocomplete]
+      base.after_action :add_vary_header, only: %i[index best_selling]
       base.include FrontendHelper
       base.include SimilarVariantsHelper
     end
