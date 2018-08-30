@@ -36,8 +36,8 @@ Spree.typeaheadSearch = function() {
                           <div class='product-suggestion__info'> \
                             <div class='product-suggestion__name ellipsis'>" + product.name + "</div>"
 
-        if (product.subtitle)
-         template += "<div class='product-suggestion__subtitle ellipsis'>" + product.subtitle + "</div>"
+        if (product.subtitle_presentation)
+         template += "<div class='product-suggestion__subtitle ellipsis'>" + product.subtitle_presentation + "</div>"
 
         template += "<div class='product-suggestion__price'>From: " + product.price + "</div> \
                   </div>\

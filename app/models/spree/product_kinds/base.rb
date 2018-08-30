@@ -9,7 +9,11 @@ module Spree
 
       def subtitle
         return @subtitle if defined?(@subtitle)
-        @subtitle = property(author_property_name)&.titleize
+        @subtitle = property(author_property_name)
+      end
+
+      def subtitle_presentation
+        subtitle&.titleize
       end
 
       def image_aspect_ratio

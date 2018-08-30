@@ -2,8 +2,8 @@ module Spree
   module ProductKind
     extend ActiveSupport::Concern
 
-    delegate :subtitle, :image_aspect_ratio, :additional_properties, :products_by_subtitle,
-             :author_property_name, :product_description, :product_date,
+    delegate :subtitle, :subtitle_presentation, :image_aspect_ratio, :additional_properties,
+             :products_by_subtitle, :author_property_name, :product_description, :product_date,
              to: :product_kind, allow_nil: true
 
     def product_kind_name

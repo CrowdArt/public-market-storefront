@@ -14,7 +14,7 @@ ruby:
 
         .text-left itemprop='offers' itemscope=true itemtype='https://schema.org/Offer'
           .product-card--title = truncate(product.name, length: 100)
-          .small.ellipsis = product.subtitle
+          .small.ellipsis = product.subtitle_presentation
           .text-muted.small
             - if (product_variation = card_variation(product)).present?
               span.semi-bold = product_variation

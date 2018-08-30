@@ -35,7 +35,7 @@ ruby:
     - cache(cache_key_for_product(@product, section: :product_title)) do
       ruby:
         prod_subtitle = product_subtitle(@product)
-        subtitle = @product.subtitle
+        subtitle = @product.subtitle_presentation
 
       h1.product-title itemprop='name' = sanitize(@product.name)
 
@@ -73,10 +73,10 @@ ruby:
       - if product_kind_views_exists?(@product, :additional_notes)
         = render partial: "spree/products/additional_notes/#{@product.product_kind_name}", locals: { is_mobile: is_mobile }
 
-- cache(cache_key_for_product(@product, section: :similar_items), expires_in: 1.hour)
+- cache(cache_key_for_product(@product, section: :similar_items, v: 1), expires_in: 1.hour)
   - if (similar_items = @product.products_by_subtitle).present?
     .product-similar-items
-      h2.upcase.text-black = t(@product.product_kind_name, scope: 'products.similar_by_subtitle', subtitle: @product.subtitle)
+      h2.upcase.text-black = t(@product.product_kind_name, scope: 'products.similar_by_subtitle', subtitle: @product.subtitle_presentation)
       hr
       .product-similar-items--inner
         .left.hidden-xxs

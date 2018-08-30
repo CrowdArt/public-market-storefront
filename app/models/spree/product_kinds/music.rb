@@ -17,7 +17,7 @@ module Spree
             genre: (taxon_name if taxon_name != Taxon::UNCATEGORIZED_NAME),
             record_format: property(:music_format)&.titleize,
             rpm: property(:vinyl_speed)&.upcase,
-            artist: subtitle,
+            artist: subtitle_presentation,
             product_title: product.name,
             record_label: property(:music_label),
             catalog_number: property(:music_label_number)
@@ -31,7 +31,7 @@ module Spree
 
       def products_by_subtitle
         Inventory::Searchers::ProductSearcher.call(
-          taxon_ids: product.taxon_ids,
+          taxon_ids: product.taxons.map(&:self_and_ancestors).flatten.uniq.map(&:id),
           filter: {
             :id => { not: product.id },
             author_property_name => subtitle

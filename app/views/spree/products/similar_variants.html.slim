@@ -23,7 +23,7 @@ ruby:
         - if @variation
           | (#{@variation.titleize})
 
-      - if subtitle = @product.subtitle
+      - if subtitle = @product.subtitle_presentation
         p.text-muted.similar-variants--product-info--subtitle
           span.byline> By
           span.author = subtitle
