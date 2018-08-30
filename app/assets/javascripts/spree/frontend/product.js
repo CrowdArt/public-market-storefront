@@ -112,7 +112,7 @@ $(document).on('turbolinks:load', function() {
     });
   }
 
-  if ($('.similarItemsScroller').length > 0) {
+  if ($(similarItemsScroller).length > 0) {
     if ($(similarItemsScroller)[0].offsetWidth < $(similarItemsScroller)[0].scrollWidth) {
       $(similarItemsControls).fadeIn({ start: function() {
         $(this).css({ 'display': 'flex' })
