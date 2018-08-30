@@ -11,12 +11,12 @@ shared_context 'with filled stripe credit card in checkout' do
 
     expect(page).to have_text 'BILLING ADDRESS'
 
-    fill_in 'payment_source_1_name', with: 'First name Last name'
-    fill_in 'payment_source_1_address_attributes_firstname', with: 'First name'
-    fill_in 'payment_source_1_address_attributes_lastname', with: 'Last name'
-    fill_in 'payment_source_1_address_attributes_address1', with: 'Alaska'
-    fill_in 'payment_source_1_address_attributes_city', with: 'Wellington'
-    fill_in 'payment_source_1_address_attributes_zipcode', with: '94001'
+    fill_in 'Name on Card', with: 'First name Last name'
+    fill_in 'First Name', with: 'First name'
+    fill_in 'Last Name', with: 'Last name'
+    fill_in 'Street Address', with: 'Alaska'
+    fill_in 'City', with: 'Wellington'
+    fill_in 'ZIP / Postal Code', with: '94001'
   end
 end
 
