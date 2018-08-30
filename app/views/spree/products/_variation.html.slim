@@ -15,7 +15,7 @@ ruby:
       .variation-block--similar-list--more.text-small
         span> More
         - if title
-          ' in #{variation[:variation_name].titleize}
+          ' in #{variation[:variation_name_presentation]}
         span.caret
 
       - similar_variants.each do |v|

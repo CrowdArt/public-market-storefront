@@ -26,7 +26,8 @@ Spree::Variant.class_eval do
 
   # assume that first option value is main
   def main_option
-    @main_option ||= option_values&.first
+    return @main_option if defined?(@main_option)
+    @main_option = option_values&.first
   end
 
   def self.find_best_price_in_option

@@ -3,7 +3,7 @@ module PublicMarket
     module Music
       class VariationFinder < Variations::VariationFinder
         class << self
-          def variation_name(variation, product)
+          def variation_name(product, variation = product.variation)
             return if variation.blank?
 
             if variation == 'vinyl'

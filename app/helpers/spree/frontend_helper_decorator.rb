@@ -128,7 +128,7 @@ module Spree
     end
 
     def card_variation(product)
-      product.taxonomy&.variation_module&.const_get('VariationFinder')&.card_variation_name(product)
+      product.variation_finder&.card_variation_name(product)
     end
 
     def titleized_variation_name(product_variation)

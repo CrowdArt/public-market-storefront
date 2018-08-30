@@ -32,17 +32,24 @@ ruby:
         = render partial: 'other_sellers_cart_form', locals: { variants: other_seller_variants }
 
   .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
-    h1.product-title itemprop='name'
-      ' #{sanitize(@product.name)}
+    - cache(cache_key_for_product(@product, section: :product_title)) do
+      ruby:
+        prod_subtitle = product_subtitle(@product)
+        subtitle = @product.subtitle
 
-      - if (product_variation = @product.variation)
-        ' (#{titleized_variation_name(product_variation)})
+      h1.product-title itemprop='name' = sanitize(@product.name)
 
-    - if subtitle = @product.subtitle
-      p.product-author.no-margin-top
-        span.byline> By
-        span.author = subtitle
+      - if prod_subtitle.present? || subtitle.present?
+        .flex.align-center.text-muted
+          - if prod_subtitle.present?
+            .product-subtitle.text-bold> = prod_subtitle
 
+          - if subtitle.present?
+            .text-muted &nbsp;by #{subtitle}
+
+        br
+
+    / NOT CACHED PART
     - if (variations = product_variations).present?
       section.product-variations
         - variations.each do |variation|
@@ -63,8 +70,8 @@ ruby:
             #properties.collapse
               = render partial: 'properties'
 
-      - if @product.product_kind && lookup_context.exists?(@product.product_kind, ['spree/products/additional_notes'], true, [], formats: [:html])
-        = render partial: "spree/products/additional_notes/#{@product.product_kind}", locals: { is_mobile: is_mobile }
+      - if product_kind_views_exists?(@product, :additional_notes)
+        = render partial: "spree/products/additional_notes/#{@product.product_kind_name}", locals: { is_mobile: is_mobile }
 
 javascript:
   $('.collapse').collapse({ toggle: false });

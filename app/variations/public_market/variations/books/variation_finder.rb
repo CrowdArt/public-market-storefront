@@ -3,10 +3,10 @@ module PublicMarket
     module Books
       class VariationFinder < Variations::VariationFinder
         class << self
-          def variation_name(root_variation, product)
+          def variation_name(product, root_variation = product.variation)
             return if root_variation.blank?
 
-            product_variation = Spree::Product.find_by(id: product[:_id]).variation
+            product_variation = product.is_a?(Spree::Product) ? root_variation : Spree::Product.find_by(id: product[:_id]).variation
 
             child = I18n.t("variations.titleized-format.#{product_variation}", default: product_variation.titleize)
 
@@ -19,7 +19,7 @@ module PublicMarket
 
           def card_variation_name(product)
             name = I18n.t("variations.card_variations.books.#{product.variation}", default: product.variation)
-            Variations::VariationFinder.variation_name(name, product)
+            Variations::VariationFinder.variation_name(product, name)
           end
         end
       end

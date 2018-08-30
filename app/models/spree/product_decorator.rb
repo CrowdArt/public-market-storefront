@@ -13,7 +13,7 @@ module Spree
       base.has_many :product_collections, through: :product_collections_products, class_name: 'Spree::ProductCollection', source: :product_collection
 
       base.include Spree::Core::NumberGenerator.new(prefix: 'PM', letters: true, length: 13)
-      base.include PublicMarket::ProductKind
+      base.include Spree::ProductKind
 
       base.before_validation :set_missing_title, if: -> { name.blank? }
 
@@ -51,7 +51,8 @@ module Spree
 
       # can be false
       def taxonomy
-        @taxonomy ||= taxons.first&.taxonomy
+        return @taxonomy if defined?(@taxonomy)
+        @taxonomy = taxons.first&.taxonomy
       end
 
       # fields merged to searchkick's search_data
@@ -75,7 +76,13 @@ module Spree
       end
 
       def variation
-        variation_module_properties&.variation(self)
+        return @variation if defined?(@variation)
+        @variation = variation_module_properties&.variation(self)
+      end
+
+      def variation_finder
+        return @variation_finder if defined?(@variation_finder)
+        @variation_finder = variation_module&.const_get('VariationFinder')
       end
 
       def rewards

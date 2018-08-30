@@ -1,23 +1,7 @@
 module Spree
   module ProductsHelper
-    def product_description(product) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-      description =
-        case product.product_kind
-        when 'vinyl'
-          opts = {
-            genre: product.taxons.first.name,
-            record_format: product.property(:music_format)&.titleize,
-            rpm: product.property(:vinyl_speed)&.upcase,
-            artist: product.subtitle,
-            product_title: product.name,
-            record_label: product.property(:music_label),
-            catalog_number: product.property(:music_label_number)
-          }
-
-          t('products.description.vinyl', opts)
-        else
-          product.description.to_s.gsub(/(.*?)\r?\n\r?\n/m, '<p>\1</p>')
-        end
+    def product_description(product)
+      description = product.product_description
 
       return Spree.t(:product_has_no_description) if description.blank?
 
@@ -26,9 +10,17 @@ module Spree
       raw(sanitized_description) # rubocop:disable Rails/OutputSafety
     end
 
+    def product_subtitle(product)
+      variation = product.variation_finder&.variation_name(product)
+      product_date = Date.parse(product.product_date)&.strftime('%b %-d, %Y') if product.product_date
+      [variation, product_date].compact.join(' — ')
+    end
+
     def additional_product_note(product)
       variant = product.variants.find_by(is_master: false)
-      t(product.product_kind, scope: 'products.additional_note', option_value: variant.main_option_value, note: product.description || variant.notes)
+      t(product.product_kind_name, scope: 'products.additional_note',
+                                   option_value: variant.main_option_value,
+                                   note: product.description || variant.notes)
     end
 
     def cache_key_for_product(product = @product, opts = {})
@@ -76,6 +68,10 @@ module Spree
       @product.variation_module::Properties.available_variations.map do |variation_name|
         variations.find { |var| var[:variation_name] == variation_name }
       end.compact
+    end
+
+    def product_kind_views_exists?(product, view)
+      product.product_kind_name && lookup_context.exists?(product.product_kind_name, ["spree/products/#{view}"], true, [], formats: [:html])
     end
 
     private

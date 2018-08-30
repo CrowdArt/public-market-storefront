@@ -6,6 +6,8 @@ module Spree
       option :filter_by_variation, optional: true, default: proc { nil }
       option :load_variants, optional: true, default: proc { false }
 
+      delegate :variation_finder, to: :product
+
       def call
         products = Searchers::FindSimilarProducts.call(product, filter_by_variation: filter_by_variation)
 
@@ -75,7 +77,7 @@ module Spree
 
       def map_variation(variation, product, variants)
         {
-          variation_name_presentation: variation_finder.variation_name(variation, product),
+          variation_name_presentation: variation_finder.variation_name(product, variation),
           variation_name: variation,
           similar_variants: variants,
           price: product[:price],
@@ -90,10 +92,6 @@ module Spree
           size: variants.size,
           price: variants.min_by(&:price).price
         }
-      end
-
-      def variation_finder
-        product.taxonomy&.variation_module&.const_get('VariationFinder')
       end
     end
   end
