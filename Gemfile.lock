@@ -41,7 +41,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_multi_vendor.git
-  revision: 669b81db0d1e668cf822662ac1d2af2b81a62ec4
+  revision: 373acd7773836aeb2cb2233425766f72327daa77
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq
@@ -181,7 +181,7 @@ GEM
     activejob (5.2.0)
       activesupport (= 5.2.0)
       globalid (>= 0.3.6)
-    activemerchant (1.82.0)
+    activemerchant (1.83.0)
       activesupport (>= 4.2, < 6.x)
       builder (>= 2.1.2, < 4.0.0)
       i18n (>= 0.6.9)
