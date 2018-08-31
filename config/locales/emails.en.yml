@@ -35,7 +35,7 @@ en:
             </td>
           </tr>
         </table>
-      footer: ''
+      footer: 'By creating an account, you agree to our <a href="https://public.market/terms" target="_blank">Terms of Service</a> and <a href="https://public.market/privacy" target="_blank">Privacy Policy</a> and subscribe to our mailing list.'
 
     reset_password_instructions:
       categories:
@@ -82,7 +82,7 @@ en:
             </td>
           </tr>
         </table>
-      footer: By creating an account, you agree to our <a href="https://public.market/terms" target="_blank">Terms of Service</a> and <a href="https://public.market/privacy" target="_blank">Privacy Policy</a> and subscribe to our mailing list.
+      footer: Confirming ownership over your email address helps protect your identity and prevent others from accessing your account.
 
     reconfirmation:
       categories:
