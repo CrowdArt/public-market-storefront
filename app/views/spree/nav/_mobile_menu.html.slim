@@ -12,7 +12,12 @@ nav.mobile-menu role='navigation' aria-expanded='false' aria-label='Main menu'
     / HIDDEN SECOND LEVEL TAXONS
     / second level taxons are loaded here in ajax query Spree.loadMobileSubcategories()
 
-    ul.mobile-menu__items
+    / prerender to allow turbolinks-permanent
+    - enabled_taxons.each do |t|
+      input.subtaxon-toggle id="subtaxons-#{t.id}" hidden=true type='checkbox' data-turbolinks-permanent=true
+      .subcategories id="subtaxons-list-#{t.id}" data-turbolinks-permanent=true
+
+    ul.mobile-menu__items#mobile-menu-taxons data-turbolinks-permanent=true
       li = link_to 'HOME', spree.root_path
 
       - enabled_taxons.each do |t|
@@ -30,6 +35,11 @@ nav.mobile-menu role='navigation' aria-expanded='false' aria-label='Main menu'
 
         li.divider role='separator'
 
+      - %w[how-it-works become-a-seller].each do |link|
+        li
+          a.btn.btn-link.disabled disabled=true href="#" = t("menus.navbar-top-row.#{link}")
+
+    - if spree_user_signed_in?
       = render partial: 'spree/nav/nav_mobile_menu_bottom'
 
 label.backdrop for='mobile-nav-toggle' tabindex='-1' aria-hidden='true' hidden=true

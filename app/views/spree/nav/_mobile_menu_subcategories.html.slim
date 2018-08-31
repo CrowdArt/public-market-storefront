@@ -1,6 +1,6 @@
-- cache([:v2, :mobile_menu_subcategory, taxon.children])
-  input.subtaxon-toggle id="subtaxons-#{taxon.id}" hidden=true type='checkbox'
-  .subcategories
+- cache([:v3, :mobile_menu_subcategory, taxon.children])
+  input.subtaxon-toggle id="subtaxons-#{taxon.id}" hidden=true type='checkbox' data-turbolinks-permanent=true
+  .subcategories id="subtaxons-list-#{taxon.id}" data-turbolinks-permanent=true
     ul
       li
         label.enabled-category.flex.start.menu-arrow-left for="subtaxons-#{taxon.id}" #{taxon.name}

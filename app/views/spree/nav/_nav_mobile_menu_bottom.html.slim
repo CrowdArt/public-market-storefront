@@ -1,8 +1,4 @@
-- %w[how-it-works become-a-seller].each do |link|
-  li
-    a.btn.btn-link.disabled disabled=true href="#" = t("menus.navbar-top-row.#{link}")
-
-- if spree_user_signed_in?
+ul.mobile-menu__items
   li.divider role='separator'
 
   - if spree_current_user.admin?

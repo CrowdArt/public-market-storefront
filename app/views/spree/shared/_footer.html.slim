@@ -10,7 +10,8 @@ footer#main-footer
                 = email_field_tag 'subscribe_email', nil, class: 'form-control', placeholder: t('footer.subscribe_email_placeholder')
               .col-xs-12.col-sm-12.col-md-5
                 button.btn.btn-primary.btn-block = t('footer.subscribe_button')
-      .row
+
+      .row#footer-links data-turbolinks-permanent=true
         .col-xs-12.col-sm-3
           p
             a href=spree.root_path = image_tag 'logo/public_market_logo_white.svg', width: 150

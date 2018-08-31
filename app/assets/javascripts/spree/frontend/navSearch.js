@@ -1,6 +1,7 @@
 $(document).on('turbolinks:load', function() {
   Spree.fetch_cart()
-  $('.mobile-menu-toggle').prop('checked', false).trigger('change')
+  if ($('.mobile-menu-toggle').is(':checked'))
+    $('.mobile-menu-toggle').prop('checked', false).trigger('change')
 })
 
 // load subcategories on mobile menu open

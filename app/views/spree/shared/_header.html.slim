@@ -4,10 +4,9 @@ ruby:
   disabled_taxons = root_taxons.hidden
   taxon = @taxon&.root || (Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon])
 
-- cache([:v6, :mobile_menu, root_taxons, taxon, spree_current_user])
+- cache([:v7, :mobile_menu, root_taxons, taxon, spree_current_user])
   / MOBILE MENU
-  / not reloaded on turbolinks visits
-  .visible-xs.visible-sm id='mobile-menu-wrapper' data-turbolinks-permanent=true
+  .visible-xs.visible-sm
     = render partial: 'spree/nav/mobile_menu', locals: { enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
 
 / MAIN NAVBAR
@@ -18,7 +17,7 @@ ruby:
 
     .top-navbar
       .flex.between.align-center
-        - cache([:v1, :navbar_top_row])
+        - cache([:v2, :navbar_top_row])
           / MOBILE MENU TOGGLE
           .visible-xs.visible-sm
             label.no-margin.mobile-menu-btn for='mobile-nav-toggle'
@@ -30,10 +29,10 @@ ruby:
         .flex.flex-1.nowrap.end.align-center
           = render partial: 'spree/nav/navbar_search', locals: { taxon: taxon, root_taxons: root_taxons, enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
 
-          - cache([:v3, :navbar_top_right, spree_current_user])
+          - cache([:v4, :navbar_top_right, spree_current_user])
             = render partial: 'spree/nav/navbar_top_right'
 
-      - cache([:v5, :navbar_bottom_row, root_taxons, taxon])
+      - cache([:v6, :navbar_bottom_row, root_taxons, taxon])
         / use divider instead of border because rows/cols have paddings
         hr.divider.hidden-xs.hidden-sm
 

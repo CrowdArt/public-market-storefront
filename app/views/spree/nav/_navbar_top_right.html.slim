@@ -1,11 +1,12 @@
 / cached in spree/shared/header
-ul.nav.navbar-nav.condensed.navbar-top-right.flex id='navbar-top-right' data-turbolinks-permanent=true
+ul.nav.navbar-nav.condensed.navbar-top-right.flex
   / - if @back_mobile_link
   /   li.pull-left.visible-xs = link_to '< Back', @back_mobile_link
 
   = render partial: 'spree/shared/link_to_account'
 
-  li.upcase.pull-left#link-to-cart
+  / not reloaded on turbolinks visits
+  li.upcase.pull-left#link-to-cart data-turbolinks-permanent=true
     noscript
       = link_to_cart
 
