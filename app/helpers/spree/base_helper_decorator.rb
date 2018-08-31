@@ -33,6 +33,10 @@ module Spree
       end
     end
 
+    def wrap_spans(collection)
+      collection.map { |c| [content_tag(:span, c), c] }
+    end
+
     private
 
     def meta_image

@@ -1,5 +1,4 @@
 window.pm = window.pm || {}
-
 window.pm.initPhoneInput = function(wrapperId) {
   var wrapper = $(wrapperId)
   var phoneInput = $(wrapperId + ' input:not([type=hidden])')

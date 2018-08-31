@@ -56,3 +56,41 @@ en:
     vinyl_speed: RPM
 
   sell_on_pm: Sell on Public Market
+  sell:
+    merchant_application: Merchant Application
+    general: General
+    business: Business Information
+    skus: How many SKUs do you have? (If you don’t know, submit your best estimate)
+    product_categories: Which product categories would you describe your inventory as?
+    categories:
+      - Automotive
+      - Baby Products
+      - Books
+      - Camera
+      - Cell Phones & Accessories
+      - Clothing & Apparel
+      - Computers
+      - Consumer Electronics
+      - DVD & Blu-Ray
+      - Electronics
+      - Fashion Accessories
+      - Garden
+      - Gift Cards
+      - Grocery
+      - Handmade
+      - Health & Beauty
+      - Home Goods
+      - Jewelry
+      - Office Products
+      - Services
+      - Sports & Outdoors
+      - Tools & Home Improvement
+      - Toys & Games
+      - Travel & Luggage
+      - Video Games
+    brand: Are you the brand or manufacturer of the products you sell?
+    website: "If you currently sell on your own site, please enter the link here:"
+    marketplaces: "If you currently sell on other online marketplaces, please enter the links to your storefronts here:"
+    software: "If you sell on other online marketplaces, what software or services do you currently use for inventory and order management?"
+    submit: Submit
+    success: Your application was submitted successfully. We'll be in touch soon!

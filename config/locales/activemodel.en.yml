@@ -1,0 +1,8 @@
+en:
+  activemodel:
+    attributes:
+      public_market/merchant:
+        company_name: Company Name
+        sku_count: Number of SKUs
+        website: Your Marketplace URL(s)
+        other_category: Other Product Category

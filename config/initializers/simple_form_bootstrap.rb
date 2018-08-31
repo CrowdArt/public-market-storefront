@@ -87,6 +87,22 @@ SimpleForm.setup do |config|
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
 
+  config.wrappers :check_boxes, item_wrapper_class: 'col-xs-12 col-sm-6 checkbox checkbox-blue', class: 'form-group row', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
+    b.use :html5
+    b.optional :readonly
+    b.use :input, class: 'form-check-input', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
+    b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
+  end
+
+  config.wrappers :radio_buttons, boolean_style: :nested, item_wrapper_class: 'radio', class: 'form-group', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
+    b.use :html5
+    b.optional :readonly
+    b.use :input, error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback d-block' }
+    b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
+  end
+
   # vertical input for inline radio buttons and check boxes
   config.wrappers :vertical_collection_inline, item_wrapper_class: 'form-check form-check-inline', tag: 'fieldset', class: 'form-group', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
     b.use :html5
@@ -416,11 +432,11 @@ SimpleForm.setup do |config|
   # type as key and the wrapper that will be used for all inputs with specified type.
   config.wrapper_mappings = {
     boolean:       :vertical_boolean,
-    check_boxes:   :vertical_collection,
+    check_boxes:   :check_boxes,
     date:          :vertical_multi_select,
     datetime:      :vertical_multi_select,
     file:          :vertical_file,
-    radio_buttons: :vertical_collection,
+    radio_buttons: :radio_buttons,
     range:         :vertical_range,
     time:          :vertical_multi_select
   }

@@ -2,6 +2,12 @@ en:
   simple_form:
     "yes": 'Yes'
     "no": 'No'
+    hints:
+      defaults:
+        website: Separate URLs with commas
+        marketplaces: Separate URLs with commas
+        software: Separate software / services with commas
+        other_category: Separate each category with a commas
     required:
       text: 'required'
       mark: '*'

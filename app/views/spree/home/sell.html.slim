@@ -1,0 +1,48 @@
+= render partial: 'spree/shared/phone_input_scripts'
+
+.row
+  .col-xs-12.col-sm-8.col-sm-offset-2.col-lg-6.col-lg-offset-3.page
+    = render partial: 'spree/shared/account_breadcrumbs', locals: { items: [link_to('Home', spree.root_path), link_to(t('sell_on_pm'), sell_apply_path), t('sell.merchant_application')] }
+
+    h3.upcase = t('sell.merchant_application')
+
+    iframe#hidden_iframe name='hidden_iframe' style="display:none;" onload="if(window.submitted) { window.location='/sell/apply/confirm' }"
+
+    = simple_form_for @merchant, url: 'https://docs.google.com/forms/d/e/1FAIpQLSdd30a_GE3osTvtUI9T9cixGpubm9Nl6r4VqgucTPEU7ySR5Q/formResponse', browser_validations: true, wrapper: :vertical_hint_label, html: { novalidate: false, target: 'hidden_iframe', onsubmit:'window.submitted=true'} do |f|
+      h4.upcase style='margin-top: 30px' = t('sell.general')
+      br
+      .flex
+        = f.input :first_name, required: true, input_html: { name: 'entry.54759804' }, wrapper_html: { class: 'flex-grow-1 margin-text-right' }
+        = f.input :last_name, required: true, input_html: { name: 'entry.817907706' }, wrapper_html: { class: 'flex-grow-1 margin-text-left' }
+
+      = f.input :email, required: true
+      = f.input :company_name, required: true, input_html: { name: 'entry.959788081' }
+      = f.input :phone, as: :tel, label: false, hint: false, wrapper: :vertical_without_label, input_html: { name: 'entry.202991290', placeholder: 'Phone', class: 'input-lg' }, wrapper_html: { id: 'mphone', class: 'address-phone-input' }
+
+      h4.upcase style='margin-top: 30px' = t('sell.business')
+      br
+      p = t('sell.skus')
+      = f.input :sku_count, as: :integer, required: true, input_html: { name: 'entry.405442067' }
+      p = t('sell.product_categories')
+      = f.input :product_categories, as: :check_boxes, input_html: { name: 'entry.668468027' }, collection: wrap_spans(t('sell.categories')).push([content_tag(:span, 'Other'), '__other_option__'])
+      = f.input :other_category, required: true, input_html: { disabled: true, name: 'entry.668468027.other_option_response' }, wrapper_html: { class: 'hide' }
+      p = t('sell.brand')
+      = f.input :brand, as: :radio_buttons, required: true, input_html: { name: 'entry.1777934597' }, collection: wrap_spans(['Yes', 'No', 'Some'])
+      p = t('sell.website')
+      = f.input :website, input_html: { name: 'entry.1552169097' }
+      p = t('sell.marketplaces')
+      = f.input :marketplaces, input_html: { name: 'entry.165467166' }
+      p = t('sell.software')
+      = f.input :software, input_html: { name: 'entry.1672229404' }
+
+      = f.submit t('sell.submit'), class: 'btn btn-block btn-primary'
+
+- content_for :bottom_scripts
+  javascript:
+    $('#public_market_merchant_product_categories___other_option__').change(function(e) {
+      $('.public_market_merchant_other_category').toggleClass('hide', !$(e.target).prop('checked'))
+      $('.public_market_merchant_other_category input').prop('disabled', !$(e.target).prop('checked'))
+    })
+    if (window.pm && window.pm.initPhoneInput)
+      window.pm.initPhoneInput("#mphone")
+    window.submitted = false
