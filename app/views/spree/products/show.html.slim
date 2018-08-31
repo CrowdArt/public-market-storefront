@@ -32,7 +32,7 @@ ruby:
         = render partial: 'other_sellers_cart_form', locals: { variants: other_seller_variants }
 
   .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
-    - cache(cache_key_for_product(@product, section: :product_title, v: 1)) do
+    - cache(cache_key_for_product(@product, section: :product_title, v: 2)) do
       ruby:
         prod_subtitle = product_subtitle(@product)
         subtitle = @product.subtitle_presentation
@@ -40,12 +40,12 @@ ruby:
       h1.product-title itemprop='name' = sanitize(@product.name)
 
       - if prod_subtitle.present? || subtitle.present?
-        .flex.align-center.text-muted
+        .text-muted
           - if prod_subtitle.present?
-            .product-subtitle.text-bold> = prod_subtitle
+            strong.product-subtitle> = prod_subtitle
 
           - if subtitle.present?
-            .text-muted &nbsp;by #{subtitle}
+            | by #{subtitle}
 
         br
 
