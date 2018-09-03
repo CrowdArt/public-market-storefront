@@ -28,5 +28,5 @@
         - if item.line_item.inventory_units.select(&:ordered?).any?
           = link_to Spree.t('confirm_shipment'), "#", class: 'confirm btn btn-block btn-primary btn-sm', data: {action: 'confirm_item'}, title: Spree.t('confirm_shipment')
           = link_to Spree.t('cancel_shipment'), "#", class: 'cancel btn btn-block btn-danger btn-sm', data: {action: 'cancel_item'}, title: Spree.t('cancel_shipment')
-        = link_to Spree.t('split_shipment'), "#", class: 'split-item btn btn-block btn-default btn-sm', data: {action: 'split', 'variant-id' => item.variant.id}, title: Spree.t('split_shipment')
+        / = link_to Spree.t('split_shipment'), "#", class: 'split-item btn btn-block btn-default btn-sm', data: {action: 'split', 'variant-id' => item.variant.id}, title: Spree.t('split_shipment')
         / = link_to_with_icon 'delete', Spree.t('delete'), "#", class: 'delete-item btn btn-danger btn-sm', data: { 'shipment-number' => shipment.number, 'variant-id' => item.variant.id, action: 'remove'}, title: Spree.t('delete'), no_text: true

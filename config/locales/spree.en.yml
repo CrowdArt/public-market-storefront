@@ -78,3 +78,14 @@ en:
     reset_you_password: Reset Password
     reset_password: Send Reset Link
     email_login: Username / Email
+    payment_states:
+      balance_due: authorized
+      checkout: checkout
+      completed: completed
+      credit_owed: credit owed
+      failed: failed
+      paid: paid
+      pending: pending
+      processing: processing
+      void: void
+

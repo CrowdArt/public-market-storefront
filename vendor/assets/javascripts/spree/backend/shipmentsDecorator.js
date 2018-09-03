@@ -39,12 +39,13 @@ $(document).ready(function () {
   });
 
   $('[data-hook=admin_shipment_form] a.ship').on('mousedown', function (e) {
-    var tracking = $(this).parents('[data-hook=admin_shipment_form]').find('.tracking-value a').text();
-    if (!tracking && !confirm('Are you sure to Mark as Shipped without Tracking Number?')) {
+    var tracking = $(this).parents('[data-hook=admin_shipment_form]').find('.tracking-value strong').length
+    if (tracking)
+      return true;
+    else if (confirm('Are you sure to Mark as Shipped without Tracking Number?'))
+      $(e.target).click();
+    else
       e.stopImmediatePropagation();
-      return false;
-    }
-    return true;
   })
 })
 
