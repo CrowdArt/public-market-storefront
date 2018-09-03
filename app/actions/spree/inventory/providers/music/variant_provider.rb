@@ -40,16 +40,11 @@ module Spree
           end
 
           def product_identifier(hash)
-            { format: hash[:format], identifier: hash[:sku] }
+            ['MSC', options[:vendor_id], hash[:sku]].join('-')
           end
 
-          def find_product(identifier)
-            Product.joins(:properties, :variants)
-                   .find_by(
-                     spree_variants: { sku: identifier[:identifier] },
-                     spree_properties: { name: :music_format },
-                     spree_product_properties: { value: identifier[:format] }
-                   )
+          def find_product(_identifier)
+            nil # products are always unique
           end
 
           def product_option_types_attrs

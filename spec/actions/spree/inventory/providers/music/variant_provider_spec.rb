@@ -55,6 +55,7 @@ RSpec.describe Spree::Inventory::Providers::Music::VariantProvider, type: :actio
       it { expect(product).to be_persisted }
       it { expect(product.available_on).not_to be_nil }
       it { expect(product.description).not_to be_nil }
+      it { expect(product.master.sku).not_to be_nil }
       it do
         expect(product.properties.pluck(:presentation)).to eq(
           ['Artist', 'Record Format', 'Record Label', 'Catalog Number', 'RPM', 'Music genres']
