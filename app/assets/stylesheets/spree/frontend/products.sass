@@ -72,17 +72,6 @@ body#product-details
     img
       max-width: 100%
 
-  .product-variants
-    ul li
-      list-style: none
-      font-family: $font-family-roboto
-      input
-        font-family: $font-family-roboto
-        margin-right: 7px
-      label
-        font-family: $font-family-roboto
-        font-weight: normal
-
   .product-promotions
     min-height: 400px
     margin-top: 40px
@@ -95,48 +84,60 @@ body#product-details
       font-weight: bold
       color: #0e0e12
 
-  #cart-form
+  .buy-box
     border-top: 6px solid #0e0e12
     background-color: #f4f4f4
+
     .panel-body
-        padding: 20px
+      padding: 20px
       @media (min-width: $screen-md-min)
         padding: 30px 50px
-    .market-choice
-      margin-bottom: 7px
-      .label
-        font-size: 10px
-        padding: 4px 10px
-        text-transform: uppercase
-    .est-token-rewards
-      margin: 5px 0 10px
-      font-size: 14px
-      font-weight: 500
-      line-height: 1.64
+
+    &--head
+      .lead
+        font-weight: bold
+
+    &--rewards
+      font-size: 17px
       color: $cryptoberry-color
+      line-height: 1
+
+      strong
+        font-size: 21px
+
+      &.diamond-icon-left, .info-icon-left
+        &:before
+          vertical-align: top
+
+      &.diamond-icon-left:before
+        margin-right: 7px
+
+      .info-icon-left:before
+        border-radius: 50%
+        border: 1px solid $brand-primary
+        margin-right: 0
+
+      & > span
+        display: inline-block
+        line-height: 1.2
+
     .form-group
       & > label
         font-family: $font-family-roboto-condensed
-        font-size: 14px
-        font-weight: 700
-        font-stretch: condensed
 
-    .buy-box
-      &--quntity-select
-        display: inline-block
-        width: 85px
+    &--quantity-select
+      display: inline-block
+      width: 85px
 
-      &--quntity-left
-        margin-left: 7px
+    &--quantity-left
+      margin-top: 3px
 
-  #admin-cart-form
-    border-top: 6px solid $brand-warning
+  .additional-buy-box
     margin-top: 35px
+    border-top: 6px solid $brand-warning
 
-    &, & .panel
+    &, .panel
       background-color: #f4f4f4
-
-    .panel
       border: 1px solid #ccc
 
     button

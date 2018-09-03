@@ -30,6 +30,7 @@ module Spree
 
     def show
       @previous_variation = Spree::Product.find_by(slug: params[:variation])
+      @buy_box_variant = @product.variants.find_best_price_in_option(in_stock: false).first
       redirect_if_legacy_path
     end
 

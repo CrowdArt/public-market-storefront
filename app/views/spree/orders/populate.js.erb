@@ -1,10 +1,10 @@
 <%= render partial: 'spree/shared/flash_messages', locals: { sticky: true, additional_class: 'slide-down' } %>
 
-var quantity = <%= [quantity_left(@variant), 1].max %>
+var variant = $("#variant_id_<%= @variant.id %>")
 
-$("#variant_id_<%= @variant.id %>").data('quantity', quantity)
-$("#variant_id_<%= @variant.id %>").data('in-stock', <%= @variant.can_supply? %>)
-
-Spree.changeQuantitySelectorOptions(quantity)
+if (variant.length > 0) {
+  var quantity = <%= [quantity_left(@variant), 1].max %>
+  Spree.changeQuantitySelectorOptions(quantity)
+}
 
 Spree.fetch_cart()

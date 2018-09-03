@@ -1,7 +1,66 @@
-#cart-form.panel.no-border
+ruby:
+  quantity_available = [[quantity_left(variant), 50].min, 1].max
+
+.panel.no-border.buy-box
   .panel-body
-    - if can_supply
-      = render partial: 'cart_form', locals: { variants: variants }
-    - else
+    = form_for :order, url: populate_orders_path, remote: true, html: { itemprop: 'offers', itemtype: 'https://schema.org/Offer', id: 'buy-box' } do |f|
+      = hidden_field_tag :variant_id, variant.id, id: "variant_id_#{variant.id}"
+
+      .flex.align-center.between.buy-box--head
+        strong.lead.no-margin Buy #{variant.main_option_value}
+
+        h4.no-margin.text-black = variant.price_in(current_currency).money
+
+      br
+
+      .flex.between
+        = f.field_container :quantity, class: ['form-group no-margin'] do
+          = f.label :quantity, 'QTY', class: 'text-medium no-margin-bottom margin-text-right'
+
+          .flex-inline.column
+            .select
+              = select_tag :quantity, options_for_select(1..quantity_available), class: 'form-control buy-box--quantity-select'
+
+            span.text-medium.buy-box--quantity-left.text-info class=('hide' if quantity_available >= 10)
+              ' Only
+              span.buy-box--quantity-left--value> #{quantity_available}
+              | left!
+
+        div
+          - diff = @product.price - variant.price
+          div> class=('strike' if diff > 0) List Price: #{display_price(@product)}
+          - if diff > 0
+            | Save: #{Spree::Money.new(diff).to_html} (#{number_to_percentage((diff / @product.price) * 100, precision: 0)})
+
+      br
+
+      - if variant.in_stock?
+        .text-success = Spree.t(:in_stock)
+      - else
+        .text-danger = Spree.t(:out_of_stock)
+
+      span = variant.vendor.shipping_methods.first.name
+      .text-muted = t('products.arrives')
+
+      br
+
+      .text-right.diamond-icon-left.buy-box--rewards
+        - rewards = variant.rewards_amount
+        span == t('products.earn_rewards_buy_box', rewards: variant.rewards_amount, percentage: number_to_percentage((rewards / variant.price) * 100, precision: 0))
+
+      - if variant.in_stock?
+        br
+
+        = button_tag Spree.t(:add_to_cart), class: 'btn btn-primary btn-block', id: 'add-to-cart-button', value: 'add-to-cart', type: :submit, data: { disable_with: Spree.t(:add_to_cart) }
+
+        = button_tag Spree.t(:buy_now), class: 'btn btn-default btn-block', id: 'buy-now-button', type: :submit, data: { disable_with: Spree.t(:buy_now) }
+
       .text-center
-        h4 Out of stock
+        small
+          br
+          = t('products.sold_by')
+          '
+          a href=vendor_path(variant.vendor) target='_blank' = variant.vendor.name
+          br
+          .text-muted
+            = vendor_reputation_text(variant.vendor, format: :text)

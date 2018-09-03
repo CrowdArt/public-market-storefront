@@ -43,11 +43,13 @@ module Spree
       raw(source) # rubocop:disable Rails/OutputSafety
     end
 
-    def vendor_reputation_text(vendor)
+    def vendor_reputation_text(vendor, format: nil)
       reputation = cached_reputation(vendor)
 
       if reputation.present? && reputation.score.present?
-        number_to_percentage(reputation.score * 100, precision: 1)
+        rating = number_to_percentage(reputation.score * 100, precision: 1)
+        rating += ' Positive Ratings' if format == :text
+        rating
       else
         Spree.t('not_enough_ratings')
       end

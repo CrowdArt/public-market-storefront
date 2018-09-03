@@ -2,7 +2,6 @@ ruby:
   @body_id = 'product-details'
   is_mobile = mobile?
   can_supply = @product.can_supply?
-  variants, other_seller_variants = product_variants if can_supply
 
 .row.product-grid data-hook='product_show' itemscope=true itemtype='https://schema.org/Product'
   - cache(cache_key_for_product(@product, section: :product_sidebar, mobile: is_mobile)) do
@@ -23,13 +22,15 @@ ruby:
 
   / NOT CACHED PART
   .col-xs-12.col-sm-7.col-md-4.col-md-push-4.product-cart-item
-    = render partial: 'buy_box', locals: { variants: variants, can_supply: can_supply }
+    - if @buy_box_variant.present?
+      = render partial: 'buy_box', locals: { variant: @buy_box_variant }
+    - else
+      .text-center.text-danger = Spree.t(:out_of_stock)
 
     - if can_supply
       p.text-center = render 'spree/shared/payment_methods'
 
-      - if other_seller_variants.present?
-        = render partial: 'other_sellers_cart_form', locals: { variants: other_seller_variants }
+      = render partial: 'additional_buy_box'
 
   .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
     - cache(cache_key_for_product(@product, section: :product_title, v: 2)) do

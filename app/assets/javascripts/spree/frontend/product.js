@@ -1,60 +1,11 @@
-// additional to spree/frontend/product.js
 function initializeProductPage() {
   if ($.fancybox) {
     $.fancybox.defaults.hash = false;
     $.fancybox.defaults.buttons = ['zoom', 'close'];
   }
 
-  function setVariantOptionText(variant) {
-    $('#variant-option').text(variant.closest('.dropdown-item').find('.variant-description').text());
-  }
-
-  function setPriceDiff(variant, avgPrice) {
-    var avgPrice = parseFloat(avgPrice.substring(1));
-    var variantPrice = variant.data("price").substring(1);
-    var showSaving = variantPrice < avgPrice
-
-    if (showSaving) {
-      var diff = (avgPrice - variantPrice).toFixed(2)
-      var diffPercentage = Math.round(diff / avgPrice * 100)
-      var diffText = "$" + diff + " (" + diffPercentage + "%)"
-
-      $('#price-diff').text(diffText);
-      $('#price-diff-percentage').text("(" + diffPercentage + ")");
-    }
-
-    $('#average-price').toggleClass('strike', showSaving)
-    $('#price-diff').parent().toggleClass('hide', !showSaving)
-  }
-
-  function setAveragePrice(variant) {
-    var avgPrice = variant.data("avg-price");
-
-    if (avgPrice) {
-      $("#average-price").text(avgPrice);
-      setPriceDiff(variant, avgPrice);
-    }
-  };
-
-  function setVendorInfo(variant) {
-    $('#vendor-link').prop('href', variant.data('vendor-path')).text(variant.data('vendor'));
-    $('#vendor-rep').text(variant.data('vendor-rep'));
-  }
-
-  function setRewards(variant) {
-    $('.est-token-rewards span').text(variant.data('rewards'));
-  }
-
-  function setVariantPrice(variant) {
-    var variantPrice = variant.data("price");
-
-    if (variantPrice) {
-      return ($(".price.selling")).text(variantPrice);
-    }
-  }
-
-  Spree.changeQuantitySelectorOptions = function (count) {
-    var $el = $("#cart-form #quantity");
+  Spree.changeQuantitySelectorOptions = function(count) {
+    var $el = $('#buy-box #quantity');
     $el.empty(); // remove old options
 
     var max = count > 50 ? 50 : count;
@@ -64,19 +15,11 @@ function initializeProductPage() {
     }
 
     var lowStock = max < 10
-    $('.buy-box--quntity-left--value').text(max)
-    $('.buy-box--quntity-left').toggleClass('hide', !lowStock)
+    $('.buy-box--quantity-left--value').text(max)
+    $('.buy-box--quantity-left').toggleClass('hide', !lowStock)
   }
 
-  Spree.variantSelected = function(variant) {
-    setVariantOptionText(variant);
-    setAveragePrice(variant);
-    setVendorInfo(variant);
-    setRewards(variant);
-    setVariantPrice(variant);
-    Spree.changeQuantitySelectorOptions(variant.data("quantity"));
-  }
-
+  // thumbnail selector
   $(document).on('mouseenter', '#product-thumbnails li', function (event) {
     if ($(event.currentTarget).hasClass('thumb-selected')) return
 
@@ -90,54 +33,42 @@ function initializeProductPage() {
       $(this).attr('src', imgLink)
     }).fadeTo(150, 1)
   })
-}
 
-// TODO: implement generic scroller
-var similarItemsScrolling = false
-var similarItemsScroller = '.product-similar-items--scroller'
-var similarItemsControls = '.product-similar-items .left, .product-similar-items .right'
+  // TODO: implement generic scroller
+  var similarItemsScrolling = false
+  var similarItemsScroller = '.product-similar-items--scroller'
+  var similarItemsControls = '.product-similar-items .left, .product-similar-items .right'
 
-$(document).on('turbolinks:load', function() {
-  var radios = $("#product-variants input[type='radio']");
+  if ($(similarItemsScroller).length == 0) return
 
-  initializeProductPage()
-
-  if (radios.length > 0) {
-    var selectedRadio = $("#product-variants input[type='radio'][checked='checked']");
-
-    Spree.variantSelected(selectedRadio);
-
-    radios.click(function (event) {
-      Spree.variantSelected($(this));
-    });
+  if ($(similarItemsScroller)[0].offsetWidth < $(similarItemsScroller)[0].scrollWidth) {
+    $(similarItemsControls).fadeIn({ start: function() {
+      $(this).css({ 'display': 'flex' })
+    }})
   }
 
-  if ($(similarItemsScroller).length > 0) {
-    if ($(similarItemsScroller)[0].offsetWidth < $(similarItemsScroller)[0].scrollWidth) {
-      $(similarItemsControls).fadeIn({ start: function() {
-        $(this).css({ 'display': 'flex' })
-      }})
+  $(document).on('mousedown', similarItemsControls, function (evt) {
+    similarItemsScrolling = true
+    startScrolling($(similarItemsScroller), $(similarItemsScroller).width() / 6, evt.target)
+  }).on('mouseup', function () {
+    similarItemsScrolling = false
+  })
+
+  function startScrolling(obj, spd, btn) {
+    var step = $(btn).hasClass('left') ? '-=' + spd + 'px' : '+=' + spd + 'px'
+
+    if (!similarItemsScrolling) {
+      obj.stop()
+    } else {
+      obj.animate({
+        'scrollLeft': step
+      }, 'fast', function () {
+        if (similarItemsScrolling) startScrolling(obj, spd, btn)
+      })
     }
   }
-})
-
-$(document).on('mousedown', similarItemsControls, function (evt) {
-  similarItemsScrolling = true
-  startScrolling($(similarItemsScroller), $(similarItemsScroller).width() / 6, evt.target)
-}).on('mouseup', function () {
-  similarItemsScrolling = false
-})
-
-function startScrolling(obj, spd, btn) {
-  var step = $(btn).hasClass('left') ? '-=' + spd + 'px' : '+=' + spd + 'px'
-
-  if (!similarItemsScrolling) {
-    obj.stop()
-  } else {
-    obj.animate({
-      'scrollLeft': step
-    }, 'fast', function () {
-      if (similarItemsScrolling) startScrolling(obj, spd, btn)
-    })
-  }
 }
+
+$(document).on('turbolinks:load', function() {
+  initializeProductPage()
+})

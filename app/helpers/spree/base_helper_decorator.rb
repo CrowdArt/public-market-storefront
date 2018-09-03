@@ -13,6 +13,7 @@ module Spree
     end
 
     def quantity_left(variant)
+      return 0 if variant.blank?
       current_order ? current_order.quantity_left(variant) : variant.total_on_hand
     end
 

@@ -74,7 +74,7 @@
   content: '\e257'
   font-family: 'Glyphicons Halflings'
 
-.check-left, .info-icon-left, .cross-icon-left
+.check-left, .info-icon-left, .cross-icon-left, .diamond-icon-left
   &:before
     content: ''
     display: inline-block
@@ -103,6 +103,14 @@
 
 .cross-icon-left:before
   @include cross-icon-bg
+  vertical-align: text-top
+
+.diamond-icon-left:before
+  background-image: asset-data-url('icons/rewards-diamond.png')
+  background-size: contain
+  background-repeat: no-repeat
+  height: 24px
+  width: 24px
   vertical-align: text-top
 
 .visible-scroll

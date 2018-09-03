@@ -27,23 +27,15 @@ module Spree
       ([:v22, product.cache_key, product.rewards] + common_product_cache_keys + opts.to_a).compact.join('/')
     end
 
-    def product_variants(product = @product)
-      variants = product.variants
-                        .spree_base_scopes
-                        .in_stock
-                        .active(current_currency)
-                        .includes(:option_values, :prices, :vendor)
-                        .reorder('spree_option_values.position ASC, spree_prices.amount ASC')
-                        .select('spree_prices.amount')
-                        .group_by(&:main_option_value)
-                        .map(&method(:prepare_buy_box_variants))
-
-      @selected = variants.first
-      @selected[:selected] = true if @selected.present?
-
-      other_seller_variants = @other_seller_variants.group_by(&:main_option_value) if @other_seller_variants
-
-      [variants, other_seller_variants]
+    def product_variants(product = @product, variant = @buy_box_variant)
+      product.variants
+             .spree_base_scopes
+             .where.not(id: variant&.id)
+             .in_stock
+             .active(current_currency)
+             .includes(:option_values, :prices, :vendor)
+             .reorder('spree_option_values.position ASC, spree_prices.amount ASC')
+             .group_by(&:main_option_value)
     end
 
     def property_value_format(property_name, value)
@@ -72,25 +64,6 @@ module Spree
 
     def product_kind_views_exists?(product, view)
       product.product_kind_name && lookup_context.exists?(product.product_kind_name, ["spree/products/#{view}"], true, [], formats: [:html])
-    end
-
-    private
-
-    def prepare_buy_box_variants(option_variants)
-      option_value = option_variants[0]
-      variants = option_variants[1]
-      selected_variant = variants.first
-
-      median_price = Spree::Price.new(amount: variants.map(&:price).median, currency: current_currency)
-
-      @other_seller_variants ||= []
-      @other_seller_variants.concat(variants.reject { |v| v.vendor == selected_variant.vendor })
-
-      {
-        option_value: option_value,
-        variant: selected_variant,
-        median_price: median_price.money
-      }
     end
   end
 end

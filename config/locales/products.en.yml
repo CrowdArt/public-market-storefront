@@ -4,8 +4,10 @@ en:
     earn_rewards: "Earn <span>%{rewards}</span> PTRN Rewards"
     earned_rewards: "Earned %{rewards} PTRN Rewards"
     earn_rewards_card: "Earn %{rewards} PTRN"
+    earn_rewards_buy_box: "<span class='flex between'>Earn <strong>$%{rewards}</strong> (%{percentage})</span>in Buyer Rewards <span class='info-icon-left'></span>"
     rewards: "%{rewards} PTRN Rewards"
     total_rewards: "%{rewards} PTRN"
+    arrives: Arrives in 4-8 business days
 
     description:
       vinyl: 'The %{genre} %{record_format} %{rpm} by %{artist}, “%{product_title}”, was produced and released by the record label %{record_label} under the catalog number #%{catalog_number}.'
