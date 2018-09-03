@@ -65,4 +65,40 @@ namespace :db do
   task seed_music: :environment do
     require './db/seeds/music_taxonomy.rb'
   end
+
+  desc 'Allow to add unique index on variants'
+  task fill_sku: :environment do
+    # fill skus with ISBN
+    p Spree::Variant.connection.execute <<-SQL
+      UPDATE "spree_variants"
+      SET sku = value
+      FROM "spree_products"
+      INNER JOIN "spree_product_properties" ON "spree_product_properties"."product_id" = "spree_products"."id"
+      INNER JOIN "spree_properties" ON "spree_properties"."id" = "spree_product_properties"."property_id"
+      WHERE "spree_products"."id" = "spree_variants"."product_id" and
+            "spree_properties"."name" = 'isbn' and
+            "spree_product_properties"."property_id" = 1 and is_master = true and sku = ''
+    SQL
+
+    # fill music skus with variant skus
+    p Spree::Variant.connection.execute <<-SQL
+      UPDATE "spree_variants"
+      SET sku = 'MSC-' || v.vendor_id || '-' || v.sku
+      FROM "spree_products"
+      INNER JOIN "spree_variants" as v ON v."product_id" = "spree_products"."id" and v.is_master = false
+      WHERE "spree_products"."id" = "spree_variants"."product_id" and
+            "spree_variants".is_master = true and "spree_variants".sku = ''
+    SQL
+  end
+
+  desc 'Remove dublicate products'
+  task remove_dublicates: :environment do
+    Spree::ProductProperty.joins(:product).where(property_id: 1).group(:value).having('count(value) > 1').reorder('').pluck('min(slug), array_agg(spree_products.id)').each do |a|
+      correct_product = Spree::Product.find_by(slug: a.first)
+      products_to_delete = a.last - [correct_product.id]
+
+      Spree::Variant.unscoped.where(product_id: products_to_delete, is_master: false).update_all(product_id: correct_product.id)
+      Spree::Product.where(id: products_to_delete).each(&:really_destroy!)
+    end
+  end
 end
