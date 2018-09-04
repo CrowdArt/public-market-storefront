@@ -6,9 +6,11 @@ li.dropdown.link-to-account.hidden-xs.hidden-sm
   ul.dropdown-menu aria-labelledby="dLabel"
     li = link_to Spree.t(:my_account), spree.account_path
 
-    - if spree_current_user.admin? || spree_current_user.vendors.any?
-      li
+    li
+      - if spree_current_user.admin? || spree_current_user.vendors.any?
         = link_to Spree.t(:dashboard), spree.admin_path, target: '_blank'
+      - else
+        = link_to t('menus.account.orders'), spree.account_path(tab: :orders)
 
     - if spree_current_user.admin?
       li.divider role="separator"

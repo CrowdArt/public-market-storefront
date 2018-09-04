@@ -2,7 +2,7 @@
   li.no-margin class=('active' if @account_tab == :summary)
     a.plain-link href='/account' = t('menus.account.summary')
 
-  - links = %i[orders payment shipping]
+  - links = %i[payment shipping orders]
   - links.each do |link|
     li.no-margin class=('active' if @account_tab == link)
       a.plain-link href="/account/#{link}" = t("menus.account.#{link}")
