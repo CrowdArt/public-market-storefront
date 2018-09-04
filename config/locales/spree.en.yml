@@ -88,4 +88,5 @@ en:
       pending: pending
       processing: processing
       void: void
-
+    in_stock: In Stock
+    out_of_stock: Out Of Stock

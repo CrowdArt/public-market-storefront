@@ -17,7 +17,7 @@
               .panel-body.flex.between.wrap
                 .flex-grow-1
                   strong
-                    span.text-danger> #{v.price_in(current_currency).money}
+                    span.text-dark-danger> #{v.price_in(current_currency).money}
                     | + FREE Shipping
                   br
                   span Sold by: #{link_to(vendor.name, vendor_path(vendor), target: '_blank')}

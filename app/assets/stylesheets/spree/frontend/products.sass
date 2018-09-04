@@ -37,7 +37,7 @@ body#product-details
 
   .product-title
     margin-bottom: 5px
-    color: #0e0e12
+    color: $brand-black
 
   .accordion .card
     border-top: 1px solid #eaeaea
@@ -82,10 +82,10 @@ body#product-details
       font-family: $font-family-roboto-condensed
       font-size: 36px
       font-weight: bold
-      color: #0e0e12
+      color: $brand-black
 
   .buy-box
-    border-top: 6px solid #0e0e12
+    border-top: 6px solid $brand-black
     background-color: #f4f4f4
 
     .panel-body
@@ -96,6 +96,12 @@ body#product-details
     &--head
       .lead
         font-weight: bold
+
+      .price
+        font-size: 26px
+
+    &--stock-status-ship
+      font-size: 17px
 
     &--rewards
       font-size: 17px
@@ -111,11 +117,6 @@ body#product-details
 
       &.diamond-icon-left:before
         margin-right: 7px
-
-      .info-icon-left:before
-        border-radius: 50%
-        border: 1px solid $brand-primary
-        margin-right: 0
 
       & > span
         display: inline-block

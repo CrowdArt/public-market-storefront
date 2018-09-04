@@ -6,7 +6,8 @@
       span = t('similar_variants.table_header.price')
       span
         span.margin-text-right Condition
-        = link_to 'ℹ️ Learn more', '#', class: 'btn btn-link no-padding disabled', disabled: true
+        = link_to '#', class: 'btn btn-link no-padding disabled', disabled: true
+          span.info-icon-left.outlined.condensed Learn more
       span = t('similar_variants.table_header.delivery_ptrn')
       span = t('similar_variants.table_header.seller')
 
@@ -35,7 +36,7 @@
               = small_image(product, itemprop: 'image')
 
           .similar-variants--table-body--price-info.ellipsis
-            .lead.text-danger.text-bold $#{variant.price}
+            .lead.text-dark-danger.text-bold $#{variant.price}
 
             strong.visible-xs-inline = variant.main_option_value
 

@@ -85,6 +85,17 @@
   &.condensed:before
     margin-right: 5px
 
+.info-icon-right
+  &:after
+    content: ''
+    display: inline-block
+    margin-left: 10px
+    height: 16px
+    width: 16px
+
+  &.condensed:after
+    margin-left: 5px
+
 .check-left
   &:before
     @include check-icon-bg(#fff)
@@ -97,16 +108,27 @@
   &:before
     @include info-icon-bg
     vertical-align: text-top
+  &.outlined:before
+    @include info-icon-bg(#fff, $brand-primary, $brand-black)
+
+.info-icon-right
+  &:after
+    @include info-icon-bg
+    vertical-align: text-top
+
   &.text-info
     &:before
-      @include info-icon-bg($brand-info)
+      @include info-icon-bg(#fff, #fff, $brand-info)
+
+  &.outlined:after
+    @include info-icon-bg(#fff, $brand-primary, $brand-black)
 
 .cross-icon-left:before
   @include cross-icon-bg
   vertical-align: text-top
 
 .diamond-icon-left:before
-  background-image: asset-data-url('icons/rewards-diamond.png')
+  background-image: asset-data-url('icons/rewards-diamond.svg')
   background-size: contain
   background-repeat: no-repeat
   height: 24px
