@@ -106,6 +106,10 @@ Spree::User.class_eval do
     send_welcome_email
   end
 
+  def send_confirmation_notification?
+    false
+  end
+
   def active_for_authentication?
     !deleted?
   end

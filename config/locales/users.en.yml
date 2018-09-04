@@ -40,3 +40,5 @@ en:
       head: Verified email address
       text: Are you sure you want to change the email address associated with your account? You will need to re-verify email if you proceed.
       button:  Yes, Change Email
+    send_verification: Send Verification Link
+    change_email: Change email address

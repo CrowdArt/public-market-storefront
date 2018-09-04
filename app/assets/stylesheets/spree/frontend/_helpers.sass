@@ -108,17 +108,17 @@
   &:before
     @include info-icon-bg
     vertical-align: text-top
+
   &.outlined:before
     @include info-icon-bg(#fff, $brand-primary, $brand-black)
+
+  &.outline-info:before
+    @include info-icon-bg(#fff, #fff, $brand-info)
 
 .info-icon-right
   &:after
     @include info-icon-bg
     vertical-align: text-top
-
-  &.text-info
-    &:before
-      @include info-icon-bg(#fff, #fff, $brand-info)
 
   &.outlined:after
     @include info-icon-bg(#fff, $brand-primary, $brand-black)

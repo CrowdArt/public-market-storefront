@@ -1,7 +1,7 @@
 .alert-confirm-email.text-center
-  p.info-icon-left
+  p.info-icon-left.outline-info
     == t('account.confirm_alert', email: spree_current_user.unconfirmed_email || spree_current_user.email)
 
-  = link_to('Resend', spree_user_confirmation_path, method: :post, class: 'btn btn-outlined-white')
+  = link_to(t('users.send_verification'), spree_user_confirmation_path, method: :post, class: 'btn btn-outlined-white')
   span.margin-text-horizont-eq or
-  = link_to('Change email address', edit_account_path, class: 'white-link')
+  = link_to(t('users.change_email'), edit_account_path, class: 'white-link')
