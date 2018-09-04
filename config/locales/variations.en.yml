@@ -69,16 +69,15 @@ en:
           - perfect
           - sticker book
           - us-tall rack paperback
-
-        mass-market:
-          - mass market
-
-        trade-paperback:
           - trade paper
           - uk- a format paperback
           - uk-a format paperback
           - uk-b format paperback
           - uk-trade paper
+          - trade paperback
+          
+        mass-market:
+          - mass market
 
         # OTHER FORMATS
         other:
@@ -179,7 +178,6 @@ en:
         paperback:
           - mass-market
           - paperback
-          - trade-paperback
 
         other:
           - other
@@ -187,4 +185,4 @@ en:
     # PM variation should be used on cards
     card_variations:
       books:
-        trade-paperback: paperback
+    #    pm-format: example-format-override-on-cards-text
