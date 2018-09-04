@@ -60,7 +60,7 @@ en:
     merchant_application: Merchant Application
     general: General
     business: Business Information
-    skus: How many SKUs do you have? (If you don’t know, submit your best estimate)
+    skus: How many SKUs do you have?
     product_categories: Which product categories would you describe your inventory as?
     categories:
       - Automotive

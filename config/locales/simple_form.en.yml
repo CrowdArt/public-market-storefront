@@ -8,6 +8,7 @@ en:
         marketplaces: Separate URLs with commas
         software: Separate software/services with commas
         other_category: Separate each category with a comma
+        sku_count: If you don’t know, submit your best estimate
     required:
       text: 'required'
       mark: '*'

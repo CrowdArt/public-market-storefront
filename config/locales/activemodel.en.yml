@@ -2,7 +2,12 @@ en:
   activemodel:
     attributes:
       public_market/merchant:
+        first_name: First Name
+        last_name: Last Name
         company_name: Company Name
+        phone: Phone (Optional)
         sku_count: Number of SKUs
-        website: Your Marketplace URL(s)
-        other_category: Other Product Category
+        website: Your Marketplace URL(s) (Optional)
+        marketplaces: External Marketplace URL(s) (Optional)
+        software: Inventory / Order Management Software (Optional)
+        other_category: Other Product Categories
