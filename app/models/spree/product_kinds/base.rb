@@ -41,7 +41,14 @@ module Spree
       end
 
       def products_by_subtitle
-        nil
+        return if author_property_name.blank?
+        Inventory::Searchers::ProductSearcher.call(
+          keywords: subtitle,
+          fields: [author_property_name],
+          limit: 10,
+          taxon_ids: product.taxons.map(&:self_and_ancestors).flatten.uniq.map(&:id),
+          filter: { id: { not: product.id }}
+        )
       end
     end
   end

@@ -13,6 +13,7 @@ module Spree
         option :load, optional: true, default: proc { true }
         option :explain, optional: true, default: proc { false }
         option :select, optional: true
+        option :fields, optional: true, default: proc { Spree::Product.search_fields }
 
         def call
           raise 'Not Implemented'
@@ -54,11 +55,6 @@ module Spree
 
         def prepare_body(body)
           body
-        end
-
-        def fields
-          # these fields array should be change to depend from product kind
-          Spree::Product.search_fields
         end
 
         def where
