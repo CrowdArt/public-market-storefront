@@ -17,7 +17,7 @@ RSpec.describe Spree::Inventory::Providers::Books::VariantProvider, type: :actio
   let(:options) { {} }
 
   describe '#find_product', search: true do
-    let!(:product) { create(:book, :with_variant, isbn: isbn) }
+    let!(:product) { create(:book, :with_variant, sku: isbn, isbn: isbn) }
     let(:options) { { vendor_id: product.variants.first.vendor.id } }
 
     before do

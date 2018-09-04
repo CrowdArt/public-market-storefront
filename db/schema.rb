@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_30_080355) do
+ActiveRecord::Schema.define(version: 2018_09_03_120415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1255,7 +1255,8 @@ ActiveRecord::Schema.define(version: 2018_08_30_080355) do
     t.index ["is_master"], name: "index_spree_variants_on_is_master"
     t.index ["position"], name: "index_spree_variants_on_position"
     t.index ["product_id"], name: "index_spree_variants_on_product_id"
-    t.index ["sku"], name: "index_spree_variants_on_sku"
+    t.index ["sku", "vendor_id"], name: "index_spree_variants_on_sku_and_vendor_id", unique: true, where: "(vendor_id IS NOT NULL)"
+    t.index ["sku"], name: "index_spree_variants_on_sku", unique: true, where: "(vendor_id IS NULL)"
     t.index ["tax_category_id"], name: "index_spree_variants_on_tax_category_id"
     t.index ["track_inventory"], name: "index_spree_variants_on_track_inventory"
     t.index ["vendor_id"], name: "index_spree_variants_on_vendor_id"
