@@ -108,6 +108,7 @@ deploy to production:
     - kubectl cluster-info
     - kubectl patch sts web -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
     - kubectl patch sts sidekiq -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
+    - kubectl patch sts sidekiq-uploads -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
     - kubectl get pod
   when: manual
   environment:

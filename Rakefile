@@ -11,6 +11,15 @@ task default: :environment do
   Rake::Task['parallel:spec'].invoke('4')
 end
 
+namespace :jobs do
+  desc 'Run sidekiq uploads'
+  task sidekiq_uploads: :environment do
+    q = Spree::Vendor.pluck(:slug).map { |s| "-q #{s}-uploads, 1" }
+    p 'Run queues: ', q
+    system("sidekiq -c 25 -C '' #{q.join(' ')}")
+  end
+end
+
 namespace :spree_sample do
   desc 'Loads sample storefront data'
   task book_samples: :environment do
