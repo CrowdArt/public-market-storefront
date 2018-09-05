@@ -44,7 +44,7 @@ ruby:
         - else
           .text-danger = Spree.t(:out_of_stock)
 
-        span = variant.vendor.shipping_methods.first.name
+        span = Spree.t(:free_shipping)
 
       .text-muted = t('products.arrives')
 
