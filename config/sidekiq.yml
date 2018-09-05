@@ -1,5 +1,5 @@
 ---
-:concurrency: 10
+:concurrency: 25
 :queues:
   - payments
   - orders
@@ -8,7 +8,6 @@
   - searchkick
   - paperclip
   - mailers
-  - upload
   - recalculation
 :schedule:
   capture_payments:

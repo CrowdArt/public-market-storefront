@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_batch_api.git
-  revision: be918b80e0e57bd7e1feeea02d8a106bf51f112b
+  revision: 55129cdbd9ee64a072bb90b03d9fe27d32a532f2
   specs:
     spree_batch_api (0.0.1.alpha)
       dry-initializer
@@ -41,7 +41,7 @@ GIT
 
 GIT
   remote: https://github.com/public-market/spree_multi_vendor.git
-  revision: 8604282ff8371501ef3be6f8f83282c673fd32da
+  revision: 1d6877eda2dd58142d2f22c3557922057ea26660
   specs:
     spree_multi_vendor (0.0.1.alpha)
       sidekiq

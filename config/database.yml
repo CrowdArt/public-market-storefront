@@ -7,7 +7,7 @@ default: &default
 development:
   <<: *default
   database: storefront_development
-  pool: <%= ENV['WEB_THREADS'] || 20 %>
+  pool: <%= ENV['WEB_THREADS'] || 25 %>
   username: postgres
   password: postgres
 
@@ -20,7 +20,7 @@ test:
 staging:
   <<: *default
   database: storefront_staging
-  pool: <%= ENV['WEB_THREADS'] || 20 %>
+  pool: <%= ENV['WEB_THREADS'] || 25 %>
   username: <%= ENV['DB_USER'] %>
   password: <%= ENV['DB_PASSWORD'] %>
   host: <%= ENV['DB_HOST'] %>
@@ -28,7 +28,7 @@ staging:
 production:
   <<: *default
   database: storefront_production
-  pool: <%= ENV['WEB_THREADS'] || 20 %>
+  pool: <%= ENV['WEB_THREADS'] || 25 %>
   username: <%= ENV['DB_USER'] %>
   password: <%= ENV['DB_PASSWORD'] %>
   host: <%= ENV['DB_HOST'] %>
