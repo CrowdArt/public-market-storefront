@@ -68,4 +68,8 @@ Spree::UsersController.class_eval do
     tab = [params[:tab].to_s.to_sym] & %i[summary orders]
     @account_tab = tab.first || :summary
   end
+
+  def accurate_title
+    Spree.t(:your_account)
+  end
 end

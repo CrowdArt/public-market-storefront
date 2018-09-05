@@ -4,7 +4,7 @@ li.dropdown.link-to-account.hidden-xs.hidden-sm
     span.margin-text-horizont-eq = spree_current_user.display_name
 
   ul.dropdown-menu aria-labelledby="dLabel"
-    li = link_to Spree.t(:my_account), spree.account_path
+    li = link_to Spree.t(:your_account), spree.account_path
 
     li
       - if spree_current_user.admin? || spree_current_user.vendors.any?

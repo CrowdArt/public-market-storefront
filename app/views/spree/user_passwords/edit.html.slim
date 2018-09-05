@@ -1,7 +1,7 @@
 - if spree_user_signed_in?
   = render layout: 'spree/users/account_template'
     .user-account-form
-      = render partial: 'spree/shared/account_breadcrumbs', locals: { items: [link_to('My Account', account_path), link_to(Spree.t(:editing_user), edit_account_path), Spree.t(:change_your_password)] }
+      = render partial: 'spree/shared/account_breadcrumbs', locals: { items: [link_to(Spree.t(:your_account), account_path), link_to(Spree.t(:editing_user), edit_account_path), Spree.t(:change_your_password)] }
 
       = render partial: 'spree/user_passwords/form'
 - else

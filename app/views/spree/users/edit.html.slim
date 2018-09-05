@@ -1,6 +1,6 @@
 = render layout: 'spree/users/account_template'
   .user-account-form
-    = render partial: 'spree/shared/account_breadcrumbs', locals: { items: [link_to('My Account', account_path), Spree.t(:editing_user)] }
+    = render partial: 'spree/shared/account_breadcrumbs', locals: { items: [link_to(Spree.t(:your_account), account_path), Spree.t(:editing_user)] }
 
     h3.upcase.no-margin.text-color = Spree.t(:editing_user)
 
