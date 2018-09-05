@@ -23,6 +23,7 @@ RSpec.describe Spree::Orders::VendorView, type: :model do
     it { expect(vendor_view.canceled?).to eq(order.canceled?) }
     it { expect(vendor_view.approved?).to eq(order.approved?) }
     it { expect(vendor_view.billing_address).to eq(order.billing_address) }
+    it { expect(vendor_view.is_risky?).to eq(order.is_risky?) }
   end
 
   describe '#display_item_total' do
