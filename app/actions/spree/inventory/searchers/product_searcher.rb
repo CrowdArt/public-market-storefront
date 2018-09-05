@@ -8,6 +8,7 @@ module Spree
         option :taxon_ids, optional: true
         option :enable_aggs, optional: true, default: proc { false }
         option :includes, optional: true, default: proc { [:tax_category, :best_variant, master: %i[default_price prices images]] }
+        option :operator, optional: true, default: proc { :or }
 
         def call
           search_products
@@ -18,10 +19,6 @@ module Spree
         end
 
         private
-
-        def operator
-          'or'
-        end
 
         def prepare_body(body)
           return if keywords.blank?

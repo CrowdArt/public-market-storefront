@@ -14,6 +14,7 @@ module Spree
         option :explain, optional: true, default: proc { false }
         option :select, optional: true
         option :fields, optional: true, default: proc { Spree::Product.search_fields }
+        option :operator, optional: true, default: proc { nil }
 
         def call
           raise 'Not Implemented'
@@ -82,10 +83,6 @@ module Spree
         end
 
         def misspellings
-          nil
-        end
-
-        def operator
           nil
         end
       end

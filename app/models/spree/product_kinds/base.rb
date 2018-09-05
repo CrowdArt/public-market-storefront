@@ -45,6 +45,7 @@ module Spree
         Inventory::Searchers::ProductSearcher.call(
           keywords: subtitle,
           fields: [author_property_name],
+          operator: :and,
           limit: 10,
           taxon_ids: product.taxons.map(&:self_and_ancestors).flatten.uniq.map(&:id),
           filter: { id: { not: product.id }}
