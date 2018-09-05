@@ -1,0 +1,8 @@
+{
+  "Beauty & Health": ["Beauty", "Health & Personal Care "],
+  "Clothing & Apparel": ["Jewelry", "Shoes", "Apparel"],
+  "Electronics": ["Cameras", "Computers", "Consumer Electronics", "DVDs", "Lighting", "Wireless"],
+  "Home & Kitchen": ["Foods & Beverages", "Home", "Home Improvement", "Miscellaneous", "Office Products", "Pet Supplies"],
+  "Sports & Outdoors": ["Outdoor Living", "Sports & Fitness"],
+  "Toys & Kids": ["Baby Products", "Toys & Games"]
+}
