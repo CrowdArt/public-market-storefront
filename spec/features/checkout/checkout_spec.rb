@@ -12,7 +12,7 @@ RSpec.describe 'Checkout', type: :feature, js: true do
       click_button 'Proceed to Checkout'
     end
 
-    it { expect(page).to have_text 'REGISTER' }
+    it { expect(page).to have_text 'CREATE ACCOUNT' }
   end
 
   # rubocop:disable RSpec/LetSetup
