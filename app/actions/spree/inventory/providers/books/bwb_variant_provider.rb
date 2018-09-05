@@ -12,6 +12,7 @@ module Spree
             'Used - Very Good',
             'Used - Good',
             'Used - Acceptable',
+            'Collectible - Excellent',
             'Collectible - Like New',
             'Collectible - Very Good',
             'Collectible - Good',

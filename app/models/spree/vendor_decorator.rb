@@ -15,7 +15,7 @@ module Spree
       name = "seller_#{id}_free"
 
       shipping_methods.create(
-        name: 'Free Shipping',
+        name: 'FREE Shipping',
         display_on: 'both',
         admin_name: name,
         code: name,

@@ -7,10 +7,10 @@ ruby:
     = form_for :order, url: populate_orders_path, remote: true, html: { itemprop: 'offers', itemtype: 'https://schema.org/Offer', id: 'buy-box' } do |f|
       = hidden_field_tag :variant_id, variant.id, id: "variant_id_#{variant.id}"
 
-      .flex.align-center.between.buy-box--head.text-black
-        strong.lead.no-margin Buy #{variant.main_option_value}
+      .flex.align-center.between.buy-box--head
+        .lead.no-margin Buy #{variant.main_option_value}
 
-        strong.price = variant.price_in(current_currency).money
+        strong.price.text-black = variant.price_in(current_currency).money
 
       br
 
