@@ -200,46 +200,9 @@ RSpec.describe Spree::User, type: :model do
   end
 
   describe 'welcome email', enqueue: true do
-    let(:user) { create(:user, confirmed_at: nil) }
+    let!(:user) { create(:user, confirmed_at: nil) }
 
-    context 'when after create' do
-      it 'adds delayed welcome email job' do
-        expect {
-          user # create user
-        }.to change(DelayedWelcomeEmail.jobs, :size).by(1)
-      end
-    end
-
-    context 'when after confirmation' do
-      it 'is sent' do
-        expect {
-          user.confirm
-        }.to have_enqueued_job(ActionMailer::DeliveryJob).with('Spree::UserMailer', 'welcome', 'deliver_now', user.id)
-      end
-
-      context 'when after 1 hour' do
-        before do
-          user # create user
-          travel(1.hour + 1.minute)
-        end
-
-        it 'is not sent' do
-          expect {
-            user.confirm
-          }.not_to have_enqueued_job(ActionMailer::DeliveryJob).with('Spree::UserMailer', 'welcome', 'deliver_now', user.id)
-        end
-      end
-    end
-
-    context 'with reconfirmation' do
-      let(:user) { create(:user, unconfirmed_email: 'newemail@email.com') }
-
-      it 'is not sent' do
-        expect {
-          user.confirm
-        }.not_to change { ActionMailer::Base.deliveries.size }
-      end
-    end
+    it { expect(ActionMailer::DeliveryJob).to have_been_enqueued.with('Spree::UserMailer', 'welcome', 'deliver_now', user.id) }
   end
 
   describe '#destroy' do

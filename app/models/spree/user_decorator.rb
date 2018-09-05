@@ -27,7 +27,7 @@ Spree::User.class_eval do
 
   before_save :fill_names, if: :ship_address_id_changed?
 
-  after_create :send_welcome_email_with_delay
+  after_create :send_welcome_email
 
   # used in login form
   attr_writer :username
@@ -98,14 +98,6 @@ Spree::User.class_eval do
     addresses.create(address_attributes)
   end
 
-  def after_confirmation
-    # don't send welcome email if:
-    # - reconfirmation
-    # - welcome email was sent in DelayedWelcomeEmail
-    return if previous_changes[:unconfirmed_email] || (confirmation_sent_at.present? && (confirmation_sent_at < 1.hour.ago))
-    send_welcome_email
-  end
-
   def send_confirmation_notification?
     false
   end
@@ -144,10 +136,6 @@ Spree::User.class_eval do
 
   # override to do nothing
   def set_login; end
-
-  def send_welcome_email_with_delay
-    DelayedWelcomeEmail.perform_in(1.hour, id)
-  end
 
   def send_welcome_email
     Spree::UserMailer.welcome(id).deliver_later
