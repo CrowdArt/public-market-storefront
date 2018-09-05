@@ -41,7 +41,7 @@ en:
     variant_quantity_not_available: "We're sorry, You've requested more of <strong>%{title}</strong>, than the %{available_items} available from the seller."
     sign_up: Sign Up
     sign_in: Log In
-    welcome_back: Welcome Back
+    create_account: Create Account
     your_account: Your Account
     edit_email_password: Change Email/Password
     continue_shopping: Continue Shopping

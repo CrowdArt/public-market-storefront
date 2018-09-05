@@ -2,7 +2,9 @@
 
 en:
   hero:
-    header: Join the Rewards-Driven Shopping Revolution
+    header:
+      out: Join the Rewards-Driven Shopping Revolution
+      in: Rewards-Driven Shopping Revolution
     subheader: Zero fees for sellers. Lower prices for you.
     call_to_action: Start Earning
 
