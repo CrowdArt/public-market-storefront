@@ -29,13 +29,13 @@ RSpec.describe 'rate shipment', type: :feature, js: true, vcr: true do
       end
 
       it 'update ratings' do
-        expect(page).to have_text('100.0%')
+        expect(page).to have_text('100%')
         expect(page).to have_text('Your Rating: Positive')
       end
 
       it 'vendor should have positive feedback' do
         visit spree.vendor_path(vendor)
-        expect(page).to have_text('Positive Feedback: 100.0%')
+        expect(page).to have_text('Positive Feedback: 100%')
       end
 
       context 'when update feedback' do
