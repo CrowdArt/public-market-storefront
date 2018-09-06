@@ -25,6 +25,10 @@ module Spree
         def find_metadata(_identifier)
           GenericMetadataProvider.call(item_json.stringify_keys)
         end
+
+        def categorise(product, taxons)
+          GenericClassifier.call(product, taxons)
+        end
       end
     end
   end

@@ -3,8 +3,8 @@ module Spree
     module Providers
       class DefaultClassifier < Spree::BaseAction
         param :product
-        param :taxonomy
-        param :taxon_candidates
+        param :taxon_candidates, optional: true, default: proc { [] }
+        option :taxonomy, optional: true, default: proc { Taxonomy.other }
 
         def call
           categorise
@@ -14,11 +14,15 @@ module Spree
 
         def categorise # rubocop:disable Metrics/AbcSize
           parent_taxon = taxonomy.root
+
           taxon_candidates.each do |taxon|
-            parent_taxon = parent_taxon.children.find_by(name: taxon)
+            new_parent_candidate = find_taxon(parent_taxon, taxon)
+            # save last matched taxon as parent
+            new_parent_candidate.blank? ? break : parent_taxon = new_parent_candidate
           end
 
-          if parent_taxon.present?
+          # save to uncategorized if root taxon found
+          if parent_taxon.present? && parent_taxon != taxonomy.root
             parent_taxon.products << product
           else
             uncategorized_taxon = taxonomy.uncategorized_taxon
