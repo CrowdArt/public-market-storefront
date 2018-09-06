@@ -18,4 +18,5 @@
           .checkbox.checkbox-blue.variation-child--container
             = check_box_tag 'checkbox_variation', option.parameterize, false, id: "variation_checkbox_#{i}_#{j}", class: 'variation-child'
             label for="variation_checkbox_#{i}_#{j}"
-              span.flex.align-center = option.split(' - ')[1].titleize
+              - option_value = option.split(' – ')[1]
+              span.flex.align-center = option_value&.titleize || option

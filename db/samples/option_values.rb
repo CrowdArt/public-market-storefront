@@ -13,19 +13,19 @@ conditions = [
   },
   {
     name: 'used_like_new',
-    presentation: 'Used - Like New'
+    presentation: 'Used – Like New'
   },
   {
     name: 'used_very_good',
-    presentation: 'Used - Very Good'
+    presentation: 'Used – Very Good'
   },
   {
     name: 'used_good',
-    presentation: 'Used - Good'
+    presentation: 'Used – Good'
   },
   {
     name: 'used_acceptable',
-    presentation: 'Used - Acceptable'
+    presentation: 'Used – Acceptable'
   }
 ]
 
