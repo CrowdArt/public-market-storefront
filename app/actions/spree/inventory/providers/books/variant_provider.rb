@@ -44,10 +44,6 @@ module Spree
             hash[:ean]
           end
 
-          def product_option_types_attrs
-            { option_type: condition_option_type }
-          end
-
           def product_attrs(metadata)
             {
               name: metadata[:title],
@@ -60,14 +56,6 @@ module Spree
               available_on: metadata[:available_on].presence || Time.current,
               discontinue_on: metadata[:discontinue_on].presence
             }
-          end
-
-          def variant_options(item)
-            [{ name: condition_option_name, value: mapped_condition(item[:condition]) }]
-          end
-
-          def condition_option_name
-            'condition'
           end
 
           def master_variant_attributes(metadata)
@@ -85,17 +73,17 @@ module Spree
             attrs
           end
 
-          def condition_option_type
-            option_type_attrs = {
-              name: condition_option_name,
-              presentation: 'Condition',
-              option_values_attributes: PERMITTED_CONDITIONS.map do |c|
-                mapped_condition = mapped_condition(c)
-                { name: mapped_condition, presentation: mapped_condition }
-              end
-            }
+          def variant_option_value(item, _option_type)
+            mapped_condition(item[:condition])
+          end
 
-            OptionType.where(name: option_type_attrs[:name]).first_or_create(option_type_attrs)
+          def option_types
+            permitted_conditions = PERMITTED_CONDITIONS.map do |c|
+              mapped_condition = mapped_condition(c)
+              { name: mapped_condition, presentation: mapped_condition }
+            end
+
+            [{ name: 'condition', presentation: 'Condition', values: permitted_conditions }]
           end
 
           def mapped_condition(condition)

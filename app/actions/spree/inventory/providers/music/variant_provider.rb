@@ -47,10 +47,6 @@ module Spree
             nil # products are always unique
           end
 
-          def product_option_types_attrs
-            { option_type: condition_option_type }
-          end
-
           def product_attrs(metadata)
             {
               name: metadata[:title],
@@ -70,20 +66,16 @@ module Spree
             }
           end
 
-          def condition_option_name
-            'vinyl_condition'
+          def variant_option_value(item, _option_type)
+            item[:condition]
           end
 
-          def condition_option_type
-            option_type_attrs = {
-              name: condition_option_name,
-              presentation: 'Condition',
-              option_values_attributes: PERMITTED_VINYL_CONDITIONS.map do |c|
-                { name: c, presentation: t("option_values.#{condition_option_name}.#{c}") }
-              end
-            }
+          def option_types
+            permitted_conditions = PERMITTED_VINYL_CONDITIONS.map do |c|
+              { name: c, presentation: t("option_values.vinyl_condition.#{c}") }
+            end
 
-            OptionType.where(name: option_type_attrs[:name]).first_or_create(option_type_attrs)
+            [{ name: 'vinyl_condition', presentation: 'Condition', values: permitted_conditions }]
           end
         end
       end

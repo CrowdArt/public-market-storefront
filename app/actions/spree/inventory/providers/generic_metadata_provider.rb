@@ -3,6 +3,7 @@ module Spree
     module Providers
       class GenericMetadataProvider < Spree::BaseAction
         param :item_json
+        param :schema_fields
 
         def call
           {
@@ -31,14 +32,11 @@ module Spree
         end
 
         def properties
-          {
-            # artist: item_json.dig('artist'),
-            # music_format: item_json.dig('format'),
-            # music_label: item_json.dig('label'),
-            # music_label_number: item_json.dig('label_number'),
-            # vinyl_speed: item_json.dig('speed'),
-            # music_genres: item_json.dig('genres')
-          }
+          result = {}
+          (item_json.symbolize_keys.keys - schema_fields).each do |field|
+            result[field] = item_json[field.to_s]
+          end
+          result
         end
 
         def taxonomy_name

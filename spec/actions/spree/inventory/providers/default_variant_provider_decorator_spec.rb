@@ -7,7 +7,9 @@ RSpec.describe Spree::Inventory::Providers::Books::VariantProvider, type: :actio
       ean: isbn,
       sku: '08-F-002387',
       condition: 'Acceptable',
-      seller: 'Computer Store'
+      seller: 'Computer Store',
+      quantity: 1,
+      price: 1.25
     }
   end
 
