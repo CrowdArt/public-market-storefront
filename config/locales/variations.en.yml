@@ -11,6 +11,7 @@ en:
           - 'used - good'
           - 'used - acceptable'
         collectible:
+          - 'collectible - excellent'
           - 'collectible - like new'
           - 'collectible - very good'
           - 'collectible - good'
@@ -75,7 +76,7 @@ en:
           - uk-b format paperback
           - uk-trade paper
           - trade paperback
-          
+
         mass-market:
           - mass market
 
