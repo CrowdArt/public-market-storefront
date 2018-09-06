@@ -27,7 +27,7 @@ en:
     top_products_header: Top Selling Products
 
   account:
-    confirm_alert: "You haven’t verified your email address. To redeem your PTRN Credits, confirm your email via the email we just sent to <strong>%{email}</strong>"
+    confirm_alert: "To redeem your Buyer Rewards, you'll have confirm your email address. Want to receive a verification link to <strong>%{email}</strong> now?"
 
   payment_methods:
     cards:
