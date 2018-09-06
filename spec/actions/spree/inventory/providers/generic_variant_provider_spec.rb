@@ -70,9 +70,12 @@ RSpec.describe Spree::Inventory::Providers::GenericVariantProvider, type: :actio
     it { expect(product.variants.count).to eq(1) }
     it { expect(product.properties.count).to eq(1) }
     it { expect(product.property('color')).to eq(item_json[:color]) }
-    it { expect(product.taxons.count).to eq(1) }
-    # it { expect(product.taxons.first.taxonomy.name).to eq('Beauty & Health') }
-    # it { expect(product.taxons.first.name).to eq('Beauty') }
+
+    describe 'taxons' do
+      it { expect(product.taxons.count).to eq(1) }
+      it { expect(product.taxons.first.taxonomy.name).to eq('Beauty & Health') }
+      it { expect(product.taxons.first.name).to eq('Beauty') }
+    end
 
     context 'when option types are present' do
       let(:option_types) { 'color, size' }

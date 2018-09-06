@@ -3,6 +3,8 @@ module Spree
     module Providers
       module Books
         class Classifier < DefaultClassifier
+          option :taxonomy, optional: true, default: proc { Taxonomy.create_with(filterable: true).find_or_create_by(name: 'Books') }
+
           private
 
           def categorise

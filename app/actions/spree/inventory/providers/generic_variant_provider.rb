@@ -24,11 +24,21 @@ module Spree
         protected
 
         def find_metadata(_identifier)
-          GenericMetadataProvider.call(item_json.stringify_keys, VALIDATION_SCHEMA.rules.keys)
+          GenericMetadataProvider.call(item_json.stringify_keys, VALIDATION_SCHEMA.rules.keys, taxonomy_name: taxonomy_name)
         end
 
         def categorize(product, taxons)
-          GenericClassifier.call(product, taxons)
+          GenericClassifier.call(product, taxons.presence || original_taxons, taxonomy_name: taxonomy_name)
+        end
+
+        private
+
+        def original_taxons
+          @original_taxons ||= array(item_json[:categories]).map(&:humanize)
+        end
+
+        def taxonomy_name
+          @taxonomy_name ||= original_taxons.first
         end
 
         def product_identifier(hash)
