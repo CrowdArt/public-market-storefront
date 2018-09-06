@@ -47,7 +47,7 @@ module Spree
       reputation = cached_reputation(vendor)
 
       if reputation.present? && reputation.score.present?
-        rating = number_to_percentage(reputation.score * 100, precision: 1)
+        rating = number_to_percentage(reputation.score * 100, precision: 0)
         rating += ' Positive Ratings' if format == :text
         rating
       else
