@@ -85,6 +85,7 @@ deploy to staging:
     - kubectl cluster-info
     - kubectl patch sts web -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
     - kubectl patch sts sidekiq -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
+    - kubectl patch sts sidekiq-uploads -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"app\":\"$CI_ENVIRONMENT_SLUG\"}, \"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
     - kubectl get pod
     # set Pivotal Tracker stories to delivered state
     - git log --format=%s $CI_BUILD_BEFORE_SHA..$CI_COMMIT_SHA | (grep -io "\[fixes .*\]" || true) | (grep -o "[0-9][0-9]*" || true) | xargs -I % curl -X PUT -H "X-TrackerToken:$PT_TOKEN" -H "Content-Type:application/json" -d '{"current_state":"delivered"}' https://www.pivotaltracker.com/services/v5/projects/$PT_PROJECT_ID/stories/%
