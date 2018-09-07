@@ -1,7 +1,7 @@
 module Spree
   module HomepageHelper
     def home_top_collections_cache_key
-      [:v2, :home, :top_collections, (ProductCollection.maximum(:updated_at) || Time.zone.today).to_s(:number)]
+      [:v3, :home, :top_collections, (ProductCollection.maximum(:updated_at) || Time.zone.today).to_s(:number)]
     end
 
     def fetch_staff_picks

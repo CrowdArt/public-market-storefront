@@ -12,7 +12,7 @@ section.top-categories
           .content
             h3 = collection[:name]
             p
-              | Starting at $#{min_price.to_f.round(2)}
+              | Starting at #{number_to_currency(min_price.to_f)}
             = link_to 'SHOP NOW', product_collections_path(collection), class: 'btn btn-primary'
 
           figure
