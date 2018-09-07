@@ -29,15 +29,11 @@ nav.mobile-menu role='navigation' aria-expanded='false' aria-label='Main menu'
 
       - disabled_taxons.each do |t|
         li
-          a.btn.btn-link.link-muted.flex.between.disabled.disabled-category disabled=true href="#"
-            span = t.name
-            span.text-success COMING SOON
+          = link_to t.name, root_path
 
         li.divider role='separator'
 
-      - %w[how-it-works become-a-seller].each do |link|
-        li
-          a.btn.btn-link.disabled disabled=true href="#" = t("menus.navbar-top-row.#{link}")
+      = render partial: 'spree/nav/additional_links'
 
     - if spree_user_signed_in?
       = render partial: 'spree/nav/nav_mobile_menu_bottom'

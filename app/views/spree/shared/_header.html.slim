@@ -17,7 +17,7 @@ ruby:
 
     .top-navbar
       .flex.between.align-center
-        - cache([:v2, :navbar_top_row])
+        - cache([:v3, :navbar_top_row])
           / MOBILE MENU TOGGLE
           .visible-xs.visible-sm
             label.no-margin.mobile-menu-btn for='mobile-nav-toggle'
@@ -32,7 +32,7 @@ ruby:
           - cache([:v4, :navbar_top_right, spree_current_user])
             = render partial: 'spree/nav/navbar_top_right'
 
-      - cache([:v6, :navbar_bottom_row, root_taxons, taxon])
+      - cache([:v7, :navbar_bottom_row, root_taxons, taxon])
         / use divider instead of border because rows/cols have paddings
         hr.divider.hidden-xs.hidden-sm
 

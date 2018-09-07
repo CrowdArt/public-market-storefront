@@ -1,5 +1,5 @@
 / cached in spree/shared/header
-ul.nav.navbar-nav.navbar-bottom-row.hidden-xs.hidden-sm#top-nav-bottom-row data-turbolinks-permanent=true
+ul.nav.navbar-nav.navbar-bottom-row.hidden-xs.hidden-sm#top-nav-bottom-row
   - taxons.each do |t|
-    li data-toggle=('tooltip' if t.hidden?) data-placement='bottom' data-html='true' data-title='<span class="text-success">COMING SOON</text-success>'
-      = link_to t.name, t.hidden? ? '#' : spree.nested_taxons_path(t.permalink), disabled: t.hidden?, class: "btn btn-link bottom-border #{'disabled' if t.hidden?} #{'active' if t == taxon}"
+    li
+      = link_to t.name, t.hidden? ? root_path : spree.nested_taxons_path(t.permalink), class: "bottom-border #{'active' if t == taxon}"

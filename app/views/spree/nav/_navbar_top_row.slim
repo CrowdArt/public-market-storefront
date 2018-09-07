@@ -1,5 +1,2 @@
 ul.nav.navbar-nav.navbar-top-row.hidden-xs.hidden-sm#top-nav-top-row data-turbolinks-permanent=true
-  li data-toggle='tooltip' data-placement='bottom' data-html='true' data-title='<span class="text-success">COMING SOON</text-success>'
-    a.btn.btn-link.disabled href="#" disabled=true = t('menus.navbar-top-row.how-it-works')
-  li
-    a.btn.btn-link href=sell_apply_path = t('menus.navbar-top-row.become-a-seller')
+  = render partial: 'spree/nav/additional_links'

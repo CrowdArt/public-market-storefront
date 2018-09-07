@@ -1,7 +1,7 @@
 - taxon ||= nil
 
 = form_tag spree.products_path, method: :get, class: "navbar-search-form flex flex-1 #{'filled' if params[:keywords].present?}", id: 'navbar-keyword-form' do
-  - cache([:v2, :navbar_taxons_dropdown, root_taxons, taxon])
+  - cache([:v3, :navbar_taxons_dropdown, root_taxons, taxon])
     ul.dropdown-menu.no-margin.visible-scroll#taxon-dropdown aria-labelledby="taxon-menu"
       li
         a href="#" class=('checked' if taxon.blank?) data-taxon-id='' data-taxon-name=Spree.t(:all_products) = Spree.t(:all_products)
@@ -12,10 +12,7 @@
             = t.name
 
       - disabled_taxons.each do |t|
-        li.disabled
-          a.btn.btn-link.disabled.link-muted disabled=true href="#"
-            span = t.name
-            span.text-success COMING SOON
+        li = link_to t.name, root_path
 
   .input-group-btn.taxon-group.hidden-xxs
     button.btn.btn-default.dropdown-toggle.ellipsis#taxon-menu type="button" data-target='#navbar-keyword-form' data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
