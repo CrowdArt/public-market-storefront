@@ -13,7 +13,8 @@ module Spree
             description: item_json.dig('description'),
             properties: properties,
             images: images,
-            dimensions: dimensions
+            dimensions: dimensions,
+            keywords: item_json.dig('keywords')
           }.deep_merge(taxonomy_metadata)
         end
 

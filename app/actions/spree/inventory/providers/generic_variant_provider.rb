@@ -23,6 +23,7 @@ module Spree
             optional(:width) { float? | int? }
             optional(:depth) { float? | int? }
             optional(:rewards_percentage) { int? }
+            optional(:keywords) { str? }
           end
 
         protected

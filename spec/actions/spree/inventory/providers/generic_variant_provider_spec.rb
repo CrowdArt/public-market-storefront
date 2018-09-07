@@ -55,6 +55,7 @@ RSpec.describe Spree::Inventory::Providers::GenericVariantProvider, type: :actio
         option_types: option_types,
         images: images,
         rewards_percentage: 1,
+        keywords: keywords,
         **properties,
         **dimensions
       }
@@ -67,6 +68,7 @@ RSpec.describe Spree::Inventory::Providers::GenericVariantProvider, type: :actio
     let(:product) { variant.product }
     let(:properties) { { color: 'Green' } }
     let(:dimensions) { {} }
+    let(:keywords) { '' }
 
     it { expect(variant.sku).to eq(item_json[:sku]) }
     it { expect(variant.option_values.first.name).to eq('Default') }
@@ -142,6 +144,14 @@ RSpec.describe Spree::Inventory::Providers::GenericVariantProvider, type: :actio
           expect(product.master.width).to eq(5.12)
           expect(product.master.depth).to eq(8)
         end
+      end
+    end
+
+    context 'with keywords' do
+      let(:keywords) { 'keyword1 keyword2' }
+
+      it 'saves tags' do
+        expect(product.tag_list).to include('keyword1', 'keyword2')
       end
     end
   end
