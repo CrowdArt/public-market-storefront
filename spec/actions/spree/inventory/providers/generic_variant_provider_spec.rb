@@ -23,7 +23,8 @@ RSpec.describe Spree::Inventory::Providers::GenericVariantProvider, type: :actio
       let(:item_json) do
         {
           sku: 5, product_id: 8773, categories: 5, quantity: '0', price: 'Zero',
-          option_types: 5, images: 5, rewards_percentage: 'Free'
+          option_types: 5, images: 5, rewards_percentage: 'Free', weight: 'heavy',
+          height: 'high', width: 'wide', depth: 'deep'
         }
       end
 
@@ -32,6 +33,11 @@ RSpec.describe Spree::Inventory::Providers::GenericVariantProvider, type: :actio
       it { expect { variant }.to raise_error(Spree::ImportError).with_message(match(/:categories/)) }
       it { expect { variant }.to raise_error(Spree::ImportError).with_message(match(/:images/)) }
       it { expect { variant }.to raise_error(Spree::ImportError).with_message(match(/:option_types/)) }
+      it { expect { variant }.to raise_error(Spree::ImportError).with_message(match(/:rewards_percentage/)) }
+      it { expect { variant }.to raise_error(Spree::ImportError).with_message(match(/:weight/)) }
+      it { expect { variant }.to raise_error(Spree::ImportError).with_message(match(/:height/)) }
+      it { expect { variant }.to raise_error(Spree::ImportError).with_message(match(/:width/)) }
+      it { expect { variant }.to raise_error(Spree::ImportError).with_message(match(/:depth/)) }
     end
   end
 
@@ -48,15 +54,19 @@ RSpec.describe Spree::Inventory::Providers::GenericVariantProvider, type: :actio
         notes: 'Notes',
         option_types: option_types,
         images: images,
-        rewards_percentage: 1
-      }.merge(properties)
+        rewards_percentage: 1,
+        **properties,
+        **dimensions
+      }
     end
+
     let(:product_id) { '789867898760' }
     let(:categories) { 'Beauty' }
     let(:option_types) { '' }
     let(:images) { [] }
     let(:product) { variant.product }
     let(:properties) { { color: 'Green' } }
+    let(:dimensions) { {} }
 
     it { expect(variant.sku).to eq(item_json[:sku]) }
     it { expect(variant.option_values.first.name).to eq('Default') }
@@ -100,6 +110,38 @@ RSpec.describe Spree::Inventory::Providers::GenericVariantProvider, type: :actio
         let(:categories) { 'Books' }
 
         it { expect(product.images.count).to eq(1) }
+      end
+    end
+
+    context 'with dimensions' do
+      context 'with given dimensions' do
+        let(:dimensions) do
+          {
+            weight: 10,
+            height: 15.2,
+            width: 1,
+            depth: 2.52
+          }
+        end
+
+        it 'saves dimensions' do
+          expect(product.master.weight).to eq(10)
+          expect(product.master.height).to eq(15.2)
+          expect(product.master.width).to eq(1)
+          expect(product.master.depth).to eq(2.52)
+        end
+      end
+
+      context 'with book provider meta', vcr: true do
+        let(:product_id) { '9780307341570' }
+        let(:categories) { 'Books' }
+
+        it 'saves dimensions' do
+          expect(product.master.weight).to eq(0.59)
+          expect(product.master.height).to eq(0.79)
+          expect(product.master.width).to eq(5.12)
+          expect(product.master.depth).to eq(8)
+        end
       end
     end
   end

@@ -12,7 +12,8 @@ module Spree
             price: item_json.dig('price').to_f,
             description: item_json.dig('description'),
             properties: properties,
-            images: images
+            images: images,
+            dimensions: dimensions
           }.deep_merge(taxonomy_metadata)
         end
 
@@ -43,6 +44,15 @@ module Spree
           @images ||= array(item_json['images']).map do |image|
             image.is_a?(String) ? { url: image } : image
           end
+        end
+
+        def dimensions
+          {
+            weight: item_json['weight'],
+            height: item_json['height'],
+            width: item_json['width'],
+            depth: item_json['depth']
+          }
         end
       end
     end

@@ -18,6 +18,10 @@ module Spree
             optional(:notes) { str? }
             optional(:option_types) { array? | str? }
             optional(:images) { array? | str? }
+            optional(:weight) { float? | int? }
+            optional(:height) { float? | int? }
+            optional(:width) { float? | int? }
+            optional(:depth) { float? | int? }
             optional(:rewards_percentage) { int? }
           end
 
@@ -55,6 +59,16 @@ module Spree
             shipping_category: ShippingCategory.first_or_create(name: 'Default'),
             available_on: metadata[:available_on].presence || Time.current,
             discontinue_on: metadata[:discontinue_on].presence
+          }
+        end
+
+        def master_variant_attributes(metadata)
+          dimemsions = metadata[:dimensions]
+          {
+            weight: dimemsions[:weight],
+            height: dimemsions[:height],
+            width: dimemsions[:width],
+            depth: dimemsions[:depth]
           }
         end
 
