@@ -41,7 +41,7 @@ module Spree
       end
 
       def products_by_subtitle
-        return if author_property_name.blank?
+        return if subtitle.blank?
         Inventory::Searchers::ProductSearcher.call(
           keywords: subtitle,
           fields: [author_property_name],
