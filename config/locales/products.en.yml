@@ -17,6 +17,7 @@ en:
 
     similar_by_subtitle:
       music: 'Other Albums by %{subtitle}'
+      books: 'More Books From %{subtitle}'
 
     mapped_conditions:
       'Like New': 'Used - Like New'
