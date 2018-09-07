@@ -1,0 +1,16 @@
+- cache(cache_key_for_product(@product, variation: @variation, section: :product_title, v: 1)) do
+  ruby:
+    prod_subtitle = product_subtitle(@product, @variation&.titleize)
+    subtitle = @product.subtitle_presentation
+
+  h1.product-title.text-black itemprop='name' = sanitize(@product.name)
+
+  - if prod_subtitle.present? || subtitle.present?
+    .text-muted
+      - if prod_subtitle.present?
+        strong.product-subtitle> = prod_subtitle
+
+      - if subtitle.present?
+        | by #{subtitle}
+
+    br

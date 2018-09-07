@@ -18,18 +18,7 @@ ruby:
         = render partial: 'spree/products/similar_variants/sidebar_filters', locals: { filters: filters }
 
     .col-md-10.col-sm-10.similar-variants--product-info
-      h1.no-margin-top.text-black
-        ' #{@product.name}
-        - if @variation
-          | (#{@variation.titleize})
-
-      - if subtitle = @product.subtitle_presentation
-        p.text-muted.similar-variants--product-info--subtitle
-          span.byline> By
-          span.author = subtitle
-
-      = render 'spree/shared/rating', value: rand(5)
-      span.text-primary< = rand(50)
+      = render partial: 'spree/products/title'
 
     .col-md-10.col-sm-12.similar-variants--table
       = render partial: 'spree/products/similar_variants/table', locals: { filters: filters }

@@ -10,8 +10,8 @@ module Spree
       raw(sanitized_description) # rubocop:disable Rails/OutputSafety
     end
 
-    def product_subtitle(product)
-      variation = product.variation_finder&.variation_name(product)
+    def product_subtitle(product, variation = nil)
+      variation ||= product.variation_finder&.variation_name(product)
       product_date = Date.parse(product.product_date)&.strftime('%b %-d, %Y') if product.product_date
       [variation, product_date].compact.join(' — ')
     end
