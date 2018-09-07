@@ -8,7 +8,7 @@ module Spree
 
     module ClassMethods
       def supported_product_types
-        %w[books music]
+        %w[books music generic]
       end
     end
   end

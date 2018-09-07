@@ -1,4 +1,4 @@
-RSpec.describe Spree::Inventory::Providers::GenericClassifier, type: :action do
+RSpec.describe Spree::Inventory::Providers::Generic::Classifier, type: :action do
   subject(:taxons) do
     described_class.call(product, taxon_candidates, taxonomy_name: taxonomy_name)
     product.taxons

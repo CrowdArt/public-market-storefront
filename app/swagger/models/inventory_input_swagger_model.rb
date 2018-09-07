@@ -36,6 +36,94 @@ module Swagger
                       seller: 'Best Market'
       end
 
+      swagger_schema :GenericInventoryInput do
+        key :required, %i[sku product_id categories quantity price]
+
+        property :sku do
+          key :type, :string
+        end
+        property :product_id do
+          key :type, :string
+          key :description, 'Product identifier: ISBN/UPC/EAN/...'
+        end
+        property :categories do
+          key :type, :array
+          key :description, 'Product categories as array or comma-delimited string'
+          items do
+            key :type, :string
+          end
+        end
+        property :quantity do
+          key :type, :integer
+        end
+        property :price do
+          key :type, :float
+        end
+
+        property :title do
+          key :type, :string
+        end
+        property :description do
+          key :type, :string
+        end
+        property :notes do
+          key :type, :string
+        end
+        property :option_types do
+          key :type, :array
+          key :description, 'Array of option names or comma-delimited string. E.g: "color", so color value should be defined in input data'
+          items do
+            key :type, :string
+          end
+        end
+        property :images do
+          key :type, :array
+          key :description, 'Product images as array or comma-delimited string of urls'
+          items do
+            property :title do
+              key :type, :string
+            end
+            property :url do
+              key :type, :string
+            end
+          end
+        end
+        property :weight do
+          key :type, :float
+        end
+        property :height do
+          key :type, :float
+        end
+        property :width do
+          key :type, :float
+        end
+        property :depth do
+          key :type, :float
+        end
+        property :rewards_percentage do
+          key :type, :integer
+        end
+
+        key :example, sku: 'WBL-001-RGB',
+                      product_id: '87667573893',
+                      categories: ['Wireless'],
+                      quantity: 5,
+                      price: 3.99,
+                      title: 'Title',
+                      description: 'Description',
+                      notes: 'Notes',
+                      option_types: ['color'],
+                      images: 'https://fakeimg.pl/500x500/?text=World&font=lobster',
+                      weight: 3.44,
+                      height: 5.12,
+                      depth: 0.12,
+                      rewards_percentage: 1,
+                      color: 'Red',
+                      size: 'XL',
+                      brand: 'Brand',
+                      other_unique_property: 'Example'
+      end
+
       swagger_schema :MusicInventoryInput do
         key :required, %i[sku quantity price format artist title description condition images]
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Spree::Inventory::Providers::GenericVariantProvider, type: :action do
+RSpec.describe Spree::Inventory::Providers::Generic::VariantProvider, type: :action do
   subject(:variant) { described_class.call(item_json, options: options) }
 
   let(:options) { {} }
@@ -77,6 +77,7 @@ RSpec.describe Spree::Inventory::Providers::GenericVariantProvider, type: :actio
     it { expect(variant.cost_price).to eq(item_json[:price]) }
     it { expect(variant.total_on_hand).to eq(item_json[:quantity]) }
     it { expect(variant.notes).to eq(item_json[:notes]) }
+    it { expect(variant.rewards).to eq(item_json[:rewards_percentage]) }
 
     it { expect(product.name).to eq(item_json[:title]) }
     it { expect(product.available_on).not_to be_nil }
