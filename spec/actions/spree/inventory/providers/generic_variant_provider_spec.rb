@@ -12,7 +12,11 @@ RSpec.describe Spree::Inventory::Providers::GenericVariantProvider, type: :actio
       it { expect { variant }.to raise_error(Spree::ImportError).with_message(include(':product_id=>["is missing"]')) }
       it { expect { variant }.to raise_error(Spree::ImportError).with_message(include(':quantity=>["must be filled"]')) }
       it { expect { variant }.to raise_error(Spree::ImportError).with_message(include(':price=>["must be filled"]')) }
-      it { expect { variant }.to raise_error(Spree::ImportError).with_message(include(':categories=>["is missing", "must be an array or must be a string"]')) }
+      it do
+        expect {
+          variant
+        }.to raise_error(Spree::ImportError).with_message(include(':categories=>["is missing", "must be an array or must be a string"]'))
+      end
     end
 
     context 'when fields have wrong types' do
@@ -50,7 +54,7 @@ RSpec.describe Spree::Inventory::Providers::GenericVariantProvider, type: :actio
     let(:product_id) { '789867898760' }
     let(:categories) { 'Beauty' }
     let(:option_types) { '' }
-    let(:images) { '' }
+    let(:images) { [] }
     let(:product) { variant.product }
     let(:properties) { { color: 'Green' } }
 
@@ -82,6 +86,21 @@ RSpec.describe Spree::Inventory::Providers::GenericVariantProvider, type: :actio
       let(:properties) { { color: 'Red', size: 'XL' } }
 
       it { expect(product.option_types.count).to eq(2) }
+    end
+
+    describe 'images', images: true, vcr: true do
+      context 'with given image meta' do
+        let(:images) { ['https://fakeimg.pl/1/'] }
+
+        it { expect(product.images.count).to eq(1) }
+      end
+
+      context 'with book provider meta' do
+        let(:product_id) { '9780307341570' }
+        let(:categories) { 'Books' }
+
+        it { expect(product.images.count).to eq(1) }
+      end
     end
   end
 end

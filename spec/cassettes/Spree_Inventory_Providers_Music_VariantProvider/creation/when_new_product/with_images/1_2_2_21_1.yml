@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 12 Jul 2018 15:16:54 GMT
+      - Fri, 07 Sep 2018 10:51:59 GMT
       Content-Type:
       - image/png
       Transfer-Encoding:
@@ -27,36 +27,36 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=de2308e5f73fa0208e52d6ff816a3621c1531408614; expires=Fri, 12-Jul-19
-        15:16:54 GMT; path=/; domain=.fakeimg.pl; HttpOnly; Secure
+      - __cfduid=deb794d692f41d8b59c1b3c36533a6f611536317519; expires=Sat, 07-Sep-19
+        10:51:59 GMT; path=/; domain=.fakeimg.pl; HttpOnly; Secure
       Cache-Control:
       - public, max-age=432000
       Expires:
-      - Tue, 17 Jul 2018 15:16:54 GMT
+      - Wed, 12 Sep 2018 10:51:59 GMT
       Access-Control-Allow-Origin:
       - "*"
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       Last-Modified:
-      - '2018-06-25 05:01:08.367510'
+      - '2018-08-27 05:01:52.679803'
       Etag:
       - 42ce98d1d8d02a1c7c8d206aafd2767ca0c4af9d
       Cf-Cache-Status:
       - HIT
-      Vary:
-      - Accept-Encoding
       Expect-Ct:
       - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Vary:
+      - Accept-Encoding
       Server:
       - cloudflare
       Cf-Ray:
-      - 4394793e2c9a2708-FRA
+      - 45689f905c8127aa-FRA
     body:
       encoding: ASCII-8BIT
       string: !binary |-
         iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGM4cODAfwAHxANAal3OJgAAAABJRU5ErkJggg==
     http_version: 
-  recorded_at: Thu, 12 Jul 2018 15:16:54 GMT
+  recorded_at: Fri, 07 Sep 2018 10:51:59 GMT
 - request:
     method: get
     uri: https://fakeimg.pl/1/
@@ -76,7 +76,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 12 Jul 2018 15:16:54 GMT
+      - Fri, 07 Sep 2018 10:51:59 GMT
       Content-Type:
       - image/png
       Transfer-Encoding:
@@ -84,36 +84,36 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=d21309892234f2972240cf93355114cf01531408614; expires=Fri, 12-Jul-19
-        15:16:54 GMT; path=/; domain=.fakeimg.pl; HttpOnly; Secure
+      - __cfduid=d777878cd2f6f67a73fa958e42b9aed921536317519; expires=Sat, 07-Sep-19
+        10:51:59 GMT; path=/; domain=.fakeimg.pl; HttpOnly; Secure
       Cache-Control:
       - public, max-age=432000
       Expires:
-      - Tue, 17 Jul 2018 15:16:54 GMT
+      - Wed, 12 Sep 2018 10:51:59 GMT
       Access-Control-Allow-Origin:
       - "*"
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       Last-Modified:
-      - '2018-06-25 05:01:08.367510'
+      - '2018-08-27 05:01:52.679803'
       Etag:
       - 42ce98d1d8d02a1c7c8d206aafd2767ca0c4af9d
       Cf-Cache-Status:
       - HIT
-      Vary:
-      - Accept-Encoding
       Expect-Ct:
       - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Vary:
+      - Accept-Encoding
       Server:
       - cloudflare
       Cf-Ray:
-      - 4394793f7ba36415-FRA
+      - 45689f921815977a-FRA
     body:
       encoding: ASCII-8BIT
       string: !binary |-
         iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGM4cODAfwAHxANAal3OJgAAAABJRU5ErkJggg==
     http_version: 
-  recorded_at: Thu, 12 Jul 2018 15:16:54 GMT
+  recorded_at: Fri, 07 Sep 2018 10:51:59 GMT
 - request:
     method: get
     uri: https://fakeimg.pl/1/
@@ -133,7 +133,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 12 Jul 2018 15:16:54 GMT
+      - Fri, 07 Sep 2018 10:52:00 GMT
       Content-Type:
       - image/png
       Transfer-Encoding:
@@ -141,34 +141,34 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=da60672b158d8d47c09b6bea497ba63f31531408614; expires=Fri, 12-Jul-19
-        15:16:54 GMT; path=/; domain=.fakeimg.pl; HttpOnly; Secure
+      - __cfduid=d668152e2aae90b2d5f0c78dbfe5304a71536317520; expires=Sat, 07-Sep-19
+        10:52:00 GMT; path=/; domain=.fakeimg.pl; HttpOnly; Secure
       Cache-Control:
       - public, max-age=432000
       Expires:
-      - Tue, 17 Jul 2018 15:16:54 GMT
+      - Wed, 12 Sep 2018 10:52:00 GMT
       Access-Control-Allow-Origin:
       - "*"
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       Last-Modified:
-      - '2018-06-25 05:01:08.367510'
+      - '2018-08-27 05:01:52.679803'
       Etag:
       - 42ce98d1d8d02a1c7c8d206aafd2767ca0c4af9d
       Cf-Cache-Status:
       - HIT
-      Vary:
-      - Accept-Encoding
       Expect-Ct:
       - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Vary:
+      - Accept-Encoding
       Server:
       - cloudflare
       Cf-Ray:
-      - 43947940b88126cc-FRA
+      - 45689f94184b978c-FRA
     body:
       encoding: ASCII-8BIT
       string: !binary |-
         iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGM4cODAfwAHxANAal3OJgAAAABJRU5ErkJggg==
     http_version: 
-  recorded_at: Thu, 12 Jul 2018 15:16:54 GMT
+  recorded_at: Fri, 07 Sep 2018 10:52:00 GMT
 recorded_with: VCR 4.0.0

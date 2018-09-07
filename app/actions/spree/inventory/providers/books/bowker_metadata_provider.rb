@@ -82,6 +82,7 @@ module Spree
           end
 
           def image(isbn)
+            # save in file here because paperclip can't work with basic auth in url
             response = HTTParty.get("https://imageweb.bowker.com/rest/images/ean/#{isbn}?size=original", basic_auth: creds)
             return unless response.success? # bowker can return AccessDenied response with FreeCoverImage #157634247
             file = Tempfile.new(isbn)

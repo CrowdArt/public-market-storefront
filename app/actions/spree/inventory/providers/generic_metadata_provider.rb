@@ -40,7 +40,7 @@ module Spree
         end
 
         def images
-          @images ||= array(item_json[:images]).map do |image|
+          @images ||= array(item_json['images']).map do |image|
             image.is_a?(String) ? { url: image } : image
           end
         end
