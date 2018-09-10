@@ -80,12 +80,7 @@ module Swagger
           key :type, :array
           key :description, 'Product images as array or comma-delimited string of urls'
           items do
-            property :title do
-              key :type, :string
-            end
-            property :url do
-              key :type, :string
-            end
+            key :type, :string
           end
         end
         property :weight do
@@ -103,6 +98,10 @@ module Swagger
         property :rewards_percentage do
           key :type, :integer
         end
+        property :keywords do
+          key :type, :string
+          key :description, 'String of keywords/tags delimited by space'
+        end
 
         key :example, sku: 'WBL-001-RGB',
                       product_id: '87667573893',
@@ -113,15 +112,17 @@ module Swagger
                       description: 'Description',
                       notes: 'Notes',
                       option_types: ['color'],
-                      images: 'https://fakeimg.pl/500x500/?text=World&font=lobster',
+                      images: ['https://fakeimg.pl/500x500/?text=World&font=lobster'],
                       weight: 3.44,
                       height: 5.12,
+                      width: 2,
                       depth: 0.12,
                       rewards_percentage: 1,
                       color: 'Red',
                       size: 'XL',
                       brand: 'Brand',
-                      other_unique_property: 'Example'
+                      other_unique_property: 'Example',
+                      keywords: 'keyword1 keyword2 keyword3'
       end
 
       swagger_schema :MusicInventoryInput do

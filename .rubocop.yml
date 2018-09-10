@@ -33,6 +33,8 @@ Metrics/LineLength:
 
 Metrics/ClassLength:
   Max: 150
+  Exclude:
+    - 'app/swagger/**/*'
 
 Metrics/MethodLength:
   Max: 15
