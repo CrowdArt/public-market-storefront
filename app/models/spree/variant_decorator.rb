@@ -27,15 +27,15 @@ Spree::Variant.class_eval do
   # assume that first option value is main
   def main_option
     return @main_option if defined?(@main_option)
+
     @main_option = option_values&.first
   end
 
   def self.find_best_price_in_option(in_stock: true)
-    q =
-      not_discontinued.not_deleted
-                      .joins(:option_values, :prices)
-                      .reorder('spree_variants.product_id, spree_option_values.position ASC, spree_prices.amount ASC')
-                      .select('DISTINCT ON (spree_variants.product_id) spree_variants.*')
+    q = not_discontinued.not_deleted
+                        .joins(:option_values, :prices)
+                        .reorder('spree_variants.product_id, spree_option_values.position ASC, spree_prices.amount ASC')
+                        .select('DISTINCT ON (spree_variants.product_id) spree_variants.*')
     q = q.in_stock if in_stock
     q
   end

@@ -4,10 +4,7 @@
 
     .similar-variants--table-header.hidden-xs.upcase
       span = t('similar_variants.table_header.price')
-      span
-        span.margin-text-right Condition
-        = link_to '#', class: 'btn btn-link no-padding disabled', disabled: true
-          span.info-icon-left.outlined.condensed Learn more
+      span Condition
       span = t('similar_variants.table_header.delivery_ptrn')
       span = t('similar_variants.table_header.seller')
 
@@ -23,7 +20,7 @@
             label.no-margin for="radio_#{option}" = option.titleize
 
     - @variants.each do |variant|
-      - cache([:v1, :similar_variant_table, mobile?, @product, variant]) do
+      - cache([:v2, :similar_variant_table, mobile?, @product, variant]) do
         - seller_note = variant.notes
         - product = variant.product
         - additional_props = additional_variation_property(variant)
@@ -42,7 +39,8 @@
               strong.visible-xs-inline = variant.main_option_value
 
               .text-medium
-                .semi-bold = Spree.t(:free_shipping)
+                .visible-xs == Spree.t(:free_shipping_days)
+                .hidden-xs.semi-bold == Spree.t(:free_shipping)
 
                 .text-rewards.diamond-icon-left.condensed.visible-xs == t('products.earn_rewards_short', rewards: variant.rewards_amount)
 
@@ -59,7 +57,7 @@
 
           .similar-variants--table-body--delivery.hidden-xs
             ul
-              li.semi-bold> = Spree.t(:free_shipping)
+              li> == Spree.t(:free_shipping_days)
 
               li Arrives between #{4.days.from_now.strftime('%b %d')} – #{8.days.from_now.strftime('%b %d')}
 

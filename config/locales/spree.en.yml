@@ -91,5 +91,6 @@ en:
     in_stock: In Stock
     out_of_stock: Out Of Stock
     free_shipping: FREE Shipping
+    free_shipping_days: "<span class='semi-bold'>FREE Shipping</span> (4–8 business days)"
     early_access: Early Access
     whitelisted_email: Whitelisted Email Address

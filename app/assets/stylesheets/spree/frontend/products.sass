@@ -133,18 +133,26 @@ body#product-details
       margin-top: 3px
 
   .additional-buy-box
-    margin-top: 35px
-    border-top: 6px solid $brand-warning
+    margin-top: 30px
 
-    &, .panel
-      background-color: #f4f4f4
-      border: 1px solid #ccc
+    .panel
+      line-height: 1.5
+
+    .panel:last-child
+      margin-bottom: 15px
 
     button
       padding: 0
       label
+        font-weight: 500
         padding: 6px 10px
         cursor: pointer
+
+    .buttons-wrapper
+      min-width: 144px
+
+      a.btn
+        padding: 6px 10px
 
 @mixin hide-border()
   .product-card--inner

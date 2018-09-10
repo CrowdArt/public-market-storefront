@@ -28,8 +28,6 @@ ruby:
       .text-center.text-danger = Spree.t(:out_of_stock)
 
     - if can_supply
-      p.text-center = render 'spree/shared/payment_methods'
-
       = render partial: 'additional_buy_box'
 
   .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item

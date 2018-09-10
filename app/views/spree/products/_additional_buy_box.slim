@@ -1,30 +1,41 @@
 - if (variants = product_variants).present?
-  .panel.no-border.additional-buy-box
-    .panel-body
-      h4 Buy from Other sellers
+  .additional-buy-box
+    h4.text-black = t('additional_buy_box.title')
 
-      = form_for :order, url: populate_orders_path, remote: true, html: { id: 'additional-buy-box' } do |f|
-        = hidden_field_tag :quantity, 1
+    = form_for :order, url: populate_orders_path, remote: true, html: { id: 'additional-buy-box' } do |f|
+      = hidden_field_tag :quantity, 1
 
-        - variants.each do |o, vars|
-          h5 = o
+      - variants.each do |o, vars|
+        / h5 = o
+        - v = vars[0]
+        / - vars.each do |v|
+        - vendor = v.vendor
+        .hide = radio_button_tag 'variant_id', v.id, false, id: "additional_bb_variant_id_#{v.id}"
 
-          - vars.each do |v|
-            - vendor = v.vendor
-            .hide = radio_button_tag 'variant_id', v.id, false, id: "additional_bb_variant_id_#{v.id}"
+        .panel.panel-default
+          .panel-body.flex.column
+            .flex.between.wrap.flex-grow-1
+              div
+                div
+                  span.lead.text-dark-danger.text-bold.margin-text-right> #{v.price_in(current_currency).money}
+                  strong = o
 
-            .panel
-              .panel-body.flex.between.wrap
-                .flex-grow-1
-                  strong
-                    span.text-dark-danger> #{v.price_in(current_currency).money}
-                    | + FREE Shipping
-                  br
-                  span Sold by: #{link_to(vendor.name, vendor_path(vendor), target: '_blank')}
-                  .text-small Rating: #{vendor_reputation_text(vendor)}
+                == Spree.t(:free_shipping_days)
 
-                .flex.align-center
-                   = f.button class: 'btn btn-primary', type: 'submit', value: 'add-to-cart'
-                    label.no-margin
-                      .hide = radio_button_tag 'variant_id', v.id, false, id: "additional_bb_variant_id_#{v.id}"
-                      = Spree.t(:add_to_cart)
+                .text-rewards.diamond-icon-left.condensed == t('products.earn_rewards_short', rewards: v.rewards_amount)
+
+              .buttons-wrapper
+                = f.button class: 'btn btn-primary btn-block', type: 'submit', value: 'add-to-cart'
+                  label.no-margin
+                    .hide = radio_button_tag 'variant_id', v.id, false, id: "additional_bb_variant_id_#{v.id}"
+                    = Spree.t(:add_to_cart)
+
+                = link_to 'View', v.product, class: 'btn btn-white btn-block margin-text-top'
+
+            span.text-muted.text-medium
+              ' Ships and sold by
+              | #{link_to(vendor.name, vendor_path(vendor), target: '_blank')}
+
+            .text-medium = vendor_reputation_text(vendor)
+
+    = link_to t('additional_buy_box.link_to_more'), similar_variants_path(id: @product.slug)

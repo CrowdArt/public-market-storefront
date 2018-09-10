@@ -33,3 +33,7 @@ en:
       price: Price
       delivery_ptrn: DELIVERY + BUYER REWARD
       seller: About seller
+
+  additional_buy_box:
+    title: FROM OTHER MERCHANTS
+    link_to_more: See All Merchants
