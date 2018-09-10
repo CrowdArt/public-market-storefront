@@ -8,9 +8,9 @@ en:
     subtotal: Subtotal
     checkout: Proceed to Checkout
     buyer_rewards: Buyer Rewards
-    buyer_rewards_desc: Earn "cashback" blockchain-based tokens on each purchase!
+    buyer_rewards_desc: Earn Buyer Rewards on every purchase, redeemable for blockchain-based tokens!
     free_shipping: Free Shipping
-    free_shipping_desc: All Public Market products enjoy with 5-8 day free shipping within the US.
+    free_shipping_desc: All Public Market products enjoy with 4–8 day free shipping within the US.
     easy_returns: Easy Returns
     easy_returns_desc: Return within 30 days of delivery for a full refund. Satisfaction Guarnateed.
     sharing_text: "Just placed an order on Public Market. Can’t wait to get my crypto “cashback” rewards! #PTRN Tokens"
@@ -25,14 +25,14 @@ en:
     neutral: Neutral
     negative: Negative
     current_rating: Current Rating
-    positive_hint: <strong>Great!</strong> Express your gratitude & leave a positive review for the merchant.
-    neutral_hint: <strong>Just average?</strong> Care to leave the merchant feedback on how to improve?
-    negative_hint: <strong>Bummer!</strong> Why not write a review informing other buyers?
-    submit_review: Submit Review
-    update_review: Update Review
-    no_thanks: No Thanks
+    positive_hint: <strong>Great!</strong> Take a moment to leave the merchant a positive review.
+    neutral_hint: <strong>Just average?</strong> Why not leave the merchant feedback on how to improve?
+    negative_hint: <strong>Bummer!</strong> Care to write a review informing other customers?
+    submit_review: Submit
+    update_review: Update
+    no_thanks: Submit Rating Without Review
     cancel: Cancel
-    send_feedback: SEND FEEDBACK (OPTIONAL)
+    send_feedback: WRITE A REVIEW (OPTIONAL)
     your_purchase: Your Purchase
     merchant: "Merchant: "
     rating-none: <span class='rating-unrated'>Unrated</span>
@@ -41,8 +41,8 @@ en:
     rating0: <span class='rating-neutral'>Neutral</span>
     updated_successfully: Updated Successfully
     submitted_successfully: Submitted Successfully
-    update_rating: Update Rating
-    updated_once: Seller rating can only be updated once!
+    update_rating: Edit Rating/Review
+    updated_once: Merchant ratings and reviews can only be updated once!
     proceed: Proceed
     out_of_stock:
       out_of_stock: Sorry, it looks like the merchant no longer has this item in stock. Please remove it from your cart to continue.
