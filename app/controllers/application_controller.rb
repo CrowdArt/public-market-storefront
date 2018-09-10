@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_raven_context, if: -> { Rails.env.staging? || Rails.env.production? }
+  before_action :authenticate_user!, unless: :allow_unauthenticated_view?
 
   protected
 
@@ -11,6 +12,18 @@ class ApplicationController < ActionController::Base
     return if mp_params.blank?
     distinct_id = JSON.parse(mp_params)['distinct_id']
     distinct_id.presence
+  end
+
+  def authenticate_user!
+    redirect_params = request.query_string.presence ? "?#{request.query_string}" : ''
+    redirect_to "https://waitlist.public.market#{redirect_params}" if !spree_user_signed_in? && cookies['_skip_waitlist'].blank?
+  end
+
+  def allow_unauthenticated_view?
+    return true if Rails.env.test?
+
+    (controller_name == 'user_sessions' && action_name.in?(%w[new])) ||
+      (controller_name == 'user_registrations' && action_name.in?(%w[new create]))
   end
 
   private

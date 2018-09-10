@@ -5,6 +5,7 @@ Spree::UserSessionsController.class_eval do
     if spree_user_signed_in?
       user = spree_current_user
       set_mixpanel_tracking(user)
+      set_waitlist_cookie
 
       respond_to do |format|
         format.html do
@@ -60,5 +61,9 @@ Spree::UserSessionsController.class_eval do
     @user = Spree::User.new
     @user.errors[:username] << t('devise.failure.invalid')
     @user.errors[:password] << t('devise.failure.invalid')
+  end
+
+  def set_waitlist_cookie
+    cookies['_skip_waitlist'] = Time.current
   end
 end
