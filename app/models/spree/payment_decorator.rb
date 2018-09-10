@@ -57,15 +57,15 @@ Spree::Payment.class_eval do
     order.vendors.order(:id).each do |vendor|
       vendor_view = Spree::Orders::VendorView.new(order, vendor)
       vendor_amount = vendor_view.total
-      create_transfer(vendor, vendor_amount) if vendor_amount.positive?
+      create_transfer(vendor, vendor_amount, vendor_view.rewards_amount) if vendor_amount.positive?
     end
   end
 
-  def create_transfer(vendor, vendor_amount)
+  def create_transfer(vendor, vendor_amount, rewards_amount)
     fee = payment_method_fee * vendor_amount / amount
-    transfer_amount = vendor_amount - fee
+    transfer_amount = vendor_amount - fee - rewards_amount
 
     raise Spree::Core::GatewayError, Spree.t(:vendors_transfer_negative, vendor: vendor.name) unless transfer_amount.positive?
-    payment_transfers.create(vendor: vendor, amount: transfer_amount, fee: fee)
+    payment_transfers.create(vendor: vendor, amount: transfer_amount, fee: fee, rewards: rewards_amount)
   end
 end

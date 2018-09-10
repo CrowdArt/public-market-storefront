@@ -58,4 +58,10 @@ RSpec.describe Spree::Orders::VendorView, type: :model do
     it { expect(total).to eq(line_item.price) }
     it { expect(vendor_view.display_total.to_html).to be_truthy }
   end
+
+  describe '#rewards_amount' do
+    subject(:rewards_amount) { vendor_view.rewards_amount }
+
+    it { expect(rewards_amount).to eq(vendor_view.total * 0.15) }
+  end
 end

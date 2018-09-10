@@ -15,8 +15,8 @@ module Spree
       amount - refunds.sum(:amount)
     end
 
-    def amount_plus_fee
-      (amount + fee).to_f
+    def buyer_amount
+      (amount + fee + rewards).to_f
     end
 
     def reverse!(reverse_amount)

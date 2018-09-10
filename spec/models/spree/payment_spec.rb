@@ -7,6 +7,8 @@ RSpec.describe Spree::Payment, type: :model, vcr: true do
            order: order)
   end
 
+  let(:rewards) { order.total * 0.15 }
+
   context 'when all vendors have accounts' do
     before { payment.order.process_payments! }
 
@@ -31,8 +33,9 @@ RSpec.describe Spree::Payment, type: :model, vcr: true do
           expect(payment.payment_method_fee).to eq(0.59)
 
           expect(transfer.response_code).to be_truthy
-          expect(transfer.amount).to eq(payment.amount - payment.payment_method_fee)
+          expect(transfer.amount).to eq(payment.amount - payment.payment_method_fee - rewards)
           expect(transfer.fee).to eq(payment.payment_method_fee)
+          expect(transfer.rewards).to eq(rewards)
         end
 
         describe 'refund' do
@@ -88,7 +91,7 @@ RSpec.describe Spree::Payment, type: :model, vcr: true do
           expect(payment.amount).to eq(100)
           expect(payment.payment_method_fee).to eq(3.2)
           expect(payment.payment_transfers.map(&:fee)).to match_array([0.96, 2.24])
-          expect(payment.payment_transfers.map(&:amount_plus_fee)).to match_array([70.0, 30.0])
+          expect(payment.payment_transfers.map(&:buyer_amount)).to match_array([70.0, 30.0])
         end
 
         describe 'refund' do
@@ -132,8 +135,9 @@ RSpec.describe Spree::Payment, type: :model, vcr: true do
           expect(payment.payment_transfers.count).to eq(1)
           expect(payment.reload.state).to eq('completed')
           expect(payment.payment_method_fee).to eq(0.59)
-          expect(transfer.amount).to eq(9.41)
+          expect(transfer.amount).to eq(7.91)
           expect(transfer.fee).to eq(0.59)
+          expect(transfer.rewards).to eq(1.5)
         end
       end
 
@@ -151,8 +155,9 @@ RSpec.describe Spree::Payment, type: :model, vcr: true do
         it 'make charge and transfers' do
           expect(payment.payment_transfers.count).to eq(1)
           expect(payment.reload.state).to eq('completed')
-          expect(transfer.amount).to eq(28.83)
+          expect(transfer.amount).to eq(24.33)
           expect(transfer.fee).to eq(payment.payment_method_fee)
+          expect(transfer.rewards).to eq(4.5)
         end
       end
     end

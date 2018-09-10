@@ -34,9 +34,12 @@ RSpec.describe 'Invalidate product cache', type: :feature, search: true, caching
     end
 
     context 'when global reward is changed' do
+      let!(:initial) { Spree::Config.rewards }
       let(:rewards) { 1 }
 
       before { Spree::Config.rewards = rewards }
+
+      after { Spree::Config.rewards = initial }
 
       it { is_expected.to have_text(rewards_amount) }
     end

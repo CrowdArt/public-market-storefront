@@ -71,6 +71,10 @@ module Spree
       def shipment_state
         shipments.first.state
       end
+
+      def rewards_amount
+        line_items.sum(&:rewards_amount)
+      end
     end
   end
 end
