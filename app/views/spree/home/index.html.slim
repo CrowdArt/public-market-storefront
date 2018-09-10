@@ -8,7 +8,7 @@
         h3 = t('hero.subheader')
 
         - unless spree_user_signed_in?
-          p.signup = link_to t('hero.call_to_action'), signup_path, { class: "btn btn-primary" }
+          p.signup = link_to t('hero.call_to_action'), early_access_path, { class: "btn btn-primary" }
           p.members
             |  Already a member?
             = link_to "Log In", login_path

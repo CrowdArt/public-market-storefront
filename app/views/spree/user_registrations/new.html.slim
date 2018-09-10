@@ -2,19 +2,25 @@
 
 .panel.no-border.panel-centered-wide.user-signin-panel.panel-height
   .panel-body.panel-body__big-padding
-    h3.upcase.text-center.no-margin-top = Spree.t(:create_account)
+    h3.upcase.text-center.no-margin-top
+      / = Spree.t(:sign_up)
+      = Spree.t(:early_access)
 
-    = render 'spree/shared/social_buttons'
+    / = render 'spree/shared/social_buttons'
 
-    .divider-with-text
-      span.upcase.or-divider or
+    / .divider-with-text
+    /   span.upcase.or-divider or
 
-    = simple_form_for resource, as: :spree_user, url: spree.registration_path, wrapper: :vertical_hint_label do |f|
-      = f.input :email, placeholder: Spree.t(:email), error: f.object.errors[:email].first&.html_safe
+    / = simple_form_for resource, as: :spree_user, url: spree.registration_path, wrapper: :vertical_hint_label do |f|
 
-      = f.input :password, placeholder: Spree.t(:password), error: f.object.errors[:password].first&.html_safe
+    = simple_form_for resource, as: :spree_user, url: spree.early_access_registration_path, wrapper: :vertical_hint_label do |f|
+      / = f.input :email, placeholder: Spree.t(:email), error: f.object.errors[:email].first&.html_safe
 
-      = f.input :password_confirmation, placeholder: t('forms.users.confirm_password'), error: f.object.errors[:password_confirmation].first&.html_safe
+      = f.input :email, label: Spree.t(:whitelisted_email), error: f.object.errors[:email].first&.html_safe
+
+      = f.input :password, error: f.object.errors[:password].first&.html_safe
+
+      = f.input :password_confirmation, error: f.object.errors[:password_confirmation].first&.html_safe
 
       = f.button :submit, Spree.t(:sign_up), class: 'btn btn-primary btn-lg btn-block upcase'
 

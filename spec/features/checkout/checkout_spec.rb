@@ -12,7 +12,8 @@ RSpec.describe 'Checkout', type: :feature, js: true do
       click_button 'Proceed to Checkout'
     end
 
-    it { expect(page).to have_text 'CREATE ACCOUNT' }
+    # it { expect(page).to have_text Spree.t(:sign_up) }
+    it { expect(page).to have_text Spree.t(:early_access).upcase }
   end
 
   # rubocop:disable RSpec/LetSetup

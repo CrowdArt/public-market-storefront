@@ -4,7 +4,7 @@ RSpec.describe 'Sign Up', type: :feature do
 
     fill_in 'Email', with: email
     fill_in 'Password', with: password
-    fill_in 'Confirm Password', with: password_confirmation
+    fill_in 'Password Confirmation', with: password_confirmation
 
     click_button 'Sign Up'
   end

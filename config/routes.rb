@@ -5,6 +5,11 @@ Spree::Core::Engine.routes.draw do
 end
 
 Spree::Core::Engine.add_routes do
+  devise_scope :spree_user do
+    get '/early-access' => 'user_registrations#new', :as => :early_access
+    post '/early-access' => 'user_registrations#create', :as => :early_access_registration
+  end
+
   namespace :admin, path: Spree.admin_path do
     resources :product_collections, except: :show
     resources :product_collection_products, only: :destroy
