@@ -1,4 +1,4 @@
-Spree::User.skip_callback(:create, :after, :send_welcome_email_with_delay)
+Spree::User.skip_callback(:create, :after, :send_welcome_email)
 
 default_path = File.join(File.dirname(__FILE__), 'default')
 
