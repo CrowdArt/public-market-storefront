@@ -36,15 +36,14 @@
 
   .finish-form.col-xs-12
     .text-left
-      h5.upcase = t('orders.send_feedback')
-      textarea.form-control name='review' maxlength=400 rows=5 = rating&.review
+      h6.upcase = t('orders.send_feedback')
+      textarea.form-control name='review' maxlength=400 rows=4 = rating&.review
       .character-counter
         span.current>
         ' /
         span.max<
     br
-    button.btn.btn-block.btn-default disabled=rating.present? = t(rating ? 'orders.update_review' : 'orders.submit_review')
-    button.btn.btn-link#no-thanks disabled=rating.present? = t('orders.no_thanks')
+    button.btn.btn-block.btn-default#submit-btn disabled=rating.present? = t(rating ? 'orders.update_review' : 'orders.submit_review')
 
 javascript:
   Spree.enableCharacterCounters(function() {
@@ -60,11 +59,13 @@ javascript:
     $('#rating-form button').prop('disabled', false)
   })
 
-  $('#rating-form').on('click', '#no-thanks', function(e) {
-    if (confirm('Are you sure? Your rating will be submitted without a review.')) {
-      $('#rating-form .finish-form').remove();
-      $('#rating-form').submit();
-    } else {
+  $('#rating-form').on('click', '#submit-btn', function(e) {
+    var review = $('.finish-form textarea').val().length;
+    if (!review && !confirm('Are you sure? Your rating will be submitted without a review.')) {
       e.preventDefault();
     }
+  })
+
+  $(window).unload(function() {
+    alert("Are you sure you want to leave this page without saving? Your Rating won't be submitted.")
   })
