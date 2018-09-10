@@ -28,8 +28,8 @@ en:
     positive_hint: <strong>Great!</strong> Take a moment to leave the merchant a positive review.
     neutral_hint: <strong>Just average?</strong> Why not leave the merchant feedback on how to improve?
     negative_hint: <strong>Bummer!</strong> Care to write a review informing other customers?
-    submit_review: Submit
-    update_review: Update
+    submit_review: Submit Rating
+    update_review: Update Rating/Review
     no_thanks: Submit Rating Without Review
     cancel: Cancel
     send_feedback: WRITE A REVIEW (OPTIONAL)
