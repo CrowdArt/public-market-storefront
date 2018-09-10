@@ -371,7 +371,7 @@ GEM
       activesupport (>= 4.2)
     ffaker (2.10.0)
     ffi (1.9.25)
-    fog-core (2.1.0)
+    fog-core (2.1.2)
       builder
       excon (~> 0.58)
       formatador (~> 0.2)
