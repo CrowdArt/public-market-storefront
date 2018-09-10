@@ -19,8 +19,8 @@ en:
       account: Your Account
 
     ### specials:
-      #- All Time Top 100
-      #- Bargain Books
-      #- Collectables & Limited Edition
-      #- Top Books of the Month
-      #- Staff Picks
+      ##- All Time Top 100
+      ##- Bargain Books
+      ##- Collectables & Limited Edition
+      ##- Top Books of the Month
+      ##- Staff Picks
