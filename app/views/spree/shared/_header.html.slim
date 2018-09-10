@@ -4,7 +4,7 @@ ruby:
   disabled_taxons = root_taxons.hidden
   taxon = @taxon&.root || (Spree::Taxon.find_by(id: params[:taxon]) if params[:taxon])
 
-- cache([:v7, :mobile_menu, root_taxons, taxon, spree_current_user])
+- cache([:v8, :mobile_menu, root_taxons, taxon, spree_current_user])
   / MOBILE MENU
   .visible-xs.visible-sm
     = render partial: 'spree/nav/mobile_menu', locals: { enabled_taxons: enabled_taxons, disabled_taxons: disabled_taxons }
@@ -17,7 +17,7 @@ ruby:
 
     .top-navbar
       .flex.between.align-center
-        - cache([:v3, :navbar_top_row])
+        - cache([:v4, :navbar_top_row])
           / MOBILE MENU TOGGLE
           .visible-xs.visible-sm
             label.no-margin.mobile-menu-btn for='mobile-nav-toggle'

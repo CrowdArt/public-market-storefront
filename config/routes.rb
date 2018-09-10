@@ -1,7 +1,7 @@
 Spree::Core::Engine.routes.draw do
   get 'products/top-selling', to: 'products#top_selling'
-  get 'sell/apply', to: 'home#sell', as: :sell_apply
-  get 'sell/apply/confirm', to: 'home#sell_apply_confirm'
+  get 'merchants/apply', to: 'home#sell', as: :sell_apply
+  get 'merchants/apply/confirm', to: 'home#sell_apply_confirm'
 end
 
 Spree::Core::Engine.add_routes do

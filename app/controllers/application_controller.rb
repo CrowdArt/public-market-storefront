@@ -8,8 +8,10 @@ class ApplicationController < ActionController::Base
 
   def mixpanel_user_id
     return spree_current_user if spree_current_user
+
     mp_params = cookies["mp_#{Rails.application.credentials.mixpanel_api_key}_mixpanel"]
     return if mp_params.blank?
+
     distinct_id = JSON.parse(mp_params)['distinct_id']
     distinct_id.presence
   end
@@ -20,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def allow_unauthenticated_view?
-    return true if Rails.env.test?
+    return true if Rails.env.test? || Rails.env.development?
 
     (controller_name == 'user_sessions' && action_name.in?(%w[new])) ||
       (controller_name == 'user_registrations' && action_name.in?(%w[new create]))
