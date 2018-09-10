@@ -3,6 +3,7 @@ module Spree
     # rubocop:disable Metrics/AbcSize, Metrics/LineLength, Rails/OutputSafety
     def spree_breadcrumbs(taxon, separator = '&nbsp;')
       return '' if current_page?('/') || taxon.nil?
+
       separator = raw(separator)
       crumbs = [content_tag(:li, content_tag(:span, link_to(content_tag(:span, Spree.t(:home), itemprop: 'name'), spree.root_path, itemprop: 'url') + separator, itemprop: 'item'), itemscope: 'itemscope', itemtype: 'https://schema.org/ListItem', itemprop: 'itemListElement')]
       if taxon
@@ -110,13 +111,13 @@ module Spree
       size == :medium ? 'col-lg-3 col-md-3 col-sm-4 col-xs-6' : 'col-lg-2 col-md-3 col-sm-4 col-xs-6'
     end
 
-    def show_more(text, length: 200, link: 'Read more', omission: '...')
+    def show_more(text, length: 200, link: 'Read more', omission: '...', arrow: false)
       return text if text.length < length
 
       content = [content_tag(:span, text[0...length])]
       content << content_tag(:span, omission)
       content << content_tag(:span, text[length..text.length], class: 'hide')
-      content << content_tag(:a, link, class: 'show-more')
+      content << content_tag(:a, link, class: "show-more #{'arrow' if arrow}")
 
       safe_join(content)
     end

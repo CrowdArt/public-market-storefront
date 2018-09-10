@@ -35,6 +35,8 @@ ruby:
   .col-xs-12.col-sm-5.col-md-4.col-md-pull-4.product-title-item
     = render partial: 'spree/products/title'
 
+    br
+
     / NOT CACHED PART
     - if (variations = product_variations).present?
       section.product-variations

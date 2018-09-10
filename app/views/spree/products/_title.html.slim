@@ -1,16 +1,16 @@
-- cache(cache_key_for_product(@product, variation: @variation, section: :product_title, v: 1)) do
+- exclude_details ||= false
+
+- cache(cache_key_for_product(@product, variation: @variation, section: :product_title, exclude_details: exclude_details, v: 2)) do
   ruby:
-    prod_subtitle = product_subtitle(@product, @variation&.titleize)
+    prod_subtitle = product_subtitle(@product, @variation&.titleize, details: !exclude_details)
     subtitle = @product.subtitle_presentation
 
-  h1.product-title.text-black itemprop='name' = sanitize(@product.name)
+  h1.product-title.text-black.no-margin-top itemprop='name' = sanitize(@product.name)
 
   - if prod_subtitle.present? || subtitle.present?
-    .text-muted
+    .text-muted.product-subtitle
       - if prod_subtitle.present?
-        strong.product-subtitle> = prod_subtitle
+        strong.product-subtitle--highlighted> = prod_subtitle
 
       - if subtitle.present?
         | by #{subtitle}
-
-    br

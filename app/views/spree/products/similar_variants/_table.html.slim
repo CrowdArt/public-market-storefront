@@ -23,54 +23,58 @@
             label.no-margin for="radio_#{option}" = option.titleize
 
     - @variants.each do |variant|
-      - seller_note = variant.notes
-      - product = variant.product
-      - additional_props = additional_variation_property(variant)
+      - cache([:v1, :similar_variant_table, mobile?, @product, variant]) do
+        - seller_note = variant.notes
+        - product = variant.product
+        - additional_props = additional_variation_property(variant)
 
-      .similar-variants--table-body--row data-variation=variant_data_options(variant)
-        .hide = radio_button_tag 'variant_id', variant.id, false, id: "variant_id_#{variant.id}"
+        .similar-variants--table-body--row data-variation=variant_data_options(variant)
+          .hide = radio_button_tag 'variant_id', variant.id, false, id: "variant_id_#{variant.id}"
 
-        .similar-variants--table-body--price.flex.wrap-sm
-          .similar-variants--table-body--image
-            = link_to product, target: ('_blank' unless mobile?)
-              = small_image(product, itemprop: 'image')
+          .similar-variants--table-body--price.flex.wrap-sm
+            .similar-variants--table-body--image
+              = link_to product, target: ('_blank' unless mobile?)
+                = small_image(product, itemprop: 'image')
 
-          .similar-variants--table-body--price-info.ellipsis
-            .lead.text-dark-danger.text-bold $#{variant.price}
+            .similar-variants--table-body--price-info.ellipsis
+              span.lead.text-dark-danger.margin-text-right $#{variant.price}
 
-            strong.visible-xs-inline = variant.main_option_value
+              strong.visible-xs-inline = variant.main_option_value
 
-            .text-medium.text-bold Free shipping
+              .text-medium
+                .semi-bold = Spree.t(:free_shipping)
 
-            - if additional_props.present?
-              .text-medium.ellipsis.hidden-xs = additional_props
+                .text-rewards.diamond-icon-left.condensed.visible-xs == t('products.earn_rewards_short', rewards: variant.rewards_amount)
 
-          - if additional_props.present?
-            .similar-variants--table-body--additional-props.text-medium.ellipsis.visible-xs = additional_props
+              / - if additional_props.present?
+              /   .text-medium.ellipsis.hidden-xs = additional_props
 
-        .similar-variants--table-body--option.hidden-xs
-          .lead.no-margin-bottom.text-bold = variant.main_option_value
+            / - if additional_props.present?
+            /   .similar-variants--table-body--additional-props.text-medium.ellipsis.visible-xs = additional_props
+
+          .similar-variants--table-body--option.hidden-xs
+            .lead.no-margin-bottom.text-bold = variant.main_option_value
+            - if seller_note
+              span.text-medium = show_more(seller_note, length: 95)
+
+          .similar-variants--table-body--delivery.hidden-xs
+            ul
+              li.semi-bold> = Spree.t(:free_shipping)
+
+              li Arrives between #{4.days.from_now.strftime('%b %d')} – #{8.days.from_now.strftime('%b %d')}
+
+              li
+                span.text-rewards.diamond-icon-left.condensed == t('products.earn_rewards_short', rewards: variant.rewards_amount)
+
+          .similar-variants--table-body--seller.flex.align-center.wrap.nowrap-xs.align-content-start.ellipsis
+            .lead.ellipsis = variant.vendor.name
+            .text-success.text-medium 87% Positive Ratings
+
+          .similar-variants--table-body--action
+            = f.button class: 'btn btn-primary', value: 'add-to-cart', type: :submit do
+              label.no-margin.semi-bold for="variant_id_#{variant.id}"
+                = Spree.t(:add_to_cart)
+
           - if seller_note
-            span.text-medium = show_more(seller_note, length: 95)
-
-        .similar-variants--table-body--delivery
-          ul
-            li.hidden-xs Arrives between #{6.days.from_now.strftime('%b %d')} - #{8.days.from_now.strftime('%b %d')}
-
-            li.hidden-xs
-              strong> FREE ground shipping
-              | (6-8 Business Days)
-
-            li.semi-bold.text-rewards == t('products.earn_rewards', rewards: variant.rewards_amount)
-
-        .similar-variants--table-body--seller.flex.align-center.wrap.nowrap-xs.align-content-start.ellipsis
-          .lead.ellipsis = variant.vendor.name
-          .text-success.text-medium 87% Positive Ratings
-
-        .similar-variants--table-body--action
-          = f.button class: 'btn btn-primary', value: 'add-to-cart', type: :submit do
-            label.no-margin for="variant_id_#{variant.id}"
-              = Spree.t(:add_to_cart)
-
-        - if seller_note
-          .similar-variants--table-body--note.text-medium.visible-xs Seller Note: #{show_more(seller_note, length: 25)}
+            .similar-variants--table-body--note.text-medium.visible-xs
+              == show_more(seller_note, length: 100, arrow: true)

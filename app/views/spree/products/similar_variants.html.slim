@@ -18,7 +18,7 @@ ruby:
         = render partial: 'spree/products/similar_variants/sidebar_filters', locals: { filters: filters }
 
     .col-md-10.col-sm-10.similar-variants--product-info
-      = render partial: 'spree/products/title'
+      = render partial: 'spree/products/title', locals: { exclude_details: true }
 
     .col-md-10.col-sm-12.similar-variants--table
       = render partial: 'spree/products/similar_variants/table', locals: { filters: filters }

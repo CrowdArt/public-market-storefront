@@ -5,6 +5,7 @@ en:
     earned_rewards: "Earned %{rewards} PTRN Rewards"
     earn_rewards_card: "Earn %{rewards} PTRN"
     earn_rewards_buy_box: "<span class='flex between'>Earn <strong>$%{rewards}</strong> (%{percentage})</span><span class='info-icon-right condensed outlined'>in Buyer Rewards</span>"
+    earn_rewards_short: "Earn <span class='semi-bold'>$%{rewards}</span> in Buyer Rewards"
     rewards: "%{rewards} PTRN Rewards"
     total_rewards: "%{rewards} PTRN"
     arrives: Arrives in 4–8 business days
@@ -30,5 +31,5 @@ en:
     return_to_product: '< Return to Product Information'
     table_header:
       price: Price
-      delivery_ptrn: Delivery + PTRN Rewards
+      delivery_ptrn: DELIVERY + BUYER REWARD
       seller: About seller

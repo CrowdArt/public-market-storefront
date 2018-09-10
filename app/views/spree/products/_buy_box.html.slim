@@ -50,7 +50,7 @@ ruby:
 
       br
 
-      .text-right.diamond-icon-left.buy-box--rewards
+      .text-right.diamond-icon-left.icon-lg.buy-box--rewards
         - rewards = variant.rewards_amount
         span == t('products.earn_rewards_buy_box', rewards: variant.rewards_amount, percentage: number_to_percentage((rewards / variant.price) * 100, precision: 0))
 
