@@ -20,8 +20,8 @@ ruby:
 - content_for :sidebar do
   = render partial: 'spree/shared/taxonomy'
 
-  - if @taxon.root.permalink == 'books'
-    = render partial: 'spree/taxons/special'
+  / - if @taxon.root.permalink == 'books'
+  /   = render partial: 'spree/taxons/special'
 
 - if hide_products
   - cache([:v1, I18n.locale, @taxon]) do
