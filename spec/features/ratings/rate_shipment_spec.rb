@@ -16,8 +16,8 @@ RSpec.describe 'rate shipment', type: :feature, js: true, vcr: true do
     before { find('#positive').click }
 
     it 'show positive feedback' do
-      expect(rate_page).to have_text('Express your gratitude & leave a positive review for the merchant')
-      expect(rate_page).to have_text('SEND FEEDBACK')
+      expect(rate_page).to have_text('Take a moment to leave the merchant a positive review')
+      expect(rate_page).to have_text('WRITE A REVIEW')
     end
 
     context 'when user left feedback' do
@@ -25,7 +25,7 @@ RSpec.describe 'rate shipment', type: :feature, js: true, vcr: true do
 
       before do
         fill_in 'review', with: review
-        click_button('Submit Review')
+        click_button('Submit Rating')
       end
 
       it 'update ratings' do
@@ -45,7 +45,7 @@ RSpec.describe 'rate shipment', type: :feature, js: true, vcr: true do
         end
 
         it 'show update form' do
-          expect(page).to have_text('SEND FEEDBACK')
+          expect(page).to have_text('WRITE A REVIEW')
           expect(find('textarea').value).to eq(review)
         end
 
@@ -55,7 +55,7 @@ RSpec.describe 'rate shipment', type: :feature, js: true, vcr: true do
           before do
             find('#negative').click
             fill_in 'review', with: new_review
-            click_button('Update Review')
+            click_button('Update Rating')
           end
 
           it 'update ratings' do
