@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_raven_context, if: -> { Rails.env.staging? || Rails.env.production? }
-  before_action :authenticate_user!, unless: :allow_unauthenticated_view?
+  # before_action :authenticate_user!, unless: :allow_unauthenticated_view?
 
   protected
 
